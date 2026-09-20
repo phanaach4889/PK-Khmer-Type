@@ -1,0 +1,179 @@
+  @media (max-width:520px){
+    .founder-byline{ font-size:0.62rem; padding:4px 11px; text-align:center; }
+  }
+
+  @media (max-width: 900px){ .torch{ display:none; } }
+
+  @media (max-width: 640px){ .shift-badge{ font-size:0.48rem; top:2px; right:3px; } }
+
+  @media (max-width:640px){
+    .race-text{ font-size:1.4rem; line-height:1.85; }
+    .race-countdown{ font-size:3rem; }
+    .race-result-grid{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .race-panel, .race-result-overlay, .race-result-card, .race-countdown.pulse, .race-ember,
+    .race-track-fill, .race-toggle-btn{ animation:none !important; transition:none !important; }
+  }
+
+  @media(min-width:1380px){
+    .guide-dock{
+      display:flex;
+      position:fixed;
+      left:18px;
+      top:84px;
+      bottom:20px;
+      width:280px;
+      margin:0;
+      z-index:60;
+      max-height:calc(100vh - 104px);
+      overflow-y:auto;
+      overflow-x:hidden;
+      scrollbar-width:thin;
+      scrollbar-color:rgba(255,209,102,0.3) transparent;
+      backdrop-filter:blur(8px);
+    }
+    .guide-dock::-webkit-scrollbar{
+      width:5px;
+    }
+    .guide-dock::-webkit-scrollbar-thumb{
+      background:rgba(255,209,102,0.25);
+      border-radius:3px;
+    }
+    .guide-dock::-webkit-scrollbar-thumb:hover{
+      background:var(--gold);
+    }
+  }
+
+  @media(min-width:1150px){
+    .lesson-strip{
+      position:fixed;
+      right:18px;
+      top:84px;
+      bottom:20px;
+      width:300px;
+      margin:0;
+      z-index:60;
+      max-height:calc(100vh - 104px);
+      overflow-y:auto;
+      overflow-x:hidden;
+      scrollbar-width:thin;
+      scrollbar-color:rgba(255,209,102,0.3) transparent;
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      transition:width .28s cubic-bezier(.22,1,.36,1), top .28s ease, bottom .28s ease, max-height .28s ease, box-shadow .28s ease, border-color .28s ease;
+    }
+    .lesson-strip.expanded{
+      top:64px;
+      bottom:14px;
+      max-height:calc(100vh - 78px);
+      width:min(580px, calc(100vw - 760px));
+      box-shadow:0 18px 54px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,209,102,0.24);
+      border-color:rgba(255,209,102,0.35);
+    }
+    @media(min-width:1600px){
+      .lesson-strip.expanded{
+        width:620px;
+      }
+    }
+    .lesson-strip::-webkit-scrollbar{
+      width:6px;
+    }
+    .lesson-strip::-webkit-scrollbar-thumb{
+      background:rgba(255,209,102,0.3);
+      border-radius:3px;
+    }
+    .lesson-strip::-webkit-scrollbar-thumb:hover{
+      background:var(--gold);
+    }
+  }
+
+  @media (max-width: 640px){
+    .lesson-char-row{ font-size:1.7rem; }
+  }
+
+  @media (max-width: 640px){
+    .keyboard{ width:94vw; gap:5px;}
+    .manuscript{ width:94vw;}
+    .row{ gap:5px;}
+    .key{ height:40px; font-size:0.85rem; border-radius:7px;}
+    .key.mod, .key.label-key{ font-size:0.6rem;}
+    h1{ font-size:1.9rem;}
+    .tooltip{ font-size:0.6rem; white-space:normal; max-width:150px;}
+  }
+
+  @media (max-width: 640px){
+    .session-bar{ width:94vw; }
+    .session-stat{ padding:8px 3px; }
+    .session-stat-val{ font-size:0.86rem; }
+    .session-stat-label{ font-size:0.46rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html:not(.motion-override) *, html:not(.motion-override) *::before, html:not(.motion-override) *::after{
+      animation-duration:0.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:0.001ms !important;
+    }
+  }
+
+  @media (max-width:640px){
+    .top-actions{ position:static; justify-content:center; margin-bottom:14px; }
+  }
+
+  @media (max-width:480px){
+    .auth-card{ padding:18px 18px 20px; }
+    .auth-row-between{ flex-direction:column; align-items:flex-start; gap:10px; }
+    .acc-stats-grid{ grid-template-columns:repeat(2, 1fr); }
+  }
+
+  @media (max-width:480px){
+    .terms-top{ padding:20px 18px 14px; }
+    .terms-body{ padding:16px 18px 4px; }
+    .terms-ack-btn{ width:calc(100% - 36px); margin:14px 18px 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .auth-card, .auth-panel, .auth-submit-spinner{ animation:none !important; transition:none !important; }
+  }
+
+  @media (max-width:560px){
+    .stats-grid{ grid-template-columns:repeat(2, 1fr); padding:16px 18px 4px; }
+    .stats-header{ padding:20px 18px 16px; }
+    .stats-levels-head{ padding:18px 18px 8px; }
+    #statsLessonBars{ padding:0 18px 20px; }
+    .stats-bar-name{ min-width:96px; font-size:0.66rem; }
+    #statsRaceRecords{ padding:0 18px 20px; grid-template-columns:1fr; }
+  }
+
+  @media (max-width:520px){
+    .profile-banner{ padding:24px 18px 18px 116px; min-height:104px; }
+    .profile-avatar-wrap{ left:16px; width:80px; height:80px; font-size:1.9rem; }
+    .profile-name{ font-size:1.5rem; }
+    .profile-level-badge{ min-width:22px; height:22px; font-size:0.58rem; }
+  }
+
+  @media (min-width:1300px){
+    .profile-sidebar{ position:fixed; left:24px; top:100px; width:264px; }
+    .profile-sidebar.collapsed{ width:auto; max-width:264px; }
+    .profile-sidebar .profile-banner{
+      flex-direction:column; align-items:flex-start;
+      padding:106px 20px 18px 20px;
+      min-height:0;
+    }
+    .profile-sidebar .profile-avatar-wrap{ left:20px; top:22px; transform:none; width:72px; height:72px; font-size:1.55rem; }
+    .profile-sidebar .profile-level-badge{ min-width:22px; height:22px; font-size:0.58rem; }
+    .profile-sidebar .profile-name{ font-size:1.3rem; }
+    .profile-sidebar .profile-name-row{ flex-wrap:wrap; }
+    .profile-sidebar .stats-grid{ grid-template-columns:1fr 1fr; padding:16px 20px 20px; gap:10px; }
+    .profile-sidebar .stat-tile{ padding:12px 8px; }
+    .profile-sidebar .stat-tile-val{ font-size:1.15rem; }
+    .profile-sidebar.collapsed .profile-banner{ flex-direction:row; align-items:center; gap:12px; padding:12px 18px 12px 12px; }
+    .profile-sidebar.collapsed .profile-avatar-wrap{ position:static; left:auto; top:auto; transform:none; }
+  }
+
+  @media (max-width:1299px){
+    .profile-sidebar{ width:min(94vw, 440px); margin:0 0 20px; align-self:flex-start; }
+    .profile-sidebar.collapsed{ width:auto; }
+  }

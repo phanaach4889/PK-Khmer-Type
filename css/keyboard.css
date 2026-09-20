@@ -1,0 +1,488 @@
+  /* ambient light bar under the keyboard — static, no blur/animation loop (keeps it cheap) */
+  .keyboard::after{
+    content:"";
+    position:absolute;
+    left:10%; right:10%; bottom:0;
+    height:10px;
+    border-radius:50%;
+    background:radial-gradient(ellipse, color-mix(in srgb, var(--gold-bright) 35%, transparent), transparent 75%);
+    opacity:0.5;
+    pointer-events:none;
+  }
+
+  .row{
+    display:flex;
+    gap:7px;
+  }
+
+  .key{
+    position:relative;
+    flex:1 1 0;
+    min-width:0;
+    height:52px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(180deg, var(--stone-3), var(--stone-2));
+    border:1px solid var(--stone-edge);
+    border-bottom:3px solid var(--stone-edge);
+    border-radius:9px;
+    color:var(--ink);
+    font-family:'Noto Sans Khmer','JetBrains Mono',sans-serif;
+    font-size:1.05rem;
+    user-select:none;
+    cursor:pointer;
+    box-shadow:0 3px 7px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.05);
+    transition:transform .1s cubic-bezier(.34,1.56,.64,1), background .15s ease, box-shadow .15s ease;
+    overflow:hidden;
+  }
+  .key::after{
+    content:"";
+    position:absolute;
+    inset:2px 2px auto 2px;
+    height:40%;
+    border-radius:7px 7px 12px 12px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.06), transparent);
+    pointer-events:none;
+  }
+  .key .glyph{ position:relative; z-index:1; }
+
+  /* corner preview of the shift-layer glyph */
+  .shift-badge{
+    position:absolute;
+    top:3px; right:5px;
+    z-index:2;
+    font-family:'Noto Serif Khmer','Noto Sans Khmer',serif;
+    font-size:0.6rem;
+    line-height:1;
+    color:var(--gold);
+    opacity:0.55;
+    text-shadow:0 0 6px rgba(255,157,46,0.35);
+    transition:opacity .2s ease, color .2s ease, text-shadow .2s ease, transform .2s ease;
+    pointer-events:none;
+  }
+  .key:hover .shift-badge{
+    opacity:0.85;
+    color:var(--gold-bright);
+  }
+  .board-wrap.layer-shift .shift-badge{
+    opacity:0;
+    transform:translateY(-3px) scale(0.7);
+  }
+
+  .key:hover{
+    background:linear-gradient(180deg, #232a48, #171c33);
+    transform:translateY(-1px);
+    box-shadow:
+      0 5px 10px rgba(0,0,0,0.36),
+      0 0 0 1px color-mix(in srgb, var(--gold-bright) 50%, transparent),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+    z-index:3;
+  }
+  html.theme-temple .key:hover{ background:linear-gradient(180deg, #4a3620, #2e2113); }
+
+  .key.pressed, .key:active{
+    transform:translateY(2px) scale(0.96);
+    border-bottom-width:1px;
+    filter:brightness(1.25);
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.3),
+      0 0 0 1px color-mix(in srgb, var(--gold-bright) 65%, transparent),
+      0 0 14px color-mix(in srgb, var(--gold-bright) 45%, transparent);
+  }
+
+
+  /* ripple */
+  .ripple{
+    position:absolute;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(255,209,102,0.55), transparent 70%);
+    transform:translate(-50%,-50%) scale(0);
+    width:120px; height:120px;
+    pointer-events:none;
+    animation:ripple .5s ease-out forwards;
+    z-index:0;
+  }
+  @keyframes ripple{
+    to{ transform:translate(-50%,-50%) scale(1); opacity:0;}
+  }
+
+  /* embers */
+  .ember{
+    position:absolute;
+    width:4px; height:4px;
+    border-radius:50%;
+    background:var(--gold-bright);
+    box-shadow:0 0 7px 1px rgba(255,209,102,0.85);
+    pointer-events:none;
+    z-index:6;
+    animation:ember-fly .62s ease-out forwards;
+  }
+  @keyframes ember-fly{
+    0%{ transform:translate(-50%,-50%) translate(0,0) scale(1); opacity:1;}
+    100%{ transform:translate(-50%,-50%) translate(var(--dx), var(--dy)) scale(0.15); opacity:0;}
+  }
+
+  /* trial feedback states */
+  .key.correct{
+    background:linear-gradient(180deg, #3f5b34, #263a1e) !important;
+    border-color:#8bd35a !important;
+    color:#eaffda !important;
+    box-shadow:0 0 18px rgba(139,211,90,0.55) !important;
+  }
+  .key.wrong{
+    background:linear-gradient(180deg, #5b2f30, #3a1c1d) !important;
+    border-color:var(--temple-red) !important;
+    box-shadow:0 0 18px rgba(255,59,86,0.55) !important;
+    animation:key-shake .3s ease;
+  }
+  @keyframes key-shake{
+    0%,100%{ transform:translateX(0);}
+    25%{ transform:translateX(-3px);}
+    75%{ transform:translateX(3px);}
+  }
+
+  /* lesson: highlight the next key to press */
+  .key.lesson-target{
+    border-color:var(--gold-bright) !important;
+    box-shadow:0 0 0 2px rgba(255,209,102,0.35), 0 0 22px rgba(255,209,102,0.6) !important;
+    animation:lesson-target-pulse 1.1s ease-in-out infinite;
+    z-index:2;
+  }
+  @keyframes lesson-target-pulse{
+    0%,100%{ box-shadow:0 0 0 2px rgba(255,209,102,0.35), 0 0 14px rgba(255,209,102,0.45); }
+    50%{ box-shadow:0 0 0 2px rgba(255,209,102,0.55), 0 0 26px rgba(255,209,102,0.8); }
+  }
+
+    /* finger guide: illustrated hand overlay showing correct-finger technique */
+  .hands-overlay{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:5;
+    overflow:visible;
+    transition:opacity .35s ease;
+  }
+  .hands-overlay.hidden{ opacity:0; }
+
+  .hands-overlay .hand-group{
+    filter:url(#handShadow);
+    transition:transform .28s cubic-bezier(.22,1,.36,1);
+  }
+
+  /* back of the hand — sleek ergonomic chassis with subtle depth */
+  .hands-overlay .palm-shape{
+    fill:url(#palmGrad);
+    stroke:rgba(255,209,102,0.45);
+    stroke-width:1.2;
+    stroke-linejoin:round;
+    transition:d .28s cubic-bezier(.22,1,.36,1), opacity .25s ease;
+  }
+  .hands-overlay .hand-group.side-r .palm-shape{ fill:url(#palmGradR); stroke:rgba(255,120,235,0.45); }
+
+  .hands-overlay .palm-shade{
+    fill:rgba(4,6,16,0.38);
+    transition:d .28s cubic-bezier(.22,1,.36,1);
+    mix-blend-mode:multiply;
+  }
+  .hands-overlay .palm-highlight{
+    fill:url(#palmHighlight);
+    opacity:0.55;
+    mix-blend-mode:screen;
+    transition:cx .28s cubic-bezier(.22,1,.36,1), cy .28s cubic-bezier(.22,1,.36,1);
+  }
+  .hands-overlay .palm-core{
+    fill:url(#jointGlow);
+    opacity:0.6;
+    filter:drop-shadow(0 0 8px rgba(255,209,102,0.7));
+    transform-box:fill-box;
+    transform-origin:center;
+    animation:palm-core-pulse 2.6s ease-in-out infinite;
+    transition:cx .28s cubic-bezier(.22,1,.36,1), cy .28s cubic-bezier(.22,1,.36,1);
+  }
+  .hands-overlay .hand-group.side-r .palm-core{ fill:url(#jointGlowR); filter:drop-shadow(0 0 8px rgba(255,120,235,0.7)); }
+  @keyframes palm-core-pulse{
+    0%,100%{ opacity:0.35; transform:scale(0.9); }
+    50%{ opacity:0.8; transform:scale(1.15); }
+  }
+
+  /* individual finger — tapered, ergonomic, contoured with subtle joint cues */
+  .hands-overlay .finger-shape{
+    fill:url(#fingerGrad);
+    stroke:rgba(255,209,102,0.45);
+    stroke-width:1.1;
+    stroke-linejoin:round;
+    filter:drop-shadow(0 0 5px rgba(255,209,102,0.25));
+    transition:fill .25s ease, stroke .25s ease, opacity .25s ease, filter .25s ease, d .28s cubic-bezier(.22,1,.36,1);
+  }
+  .hands-overlay .hand-group.side-r .finger-shape{
+    fill:url(#fingerGradR);
+    stroke:rgba(255,120,235,0.4);
+    filter:drop-shadow(0 0 5px rgba(255,120,235,0.25));
+  }
+  .hands-overlay .finger-shine{
+    fill:none;
+    stroke:rgba(200,235,255,0.45);
+    stroke-width:1.2;
+    stroke-linecap:round;
+    transition:opacity .25s ease, d .28s cubic-bezier(.22,1,.36,1);
+  }
+  .hands-overlay .hand-group.side-r .finger-shine{ stroke:rgba(255,214,250,0.45); }
+  .hands-overlay .finger-shine2{
+    fill:none;
+    stroke:rgba(255,255,255,0.18);
+    stroke-width:0.8;
+    stroke-linecap:round;
+    transition:opacity .25s ease, d .28s cubic-bezier(.22,1,.36,1);
+  }
+
+  /* plate seams: natural subtle finger creases (no ruler tick marks) */
+  .hands-overlay .finger-crease{
+    fill:none;
+    stroke:rgba(255,209,102,0.45);
+    stroke-width:0.9;
+    stroke-linecap:round;
+    opacity:0.55;
+    transition:opacity .25s ease, stroke .25s ease, d .28s cubic-bezier(.22,1,.36,1);
+  }
+  .hands-overlay .hand-group.side-r .finger-crease{ stroke:rgba(255,120,235,0.45); }
+  .hands-overlay .finger-joint{
+    fill:url(#jointGlow);
+    opacity:0.55;
+    filter:drop-shadow(0 0 4px rgba(255,209,102,0.5));
+    transition:cx .28s cubic-bezier(.22,1,.36,1), cy .28s cubic-bezier(.22,1,.36,1);
+  }
+  .hands-overlay .hand-group.side-r .finger-joint{ fill:url(#jointGlowR); filter:drop-shadow(0 0 4px rgba(255,120,235,0.5)); }
+  .hands-overlay .finger-nail{
+    fill:url(#jointGlow);
+    stroke:rgba(255,209,102,0.6);
+    stroke-width:0.6;
+    opacity:0.75;
+    transition:opacity .25s ease, transform .28s cubic-bezier(.22,1,.36,1);
+  }
+  .hands-overlay .hand-group.side-r .finger-nail{ fill:url(#jointGlowR); stroke:rgba(255,120,235,0.6); }
+  .hands-overlay .finger-tip{
+    fill:rgba(255,209,102,0.7);
+    stroke:rgba(200,242,255,0.8);
+    stroke-width:1;
+    filter:drop-shadow(0 0 6px rgba(255,209,102,0.6));
+    transition:cx .28s cubic-bezier(.22,1,.36,1), cy .28s cubic-bezier(.22,1,.36,1), fill .25s ease, r .25s ease, opacity .25s ease;
+  }
+  .hands-overlay .hand-group.side-r .finger-tip{ fill:rgba(255,120,235,0.7); stroke:rgba(255,224,250,0.8); filter:drop-shadow(0 0 6px rgba(255,120,235,0.6)); }
+
+  /* smooth inner energy glow when active — NO dashed road line */
+  .hands-overlay .finger-energy{
+    fill:none;
+    stroke:#eafeff;
+    stroke-width:1.5;
+    stroke-linecap:round;
+    opacity:0;
+    filter:drop-shadow(0 0 6px rgba(255,209,102,0.9));
+    transition:opacity .2s ease, d .28s cubic-bezier(.22,1,.36,1);
+  }
+  .hands-overlay .hand-group.side-r .finger-energy{ filter:drop-shadow(0 0 6px rgba(255,120,235,0.9)); }
+  .hands-overlay .finger.active .finger-energy{
+    opacity:0.85;
+  }
+
+  /* active reaching finger surges with energy */
+  .hands-overlay .finger.active .finger-shape{
+    fill:url(#fingerGradActive);
+    stroke:#eafeff;
+    stroke-width:1.4;
+    filter:drop-shadow(0 0 12px rgba(255,209,102,0.95)) drop-shadow(0 0 24px rgba(255,157,46,0.5));
+  }
+  .hands-overlay .hand-group.side-r .finger.active .finger-shape{
+    fill:url(#fingerGradActiveR);
+    stroke:#fff2fe;
+    stroke-width:1.4;
+    filter:drop-shadow(0 0 12px rgba(255,120,235,0.95)) drop-shadow(0 0 24px rgba(255,157,46,0.5));
+  }
+  .hands-overlay .finger.active .finger-shine{ stroke:#ffffff; opacity:0.95; }
+  .hands-overlay .finger.active .finger-crease{ stroke:rgba(234,254,255,0.9); opacity:0.9; }
+  .hands-overlay .finger.active .finger-joint{ opacity:1; filter:drop-shadow(0 0 8px rgba(255,209,102,0.95)); }
+  .hands-overlay .finger.active .finger-nail{ fill:#eafeff; opacity:1; }
+  .hands-overlay .finger.active .finger-tip{
+    fill:#ffd166;
+    stroke:#fff;
+    r:6.5;
+    filter:drop-shadow(0 0 8px #fff) drop-shadow(0 0 16px rgba(255,209,102,0.95));
+    animation:finger-tip-pulse 1.15s ease-in-out infinite;
+  }
+  @keyframes finger-tip-pulse{
+    0%,100%{ r:6; opacity:0.9; }
+    50%{ r:7.5; opacity:1; filter:drop-shadow(0 0 12px #fff) drop-shadow(0 0 22px rgba(255,209,102,1)); }
+  }
+  .hands-overlay .hand-group.side-r .finger.active .finger-tip{
+    fill:#ff7bee;
+    filter:drop-shadow(0 0 8px #fff) drop-shadow(0 0 16px rgba(255,120,235,0.95));
+  }
+
+  .hands-overlay .finger.struck .finger-shape{
+    filter:drop-shadow(0 0 22px #ffffff) drop-shadow(0 0 40px rgba(255,209,102,1));
+  }
+  .hands-overlay .impact-ring{
+    fill:none;
+    stroke:#ffffff;
+    stroke-width:2.2;
+    opacity:0;
+    pointer-events:none;
+    transform-origin:center;
+    transform-box:fill-box;
+  }
+  .hands-overlay .impact-ring.firing{
+    animation:impact-burst .32s cubic-bezier(0,0,.2,1) forwards;
+  }
+  .hands-overlay .impact-ring-2{
+    fill:none;
+    stroke:rgba(255,209,102,0.85);
+    stroke-width:1.4;
+    opacity:0;
+    pointer-events:none;
+    transform-origin:center;
+    transform-box:fill-box;
+  }
+  .hands-overlay .hand-group.side-r .impact-ring-2{ stroke:rgba(255,120,235,0.85); }
+  .hands-overlay .impact-ring-2.firing{
+    animation:impact-burst-2 .45s cubic-bezier(0,0,.2,1) forwards;
+  }
+  @keyframes impact-burst{
+    0%{ r:4; opacity:1; stroke-width:2.5; }
+    100%{ r:24; opacity:0; stroke-width:0.5; }
+  }
+  @keyframes impact-burst-2{
+    0%{ r:2; opacity:0.9; stroke-width:2; }
+    40%{ opacity:0.8; }
+    100%{ r:34; opacity:0; stroke-width:0.4; }
+  }
+  .hands-overlay .impact-sparks,
+  .hands-overlay .impact-ring,
+  .hands-overlay .impact-ring-2{
+    display:none !important;
+    opacity:0 !important;
+    pointer-events:none !important;
+  }
+  .hands-overlay .impact-sparks.firing{
+    animation:sparks-burst .36s ease-out forwards;
+  }
+  @keyframes sparks-burst{
+    0%{ opacity:1; transform:scale(0.4) rotate(0deg); }
+    100%{ opacity:0; transform:scale(1.8) rotate(35deg); }
+  }
+  .hands-overlay .target-reticle{
+    fill:none;
+    stroke:rgba(255,209,102,0.8);
+    stroke-width:1.1;
+    opacity:0;
+    transition:opacity .2s ease;
+    pointer-events:none;
+  }
+  .hands-overlay .hand-group.side-r .target-reticle{
+    stroke:rgba(255,120,235,0.8);
+  }
+  .hands-overlay .finger.active .target-reticle{
+    opacity:0.9;
+    animation:reticle-lock .9s ease-in-out infinite;
+  }
+  @keyframes reticle-lock{
+    0%,100%{ transform:scale(1) rotate(0deg); opacity:0.7; }
+    50%{ transform:scale(0.8) rotate(4deg); opacity:1; }
+  }
+
+  .key.label-key{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.03em;
+    color:var(--ink-dim);
+  }
+
+  .key.space{ flex-grow:8; cursor:pointer;}
+  .key.empty{ opacity:0.35; }
+
+  .key.mod{
+    background:linear-gradient(180deg, #322f2a, #262420);
+    color:var(--ink-dim);
+    font-size:0.72rem;
+    font-family:'JetBrains Mono', monospace;
+  }
+  .key.mod:hover{
+    background:linear-gradient(180deg, #1c2140, #141830);
+  }
+
+  .key.key-ctrl:hover, .key.key-ctrl.locked{
+    background:linear-gradient(180deg, #4a84c4, #2c4d73);
+    color:#eaf2fb;
+    border-color:#1c3350;
+    transform:translateY(1px);
+    box-shadow:0 0 22px rgba(45,212,167,0.5);
+  }
+  .key.key-altgr:hover, .key.key-altgr.locked{
+    background:linear-gradient(180deg, #c8474c, #7f2529);
+    color:#fdeeee;
+    border-color:#5a1a1d;
+    transform:translateY(1px);
+    box-shadow:0 0 22px rgba(255,59,86,0.5);
+  }
+  .key.key-shift:hover, .key.key-shift.locked{
+    background:linear-gradient(180deg, #ff9d2e, #96702a);
+    color:#241a05;
+    border-color:#6b4e1c;
+    transform:translateY(1px);
+    box-shadow:0 0 22px rgba(255,157,46,0.5);
+  }
+
+  .key.lit{
+    background:linear-gradient(180deg, #4a4335, #35301f) !important;
+    border-color:var(--gold-bright) !important;
+    box-shadow:0 0 16px rgba(255,209,102,0.55), 0 0 0 1px rgba(255,209,102,0.4) inset !important;
+    color:var(--gold-bright);
+  }
+
+  /* tooltip */
+  .tooltip{
+    position:absolute;
+    bottom:calc(100% + 10px);
+    left:0;
+    background:var(--tooltip-bg);
+    border:1px solid var(--tooltip-border);
+    color:var(--tooltip-ink);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem;
+    line-height:1.5;
+    padding:6px 10px;
+    border-radius:4px;
+    white-space:nowrap;
+    box-shadow:0 8px 18px rgba(0,0,0,0.4);
+    opacity:0;
+    transform:translateY(4px) scale(0.96);
+    pointer-events:none;
+    transition:opacity .15s ease, transform .15s ease;
+    z-index:20;
+  }
+  .tooltip strong{
+    display:block;
+    font-weight:700;
+    letter-spacing:0.02em;
+  }
+  .tooltip.show{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+  .tooltip::after{
+    content:"";
+    position:absolute;
+    top:100%;
+    left:16px;
+    border:6px solid transparent;
+    border-top-color:var(--tooltip-border);
+  }
+  .tooltip::before{
+    content:"";
+    position:absolute;
+    top:calc(100% - 1px);
+    left:17px;
+    border:5px solid transparent;
+    border-top-color:var(--tooltip-bg);
+  }

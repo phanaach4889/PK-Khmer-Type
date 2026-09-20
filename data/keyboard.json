@@ -1,0 +1,1686 @@
+{
+  "LAYOUTS": {
+    "standard": {
+      "label": "Khmer Keyboard Layout",
+      "rows": [
+        [
+          {
+            "id": "grave",
+            "base": "",
+            "ctrl": "฿",
+            "altgr": "◎",
+            "shift": "",
+            "kind": "glyph"
+          },
+          {
+            "id": "k1",
+            "base": "១",
+            "ctrl": "₭",
+            "altgr": "1",
+            "shift": "!",
+            "kind": "glyph"
+          },
+          {
+            "id": "k2",
+            "base": "២",
+            "ctrl": "€",
+            "altgr": "2",
+            "shift": "ៗ",
+            "kind": "glyph"
+          },
+          {
+            "id": "k3",
+            "base": "៣",
+            "ctrl": "đ",
+            "altgr": "3",
+            "shift": "\"",
+            "kind": "glyph"
+          },
+          {
+            "id": "k4",
+            "base": "៤",
+            "ctrl": "₣",
+            "altgr": "4",
+            "shift": "៛",
+            "kind": "glyph"
+          },
+          {
+            "id": "k5",
+            "base": "៥",
+            "ctrl": "¥",
+            "altgr": "5",
+            "shift": "%",
+            "kind": "glyph"
+          },
+          {
+            "id": "k6",
+            "base": "៦",
+            "ctrl": "",
+            "altgr": "6",
+            "shift": "៍",
+            "kind": "glyph"
+          },
+          {
+            "id": "k7",
+            "base": "៧",
+            "ctrl": "£",
+            "altgr": "7",
+            "shift": "័",
+            "kind": "glyph"
+          },
+          {
+            "id": "k8",
+            "base": "៨",
+            "ctrl": "",
+            "altgr": "8",
+            "shift": "៏",
+            "kind": "glyph"
+          },
+          {
+            "id": "k9",
+            "base": "៩",
+            "ctrl": "",
+            "altgr": "9",
+            "shift": "៎",
+            "kind": "glyph"
+          },
+          {
+            "id": "k0",
+            "base": "០",
+            "ctrl": "—",
+            "altgr": "0",
+            "shift": "៌",
+            "kind": "glyph"
+          },
+          {
+            "id": "minus",
+            "base": "-",
+            "ctrl": "•",
+            "altgr": "{",
+            "shift": "_",
+            "kind": "glyph"
+          },
+          {
+            "id": "equal",
+            "base": "=",
+            "ctrl": "",
+            "altgr": "}",
+            "shift": "+",
+            "kind": "glyph"
+          },
+          {
+            "id": "backspace",
+            "kind": "mod",
+            "label": "Backsp.",
+            "wide": 2
+          }
+        ],
+        [
+          {
+            "id": "tab",
+            "kind": "mod",
+            "label": "Tab",
+            "wide": 1.5
+          },
+          {
+            "id": "q",
+            "base": "ឆ",
+            "ctrl": "",
+            "altgr": "*",
+            "shift": "ឈ",
+            "kind": "glyph"
+          },
+          {
+            "id": "w",
+            "base": "ឹ",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ឺ",
+            "kind": "glyph"
+          },
+          {
+            "id": "e",
+            "base": "េ",
+            "ctrl": "",
+            "altgr": "ឯ",
+            "shift": "ែ",
+            "kind": "glyph"
+          },
+          {
+            "id": "r",
+            "base": "រ",
+            "ctrl": "",
+            "altgr": "ឫ",
+            "shift": "ឬ",
+            "kind": "glyph"
+          },
+          {
+            "id": "t",
+            "base": "ត",
+            "ctrl": "",
+            "altgr": "ឦ",
+            "shift": "ទ",
+            "kind": "glyph"
+          },
+          {
+            "id": "y",
+            "base": "យ",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ួ",
+            "kind": "glyph"
+          },
+          {
+            "id": "u",
+            "base": "ុ",
+            "ctrl": "",
+            "altgr": "ឧ",
+            "shift": "ូ",
+            "kind": "glyph"
+          },
+          {
+            "id": "i",
+            "base": "ិ",
+            "ctrl": "",
+            "altgr": "ឥ",
+            "shift": "ី",
+            "kind": "glyph"
+          },
+          {
+            "id": "o",
+            "base": "ោ",
+            "ctrl": "",
+            "altgr": "ឱ",
+            "shift": "ៅ",
+            "kind": "glyph"
+          },
+          {
+            "id": "p",
+            "base": "ផ",
+            "ctrl": "",
+            "altgr": "ឳ",
+            "shift": "ភ",
+            "kind": "glyph"
+          },
+          {
+            "id": "bracketL",
+            "base": "ើ",
+            "ctrl": "",
+            "altgr": "[",
+            "shift": "ោះ",
+            "kind": "glyph"
+          },
+          {
+            "id": "bracketR",
+            "base": "ឿ",
+            "ctrl": "",
+            "altgr": "]",
+            "shift": "ៀ",
+            "kind": "glyph"
+          },
+          {
+            "id": "enter",
+            "kind": "mod",
+            "label": "Enter",
+            "wide": 1.5
+          }
+        ],
+        [
+          {
+            "id": "caps",
+            "kind": "mod",
+            "label": "Caps",
+            "wide": 1.75
+          },
+          {
+            "id": "a",
+            "base": "ា",
+            "ctrl": "",
+            "altgr": "ឩ",
+            "shift": "ៃ",
+            "kind": "glyph"
+          },
+          {
+            "id": "s",
+            "base": "ស",
+            "ctrl": "",
+            "altgr": "ឪ",
+            "shift": "ាំ",
+            "kind": "glyph"
+          },
+          {
+            "id": "d",
+            "base": "ដ",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ឌ",
+            "kind": "glyph"
+          },
+          {
+            "id": "f",
+            "base": "ថ",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ធ",
+            "kind": "glyph"
+          },
+          {
+            "id": "g",
+            "base": "ង",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ុះ",
+            "kind": "glyph"
+          },
+          {
+            "id": "h",
+            "base": "ហ",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "៏",
+            "kind": "glyph"
+          },
+          {
+            "id": "j",
+            "base": "ញ",
+            "ctrl": "",
+            "altgr": "ឮ",
+            "shift": "ុំ",
+            "kind": "glyph"
+          },
+          {
+            "id": "k",
+            "base": "ក",
+            "ctrl": "",
+            "altgr": "ឭ",
+            "shift": "គ",
+            "kind": "glyph"
+          },
+          {
+            "id": "l",
+            "base": "ល",
+            "ctrl": "",
+            "altgr": "ឰ",
+            "shift": "ឡ",
+            "kind": "glyph"
+          },
+          {
+            "id": "semicolon",
+            "base": "ះ",
+            "ctrl": ":",
+            "altgr": ";",
+            "shift": "៖",
+            "kind": "glyph"
+          },
+          {
+            "id": "quote",
+            "base": "់",
+            "ctrl": "«",
+            "altgr": "៝",
+            "shift": "៉",
+            "kind": "glyph"
+          },
+          {
+            "id": "backslash",
+            "base": "\\",
+            "ctrl": "/",
+            "altgr": "៚",
+            "shift": "/",
+            "kind": "glyph"
+          }
+        ],
+        [
+          {
+            "id": "shiftL",
+            "kind": "mod",
+            "label": "Shift",
+            "cls": "key-shift",
+            "wide": 2.25
+          },
+          {
+            "id": "z",
+            "base": "ឋ",
+            "ctrl": "",
+            "altgr": "#",
+            "shift": "ឍ",
+            "kind": "glyph"
+          },
+          {
+            "id": "x",
+            "base": "ខ",
+            "ctrl": "",
+            "altgr": "@",
+            "shift": "ឃ",
+            "kind": "glyph"
+          },
+          {
+            "id": "c",
+            "base": "ច",
+            "ctrl": "",
+            "altgr": "&",
+            "shift": "ជ",
+            "kind": "glyph"
+          },
+          {
+            "id": "v",
+            "base": "វ",
+            "ctrl": "",
+            "altgr": "$",
+            "shift": "េះ",
+            "kind": "glyph"
+          },
+          {
+            "id": "b",
+            "base": "ប",
+            "ctrl": "",
+            "altgr": "%",
+            "shift": "ព",
+            "kind": "glyph"
+          },
+          {
+            "id": "n",
+            "base": "ន",
+            "ctrl": "",
+            "altgr": "(",
+            "shift": "ណ",
+            "kind": "glyph"
+          },
+          {
+            "id": "m",
+            "base": "ម",
+            "ctrl": "’",
+            "altgr": ")",
+            "shift": "ំ",
+            "kind": "glyph"
+          },
+          {
+            "id": "comma",
+            "base": "អ",
+            "ctrl": "<",
+            "altgr": "‹",
+            "shift": ",",
+            "kind": "glyph"
+          },
+          {
+            "id": "period",
+            "base": "។",
+            "ctrl": ">",
+            "altgr": "›",
+            "shift": ".",
+            "kind": "glyph"
+          },
+          {
+            "id": "slash",
+            "base": "",
+            "ctrl": "”",
+            "altgr": "៕",
+            "shift": "?",
+            "kind": "glyph"
+          },
+          {
+            "id": "extra",
+            "base": "",
+            "ctrl": "",
+            "altgr": "¶",
+            "shift": "",
+            "kind": "glyph"
+          },
+          {
+            "id": "shiftR",
+            "kind": "mod",
+            "label": "Shift",
+            "cls": "key-shift",
+            "wide": 1.75
+          }
+        ],
+        [
+          {
+            "id": "ctrlL",
+            "kind": "mod",
+            "label": "Ctrl",
+            "cls": "key-ctrl",
+            "wide": 1.5
+          },
+          {
+            "id": "alt",
+            "kind": "mod",
+            "label": "Alt",
+            "wide": 1.5
+          },
+          {
+            "id": "space",
+            "kind": "mod",
+            "label": "",
+            "cls": "space"
+          },
+          {
+            "id": "altgr",
+            "kind": "mod",
+            "label": "AltGr",
+            "cls": "key-altgr",
+            "wide": 1.5
+          },
+          {
+            "id": "ctrlR",
+            "kind": "mod",
+            "label": "Ctrl",
+            "cls": "key-ctrl",
+            "wide": 1.5
+          }
+        ]
+      ],
+      "spaceMap": {
+        "base": "្",
+        "shift": "្",
+        "ctrl": "្",
+        "altgr": "្"
+      },
+      "hasLessons": true,
+      "layerLabels": {
+        "base": "Base — Khmer",
+        "shift": "Shift — Voiced consonants",
+        "ctrl": "Ctrl — Currency & punctuation",
+        "altgr": "AltGr — Numerals & clusters"
+      }
+    },
+    "nida": {
+      "label": "Khmer NiDA Keyboard",
+      "rows": [
+        [
+          {
+            "id": "grave",
+            "base": "«",
+            "ctrl": "",
+            "altgr": "‍",
+            "shift": "»",
+            "kind": "glyph"
+          },
+          {
+            "id": "k1",
+            "base": "១",
+            "ctrl": "",
+            "altgr": "‌",
+            "shift": "!",
+            "kind": "glyph"
+          },
+          {
+            "id": "k2",
+            "base": "២",
+            "ctrl": "",
+            "altgr": "@",
+            "shift": "ៗ",
+            "kind": "glyph"
+          },
+          {
+            "id": "k3",
+            "base": "៣",
+            "ctrl": "",
+            "altgr": "៑",
+            "shift": "\"",
+            "kind": "glyph"
+          },
+          {
+            "id": "k4",
+            "base": "៤",
+            "ctrl": "",
+            "altgr": "$",
+            "shift": "៛",
+            "kind": "glyph"
+          },
+          {
+            "id": "k5",
+            "base": "៥",
+            "ctrl": "",
+            "altgr": "€",
+            "shift": "%",
+            "kind": "glyph"
+          },
+          {
+            "id": "k6",
+            "base": "៦",
+            "ctrl": "",
+            "altgr": "៙",
+            "shift": "៍",
+            "kind": "glyph"
+          },
+          {
+            "id": "k7",
+            "base": "៧",
+            "ctrl": "",
+            "altgr": "៚",
+            "shift": "័",
+            "kind": "glyph"
+          },
+          {
+            "id": "k8",
+            "base": "៨",
+            "ctrl": "",
+            "altgr": "*",
+            "shift": "៏",
+            "kind": "glyph"
+          },
+          {
+            "id": "k9",
+            "base": "៩",
+            "ctrl": "",
+            "altgr": "{",
+            "shift": "(",
+            "kind": "glyph"
+          },
+          {
+            "id": "k0",
+            "base": "០",
+            "ctrl": "",
+            "altgr": "}",
+            "shift": ")",
+            "kind": "glyph"
+          },
+          {
+            "id": "minus",
+            "base": "ឥ",
+            "ctrl": "",
+            "altgr": "×",
+            "shift": "៌",
+            "kind": "glyph"
+          },
+          {
+            "id": "equal",
+            "base": "ឲ",
+            "ctrl": "",
+            "altgr": "៎",
+            "shift": "=",
+            "kind": "glyph"
+          },
+          {
+            "id": "backspace",
+            "kind": "mod",
+            "label": "Backsp.",
+            "wide": 2
+          }
+        ],
+        [
+          {
+            "id": "tab",
+            "kind": "mod",
+            "label": "Tab",
+            "wide": 1.5
+          },
+          {
+            "id": "q",
+            "base": "ឆ",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ឈ",
+            "kind": "glyph"
+          },
+          {
+            "id": "w",
+            "base": "ឹ",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ឺ",
+            "kind": "glyph"
+          },
+          {
+            "id": "e",
+            "base": "េ",
+            "ctrl": "",
+            "altgr": "ឯ",
+            "shift": "ែ",
+            "kind": "glyph"
+          },
+          {
+            "id": "r",
+            "base": "រ",
+            "ctrl": "",
+            "altgr": "ឫ",
+            "shift": "ឬ",
+            "kind": "glyph"
+          },
+          {
+            "id": "t",
+            "base": "ត",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ទ",
+            "kind": "glyph"
+          },
+          {
+            "id": "y",
+            "base": "យ",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ួ",
+            "kind": "glyph"
+          },
+          {
+            "id": "u",
+            "base": "ុ",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ូ",
+            "kind": "glyph"
+          },
+          {
+            "id": "i",
+            "base": "ិ",
+            "ctrl": "",
+            "altgr": "ឦ",
+            "shift": "ី",
+            "kind": "glyph"
+          },
+          {
+            "id": "o",
+            "base": "ោ",
+            "ctrl": "",
+            "altgr": "ឱ",
+            "shift": "ៅ",
+            "kind": "glyph"
+          },
+          {
+            "id": "p",
+            "base": "ផ",
+            "ctrl": "",
+            "altgr": "ឰ",
+            "shift": "ភ",
+            "kind": "glyph"
+          },
+          {
+            "id": "bracketL",
+            "base": "ៀ",
+            "ctrl": "",
+            "altgr": "ឩ",
+            "shift": "ឿ",
+            "kind": "glyph"
+          },
+          {
+            "id": "bracketR",
+            "base": "ឪ",
+            "ctrl": "",
+            "altgr": "ឳ",
+            "shift": "ឧ",
+            "kind": "glyph"
+          },
+          {
+            "id": "enter",
+            "kind": "mod",
+            "label": "Enter",
+            "wide": 1.5
+          }
+        ],
+        [
+          {
+            "id": "caps",
+            "kind": "mod",
+            "label": "Caps",
+            "wide": 1.75
+          },
+          {
+            "id": "a",
+            "base": "ា",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ាំ",
+            "kind": "glyph"
+          },
+          {
+            "id": "s",
+            "base": "ស",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ៃ",
+            "kind": "glyph"
+          },
+          {
+            "id": "d",
+            "base": "ដ",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ឌ",
+            "kind": "glyph"
+          },
+          {
+            "id": "f",
+            "base": "ថ",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ធ",
+            "kind": "glyph"
+          },
+          {
+            "id": "g",
+            "base": "ង",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "អ",
+            "kind": "glyph"
+          },
+          {
+            "id": "h",
+            "base": "ហ",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ះ",
+            "kind": "glyph"
+          },
+          {
+            "id": "j",
+            "base": "្",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ញ",
+            "kind": "glyph"
+          },
+          {
+            "id": "k",
+            "base": "ក",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "គ",
+            "kind": "glyph"
+          },
+          {
+            "id": "l",
+            "base": "ល",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ឡ",
+            "kind": "glyph"
+          },
+          {
+            "id": "semicolon",
+            "base": "ើ",
+            "ctrl": "",
+            "altgr": "៖",
+            "shift": "ោះ",
+            "kind": "glyph"
+          },
+          {
+            "id": "quote",
+            "base": "់",
+            "ctrl": "",
+            "altgr": "ៈ",
+            "shift": "៉",
+            "kind": "glyph"
+          },
+          {
+            "id": "backslash",
+            "base": "ឮ",
+            "ctrl": "",
+            "altgr": "\\",
+            "shift": "ឭ",
+            "kind": "glyph"
+          }
+        ],
+        [
+          {
+            "id": "shiftL",
+            "kind": "mod",
+            "label": "Shift",
+            "cls": "key-shift",
+            "wide": 2.25
+          },
+          {
+            "id": "z",
+            "base": "ឋ",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ឍ",
+            "kind": "glyph"
+          },
+          {
+            "id": "x",
+            "base": "ខ",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ឃ",
+            "kind": "glyph"
+          },
+          {
+            "id": "c",
+            "base": "ច",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ជ",
+            "kind": "glyph"
+          },
+          {
+            "id": "v",
+            "base": "វ",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "េះ",
+            "kind": "glyph"
+          },
+          {
+            "id": "b",
+            "base": "ប",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ព",
+            "kind": "glyph"
+          },
+          {
+            "id": "n",
+            "base": "ន",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ណ",
+            "kind": "glyph"
+          },
+          {
+            "id": "m",
+            "base": "ម",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "ំ",
+            "kind": "glyph"
+          },
+          {
+            "id": "comma",
+            "base": "ុំ",
+            "ctrl": "",
+            "altgr": ",",
+            "shift": "ុះ",
+            "kind": "glyph"
+          },
+          {
+            "id": "period",
+            "base": "។",
+            "ctrl": "",
+            "altgr": ".",
+            "shift": "៕",
+            "kind": "glyph"
+          },
+          {
+            "id": "slash",
+            "base": "៊",
+            "ctrl": "",
+            "altgr": "/",
+            "shift": "?",
+            "kind": "glyph"
+          },
+          {
+            "id": "extra",
+            "base": "",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "",
+            "kind": "glyph"
+          },
+          {
+            "id": "shiftR",
+            "kind": "mod",
+            "label": "Shift",
+            "cls": "key-shift",
+            "wide": 1.75
+          }
+        ],
+        [
+          {
+            "id": "ctrlL",
+            "kind": "mod",
+            "label": "Ctrl",
+            "cls": "key-ctrl",
+            "wide": 1.5
+          },
+          {
+            "id": "alt",
+            "kind": "mod",
+            "label": "Alt",
+            "wide": 1.5
+          },
+          {
+            "id": "space",
+            "kind": "mod",
+            "label": "",
+            "cls": "space"
+          },
+          {
+            "id": "altgr",
+            "kind": "mod",
+            "label": "AltGr",
+            "cls": "key-altgr",
+            "wide": 1.5
+          },
+          {
+            "id": "ctrlR",
+            "kind": "mod",
+            "label": "Ctrl",
+            "cls": "key-ctrl",
+            "wide": 1.5
+          }
+        ]
+      ],
+      "spaceMap": {
+        "base": "​",
+        "shift": " ",
+        "ctrl": " ",
+        "altgr": " "
+      },
+      "hasLessons": true,
+      "layerLabels": {
+        "base": "Base — Khmer",
+        "shift": "Shift — Marks & punctuation",
+        "ctrl": "Ctrl — (unused)",
+        "altgr": "AltGr — Symbols & vowels"
+      }
+    },
+    "english": {
+      "label": "English (US)",
+      "rows": [
+        [
+          {
+            "id": "grave",
+            "base": "`",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "~",
+            "kind": "glyph"
+          },
+          {
+            "id": "k1",
+            "base": "1",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "!",
+            "kind": "glyph"
+          },
+          {
+            "id": "k2",
+            "base": "2",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "@",
+            "kind": "glyph"
+          },
+          {
+            "id": "k3",
+            "base": "3",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "#",
+            "kind": "glyph"
+          },
+          {
+            "id": "k4",
+            "base": "4",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "$",
+            "kind": "glyph"
+          },
+          {
+            "id": "k5",
+            "base": "5",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "%",
+            "kind": "glyph"
+          },
+          {
+            "id": "k6",
+            "base": "6",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "^",
+            "kind": "glyph"
+          },
+          {
+            "id": "k7",
+            "base": "7",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "&",
+            "kind": "glyph"
+          },
+          {
+            "id": "k8",
+            "base": "8",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "*",
+            "kind": "glyph"
+          },
+          {
+            "id": "k9",
+            "base": "9",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "(",
+            "kind": "glyph"
+          },
+          {
+            "id": "k0",
+            "base": "0",
+            "ctrl": "",
+            "altgr": "",
+            "shift": ")",
+            "kind": "glyph"
+          },
+          {
+            "id": "minus",
+            "base": "-",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "_",
+            "kind": "glyph"
+          },
+          {
+            "id": "equal",
+            "base": "=",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "+",
+            "kind": "glyph"
+          },
+          {
+            "id": "backspace",
+            "kind": "mod",
+            "label": "Backsp.",
+            "wide": 2
+          }
+        ],
+        [
+          {
+            "id": "tab",
+            "kind": "mod",
+            "label": "Tab",
+            "wide": 1.5
+          },
+          {
+            "id": "q",
+            "base": "q",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "Q",
+            "kind": "glyph"
+          },
+          {
+            "id": "w",
+            "base": "w",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "W",
+            "kind": "glyph"
+          },
+          {
+            "id": "e",
+            "base": "e",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "E",
+            "kind": "glyph"
+          },
+          {
+            "id": "r",
+            "base": "r",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "R",
+            "kind": "glyph"
+          },
+          {
+            "id": "t",
+            "base": "t",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "T",
+            "kind": "glyph"
+          },
+          {
+            "id": "y",
+            "base": "y",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "Y",
+            "kind": "glyph"
+          },
+          {
+            "id": "u",
+            "base": "u",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "U",
+            "kind": "glyph"
+          },
+          {
+            "id": "i",
+            "base": "i",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "I",
+            "kind": "glyph"
+          },
+          {
+            "id": "o",
+            "base": "o",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "O",
+            "kind": "glyph"
+          },
+          {
+            "id": "p",
+            "base": "p",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "P",
+            "kind": "glyph"
+          },
+          {
+            "id": "bracketL",
+            "base": "[",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "{",
+            "kind": "glyph"
+          },
+          {
+            "id": "bracketR",
+            "base": "]",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "}",
+            "kind": "glyph"
+          },
+          {
+            "id": "enter",
+            "kind": "mod",
+            "label": "Enter",
+            "wide": 1.5
+          }
+        ],
+        [
+          {
+            "id": "caps",
+            "kind": "mod",
+            "label": "Caps",
+            "wide": 1.75
+          },
+          {
+            "id": "a",
+            "base": "a",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "A",
+            "kind": "glyph"
+          },
+          {
+            "id": "s",
+            "base": "s",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "S",
+            "kind": "glyph"
+          },
+          {
+            "id": "d",
+            "base": "d",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "D",
+            "kind": "glyph"
+          },
+          {
+            "id": "f",
+            "base": "f",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "F",
+            "kind": "glyph"
+          },
+          {
+            "id": "g",
+            "base": "g",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "G",
+            "kind": "glyph"
+          },
+          {
+            "id": "h",
+            "base": "h",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "H",
+            "kind": "glyph"
+          },
+          {
+            "id": "j",
+            "base": "j",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "J",
+            "kind": "glyph"
+          },
+          {
+            "id": "k",
+            "base": "k",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "K",
+            "kind": "glyph"
+          },
+          {
+            "id": "l",
+            "base": "l",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "L",
+            "kind": "glyph"
+          },
+          {
+            "id": "semicolon",
+            "base": ";",
+            "ctrl": "",
+            "altgr": "",
+            "shift": ":",
+            "kind": "glyph"
+          },
+          {
+            "id": "quote",
+            "base": "'",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "\"",
+            "kind": "glyph"
+          },
+          {
+            "id": "backslash",
+            "base": "\\",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "|",
+            "kind": "glyph"
+          }
+        ],
+        [
+          {
+            "id": "shiftL",
+            "kind": "mod",
+            "label": "Shift",
+            "cls": "key-shift",
+            "wide": 2.25
+          },
+          {
+            "id": "z",
+            "base": "z",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "Z",
+            "kind": "glyph"
+          },
+          {
+            "id": "x",
+            "base": "x",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "X",
+            "kind": "glyph"
+          },
+          {
+            "id": "c",
+            "base": "c",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "C",
+            "kind": "glyph"
+          },
+          {
+            "id": "v",
+            "base": "v",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "V",
+            "kind": "glyph"
+          },
+          {
+            "id": "b",
+            "base": "b",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "B",
+            "kind": "glyph"
+          },
+          {
+            "id": "n",
+            "base": "n",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "N",
+            "kind": "glyph"
+          },
+          {
+            "id": "m",
+            "base": "m",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "M",
+            "kind": "glyph"
+          },
+          {
+            "id": "comma",
+            "base": ",",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "<",
+            "kind": "glyph"
+          },
+          {
+            "id": "period",
+            "base": ".",
+            "ctrl": "",
+            "altgr": "",
+            "shift": ">",
+            "kind": "glyph"
+          },
+          {
+            "id": "slash",
+            "base": "/",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "?",
+            "kind": "glyph"
+          },
+          {
+            "id": "extra",
+            "base": "",
+            "ctrl": "",
+            "altgr": "",
+            "shift": "",
+            "kind": "glyph"
+          },
+          {
+            "id": "shiftR",
+            "kind": "mod",
+            "label": "Shift",
+            "cls": "key-shift",
+            "wide": 1.75
+          }
+        ],
+        [
+          {
+            "id": "ctrlL",
+            "kind": "mod",
+            "label": "Ctrl",
+            "cls": "key-ctrl",
+            "wide": 1.5
+          },
+          {
+            "id": "alt",
+            "kind": "mod",
+            "label": "Alt",
+            "wide": 1.5
+          },
+          {
+            "id": "space",
+            "kind": "mod",
+            "label": "",
+            "cls": "space"
+          },
+          {
+            "id": "altgr",
+            "kind": "mod",
+            "label": "AltGr",
+            "cls": "key-altgr",
+            "wide": 1.5
+          },
+          {
+            "id": "ctrlR",
+            "kind": "mod",
+            "label": "Ctrl",
+            "cls": "key-ctrl",
+            "wide": 1.5
+          }
+        ]
+      ],
+      "spaceMap": {
+        "base": " ",
+        "shift": " ",
+        "ctrl": " ",
+        "altgr": " "
+      },
+      "hasLessons": true,
+      "layerLabels": {
+        "base": "Base — lowercase",
+        "shift": "Shift — UPPERCASE & symbols",
+        "ctrl": "Ctrl — (unused)",
+        "altgr": "AltGr — (unused)"
+      }
+    }
+  },
+  "KEY_FINGER": {
+    "grave": "lp",
+    "k1": "lp",
+    "k2": "lr",
+    "k3": "lm",
+    "k4": "li",
+    "k5": "li",
+    "k6": "ri",
+    "k7": "ri",
+    "k8": "rm",
+    "k9": "rr",
+    "k0": "rp",
+    "minus": "rp",
+    "equal": "rp",
+    "backspace": "rp",
+    "tab": "lp",
+    "q": "lp",
+    "w": "lr",
+    "e": "lm",
+    "r": "li",
+    "t": "li",
+    "y": "ri",
+    "u": "ri",
+    "i": "rm",
+    "o": "rr",
+    "p": "rp",
+    "bracketL": "rp",
+    "bracketR": "rp",
+    "enter": "rp",
+    "caps": "lp",
+    "a": "lp",
+    "s": "lr",
+    "d": "lm",
+    "f": "li",
+    "g": "li",
+    "h": "ri",
+    "j": "ri",
+    "k": "rm",
+    "l": "rr",
+    "semicolon": "rp",
+    "quote": "rp",
+    "backslash": "rp",
+    "shiftL": "lp",
+    "z": "lp",
+    "x": "lr",
+    "c": "lm",
+    "v": "li",
+    "b": "li",
+    "n": "ri",
+    "m": "ri",
+    "comma": "rm",
+    "period": "rr",
+    "slash": "rp",
+    "extra": "rp",
+    "shiftR": "rp",
+    "ctrlL": "lt",
+    "alt": "lt",
+    "space": "rt",
+    "altgr": "rt",
+    "ctrlR": "rp"
+  },
+  "FINGERS": [
+    {
+      "id": "lp",
+      "hand": "L",
+      "home": "a",
+      "kind": "pinky",
+      "baseW": 12.5,
+      "tipW": 7.5,
+      "kDist": 68,
+      "restLen": 52,
+      "restAng": -0.1
+    },
+    {
+      "id": "lr",
+      "hand": "L",
+      "home": "s",
+      "kind": "ring",
+      "baseW": 14.5,
+      "tipW": 9,
+      "kDist": 60,
+      "restLen": 56,
+      "restAng": -0.04
+    },
+    {
+      "id": "lm",
+      "hand": "L",
+      "home": "d",
+      "kind": "middle",
+      "baseW": 15.5,
+      "tipW": 9.5,
+      "kDist": 54,
+      "restLen": 60,
+      "restAng": 0
+    },
+    {
+      "id": "li",
+      "hand": "L",
+      "home": "f",
+      "kind": "index",
+      "baseW": 15,
+      "tipW": 9,
+      "kDist": 58,
+      "restLen": 56,
+      "restAng": 0.06
+    },
+    {
+      "id": "lt",
+      "hand": "L",
+      "home": "space",
+      "kind": "thumb",
+      "baseW": 18.5,
+      "tipW": 11.5,
+      "kDist": 42,
+      "restLen": 42,
+      "restAng": 0.42
+    },
+    {
+      "id": "rt",
+      "hand": "R",
+      "home": "space",
+      "kind": "thumb",
+      "baseW": 18.5,
+      "tipW": 11.5,
+      "kDist": 42,
+      "restLen": 42,
+      "restAng": -0.42
+    },
+    {
+      "id": "ri",
+      "hand": "R",
+      "home": "j",
+      "kind": "index",
+      "baseW": 15,
+      "tipW": 9,
+      "kDist": 58,
+      "restLen": 56,
+      "restAng": -0.06
+    },
+    {
+      "id": "rm",
+      "hand": "R",
+      "home": "k",
+      "kind": "middle",
+      "baseW": 15.5,
+      "tipW": 9.5,
+      "kDist": 54,
+      "restLen": 60,
+      "restAng": 0
+    },
+    {
+      "id": "rr",
+      "hand": "R",
+      "home": "l",
+      "kind": "ring",
+      "baseW": 14.5,
+      "tipW": 9,
+      "kDist": 60,
+      "restLen": 56,
+      "restAng": 0.04
+    },
+    {
+      "id": "rp",
+      "hand": "R",
+      "home": "semicolon",
+      "kind": "pinky",
+      "baseW": 12.5,
+      "tipW": 7.5,
+      "kDist": 68,
+      "restLen": 52,
+      "restAng": 0.1
+    }
+  ],
+  "CODE_MAP": {
+    "Backquote": "grave",
+    "Digit1": "k1",
+    "Digit2": "k2",
+    "Digit3": "k3",
+    "Digit4": "k4",
+    "Digit5": "k5",
+    "Digit6": "k6",
+    "Digit7": "k7",
+    "Digit8": "k8",
+    "Digit9": "k9",
+    "Digit0": "k0",
+    "Minus": "minus",
+    "Equal": "equal",
+    "Backspace": "backspace",
+    "Tab": "tab",
+    "KeyQ": "q",
+    "KeyW": "w",
+    "KeyE": "e",
+    "KeyR": "r",
+    "KeyT": "t",
+    "KeyY": "y",
+    "KeyU": "u",
+    "KeyI": "i",
+    "KeyO": "o",
+    "KeyP": "p",
+    "BracketLeft": "bracketL",
+    "BracketRight": "bracketR",
+    "Enter": "enter",
+    "CapsLock": "caps",
+    "KeyA": "a",
+    "KeyS": "s",
+    "KeyD": "d",
+    "KeyF": "f",
+    "KeyG": "g",
+    "KeyH": "h",
+    "KeyJ": "j",
+    "KeyK": "k",
+    "KeyL": "l",
+    "Semicolon": "semicolon",
+    "Quote": "quote",
+    "Backslash": "backslash",
+    "ShiftLeft": "shiftL",
+    "ShiftRight": "shiftR",
+    "KeyZ": "z",
+    "KeyX": "x",
+    "KeyC": "c",
+    "KeyV": "v",
+    "KeyB": "b",
+    "KeyN": "n",
+    "KeyM": "m",
+    "Comma": "comma",
+    "Period": "period",
+    "Slash": "slash",
+    "ControlLeft": "ctrlL",
+    "ControlRight": "ctrlR",
+    "AltLeft": "alt",
+    "AltRight": "altgr",
+    "Space": "space"
+  }
+}

@@ -1,0 +1,1624 @@
+{
+  "LEVELS": [
+    {
+      "id": 1,
+      "title": "Level 1 · Home Row Basics"
+    },
+    {
+      "id": 2,
+      "title": "Level 2 · Home Row Combinations"
+    },
+    {
+      "id": 3,
+      "title": "Level 3 · Home Row + Shift"
+    },
+    {
+      "id": 4,
+      "title": "Level 4 · Remaining Consonants"
+    },
+    {
+      "id": 5,
+      "title": "Level 5 · Vowels & Signs"
+    },
+    {
+      "id": 6,
+      "title": "Level 6 · Khmer Numerals"
+    },
+    {
+      "id": 7,
+      "title": "Level 7 · Ctrl / AltGr Layers"
+    },
+    {
+      "id": 8,
+      "title": "Level 8 · Full Keyboard & Mastery"
+    },
+    {
+      "id": 9,
+      "title": "Level 4 · Word Practice"
+    }
+  ],
+  "LESSONS_STANDARD": [
+    {
+      "id": 1,
+      "level": 1,
+      "type": "intro",
+      "title": "Home Row — Index Anchors (F & J)",
+      "subtitle": "Left Index F (ថ) · Right Index J (ញ)",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "f",
+        "j"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "ថ ថ",
+        "ញ ញ",
+        "ថថ ញញ",
+        "ថញ ញថ"
+      ]
+    },
+    {
+      "id": 2,
+      "level": 1,
+      "type": "intro",
+      "title": "Home Row — Middle Fingers (D & K)",
+      "subtitle": "Left Middle D (ដ) · Right Middle K (ក)",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "d",
+        "k"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "ដ ដ",
+        "ក ក",
+        "ដដ កក",
+        "ដក",
+        "កដ"
+      ]
+    },
+    {
+      "id": 3,
+      "level": 1,
+      "type": "combo",
+      "title": "Home Row — 4 Keys Combined",
+      "subtitle": "Index & Middle Anchors · ថ ញ ដ ក",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "f",
+        "j",
+        "d",
+        "k"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "ថដ",
+        "ញក",
+        "ដក",
+        "ថញ",
+        "កក",
+        "ដដ"
+      ]
+    },
+    {
+      "id": 4,
+      "level": 1,
+      "type": "intro",
+      "title": "Home Row — Index Reach (G & H)",
+      "subtitle": "Left Reach G (ង) · Right Reach H (ហ)",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "g",
+        "h"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "ង ង",
+        "ហ ហ",
+        "ថង",
+        "ញហ",
+        "ងហ",
+        "ហង"
+      ]
+    },
+    {
+      "id": 5,
+      "level": 1,
+      "type": "combo",
+      "title": "Home Row — Center 6 Keys",
+      "subtitle": "All Index & Middle Keys · ថ ញ ដ ក ង ហ",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "g",
+        "h",
+        "f",
+        "j",
+        "d",
+        "k"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "កក",
+        "ដក",
+        "ងហ",
+        "កង",
+        "ដង",
+        "ហង"
+      ]
+    },
+    {
+      "id": 6,
+      "level": 1,
+      "type": "intro",
+      "title": "Home Row — Ring Fingers (S & L)",
+      "subtitle": "Left Ring S (ស) · Right Ring L (ល)",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "s",
+        "l"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "ស ស",
+        "ល ល",
+        "សល",
+        "សក",
+        "លក",
+        "ហល"
+      ]
+    },
+    {
+      "id": 7,
+      "level": 1,
+      "type": "intro",
+      "title": "Home Row — Pinky Keys & Vowel A",
+      "subtitle": "Left Pinky A (ា) · Right Pinky ; (ះ) & ' (់)",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "a",
+        "semicolon",
+        "quote"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "កា",
+        "សា",
+        "ដា",
+        "លះ",
+        "សះ",
+        "កះ"
+      ]
+    },
+    {
+      "id": 8,
+      "level": 1,
+      "type": "words",
+      "title": "Home Row Words — Complete Home Row",
+      "subtitle": "Real Khmer words from Home Row keys",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "f",
+        "j",
+        "d",
+        "k",
+        "g",
+        "h",
+        "s",
+        "l",
+        "a",
+        "semicolon",
+        "quote"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "សាលា",
+        "កាក់",
+        "ដាក់",
+        "ហាល",
+        "កាល",
+        "ដក",
+        "កក",
+        "កា",
+        "សា"
+      ]
+    },
+    {
+      "id": 9,
+      "level": 2,
+      "type": "combo",
+      "title": "Two-Character Combos",
+      "subtitle": "Pairs drawn from the Home Row",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "កា",
+        "ដក",
+        "សា",
+        "លក",
+        "ថញ",
+        "ងហ"
+      ]
+    },
+    {
+      "id": 10,
+      "level": 2,
+      "type": "combo",
+      "title": "Three-Character Syllables",
+      "subtitle": "Triples and syllables from Home Row",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "កាក់",
+        "ដាក់",
+        "ហាល",
+        "កាល",
+        "ងាក"
+      ]
+    },
+    {
+      "id": 11,
+      "level": 2,
+      "type": "combo",
+      "title": "Four-Character Flow",
+      "subtitle": "Four-character groups and words",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "សាលា",
+        "កកកក",
+        "ហាលកាល",
+        "ដកដាក់"
+      ]
+    },
+    {
+      "id": 12,
+      "level": 2,
+      "type": "words",
+      "title": "Home Row Words Drill",
+      "subtitle": "Real Khmer vocabulary, typed from memory",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "សាលា",
+        "កាក់",
+        "ដាក់",
+        "ហាល",
+        "កាល",
+        "ដក",
+        "កក",
+        "សះ",
+        "លះ"
+      ]
+    },
+    {
+      "id": 13,
+      "level": 2,
+      "type": "review",
+      "title": "Random Home Row Drill",
+      "subtitle": "Fully randomized order across all home keys",
+      "layer": "base",
+      "threshold": 88,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "ថ",
+        "ញ",
+        "ដ",
+        "ក",
+        "ង",
+        "ហ",
+        "ស",
+        "ល"
+      ]
+    },
+    {
+      "id": 14,
+      "level": 2,
+      "type": "test",
+      "title": "Home Row Speed Test",
+      "subtitle": "Type as fast and accurately as you can",
+      "layer": "base",
+      "threshold": 90,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "កាក់",
+        "ដាក់",
+        "សាលា",
+        "ហាល"
+      ]
+    },
+    {
+      "id": 15,
+      "level": 3,
+      "type": "intro",
+      "title": "Home Row Shift — Index Anchors (F & J)",
+      "subtitle": "Hold Shift · F J",
+      "layer": "shift",
+      "threshold": 85,
+      "newIds": [
+        "f",
+        "j"
+      ],
+      "newLayer": "shift",
+      "examples": [
+        "ធ ធ",
+        "ុំ ុំ",
+        "ធុំ"
+      ]
+    },
+    {
+      "id": 16,
+      "level": 3,
+      "type": "intro",
+      "title": "Home Row Shift — Middle Fingers (D & K)",
+      "subtitle": "Hold Shift · D K",
+      "layer": "shift",
+      "threshold": 85,
+      "newIds": [
+        "d",
+        "k"
+      ],
+      "newLayer": "shift",
+      "examples": [
+        "ឌ ឌ",
+        "គ គ",
+        "គក",
+        "ឌក"
+      ]
+    },
+    {
+      "id": 17,
+      "level": 3,
+      "type": "intro",
+      "title": "Home Row Shift — Index Reach (G & H)",
+      "subtitle": "Hold Shift · G H",
+      "layer": "shift",
+      "threshold": 85,
+      "newIds": [
+        "g",
+        "h"
+      ],
+      "newLayer": "shift",
+      "examples": [
+        "ុះ ុះ",
+        "៏ ៏"
+      ]
+    },
+    {
+      "id": 18,
+      "level": 3,
+      "type": "intro",
+      "title": "Home Row Shift — Ring Fingers (S & L)",
+      "subtitle": "Hold Shift · S L",
+      "layer": "shift",
+      "threshold": 85,
+      "newIds": [
+        "s",
+        "l"
+      ],
+      "newLayer": "shift",
+      "examples": [
+        "ាំ ាំ",
+        "ឡ ឡ",
+        "ឡា"
+      ]
+    },
+    {
+      "id": 19,
+      "level": 3,
+      "type": "intro",
+      "title": "Home Row Shift — Pinky Fingers (A, ;, ')",
+      "subtitle": "Hold Shift · A ; '",
+      "layer": "shift",
+      "threshold": 85,
+      "newIds": [
+        "a",
+        "semicolon",
+        "quote"
+      ],
+      "newLayer": "shift",
+      "examples": [
+        "ៃ ៃ",
+        "៖ ៖",
+        "៉ ៉",
+        "ដៃ"
+      ]
+    },
+    {
+      "id": 20,
+      "level": 3,
+      "type": "combo",
+      "title": "Home Row + Shift Mix",
+      "subtitle": "Base and Shift characters mixed together",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "ធំ",
+        "គក",
+        "ឡា",
+        "ដៃ"
+      ]
+    },
+    {
+      "id": 21,
+      "level": 3,
+      "type": "combo",
+      "title": "Shift Combinations",
+      "subtitle": "Short combos using Shift characters",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "ធុំ",
+        "គក"
+      ]
+    },
+    {
+      "id": 22,
+      "level": 3,
+      "type": "test",
+      "title": "Home Row + Shift Test",
+      "subtitle": "Accuracy test across Base and Shift",
+      "layer": "base",
+      "threshold": 90,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "ធ",
+        "គ",
+        "ឌ",
+        "ឡ",
+        "ៃ"
+      ]
+    },
+    {
+      "id": 23,
+      "level": 4,
+      "type": "intro",
+      "title": "Consonants: Top Left (Q, T, Y)",
+      "subtitle": "No modifier · Q T Y",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "q",
+        "t",
+        "y"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "ឈ",
+        "ទ",
+        "យ",
+        "យាយ"
+      ]
+    },
+    {
+      "id": 24,
+      "level": 4,
+      "type": "combo",
+      "title": "Consonants 1 — Mixed Practice",
+      "subtitle": "New characters mixed with everything learned",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "ឈ",
+        "ទ",
+        "យ",
+        "យាយ"
+      ]
+    },
+    {
+      "id": 25,
+      "level": 4,
+      "type": "intro",
+      "title": "Consonants: Top Right (P, R, Z)",
+      "subtitle": "No modifier · P R Z",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "p",
+        "r",
+        "z"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "ផ",
+        "រ",
+        "ឋ",
+        "រាជា"
+      ]
+    },
+    {
+      "id": 26,
+      "level": 4,
+      "type": "combo",
+      "title": "Consonants 2 — Mixed Practice",
+      "subtitle": "New characters mixed with everything learned",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "ផ",
+        "រ",
+        "ឋ",
+        "រាជា"
+      ]
+    },
+    {
+      "id": 27,
+      "level": 4,
+      "type": "intro",
+      "title": "Consonants: Bottom Left (X, C, V)",
+      "subtitle": "No modifier · X C V",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "x",
+        "c",
+        "v"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "ខ",
+        "ច",
+        "វ",
+        "ខាន",
+        "ចាន"
+      ]
+    },
+    {
+      "id": 28,
+      "level": 4,
+      "type": "combo",
+      "title": "Consonants 3 — Mixed Practice",
+      "subtitle": "New characters mixed with everything learned",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "ខ",
+        "ច",
+        "វ",
+        "ខាន",
+        "ចាន"
+      ]
+    },
+    {
+      "id": 29,
+      "level": 4,
+      "type": "intro",
+      "title": "Consonants: Bottom Right (B, N, M, ,)",
+      "subtitle": "No modifier · B N M ,",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "b",
+        "n",
+        "m",
+        "comma"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "ប",
+        "ន",
+        "ម",
+        "អ",
+        "មាន",
+        "បាន"
+      ]
+    },
+    {
+      "id": 30,
+      "level": 4,
+      "type": "combo",
+      "title": "Consonants 4 — Mixed Practice",
+      "subtitle": "New characters mixed with everything learned",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "ប",
+        "ន",
+        "ម",
+        "អ",
+        "មាន",
+        "បាន"
+      ]
+    },
+    {
+      "id": 31,
+      "level": 5,
+      "type": "intro",
+      "title": "Vowels: Vowels I & W (ិ & ឹ)",
+      "subtitle": "No modifier · I W",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "i",
+        "w"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "តិច",
+        "ទឹក"
+      ]
+    },
+    {
+      "id": 32,
+      "level": 5,
+      "type": "intro",
+      "title": "Vowels: Vowels I & W (ិ & ឹ) (Shift)",
+      "subtitle": "Hold Shift · I W",
+      "layer": "shift",
+      "threshold": 85,
+      "newIds": [
+        "i",
+        "w"
+      ],
+      "newLayer": "shift",
+      "examples": [
+        "តិច",
+        "ទឹក"
+      ]
+    },
+    {
+      "id": 33,
+      "level": 5,
+      "type": "intro",
+      "title": "Vowels: Vowels U & E (ុ & េ)",
+      "subtitle": "No modifier · U E",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "u",
+        "e"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "ទុក",
+        "ដេក"
+      ]
+    },
+    {
+      "id": 34,
+      "level": 5,
+      "type": "intro",
+      "title": "Vowels: Vowels U & E (ុ & េ) (Shift)",
+      "subtitle": "Hold Shift · U E",
+      "layer": "shift",
+      "threshold": 85,
+      "newIds": [
+        "u",
+        "e"
+      ],
+      "newLayer": "shift",
+      "examples": [
+        "ទុក",
+        "ដេក"
+      ]
+    },
+    {
+      "id": 35,
+      "level": 5,
+      "type": "intro",
+      "title": "Vowels: Vowels O & Brackets (ោ & ៀ / ឿ)",
+      "subtitle": "No modifier · O [ ]",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "o",
+        "bracketL",
+        "bracketR"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "គោ",
+        "រៀន"
+      ]
+    },
+    {
+      "id": 36,
+      "level": 5,
+      "type": "intro",
+      "title": "Vowels: Vowels O & Brackets (ោ & ៀ / ឿ) (Shift)",
+      "subtitle": "Hold Shift · O [ ]",
+      "layer": "shift",
+      "threshold": 85,
+      "newIds": [
+        "o",
+        "bracketL",
+        "bracketR"
+      ],
+      "newLayer": "shift",
+      "examples": [
+        "គោ",
+        "រៀន"
+      ]
+    },
+    {
+      "id": 37,
+      "level": 5,
+      "type": "combo",
+      "title": "Vowels & Signs — Mixed Practice",
+      "subtitle": "Mixed with everything learned so far",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "ទឹក",
+        "ដេក",
+        "រៀន",
+        "មាន"
+      ]
+    },
+    {
+      "id": 38,
+      "level": 5,
+      "type": "review",
+      "title": "Review — Vowels & Signs",
+      "subtitle": "Only previously learned characters",
+      "layer": "base",
+      "threshold": 88,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "ទឹក",
+        "រៀន",
+        "គោ"
+      ]
+    },
+    {
+      "id": 39,
+      "level": 5,
+      "type": "test",
+      "title": "Vowel & Sign Test",
+      "subtitle": "All vowels and signs learned so far",
+      "layer": "base",
+      "threshold": 90,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "ទឹក",
+        "រៀន",
+        "គោ",
+        "ដេក"
+      ]
+    },
+    {
+      "id": 40,
+      "level": 6,
+      "type": "intro",
+      "title": "Numerals: 2 Digits",
+      "subtitle": "No modifier · 1 2",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "k1",
+        "k2"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "១",
+        "២",
+        "១២"
+      ]
+    },
+    {
+      "id": 41,
+      "level": 6,
+      "type": "intro",
+      "title": "Numerals: 4 Digits",
+      "subtitle": "No modifier · 3 4",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "k3",
+        "k4"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "៣",
+        "៤",
+        "៣៤",
+        "១២៣"
+      ]
+    },
+    {
+      "id": 42,
+      "level": 6,
+      "type": "intro",
+      "title": "Numerals: 6 Digits",
+      "subtitle": "No modifier · 5 6",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "k5",
+        "k6"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "៥",
+        "៦",
+        "៥៦",
+        "២០២៦"
+      ]
+    },
+    {
+      "id": 43,
+      "level": 6,
+      "type": "intro",
+      "title": "Numerals: 8 Digits",
+      "subtitle": "No modifier · 7 8",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "k7",
+        "k8"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "៧",
+        "៨",
+        "៧៨"
+      ]
+    },
+    {
+      "id": 44,
+      "level": 6,
+      "type": "test",
+      "title": "All Numerals (១-០)",
+      "subtitle": "No modifier · 9 0",
+      "layer": "base",
+      "threshold": 90,
+      "newIds": [
+        "k9",
+        "k0"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "៩",
+        "០",
+        "១០០",
+        "២០២៦"
+      ]
+    },
+    {
+      "id": 45,
+      "level": 7,
+      "type": "intro",
+      "title": "Ctrl Basics",
+      "subtitle": "Hold Ctrl · ` 1 2 3 4 5",
+      "layer": "ctrl",
+      "threshold": 85,
+      "newIds": [
+        "grave",
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5"
+      ],
+      "newLayer": "ctrl",
+      "examples": [
+        "« »",
+        "–"
+      ]
+    },
+    {
+      "id": 46,
+      "level": 7,
+      "type": "intro",
+      "title": "Ctrl Practice",
+      "subtitle": "Hold Ctrl · 7 0 - ; '",
+      "layer": "ctrl",
+      "threshold": 85,
+      "newIds": [
+        "k7",
+        "k0",
+        "minus",
+        "semicolon",
+        "quote"
+      ],
+      "newLayer": "ctrl",
+      "examples": [
+        "៖",
+        "’"
+      ]
+    },
+    {
+      "id": 47,
+      "level": 7,
+      "type": "intro",
+      "title": "Ctrl Mixed Practice",
+      "subtitle": "Hold Ctrl · \\ M , . /",
+      "layer": "ctrl",
+      "threshold": 85,
+      "newIds": [
+        "backslash",
+        "m",
+        "comma",
+        "period",
+        "slash"
+      ],
+      "newLayer": "ctrl",
+      "examples": [
+        "”",
+        "…"
+      ]
+    },
+    {
+      "id": 48,
+      "level": 7,
+      "type": "intro",
+      "title": "AltGr Basics",
+      "subtitle": "Hold AltGr · E R T U I",
+      "layer": "altgr",
+      "threshold": 85,
+      "newIds": [
+        "e",
+        "r",
+        "t",
+        "u",
+        "i"
+      ],
+      "newLayer": "altgr",
+      "examples": [
+        "៛",
+        "៚"
+      ]
+    },
+    {
+      "id": 49,
+      "level": 7,
+      "type": "intro",
+      "title": "AltGr Practice",
+      "subtitle": "Hold AltGr · O P A S J",
+      "layer": "altgr",
+      "threshold": 85,
+      "newIds": [
+        "o",
+        "p",
+        "a",
+        "s",
+        "j"
+      ],
+      "newLayer": "altgr",
+      "examples": [
+        "ឮ",
+        "ឭ"
+      ]
+    },
+    {
+      "id": 50,
+      "level": 7,
+      "type": "intro",
+      "title": "AltGr Mixed Practice",
+      "subtitle": "Hold AltGr · K L ' \\",
+      "layer": "altgr",
+      "threshold": 85,
+      "newIds": [
+        "k",
+        "l",
+        "quote",
+        "backslash"
+      ],
+      "newLayer": "altgr",
+      "examples": [
+        "ឰ",
+        "ឪ"
+      ]
+    },
+    {
+      "id": 51,
+      "level": 7,
+      "type": "test",
+      "title": "Ctrl + AltGr Review",
+      "subtitle": "Mixed Ctrl and AltGr characters",
+      "layer": "base",
+      "threshold": 88,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "៛",
+        "៚",
+        "ឮ",
+        "ឭ"
+      ]
+    },
+    {
+      "id": 52,
+      "level": 8,
+      "type": "words",
+      "title": "Word Practice",
+      "subtitle": "Real Khmer words, typed from memory",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "អាវ",
+        "តា",
+        "យាយ",
+        "មាន",
+        "ខាន"
+      ]
+    },
+    {
+      "id": 53,
+      "level": 8,
+      "type": "combo",
+      "title": "Full Keyboard — Warm-up",
+      "subtitle": "Random characters across the whole keyboard",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "សាលា",
+        "កាក់",
+        "ទឹក"
+      ]
+    },
+    {
+      "id": 54,
+      "level": 8,
+      "type": "combo",
+      "title": "Full Keyboard — Combos",
+      "subtitle": "Longer combinations across every layer",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "សាលា",
+        "កាក់"
+      ]
+    },
+    {
+      "id": 55,
+      "level": 8,
+      "type": "test",
+      "title": "Home Row Test",
+      "subtitle": "Final test — Home Row only",
+      "layer": "base",
+      "threshold": 92,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "កាក់",
+        "សាលា",
+        "ដាក់"
+      ]
+    },
+    {
+      "id": 56,
+      "level": 8,
+      "type": "test",
+      "title": "Home Row + Shift Test",
+      "subtitle": "Final test — Home Row, Base + Shift",
+      "layer": "base",
+      "threshold": 92,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "ធ",
+        "ុំ",
+        "ឌ",
+        "គ"
+      ]
+    },
+    {
+      "id": 57,
+      "level": 8,
+      "type": "test",
+      "title": "Khmer Character Test",
+      "subtitle": "Final test — all consonants & vowels",
+      "layer": "base",
+      "threshold": 90,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "រៀន",
+        "ទឹក",
+        "សាលា"
+      ]
+    },
+    {
+      "id": 58,
+      "level": 8,
+      "type": "test",
+      "title": "Khmer Numeral Test",
+      "subtitle": "Final test — all numerals",
+      "layer": "base",
+      "threshold": 92,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "១២៣",
+        "២០២៦"
+      ]
+    },
+    {
+      "id": 59,
+      "level": 8,
+      "type": "test",
+      "title": "Full Keyboard Test",
+      "subtitle": "Final test — every layer combined",
+      "layer": "base",
+      "threshold": 90,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "សាលា",
+        "១២៣",
+        "៛"
+      ]
+    },
+    {
+      "id": 60,
+      "level": 8,
+      "type": "test",
+      "title": "Final Khmer Typing Test",
+      "subtitle": "The ultimate test — words, then the full keyboard",
+      "layer": "base",
+      "threshold": 90,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "សាលា",
+        "ទឹក",
+        "រៀន"
+      ]
+    }
+  ],
+  "LESSONS_NIDA": [
+    {
+      "id": 10001,
+      "level": 1,
+      "type": "intro",
+      "title": "Home Row — Index Anchors (F & J)",
+      "subtitle": "No modifier · F J",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "f",
+        "j"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "ថ ថ",
+        "្ ្"
+      ]
+    },
+    {
+      "id": 10002,
+      "level": 1,
+      "type": "intro",
+      "title": "Home Row — Middle Fingers (D & K)",
+      "subtitle": "No modifier · D K",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "d",
+        "k"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "ដ ដ",
+        "ក ក"
+      ]
+    },
+    {
+      "id": 10003,
+      "level": 1,
+      "type": "combo",
+      "title": "Home Row — 4 Keys Combined",
+      "subtitle": "Index & Middle · F J D K",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "f",
+        "j",
+        "d",
+        "k"
+      ],
+      "newLayer": "base",
+      "examples": []
+    },
+    {
+      "id": 10004,
+      "level": 1,
+      "type": "intro",
+      "title": "Home Row — Index Reach (G & H)",
+      "subtitle": "No modifier · G H",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "g",
+        "h"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "ង ង",
+        "ហ ហ"
+      ]
+    },
+    {
+      "id": 10005,
+      "level": 1,
+      "type": "intro",
+      "title": "Home Row — Ring Fingers (S & L)",
+      "subtitle": "No modifier · S L",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "s",
+        "l"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "ស ស",
+        "ល ល"
+      ]
+    },
+    {
+      "id": 10006,
+      "level": 1,
+      "type": "intro",
+      "title": "Home Row — Pinky Fingers",
+      "subtitle": "No modifier · A ; '",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "a",
+        "semicolon",
+        "quote"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "ា ា",
+        "ើ ើ",
+        "់ ់"
+      ]
+    },
+    {
+      "id": 10007,
+      "level": 2,
+      "type": "combo",
+      "title": "Two-Character Combos",
+      "subtitle": "Pairs drawn from the Home Row",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": []
+    },
+    {
+      "id": 10008,
+      "level": 2,
+      "type": "combo",
+      "title": "Three-Character Combos",
+      "subtitle": "Triples drawn from the Home Row",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": []
+    },
+    {
+      "id": 10009,
+      "level": 2,
+      "type": "review",
+      "title": "Random Home Row Drill",
+      "subtitle": "Fully randomized order",
+      "layer": "base",
+      "threshold": 88,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": []
+    },
+    {
+      "id": 10010,
+      "level": 2,
+      "type": "test",
+      "title": "Home Row Speed Test",
+      "subtitle": "Type as fast and accurately as you can",
+      "layer": "base",
+      "threshold": 90,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": []
+    },
+    {
+      "id": 10011,
+      "level": 3,
+      "type": "intro",
+      "title": "Home Row Shift",
+      "subtitle": "Hold Shift · Home row keys",
+      "layer": "shift",
+      "threshold": 85,
+      "newIds": [
+        "f",
+        "j",
+        "d",
+        "k",
+        "g",
+        "h",
+        "s",
+        "l",
+        "a",
+        "semicolon",
+        "quote"
+      ],
+      "newLayer": "shift",
+      "examples": []
+    },
+    {
+      "id": 10012,
+      "level": 3,
+      "type": "test",
+      "title": "Home Row + Shift Test",
+      "subtitle": "Accuracy test across Base and Shift",
+      "layer": "base",
+      "threshold": 90,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": []
+    },
+    {
+      "id": 10013,
+      "level": 9,
+      "type": "words",
+      "title": "Word Practice",
+      "subtitle": "Real words, typed from memory",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "អាវ",
+        "តា",
+        "យាយ",
+        "មាន"
+      ]
+    }
+  ],
+  "LESSONS_ENGLISH": [
+    {
+      "id": 20001,
+      "level": 1,
+      "type": "intro",
+      "title": "Home Row — Index Anchors (F & J)",
+      "subtitle": "No modifier · F J",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "f",
+        "j"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "f f",
+        "j j"
+      ]
+    },
+    {
+      "id": 20002,
+      "level": 1,
+      "type": "intro",
+      "title": "Home Row — Middle Fingers (D & K)",
+      "subtitle": "No modifier · D K",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "d",
+        "k"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "d d",
+        "k k"
+      ]
+    },
+    {
+      "id": 20003,
+      "level": 1,
+      "type": "combo",
+      "title": "Home Row — 4 Keys Combined",
+      "subtitle": "Index & Middle · F J D K",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "f",
+        "j",
+        "d",
+        "k"
+      ],
+      "newLayer": "base",
+      "examples": []
+    },
+    {
+      "id": 20004,
+      "level": 1,
+      "type": "intro",
+      "title": "Home Row — Index Reach (G & H)",
+      "subtitle": "No modifier · G H",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "g",
+        "h"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "g g",
+        "h h"
+      ]
+    },
+    {
+      "id": 20005,
+      "level": 1,
+      "type": "intro",
+      "title": "Home Row — Ring Fingers (S & L)",
+      "subtitle": "No modifier · S L",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "s",
+        "l"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "s s",
+        "l l"
+      ]
+    },
+    {
+      "id": 20006,
+      "level": 1,
+      "type": "intro",
+      "title": "Home Row — Pinky Fingers",
+      "subtitle": "No modifier · A ; '",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "a",
+        "semicolon",
+        "quote"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "a a",
+        "; ;",
+        "' '"
+      ]
+    },
+    {
+      "id": 20007,
+      "level": 2,
+      "type": "combo",
+      "title": "Two-Character Combos",
+      "subtitle": "Pairs drawn from the Home Row",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": []
+    },
+    {
+      "id": 20008,
+      "level": 2,
+      "type": "combo",
+      "title": "Three-Character Combos",
+      "subtitle": "Triples drawn from the Home Row",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": []
+    },
+    {
+      "id": 20009,
+      "level": 2,
+      "type": "review",
+      "title": "Random Home Row Drill",
+      "subtitle": "Fully randomized order",
+      "layer": "base",
+      "threshold": 88,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": []
+    },
+    {
+      "id": 20010,
+      "level": 2,
+      "type": "test",
+      "title": "Home Row Speed Test",
+      "subtitle": "Type as fast and accurately as you can",
+      "layer": "base",
+      "threshold": 90,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": []
+    },
+    {
+      "id": 20011,
+      "level": 3,
+      "type": "intro",
+      "title": "Home Row Shift",
+      "subtitle": "Hold Shift · Home row keys",
+      "layer": "shift",
+      "threshold": 85,
+      "newIds": [
+        "f",
+        "j",
+        "d",
+        "k",
+        "g",
+        "h",
+        "s",
+        "l",
+        "a",
+        "semicolon",
+        "quote"
+      ],
+      "newLayer": "shift",
+      "examples": []
+    },
+    {
+      "id": 20012,
+      "level": 3,
+      "type": "test",
+      "title": "Home Row + Shift Test",
+      "subtitle": "Accuracy test across Base and Shift",
+      "layer": "base",
+      "threshold": 90,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": []
+    },
+    {
+      "id": 20013,
+      "level": 9,
+      "type": "words",
+      "title": "Word Practice",
+      "subtitle": "Real words, typed from memory",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "cat",
+        "dog",
+        "sun",
+        "run"
+      ]
+    }
+  ]
+}
