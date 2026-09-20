@@ -918,6 +918,7 @@
     text-align:center;
     max-width:540px;
     line-height:1.7;
+    text-shadow:0 1px 6px rgba(0,0,0,0.85);
   }
   .hint b{ color:var(--gold-bright); font-weight:600;}
 

@@ -228,6 +228,105 @@ function initSettingsToggles(){
   accentButtons.forEach(b=> b.addEventListener('click', ()=> applyAccent(b.dataset.accent)));
   applyAccent(safeGet(LS.accent, 'gold'));
 
+  /* ---------- custom wallpaper ---------- */
+  const customWallpaperLayer = document.getElementById('customWallpaperLayer');
+  const customWallpaperDim = document.getElementById('customWallpaperDim');
+  const uploadWallpaperBtn = document.getElementById('uploadWallpaperBtn');
+  const urlWallpaperBtn = document.getElementById('urlWallpaperBtn');
+  const wallpaperFileInput = document.getElementById('wallpaperFileInput');
+  const removeWallpaperBtn = document.getElementById('removeWallpaperBtn');
+  const wallpaperDimControl = document.getElementById('wallpaperDimControl');
+  const wallpaperDimSlider = document.getElementById('wallpaperDimSlider');
+  const wallpaperDimValue = document.getElementById('wallpaperDimValue');
+
+  const WALLPAPER_KEY = 'khmerCustomWallpaper';
+  const WALLPAPER_DIM_KEY = 'khmerCustomWallpaperDim';
+
+  function applyWallpaper(url, dimPct){
+    if(!url || !customWallpaperLayer) return;
+    dimPct = dimPct !== undefined ? dimPct : (parseInt(safeGet(WALLPAPER_DIM_KEY, '65'), 10) || 65);
+    customWallpaperLayer.style.backgroundImage = 'url("' + url + '")';
+    document.documentElement.style.setProperty('--wallpaper-dim', (dimPct / 100).toString());
+    document.body.classList.add('has-custom-wallpaper');
+    if(removeWallpaperBtn) removeWallpaperBtn.style.display = 'inline-flex';
+    if(wallpaperDimControl) wallpaperDimControl.style.display = 'flex';
+    if(wallpaperDimSlider) wallpaperDimSlider.value = dimPct;
+    if(wallpaperDimValue) wallpaperDimValue.textContent = dimPct + '%';
+  }
+
+  function removeWallpaper(){
+    try{ localStorage.removeItem(WALLPAPER_KEY); }catch(e){}
+    try{ localStorage.removeItem(WALLPAPER_DIM_KEY); }catch(e){}
+    document.body.classList.remove('has-custom-wallpaper');
+    if(customWallpaperLayer) customWallpaperLayer.style.backgroundImage = '';
+    if(removeWallpaperBtn) removeWallpaperBtn.style.display = 'none';
+    if(wallpaperDimControl) wallpaperDimControl.style.display = 'none';
+    if(wallpaperFileInput) wallpaperFileInput.value = '';
+    if(typeof showToast === 'function') showToast(pkIcon('reset', 18), 'Wallpaper removed', 'Restored default background.');
+  }
+
+  if(uploadWallpaperBtn && wallpaperFileInput){
+    uploadWallpaperBtn.addEventListener('click', ()=> wallpaperFileInput.click());
+    wallpaperFileInput.addEventListener('change', ()=>{
+      const file = wallpaperFileInput.files && wallpaperFileInput.files[0];
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = (e)=>{
+        const img = new Image();
+        img.onload = ()=>{
+          const maxDim = 1920;
+          let w = img.width, h = img.height;
+          if(w > maxDim || h > maxDim){
+            if(w > h){ h = Math.round(h * maxDim / w); w = maxDim; }
+            else { w = Math.round(w * maxDim / h); h = maxDim; }
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = w; canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+          safeSet(WALLPAPER_KEY, dataUrl);
+          applyWallpaper(dataUrl);
+          if(typeof showToast === 'function') showToast(pkIcon('check', 18), 'Wallpaper applied', 'Custom background updated.');
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  if(urlWallpaperBtn){
+    urlWallpaperBtn.addEventListener('click', ()=>{
+      const current = safeGet(WALLPAPER_KEY, '');
+      const url = prompt('Enter image URL (PNG, JPG, WebP):', current.startsWith('http') ? current : '');
+      if(url && url.trim()){
+        const cleanUrl = url.trim();
+        safeSet(WALLPAPER_KEY, cleanUrl);
+        applyWallpaper(cleanUrl);
+        if(typeof showToast === 'function') showToast(pkIcon('check', 18), 'Wallpaper applied', 'Custom background updated.');
+      }
+    });
+  }
+
+  if(removeWallpaperBtn){
+    removeWallpaperBtn.addEventListener('click', removeWallpaper);
+  }
+
+  if(wallpaperDimSlider){
+    wallpaperDimSlider.addEventListener('input', ()=>{
+      const val = parseInt(wallpaperDimSlider.value, 10) || 65;
+      document.documentElement.style.setProperty('--wallpaper-dim', (val / 100).toString());
+      if(wallpaperDimValue) wallpaperDimValue.textContent = val + '%';
+      safeSet(WALLPAPER_DIM_KEY, String(val));
+    });
+  }
+
+  // Load saved custom wallpaper on boot
+  const savedWallpaper = safeGet(WALLPAPER_KEY, null);
+  if(savedWallpaper){
+    applyWallpaper(savedWallpaper, parseInt(safeGet(WALLPAPER_DIM_KEY, '65'), 10));
+  }
+
   /* ---------- reduced motion ---------- */
   const reducedMotionToggle = document.getElementById('reducedMotionToggle');
   function applyReducedMotion(on){
