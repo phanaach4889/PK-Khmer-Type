@@ -553,6 +553,8 @@ if(document.readyState === "loading"){
 
   var toggleBtn = document.getElementById('siteLangToggle');
   var toggleLabel = document.getElementById('siteLangToggleLabel');
+  var topToggleBtn = document.getElementById('topLangToggleBtn');
+  var topToggleLabel = document.getElementById('topLangToggleLabel');
   var nodes = document.querySelectorAll('.i18n-t');
 
   function applyLang(lang){
@@ -568,19 +570,35 @@ if(document.readyState === "loading"){
     if(toggleBtn){ toggleBtn.setAttribute('aria-pressed', String(isKm)); }
     if(toggleLabel){ toggleLabel.textContent = isKm ? 'English' : 'ភាសាខ្មែរ'; }
     if(toggleBtn){ toggleBtn.setAttribute('aria-label', isKm ? 'Switch site back to English' : 'Translate site to Khmer'); }
+
+    if(topToggleBtn){
+      topToggleBtn.setAttribute('aria-pressed', String(isKm));
+      topToggleBtn.setAttribute('aria-label', isKm ? 'Switch back to English' : 'Translate English to Khmer');
+      topToggleBtn.setAttribute('title', isKm ? 'Switch back to English (Alt+L)' : 'Translate English to Khmer (Alt+L)');
+      topToggleBtn.classList.toggle('active', isKm);
+    }
+    if(topToggleLabel){
+      topToggleLabel.textContent = isKm ? 'English' : 'Translate to Khmer';
+    }
+  }
+
+  function toggleSiteLanguage(){
+    var next = document.documentElement.classList.contains('site-km-mode') ? 'en' : 'km';
+    safeSetLang(LANG_KEY, next);
+    applyLang(next);
   }
 
   var startLang = safeGetLang(LANG_KEY, 'en');
   applyLang(startLang);
 
-
   if(toggleBtn){
-    toggleBtn.addEventListener('click', function(){
-      var next = document.documentElement.classList.contains('site-km-mode') ? 'en' : 'km';
-      safeSetLang(LANG_KEY, next);
-      applyLang(next);
-    });
+    toggleBtn.addEventListener('click', toggleSiteLanguage);
   }
+  if(topToggleBtn){
+    topToggleBtn.addEventListener('click', toggleSiteLanguage);
+  }
+  window.applySiteLanguage = applyLang;
+  window.toggleSiteLanguage = toggleSiteLanguage;
 
   /* ---------- developer note modal ---------- */
   var devNoteModal = document.getElementById('devNoteModal');

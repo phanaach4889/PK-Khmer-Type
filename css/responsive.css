@@ -119,7 +119,30 @@
   }
 
   @media (max-width:640px){
-    .top-actions{ position:static; justify-content:center; margin-bottom:14px; }
+    .top-actions{
+      position:absolute !important;
+      top:10px !important;
+      left:8px !important;
+      right:8px !important;
+      justify-content:center;
+      gap:6px;
+      z-index:90 !important;
+      margin-bottom:0 !important;
+      overflow-x:auto;
+      scrollbar-width:none;
+      -webkit-overflow-scrolling:touch;
+      padding:2px 4px 6px;
+      transform:none !important;
+    }
+    .top-actions::-webkit-scrollbar{ display:none; }
+    .top-actions button,
+    .top-actions .auth-account-chip{
+      padding:6px 12px;
+      font-size:0.68rem;
+      min-height:34px;
+      flex-shrink:0;
+      transform:none !important;
+    }
   }
 
   @media (max-width:480px){

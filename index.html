@@ -57,6 +57,8 @@
 
 <div class="top-actions">
   <button id="focusModeBtn" class="focus-mode-btn" aria-label="Toggle Focus Mode" title="Focus Mode (Hide distractions, Alt+F)"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M3 12h3m12 0h3M12 3v3m0 12v3"/></svg> <span class="focus-btn-text i18n-t" data-en="Focus" data-km="ផ្ដោត">Focus</span></button>
+  <button id="shortcutsOpenBtn" aria-haspopup="dialog" aria-label="Open keyboard shortcuts" title="Keyboard Shortcuts (?)"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/><line x1="10" y1="12" x2="14" y2="12"/></svg> <span class="i18n-t" data-en="Shortcuts" data-km="ផ្លូវកាត់">Shortcuts</span></button>
+  <button id="topLangToggleBtn" class="top-action-btn lang-toggle-btn" aria-label="Translate English to Khmer" title="Translate English to Khmer (Alt+L)"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> <span id="topLangToggleLabel">Translate to Khmer</span></button>
   <button id="statsOpenBtn" aria-haspopup="dialog" aria-label="Open statistics dashboard"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> <span class="i18n-t" data-en="Statistics" data-km="ស្ថិតិ">Statistics</span></button>
   <button id="settingsOpenBtn" aria-haspopup="dialog" aria-label="Open settings"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33 1.65 1.65 0 0 0 1.51-1V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> <span class="i18n-t" data-en="Settings" data-km="ការកំណត់">Settings</span></button>
   <button id="authOpenBtn" class="auth-nav-btn" aria-haspopup="dialog" aria-label="Sign in or create an account" hidden><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> <span class="i18n-t" data-en="Sign In" data-km="ចូល">Sign In</span></button>
@@ -371,6 +373,118 @@
   </div>
 </div>
 
+<!-- ================= Keyboard shortcuts modal ================= -->
+<div class="modal-backdrop" id="shortcutsModal" hidden role="dialog" aria-modal="true" aria-labelledby="shortcutsModalTitle">
+  <div class="modal-card shortcuts-card">
+    <div class="modal-top">
+      <h2 id="shortcutsModalTitle"><span class="i18n-t" data-en="Keyboard Shortcuts" data-km="ផ្លូវកាត់ក្តារចុច">Keyboard Shortcuts</span></h2>
+      <button class="modal-close" id="shortcutsCloseBtn" aria-label="Close shortcuts">&times;</button>
+    </div>
+
+    <div class="shortcuts-section">
+      <h3 class="shortcuts-section-title i18n-t" data-en="Editing &amp; Clipboard" data-km="ការកែសម្រួល និងក្ដារខ្ទាស់">Editing &amp; Clipboard</h3>
+      <div class="shortcuts-grid">
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Copy text" data-km="ចម្លងអត្ថបទ">Copy text</span>
+          <span class="shortcut-keys"><kbd>Ctrl</kbd><span class="shortcut-plus">+</span><kbd>C</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Paste text" data-km="បិទភ្ជាប់អត្ថបទ">Paste text</span>
+          <span class="shortcut-keys"><kbd>Ctrl</kbd><span class="shortcut-plus">+</span><kbd>V</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Cut text" data-km="កាត់អត្ថបទ">Cut text</span>
+          <span class="shortcut-keys"><kbd>Ctrl</kbd><span class="shortcut-plus">+</span><kbd>X</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Select all" data-km="ជ្រើសទាំងអស់">Select all</span>
+          <span class="shortcut-keys"><kbd>Ctrl</kbd><span class="shortcut-plus">+</span><kbd>A</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Undo typing" data-km="មិនធ្វើវិញ">Undo typing</span>
+          <span class="shortcut-keys"><kbd>Ctrl</kbd><span class="shortcut-plus">+</span><kbd>Z</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Redo typing" data-km="ធ្វើវិញ">Redo typing</span>
+          <span class="shortcut-keys"><kbd>Ctrl</kbd><span class="shortcut-plus">+</span><kbd>Y</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Delete previous word" data-km="លុបពាក្យមុន">Delete previous word</span>
+          <span class="shortcut-keys"><kbd>Ctrl</kbd><span class="shortcut-plus">+</span><kbd>Bksp</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Clear manuscript" data-km="សម្អាតអត្ថបទ">Clear manuscript</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>C</kbd></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shortcuts-section">
+      <h3 class="shortcuts-section-title i18n-t" data-en="Controls &amp; Layout" data-km="ការគ្រប់គ្រង និងប្លង់">Controls &amp; Layout</h3>
+      <div class="shortcuts-grid">
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Focus Mode" data-km="របៀបផ្ដោត">Focus Mode</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>F</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Toggle Key Sound" data-km="បិទ/បើក សំឡេង">Toggle Key Sound</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>S</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Toggle Finger Guide" data-km="បិទ/បើក មគ្គុទ្ទេសក៍ដៃ">Toggle Finger Guide</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>H</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Toggle Ambience" data-km="បិទ/បើក បរិយាកាស">Toggle Ambience</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>T</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Switch Language" data-km="ប្តូរភាសា">Switch Language</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>L</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Khmer Layout" data-km="ប្លង់ក្តារចុចខ្មែរ">Khmer Layout</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>1</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Khmer NiDA Layout" data-km="ប្លង់ក្តារចុច Khmer NiDA">Khmer NiDA Layout</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>2</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="English (US) Layout" data-km="ប្លង់ English (US)">English (US) Layout</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>3</kbd></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shortcuts-section">
+      <h3 class="shortcuts-section-title i18n-t" data-en="Navigation &amp; Practice" data-km="ការរុករក និងការអនុវត្ត">Navigation &amp; Practice</h3>
+      <div class="shortcuts-grid">
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Restart Lesson / Race" data-km="ចាប់ផ្តើមមេរៀនឡើងវិញ">Restart Lesson / Race</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>R</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Open Settings" data-km="បើកការកំណត់">Open Settings</span>
+          <span class="shortcut-keys"><kbd>Ctrl</kbd><span class="shortcut-plus">+</span><kbd>,</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Open Statistics" data-km="បើកស្ថិតិ">Open Statistics</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>P</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Shortcuts Guide" data-km="មគ្គុទ្ទេសក៍ផ្លូវកាត់">Shortcuts Guide</span>
+          <span class="shortcut-keys"><kbd>?</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Close / Cancel" data-km="បិទ / បោះបង់">Close / Cancel</span>
+          <span class="shortcut-keys"><kbd>Esc</kbd></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ================= Authentication modal ================= -->
 <div class="modal-backdrop auth-backdrop" id="authModal" hidden role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
   <div class="auth-ambient" aria-hidden="true"><span class="auth-orb auth-orb-1"></span><span class="auth-orb auth-orb-2"></span></div>
@@ -631,14 +745,14 @@
 
 <div class="layout-strip" id="layoutStrip" role="tablist" aria-label="Keyboard layout">
   <div class="layout-pill active i18n-t" data-layout="standard" data-en="Khmer Keyboard Layout" data-km="ប្លង់ក្តារចុចខ្មែរ" role="tab" tabindex="0" aria-selected="true">Khmer Keyboard Layout</div>
-  <div class="layout-pill i18n-t" data-layout="nida" data-en="Khmer NiDA Keyboard" data-km="ក្តារចុចខ្មែរ និដា" role="tab" tabindex="0" aria-selected="false">Khmer NiDA Keyboard</div>
-  <div class="layout-pill i18n-t" data-layout="english" data-en="English ⇄ Khmer" data-km="អង់គ្លេស ⇄ ខ្មែរ" role="tab" tabindex="0" aria-selected="false">English ⇄ Khmer</div>
+  <div class="layout-pill i18n-t" data-layout="nida" data-en="Khmer NiDA Keyboard" data-km="ក្តារចុច Khmer NiDA" role="tab" tabindex="0" aria-selected="false">Khmer NiDA Keyboard</div>
+  <div class="layout-pill i18n-t" data-layout="english" data-en="English (US)" data-km="English (US)" role="tab" tabindex="0" aria-selected="false">English (US)</div>
 </div>
 
 <div class="session-bar" id="sessionBar">
   <div class="session-stat"><span class="session-stat-val" id="statKeys">0</span><span class="session-stat-label i18n-t" data-en="Keys Typed" data-km="គ្រាប់ចុចបានវាយ">Keys Typed</span></div>
   <div class="session-stat"><span class="session-stat-val" id="statAccuracy">100%</span><span class="session-stat-label i18n-t" data-en="Accuracy" data-km="ភាពត្រឹមត្រូវ">Accuracy</span></div>
-  <div class="session-stat"><span class="session-stat-val" id="statWpm">0</span><span class="session-stat-label i18n-t" data-en="WPM" data-km="ពាក្យ/នាទី">WPM</span></div>
+  <div class="session-stat"><span class="session-stat-val" id="statWpm">0</span><span class="session-stat-label i18n-t" data-en="WPM" data-km="WPM (ពាក្យ/នាទី)">WPM</span></div>
   <div class="session-stat mastery-stat"><span class="session-stat-val" id="statMastery">0/0</span><span class="session-stat-label i18n-t" data-en="Lessons Mastered" data-km="មេរៀនបានស្ទាត់ជំនាញ">Lessons Mastered</span></div>
 </div>
 
@@ -818,7 +932,7 @@
     <span class="site-footer-credit i18n-t" data-en="PK Khmer Type — built by Phanna Kurosaki" data-km="PK Khmer Type — សាងសង់ដោយ Phanna Kurosaki">PK Khmer Type — built by Phanna Kurosaki</span>
     <a class="site-footer-link" id="siteFacebookLink" href="https://web.facebook.com/Wphanakurasaki/" target="_blank" rel="noopener noreferrer" aria-label="Phanna Kurosaki on Facebook">
       <svg class="site-footer-link-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.08 5.66 21.23 10.44 22v-7.03H7.9v-2.91h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22C18.34 21.23 22 17.08 22 12.06Z"/></svg>
-      <span class="i18n-t" data-en="Facebook" data-km="ហ្វេសប៊ុក">Facebook</span>
+      <span class="i18n-t" data-en="Facebook" data-km="Facebook">Facebook</span>
     </a>
     <button type="button" class="site-footer-link" id="siteDevNoteBtn" aria-haspopup="dialog">
       <svg class="site-footer-link-icon pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
@@ -855,7 +969,7 @@
     </div>
     <div class="dev-note-footer">
       <span class="dev-note-badge i18n-t" data-en="&bull; 14 y/o · Student Developer" data-km="&bull; អាយុ១៤ឆ្នាំ · អ្នកអភិវឌ្ឍន៍សិស្ស">&bull; 14 y/o · Student Developer</span>
-      <p class="dev-note-signature i18n-t" data-en="— Phanna Kurosaki, founder &amp;amp; developer" data-km="— ផានណា គូរ៉ូសាគី ស្ថាបនិក និងអ្នកអភិវឌ្ឍន៍">— Phanna Kurosaki, founder &amp; developer</p>
+      <p class="dev-note-signature i18n-t" data-en="— Phanna Kurosaki, founder &amp;amp; developer" data-km="— Phanna Kurosaki, ស្ថាបនិក និងអ្នកអភិវឌ្ឍន៍">— Phanna Kurosaki, founder &amp; developer</p>
     </div>
     <button type="button" class="auth-submit-btn dev-note-ack-btn i18n-t" id="devNoteCloseBtn2" data-en="Close" data-km="បិទ">Close</button>
   </div>
@@ -871,6 +985,7 @@
   <script defer src="js/typing.js"></script>
   <script defer src="js/statistics.js"></script>
   <script defer src="js/settings.js"></script>
+  <script defer src="js/shortcuts.js"></script>
   <script defer src="js/app.js"></script>
 </body>
 </html>

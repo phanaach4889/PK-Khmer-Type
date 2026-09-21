@@ -420,13 +420,17 @@
   }
 
   .lesson-panel{
-    width:min(86vw, 780px);
-    margin-bottom:18px;
-    padding:14px 22px 16px;
-    border-radius:12px;
-    background:linear-gradient(180deg, rgba(45,212,167,0.09), rgba(45,212,167,0.02));
-    border:1px solid rgba(45,212,167,0.35);
-    box-shadow:0 0 24px rgba(45,212,167,0.12), inset 0 1px 0 rgba(255,255,255,0.03);
+    position:relative;
+    z-index:10;
+    width:min(90vw, 840px);
+    margin:56px auto 14px;
+    padding:16px 22px 14px;
+    border-radius:18px;
+    background:rgba(14, 17, 27, 0.94);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(255, 209, 102, 0.35);
+    box-shadow:0 18px 48px rgba(0,0,0,0.82), 0 0 24px rgba(255,209,102,0.12), inset 0 1px 0 rgba(255,255,255,0.08);
     animation:panel-in .35s ease;
   }
   .lesson-panel[hidden]{ display:none; }
@@ -434,156 +438,183 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
-    font-size:0.62rem;
-    letter-spacing:0.1em;
+    font-family:'Orbitron', sans-serif;
+    font-size:0.8rem;
+    font-weight:600;
+    letter-spacing:0.06em;
     text-transform:uppercase;
-    color:var(--ink-dim);
+    color:var(--gold-bright);
     margin-bottom:10px;
+    padding-bottom:6px;
+    border-bottom:1px solid rgba(255,255,255,0.08);
   }
-  .lesson-top b{ color:var(--gold-bright); font-weight:600; }
+  .lesson-top b{ color:#ffffff; font-weight:700; text-shadow:0 0 10px rgba(255,209,102,0.4); }
   .lesson-meta-row{
     display:flex;
     align-items:center;
-    justify-content:center;
-    gap:8px;
-    margin:-4px 0 10px;
+    justify-content:flex-start;
+    gap:10px;
+    margin:0 0 8px;
   }
   .lesson-meta-badge{
-    font-size:0.58rem;
+    font-size:0.68rem;
+    font-weight:600;
     letter-spacing:0.08em;
     text-transform:uppercase;
-    padding:2px 9px;
+    padding:3px 10px;
     border-radius:999px;
-    border:1px solid var(--stone-3);
-    color:var(--ink-dim);
+    background:rgba(255,209,102,0.12);
+    border:1px solid rgba(255,209,102,0.35);
+    color:var(--gold-bright);
   }
-  .lesson-meta-badge.badge-review{ color:var(--temple-blue); border-color:rgba(45,212,167,0.45); }
-  .lesson-meta-badge.badge-test{ color:var(--temple-red); border-color:rgba(255,59,86,0.45); }
-  .lesson-meta-badge.badge-words{ color:var(--gold-bright); border-color:rgba(255,209,102,0.45); }
+  .lesson-meta-badge.badge-review{ color:var(--temple-blue); border-color:rgba(45,212,167,0.45); background:rgba(45,212,167,0.1); }
+  .lesson-meta-badge.badge-test{ color:var(--temple-red); border-color:rgba(255,59,86,0.45); background:rgba(255,59,86,0.1); }
+  .lesson-meta-badge.badge-words{ color:var(--gold-bright); border-color:rgba(255,209,102,0.45); background:rgba(255,209,102,0.1); }
   .lesson-meta-best{
-    font-size:0.6rem;
-    letter-spacing:0.03em;
+    font-size:0.68rem;
+    letter-spacing:0.04em;
     color:var(--ink-dim);
   }
-  .lesson-meta-best b{ color:var(--gold-bright); }
+  .lesson-meta-best b{ color:var(--gold-bright); font-weight:700; }
   .lesson-newkeys{
     display:flex;
     align-items:center;
     justify-content:center;
     gap:10px;
     flex-wrap:wrap;
-    margin:0 0 12px;
-    padding:8px 12px;
-    border-radius:10px;
-    background:rgba(255,209,102,0.06);
-    border:1px dashed rgba(255,157,46,0.4);
+    margin:0 0 14px;
+    padding:10px 14px;
+    border-radius:12px;
+    background:rgba(255,209,102,0.08);
+    border:1px dashed rgba(255,157,46,0.5);
   }
   .lesson-newkeys[hidden]{ display:none; }
   .lesson-newkeys-label{
-    font-size:0.58rem;
+    font-size:0.64rem;
     letter-spacing:0.08em;
+    font-weight:600;
     text-transform:uppercase;
-    color:var(--ink-dim);
-    margin-right:2px;
+    color:var(--gold);
+    margin-right:4px;
   }
   .lesson-newkey-chip{
     display:flex;
     flex-direction:column;
     align-items:center;
     gap:1px;
-    padding:4px 10px;
+    padding:6px 12px;
     border-radius:8px;
-    background:var(--stone-2);
-    border:1px solid var(--stone-3);
+    background:rgba(0,0,0,0.4);
+    border:1px solid rgba(255,209,102,0.3);
   }
   .lesson-newkey-chip .nk-char{
     font-family:'Noto Sans Khmer','Noto Serif Khmer', sans-serif;
-    font-size:1.3rem;
+    font-size:1.4rem;
     color:var(--gold-bright);
+    text-shadow:0 0 10px rgba(255,209,102,0.5);
   }
   .lesson-newkey-chip .nk-sub{
-    font-size:0.52rem;
-    letter-spacing:0.03em;
+    font-size:0.56rem;
+    letter-spacing:0.04em;
     text-transform:uppercase;
     color:var(--ink-dim);
   }
   .lesson-progress-bar{
-    height:5px;
-    border-radius:3px;
-    background:var(--stone-3);
+    height:7px;
+    border-radius:4px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.1);
     overflow:hidden;
-    margin-bottom:14px;
+    margin-bottom:16px;
   }
   .lesson-progress-fill{
     height:100%;
     width:0%;
     background:linear-gradient(90deg, var(--gold), var(--gold-bright));
+    box-shadow:0 0 12px rgba(255,209,102,0.6);
     transition:width .25s ease;
   }
   .lesson-char-row{
     display:flex;
-    gap:12px;
+    gap:14px;
     justify-content:center;
     flex-wrap:wrap;
     align-items:baseline;
     min-height:3.2em;
-    padding:8px 12px 18px;
+    padding:12px 18px 20px;
     font-family:'Kantumruy Pro', 'Khmer OS Battambang', 'Khmer OS Siemreap', 'Noto Sans Khmer', sans-serif;
-    font-size:2.4rem;
+    font-size:2.6rem;
     line-height:1.8;
-    margin-bottom:14px;
+    margin-bottom:16px;
+    background:rgba(0,0,0,0.32);
+    border:1px solid rgba(255,255,255,0.07);
+    border-radius:12px;
   }
   .lc-char{
-    color:#5a6888;
-    transition:color .15s ease;
+    color:#8c9cb6;
+    text-shadow:0 2px 6px rgba(0,0,0,0.85);
+    transition:color .15s ease, transform .15s ease;
     position:relative;
     display:inline-flex;
     align-items:baseline;
     justify-content:center;
-    padding:2px 4px 6px;
+    padding:2px 6px 6px;
   }
-  .lc-char.done{ color:var(--gold-bright); }
-  .lc-char.current{ color:var(--ink); font-weight:600; }
+  .lc-char.done{ color:var(--gold-bright); text-shadow:0 0 14px rgba(255,209,102,0.55); }
+  .lc-char.current{ color:#ffffff; font-weight:700; text-shadow:0 0 18px rgba(255,255,255,0.7); transform:scale(1.12); }
   .lc-char.current::after{
     content:"";
     position:absolute; left:2px; right:2px; bottom:0px;
-    height:3px;
+    height:4px;
     border-radius:2px;
     background:var(--gold-bright);
+    box-shadow:0 0 8px var(--gold-bright);
     animation:blink 1s step-end infinite;
   }
   .lc-space{
-    min-width:20px;
-    color:rgba(90,104,136,0.35);
+    min-width:22px;
+    color:rgba(140,156,182,0.45);
     font-size:1.6rem;
   }
   .lc-char.shake{ animation:key-shake .3s ease; color:var(--temple-red); }
   .lesson-stats{
     display:flex;
-    gap:16px;
+    gap:20px;
     align-items:center;
-    justify-content:center;
-    font-size:0.64rem;
+    justify-content:space-between;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.76rem;
+    font-weight:600;
     letter-spacing:0.04em;
     text-transform:uppercase;
     color:var(--ink-dim);
+    padding-top:12px;
+    border-top:1px solid rgba(255,255,255,0.08);
   }
-  .lesson-stats b{ color:var(--gold-bright); }
-  .lesson-stats button{
+  .lesson-stats b{ color:var(--gold-bright); font-weight:700; }
+  .lesson-stats button,
+  #lessonExitBtn{
     margin-left:auto;
     font-family:'JetBrains Mono', monospace;
-    font-size:0.62rem;
+    font-size:0.72rem;
+    font-weight:600;
     letter-spacing:0.06em;
     text-transform:uppercase;
-    background:none;
-    border:1px solid var(--stone-3);
-    color:var(--ink-dim);
-    padding:4px 11px;
-    border-radius:6px;
+    background:rgba(255,59,86,0.12);
+    border:1px solid rgba(255,59,86,0.35);
+    color:#ff6b81;
+    padding:6px 14px;
+    border-radius:8px;
     cursor:pointer;
     transition:all .15s ease;
   }
-  .lesson-stats button:hover{ color:var(--gold-bright); border-color:var(--gold-bright); }
+  .lesson-stats button:hover,
+  #lessonExitBtn:hover{
+    color:#ffffff;
+    background:rgba(255,59,86,0.25);
+    border-color:#ff5a70;
+    box-shadow:0 0 12px rgba(255,90,112,0.3);
+  }
 
   .lesson-complete-overlay{
     position:fixed; inset:0;

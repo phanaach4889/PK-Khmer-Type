@@ -1074,16 +1074,21 @@ function startLesson(idOrDef){
   renderLessonMeta(def);
   lessonPanel.hidden = false;
   manuscriptEl.hidden = true;
+  if(lessonStrip) lessonStrip.hidden = true;
   clearText();
   renderLessonChars();
   updateLessonProgress();
-  if(!remedialActive) renderLessonStrip();
 
   requestAnimationFrame(()=>{
-    if(lessonPanel && !lessonPanel.hidden){
+    if(lessonPanel && !lessonPanel.hidden && boardWrap){
+      const panelRect = lessonPanel.getBoundingClientRect();
+      const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+      const targetY = currentScrollY + panelRect.top - 65;
+      window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+    } else if(lessonPanel && !lessonPanel.hidden){
       const rect = lessonPanel.getBoundingClientRect();
       const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
-      const targetY = currentScrollY + rect.top - 16;
+      const targetY = currentScrollY + rect.top - 65;
       window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
     } else if(boardWrap){
       boardWrap.scrollIntoView({ behavior:'smooth', block:'center' });
@@ -1097,6 +1102,7 @@ function exitLesson(){
   remedialActive = false;
   lessonPanel.hidden = true;
   manuscriptEl.hidden = false;
+  if(lessonStrip) lessonStrip.hidden = false;
   lockedLayer = null;
   render();
   if(highlightedKeyId && keyEls[highlightedKeyId]){
@@ -1104,6 +1110,11 @@ function exitLesson(){
   }
   highlightedKeyId = null;
   renderLessonStrip();
+  requestAnimationFrame(()=>{
+    if(boardWrap){
+      boardWrap.scrollIntoView({ behavior:'smooth', block:'center' });
+    }
+  });
 }
 lessonExitBtn.addEventListener('click', exitLesson);
 

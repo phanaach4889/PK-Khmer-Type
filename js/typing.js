@@ -8,19 +8,241 @@ const clearBtn = document.getElementById("clearBtn");
 const copyBtn = document.getElementById("copyBtn");
 const manuscriptEl = document.getElementById("manuscript");
 
-if(copyBtn){
-  copyBtn.addEventListener("click", ()=>{
-    if(!outputEl) return;
-    navigator.clipboard.writeText(outputEl.textContent).then(()=>{
-      if(typeof showToast === "function") showToast(pkIcon("copy", 18), "Copied", "Text copied to clipboard.");
-    }).catch(()=>{});
-  });
-}
-if(clearBtn){
-  clearBtn.addEventListener("click", ()=> clearText());
+/* ---------- Manuscript Helper Functions ---------- */
+function getManuscriptText(){
+  if(!outputEl) return '';
+  return Array.from(outputEl.childNodes)
+    .filter(n => n.nodeType === 3)
+    .map(n => n.textContent)
+    .join('');
 }
 
-/* ---------- ember burst ---------- */
+function setManuscriptText(str){
+  if(!outputEl) return;
+  Array.from(outputEl.childNodes).forEach(n => {
+    if(n.nodeType === 3) n.remove();
+  });
+  const cursor = outputEl.querySelector('.cursor');
+  if(str){
+    const textNode = document.createTextNode(str);
+    if(cursor) outputEl.insertBefore(textNode, cursor);
+    else outputEl.appendChild(textNode);
+    if(placeholderEl) placeholderEl.style.display = 'none';
+  } else {
+    if(placeholderEl) placeholderEl.style.display = 'inline';
+  }
+}
+
+/* ---------- Undo / Redo History Stack ---------- */
+const undoStack = [];
+const redoStack = [];
+let burstTimer = null;
+let burstSnapshotTaken = false;
+
+function pushUndoSnapshot(){
+  const text = getManuscriptText();
+  if(undoStack.length === 0 || undoStack[undoStack.length - 1] !== text){
+    undoStack.push(text);
+    if(undoStack.length > 60) undoStack.shift();
+    redoStack.length = 0;
+  }
+}
+
+function markTypingBurst(){
+  if(!burstSnapshotTaken){
+    pushUndoSnapshot();
+    burstSnapshotTaken = true;
+  }
+  clearTimeout(burstTimer);
+  burstTimer = setTimeout(()=>{
+    burstSnapshotTaken = false;
+  }, 700);
+}
+
+function undoManuscript(){
+  if(!undoStack.length){
+    if(typeof showToast === 'function') showToast(pkIcon('alert', 16), 'Nothing to Undo', 'No previous text edits available.');
+    return;
+  }
+  burstSnapshotTaken = false;
+  const current = getManuscriptText();
+  const prev = undoStack.pop();
+  redoStack.push(current);
+  setManuscriptText(prev);
+  if(typeof showToast === 'function') showToast(pkIcon('reset', 16), 'Undo', 'Reverted previous edit.');
+}
+
+function redoManuscript(){
+  if(!redoStack.length){
+    if(typeof showToast === 'function') showToast(pkIcon('alert', 16), 'Nothing to Redo', 'No undone edits available.');
+    return;
+  }
+  burstSnapshotTaken = false;
+  const current = getManuscriptText();
+  const next = redoStack.pop();
+  undoStack.push(current);
+  setManuscriptText(next);
+  if(typeof showToast === 'function') showToast(pkIcon('arrow-right', 16), 'Redo', 'Restored previous edit.');
+}
+
+/* ---------- Clipboard Actions ---------- */
+async function copyManuscriptToClipboard(){
+  const selection = window.getSelection ? window.getSelection().toString() : '';
+  const text = selection || getManuscriptText();
+  if(!text){
+    if(typeof showToast === 'function') showToast(pkIcon('alert', 16), 'Nothing to Copy', 'Manuscript is currently empty.');
+    return;
+  }
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch(e){
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand('copy'); }catch(err){}
+    document.body.removeChild(ta);
+  }
+  if(copyBtn){
+    const origHtml = copyBtn.innerHTML;
+    copyBtn.textContent = 'Copied!';
+    setTimeout(()=>{ copyBtn.innerHTML = origHtml; }, 1200);
+  }
+  if(typeof showToast === 'function'){
+    showToast(pkIcon('copy', 16), 'Copied', selection ? 'Selected text copied to clipboard.' : 'Manuscript copied to clipboard.');
+  }
+}
+
+async function cutManuscriptToClipboard(){
+  const selection = window.getSelection ? window.getSelection().toString() : '';
+  if(selection){
+    try {
+      await navigator.clipboard.writeText(selection);
+      document.execCommand('delete');
+      if(typeof showToast === 'function') showToast(pkIcon('copy', 16), 'Cut', 'Selected text cut to clipboard.');
+    } catch(err){}
+    return;
+  }
+  const text = getManuscriptText();
+  if(!text) return;
+  pushUndoSnapshot();
+  burstSnapshotTaken = false;
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch(e){
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand('copy'); }catch(err){}
+    document.body.removeChild(ta);
+  }
+  clearText();
+  if(typeof showToast === 'function') showToast(pkIcon('copy', 16), 'Cut', 'Manuscript cut to clipboard.');
+}
+
+function handlePasteText(str){
+  if(!str) return;
+  pushUndoSnapshot();
+  burstSnapshotTaken = false;
+  insertText(str);
+  if(typeof showToast === 'function') showToast(pkIcon('copy', 16), 'Pasted', 'Text pasted into manuscript.');
+}
+
+function selectAllManuscript(){
+  if(!outputEl) return;
+  const range = document.createRange();
+  range.selectNodeContents(outputEl);
+  const sel = window.getSelection();
+  if(sel){
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+}
+
+function backspaceWord(){
+  const current = getManuscriptText();
+  if(!current) return;
+  pushUndoSnapshot();
+  burstSnapshotTaken = false;
+  const trimmed = current.replace(/[\s\u200b]+$/, '');
+  const diff = current.length - trimmed.length;
+  if(diff > 0){
+    setManuscriptText(trimmed);
+  } else {
+    const match = current.match(/^(.*?)(\S+[\s\u200b]*)$/);
+    if(match){
+      setManuscriptText(match[1]);
+    } else {
+      setManuscriptText('');
+    }
+  }
+}
+
+if(copyBtn){
+  copyBtn.addEventListener("click", copyManuscriptToClipboard);
+}
+if(clearBtn){
+  clearBtn.addEventListener("click", clearText);
+}
+
+/* Native document paste handler */
+document.addEventListener('paste', (e)=>{
+  const t = e.target;
+  if(t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+  if(typeof lessonActive !== 'undefined' && lessonActive) return;
+  if(typeof raceMode !== 'undefined' && raceMode) return;
+  if(typeof trialActive !== 'undefined' && trialActive) return;
+  const text = (e.clipboardData || window.clipboardData)?.getData('text');
+  if(text){
+    e.preventDefault();
+    handlePasteText(text);
+  }
+});
+
+/* Native document copy handler */
+document.addEventListener('copy', (e)=>{
+  const t = e.target;
+  if(t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+  const selection = window.getSelection ? window.getSelection().toString() : '';
+  if(!selection && outputEl && outputEl.textContent.trim()){
+    const text = getManuscriptText();
+    if(text && e.clipboardData){
+      e.clipboardData.setData('text/plain', text);
+      e.preventDefault();
+      if(copyBtn){
+        const origHtml = copyBtn.innerHTML;
+        copyBtn.textContent = 'Copied!';
+        setTimeout(()=>{ copyBtn.innerHTML = origHtml; }, 1200);
+      }
+      if(typeof showToast === 'function') showToast(pkIcon('copy', 16), 'Copied', 'Manuscript copied to clipboard.');
+    }
+  }
+});
+
+/* Native document cut handler */
+document.addEventListener('cut', (e)=>{
+  const t = e.target;
+  if(t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+  const selection = window.getSelection ? window.getSelection().toString() : '';
+  if(!selection && outputEl && outputEl.textContent.trim()){
+    const text = getManuscriptText();
+    if(text && e.clipboardData){
+      e.clipboardData.setData('text/plain', text);
+      e.preventDefault();
+      pushUndoSnapshot();
+      burstSnapshotTaken = false;
+      clearText();
+      if(typeof showToast === 'function') showToast(pkIcon('copy', 16), 'Cut', 'Manuscript cut to clipboard.');
+    }
+  }
+});
+
+/* ---------- Visual FX Stubs ---------- */
 function emberBurst(el, ev, count, color){
   /* Disabled particle creation to eliminate typing lag */
 }
@@ -33,7 +255,6 @@ function runeRing(el){
   /* Disabled to eliminate DOM churn & typing lag */
 }
 
-
 function burst(el, ev){
   /* Disabled DOM-based ripple to eliminate layout reflow and lag */
 }
@@ -44,8 +265,6 @@ function press(el){
   setTimeout(()=> el.classList.remove('pressed'), 110);
 }
 
-/* ---------- sound ---------- */
-
 function updatePlaceholder(){
   const hasText = outputEl.textContent.replace(/\u200b/g,'').trim().length > 0
     || Array.from(outputEl.childNodes).some(n => n.nodeType===3 && n.textContent.length>0);
@@ -53,6 +272,7 @@ function updatePlaceholder(){
 }
 
 function insertText(str){
+  markTypingBurst();
   const cursor = outputEl.querySelector('.cursor');
   const textNode = document.createTextNode(str);
   outputEl.insertBefore(textNode, cursor);
@@ -63,6 +283,7 @@ function insertText(str){
 }
 
 function backspaceText(){
+  markTypingBurst();
   const cursor = outputEl.querySelector('.cursor');
   let node = cursor.previousSibling;
   if(node && node.nodeType === 3){
@@ -73,33 +294,13 @@ function backspaceText(){
 }
 
 function clearText(){
+  pushUndoSnapshot();
+  burstSnapshotTaken = false;
   Array.from(outputEl.childNodes).forEach(n=>{
     if(n.nodeType === 3) n.remove();
   });
   placeholderEl.style.display = 'inline';
 }
-clearBtn.addEventListener('click', clearText);
-
-copyBtn.addEventListener('click', async ()=>{
-  const text = outputEl.textContent.replace(/\u200b/g,'');
-  try{
-    await navigator.clipboard.writeText(text);
-    copyBtn.textContent = 'Copied!';
-  }catch(e){
-    // fallback for browsers without clipboard API access
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.opacity = '0';
-    document.body.appendChild(ta);
-    ta.select();
-    try{ document.execCommand('copy'); copyBtn.textContent = 'Copied!'; }
-    catch(e2){ copyBtn.textContent = 'Failed'; }
-    document.body.removeChild(ta);
-  }
-  setTimeout(()=>{ copyBtn.textContent = 'Copy'; }, 1200);
-});
-
 
 function typeKey(id, ev){
   const el = keyEls[id];
@@ -153,8 +354,7 @@ function typeKey(id, ev){
   }
 }
 
-/* ---------- physical keyboard support ---------- */
-
+/* ---------- Physical Keyboard Support ---------- */
 const heldModifiers = new Set();
 
 function recomputePhysicalLayer(){
@@ -170,7 +370,6 @@ window.addEventListener('keydown', (e)=>{
   if(t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
 
   const id = CODE_MAP[e.code];
-  if(!id) return;
 
   if(id === 'shiftL' || id === 'shiftR'){
     heldModifiers.add('shift');
@@ -214,6 +413,74 @@ window.addEventListener('keydown', (e)=>{
     }
     return;
   }
+
+  // Handle Ctrl / Meta shortcuts
+  if(e.ctrlKey || e.metaKey){
+    const keyLower = (e.key || '').toLowerCase();
+
+    // Browser navigation / dev tools passthrough (DO NOT block or prevent)
+    if(keyLower === 'r' || keyLower === 'w' || keyLower === 't' || keyLower === 'p' || keyLower === 'f' || keyLower === 'l' || keyLower === 'n' || keyLower === 'j' || keyLower === 'u' || keyLower === 'g' || keyLower === 'q' || (e.shiftKey && (keyLower === 'i' || keyLower === 'c' || keyLower === 'j'))){
+      return;
+    }
+
+    // Standard Clipboard & Editor Shortcuts
+    if(keyLower === 'c'){
+      e.preventDefault();
+      copyManuscriptToClipboard();
+      return;
+    }
+    if(keyLower === 'v'){
+      e.preventDefault();
+      if(navigator.clipboard && navigator.clipboard.readText){
+        navigator.clipboard.readText().then(handlePasteText).catch(()=>{});
+      }
+      return;
+    }
+    if(keyLower === 'x'){
+      e.preventDefault();
+      cutManuscriptToClipboard();
+      return;
+    }
+    if(keyLower === 'a'){
+      e.preventDefault();
+      selectAllManuscript();
+      return;
+    }
+    if(keyLower === 'z'){
+      e.preventDefault();
+      if(e.shiftKey) redoManuscript();
+      else undoManuscript();
+      return;
+    }
+    if(keyLower === 'y'){
+      e.preventDefault();
+      redoManuscript();
+      return;
+    }
+    if(e.key === 'Backspace'){
+      e.preventDefault();
+      backspaceWord();
+      return;
+    }
+
+    // Check if key is an intentional Ctrl-layer glyph on Khmer layout
+    if(id && currentLayoutId === 'khmer' && glyphData[id] && glyphData[id].ctrl){
+      if(keyEls[id]) keyEls[id].classList.add('pressed');
+      e.preventDefault();
+      typeKey(id);
+      return;
+    }
+
+    // Pass through unhandled Ctrl combinations without typing unexpected characters
+    return;
+  }
+
+  // If Alt key is held, let shortcuts handler manage without typing letters
+  if(e.altKey){
+    return;
+  }
+
+  if(!id) return;
   if(id === 'caps'){ typeKey(id); return; }
 
   // Prevent holding down a key from repeatedly spamming inputs and racking up duplicate mistakes
@@ -255,4 +522,3 @@ window.addEventListener('blur', ()=>{
   });
   render();
 });
-

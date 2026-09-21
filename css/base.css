@@ -738,8 +738,9 @@
 
   /* ================= new: top nav / utility bar ================= */
   .top-actions{
-    position:fixed; top:16px; right:20px; z-index:40;
-    display:flex; align-items:center; gap:10px;
+    position:absolute; top:16px; right:20px; z-index:90;
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    transform:none !important;
   }
   .top-actions button{
     font-family:'JetBrains Mono', monospace;
@@ -761,7 +762,8 @@
     box-shadow:0 3px 12px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.1);
     backdrop-filter:blur(8px);
     -webkit-backdrop-filter:blur(8px);
-    transition:all .2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:background .2s ease, border-color .2s ease, box-shadow .2s ease, color .2s ease;
+    transform:none !important;
   }
   .top-actions button[hidden],
   .top-actions .auth-account-chip[hidden],
@@ -772,21 +774,39 @@
     width:16px; height:16px;
     color:var(--gold-bright);
     flex-shrink:0;
-    transition:transform .2s ease;
+    transition:color .2s ease;
+    transform:none !important;
   }
   .top-actions button:hover{
     color:var(--gold-bright);
     border-color:var(--gold-bright);
     background:linear-gradient(180deg, rgba(255,255,255,0.1), rgba(0,0,0,0.15)), var(--stone-2);
-    box-shadow:0 6px 18px rgba(0,0,0,0.45), 0 0 16px rgba(255,209,102,0.25), inset 0 1px 0 rgba(255,255,255,0.2);
-    transform:translateY(-2px);
+    box-shadow:0 4px 16px rgba(0,0,0,0.45), 0 0 16px rgba(255,209,102,0.28), inset 0 1px 0 rgba(255,255,255,0.2);
+    transform:none !important;
   }
   .top-actions button:hover .pk-icon{
-    transform:scale(1.1);
+    transform:none !important;
+    color:#ffe394;
   }
   .top-actions button:active{
-    transform:translateY(1px);
-    box-shadow:0 2px 6px rgba(0,0,0,0.4);
+    transform:none !important;
+    box-shadow:0 2px 6px rgba(0,0,0,0.5), 0 0 8px rgba(255,209,102,0.2);
+    background:var(--stone-2);
+  }
+  .top-actions .lang-toggle-btn.active{
+    border-color:rgba(255,209,102,0.65);
+    color:var(--gold-bright);
+    background:linear-gradient(180deg, rgba(255,209,102,0.16), rgba(0,0,0,0.26)), var(--stone-2);
+    box-shadow:0 4px 16px rgba(0,0,0,0.45), 0 0 16px rgba(255,209,102,0.28), inset 0 1px 0 rgba(255,255,255,0.18);
+    transform:none !important;
+  }
+  .top-actions .lang-toggle-btn.active .pk-icon{
+    transform:none !important;
+    color:var(--gold-bright);
+  }
+  #topLangToggleBtn{
+    min-width:145px;
+    justify-content:center;
   }
 
   /* ================= new: settings-driven cosmetic toggles ================= */
@@ -917,6 +937,78 @@
     transition:all .15s ease;
   }
   .modal-close:hover{ color:var(--gold-bright); border-color:var(--gold-bright); }
+
+  /* ================= shortcuts cheat sheet modal ================= */
+  .shortcuts-card{
+    width:min(94vw, 680px);
+    max-height:85vh;
+  }
+  .shortcuts-section{
+    margin-bottom:20px;
+  }
+  .shortcuts-section:last-child{
+    margin-bottom:4px;
+  }
+  .shortcuts-section-title{
+    font-family:'Orbitron', sans-serif;
+    font-size:0.85rem;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:10px;
+    padding-bottom:4px;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .shortcuts-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
+    gap:8px;
+  }
+  .shortcut-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:rgba(255,255,255,0.03);
+    border:1px solid var(--stone-3);
+    border-radius:8px;
+    padding:8px 12px;
+    gap:10px;
+    transition:background .15s ease, border-color .15s ease;
+  }
+  .shortcut-item:hover{
+    background:rgba(255,209,102,0.04);
+    border-color:rgba(255,209,102,0.25);
+  }
+  .shortcut-label{
+    font-size:0.82rem;
+    color:var(--ink);
+    font-weight:500;
+  }
+  .shortcut-keys{
+    display:flex;
+    align-items:center;
+    gap:4px;
+    flex-shrink:0;
+  }
+  .shortcut-keys kbd{
+    display:inline-block;
+    padding:2px 7px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.74rem;
+    font-weight:600;
+    color:var(--gold-bright);
+    background:rgba(0,0,0,0.45);
+    border:1px solid rgba(255,209,102,0.28);
+    border-radius:4px;
+    box-shadow:0 2px 0 rgba(0,0,0,0.5);
+    line-height:1.3;
+  }
+  .shortcut-plus{
+    font-size:0.72rem;
+    color:var(--ink-dim);
+    font-weight:600;
+  }
 
   /* ================= temple confirm dialog (replaces native confirm()) ================= */
   .temple-confirm-backdrop{ z-index:200; backdrop-filter:blur(2px); }
@@ -1082,17 +1174,18 @@
     box-shadow:0 3px 14px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.12);
     backdrop-filter:blur(8px);
     -webkit-backdrop-filter:blur(8px);
-    transition:all .2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:background .2s ease, border-color .2s ease, box-shadow .2s ease, color .2s ease;
+    transform:none !important;
   }
   .auth-account-chip:hover{
     border-color:var(--gold-bright);
     background:linear-gradient(180deg, rgba(255,255,255,0.12), rgba(0,0,0,0.18)), var(--stone-2);
-    box-shadow:0 6px 20px rgba(0,0,0,0.45), 0 0 18px rgba(255,209,102,0.3), inset 0 1px 0 rgba(255,255,255,0.22);
-    transform:translateY(-2px);
+    box-shadow:0 4px 18px rgba(0,0,0,0.45), 0 0 18px rgba(255,209,102,0.3), inset 0 1px 0 rgba(255,255,255,0.22);
+    transform:none !important;
     color:var(--gold-bright);
   }
   .auth-account-chip:active{
-    transform:translateY(1px);
+    transform:none !important;
     box-shadow:0 2px 6px rgba(0,0,0,0.4);
   }
   .auth-account-chip:focus-visible{ outline:2px solid var(--gold-bright); outline-offset:2px; }
@@ -1103,10 +1196,11 @@
     background:linear-gradient(135deg, var(--gold-bright), var(--gold));
     box-shadow:0 0 0 2px rgba(255,209,102,0.4);
     flex:0 0 auto; overflow:hidden;
-    transition:transform .2s ease;
+    transition:box-shadow .2s ease;
+    transform:none !important;
   }
   .auth-account-chip:hover .auth-chip-avatar{
-    transform:scale(1.06);
+    transform:none !important;
     box-shadow:0 0 0 2px var(--gold-bright), 0 0 10px rgba(255,209,102,0.5);
   }
   .auth-chip-avatar img{ width:100%; height:100%; object-fit:cover; border-radius:50%; }
