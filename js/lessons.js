@@ -1060,6 +1060,7 @@ function renderLessonStrip(){
     if(!collapsedLevels) collapsedLevels = defaultCollapsedLevels();
     lessonStrip.innerHTML = '';
 
+    lessonStrip.hidden = false;
     lessonStrip.classList.remove('minimized');
     lessonStrip.classList.toggle('expanded', isStripExpanded);
 
@@ -1149,8 +1150,15 @@ lessonStrip.addEventListener('click', (e)=>{
   const header = e.target.closest('.lesson-level-header');
   if(header){
     const level = parseInt(header.dataset.level, 10);
-    if(collapsedLevels.has(level)) collapsedLevels.delete(level);
-    else collapsedLevels.add(level);
+    if(collapsedLevels.has(level)){
+      collapsedLevels.delete(level);
+      const openLevelsCount = LEVELS.filter(l => !collapsedLevels.has(l.id)).length;
+      if(openLevelsCount > 1){
+        isStripExpanded = true;
+      }
+    } else {
+      collapsedLevels.add(level);
+    }
     renderLessonStrip();
     return;
   }
@@ -1162,7 +1170,28 @@ lessonStrip.addEventListener('click', (e)=>{
   if(isLessonLocked(id)) return;
   if(lessonActive && currentLesson && currentLesson.id === id) return;
 
+  isStripExpanded = false; // Make it small when clicking on lessons
   startLesson(id);
+});
+
+/* When clicking somewhere NOT on the bar ("click something else"), make the sidebar small */
+document.addEventListener('click', (e)=>{
+  if(!lessonStrip) return;
+  if(e.composedPath && e.composedPath().includes(lessonStrip)) return;
+  if(e.target && e.target.closest && e.target.closest('#lessonStrip')) return;
+
+  const openCount = collapsedLevels ? LEVELS.filter(l => !collapsedLevels.has(l.id)).length : 1;
+  if(!isStripExpanded && openCount <= 1) return;
+
+  isStripExpanded = false;
+  if(collapsedLevels){
+    const keepLv = currentLesson ? currentLesson.level : (LEVELS.length ? LEVELS[0].id : 1);
+    LEVELS.forEach(l => {
+      if(l.id !== keepLv) collapsedLevels.add(l.id);
+      else collapsedLevels.delete(l.id);
+    });
+  }
+  renderLessonStrip();
 });
 
 function renderLessonMeta(def){
@@ -1263,8 +1292,13 @@ function startLesson(idOrDef){
 
   currentLesson = def;
   remedialActive = !!def.isRemedial;
+  isStripExpanded = false; // Make it small when starting a lesson
   if(collapsedLevels && def.level){
-    collapsedLevels.delete(def.level); // Keep the active lesson's level open
+    // Keep only the active lesson's level open
+    LEVELS.forEach(l => {
+      if(l.id !== def.level) collapsedLevels.add(l.id);
+      else collapsedLevels.delete(l.id);
+    });
   }
   const gen = def.generate();
   lessonChars = gen.chars;
@@ -1285,7 +1319,10 @@ function startLesson(idOrDef){
   renderLessonMeta(def);
   lessonPanel.hidden = false;
   manuscriptEl.hidden = true;
-  if(lessonStrip) lessonStrip.hidden = true;
+  if(lessonStrip){
+    lessonStrip.hidden = false;
+    renderLessonStrip();
+  }
   clearText();
   renderLessonChars();
   updateLessonProgress();
@@ -1431,6 +1468,7 @@ function completeLesson(){
   lessonActive = false;
   lessonPanel.hidden = true;
   manuscriptEl.hidden = false;
+  if(lessonStrip) lessonStrip.hidden = false;
   lockedLayer = null;
   render();
   if(highlightedKeyId && keyEls[highlightedKeyId]){
@@ -1445,6 +1483,8 @@ function completeLesson(){
     autoAdvanceLevelAccordion(def);
     renderLessonStrip();
     if(accuracy === 100) achievementOnce('perfect-'+id, pkIcon('diamond', 20), 'Flawless!', def.title + ' with 100% accuracy');
+  } else {
+    renderLessonStrip();
   }
 
   showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars);
@@ -1544,6 +1584,10 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
   function dismissOverlay(){
     if(keyHandler){ window.removeEventListener('keydown', keyHandler); keyHandler = null; }
     overlay.remove();
+    if(lessonStrip){
+      lessonStrip.hidden = false;
+      renderLessonStrip();
+    }
   }
 
   keyHandler = (e)=>{

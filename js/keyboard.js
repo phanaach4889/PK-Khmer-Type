@@ -422,6 +422,7 @@ function switchLayout(id){
   });
   const lessonsAvailable = LAYOUTS[id].hasLessons;
   lessonStrip.style.display = lessonsAvailable ? '' : 'none';
+  if(lessonsAvailable) lessonStrip.hidden = false;
   trialToggle.style.display = lessonsAvailable ? '' : 'none';
   if(typeof raceToggle !== 'undefined') raceToggle.style.display = lessonsAvailable ? '' : 'none';
   lessonUnavailableNote.style.display = lessonsAvailable ? 'none' : '';
