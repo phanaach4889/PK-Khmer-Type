@@ -234,7 +234,7 @@ const LAYOUTS = {
   standard: {
     label: 'Khmer Keyboard Layout',
     rows: [ROW1, ROW2, ROW3, ROW4, ROW5],
-    spaceMap: {base:'្', shift:'្', ctrl:'្', altgr:'្'},
+    spaceMap: {base:'្', shift:' ', ctrl:'្', altgr:'្'},
     hasLessons: true,
     layerLabels: {base:'Base — Khmer', shift:'Shift — Voiced consonants', ctrl:'Ctrl — Currency & punctuation', altgr:'AltGr — Numerals & clusters'},
   },
@@ -276,9 +276,9 @@ const boardWrap = document.getElementById("boardWrap");
 const layoutStrip = document.getElementById("layoutStrip");
 
 const TOOLTIP_TEXT = {
-  ctrl: { title:"VK_CONTROL", body:"Ctrl key with Ctrl enabled." },
-  altgr:{ title:"VK_RMENU", body:"AltGr key with AltGr enabled.\nClick to change keyboard state." },
-  shift:{ title:"VK_SHIFT", body:"Shift key with Shift enabled.\nClick to change keyboard state." },
+  ctrl: { title:"VK_CONTROL", body:"Ctrl key with Ctrl enabled.\nHold for shortcuts." },
+  altgr:{ title:"VK_RMENU", body:"AltGr key with AltGr enabled.\nHold to type AltGr characters." },
+  shift:{ title:"VK_SHIFT", body:"Shift key with Shift enabled.\nHold to type Shift characters." },
 };
 
 let hoverLayer = null;
@@ -297,7 +297,8 @@ ALL_ROWS.forEach(rowDef=>{
   rowEl.className = 'row';
   rowDef.forEach(k=>{
     const el = document.createElement('div');
-    el.className = 'key';
+    el.className = 'key notranslate';
+    el.setAttribute('translate', 'no');
     if(k.wide) el.style.flexGrow = k.wide;
     if(k.cls) el.classList.add(k.cls);
     keyEls[k.id] = el;
@@ -308,7 +309,8 @@ ALL_ROWS.forEach(rowDef=>{
       if(k.id === 'space') el.classList.add('space');
     } else {
       const g = document.createElement('span');
-      g.className = 'glyph';
+      g.className = 'glyph notranslate';
+      g.setAttribute('translate', 'no');
       g.dataset.base = k.base;
       g.dataset.ctrl = k.ctrl;
       g.dataset.altgr = k.altgr;
@@ -320,7 +322,8 @@ ALL_ROWS.forEach(rowDef=>{
 
       if(k.shift){
         const hint = document.createElement('span');
-        hint.className = 'shift-badge';
+        hint.className = 'shift-badge notranslate';
+        hint.setAttribute('translate', 'no');
         hint.textContent = k.shift;
         el.appendChild(hint);
       }
@@ -328,26 +331,40 @@ ALL_ROWS.forEach(rowDef=>{
 
     if(k.cls === 'key-ctrl' || k.cls === 'key-altgr' || k.cls === 'key-shift'){
       const layerName = k.cls === 'key-ctrl' ? 'ctrl' : (k.cls === 'key-altgr' ? 'altgr' : 'shift');
+      const tipData = (TOOLTIP_TEXT && TOOLTIP_TEXT[layerName]) || { title: k.label || layerName, body: '' };
       const tip = document.createElement('div');
       tip.className = 'tooltip';
-      tip.innerHTML = `<strong>${TOOLTIP_TEXT[layerName].title}</strong>${TOOLTIP_TEXT[layerName].body.replace('\n','<br>')}`;
+      tip.innerHTML = `<strong>${tipData.title || ''}</strong>${(tipData.body || '').replace(/\n/g,'<br>')}`;
       el.appendChild(tip);
 
       el.addEventListener('mouseenter', ()=>{
-        hoverLayer = layerName;
-        render();
         tip.classList.add('show');
       });
       el.addEventListener('mouseleave', ()=>{
-        hoverLayer = null;
         tip.classList.remove('show');
-        render();
       });
-      el.addEventListener('click', (ev)=>{
-        lockedLayer = (lockedLayer === layerName) ? null : layerName;
+
+      const activateModifier = (ev)=>{
+        ev.preventDefault();
+        physicalLayer = layerName;
+        el.classList.add('pressed');
         render();
         burst(el, ev);
-      });
+        playClick('down');
+      };
+      const deactivateModifier = ()=>{
+        if(physicalLayer === layerName){
+          physicalLayer = null;
+          el.classList.remove('pressed');
+          render();
+          playClick('up');
+        }
+      };
+
+      el.addEventListener('pointerdown', activateModifier);
+      el.addEventListener('pointerup', deactivateModifier);
+      el.addEventListener('pointerleave', deactivateModifier);
+      el.addEventListener('pointercancel', deactivateModifier);
     } else {
       el.addEventListener('click', (ev)=>{
         typeKey(k.id, ev);
@@ -359,7 +376,15 @@ ALL_ROWS.forEach(rowDef=>{
   board.appendChild(rowEl);
 });
 }
-// initial build handled by initApp in js/app.js
+
+// Self-booting fallback so keyboard is guaranteed to render reliably
+if(document.readyState !== 'loading'){
+  buildBoard();
+} else {
+  document.addEventListener('DOMContentLoaded', ()=>{
+    if(board && board.children.length === 0) buildBoard();
+  });
+}
 
 
 /* ---------- layout switching ---------- */
@@ -372,6 +397,10 @@ function switchLayout(id){
   ALL_ROWS = LAYOUTS[id].rows;
   if(typeof LESSON_SETS !== 'undefined'){
     LESSONS = LESSON_SETS[id] || LESSONS;
+    if(typeof LEVEL_SETS !== 'undefined'){
+      LEVELS = LEVEL_SETS[id] || LEVELS;
+      if(typeof defaultCollapsedLevels === 'function') collapsedLevels = defaultCollapsedLevels();
+    }
     if(typeof renderLessonStrip === 'function') renderLessonStrip();
     if(typeof updateMasteryStat === 'function') updateMasteryStat();
   }
@@ -616,11 +645,38 @@ let activeTargetKey = null;
 let activeShiftFinger = null;
 let activeShiftTargetKey = null;
 
-function shiftFingerFor(keyId){
+function modifierInfoFor(keyId, layer){
+  if(!keyId || !layer || layer === 'base') return null;
   const fid = KEY_FINGER[keyId];
-  const f = fid && FINGERS.find(x=>x.id===fid);
-  if(!f || f.kind === 'thumb') return null;
-  return f.hand === 'L' ? 'rp' : 'lp';
+  const f = fid && FINGERS.find(x=> x.id === fid);
+  const isLeftHand = f ? (f.hand === 'L') : false;
+
+  if(layer === 'shift'){
+    if(keyId === 'shiftL' || keyId === 'shiftR') return null;
+    const targetKey = isLeftHand ? 'shiftR' : 'shiftL';
+    const fingerId = isLeftHand ? 'rp' : 'lp';
+    return { fingerId, targetKey };
+  }
+
+  if(layer === 'ctrl'){
+    if(keyId === 'ctrlL' || keyId === 'ctrlR') return null;
+    if(isLeftHand && keyEls['ctrlR']){
+      return { fingerId: 'rp', targetKey: 'ctrlR' };
+    }
+    return { fingerId: 'lp', targetKey: 'ctrlL' };
+  }
+
+  if(layer === 'altgr'){
+    if(keyId === 'altgr') return null;
+    return { fingerId: 'rt', targetKey: 'altgr' };
+  }
+
+  return null;
+}
+
+function shiftFingerFor(keyId){
+  const mod = modifierInfoFor(keyId, 'shift');
+  return mod ? mod.fingerId : null;
 }
 
 function keyCenter(id, wrapRect){
@@ -647,23 +703,18 @@ function buildHand(hand, fingers, wrapRect, activeF, targetKey){
   const order = ['pinky','ring','middle','index'].map(k=>fingers.find(f=>f.kind===k));
   if(order.some(f=> !homes[f.id])) return null;
 
-  // Whole-hand reach translation
+  // Whole-hand reach translation (fingers float palm; thumbs articulate independently)
   let shiftX = 0, shiftY = 0;
-  if(activeF && targetKey){
+  if(activeF && activeF.kind !== 'thumb' && targetKey){
     const targetPt = keyCenter(targetKey, wrapRect);
     const homePt = keyCenter(activeF.home, wrapRect);
     if(targetPt && homePt){
       const reachDx = targetPt.x - homePt.x;
       const reachDy = targetPt.y - homePt.y;
-      if(reachDy < 0){
-        // Forward reach (number row / upper row): hand floats forward gracefully
-        shiftY = reachDy * 0.65;
-        shiftX = reachDx * 0.45;
-      } else {
-        // Bottom row reach
-        shiftY = reachDy * 0.35;
-        shiftX = reachDx * 0.38;
-      }
+      const factorY = (activeF.kind === 'pinky') ? 0.72 : (reachDy < 0 ? 0.65 : 0.45);
+      const factorX = (activeF.kind === 'pinky') ? 0.62 : (reachDy < 0 ? 0.45 : 0.40);
+      shiftY = reachDy * factorY;
+      shiftX = reachDx * factorX;
     }
   }
 
@@ -736,10 +787,10 @@ function updateHandsOverlay(){
   const leftFingers = FINGERS.filter(f=>f.hand==='L');
   const rightFingers = FINGERS.filter(f=>f.hand==='R');
 
-  const activeLeft = leftFingers.find(f=> f.id === activeFinger || f.id === activeShiftFinger);
+  const activeLeft = leftFingers.find(f=> f.id === activeFinger) || leftFingers.find(f=> f.id === activeShiftFinger);
   const targetLeft = activeLeft ? (activeLeft.id === activeFinger ? activeTargetKey : activeShiftTargetKey) : null;
 
-  const activeRight = rightFingers.find(f=> f.id === activeFinger || f.id === activeShiftFinger);
+  const activeRight = rightFingers.find(f=> f.id === activeFinger) || rightFingers.find(f=> f.id === activeShiftFinger);
   const targetRight = activeRight ? (activeRight.id === activeFinger ? activeTargetKey : activeShiftTargetKey) : null;
 
   const handL = buildHand('L', leftFingers, wrapRect, activeLeft, targetLeft);
@@ -785,8 +836,19 @@ function updateHandsOverlay(){
           }
         }
       } else {
-        // Natural relaxed resting thumb
-        tip = { x: origin.x + inward * 34, y: origin.y - 32 };
+        // Natural relaxed resting thumb: rests on spacebar only when hand is at rest; floats with hand when in motion
+        const isHandMoving = Math.abs(hb.shiftX) > 4 || Math.abs(hb.shiftY) > 4;
+        const spaceEl = keyEls['space'];
+        if(!isHandMoving && spaceEl){
+          const r = spaceEl.getBoundingClientRect();
+          const frac = f.hand === 'L' ? 0.38 : 0.62;
+          tip = {
+            x: r.left + r.width * frac - wrapRect.left,
+            y: r.top + r.height * 0.45 - wrapRect.top
+          };
+        } else {
+          tip = { x: origin.x + inward * 16, y: origin.y + 24 };
+        }
       }
     } else {
       if(isActive && targetKey){
@@ -812,7 +874,13 @@ function updateHandsOverlay(){
     }
     if(!tip) return;
 
+    // Strict physiological maximum reach: human fingers cannot stretch beyond their bone length
+    const maxLen = f.kind === 'thumb' ? 62 : (f.kind === 'pinky' ? 74 : (f.kind === 'middle' ? 95 : 88));
     const d = dist(origin, tip);
+    if(d > maxLen){
+      const scale = maxLen / d;
+      tip = { x: origin.x + (tip.x - origin.x) * scale, y: origin.y + (tip.y - origin.y) * scale };
+    }
     const bow = Math.min(18, d * 0.14);
     const mid = { x:(origin.x+tip.x)/2, y:(origin.y+tip.y)/2 - bow };
 
@@ -853,10 +921,10 @@ function setActiveFinger(keyId, layer){
   activeFinger = keyId ? (KEY_FINGER[keyId] || null) : null;
   activeTargetKey = keyId;
   const lyr = layer || (keyId ? currentLayer() : null);
-  if(keyId && lyr === 'shift' && keyId !== 'shiftL' && keyId !== 'shiftR'){
-    const sf = shiftFingerFor(keyId);
-    activeShiftFinger = sf;
-    activeShiftTargetKey = sf === 'rp' ? 'shiftR' : (sf === 'lp' ? 'shiftL' : null);
+  const mod = modifierInfoFor(keyId, lyr);
+  if(mod){
+    activeShiftFinger = mod.fingerId;
+    activeShiftTargetKey = mod.targetKey;
   } else {
     activeShiftFinger = null;
     activeShiftTargetKey = null;
@@ -878,17 +946,18 @@ function strikeFinger(fe){
 /* fired the instant a key is struck: flashes the correct finger and sends
    a bright expanding ring out from the fingertip, on top of the steady
    "next key" glow from setActiveFinger/lesson guidance. When the struck
-   key lives on the Shift layer, the opposite pinky flashes on the Shift
-   key at the same moment, as if it were held down for the combo. */
+   key lives on a modifier layer (Shift, Ctrl, AltGr), the modifier finger
+   flashes on the modifier key at the same moment, as if it were held down for the combo. */
 function triggerFingerPress(keyId){
   if(!handsOn) return;
   const fid = keyId ? KEY_FINGER[keyId] : null;
   if(!fid) return;
   strikeFinger(fingerEls[fid]);
 
-  if(keyId !== 'shiftL' && keyId !== 'shiftR' && currentLayer() === 'shift'){
-    const sf = shiftFingerFor(keyId);
-    if(sf && sf !== fid) strikeFinger(fingerEls[sf]);
+  const lyr = currentLayer();
+  if(lyr && lyr !== 'base'){
+    const mod = modifierInfoFor(keyId, lyr);
+    if(mod && mod.fingerId && mod.fingerId !== fid) strikeFinger(fingerEls[mod.fingerId]);
   }
 }
 

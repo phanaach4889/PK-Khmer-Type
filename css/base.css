@@ -1133,7 +1133,8 @@
   /* accessibility: shift-layer corner previews can be hidden */
   html.hide-shift-badges .shift-badge{ display:none !important; }
   /* accessibility: the pulsing "next key" glow can be turned off for lessons */
-  html.hide-key-highlight .key.lesson-target{
+  html.hide-key-highlight .key.lesson-target,
+  html.hide-key-highlight .key.modifier-target{
     animation:none !important;
     box-shadow:none !important;
     border-color:var(--stone-edge) !important;

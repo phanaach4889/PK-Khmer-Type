@@ -62,38 +62,109 @@ function triggerRecordCelebration(){
 }
 
 
-/* ---------- session stats ---------- */
-let sessionKeys = 0, sessionCorrect = 0, sessionWrong = 0;
-const sessionStart = Date.now();
+/* ---------- saved lesson stats (persist in localStorage & only track in lessons) ---------- */
+const LS_LESSON_STATS = 'khmerLessonStats';
+
+function loadSavedLessonStats(){
+  try {
+    const raw = localStorage.getItem(LS_LESSON_STATS);
+    if(raw){
+      const parsed = JSON.parse(raw);
+      if(parsed && typeof parsed.keys === 'number') return parsed;
+    }
+  } catch(e){}
+
+  // Check legacy totals so existing count (like 534 from user's screen) is preserved!
+  let legacyKeys = 0;
+  let legacyBestWpm = 0;
+  try {
+    const leg = JSON.parse(localStorage.getItem('khmerGlobalStats') || '{}');
+    if(leg && leg.keys) legacyKeys = leg.keys;
+    if(leg && leg.bestWpm) legacyBestWpm = leg.bestWpm;
+  } catch(e){}
+
+  return {
+    keys: legacyKeys || 0,
+    correct: legacyKeys || 0,
+    wrong: 0,
+    bestWpm: legacyBestWpm || 0,
+    wpm: legacyBestWpm || 0,
+    accuracy: 100
+  };
+}
+
+let savedLessonStats = loadSavedLessonStats();
+
+function saveLessonStats(){
+  try {
+    localStorage.setItem(LS_LESSON_STATS, JSON.stringify(savedLessonStats));
+  } catch(e){}
+}
+
 const statKeysEl = document.getElementById('statKeys');
 const statAccuracyEl = document.getElementById('statAccuracy');
 const statWpmEl = document.getElementById('statWpm');
 const statMasteryEl = document.getElementById('statMastery');
 
 function bump(el){
+  if(!el) return;
   el.classList.remove('bump');
   void el.offsetWidth;
   el.classList.add('bump');
 }
 
+function updateLessonStatsUI(){
+  if(statKeysEl){
+    statKeysEl.textContent = savedLessonStats.keys;
+    bump(statKeysEl);
+  }
+  if(statAccuracyEl){
+    statAccuracyEl.textContent = (savedLessonStats.accuracy || 100) + '%';
+  }
+  if(statWpmEl){
+    statWpmEl.textContent = savedLessonStats.wpm || savedLessonStats.bestWpm || 0;
+  }
+
+  const gk = document.getElementById('gStatKeys'); if(gk) gk.textContent = savedLessonStats.keys;
+  const ga = document.getElementById('gStatAcc'); if(ga) ga.textContent = (savedLessonStats.accuracy || 100) + '%';
+  const gw = document.getElementById('gStatWpm'); if(gw) gw.textContent = savedLessonStats.wpm || savedLessonStats.bestWpm || 0;
+}
+
+// Initial display on startup so saved values (e.g. 534) appear immediately
+updateLessonStatsUI();
+
 function recordKeystroke(correct){
-  sessionKeys++;
-  if(correct) sessionCorrect++; else sessionWrong++;
-  const attempts = sessionCorrect + sessionWrong;
-  const acc = attempts > 0 ? Math.round((sessionCorrect/attempts)*100) : 100;
-  const minutes = Math.max((Date.now()-sessionStart)/60000, 1/60);
-  const wpm = Math.round((sessionCorrect/5)/minutes);
+  // ONLY track and go up when learning lessons!
+  if(typeof lessonActive === 'undefined' || !lessonActive) return;
 
-  statKeysEl.textContent = sessionKeys;
-  statAccuracyEl.textContent = acc + '%';
-  statWpmEl.textContent = wpm;
-  bump(statKeysEl);
-  const gk = document.getElementById('gStatKeys'); if(gk) gk.textContent = sessionKeys;
-  const ga = document.getElementById('gStatAcc'); if(ga) ga.textContent = acc + '%';
-  const gw = document.getElementById('gStatWpm'); if(gw) gw.textContent = wpm;
+  savedLessonStats.keys++;
+  if(correct) savedLessonStats.correct++;
+  else savedLessonStats.wrong++;
 
-  [25,100,250,500,1000].forEach(m=>{
-    if(sessionKeys === m) achievementOnce('keys-'+m, pkIcon('flame', 20), `${m} keys typed!`, 'Keep the momentum going');
+  const attempts = savedLessonStats.correct + savedLessonStats.wrong;
+  const acc = attempts > 0 ? Math.round((savedLessonStats.correct / attempts) * 100) : 100;
+  savedLessonStats.accuracy = acc;
+
+  // Calculate live lesson WPM
+  if(typeof lessonStartTime !== 'undefined' && lessonStartTime > 0){
+    const elapsedMin = (Date.now() - lessonStartTime) / 60000;
+    if(elapsedMin >= 0.04){
+      const typedCount = (typeof lessonIndex === 'number' ? lessonIndex : 1);
+      const liveWpm = Math.min(180, Math.round((typedCount / 5) / elapsedMin));
+      if(liveWpm > 0){
+        savedLessonStats.wpm = liveWpm;
+        if(liveWpm > (savedLessonStats.bestWpm || 0)){
+          savedLessonStats.bestWpm = liveWpm;
+        }
+      }
+    }
+  }
+
+  saveLessonStats();
+  updateLessonStatsUI();
+
+  [25,100,250,500,1000,2500].forEach(m=>{
+    if(savedLessonStats.keys === m) achievementOnce('keys-'+m, pkIcon('flame', 20), `${m} keys typed!`, 'Keep the momentum going');
   });
 }
 
@@ -126,9 +197,10 @@ function initStatisticsDashboard(){
 
   const origRecordKeystroke = recordKeystroke;
   recordKeystroke = function(correct){
+    if(typeof lessonActive === 'undefined' || !lessonActive) return;
     origRecordKeystroke(correct);
-    totals.keys++;
-    if(correct) totals.correct++;
+    totals.keys = savedLessonStats.keys;
+    totals.correct = savedLessonStats.correct;
     const wpmNow = parseInt(statWpmEl.textContent, 10) || 0;
     if(wpmNow > totals.bestWpm) totals.bestWpm = wpmNow;
     safeSet(LS.totals, JSON.stringify(totals));

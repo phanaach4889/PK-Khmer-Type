@@ -154,6 +154,18 @@
     50%{ box-shadow:0 0 0 2px rgba(255,209,102,0.55), 0 0 26px rgba(255,209,102,0.8); }
   }
 
+  /* modifier key target: glowing alert when Shift, Ctrl, or AltGr must be held */
+  .key.modifier-target{
+    border-color:#38bdf8 !important;
+    box-shadow:0 0 0 2px rgba(56,189,248,0.45), 0 0 22px rgba(56,189,248,0.7) !important;
+    animation:modifier-target-pulse 1.1s ease-in-out infinite;
+    z-index:2;
+  }
+  @keyframes modifier-target-pulse{
+    0%,100%{ box-shadow:0 0 0 2px rgba(56,189,248,0.35), 0 0 14px rgba(56,189,248,0.5); }
+    50%{ box-shadow:0 0 0 2px rgba(56,189,248,0.65), 0 0 26px rgba(56,189,248,0.85); }
+  }
+
     /* finger guide: illustrated hand overlay showing correct-finger technique */
   .hands-overlay{
     position:absolute;

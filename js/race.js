@@ -412,18 +412,29 @@ function raceRenderText(){
   });
 }
 
+let raceHighlightedModifierKeyId = null;
 function raceUpdateKeyHighlight(){
   if(highlightedKeyId && keyEls[highlightedKeyId]){
     keyEls[highlightedKeyId].classList.remove('lesson-target');
   }
+  if(raceHighlightedModifierKeyId && keyEls[raceHighlightedModifierKeyId]){
+    keyEls[raceHighlightedModifierKeyId].classList.remove('modifier-target');
+  }
   highlightedKeyId = null;
+  raceHighlightedModifierKeyId = null;
   if(!raceActive || raceIndex >= raceKeyIds.length){ setActiveFinger(null); return; }
   const id = raceKeyIds[raceIndex];
   const layer = raceLayers[raceIndex] || 'base';
-  if(lockedLayer !== layer){ lockedLayer = layer; render(); }
   if(id && keyEls[id]){
     highlightedKeyId = id;
     keyEls[id].classList.add('lesson-target');
+  }
+  if(typeof modifierInfoFor === 'function'){
+    const mod = modifierInfoFor(id, layer);
+    if(mod && mod.targetKey && keyEls[mod.targetKey]){
+      raceHighlightedModifierKeyId = mod.targetKey;
+      keyEls[mod.targetKey].classList.add('modifier-target');
+    }
   }
   setActiveFinger(id, layer);
 }
@@ -568,6 +579,10 @@ function exitRaceMode(){
     keyEls[highlightedKeyId].classList.remove('lesson-target');
   }
   highlightedKeyId = null;
+  if(raceHighlightedModifierKeyId && keyEls[raceHighlightedModifierKeyId]){
+    keyEls[raceHighlightedModifierKeyId].classList.remove('modifier-target');
+  }
+  raceHighlightedModifierKeyId = null;
   setActiveFinger(null);
   const existing = document.querySelector('.race-result-overlay');
   if(existing) existing.remove();
@@ -618,7 +633,7 @@ function startRace(){
   raceRunCountdown(()=>{
     raceActive = true;
     raceStartTime = Date.now();
-    lockedLayer = raceLayers[0] || 'base';
+    lockedLayer = null;
     render();
     raceUpdateKeyHighlight();
     raceTick();
@@ -642,6 +657,10 @@ function raceFinish(timedOut){
     keyEls[highlightedKeyId].classList.remove('lesson-target');
   }
   highlightedKeyId = null;
+  if(raceHighlightedModifierKeyId && keyEls[raceHighlightedModifierKeyId]){
+    keyEls[raceHighlightedModifierKeyId].classList.remove('modifier-target');
+  }
+  raceHighlightedModifierKeyId = null;
   setActiveFinger(null);
 
   const prevBest = getRaceBest(raceDifficulty, raceLength);

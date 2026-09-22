@@ -50,13 +50,23 @@ function keyLabel(id){
   return id.toUpperCase();
 }
 
+/* Return required space layer: 'shift' on Khmer layouts, 'base' on English */
+function spaceLayerFor(table){
+  if(typeof currentLayoutId !== 'undefined' && currentLayoutId === 'english') return 'base';
+  if(table && table === KEY_BY_ID_EN) return 'base';
+  return 'shift';
+}
+function spaceEntry(table){
+  return { id: 'space', layer: spaceLayerFor(table), ch: ' ' };
+}
+
 /* entry = one drillable {key id, layer, character} triple.
    Reads from `table` when given (used for the NiDA/English home-row
    courses further below), falling back to the standard Khmer table. */
 function entriesFromIds(ids, layer, table){
   const src = table || KEY_BY_ID;
   return ids.map(id=> {
-    if(id === 'space') return {id:'space', layer:'base', ch:' '};
+    if(id === 'space') return spaceEntry(table);
     const k = src[id];
     const v = k ? k[layer] : undefined;
     const ch = (v !== undefined && v !== '') ? v : '';
@@ -64,7 +74,7 @@ function entriesFromIds(ids, layer, table){
   }).filter(e=> e.ch);
 }
 function resolveCharLocation(ch, table){
-  if(ch === ' ') return {id:'space', layer:'base', ch:' '};
+  if(ch === ' ') return spaceEntry(table);
   const src = table || KEY_BY_ID;
   for(const id in src){
     const k = src[id];
@@ -107,18 +117,18 @@ function seqIntro(newEntries, priorEntries, opts={}){
   // 1. Introduce each new key with solo repetition separated by space
   newEntries.forEach(e=>{
     for(let r=0;r<soloReps;r++) seq.push(e);
-    seq.push({id:'space', layer:'base', ch:' '});
+    seq.push(spaceEntry(opts.table));
   });
 
   // 2. If 2 or more new keys, alternate and double-tap with spaces
   if(newEntries.length >= 2){
     for(let r=0;r<2;r++){
       newEntries.forEach(e=> seq.push(e));
-      seq.push({id:'space', layer:'base', ch:' '});
+      seq.push(spaceEntry(opts.table));
     }
     newEntries.forEach(e=>{
       seq.push(e); seq.push(e);
-      seq.push({id:'space', layer:'base', ch:' '});
+      seq.push(spaceEntry(opts.table));
     });
   }
 
@@ -127,13 +137,13 @@ function seqIntro(newEntries, priorEntries, opts={}){
     examples.forEach(ex=>{
       for(const ch of ex){
         if(ch === ' '){
-          seq.push({id:'space', layer:'base', ch:' '});
+          seq.push(spaceEntry(opts.table));
         } else {
           const loc = resolveCharLocation(ch, opts.table);
           if(loc) seq.push(loc);
         }
       }
-      seq.push({id:'space', layer:'base', ch:' '});
+      seq.push(spaceEntry(opts.table));
     });
   }
 
@@ -143,7 +153,7 @@ function seqIntro(newEntries, priorEntries, opts={}){
     for(let r=0;r<4;r++){
       seq.push(pickRandom(newEntries));
       seq.push(pickRandom(full));
-      seq.push({id:'space', layer:'base', ch:' '});
+      seq.push(spaceEntry(opts.table));
     }
   }
 
@@ -158,18 +168,18 @@ function seqCombo(pool, comboLen, count, examples){
   if(examples && examples.length){
     examples.forEach(ex=>{
       for(const ch of ex){
-        if(ch === ' ') seq.push({id:'space', layer:'base', ch:' '});
+        if(ch === ' ') seq.push(spaceEntry());
         else {
           const loc = resolveCharLocation(ch);
           if(loc) seq.push(loc);
         }
       }
-      seq.push({id:'space', layer:'base', ch:' '});
+      seq.push(spaceEntry());
     });
   }
   for(let i=0;i<count;i++){
     for(let c=0;c<comboLen;c++) seq.push(pickRandom(pool));
-    seq.push({id:'space', layer:'base', ch:' '});
+    seq.push(spaceEntry());
   }
   while(seq.length && seq[seq.length-1].ch === ' ') seq.pop();
   return seq;
@@ -187,7 +197,7 @@ function seqRandom(pool, length){
     seq.push(e);
     wordLen++;
     if(wordLen >= targetChunk && i < length - 1){
-      seq.push({id:'space', layer:'base', ch:' '});
+      seq.push(spaceEntry());
       wordLen = 0;
       targetChunk = 2 + (Math.random() > 0.5 ? 1 : 0);
     }
@@ -203,7 +213,7 @@ function seqWords(words, table){
       const loc = resolveCharLocation(ch, table);
       if(loc) seq.push(loc);
     }
-    seq.push({id:'space', layer:'base', ch:' '});
+    seq.push(spaceEntry(table));
   });
   while(seq.length && seq[seq.length-1].ch === ' ') seq.pop();
   return seq;
@@ -240,7 +250,7 @@ function seqReviewMistakes(missedEntries, companionEntries){
       if(seq.length && seq[seq.length-1].ch === item.ch) continue;
       seq.push(item);
     }
-    seq.push({id:'space', layer:'base', ch:' '});
+    seq.push(spaceEntry());
   }
 
   // Phase 1: For each missed key, alternate with companion keys in 2-3 character syllables
@@ -284,9 +294,7 @@ function seqReviewMistakes(missedEntries, companionEntries){
   return seq;
 }
 
-/* ================= typing race ================= */
-
-window.LEVELS = LEVELS = [
+const LEVELS_STANDARD = [
   {id:1, title:'Level 1 · Home Row Basics'},
   {id:2, title:'Level 2 · Home Row Combinations'},
   {id:3, title:'Level 3 · Home Row + Shift'},
@@ -297,6 +305,31 @@ window.LEVELS = LEVELS = [
   {id:8, title:'Level 8 · Full Keyboard & Mastery'},
   {id:9, title:'Level 4 · Word Practice'},
 ];
+
+const LEVELS_NIDA = [
+  {id:1, title:'Level 1 · Beginner: Consonants & Core Vowels'},
+  {id:2, title:'Level 2 · Intermediate: Subscripts (Coeng J)'},
+  {id:3, title:'Level 3 · Advanced: Independent Vowels & Signs'},
+  {id:4, title:'Level 4 · Master: Numerals & Fluid Prose'},
+];
+
+const LEVELS_ENGLISH = [
+  {id:1, title:'Level 1 · Home Row Basics'},
+  {id:2, title:'Level 2 · Home Row Combinations'},
+  {id:3, title:'Level 3 · Top Row Reach'},
+  {id:4, title:'Level 4 · Bottom Row Reach'},
+  {id:5, title:'Level 5 · Shift Layer & Punctuation'},
+  {id:6, title:'Level 6 · Full Keyboard Sentences'},
+  {id:9, title:'Level 4 · Word Practice'},
+];
+
+window.LEVEL_SETS = LEVEL_SETS = {
+  standard: LEVELS_STANDARD,
+  nida: LEVELS_NIDA,
+  english: LEVELS_ENGLISH,
+};
+
+window.LEVELS = LEVELS = LEVEL_SETS[currentLayoutId] || LEVELS_STANDARD;
 
 function buildCourse(){
   const lessons = [];
@@ -702,8 +735,189 @@ function buildHomeRowCourse(table, idOffset, wordBank){
   return lessons;
 }
 
+/* Complete, pedagogical 4-level Khmer NiDA typing course */
+function buildNidaCourse(){
+  const lessons = [];
+  let nextId = 10001;
+  const table = KEY_BY_ID_NIDA;
+
+  function addLesson(level, type, title, subtitle, generateFn, opts={}){
+    const id = nextId++;
+    const defaultThreshold = type==='test' ? 90 : type==='review' ? 88 : 85;
+    lessons.push({
+      id, level, type, title, subtitle,
+      layer: opts.newLayer || 'base',
+      threshold: opts.threshold ?? defaultThreshold,
+      newIds: opts.newIds || [],
+      newLayer: opts.newLayer || 'base',
+      examples: opts.examples || [],
+      generate: generateFn,
+    });
+    return id;
+  }
+
+  /* ===== LEVEL 1: Beginner — Foundation & Home Row ===== */
+
+  // Lesson 10001 (Level 1, intro): Home Row Consonant Anchors
+  {
+    const ids = ['k', 'd', 'f', 'g', 'h', 'l', 's'];
+    const ex = ['កក', 'គក', 'ដក', 'ថក', 'ធរ', 'សស', 'ហល', 'អក'];
+    addLesson(1, 'intro', 'Home Row — Consonant Anchors', 'K, D, F, H, L, S, G & Shift Consonants',
+      () => materialize(seqWords(ex, table)),
+      { newIds: ids, newLayer: 'base', examples: ex });
+  }
+
+  // Lesson 10002 (Level 1, intro): Home Row Vowels & Syllables
+  {
+    const ids = ['a', 'semicolon', 'quote', 'h'];
+    const ex = ['កា', 'គា', 'ដា', 'ថាំ', 'សៃ', 'ដើ', 'គោះ', 'ដាក់', 'កាក់', 'សះ'];
+    addLesson(1, 'intro', 'Home Row — Vowels & Syllables', 'ា, ាំ, ៃ, ើ, ោះ, ់, ះ',
+      () => materialize(seqWords(ex, table)),
+      { newIds: ids, newLayer: 'base', examples: ex });
+  }
+
+  // Lesson 10003 (Level 1, intro): Top Row Consonants & Core Vowels
+  {
+    const ids = ['t', 'r', 'y', 'u', 'i', 'o', 'e', 'w', 'q', 'p'];
+    const ex = ['ទៅ', 'មក', 'រត់', 'យូរ', 'ទិញ', 'ពីរ', 'ដេក', 'ដែក', 'កូន', 'ដើរ', 'ឆាប់', 'ភ្នំ'];
+    addLesson(1, 'intro', 'Top Row — Consonants & Core Vowels', 'T, R, Y, U, I, O, E, W, Q, P & Vowels',
+      () => materialize(seqWords(ex, table)),
+      { newIds: ids, newLayer: 'base', examples: ex });
+  }
+
+  // Lesson 10004 (Level 1, review): Bottom Row Consonants & Nasals
+  {
+    const ids = ['z', 'x', 'c', 'v', 'b', 'n', 'm'];
+    const ex = ['បង', 'ពូ', 'ជន', 'ចៅ', 'ខំ', 'វា', 'ចេក', 'ពាន', 'មាត់', 'ចំណី', 'ពិភព'];
+    addLesson(1, 'review', 'Bottom Row — Consonants & Nasals', 'Z, X, C, V, B, N, M & Syllable Review',
+      () => materialize(seqWords(ex, table)),
+      { newIds: ids, newLayer: 'base', examples: ex });
+  }
+
+  /* ===== LEVEL 2: Intermediate — Subscripts & Coeng J System ===== */
+
+  // Lesson 10005 (Level 2, intro): Subscripts — Coeng Key (J = ្)
+  {
+    const ids = ['j'];
+    const ex = ['ត្រី', 'ក្រៅ', 'ខ្លា', 'ឆ្កែ', 'ផ្លូវ', 'ម្ហូប', 'ស្ងួត', 'ក្បាល'];
+    addLesson(2, 'intro', 'Subscripts — Coeng Key (J = ្)', 'Base Consonant + J (្) + Subscript',
+      () => materialize(seqWords(ex, table)),
+      { newIds: ids, newLayer: 'base', examples: ex });
+  }
+
+  // Lesson 10006 (Level 2, combo): Subscripts — Shifted Consonants
+  {
+    const ids = ['j', 'k', 'x', 'c', 't', 'f', 'p', 'g'];
+    const ex = ['ស្គាល់', 'ស្អាត', 'កម្ពុជា', 'បញ្ជី', 'សង្ឃ', 'សម្បត្តិ', 'បន្ទប់'];
+    addLesson(2, 'combo', 'Subscripts — Shifted Consonants', 'J followed by Shifted Consonants (្គ, ្ឃ, ្ជ, ្ទ, ្ធ, ្ភ, ្អ)',
+      () => materialize(seqWords(ex, table)),
+      { newIds: ids, newLayer: 'shift', examples: ex });
+  }
+
+  // Lesson 10007 (Level 2, words): Subscripts — Complex Vowels
+  {
+    const ids = ['bracketL', 'y', 'v', 'o'];
+    const ex = ['ត្រៀម', 'ខ្មៅ', 'ឆ្លើយ', 'ភ្លើង', 'ជ្រៅ', 'ក្មេង', 'ស្លៀក', 'ព្រៃ', 'ជ្រឿន', 'ព្រួយ'];
+    addLesson(2, 'words', 'Subscripts — Complex Vowels', 'Sequential Typing: Consonant + Coeng + Vowel',
+      () => materialize(seqWords(ex, table)),
+      { newIds: ids, newLayer: 'base', examples: ex });
+  }
+
+  // Lesson 10008 (Level 2, test): Advanced Subscript Clusters
+  {
+    const ex = ['សង្គ្រាម', 'កន្ត្រៃ', 'អន្តរជាតិ', 'មន្ត្រី', 'សាស្ត្រា', 'កណ្តុរ', 'សម្ព័ន្ធ'];
+    addLesson(2, 'test', 'Advanced Subscript Clusters', 'Multi-Tier Clusters & Compound Orthography',
+      () => materialize(seqWords(ex, table)),
+      { examples: ex, threshold: 90 });
+  }
+
+  /* ===== LEVEL 3: Advanced — Independent Vowels & Diacritics ===== */
+
+  // Lesson 10009 (Level 3, intro): Independent Vowels (ស្រៈពេញតួ)
+  {
+    const ids = ['minus', 'equal', 'bracketR', 'backslash'];
+    const ex = ['ឥឡូវ', 'ឪពុក', 'ឲ្យ', 'ឧត្តម', 'ឱកាស', 'ឯកសារ', 'ឬស្សី', 'ឮសូរ'];
+    addLesson(3, 'intro', 'Independent Vowels (ស្រៈពេញតួ)', 'ឥ, ឲ, ឪ, ឧ, ឯ, ឱ, ឦ, ឫ, ឬ, ឮ, ឭ',
+      () => materialize(seqWords(ex, table)),
+      { newIds: ids, newLayer: 'base', examples: ex });
+  }
+
+  // Lesson 10010 (Level 3, intro): Consonant Shifters (មូសិកទន្ត & ត្រីស័ព្ទ)
+  {
+    const ids = ['quote', 'slash'];
+    const ex = ['ប៉ា', 'ម៉ាក់', 'ស៊ុប', 'ហ៊ាន', 'ប៉ះ', 'ម៉ោង', 'ស៊ី', 'ហ៊ីង'];
+    addLesson(3, 'intro', 'Consonant Shifters & Registers', 'Muusikatoan (Shift+\') & Triisap (/)',
+      () => materialize(seqWords(ex, table)),
+      { newIds: ids, newLayer: 'shift', examples: ex });
+  }
+
+  // Lesson 10011 (Level 3, combo): Diacritical Marks & Tone Signs
+  {
+    const ids = ['k6', 'k7', 'k8', 'minus', 'quote'];
+    const ex = ['ទូរស័ព្ទ', 'អាទិត្យ', 'ដ៏ល្អ', 'ព័ត៌មាន', 'សព្វថ្ងៃ', 'ប្រយ័ត្ន'];
+    addLesson(3, 'combo', 'Diacritical Marks & Tone Signs', 'Tandakhât (៍), Samiyok Sanna (័), Asda (៏), Robat (៌)',
+      () => materialize(seqWords(ex, table)),
+      { newIds: ids, newLayer: 'shift', examples: ex });
+  }
+
+  // Lesson 10012 (Level 3, test): Advanced Vocabulary & Diacritic Mastery
+  {
+    const ex = ['ឯកឧត្តម', 'ព័ត៌មានវិទ្យា', 'ទូរស័ព្ទដៃ', 'ថ្ងៃអាទិត្យ', 'ស៊ុបមាន់', 'ប៉ះពាល់', 'ប្រយ័ត្នប្រយែង'];
+    addLesson(3, 'test', 'Advanced Vocabulary & Diacritic Mastery', 'Integrating Shifters, Signs & Independent Vowels',
+      () => materialize(seqWords(ex, table)),
+      { examples: ex, threshold: 90 });
+  }
+
+  /* ===== LEVEL 4: Master — Numerals, Punctuation & Fluency ===== */
+
+  // Lesson 10013 (Level 4, intro): Khmer Numerals & Symbols
+  {
+    const ids = ['k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k7', 'k8', 'k9', 'k0'];
+    const ex = ['១២៣៤៥', '៦៧៨៩០', '៥០០០៛', '២៥០០០៛', 'ផ្សេងៗ', 'ញឹកៗ', 'តិចៗ', '២០២៦'];
+    addLesson(4, 'intro', 'Khmer Numerals & Symbols', '១ ២ ៣ ៤ ៥ ៦ ៧ ៨ ៩ ០ & ៛, ៗ',
+      () => materialize(seqWords(ex, table)),
+      { newIds: ids, newLayer: 'base', examples: ex });
+  }
+
+  // Lesson 10014 (Level 4, combo): Khmer Punctuation & Quotations
+  {
+    const ids = ['period', 'grave', 'semicolon'];
+    const ex = ['«ចំណេះវិជ្ជាជាទ្រព្យ»។', 'សួស្តី! តើសុខសប្បាយទេ?', 'ភ្នំពេញ៖ រាជធានីនៃកម្ពុជា។'];
+    addLesson(4, 'combo', 'Khmer Punctuation & Quotations', 'Khan (.), Bariyoosan (Shift+.), Quotes (« »), Colon (៖)',
+      () => materialize(seqWords(ex, table)),
+      { newIds: ids, newLayer: 'base', examples: ex });
+  }
+
+  // Lesson 10015 (Level 4, words): Fluent Practical Sentences
+  {
+    const ex = [
+      'ខ្ញុំរៀនវាយអក្សរខ្មែរលើកុំព្យូទ័រ។',
+      'ភាសាខ្មែរមានអក្សរស្រស់ស្អាតណាស់។',
+      'សាលារៀននៅជិតផ្ទះរបស់ខ្ញុំ។',
+      'យើងទាំងអស់គ្នាស្រឡាញ់ប្រទេសកម្ពុជា។'
+    ];
+    addLesson(4, 'words', 'Fluent Practical Sentences', 'Everyday Khmer Prose & Proper Spacing',
+      () => materialize(seqWords(ex, table)),
+      { examples: ex });
+  }
+
+  // Lesson 10016 (Level 4, test): Comprehensive Khmer NiDA Speed & Mastery Test
+  {
+    const ex = [
+      'ភាសាខ្មែរជាភាសាផ្លូវការនៃព្រះរាជាណាចក្រកម្ពុជា។',
+      'ការហ្វឹកហាត់វាយអក្សរលើក្តារចុចនីដាជួយឱ្យយើងវាយបានរហ័សនិងត្រឹមត្រូវ។',
+      'ចូរអង្គុយឱ្យត្រង់ខ្លួន ហើយដាក់ម្រាមដៃលើជួរដេកដើមជានិច្ច។'
+    ];
+    addLesson(4, 'test', 'Comprehensive Khmer NiDA Mastery Test', 'Full Keyboard Navigation, Accuracy & Speed',
+      () => materialize(seqWords(ex, table)),
+      { examples: ex, threshold: 92 });
+  }
+
+  return lessons;
+}
+
 const LESSONS_STANDARD = buildCourse();
-const LESSONS_NIDA = buildHomeRowCourse(KEY_BY_ID_NIDA, 10000, WORD_BANK);
+const LESSONS_NIDA = buildNidaCourse();
 const LESSONS_ENGLISH = buildHomeRowCourse(KEY_BY_ID_EN, 20000, WORD_BANK_EN);
 window.LESSON_SETS = LESSON_SETS = { standard: LESSONS_STANDARD, nida: LESSONS_NIDA, english: LESSONS_ENGLISH };
 window.LESSONS = LESSONS = LESSON_SETS[currentLayoutId] || LESSONS_STANDARD;
@@ -811,16 +1025,8 @@ function toggleAllLessonsUnlocked(){
    accordion sections so the whole list isn't overwhelming at once. */
 // collapsedLevels defined at top of module // Set of level ids currently collapsed; null = not yet initialized
 function defaultCollapsedLevels(){
-  let activeLevel = LEVELS[0].id;
-  for(const lv of LEVELS){
-    const levelLessons = LESSONS.filter(l => l.level === lv.id);
-    const allFinished = levelLessons.length > 0 && levelLessons.every(l => !!getLessonBest(l.id));
-    if(!allFinished){
-      activeLevel = lv.id;
-      break;
-    }
-  }
-  return new Set(LEVELS.filter(l => l.id !== activeLevel).map(l => l.id));
+  // Collapse all levels by default so user can just see all the levels at a glance (not too big)
+  return new Set(LEVELS.map(l => l.id));
 }
 
 function autoAdvanceLevelAccordion(completedDef){
@@ -841,99 +1047,115 @@ function autoAdvanceLevelAccordion(completedDef){
     collapsedLevels.delete(currentLv);
   }
 }
-let manualExpandPreference = null;
+let isStripExpanded = false; // Starts in compact 1-column view ("not too big, just can see the level")
 
 function renderLessonStrip(){
-  if(!collapsedLevels) collapsedLevels = defaultCollapsedLevels();
-  lessonStrip.innerHTML = '';
-
-  const openLevelsCount = LEVELS.filter(l => !collapsedLevels.has(l.id)).length;
-  // Automatically expand sidebar when multiple levels (>= 2) are open
-  const autoExpand = openLevelsCount >= 2;
-  const isExpanded = manualExpandPreference !== null ? manualExpandPreference : autoExpand;
-  lessonStrip.classList.toggle('expanded', isExpanded);
-
-  let masteredCount = 0;
-  LESSONS.forEach(l => { const b = getLessonBest(l.id); if(b && b.mastered) masteredCount++; });
-  const topBar = document.createElement('div');
-  topBar.className = 'lesson-strip-header';
-  topBar.innerHTML = `
-    <span class="lsh-title">${pkIcon('book', 15)} LESSONS</span>
-    <div class="lsh-actions">
-      <span class="lsh-badge">${masteredCount}/${LESSONS.length} Mastered</span>
-      <button type="button" class="lsh-expand-btn" id="lshExpandBtn" title="${isExpanded ? 'Compact sidebar (1 column)' : 'Expand sidebar (2 columns)'}" aria-label="Toggle sidebar width">
-        ${pkIcon(isExpanded ? 'collapse' : 'expand', 12)}
-      </button>
-    </div>
-  `;
-  lessonStrip.appendChild(topBar);
-
-  let lastLevel = null;
-  let listEl = null;
-  LESSONS.forEach((def, idx)=>{
-    if(def.level !== lastLevel){
-      const lv = LEVELS.find(l=>l.id===def.level);
-      const collapsed = collapsedLevels.has(def.level);
-      const header = document.createElement('div');
-      header.className = 'lesson-level-header' + (collapsed ? ' collapsed' : '');
-      header.dataset.level = def.level;
-      header.innerHTML = `<span class="llh-chevron">${pkIcon(collapsed ? 'arrow-right' : 'arrow-down', 11)}</span><span>${lv ? lv.title : `Level ${def.level}`}</span>`;
-      lessonStrip.appendChild(header);
-      listEl = document.createElement('div');
-      listEl.className = 'lesson-level-list' + (collapsed ? ' collapsed' : '');
-      lessonStrip.appendChild(listEl);
-      lastLevel = def.level;
+  if(!lessonStrip) return;
+  try {
+    if(!Array.isArray(LESSONS) || LESSONS.length === 0){
+      if(typeof LESSONS_STANDARD !== 'undefined' && Array.isArray(LESSONS_STANDARD) && LESSONS_STANDARD.length){
+        LESSONS = LESSONS_STANDARD;
+      }
     }
-    const card = document.createElement('div');
-    const locked = isLessonLocked(def.id);
-    card.className = 'lesson-card' + (locked ? ' locked' : '') + (currentLesson && currentLesson.id===def.id ? ' active' : '');
-    card.dataset.lesson = def.id;
+    if(!collapsedLevels) collapsedLevels = defaultCollapsedLevels();
+    lessonStrip.innerHTML = '';
 
-    const examplesHtml = def.examples && def.examples.length
-      ? `<div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> ${def.examples.slice(0, 3).map(ex=>`<span class="lce-chip">${ex}</span>`).join(' ')}</div>`
-      : '';
+    lessonStrip.classList.remove('minimized');
+    lessonStrip.classList.toggle('expanded', isStripExpanded);
 
-    const best = getLessonBest(def.id);
-    const statusHtml = best
-      ? `<span class="lesson-card-best ${best.mastered?'mastered':''}">${best.mastered ? pkIcon('star', 12) + ' ' : ''}${best.accuracy}%</span>`
-      : locked ? `<span class="lesson-card-lock">${pkIcon('lock', 12)}</span>` : '';
+    let masteredCount = 0;
+    LESSONS.forEach(l => { const b = getLessonBest(l.id); if(b && b.mastered) masteredCount++; });
 
-    card.innerHTML = `
-      <div class="lesson-card-num">${String(idx+1).padStart(2,'0')}</div>
-      <div class="lesson-card-info">
-        <div class="lesson-card-head">
-          <span class="lesson-card-title">${def.title}</span>
-          <span class="lesson-card-type type-${def.type}">${def.type}</span>
-          ${statusHtml}
-        </div>
-        <div class="lesson-card-sub">${def.subtitle}</div>
-        ${examplesHtml}
+    const topBar = document.createElement('div');
+    topBar.className = 'lesson-strip-header';
+    topBar.innerHTML = `
+      <span class="lsh-title">${pkIcon('book', 15)} LESSONS</span>
+      <div class="lsh-actions">
+        <span class="lsh-badge">${masteredCount}/${LESSONS.length} Mastered</span>
+        <button type="button" class="lsh-expand-btn" id="lshExpandBtn" title="${isStripExpanded ? 'Compact sidebar (1 column)' : 'Expand sidebar (2 columns)'}" aria-label="Toggle sidebar width">
+          ${pkIcon(isStripExpanded ? 'collapse' : 'expand', 12)}
+        </button>
       </div>
     `;
-    listEl.appendChild(card);
-  });
-  if(typeof updateMasteryStat === 'function') updateMasteryStat();
+    lessonStrip.appendChild(topBar);
+
+    let lastLevel = null;
+    let listEl = null;
+    LESSONS.forEach((def, idx)=>{
+      if(def.level !== lastLevel){
+        const lv = LEVELS.find(l=>l.id===def.level);
+        const collapsed = collapsedLevels.has(def.level);
+        const header = document.createElement('div');
+        header.className = 'lesson-level-header' + (collapsed ? ' collapsed' : '');
+        header.dataset.level = def.level;
+        header.innerHTML = `<span class="llh-chevron">${pkIcon(collapsed ? 'arrow-right' : 'arrow-down', 11)}</span><span>${lv ? lv.title : `Level ${def.level}`}</span>`;
+        lessonStrip.appendChild(header);
+        listEl = document.createElement('div');
+        listEl.className = 'lesson-level-list' + (collapsed ? ' collapsed' : '');
+        lessonStrip.appendChild(listEl);
+        lastLevel = def.level;
+      }
+      const card = document.createElement('div');
+      const locked = isLessonLocked(def.id);
+      card.className = 'lesson-card' + (locked ? ' locked' : '') + (currentLesson && currentLesson.id===def.id ? ' active' : '');
+      card.dataset.lesson = def.id;
+
+      const examplesHtml = def.examples && def.examples.length
+        ? `<div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> ${def.examples.slice(0, 3).map(ex=>`<span class="lce-chip">${ex}</span>`).join(' ')}</div>`
+        : '';
+
+      const best = getLessonBest(def.id);
+      const statusHtml = best
+        ? `<span class="lesson-card-best ${best.mastered?'mastered':''}">${best.mastered ? pkIcon('star', 12) + ' ' : ''}${best.accuracy}%</span>`
+        : locked ? `<span class="lesson-card-lock">${pkIcon('lock', 12)}</span>` : '';
+
+      card.innerHTML = `
+        <div class="lesson-card-num">${String(idx+1).padStart(2,'0')}</div>
+        <div class="lesson-card-info">
+          <div class="lesson-card-head">
+            <span class="lesson-card-title">${def.title}</span>
+            <span class="lesson-card-type type-${def.type}">${def.type}</span>
+            ${statusHtml}
+          </div>
+          <div class="lesson-card-sub">${def.subtitle}</div>
+          ${examplesHtml}
+        </div>
+      `;
+      listEl.appendChild(card);
+    });
+    if(typeof updateMasteryStat === 'function') updateMasteryStat();
+  } catch(err){
+    console.error('renderLessonStrip error:', err);
+  }
 }
 
-/* Toggle a level section open/closed */
+/* Toggle a level section open/closed, toggle 1-col/2-col expand, or start lesson */
 lessonStrip.addEventListener('click', (e)=>{
-  e.stopPropagation(); // Stop event bubbling so document-level click handler doesn't collapse levels
+  e.stopPropagation();
+
+  // If clicked expand/compact toggle button
   const expandBtn = e.target.closest('#lshExpandBtn');
   if(expandBtn){
-    const currentlyExpanded = lessonStrip.classList.contains('expanded');
-    manualExpandPreference = !currentlyExpanded;
+    isStripExpanded = !isStripExpanded;
+    // If expanding to 2 columns and all levels are collapsed, open the first level
+    if(isStripExpanded && collapsedLevels.size === LEVELS.length){
+      collapsedLevels.delete(LEVELS[0].id);
+    }
     renderLessonStrip();
     return;
   }
+
+  // If clicked level accordion header
   const header = e.target.closest('.lesson-level-header');
   if(header){
     const level = parseInt(header.dataset.level, 10);
     if(collapsedLevels.has(level)) collapsedLevels.delete(level);
     else collapsedLevels.add(level);
-    manualExpandPreference = null; // Re-sync auto-expansion with the updated number of open levels
     renderLessonStrip();
     return;
   }
+
+  // If clicked lesson card
   const card = e.target.closest('.lesson-card');
   if(!card) return;
   const id = parseInt(card.dataset.lesson, 10);
@@ -941,29 +1163,6 @@ lessonStrip.addEventListener('click', (e)=>{
   if(lessonActive && currentLesson && currentLesson.id === id) return;
 
   startLesson(id);
-});
-
-/* When clicking somewhere NOT on the bar, make the sidebar smaller to normal size */
-document.addEventListener('click', (e)=>{
-  if(!lessonStrip) return;
-  // If the click was anywhere inside lessonStrip (or in elements detached by re-render), ignore it
-  if(e.composedPath && e.composedPath().includes(lessonStrip)) return;
-  if(e.target && e.target.closest && e.target.closest('#lessonStrip')) return;
-
-  const isExpanded = lessonStrip.classList.contains('expanded');
-  const openCount = collapsedLevels ? LEVELS.filter(l => !collapsedLevels.has(l.id)).length : 1;
-  if(!isExpanded && openCount <= 1) return;
-
-  lessonStrip.classList.remove('expanded');
-  manualExpandPreference = null;
-  if(collapsedLevels){
-    const keepLv = currentLesson ? currentLesson.level : 1;
-    LEVELS.forEach(l => {
-      if(l.id !== keepLv) collapsedLevels.add(l.id);
-      else collapsedLevels.delete(l.id);
-    });
-  }
-  renderLessonStrip();
 });
 
 function renderLessonMeta(def){
@@ -1013,19 +1212,31 @@ function renderLessonChars(){
 }
 
 let highlightedKeyId = null;
+let highlightedModifierKeyId = null;
 function updateLessonKeyHighlight(){
   if(highlightedKeyId && keyEls[highlightedKeyId]){
     keyEls[highlightedKeyId].classList.remove('lesson-target');
   }
+  if(highlightedModifierKeyId && keyEls[highlightedModifierKeyId]){
+    keyEls[highlightedModifierKeyId].classList.remove('modifier-target');
+  }
   highlightedKeyId = null;
+  highlightedModifierKeyId = null;
+
   if(!lessonActive || !currentLesson){ setActiveFinger(null); return; }
   if(lessonIndex >= lessonChars.length){ setActiveFinger(null); return; }
   const id = lessonKeyIds[lessonIndex];
   const layer = lessonLayers[lessonIndex] || currentLesson.layer || 'base';
-  if(lockedLayer !== layer){ lockedLayer = layer; render(); }
   if(id && keyEls[id]){
     highlightedKeyId = id;
     keyEls[id].classList.add('lesson-target');
+  }
+  if(typeof modifierInfoFor === 'function'){
+    const mod = modifierInfoFor(id, layer);
+    if(mod && mod.targetKey && keyEls[mod.targetKey]){
+      highlightedModifierKeyId = mod.targetKey;
+      keyEls[mod.targetKey].classList.add('modifier-target');
+    }
   }
   setActiveFinger(id, layer);
 }
@@ -1066,7 +1277,7 @@ function startLesson(idOrDef){
   lessonStartTime = Date.now();
   lessonActive = true;
 
-  lockedLayer = lessonLayers[0] || def.layer || null;
+  lockedLayer = null;
   hoverLayer = null;
   render();
 
@@ -1109,6 +1320,10 @@ function exitLesson(){
     keyEls[highlightedKeyId].classList.remove('lesson-target');
   }
   highlightedKeyId = null;
+  if(highlightedModifierKeyId && keyEls[highlightedModifierKeyId]){
+    keyEls[highlightedModifierKeyId].classList.remove('modifier-target');
+  }
+  highlightedModifierKeyId = null;
   renderLessonStrip();
   requestAnimationFrame(()=>{
     if(boardWrap){
@@ -1197,6 +1412,17 @@ function completeLesson(){
     try{ localStorage.setItem(lessonBestKey(id), JSON.stringify(bestRecord)); }catch(e){}
   }
 
+  // Update persistent lesson WPM upon completion
+  const lessonWpm = elapsed > 0 ? Math.min(180, Math.round((lessonChars.length / 5) / (elapsed / 60))) : 0;
+  if(lessonWpm > 0 && typeof savedLessonStats !== 'undefined'){
+    savedLessonStats.wpm = lessonWpm;
+    if(lessonWpm > (savedLessonStats.bestWpm || 0)){
+      savedLessonStats.bestWpm = lessonWpm;
+    }
+    if(typeof saveLessonStats === 'function') saveLessonStats();
+    if(typeof updateLessonStatsUI === 'function') updateLessonStatsUI();
+  }
+
   /* Clean completion without particle burst spam */
   const rect = (boardWrap || document.body).getBoundingClientRect();
   playChime();
@@ -1211,6 +1437,10 @@ function completeLesson(){
     keyEls[highlightedKeyId].classList.remove('lesson-target');
   }
   highlightedKeyId = null;
+  if(highlightedModifierKeyId && keyEls[highlightedModifierKeyId]){
+    keyEls[highlightedModifierKeyId].classList.remove('modifier-target');
+  }
+  highlightedModifierKeyId = null;
   if(!remedialActive){
     autoAdvanceLevelAccordion(def);
     renderLessonStrip();
@@ -1355,7 +1585,13 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
   if(closeBtn) closeBtn.addEventListener('click', ()=>{ dismissOverlay(); });
 }
 
-renderLessonStrip();
+if(document.readyState !== 'loading'){
+  renderLessonStrip();
+} else {
+  document.addEventListener('DOMContentLoaded', ()=>{
+    if(lessonStrip && lessonStrip.children.length === 0) renderLessonStrip();
+  });
+}
 
 /* ---------- ripple burst ---------- */
 
@@ -1365,5 +1601,14 @@ function applyLessonsData(data){
   if(data.LESSONS_STANDARD) LESSONS_STANDARD.length = 0, LESSONS_STANDARD.push(...data.LESSONS_STANDARD);
   if(data.LESSONS_NIDA) LESSONS_NIDA.length = 0, LESSONS_NIDA.push(...data.LESSONS_NIDA);
   if(data.LESSONS_ENGLISH) LESSONS_ENGLISH.length = 0, LESSONS_ENGLISH.push(...data.LESSONS_ENGLISH);
+  if(data.LEVELS && Array.isArray(data.LEVELS)) LEVELS_STANDARD.length = 0, LEVELS_STANDARD.push(...data.LEVELS);
+  if(data.LEVELS_NIDA && Array.isArray(data.LEVELS_NIDA)) LEVELS_NIDA.length = 0, LEVELS_NIDA.push(...data.LEVELS_NIDA);
+  if(data.LEVELS_ENGLISH && Array.isArray(data.LEVELS_ENGLISH)) LEVELS_ENGLISH.length = 0, LEVELS_ENGLISH.push(...data.LEVELS_ENGLISH);
+  if(data.LESSONS_STANDARD && Array.isArray(data.LESSONS_STANDARD)) LESSONS_STANDARD.length = 0, LESSONS_STANDARD.push(...data.LESSONS_STANDARD);
+  if(data.LESSONS_NIDA && Array.isArray(data.LESSONS_NIDA)) LESSONS_NIDA.length = 0, LESSONS_NIDA.push(...data.LESSONS_NIDA);
+  if(data.LESSONS_ENGLISH && Array.isArray(data.LESSONS_ENGLISH)) LESSONS_ENGLISH.length = 0, LESSONS_ENGLISH.push(...data.LESSONS_ENGLISH);
+  if(typeof LEVEL_SETS !== 'undefined') window.LEVELS = LEVELS = LEVEL_SETS[currentLayoutId] || LEVELS_STANDARD;
+  if(typeof LESSON_SETS !== 'undefined') window.LESSONS = LESSONS = LESSON_SETS[currentLayoutId] || LESSONS_STANDARD;
   if(typeof renderLessonStrip === "function") renderLessonStrip();
+  if(typeof updateMasteryStat === "function") updateMasteryStat();
 }

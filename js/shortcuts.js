@@ -206,7 +206,7 @@
       if(e.key === '1' || e.code === 'Digit1' || e.code === 'Numpad1'){
         e.preventDefault();
         if(typeof switchLayout === 'function'){
-          switchLayout('khmer');
+          switchLayout('standard');
           if(typeof showToast === 'function') showToast(pkIcon('keyboard', 16), 'Khmer Layout', 'Switched to Khmer Keyboard Layout.');
         }
         return;

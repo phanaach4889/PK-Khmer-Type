@@ -51,17 +51,19 @@
       position:fixed;
       right:18px;
       top:84px;
-      bottom:20px;
-      width:300px;
+      bottom:auto;
+      max-height:calc(100vh - 104px);
+      width:275px;
       margin:0;
       z-index:60;
-      max-height:calc(100vh - 104px);
       overflow-y:auto;
       overflow-x:hidden;
       scrollbar-width:thin;
       scrollbar-color:rgba(255,209,102,0.3) transparent;
       backdrop-filter:blur(12px);
       -webkit-backdrop-filter:blur(12px);
+      box-shadow:0 12px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,209,102,0.18);
+      border-color:rgba(255,209,102,0.25);
       transition:width .28s cubic-bezier(.22,1,.36,1), top .28s ease, bottom .28s ease, max-height .28s ease, box-shadow .28s ease, border-color .28s ease;
     }
     .lesson-strip.expanded{
@@ -76,6 +78,12 @@
       .lesson-strip.expanded{
         width:620px;
       }
+    }
+    html.focus-mode .lesson-strip{
+      display:none !important;
+      opacity:0 !important;
+      pointer-events:none !important;
+      visibility:hidden !important;
     }
     .lesson-strip::-webkit-scrollbar{
       width:6px;

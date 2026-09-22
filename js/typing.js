@@ -313,13 +313,17 @@ function typeKey(id, ev){
   if(id === 'enter'){ if(!trialActive && !lessonActive && !raceActive) insertText('\n'); return; }
   if(id === 'tab'){ if(!trialActive && !lessonActive && !raceActive) insertText('\u0009'); return; }
   if(id === 'space'){
+    const sm = (LAYOUTS[currentLayoutId] && LAYOUTS[currentLayoutId].spaceMap) ? LAYOUTS[currentLayoutId].spaceMap : null;
+    const lyr = currentLayer();
+    const charProduced = (sm && sm[lyr] !== undefined) ? sm[lyr] : (lyr === 'shift' ? ' ' : ' ');
     if(lessonActive){
-      lessonHandleChar(' ', el);
+      lessonHandleChar(charProduced, el);
     } else if(raceActive){
-      raceHandleChar(' ', el);
-    } else if(!trialActive){
-      const sm = LAYOUTS[currentLayoutId].spaceMap;
-      insertText(sm[currentLayer()] !== undefined ? sm[currentLayer()] : sm.base);
+      raceHandleChar(charProduced, el);
+    } else if(typeof trialActive !== 'undefined' && trialActive){
+      if(typeof trialHandleChar === 'function') trialHandleChar(charProduced, el);
+    } else {
+      insertText(charProduced);
     }
     return;
   }
@@ -350,7 +354,6 @@ function typeKey(id, ev){
   } else {
     emberBurst(el, ev, 4);
     insertText(val);
-    recordKeystroke(true);
   }
 }
 
@@ -358,9 +361,9 @@ function typeKey(id, ev){
 const heldModifiers = new Set();
 
 function recomputePhysicalLayer(){
-  if(heldModifiers.has('shift')) physicalLayer = 'shift';
+  if(heldModifiers.has('altgr')) physicalLayer = 'altgr';
+  else if(heldModifiers.has('shift')) physicalLayer = 'shift';
   else if(heldModifiers.has('ctrl')) physicalLayer = 'ctrl';
-  else if(heldModifiers.has('altgr')) physicalLayer = 'altgr';
   else physicalLayer = null;
   render();
 }
@@ -414,8 +417,10 @@ window.addEventListener('keydown', (e)=>{
     return;
   }
 
-  // Handle Ctrl / Meta shortcuts
-  if(e.ctrlKey || e.metaKey){
+  const isAltGraph = (e.getModifierState && e.getModifierState('AltGraph')) || heldModifiers.has('altgr') || (e.ctrlKey && e.altKey);
+
+  // Handle Ctrl / Meta shortcuts (only when not typing an AltGr glyph)
+  if(!isAltGraph && (e.ctrlKey || e.metaKey)){
     const keyLower = (e.key || '').toLowerCase();
 
     // Browser navigation / dev tools passthrough (DO NOT block or prevent)
@@ -464,7 +469,7 @@ window.addEventListener('keydown', (e)=>{
     }
 
     // Check if key is an intentional Ctrl-layer glyph on Khmer layout
-    if(id && currentLayoutId === 'khmer' && glyphData[id] && glyphData[id].ctrl){
+    if(id && currentLayoutId !== 'english' && glyphData[id] && glyphData[id].ctrl){
       if(keyEls[id]) keyEls[id].classList.add('pressed');
       e.preventDefault();
       typeKey(id);
@@ -475,8 +480,8 @@ window.addEventListener('keydown', (e)=>{
     return;
   }
 
-  // If Alt key is held, let shortcuts handler manage without typing letters
-  if(e.altKey){
+  // If Alt key is held without AltGr, let shortcuts handler manage without typing letters
+  if(e.altKey && !isAltGraph){
     return;
   }
 
@@ -505,6 +510,7 @@ window.addEventListener('keyup', (e)=>{
     playClick('up');
   } else if(id === 'altgr'){
     heldModifiers.delete('altgr');
+    if(!e.ctrlKey) heldModifiers.delete('ctrl');
     recomputePhysicalLayer();
     playClick('up');
   } else if(id === 'alt'){

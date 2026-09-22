@@ -37,6 +37,18 @@
       "title": "Level 4 · Word Practice"
     }
   ],
+  "LEVELS_NIDA": [
+    { "id": 1, "title": "Level 1 · Keyboard Foundations" },
+    { "id": 2, "title": "Level 2 · First Khmer Characters" },
+    { "id": 3, "title": "Level 3 · More Consonants" },
+    { "id": 4, "title": "Level 4 · Vowels" },
+    { "id": 5, "title": "Level 5 · Subscripts" },
+    { "id": 6, "title": "Level 6 · Diacritics & Signs" },
+    { "id": 7, "title": "Level 7 · Khmer Words" },
+    { "id": 8, "title": "Level 8 · Sentences & Spacing" },
+    { "id": 9, "title": "Level 9 · Speed & Accuracy" },
+    { "id": 10, "title": "Level 10 · Advanced Typing & Independent Vowels" }
+  ],
   "LESSONS_STANDARD": [
     {
       "id": 1,
@@ -1138,274 +1150,726 @@
       "level": 8,
       "type": "test",
       "title": "Khmer Character Test",
-      "subtitle": "Final test — all consonants & vowels",
-      "layer": "base",
-      "threshold": 90,
-      "newIds": [],
-      "newLayer": "base",
-      "examples": [
-        "រៀន",
-        "ទឹក",
-        "សាលា"
-      ]
-    },
-    {
-      "id": 58,
-      "level": 8,
-      "type": "test",
-      "title": "Khmer Numeral Test",
-      "subtitle": "Final test — all numerals",
-      "layer": "base",
-      "threshold": 92,
-      "newIds": [],
-      "newLayer": "base",
-      "examples": [
-        "១២៣",
-        "២០២៦"
-      ]
-    },
-    {
-      "id": 59,
-      "level": 8,
-      "type": "test",
-      "title": "Full Keyboard Test",
-      "subtitle": "Final test — every layer combined",
-      "layer": "base",
-      "threshold": 90,
-      "newIds": [],
-      "newLayer": "base",
-      "examples": [
-        "សាលា",
-        "១២៣",
-        "៛"
-      ]
-    },
-    {
-      "id": 60,
-      "level": 8,
-      "type": "test",
-      "title": "Final Khmer Typing Test",
-      "subtitle": "The ultimate test — words, then the full keyboard",
-      "layer": "base",
-      "threshold": 90,
-      "newIds": [],
-      "newLayer": "base",
-      "examples": [
-        "សាលា",
-        "ទឹក",
-        "រៀន"
-      ]
-    }
-  ],
-  "LESSONS_NIDA": [
+      "subtitle": "Final test — all consonants & v  "LESSONS_NIDA": [
     {
       "id": 10001,
       "level": 1,
       "type": "intro",
-      "title": "Home Row — Index Anchors (F & J)",
-      "subtitle": "No modifier · F J",
+      "title": "Home Row — Left Hand Anchors",
+      "subtitle": "F (ថ), D (ដ), S (ស), A (ា)",
+      "objective": "Anchor left hand on home row keys A, S, D, F and practice basic finger movements.",
+      "instructions": "Place Left Pinky on A, Left Ring on S, Left Middle on D, and Left Index on F.",
       "layer": "base",
       "threshold": 85,
-      "newIds": [
-        "f",
-        "j"
-      ],
+      "newIds": ["f", "d", "s", "a"],
       "newLayer": "base",
-      "examples": [
-        "ថ ថ",
-        "្ ្"
-      ]
+      "examples": ["ថថ", "ដដ", "សស", "ាា", "ថដ", "សា", "ដថ", "ាស", "ថាស", "ដាស", "សដថ"]
     },
     {
       "id": 10002,
       "level": 1,
       "type": "intro",
-      "title": "Home Row — Middle Fingers (D & K)",
-      "subtitle": "No modifier · D K",
+      "title": "Home Row — Right Hand Anchors",
+      "subtitle": "J (្), K (ក), L (ល), ; (ើ)",
+      "objective": "Anchor right hand on home row keys J, K, L, ; and practice right finger coordination.",
+      "instructions": "Place Right Index on J, Right Middle on K, Right Ring on L, and Right Pinky on Semicolon.",
       "layer": "base",
       "threshold": 85,
-      "newIds": [
-        "d",
-        "k"
-      ],
+      "newIds": ["j", "k", "l", "semicolon"],
       "newLayer": "base",
-      "examples": [
-        "ដ ដ",
-        "ក ក"
-      ]
+      "examples": ["កក", "លល", "ើើ", "កល", "លក", "កើ", "លើយ", "កើ", "លកើ"]
     },
     {
       "id": 10003,
       "level": 1,
       "type": "combo",
-      "title": "Home Row — 4 Keys Combined",
-      "subtitle": "Index & Middle · F J D K",
+      "title": "Home Row — Center Index Reaches",
+      "subtitle": "G (ង) & H (ហ)",
+      "objective": "Reach inward from index fingers to type G (Left Index) and H (Right Index).",
+      "instructions": "Reach Left Index from F to G for ង. Reach Right Index from J to H for ហ. Always return to home.",
       "layer": "base",
       "threshold": 85,
-      "newIds": [
-        "f",
-        "j",
-        "d",
-        "k"
-      ],
+      "newIds": ["g", "h"],
       "newLayer": "base",
-      "examples": []
+      "examples": ["ងង", "ហហ", "ងហ", "ហង", "ថង", "ហក", "សង", "ហា", "ដង", "ហាល", "លង"]
     },
     {
       "id": 10004,
       "level": 1,
-      "type": "intro",
-      "title": "Home Row — Index Reach (G & H)",
-      "subtitle": "No modifier · G H",
+      "type": "review",
+      "title": "Home Row — Full Rhythm & Spacing",
+      "subtitle": "All Home Row Base Keys Combined",
+      "objective": "Consolidate all home row base keys with rhythmic keystrokes and proper thumb spacing.",
+      "instructions": "Keep wrists relaxed and fingers curved. Use thumbs for spacebar.",
       "layer": "base",
-      "threshold": 85,
-      "newIds": [
-        "g",
-        "h"
-      ],
+      "threshold": 88,
+      "newIds": ["a", "s", "d", "f", "g", "h", "j", "k", "l", "semicolon"],
       "newLayer": "base",
-      "examples": [
-        "ង ង",
-        "ហ ហ"
-      ]
+      "examples": ["កា", "ដា", "ថា", "សា", "លា", "ងា", "ហាល", "កាល", "ដាល", "សាល", "កង", "សង", "លង"]
     },
     {
       "id": 10005,
-      "level": 1,
+      "level": 2,
       "type": "intro",
-      "title": "Home Row — Ring Fingers (S & L)",
-      "subtitle": "No modifier · S L",
+      "title": "First Syllables — Dependent Vowel ា (A)",
+      "subtitle": "Open Syllables with Vowel Sra Aa",
+      "objective": "Form open Khmer syllables by pairing consonants with dependent vowel ា on key A.",
+      "instructions": "Type the consonant key first, then press A with left pinky to attach vowel ា.",
       "layer": "base",
       "threshold": 85,
-      "newIds": [
-        "s",
-        "l"
-      ],
+      "newIds": ["a"],
       "newLayer": "base",
-      "examples": [
-        "ស ស",
-        "ល ល"
-      ]
+      "examples": ["កា", "គា", "ដា", "ថា", "សា", "ហា", "លា", "ងា", "កាល", "ដាល", "សាល", "ហាល"]
     },
     {
       "id": 10006,
-      "level": 1,
+      "level": 2,
       "type": "intro",
-      "title": "Home Row — Pinky Fingers",
-      "subtitle": "No modifier · A ; '",
+      "title": "First Syllables — Vowel ើ (;) & Sign ះ (Shift+H)",
+      "subtitle": "Vowel Sra Aee and Aspiration Sign Reahmuk",
+      "objective": "Learn vowel ើ on Semicolon and short aspiration sign ះ with Shift+H.",
+      "instructions": "Press Semicolon for ើ. Hold Shift and press H for sign ះ.",
       "layer": "base",
       "threshold": 85,
-      "newIds": [
-        "a",
-        "semicolon",
-        "quote"
-      ],
-      "newLayer": "base",
-      "examples": [
-        "ា ា",
-        "ើ ើ",
-        "់ ់"
-      ]
+      "newIds": ["semicolon", "h"],
+      "newLayer": "shift",
+      "examples": ["ដើ", "គើ", "កើ", "លើ", "កះ", "ដះ", "ថះ", "សះ", "ហះ", "លះ", "គោះ", "សោះ", "ដោះ"]
     },
     {
       "id": 10007,
       "level": 2,
       "type": "combo",
-      "title": "Two-Character Combos",
-      "subtitle": "Pairs drawn from the Home Row",
+      "title": "Syllable Rhymes — Short Mark Bantoc ់ (')",
+      "subtitle": "Quote Key: Khmer Sign Bantoc",
+      "objective": "Shorten syllable vowel sounds using the Bantoc sign on the quote key.",
+      "instructions": "Reach Right Pinky to the quote key (') to place Bantoc ់ over the final consonant.",
       "layer": "base",
       "threshold": 85,
-      "newIds": [],
+      "newIds": ["quote"],
       "newLayer": "base",
-      "examples": []
+      "examples": ["កាក់", "ដាក់", "ថាក់", "សាក់", "លាក់", "ហាក់", "កាត់", "ដាត់", "សាត់", "លាត់"]
     },
     {
       "id": 10008,
       "level": 2,
-      "type": "combo",
-      "title": "Three-Character Combos",
-      "subtitle": "Triples drawn from the Home Row",
-      "layer": "base",
-      "threshold": 85,
-      "newIds": [],
-      "newLayer": "base",
-      "examples": []
-    },
-    {
-      "id": 10009,
-      "level": 2,
-      "type": "review",
-      "title": "Random Home Row Drill",
-      "subtitle": "Fully randomized order",
+      "type": "test",
+      "title": "Level 2 — Syllable Mastery Check",
+      "subtitle": "Home Row Words & Orthography Assessment",
+      "objective": "Verify typing precision on home row consonants, vowels, and diacritics.",
+      "instructions": "Focus on 100% accuracy before speed. Type each syllable deliberately.",
       "layer": "base",
       "threshold": 88,
       "newIds": [],
       "newLayer": "base",
-      "examples": []
+      "examples": ["កាលណា", "សាលា", "ដាក់ចុះ", "ថ្នាក់", "កាក់", "លាក់ទុក", "ដើរទៅ", "សះជា"]
+    },
+    {
+      "id": 10009,
+      "level": 3,
+      "type": "intro",
+      "title": "Top Row Base Consonants",
+      "subtitle": "T (ត), R (រ), Y (យ), Q (ឆ), P (ផ)",
+      "objective": "Reach upward from home row to type common top row base consonants.",
+      "instructions": "T = Left Index, R = Left Index, Y = Right Index, Q = Left Pinky, P = Right Pinky.",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": ["t", "r", "y", "q", "p"],
+      "newLayer": "base",
+      "examples": ["តត", "ររ", "យយ", "ឆឆ", "ផផ", "តារា", "រត់", "យូរ", "ឆាប់", "ផុស", "រាយ"]
     },
     {
       "id": 10010,
-      "level": 2,
-      "type": "test",
-      "title": "Home Row Speed Test",
-      "subtitle": "Type as fast and accurately as you can",
+      "level": 3,
+      "type": "intro",
+      "title": "Bottom Row Base Consonants",
+      "subtitle": "B (ប), C (ច), X (ខ), V (វ), N (ន), M (ម), Z (ឋ)",
+      "objective": "Reach downward from home row to type bottom row base consonants.",
+      "instructions": "B = Left Index, C = Left Middle, X = Left Ring, V = Left Index, N = Right Index, M = Right Index, Z = Left Pinky.",
       "layer": "base",
-      "threshold": 90,
-      "newIds": [],
+      "threshold": 85,
+      "newIds": ["b", "c", "x", "v", "n", "m", "z"],
       "newLayer": "base",
-      "examples": []
+      "examples": ["បប", "ចច", "ខខ", "វវ", "នន", "មម", "ឋឋ", "បង", "ចៅ", "ខាន", "វាល", "នាម", "មាត់"]
     },
     {
       "id": 10011,
       "level": 3,
-      "type": "intro",
-      "title": "Home Row Shift",
-      "subtitle": "Hold Shift · Home row keys",
+      "type": "combo",
+      "title": "Home Row Shift Consonant Pairs",
+      "subtitle": "Shift + K (គ), D (ឌ), F (ធ), G (អ), L (ឡ)",
+      "objective": "Master Second-Series voiced consonant pairs on the home row using Shift.",
+      "instructions": "Hold Shift with opposite hand: Shift+K = គ, Shift+D = ឌ, Shift+F = ធ, Shift+G = អ, Shift+L = ឡ.",
       "layer": "shift",
       "threshold": 85,
-      "newIds": [
-        "f",
-        "j",
-        "d",
-        "k",
-        "g",
-        "h",
-        "s",
-        "l",
-        "a",
-        "semicolon",
-        "quote"
-      ],
+      "newIds": ["k", "d", "f", "g", "l"],
       "newLayer": "shift",
-      "examples": []
+      "examples": ["គក", "ឌដ", "ធថ", "អង", "ឡល", "គា", "ធារា", "អង្ករ", "ឡាន", "ឌីណា"]
     },
     {
       "id": 10012,
       "level": 3,
+      "type": "combo",
+      "title": "Upper & Lower Shift Consonants",
+      "subtitle": "Shift + Q (ឈ), T (ទ), P (ភ), X (ឃ), C (ជ), B (ព), N (ណ), Z (ឍ)",
+      "objective": "Master remaining upper and lower Shift consonants.",
+      "instructions": "Use opposite pinky for Shift while pressing the targeted upper/lower key.",
+      "layer": "shift",
+      "threshold": 85,
+      "newIds": ["q", "t", "p", "x", "c", "b", "n", "z"],
+      "newLayer": "shift",
+      "examples": ["ឈឆ", "ទត", "ភផ", "ឃខ", "ជច", "ពប", "ណន", "ឍឋ", "ទារក", "ភាសា", "ជោគ", "ពិភព"]
+    },
+    {
+      "id": 10013,
+      "level": 3,
+      "type": "review",
+      "title": "All 33 Consonants Fluency Drill",
+      "subtitle": "Complete Khmer Consonant Grid Assessment",
+      "objective": "Consolidate every Khmer consonant across all rows and both layers.",
+      "instructions": "Maintain consistent hand posture across all shifts and reaches.",
+      "layer": "base",
+      "threshold": 88,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": ["កខគឃង", "ចឆជឈញ", "ដឋឌឍណ", "តថទធន", "បផពភម", "យរលវសហឡអ"]
+    },
+    {
+      "id": 10014,
+      "level": 4,
+      "type": "intro",
+      "title": "Upper Dependent Vowels — ិ, ី, ឹ, ឺ",
+      "subtitle": "Keys I, Shift+I, W, Shift+W",
+      "objective": "Master the four primary vowels situated on top of consonants.",
+      "instructions": "I = ិ, Shift+I = ី, W = ឹ, Shift+W = ឺ. Type consonant first, then vowel.",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": ["i", "w"],
+      "newLayer": "base",
+      "examples": ["ទិញ", "ពីរ", "ទឹក", "យឺត", "ជិត", "មីង", "ដឹង", "គឺ", "ពិត", "ជីក"]
+    },
+    {
+      "id": 10015,
+      "level": 4,
+      "type": "intro",
+      "title": "Lower Dependent Vowels — ុ, ូ, ួ",
+      "subtitle": "Keys U, Shift+U, Shift+Y",
+      "objective": "Master vowels positioned below consonants and wrapping diphthongs.",
+      "instructions": "U = ុ, Shift+U = ូ, Shift+Y = ួ. Always type after base consonant.",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": ["u", "y"],
+      "newLayer": "shift",
+      "examples": ["កូន", "ពូ", "ចុង", "គួរ", "ជួប", "រូប", "ទូក", "មុន", "ស្រុក", "មួម៉ៅ"]
+    },
+    {
+      "id": 10016,
+      "level": 4,
+      "type": "intro",
+      "title": "Front & Compound Vowels — េ, ែ, ៃ, ោ, ៅ",
+      "subtitle": "Keys E, Shift+E, Shift+S, O, Shift+O",
+      "objective": "Learn front and compound vowels without altering typing order.",
+      "instructions": "Always type Consonant first, then Vowel, even if the vowel renders to the left.",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": ["e", "s", "o"],
+      "newLayer": "shift",
+      "examples": ["ដេក", "ដែក", "ដៃ", "កៅ", "កោ", "ចៅ", "ថែ", "ទៅ", "ពេល", "សែសិប"]
+    },
+    {
+      "id": 10017,
+      "level": 4,
+      "type": "combo",
+      "title": "Complex Vowels — ៀ, ឿ, េះ, ោះ, ាំ, ុំ, ុះ",
+      "subtitle": "BracketL, Shift+BracketL, Shift+V, Shift+;, Shift+A, Comma, Shift+Comma",
+      "objective": "Type diphthongs, nasal combinations, and compound vowel keys.",
+      "instructions": "[ = ៀ, Shift+[ = ឿ, Shift+V = េះ, Shift+; = ោះ, Shift+A = ាំ, Comma = ុំ, Shift+Comma = ុះ.",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": ["bracketL", "v", "semicolon", "a", "comma"],
+      "newLayer": "shift",
+      "examples": ["រៀន", "គ្រឿង", "ចេះ", "នោះ", "ចាំ", "កុំ", "ចុះ", "ភ្លាម", "ឈ្លោះ", "ធំ"]
+    },
+    {
+      "id": 10018,
+      "level": 4,
+      "type": "review",
+      "title": "Consonant + Vowel Synthesis",
+      "subtitle": "Integrated Khmer Syllables and Vocabulary",
+      "objective": "Attain fluid coordination across all dependent vowels.",
+      "instructions": "Type at a steady rhythm. Verify correct vowel key for each sound.",
+      "layer": "base",
+      "threshold": 88,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": ["សាលារៀន", "កូនសិស្ស", "ទិញម្ហូប", "ដេកលក់", "ទៅលេង", "ចេះដឹង", "ទឹកដោះគោ"]
+    },
+    {
+      "id": 10019,
+      "level": 5,
+      "type": "intro",
+      "title": "The Subscript Engine — Coeng Key (J = ្)",
+      "subtitle": "Base Consonant + J (្) + Subscript Consonant",
+      "objective": "Learn how the Coeng key J triggers subscript generation under consonants.",
+      "instructions": "Press Base Consonant, press J (Right Index), then press Subscript Consonant.",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": ["j"],
+      "newLayer": "base",
+      "examples": ["ក្ក", "ខ្ន", "ច្ន", "ត្រ", "ផ្ល", "ស្ម", "ម្ហ", "ង្ក", "ក្ត", "ផ្ក"]
+    },
+    {
+      "id": 10020,
+      "level": 5,
+      "type": "combo",
+      "title": "Common Subscript Words",
+      "subtitle": "Everyday Words with Single Subscripts",
+      "objective": "Type frequent Khmer words containing standard subscript consonants.",
+      "instructions": "Keep finger motion compact: Consonant -> J -> Subscript.",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": ["ត្រី", "ក្រៅ", "ខ្លា", "ឆ្កែ", "ផ្លូវ", "ម្ហូប", "ស្ងួត", "ក្បាល"]
+    },
+    {
+      "id": 10021,
+      "level": 5,
+      "type": "combo",
+      "title": "Subscripts with Shift Consonants",
+      "subtitle": "J followed by Shift Consonants (្គ, ្ឃ, ្ជ, ្ទ, ្ធ, ្ភ, ្អ)",
+      "objective": "Combine Coeng key J with Shifted consonants.",
+      "instructions": "Type Consonant, press J, then hold Shift and press the subscript consonant.",
+      "layer": "shift",
+      "threshold": 85,
+      "newIds": ["k", "x", "c", "t", "f", "p", "g"],
+      "newLayer": "shift",
+      "examples": ["ស្គាល់", "ស្អាត", "កម្ពុជា", "បញ្ជី", "សង្ឃ", "សម្បត្តិ", "បន្ទប់"]
+    },
+    {
+      "id": 10022,
+      "level": 5,
+      "type": "words",
+      "title": "Subscripts with Surrounding Vowels",
+      "subtitle": "Sequential Typing: Consonant + Coeng + Vowel",
+      "objective": "Accurately type words with both subscript consonants and complex vowels.",
+      "instructions": "Strict Khmer order: Consonant -> J -> Subscript -> Vowel.",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": ["bracketL", "y", "v", "o"],
+      "newLayer": "base",
+      "examples": ["ត្រៀម", "ខ្មៅ", "ឆ្លើយ", "ភ្លើង", "ជ្រៅ", "ក្មេង", "ស្លៀក", "ព្រៃ", "ជ្រឿន", "ព្រួយ"]
+    },
+    {
+      "id": 10023,
+      "level": 5,
       "type": "test",
-      "title": "Home Row + Shift Test",
-      "subtitle": "Accuracy test across Base and Shift",
+      "title": "Multi-Tier Subscript Clusters & Compounds",
+      "subtitle": "Advanced Cluster Mastery Assessment",
+      "objective": "Demonstrate mastery over complex multi-tier subscript clusters.",
+      "instructions": "Execute multi-step sequences with precision.",
       "layer": "base",
       "threshold": 90,
       "newIds": [],
       "newLayer": "base",
-      "examples": []
+      "examples": ["សង្គ្រាម", "កន្ត្រៃ", "អន្តរជាតិ", "មន្ត្រី", "សាស្ត្រា", "កណ្តុរ", "សម្ព័ន្ធ", "បណ្តាញ"]
     },
     {
-      "id": 10013,
-      "level": 9,
+      "id": 10024,
+      "level": 6,
+      "type": "intro",
+      "title": "Consonant Shifters — Muusikatoan & Triisap",
+      "subtitle": "Muusikatoan (Shift+') & Triisap (/)",
+      "objective": "Learn the consonant series shifters Muusikatoan (Shift+') and Triisap (/).",
+      "instructions": "Shift+' produces ៉ (Muusikatoan). Key / produces ៊ (Triisap). Type after the consonant.",
+      "layer": "shift",
+      "threshold": 85,
+      "newIds": ["quote", "slash"],
+      "newLayer": "shift",
+      "examples": ["ប៉ា", "ម៉ាក់", "ស៊ុប", "ហ៊ាន", "ប៉ះ", "ម៉ោង", "ស៊ី", "ហ៊ីង", "ម៉ូតូ", "ប៉ោង"]
+    },
+    {
+      "id": 10025,
+      "level": 6,
+      "type": "combo",
+      "title": "Tone & Sound Modifiers",
+      "subtitle": "Tandakhat (៍), Samiyok Sanna (័), Asda (៏), Robat (៌)",
+      "objective": "Learn diacritics modifying pronunciation and silencing letters.",
+      "instructions": "Shift+6 = ៍, Shift+7 = ័, Shift+8 = ៏, Shift+- = ៌.",
+      "layer": "shift",
+      "threshold": 85,
+      "newIds": ["k6", "k7", "k8", "minus"],
+      "newLayer": "shift",
+      "examples": ["ទូរស័ព្ទ", "អាទិត្យ", "ដ៏ល្អ", "ព័ត៌មាន", "សព្វថ្ងៃ", "ប្រយ័ត្ន", "ធម៌", "បរិបូរណ៍"]
+    },
+    {
+      "id": 10026,
+      "level": 6,
+      "type": "intro",
+      "title": "Repetition Sign (ៗ), Nikahit (ំ), Riel Currency (៛)",
+      "subtitle": "Keys Shift+2, Shift+M, Shift+4",
+      "objective": "Learn repetition sign Lek Tho (ៗ), nasal Nikahit (ំ), and Riel symbol (៛).",
+      "instructions": "Shift+2 = ៗ, Shift+M = ំ, Shift+4 = ៛.",
+      "layer": "shift",
+      "threshold": 85,
+      "newIds": ["k2", "m", "k4"],
+      "newLayer": "shift",
+      "examples": ["ផ្សេងៗ", "ញឹកៗ", "តិចៗ", "រឿយៗ", "៥០០០៛", "១០០០០៛", "២៥០០០៛", "កំដៅ"]
+    },
+    {
+      "id": 10027,
+      "level": 6,
+      "type": "review",
+      "title": "Diacritic & Sign Fluency Assessment",
+      "subtitle": "Comprehensive Vocabulary with Marks and Signs",
+      "objective": "Consolidate all signs, shifters, and diacritics in authentic vocabulary.",
+      "instructions": "Maintain typing pace across modifier combinations.",
+      "layer": "base",
+      "threshold": 88,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": ["ថ្ងៃអាទិត្យ", "ព័ត៌មានវិទ្យា", "ស៊ុបមាន់", "ប្រយ័ត្នប្រយែង", "ទិញម្ហូប៥០០០៛", "ដើរលេងញឹកៗ"]
+    },
+    {
+      "id": 10028,
+      "level": 7,
       "type": "words",
-      "title": "Word Practice",
-      "subtitle": "Real words, typed from memory",
+      "title": "Khmer Words — Family & People",
+      "subtitle": "Everyday Kinship & Relationship Terms",
+      "objective": "Type real-world family and kinship vocabulary with accurate spelling.",
+      "instructions": "Type whole words fluidly without stopping between individual characters.",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": ["ឪពុក", "ម្តាយ", "បងប្អូន", "កូនប្រុស", "កូនស្រី", "លោកយាយ", "លោកតា", "មិត្តភក្តិ", "គ្រួសារ"]
+    },
+    {
+      "id": 10029,
+      "level": 7,
+      "type": "words",
+      "title": "Khmer Words — Nature & Environment",
+      "subtitle": "Landscape, Plants, Water & Places",
+      "objective": "Type vocabulary describing Cambodia's natural geography and environment.",
+      "instructions": "Focus on muscle memory for recurring syllable patterns.",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": ["ទឹកដី", "ព្រៃឈើ", "ភ្នំខ្ពស់", "សមុទ្រ", "ទន្លេមេគង្គ", "វាលស្រែ", "ផ្កាឈូក", "ដើមត្នោត", "ផ្ទះសម្បែង"]
+    },
+    {
+      "id": 10030,
+      "level": 7,
+      "type": "words",
+      "title": "Khmer Words — Food & Daily Living",
+      "subtitle": "Meals, Cuisine & Daily Routines",
+      "objective": "Type vocabulary related to culinary traditions and daily health.",
+      "instructions": "Maintain accurate subscript and vowel combinations.",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": ["បាយព្រឹក", "ម្ហូបឆ្ងាញ់", "ត្រីអាំង", "សម្លកកូរ", "ផ្លែឈើ", "ទឹកស្អាត", "សុខភាពល្អ", "ដំណេក"]
+    },
+    {
+      "id": 10031,
+      "level": 7,
+      "type": "words",
+      "title": "Khmer Words — Education & Society",
+      "subtitle": "Schools, Work, Digital Tech & Community",
+      "objective": "Type modern vocabulary for education, society, and technology.",
+      "instructions": "Synthesize full keyboard knowledge across modern terms.",
+      "layer": "base",
+      "threshold": 88,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": ["កុំព្យូទ័រ", "ទូរស័ព្ទដៃ", "អ៊ីនធឺណិត", "សាលារៀន", "មន្ទីរពេទ្យ", "ចំណេះដឹង", "ការងារ", "ប្រទេសជាតិ"]
+    },
+    {
+      "id": 10032,
+      "level": 8,
+      "type": "intro",
+      "title": "Khmer Punctuation & Quotes",
+      "subtitle": "Khan (.), Bariyoosan (Shift+.), Quotes (« »), Colon (៖)",
+      "objective": "Learn Khmer punctuation marks and proper quotation conventions.",
+      "instructions": "Period = ។, Shift+Period = ៕, Grave = «, Shift+Grave = », AltGr+; = ៖.",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": ["period", "grave", "semicolon"],
+      "newLayer": "base",
+      "examples": ["«ចំណេះវិជ្ជា»។", "ភ្នំពេញ៖ រាជធានីនៃកម្ពុជា។", "សួស្តី! តើសុខសប្បាយទេ?", "ចប់បរិបូណ៌៕"]
+    },
+    {
+      "id": 10033,
+      "level": 8,
+      "type": "sentences",
+      "title": "Simple Daily Sentences",
+      "subtitle": "Authentic Sentences with Zero-Width Word Spacing",
+      "objective": "Type full everyday sentences using proper word boundaries and punctuation.",
+      "instructions": "Use spacebar to separate words with zero-width spaces; conclude with Khan (។).",
       "layer": "base",
       "threshold": 85,
       "newIds": [],
       "newLayer": "base",
       "examples": [
-        "អាវ",
-        "តា",
-        "យាយ",
-        "មាន"
+        "ខ្ញុំស្រឡាញ់ក្រុមគ្រួសាររបស់ខ្ញុំ។",
+        "ថ្ងៃនេះអាកាសធាតុល្អណាស់។",
+        "ប្អូនស្រីរបស់ខ្ញុំចូលចិត្តអានសៀវភៅ។",
+        "យើងញ៉ាំបាយជុំគ្នាជាមួយឪពុកម្តាយ។"
+      ]
+    },
+    {
+      "id": 10034,
+      "level": 8,
+      "type": "sentences",
+      "title": "Wisdom & Learning Sentences",
+      "subtitle": "Prose on Education, Diligence and Character",
+      "objective": "Type longer compound sentences with smooth transitions and consistent tempo.",
+      "instructions": "Keep hands centered on home row throughout full sentence typing.",
+      "layer": "base",
+      "threshold": 88,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "ចំណេះវិជ្ជាជាទ្រព្យសម្បត្តិដ៏មានតម្លៃ។",
+        "ការខិតខំរៀនសូត្រនាំមកនូវអនាគតភ្លឺស្វាង។",
+        "សាមគ្គីភាពជាកម្លាំងដ៏រឹងមាំនៃសង្គមជាតិ។",
+        "ចូរគោរពនិងដឹងគុណចំពោះលោកគ្រូអ្នកគ្រូ។"
+      ]
+    },
+    {
+      "id": 10035,
+      "level": 8,
+      "type": "test",
+      "title": "Narrative Paragraph Assessment",
+      "subtitle": "Connected Multi-Sentence Typing Endurance",
+      "objective": "Demonstrate sustained typing accuracy on authentic Khmer narrative paragraphs.",
+      "instructions": "Read ahead slightly while typing to maintain uninterrupted flow.",
+      "layer": "base",
+      "threshold": 90,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "ប្រទេសកម្ពុជាជាទឹកដីសុវណ្ណភូមិដ៏ស្រស់បំព្រង។ ប្រជាជនខ្មែរមានភាពរួសរាយរាក់ទាក់ និងប្រកបដោយទឹកចិត្តសប្បុរសធម៌។ វប្បធម៌និងប្រពៃណីខ្មែរមានភាពសម្បូរបែបតាំងពីបុរាណកាលមក។"
+      ]
+    },
+    {
+      "id": 10036,
+      "level": 9,
+      "type": "speed",
+      "title": "Speed Sprint — Home Row Velocity",
+      "subtitle": "Rapid Keystrokes with 95% Accuracy Target",
+      "objective": "Build rapid finger speed and rhythm on familiar home row patterns.",
+      "instructions": "Push your typing speed while maintaining strict 95% accuracy.",
+      "layer": "base",
+      "threshold": 95,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": ["កាកា", "ដាដា", "ថាថា", "សាសា", "លាលា", "ហាហា", "កាលណា", "សាលា", "ដាលី", "ថាសកាក់"]
+    },
+    {
+      "id": 10037,
+      "level": 9,
+      "type": "speed",
+      "title": "Speed Sprint — Rapid Subscript Clustering",
+      "subtitle": "Eliminate Hesitation on Coeng J Transitions",
+      "objective": "Achieve high-speed muscle memory on subscript cluster combinations.",
+      "instructions": "Transition through the Coeng key without dropping typing tempo.",
+      "layer": "base",
+      "threshold": 92,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": ["ត្រីក្រៅ", "ខ្លាឆ្កែ", "ផ្លូវស្ងួត", "ម្ហូបឆ្ងាញ់", "ក្មេងស្អាត", "ស្លៀកពាក់", "ភ្លើងឆេះ", "ជ្រៅជ្រះ"]
+    },
+    {
+      "id": 10038,
+      "level": 9,
+      "type": "speed",
+      "title": "Speed Sprint — Shift Layer Agility",
+      "subtitle": "Alternating Base and Shift Keystrokes",
+      "objective": "Seamlessly alternate between base and shift layers at pace.",
+      "instructions": "Coordinate pinky shift presses without disrupting hand positioning.",
+      "layer": "base",
+      "threshold": 92,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": ["គកឃខ", "ជចឈឆ", "ទតធថ", "ពបភផ", "ណនឡល", "អងញម", "កម្ពុជា", "ភាសាខ្មែរ", "ព័ត៌មាន"]
+    },
+    {
+      "id": 10039,
+      "level": 9,
+      "type": "test",
+      "title": "Timed Speed & Accuracy Evaluation",
+      "subtitle": "Official 60-Second Timed Benchmark",
+      "objective": "Achieve your highest net WPM with at least 92% accuracy.",
+      "instructions": "Balance velocity with precision across mixed vocabulary.",
+      "layer": "base",
+      "threshold": 92,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "ការហ្វឹកហាត់វាយក្តារចុចនីដាជាប្រចាំជួយបង្កើនល្បឿននិងភាពជាក់លាក់។ យើងត្រូវរក្សាឥរិយាបថត្រង់ខ្លួន និងទុកម្រាមដៃលើជួរដេកដើមជានិច្ច។"
+      ]
+    },
+    {
+      "id": 10040,
+      "level": 10,
+      "type": "intro",
+      "title": "Independent Vowels (ស្រៈពេញតួ)",
+      "subtitle": "Keys Minus (ឥ), Equal (ឲ), BracketR (ឪ), Shift+BracketR (ឧ), Backslash (ឮ)",
+      "objective": "Master standalone independent vowels on the number row and AltGr layers.",
+      "instructions": "Minus = ឥ, Equal = ឲ, BracketR = ឪ, Shift+BracketR = ឧ, Backslash = ឮ, Shift+Backslash = ឭ, Shift+R = ឬ, AltGr+R = ឫ, AltGr+E = ឯ, AltGr+O = ឱ.",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": ["minus", "equal", "bracketR", "backslash", "r", "e", "o"],
+      "newLayer": "base",
+      "examples": ["ឥឡូវនេះ", "ឪពុកម្តាយ", "ឲ្យដឹង", "ឧត្តមគតិ", "ឱកាសល្អ", "ឯកសារ", "ឫស្សី", "ឬស្សីព្រៃ", "ឮសូរ"]
+    },
+    {
+      "id": 10041,
+      "level": 10,
+      "type": "combo",
+      "title": "Khmer Numerals, Dates & Statistics",
+      "subtitle": "Number Row Keys 1 to 0 (១, ២, ៣, ៤, ៥, ៦, ៧, ៨, ៩, ០)",
+      "objective": "Integrate Khmer digits on the number row into dates, prices, and statistics.",
+      "instructions": "Reach upward from home row fingers to the corresponding number keys.",
+      "layer": "base",
+      "threshold": 88,
+      "newIds": ["k1", "k2", "k3", "k4", "k5", "k6", "k7", "k8", "k9", "k0"],
+      "newLayer": "base",
+      "examples": [
+        "ថ្ងៃទី១៥ ខែមេសា ឆ្នាំ២០២៦",
+        "ម៉ោង០៨ និង៣០នាទីព្រឹក",
+        "សិស្សានុសិស្សចំនួន១២៥នាក់",
+        "តម្លៃសៀវភៅ១៥០០០៛"
+      ]
+    },
+    {
+      "id": 10042,
+      "level": 10,
+      "type": "words",
+      "title": "Classical Proverbs & Cultural Wisdom",
+      "subtitle": "Traditional Sayings with Quotes and Quotation Marks",
+      "objective": "Type classical Khmer proverbs and cultural literature with nuanced orthography.",
+      "instructions": "Observe correct quotation marks « » and traditional sentence termination.",
+      "layer": "base",
+      "threshold": 90,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "«ចេះដឹងនាំឱ្យមានប្រាជ្ញា»។",
+        "«ចំណេះវិជ្ជាជាទ្រព្យសម្បត្តិដ៏មានតម្លៃមិនចេះរីងស្ងួត»។",
+        "«ធ្វើគុណកុំទារគុណ ធ្វើទោសកុំលាក់បាំង»។",
+        "«ចេះមកពីរៀន មានមកពីរក»។"
+      ]
+    },
+    {
+      "id": 10043,
+      "level": 10,
+      "type": "test",
+      "title": "NiDA Master Typist Capstone Examination",
+      "subtitle": "Full Keyboard Navigation, Orthography & High Speed",
+      "objective": "Demonstrate complete mastery over all facets of the Khmer NiDA keyboard system.",
+      "instructions": "Execute the comprehensive assessment with elite precision, fluid pacing, and zero errors.",
+      "layer": "base",
+      "threshold": 94,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "ព្រះរាជាណាចក្រកម្ពុជា ជាប្រទេសមួយដែលមានប្រវត្តិសាស្ត្រយូរអង្វែង និងមានសម្បត្តិវប្បធម៌ដ៏រុងរឿង។ ប្រាសាទអង្គរវត្តជាបេតិកភណ្ឌពិភពលោក និងជាមោទនភាពជាតិខ្មែរគ្រប់ជំនាន់។ យុវជនជំនាន់ក្រោយត្រូវខិតខំក្រេបជញ្ជក់ចំណេះវិជ្ជា និងបច្ចេកវិទ្យាដើម្បីអភិវឌ្ឍមាតុភូមិ។"
+      ]
+    }
+  ]�ា",
+        "ទូរស័ព្ទដៃ",
+        "ថ្ងៃអាទិត្យ",
+        "ស៊ុបមាន់",
+        "ប៉ះពាល់",
+        "ប្រយ័ត្នប្រយែង"
+      ]
+    },
+    {
+      "id": 10013,
+      "level": 4,
+      "type": "intro",
+      "title": "Khmer Numerals & Symbols",
+      "subtitle": "១ ២ ៣ ៤ ៥ ៦ ៧ ៨ ៩ ០ & ៛, ៗ",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5",
+        "k6",
+        "k7",
+        "k8",
+        "k9",
+        "k0"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "១២៣៤៥",
+        "៦៧៨៩០",
+        "៥០០០៛",
+        "២៥០០០៛",
+        "ផ្សេងៗ",
+        "ញឹកៗ",
+        "តិចៗ",
+        "២០២៦"
+      ]
+    },
+    {
+      "id": 10014,
+      "level": 4,
+      "type": "combo",
+      "title": "Khmer Punctuation & Quotations",
+      "subtitle": "Khan (.), Bariyoosan (Shift+.), Quotes (« »), Colon (៖)",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [
+        "period",
+        "grave",
+        "semicolon"
+      ],
+      "newLayer": "base",
+      "examples": [
+        "«ចំណេះវិជ្ជាជាទ្រព្យ»។",
+        "សួស្តី! តើសុខសប្បាយទេ?",
+        "ភ្នំពេញ៖ រាជធានីនៃកម្ពុជា។"
+      ]
+    },
+    {
+      "id": 10015,
+      "level": 4,
+      "type": "words",
+      "title": "Fluent Practical Sentences",
+      "subtitle": "Everyday Khmer Prose & Proper Spacing",
+      "layer": "base",
+      "threshold": 85,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "ខ្ញុំរៀនវាយអក្សរខ្មែរលើកុំព្យូទ័រ។",
+        "ភាសាខ្មែរមានអក្សរស្រស់ស្អាតណាស់។",
+        "សាលារៀននៅជិតផ្ទះរបស់ខ្ញុំ។",
+        "យើងទាំងអស់គ្នាស្រឡាញ់ប្រទេសកម្ពុជា។"
+      ]
+    },
+    {
+      "id": 10016,
+      "level": 4,
+      "type": "test",
+      "title": "Comprehensive Khmer NiDA Mastery Test",
+      "subtitle": "Full Keyboard Navigation, Accuracy & Speed",
+      "layer": "base",
+      "threshold": 92,
+      "newIds": [],
+      "newLayer": "base",
+      "examples": [
+        "ភាសាខ្មែរជាភាសាផ្លូវការនៃព្រះរាជាណាចក្រកម្ពុជា។",
+        "ការហ្វឹកហាត់វាយអក្សរលើក្តារចុចនីដាជួយឱ្យយើងវាយបានរហ័សនិងត្រឹមត្រូវ។",
+        "ចូរអង្គុយឱ្យត្រង់ខ្លួន ហើយដាក់ម្រាមដៃលើជួរដេកដើមជានិច្ច។"
       ]
     }
   ],
@@ -1619,6 +2083,24 @@
         "sun",
         "run"
       ]
+    }
+  ],
+  "LEVELS_NIDA": [
+    {
+      "id": 1,
+      "title": "Level 1 · Beginner: Consonants & Core Vowels"
+    },
+    {
+      "id": 2,
+      "title": "Level 2 · Intermediate: Subscripts (Coeng J)"
+    },
+    {
+      "id": 3,
+      "title": "Level 3 · Advanced: Independent Vowels & Signs"
+    },
+    {
+      "id": 4,
+      "title": "Level 4 · Master: Numerals & Fluid Prose"
     }
   ]
 }
