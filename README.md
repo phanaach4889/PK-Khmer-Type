@@ -1,176 +1,185 @@
-# PK Khmer Type (ក្តារចុចខ្មែរ PK)
+# PK Khmer Type — ក្តារចុចខ្មែរ PK
 
 <p align="center">
   <img src="https://img.shields.io/badge/Language-Khmer%20%7C%20English-00f5c4?style=for-the-badge" alt="Bilingual">
   <img src="https://img.shields.io/badge/Stack-Vanilla%20HTML5%20%2F%20CSS3%20%2F%20JS-ffd166?style=for-the-badge" alt="Vanilla JS">
-  <img src="https://img.shields.io/badge/Architecture-Modular%20%26%20Clean-5fd694?style=for-the-badge" alt="Modular Architecture">
+  <img src="https://img.shields.io/badge/Architecture-Modular%20%26%20Clean-5fd694?style=for-the-badge" alt="Modular">
   <img src="https://img.shields.io/badge/Platform-PWA%20Ready-ff7bee?style=for-the-badge" alt="PWA Ready">
-  <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License">
+  <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT">
 </p>
 
 <p align="center">
-  <b>A modern, modular interactive Khmer typing tutor, layer visualizer, and speed trainer.</b><br>
-  កម្មវិធីមើលស្រទាប់ក្តារចុច និងហ្វឹកហាត់វាយអក្សរខ្មែរទំនើប ងាយស្រួលប្រើប្រាស់ និងមានប្រសិទ្ធភាពខ្ពស់។
+  <b>A modern, browser-based Khmer typing tutor with animated finger guides, structured lessons, and real-time feedback.</b><br>
+  កម្មវិធីហ្វឹកហ្វឺនវាយអក្សរខ្មែរ ដែលមានមគ្គុទ្ទេសន៍មេដៃ មេរៀនជាលំដាប់ និងមតិប្រតិកម្មភ្លាមៗ។
 </p>
 
 ---
 
-## 1. Overview
+## Overview
 
-**PK Khmer Type** is an interactive, browser-based typing tutor and keyboard layer visualizer designed specifically for the Khmer writing system. It guides learners through touch-typing techniques, layer manipulation (Shift, Ctrl, AltGr), subscript consonant clustering (*Coeng*), and real-time accuracy scoring.
+**PK Khmer Type** is a free, offline-ready typing trainer built for learning Khmer and English on a standard QWERTY keyboard. It runs entirely in the browser — no install, no server, no build step required.
 
-Originally created as a monolithic web app, the project has been professionally refactored into a clean, maintainable, modular structure adhering to software engineering best practices:
-- **Separation of Concerns**: HTML handles semantic structure, CSS governs aesthetics and responsive layout, JavaScript drives interaction and state, and JSON stores data.
-- **Offline-First Compatibility**: Runs directly from local disk (`file:///`) by double-clicking `index.html`, with zero build steps or required dependencies.
-- **Data-Driven Architecture**: Keyboard layouts, lesson curricula, and word pools are externalized into JSON files while retaining automatic in-memory fallback.
+**Built by Phanna Kurosaki** — a student developer — to make Khmer typing education free and accessible for everyone.
 
 ---
 
-## 2. Project Architecture and Directory Structure
+## Features
 
-```text
-PK-Khmer-Type/
-├── index.html                  # Core semantic HTML page structure (~850 lines)
-├── manifest.json               # Progressive Web App (PWA) manifest
-├── sw.js                       # Service Worker for offline caching
-├── README.md                   # Technical documentation and project guide
-│
-├── css/                        # Modular stylesheet system
-│   ├── base.css                # Typography, CSS variables, themes, modals, reset
-│   ├── keyboard.css            # Virtual keyboard grid, key styling, hands overlay
-│   ├── typing.css              # Manuscript input display, caret, stats toolbar
-│   ├── lessons.css             # Lesson dock, level accordion, cards, remedial view
-│   └── responsive.css          # Breakpoints (mobile, tablet, desktop) & media queries
-│
-├── js/                         # Modular JavaScript application engine
-│   ├── app.js                  # Application orchestrator, data loader, PWA setup
-│   ├── keyboard.js             # Keyboard builder, layout switching, hands kinematics
-│   ├── typing.js               # Manuscript buffer, keystroke input & visual feedback
-│   ├── lessons.js              # Lesson sequencer, adaptive learning, mistake review
-│   ├── race.js                 # Temple Trial challenge and real-time Typing Race
-│   ├── statistics.js           # Session stats, WPM/accuracy tracking, achievements
-│   ├── settings.js             # Themes, audio synthesis, cosmetic toggles, i18n
-│   ├── storage.js              # User authentication state, cloud & local progress
-│   └── icons.js                # Optimized vector SVG icon library
-│
-├── data/                       # Externalized data models
-│   ├── keyboard.json           # Layout definitions, key codes, and finger mappings
-│   ├── lessons.json            # 60+ structured lessons across 8 progressive levels
-│   └── typing-content.json     # Word banks, vocabulary pools, and race configurations
-│
-└── assets/                     # Static media and branding
-    ├── logo.svg                # Vector site emblem
-    └── icons/                  # PWA and browser application icons
-```
+| Feature | Details |
+| :--- | :--- |
+| 🎹 **3 Keyboard Layouts** | Khmer Standard, Khmer NiDA, English US QWERTY |
+| 📚 **Structured Lessons** | 60+ lessons (Standard), 16 lessons (NiDA), across 4 progressive levels each |
+| 🤲 **Animated Finger Guide** | Live hand overlay shows which finger to use for every key |
+| 🏁 **Temple Trial / Race Mode** | Speed drills and competitive typing race with bot pacers |
+| 🔁 **Adaptive Remedial Drills** | Auto-detects weak keys and builds targeted review exercises |
+| 🔇 **Focus Mode** | Hides sidebars and distractions for deep practice sessions |
+| 🔊 **Web Audio Sounds** | Mechanical key click and chime effects — no audio files needed |
+| 💾 **Progress Saving** | Auto-saves to `localStorage`; export/import JSON backup |
+| 📱 **PWA Ready** | Installable as an app, works offline via Service Worker |
 
 ---
 
-## 3. Module Responsibilities
+## How Khmer Typing Works
 
-### CSS Architecture (`css/`)
-1. **`base.css`**: Global design tokens (`:root`), font declarations, Angkor-inspired color palettes, modal dialog foundations, toast notifications, founder HUD profile, and distraction-free Focus Mode rules.
-2. **`keyboard.css`**: CSS Grid and Flexbox layouts for the 5 rows of keys, modifier switch states (`.layer-shift`, `.layer-ctrl`, `.layer-altgr`), key active/press animations, and vector hands overlay styling.
-3. **`typing.css`**: The manuscript workspace, cursor animation, caret positioning, character status feedback (correct, incorrect, pending), and race track UI.
-4. **`lessons.css`**: Multi-column collapsible level accordion, lesson cards, prompt indicators, badge counters, and the remedial mistake review modal.
-5. **`responsive.css`**: Consolidated media queries for mobile handsets, tablets, ultrawide monitors, and accessibility preferences (`prefers-reduced-motion`).
+Khmer is an **abugida** script. Understanding a few rules makes learning much easier:
 
-### JavaScript Modules (`js/`)
-1. **`app.js`**: Central bootstrap script. Loads JSON datasets asynchronously with graceful fallback for local `file:///` contexts, mounts DOM components, and registers service workers.
-2. **`keyboard.js`**: Manages keyboard layouts (Standard, NiDA, English QWERTY), key code mapping, modifier hold states, and mathematical hand kinematics (wrist anchors and finger reach vectors).
-3. **`typing.js`**: Captures physical and virtual keystrokes, applies IME character shaping, updates manuscript output, and coordinates sound effects and visual feedback.
-4. **`lessons.js`**: Implements curriculum progression, mistake tracking, adaptive drill extension, level accordion expansion/collapse, and viewport auto-scrolling.
-5. **`race.js`**: Powers the Temple Trial streak drill and competitive Typing Race mode with bot ghost pacers and difficulty tiers.
-6. **`statistics.js`**: Calculates live WPM, CPM, and accuracy percentage, updates mastery scores, unlocks achievements, and renders the stats dashboard.
-7. **`settings.js`**: Controls theme switching, accent colors, synthetic Web Audio key clicks/chimes, Focus Mode toggling, and bilingual localization (Khmer and English).
-8. **`storage.js`**: Manages client-side storage, guest and authenticated user profiles, session persistence, and progress JSON export/import.
-9. **`icons.js`**: Provides clean SVG vector glyphs rendered on demand without external icon font dependencies.
+### 1. Base Consonant First
+Always type the base consonant before any vowel or diacritic.
 
-### Externalized Data (`data/`)
-- **`keyboard.json`**: Physical layout matrix, key identifiers, glyph maps per layer, and touch-typing finger assignments.
-- **`lessons.json`**: Curriculum definitions, lesson categories, level thresholds, and drill sequences.
-- **`typing-content.json`**: Khmer and English vocabulary pools, word banks, and race configuration options.
+> Example: `K` → `ក` + `A` → `ា` = **`កា`**
 
----
+### 2. Subscript Consonants (Coeng ្)
+To stack a consonant below another, type the Coeng marker first, then the consonant.
 
-## 4. Key Features
+| Layout | Coeng Key |
+| :--- | :--- |
+| Khmer Standard | `Shift` + `J` = `្` |
+| Khmer NiDA | `Space` = `​` (zero-width space / Coeng) |
 
-- **Comprehensive Khmer Layouts**: Instant switching between Khmer Standard (ប្លង់ក្តារចុចខ្មែរ), Khmer NiDA (ក្តារចុចខ្មែរ និដា), and English US QWERTY.
-- **Interactive Hand Kinematics**: Illustrated translucent hands overlay showing the anatomical reach vectors and proper finger assignments for each character.
-- **Adaptive Remedial System**: Automatically identifies mistyped characters during practice and generates customized remedial drills targeting weak keys.
-- **Distraction-Free Focus Mode**: Instant toggle (`Alt + F` or `Escape`) to hide sidebars, banners, and non-essential UI elements for deep concentration.
-- **Sound Synthesis**: Real-time mechanical click and chime audio synthesized entirely via the Web Audio API without requiring external audio files.
-- **Data Persistence**: Automatic progress saving via browser `localStorage` with full JSON backup export and restoration tools.
+> Example (Standard): `ក` + `Shift+J` + `ខ` = **`ក្ខ`**
+
+### 3. Word Spacing in Khmer Layouts
+
+> **Both Khmer layouts use `Shift + Space` to insert a visible space between words.**  
+> Plain `Space` alone inserts a Coeng or zero-width joiner depending on the layout.
+
+### 4. Modifier Layers
+
+| Layer | How to Activate | Contains |
+| :--- | :--- | :--- |
+| **Base** | Type normally | Common consonants, dependent vowels |
+| **Shift** | Hold `Shift` | Secondary characters, subscript trigger, space |
+| **Ctrl** | Hold `Ctrl` | Rare/archaic glyphs |
+| **AltGr** | Hold `AltGr` (Right Alt) | Specialized punctuation, religious marks |
 
 ---
 
-## 5. How Khmer Typing Works
+## Lessons & Levels
 
-Khmer writing is an abugida script featuring base consonants, subscript consonants (*Coeng*), dependent vowels, and independent vowels:
+Each keyboard layout has its own lesson track:
 
-1. **Consonant-First Principle**: Always type the base consonant first, followed by dependent vowels or diacritics.
-   - Example: Type <kbd>K</kbd> (`ក`) + <kbd>A</kbd> (`ា`) = **`កា`**.
-2. **Subscript Consonants (*Coeng*)**: Subscripts are formed by typing the subscript marker (<kbd>Shift</kbd> + <kbd>J</kbd> = `្`) followed by the consonant to be subscripted.
-   - Example: Type <kbd>ក</kbd> + <kbd>្</kbd> + <kbd>ខ</kbd> = **`ក្ខ`**.
-3. **Modifier Layers**:
-   - **Base Layer**: Most common consonants and dependent vowels.
-   - **Shift Layer**: Secondary consonants, independent vowels, and subscript trigger.
-   - **Ctrl & AltGr Layers**: Rare religious glyphs, archaic characters, and specialized punctuation marks.
+| Layout | Levels | Lessons |
+| :--- | :---: | :---: |
+| Khmer Standard | 4 | 60+ |
+| Khmer NiDA | 4 | 16 |
+| English US | 4 | 20+ |
+
+**Levels:** Beginner → Intermediate → Advanced → Master
+
+The sidebar lesson panel:
+- Always stays visible so you can track progress mid-lesson.
+- **Auto-expands** when you open more than one level at the same time.
+- **Collapses** when you click a lesson card or click outside the panel.
 
 ---
 
-## 6. Getting Started
+## Getting Started
 
-### Local Execution (No Server Required)
-Open `index.html` directly in any standard browser:
+### Open Locally (No Server Needed)
+
+Just open `index.html` in your browser:
+
 ```bash
 # Windows
 start index.html
 
-# macOS
+# macOS / Linux
 open index.html
-
-# Linux
-xdg-open index.html
 ```
 
-### Local Development Server (Optional)
-To test asynchronous JSON fetching over HTTP:
-```bash
-# Using Node / npx
-npx serve .
+### Optional: Local Dev Server
 
-# Using Python 3
+For full JSON loading over HTTP:
+
+```bash
+npx serve .
+# or
 python -m http.server 8080
 ```
-Navigate to `http://localhost:8080` in your web browser.
+
+Then visit `http://localhost:8080`.
 
 ---
 
-## 7. Keyboard Shortcuts
+## Keyboard Shortcuts
 
-| Shortcut | Function |
+| Shortcut | Action |
 | :--- | :--- |
-| <kbd>Alt</kbd> + <kbd>F</kbd> | Toggle Focus Mode (distraction-free view) |
-| <kbd>Esc</kbd> | Exit Focus Mode / Close open modal windows |
-| <kbd>Shift</kbd> (Hold) | Reveal and type on the Shift layer |
-| <kbd>Ctrl</kbd> (Hold) | Reveal and type on the Ctrl layer |
-| <kbd>AltGr</kbd> (Hold) | Reveal and type on the AltGr layer |
-| <kbd>Caps Lock</kbd> | Toggle uppercase state (English layout) |
+| `Shift` + `Space` | Insert a word space (Khmer layouts) |
+| `Alt` + `F` | Toggle Focus Mode |
+| `Esc` | Exit Focus Mode / close modals |
+| `Shift` (hold) | Switch to Shift layer |
+| `Ctrl` (hold) | Switch to Ctrl layer |
+| `AltGr` (hold) | Switch to AltGr layer |
+| `Caps Lock` | Toggle uppercase (English layout) |
 
 ---
 
-## 8. Technology Stack
+## Project Structure
 
-- **HTML5**: Semantic, accessible markup using WAI-ARIA standards.
-- **CSS3**: Modern layouts using CSS Grid, Flexbox, custom properties, and backdrop filters.
-- **Vanilla JavaScript (ES6+)**: Zero framework dependencies, fast execution, modular organization.
-- **Web Audio API**: Real-time procedural audio synthesis for key presses and chimes.
-- **Vector Graphics (SVG)**: Scalable visual assets for key icons, hands, and branding.
+```text
+PK-Khmer-Type/
+├── index.html              # Main page
+├── manifest.json           # PWA manifest
+├── sw.js                   # Service Worker (offline support)
+│
+├── css/
+│   ├── base.css            # Variables, themes, modals, fonts
+│   ├── keyboard.css        # Key grid, modifier layers, hand overlay
+│   ├── typing.css          # Manuscript area, caret, race UI
+│   ├── lessons.css         # Lesson sidebar, level accordion, cards
+│   └── responsive.css      # Mobile, tablet, desktop breakpoints
+│
+├── js/
+│   ├── app.js              # Bootstrap, data loader, PWA setup
+│   ├── keyboard.js         # Layouts, key mapping, hand kinematics
+│   ├── typing.js           # Keystroke capture, IME shaping, feedback
+│   ├── lessons.js          # Lesson engine, progression, remedial drills
+│   ├── race.js             # Temple Trial & Typing Race mode
+│   ├── statistics.js       # WPM, accuracy, achievements, mastery
+│   ├── settings.js         # Themes, audio, focus mode, localization
+│   ├── storage.js          # localStorage, progress export/import
+│   └── icons.js            # Inline SVG icon library
+│
+└── data/
+    ├── keyboard.json        # Layout definitions, key codes, finger maps
+    ├── lessons.json         # All lesson & level definitions (all layouts)
+    └── typing-content.json  # Word banks and race configurations
+```
 
 ---
 
-## 9. Author and Credits
+## Tech Stack
 
-- **Developer**: Phanna Kurosaki (Student Developer, EST. 2026)
-- **Project**: PK Khmer Type
-- **Purpose**: Developed to provide free, high-quality, accessible Khmer typing education for students and learners worldwide.
+- **HTML5** — Semantic, accessible markup (WAI-ARIA)
+- **CSS3** — Grid, Flexbox, custom properties, backdrop filters
+- **Vanilla JS (ES6+)** — Zero dependencies, modular, fast
+- **Web Audio API** — Procedural key sounds, no audio files
+- **SVG** — Scalable icons and hand overlay graphics
+
+---
+
+## Author
+
+**Phanna Kurosaki** — Student Developer, EST. 2026  
+Free Khmer typing education for students and learners worldwide. 🇰🇭
