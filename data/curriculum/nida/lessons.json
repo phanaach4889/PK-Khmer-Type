@@ -1,0 +1,2549 @@
+{
+  "version": "1.0.0",
+  "layout": "nida",
+  "language": "km",
+  "lessons": [
+    {
+      "id": "nida-L00-01",
+      "level": "nida-L00",
+      "order": 1,
+      "title": "Left Index Anchor ថ (F)",
+      "titleKm": "ថ (F)",
+      "description": "Left Index Anchor ថ (F)",
+      "objective": "Master Left Index Anchor ថ (F)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "f",
+          "layer": "base",
+          "char": "ថ",
+          "finger": "li"
+        },
+        {
+          "keyId": "space",
+          "layer": "base",
+          "char": " ",
+          "finger": "thumb"
+        }
+      ],
+      "requiredKeys": [
+        "f",
+        "space"
+      ],
+      "fingerFocus": [
+        "li",
+        "thumb"
+      ],
+      "difficulty": 1,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L00-01-E01",
+        "nida-L00-01-E02",
+        "nida-L00-01-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": null
+      }
+    },
+    {
+      "id": "nida-L00-02",
+      "level": "nida-L00",
+      "order": 2,
+      "title": "Right Middle Anchor ក (K)",
+      "titleKm": "ក (K)",
+      "description": "Right Middle Anchor ក (K)",
+      "objective": "Master Right Middle Anchor ក (K)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "k",
+          "layer": "base",
+          "char": "ក",
+          "finger": "rm"
+        }
+      ],
+      "requiredKeys": [
+        "k"
+      ],
+      "fingerFocus": [
+        "rm"
+      ],
+      "difficulty": 1,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L00-02-E01",
+        "nida-L00-02-E02",
+        "nida-L00-02-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L00-01"
+      }
+    },
+    {
+      "id": "nida-L00-03",
+      "level": "nida-L00",
+      "order": 3,
+      "title": "Spacebar Rhythm",
+      "titleKm": "ចង្វាក់ Spacebar",
+      "description": "Spacebar Rhythm",
+      "objective": "Master Spacebar Rhythm",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [
+        "thumb"
+      ],
+      "difficulty": 1,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L00-03-E01",
+        "nida-L00-03-E02",
+        "nida-L00-03-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L00-02"
+      }
+    },
+    {
+      "id": "nida-L00-04",
+      "level": "nida-L00",
+      "order": 4,
+      "title": "ថ & ក Coordination",
+      "titleKm": "ការរួមបញ្ចូល ថ និង ក",
+      "description": "ថ & ក Coordination",
+      "objective": "Master ថ & ក Coordination",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [
+        "li",
+        "rm"
+      ],
+      "difficulty": 1,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L00-04-E01",
+        "nida-L00-04-E02",
+        "nida-L00-04-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L00-03"
+      }
+    },
+    {
+      "id": "nida-L01-01",
+      "level": "nida-L01",
+      "order": 1,
+      "title": "Vowel ា (A)",
+      "titleKm": "ស្រៈ ា (A)",
+      "description": "Vowel ា (A)",
+      "objective": "Master Vowel ា (A)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "a",
+          "layer": "base",
+          "char": "ា",
+          "finger": "lp"
+        }
+      ],
+      "requiredKeys": [
+        "a"
+      ],
+      "fingerFocus": [
+        "lp"
+      ],
+      "difficulty": 1,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L01-01-E01",
+        "nida-L01-01-E02",
+        "nida-L01-01-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L00-04"
+      }
+    },
+    {
+      "id": "nida-L01-02",
+      "level": "nida-L01",
+      "order": 2,
+      "title": "ស (S) and ដ (D)",
+      "titleKm": "ស និង ដ",
+      "description": "ស (S) and ដ (D)",
+      "objective": "Master ស (S) and ដ (D)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "s",
+          "layer": "base",
+          "char": "ស",
+          "finger": "lr"
+        },
+        {
+          "keyId": "d",
+          "layer": "base",
+          "char": "ដ",
+          "finger": "lm"
+        }
+      ],
+      "requiredKeys": [
+        "s",
+        "d"
+      ],
+      "fingerFocus": [
+        "lr",
+        "lm"
+      ],
+      "difficulty": 1,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L01-02-E01",
+        "nida-L01-02-E02",
+        "nida-L01-02-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L01-01"
+      }
+    },
+    {
+      "id": "nida-L01-03",
+      "level": "nida-L01",
+      "order": 3,
+      "title": "Left Index Reach ង (G)",
+      "titleKm": "ង (G)",
+      "description": "Left Index Reach ង (G)",
+      "objective": "Master Left Index Reach ង (G)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "g",
+          "layer": "base",
+          "char": "ង",
+          "finger": "li"
+        }
+      ],
+      "requiredKeys": [
+        "g"
+      ],
+      "fingerFocus": [
+        "li"
+      ],
+      "difficulty": 1,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L01-03-E01",
+        "nida-L01-03-E02",
+        "nida-L01-03-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L01-02"
+      }
+    },
+    {
+      "id": "nida-L01-04",
+      "level": "nida-L01",
+      "order": 4,
+      "title": "ហ (H) and ល (L)",
+      "titleKm": "ហ និង ល",
+      "description": "ហ (H) and ល (L)",
+      "objective": "Master ហ (H) and ល (L)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "h",
+          "layer": "base",
+          "char": "ហ",
+          "finger": "ri"
+        },
+        {
+          "keyId": "l",
+          "layer": "base",
+          "char": "ល",
+          "finger": "rr"
+        }
+      ],
+      "requiredKeys": [
+        "h",
+        "l"
+      ],
+      "fingerFocus": [
+        "ri",
+        "rr"
+      ],
+      "difficulty": 2,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L01-04-E01",
+        "nida-L01-04-E02",
+        "nida-L01-04-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L01-03"
+      }
+    },
+    {
+      "id": "nida-L01-05",
+      "level": "nida-L01",
+      "order": 5,
+      "title": "Home Row Consonants Review",
+      "titleKm": "រំលឹកព្យញ្ជនៈជួរផ្ទះ",
+      "description": "Home Row Consonants Review",
+      "objective": "Master Home Row Consonants Review",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 2,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L01-05-E01",
+        "nida-L01-05-E02",
+        "nida-L01-05-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L01-04"
+      }
+    },
+    {
+      "id": "nida-L02-01",
+      "level": "nida-L02",
+      "order": 1,
+      "title": "Right Pinky Vowel ើ (;)",
+      "titleKm": "ស្រៈ ើ (;)",
+      "description": "Right Pinky Vowel ើ (;)",
+      "objective": "Master Right Pinky Vowel ើ (;)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "semicolon",
+          "layer": "base",
+          "char": "ើ",
+          "finger": "rp"
+        }
+      ],
+      "requiredKeys": [
+        "semicolon"
+      ],
+      "fingerFocus": [
+        "rp"
+      ],
+      "difficulty": 2,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L02-01-E01",
+        "nida-L02-01-E02",
+        "nida-L02-01-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L01-05"
+      }
+    },
+    {
+      "id": "nida-L02-02",
+      "level": "nida-L02",
+      "order": 2,
+      "title": "Final Stop Mark ់ (' Bantoc)",
+      "titleKm": "បន្តក់ ់ (')",
+      "description": "Final Stop Mark ់ (' Bantoc)",
+      "objective": "Master Final Stop Mark ់ (' Bantoc)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "quote",
+          "layer": "base",
+          "char": "់",
+          "finger": "rp"
+        }
+      ],
+      "requiredKeys": [
+        "quote"
+      ],
+      "fingerFocus": [
+        "rp"
+      ],
+      "difficulty": 2,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L02-02-E01",
+        "nida-L02-02-E02",
+        "nida-L02-02-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L02-01"
+      }
+    },
+    {
+      "id": "nida-L02-03",
+      "level": "nida-L02",
+      "order": 3,
+      "title": "Bantoc Short Words",
+      "titleKm": "ពាក្យខ្លីជាមួយបន្តក់",
+      "description": "Bantoc Short Words",
+      "objective": "Master Bantoc Short Words",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [
+        "rp"
+      ],
+      "difficulty": 2,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L02-03-E01",
+        "nida-L02-03-E02",
+        "nida-L02-03-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L02-02"
+      }
+    },
+    {
+      "id": "nida-L02-04",
+      "level": "nida-L02",
+      "order": 4,
+      "title": "Home Row Complete Review",
+      "titleKm": "រំលឹកជួរផ្ទះពេញលេញ",
+      "description": "Home Row Complete Review",
+      "objective": "Master Home Row Complete Review",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 2,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L02-04-E01",
+        "nida-L02-04-E02",
+        "nida-L02-04-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L02-03"
+      }
+    },
+    {
+      "id": "nida-L03-01",
+      "level": "nida-L03",
+      "order": 1,
+      "title": "Top Row េ (E) and រ (R)",
+      "titleKm": "េ និង រ",
+      "description": "Top Row េ (E) and រ (R)",
+      "objective": "Master Top Row េ (E) and រ (R)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "e",
+          "layer": "base",
+          "char": "េ",
+          "finger": "lm"
+        },
+        {
+          "keyId": "r",
+          "layer": "base",
+          "char": "រ",
+          "finger": "li"
+        }
+      ],
+      "requiredKeys": [
+        "e",
+        "r"
+      ],
+      "fingerFocus": [
+        "lm",
+        "li"
+      ],
+      "difficulty": 2,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L03-01-E01",
+        "nida-L03-01-E02",
+        "nida-L03-01-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L02-04"
+      }
+    },
+    {
+      "id": "nida-L03-02",
+      "level": "nida-L03",
+      "order": 2,
+      "title": "Left Index ត (T)",
+      "titleKm": "ត (T)",
+      "description": "Left Index ត (T)",
+      "objective": "Master Left Index ត (T)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "t",
+          "layer": "base",
+          "char": "ត",
+          "finger": "li"
+        }
+      ],
+      "requiredKeys": [
+        "t"
+      ],
+      "fingerFocus": [
+        "li"
+      ],
+      "difficulty": 3,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L03-02-E01",
+        "nida-L03-02-E02",
+        "nida-L03-02-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L03-01"
+      }
+    },
+    {
+      "id": "nida-L03-03",
+      "level": "nida-L03",
+      "order": 3,
+      "title": "Right Index យ (Y) and ុ (U)",
+      "titleKm": "យ និង ុ",
+      "description": "Right Index យ (Y) and ុ (U)",
+      "objective": "Master Right Index យ (Y) and ុ (U)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "y",
+          "layer": "base",
+          "char": "យ",
+          "finger": "ri"
+        },
+        {
+          "keyId": "u",
+          "layer": "base",
+          "char": "ុ",
+          "finger": "ri"
+        }
+      ],
+      "requiredKeys": [
+        "y",
+        "u"
+      ],
+      "fingerFocus": [
+        "ri"
+      ],
+      "difficulty": 3,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L03-03-E01",
+        "nida-L03-03-E02",
+        "nida-L03-03-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L03-02"
+      }
+    },
+    {
+      "id": "nida-L03-04",
+      "level": "nida-L03",
+      "order": 4,
+      "title": "Right Hand Vowels ិ (I) and ោ (O)",
+      "titleKm": "ស្រៈ ិ និង ោ",
+      "description": "Right Hand Vowels ិ (I) and ោ (O)",
+      "objective": "Master Right Hand Vowels ិ (I) and ោ (O)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "i",
+          "layer": "base",
+          "char": "ិ",
+          "finger": "rm"
+        },
+        {
+          "keyId": "o",
+          "layer": "base",
+          "char": "ោ",
+          "finger": "rr"
+        }
+      ],
+      "requiredKeys": [
+        "i",
+        "o"
+      ],
+      "fingerFocus": [
+        "rm",
+        "rr"
+      ],
+      "difficulty": 3,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L03-04-E01",
+        "nida-L03-04-E02",
+        "nida-L03-04-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L03-03"
+      }
+    },
+    {
+      "id": "nida-L03-05",
+      "level": "nida-L03",
+      "order": 5,
+      "title": "Top + Home Row Words",
+      "titleKm": "ពាក្យជួរលើ និងផ្ទះ",
+      "description": "Top + Home Row Words",
+      "objective": "Master Top + Home Row Words",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 3,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L03-05-E01",
+        "nida-L03-05-E02",
+        "nida-L03-05-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L03-04"
+      }
+    },
+    {
+      "id": "nida-L03-06",
+      "level": "nida-L03",
+      "order": 6,
+      "title": "Top Row Review",
+      "titleKm": "រំលឹកជួរលើ",
+      "description": "Top Row Review",
+      "objective": "Master Top Row Review",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 3,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L03-06-E01",
+        "nida-L03-06-E02",
+        "nida-L03-06-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L03-05"
+      }
+    },
+    {
+      "id": "nida-L04-01",
+      "level": "nida-L04",
+      "order": 1,
+      "title": "ច (C) and វ (V)",
+      "titleKm": "ច និង វ",
+      "description": "ច (C) and វ (V)",
+      "objective": "Master ច (C) and វ (V)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "c",
+          "layer": "base",
+          "char": "ច",
+          "finger": "lm"
+        },
+        {
+          "keyId": "v",
+          "layer": "base",
+          "char": "វ",
+          "finger": "li"
+        }
+      ],
+      "requiredKeys": [
+        "c",
+        "v"
+      ],
+      "fingerFocus": [
+        "lm",
+        "li"
+      ],
+      "difficulty": 3,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L04-01-E01",
+        "nida-L04-01-E02",
+        "nida-L04-01-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L03-06"
+      }
+    },
+    {
+      "id": "nida-L04-02",
+      "level": "nida-L04",
+      "order": 2,
+      "title": "ប (B)",
+      "titleKm": "ប (B)",
+      "description": "ប (B)",
+      "objective": "Master ប (B)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "b",
+          "layer": "base",
+          "char": "ប",
+          "finger": "li"
+        }
+      ],
+      "requiredKeys": [
+        "b"
+      ],
+      "fingerFocus": [
+        "li"
+      ],
+      "difficulty": 3,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L04-02-E01",
+        "nida-L04-02-E02",
+        "nida-L04-02-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L04-01"
+      }
+    },
+    {
+      "id": "nida-L04-03",
+      "level": "nida-L04",
+      "order": 3,
+      "title": "ន (N) and ម (M)",
+      "titleKm": "ន និង ម",
+      "description": "ន (N) and ម (M)",
+      "objective": "Master ន (N) and ម (M)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "n",
+          "layer": "base",
+          "char": "ន",
+          "finger": "ri"
+        },
+        {
+          "keyId": "m",
+          "layer": "base",
+          "char": "ម",
+          "finger": "ri"
+        }
+      ],
+      "requiredKeys": [
+        "n",
+        "m"
+      ],
+      "fingerFocus": [
+        "ri"
+      ],
+      "difficulty": 4,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L04-03-E01",
+        "nida-L04-03-E02",
+        "nida-L04-03-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L04-02"
+      }
+    },
+    {
+      "id": "nida-L04-04",
+      "level": "nida-L04",
+      "order": 4,
+      "title": "Khan Full Stop ។ (Period)",
+      "titleKm": "ខណ្ឌ ។ (Period)",
+      "description": "Khan Full Stop ។ (Period)",
+      "objective": "Master Khan Full Stop ។ (Period)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "period",
+          "layer": "base",
+          "char": "។",
+          "finger": "rr"
+        }
+      ],
+      "requiredKeys": [
+        "period"
+      ],
+      "fingerFocus": [
+        "rr"
+      ],
+      "difficulty": 4,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L04-04-E01",
+        "nida-L04-04-E02",
+        "nida-L04-04-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L04-03"
+      }
+    },
+    {
+      "id": "nida-L04-05",
+      "level": "nida-L04",
+      "order": 5,
+      "title": "Bottom Row Review",
+      "titleKm": "រំលឹកជួរក្រោម",
+      "description": "Bottom Row Review",
+      "objective": "Master Bottom Row Review",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 4,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L04-05-E01",
+        "nida-L04-05-E02",
+        "nida-L04-05-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L04-04"
+      }
+    },
+    {
+      "id": "nida-L05-01",
+      "level": "nida-L05",
+      "order": 1,
+      "title": "ខ (X) and ឆ (Q)",
+      "titleKm": "ខ និង ឆ",
+      "description": "ខ (X) and ឆ (Q)",
+      "objective": "Master ខ (X) and ឆ (Q)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "x",
+          "layer": "base",
+          "char": "ខ",
+          "finger": "lr"
+        },
+        {
+          "keyId": "q",
+          "layer": "base",
+          "char": "ឆ",
+          "finger": "lp"
+        }
+      ],
+      "requiredKeys": [
+        "x",
+        "q"
+      ],
+      "fingerFocus": [
+        "lr",
+        "lp"
+      ],
+      "difficulty": 4,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L05-01-E01",
+        "nida-L05-01-E02",
+        "nida-L05-01-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L04-05"
+      }
+    },
+    {
+      "id": "nida-L05-02",
+      "level": "nida-L05",
+      "order": 2,
+      "title": "ផ (P)",
+      "titleKm": "ផ (P)",
+      "description": "ផ (P)",
+      "objective": "Master ផ (P)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "p",
+          "layer": "base",
+          "char": "ផ",
+          "finger": "rp"
+        }
+      ],
+      "requiredKeys": [
+        "p"
+      ],
+      "fingerFocus": [
+        "rp"
+      ],
+      "difficulty": 4,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L05-02-E01",
+        "nida-L05-02-E02",
+        "nida-L05-02-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L05-01"
+      }
+    },
+    {
+      "id": "nida-L05-03",
+      "level": "nida-L05",
+      "order": 3,
+      "title": "ឋ (Z)",
+      "titleKm": "ឋ (Z)",
+      "description": "ឋ (Z)",
+      "objective": "Master ឋ (Z)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "z",
+          "layer": "base",
+          "char": "ឋ",
+          "finger": "lp"
+        }
+      ],
+      "requiredKeys": [
+        "z"
+      ],
+      "fingerFocus": [
+        "lp"
+      ],
+      "difficulty": 4,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L05-03-E01",
+        "nida-L05-03-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L05-02"
+      }
+    },
+    {
+      "id": "nida-L05-04",
+      "level": "nida-L05",
+      "order": 4,
+      "title": "ៀ ([) and ឹ (W)",
+      "titleKm": "ស្រៈ ៀ និង ឹ",
+      "description": "ៀ ([) and ឹ (W)",
+      "objective": "Master ៀ ([) and ឹ (W)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "bracketL",
+          "layer": "base",
+          "char": "ៀ",
+          "finger": "rp"
+        },
+        {
+          "keyId": "w",
+          "layer": "base",
+          "char": "ឹ",
+          "finger": "lr"
+        }
+      ],
+      "requiredKeys": [
+        "bracketL",
+        "w"
+      ],
+      "fingerFocus": [
+        "rp",
+        "lr"
+      ],
+      "difficulty": 4,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L05-04-E01",
+        "nida-L05-04-E02",
+        "nida-L05-04-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L05-03"
+      }
+    },
+    {
+      "id": "nida-L05-05",
+      "level": "nida-L05",
+      "order": 5,
+      "title": "Compound ុំ (,) and ៊ (/)",
+      "titleKm": "ស្រៈ ុំ និង ត្រីស័ព្ទ ៊",
+      "description": "Compound ុំ (,) and ៊ (/)",
+      "objective": "Master Compound ុំ (,) and ៊ (/)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "comma",
+          "layer": "base",
+          "char": "ុំ",
+          "finger": "rm"
+        },
+        {
+          "keyId": "slash",
+          "layer": "base",
+          "char": "៊",
+          "finger": "rp"
+        }
+      ],
+      "requiredKeys": [
+        "comma",
+        "slash"
+      ],
+      "fingerFocus": [
+        "rm",
+        "rp"
+      ],
+      "difficulty": 5,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L05-05-E01",
+        "nida-L05-05-E02",
+        "nida-L05-05-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L05-04"
+      }
+    },
+    {
+      "id": "nida-L05-06",
+      "level": "nida-L05",
+      "order": 6,
+      "title": "ញ (J) and Subscript ្ (Shift+J)",
+      "titleKm": "ញ (J) និង ជើង ្ (Shift+J)",
+      "description": "ញ (J) and Subscript ្ (Shift+J)",
+      "objective": "Master ញ (J) and Subscript ្ (Shift+J)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "j",
+          "layer": "base",
+          "char": "ញ",
+          "finger": "ri"
+        },
+        {
+          "keyId": "shiftLeft",
+          "layer": "shift",
+          "char": "",
+          "finger": "lp"
+        },
+        {
+          "keyId": "j",
+          "layer": "shift",
+          "char": "្",
+          "finger": "ri"
+        }
+      ],
+      "requiredKeys": [
+        "j",
+        "shiftLeft",
+        "j"
+      ],
+      "fingerFocus": [
+        "ri"
+      ],
+      "difficulty": 5,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L05-06-E01",
+        "nida-L05-06-E02",
+        "nida-L05-06-E03",
+        "nida-L05-06-E04"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L05-05"
+      }
+    },
+    {
+      "id": "nida-L05-07",
+      "level": "nida-L05",
+      "order": 7,
+      "title": "Consonant Clusters (ក្រ, ស្រ, ប្រ)",
+      "titleKm": "ព្យញ្ជនៈផ្ញើជើង",
+      "description": "Consonant Clusters (ក្រ, ស្រ, ប្រ)",
+      "objective": "Master Consonant Clusters (ក្រ, ស្រ, ប្រ)",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 5,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L05-07-E01",
+        "nida-L05-07-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L05-06"
+      }
+    },
+    {
+      "id": "nida-L05-08",
+      "level": "nida-L05",
+      "order": 8,
+      "title": "Base Layer Mastery Review",
+      "titleKm": "រំលឹកតួអក្សរមូលដ្ឋានពេញលេញ",
+      "description": "Base Layer Mastery Review",
+      "objective": "Master Base Layer Mastery Review",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 5,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L05-08-E01",
+        "nida-L05-08-E02",
+        "nida-L05-08-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L05-07"
+      }
+    },
+    {
+      "id": "nida-L06-01",
+      "level": "nida-L06",
+      "order": 1,
+      "title": "គ (Shift+K) and ជ (Shift+C)",
+      "titleKm": "គ និង ជ",
+      "description": "គ (Shift+K) and ជ (Shift+C)",
+      "objective": "Master គ (Shift+K) and ជ (Shift+C)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "shiftLeft",
+          "layer": "shift",
+          "char": "",
+          "finger": "lp"
+        },
+        {
+          "keyId": "k",
+          "layer": "shift",
+          "char": "គ",
+          "finger": "rm"
+        },
+        {
+          "keyId": "c",
+          "layer": "shift",
+          "char": "ជ",
+          "finger": "lm"
+        }
+      ],
+      "requiredKeys": [
+        "shiftLeft",
+        "k",
+        "c"
+      ],
+      "fingerFocus": [],
+      "difficulty": 5,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L06-01-E01",
+        "nida-L06-01-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L05-08"
+      }
+    },
+    {
+      "id": "nida-L06-02",
+      "level": "nida-L06",
+      "order": 2,
+      "title": "ទ (Shift+T) and ធ (Shift+F)",
+      "titleKm": "ទ និង ធ",
+      "description": "ទ (Shift+T) and ធ (Shift+F)",
+      "objective": "Master ទ (Shift+T) and ធ (Shift+F)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "t",
+          "layer": "shift",
+          "char": "ទ",
+          "finger": "li"
+        },
+        {
+          "keyId": "f",
+          "layer": "shift",
+          "char": "ធ",
+          "finger": "li"
+        }
+      ],
+      "requiredKeys": [
+        "t",
+        "f"
+      ],
+      "fingerFocus": [],
+      "difficulty": 5,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L06-02-E01",
+        "nida-L06-02-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L06-01"
+      }
+    },
+    {
+      "id": "nida-L06-03",
+      "level": "nida-L06",
+      "order": 3,
+      "title": "ព (Shift+B) and ភ (Shift+P)",
+      "titleKm": "ព និង ភ",
+      "description": "ព (Shift+B) and ភ (Shift+P)",
+      "objective": "Master ព (Shift+B) and ភ (Shift+P)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "b",
+          "layer": "shift",
+          "char": "ព",
+          "finger": "li"
+        },
+        {
+          "keyId": "p",
+          "layer": "shift",
+          "char": "ភ",
+          "finger": "rp"
+        }
+      ],
+      "requiredKeys": [
+        "b",
+        "p"
+      ],
+      "fingerFocus": [],
+      "difficulty": 5,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L06-03-E01",
+        "nida-L06-03-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L06-02"
+      }
+    },
+    {
+      "id": "nida-L06-04",
+      "level": "nida-L06",
+      "order": 4,
+      "title": "ឌ (Shift+D) and ណ (Shift+N)",
+      "titleKm": "ឌ និង ណ",
+      "description": "ឌ (Shift+D) and ណ (Shift+N)",
+      "objective": "Master ឌ (Shift+D) and ណ (Shift+N)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "d",
+          "layer": "shift",
+          "char": "ឌ",
+          "finger": "lm"
+        },
+        {
+          "keyId": "n",
+          "layer": "shift",
+          "char": "ណ",
+          "finger": "ri"
+        }
+      ],
+      "requiredKeys": [
+        "d",
+        "n"
+      ],
+      "fingerFocus": [],
+      "difficulty": 6,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L06-04-E01",
+        "nida-L06-04-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L06-03"
+      }
+    },
+    {
+      "id": "nida-L06-05",
+      "level": "nida-L06",
+      "order": 5,
+      "title": "អ (Shift+G)",
+      "titleKm": "អ (Shift+G)",
+      "description": "អ (Shift+G)",
+      "objective": "Master អ (Shift+G)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "g",
+          "layer": "shift",
+          "char": "អ",
+          "finger": "li"
+        }
+      ],
+      "requiredKeys": [
+        "g"
+      ],
+      "fingerFocus": [],
+      "difficulty": 6,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L06-05-E01",
+        "nida-L06-05-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L06-04"
+      }
+    },
+    {
+      "id": "nida-L06-06",
+      "level": "nida-L06",
+      "order": 6,
+      "title": "ឃ ឈ ឍ ឡ",
+      "titleKm": "ឃ ឈ ឍ ឡ",
+      "description": "ឃ ឈ ឍ ឡ",
+      "objective": "Master ឃ ឈ ឍ ឡ",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "x",
+          "layer": "shift",
+          "char": "ឃ",
+          "finger": "lr"
+        },
+        {
+          "keyId": "q",
+          "layer": "shift",
+          "char": "ឈ",
+          "finger": "lp"
+        },
+        {
+          "keyId": "z",
+          "layer": "shift",
+          "char": "ឍ",
+          "finger": "lp"
+        },
+        {
+          "keyId": "l",
+          "layer": "shift",
+          "char": "ឡ",
+          "finger": "rr"
+        }
+      ],
+      "requiredKeys": [
+        "x",
+        "q",
+        "z",
+        "l"
+      ],
+      "fingerFocus": [],
+      "difficulty": 6,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L06-06-E01",
+        "nida-L06-06-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L06-05"
+      }
+    },
+    {
+      "id": "nida-L06-07",
+      "level": "nida-L06",
+      "order": 7,
+      "title": "Base vs Shift Pairs Drill",
+      "titleKm": "គូប្រៀបធៀបមូលដ្ឋាននិង Shift",
+      "description": "Base vs Shift Pairs Drill",
+      "objective": "Master Base vs Shift Pairs Drill",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 6,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L06-07-E01",
+        "nida-L06-07-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L06-06"
+      }
+    },
+    {
+      "id": "nida-L06-08",
+      "level": "nida-L06",
+      "order": 8,
+      "title": "Shift Consonants Review",
+      "titleKm": "រំលឹកព្យញ្ជនៈ Shift",
+      "description": "Shift Consonants Review",
+      "objective": "Master Shift Consonants Review",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 6,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L06-08-E01",
+        "nida-L06-08-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L06-07"
+      }
+    },
+    {
+      "id": "nida-L07-01",
+      "level": "nida-L07",
+      "order": 1,
+      "title": "ី (Shift+I) and ូ (Shift+U)",
+      "titleKm": "ស្រៈ ី និង ូ",
+      "description": "ី (Shift+I) and ូ (Shift+U)",
+      "objective": "Master ី (Shift+I) and ូ (Shift+U)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "i",
+          "layer": "shift",
+          "char": "ី",
+          "finger": "rm"
+        },
+        {
+          "keyId": "u",
+          "layer": "shift",
+          "char": "ូ",
+          "finger": "ri"
+        }
+      ],
+      "requiredKeys": [
+        "i",
+        "u"
+      ],
+      "fingerFocus": [],
+      "difficulty": 6,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L07-01-E01",
+        "nida-L07-01-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L06-08"
+      }
+    },
+    {
+      "id": "nida-L07-02",
+      "level": "nida-L07",
+      "order": 2,
+      "title": "ែ (Shift+E) and ៃ (Shift+S)",
+      "titleKm": "ស្រៈ ែ និង ៃ",
+      "description": "ែ (Shift+E) and ៃ (Shift+S)",
+      "objective": "Master ែ (Shift+E) and ៃ (Shift+S)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "e",
+          "layer": "shift",
+          "char": "ែ",
+          "finger": "lm"
+        },
+        {
+          "keyId": "s",
+          "layer": "shift",
+          "char": "ៃ",
+          "finger": "lr"
+        }
+      ],
+      "requiredKeys": [
+        "e",
+        "s"
+      ],
+      "fingerFocus": [],
+      "difficulty": 6,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L07-02-E01",
+        "nida-L07-02-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L07-01"
+      }
+    },
+    {
+      "id": "nida-L07-03",
+      "level": "nida-L07",
+      "order": 3,
+      "title": "ួ (Shift+Y) and ៅ (Shift+O)",
+      "titleKm": "ស្រៈ ួ និង ៅ",
+      "description": "ួ (Shift+Y) and ៅ (Shift+O)",
+      "objective": "Master ួ (Shift+Y) and ៅ (Shift+O)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "y",
+          "layer": "shift",
+          "char": "ួ",
+          "finger": "ri"
+        },
+        {
+          "keyId": "o",
+          "layer": "shift",
+          "char": "ៅ",
+          "finger": "rr"
+        }
+      ],
+      "requiredKeys": [
+        "y",
+        "o"
+      ],
+      "fingerFocus": [],
+      "difficulty": 7,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L07-03-E01",
+        "nida-L07-03-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L07-02"
+      }
+    },
+    {
+      "id": "nida-L07-04",
+      "level": "nida-L07",
+      "order": 4,
+      "title": "ាំ (Shift+A) and ំ (Shift+M)",
+      "titleKm": "ស្រៈ ាំ និង ំ",
+      "description": "ាំ (Shift+A) and ំ (Shift+M)",
+      "objective": "Master ាំ (Shift+A) and ំ (Shift+M)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "a",
+          "layer": "shift",
+          "char": "ាំ",
+          "finger": "lp"
+        },
+        {
+          "keyId": "m",
+          "layer": "shift",
+          "char": "ំ",
+          "finger": "ri"
+        }
+      ],
+      "requiredKeys": [
+        "a",
+        "m"
+      ],
+      "fingerFocus": [],
+      "difficulty": 7,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L07-04-E01",
+        "nida-L07-04-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L07-03"
+      }
+    },
+    {
+      "id": "nida-L07-05",
+      "level": "nida-L07",
+      "order": 5,
+      "title": "ះ េះ ោះ ុះ",
+      "titleKm": "ស្រៈ ះ េះ ោះ ុះ",
+      "description": "ះ េះ ោះ ុះ",
+      "objective": "Master ះ េះ ោះ ុះ",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "h",
+          "layer": "shift",
+          "char": "ះ",
+          "finger": "ri"
+        },
+        {
+          "keyId": "v",
+          "layer": "shift",
+          "char": "េះ",
+          "finger": "li"
+        },
+        {
+          "keyId": "semicolon",
+          "layer": "shift",
+          "char": "ោះ",
+          "finger": "rp"
+        },
+        {
+          "keyId": "comma",
+          "layer": "shift",
+          "char": "ុះ",
+          "finger": "rm"
+        }
+      ],
+      "requiredKeys": [
+        "h",
+        "v",
+        "semicolon",
+        "comma"
+      ],
+      "fingerFocus": [],
+      "difficulty": 7,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L07-05-E01",
+        "nida-L07-05-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L07-04"
+      }
+    },
+    {
+      "id": "nida-L07-06",
+      "level": "nida-L07",
+      "order": 6,
+      "title": "ឺ (Shift+W) and ឿ (Shift+[)",
+      "titleKm": "ស្រៈ ឺ និង ឿ",
+      "description": "ឺ (Shift+W) and ឿ (Shift+[)",
+      "objective": "Master ឺ (Shift+W) and ឿ (Shift+[)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "w",
+          "layer": "shift",
+          "char": "ឺ",
+          "finger": "lr"
+        },
+        {
+          "keyId": "bracketL",
+          "layer": "shift",
+          "char": "ឿ",
+          "finger": "rp"
+        }
+      ],
+      "requiredKeys": [
+        "w",
+        "bracketL"
+      ],
+      "fingerFocus": [],
+      "difficulty": 7,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L07-06-E01",
+        "nida-L07-06-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L07-05"
+      }
+    },
+    {
+      "id": "nida-L07-07",
+      "level": "nida-L07",
+      "order": 7,
+      "title": "All Vowels Review",
+      "titleKm": "រំលឹកស្រៈទាំងអស់",
+      "description": "All Vowels Review",
+      "objective": "Master All Vowels Review",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 7,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L07-07-E01",
+        "nida-L07-07-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L07-06"
+      }
+    },
+    {
+      "id": "nida-L08-01",
+      "level": "nida-L08",
+      "order": 1,
+      "title": "្រ (Subscript R) Clusters",
+      "titleKm": "ជើង ្រ",
+      "description": "្រ (Subscript R) Clusters",
+      "objective": "Master ្រ (Subscript R) Clusters",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 7,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L08-01-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L07-07"
+      }
+    },
+    {
+      "id": "nida-L08-02",
+      "level": "nida-L08",
+      "order": 2,
+      "title": "្ល (Subscript L) Clusters",
+      "titleKm": "ជើង ្ល",
+      "description": "្ល (Subscript L) Clusters",
+      "objective": "Master ្ល (Subscript L) Clusters",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 7,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L08-02-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L08-01"
+      }
+    },
+    {
+      "id": "nida-L08-03",
+      "level": "nida-L08",
+      "order": 3,
+      "title": "Subscript ញ ណ ន ម",
+      "titleKm": "ជើង ព្យញ្ជនៈច្រមុះ",
+      "description": "Subscript ញ ណ ន ម",
+      "objective": "Master Subscript ញ ណ ន ម",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 8,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L08-03-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L08-02"
+      }
+    },
+    {
+      "id": "nida-L08-04",
+      "level": "nida-L08",
+      "order": 4,
+      "title": "Doubled Consonants",
+      "titleKm": "ព្យញ្ជនៈត្រួត",
+      "description": "Doubled Consonants",
+      "objective": "Master Doubled Consonants",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 8,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L08-04-E01",
+        "nida-L08-04-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L08-03"
+      }
+    },
+    {
+      "id": "nida-L08-05",
+      "level": "nida-L08",
+      "order": 5,
+      "title": "Complex Subscripts",
+      "titleKm": "ការផ្សំជើងស្មុគស្មាញ",
+      "description": "Complex Subscripts",
+      "objective": "Master Complex Subscripts",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 8,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L08-05-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L08-04"
+      }
+    },
+    {
+      "id": "nida-L08-06",
+      "level": "nida-L08",
+      "order": 6,
+      "title": "Coeng Mastery Review",
+      "titleKm": "រំលឹកព្យញ្ជនៈផ្ញើជើង",
+      "description": "Coeng Mastery Review",
+      "objective": "Master Coeng Mastery Review",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 8,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L08-06-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L08-05"
+      }
+    },
+    {
+      "id": "nida-L09-01",
+      "level": "nida-L09",
+      "order": 1,
+      "title": "៉ (Shift+') and ៊ (Shift+/)",
+      "titleKm": "មូសិកទន្ត ៉ និង ត្រីស័ព្ទ ៊",
+      "description": "៉ (Shift+') and ៊ (Shift+/)",
+      "objective": "Master ៉ (Shift+') and ៊ (Shift+/)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "quote",
+          "layer": "shift",
+          "char": "៉",
+          "finger": "rp"
+        }
+      ],
+      "requiredKeys": [
+        "quote"
+      ],
+      "fingerFocus": [],
+      "difficulty": 8,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L09-01-E01",
+        "nida-L09-01-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L08-06"
+      }
+    },
+    {
+      "id": "nida-L09-02",
+      "level": "nida-L09",
+      "order": 2,
+      "title": "ៗ (Shift+2) and ៕ (Shift+Period)",
+      "titleKm": "ៗ និង ៕",
+      "description": "ៗ (Shift+2) and ៕ (Shift+Period)",
+      "objective": "Master ៗ (Shift+2) and ៕ (Shift+Period)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "k2",
+          "layer": "shift",
+          "char": "ៗ",
+          "finger": "lr"
+        },
+        {
+          "keyId": "period",
+          "layer": "shift",
+          "char": "៕",
+          "finger": "rr"
+        }
+      ],
+      "requiredKeys": [
+        "k2",
+        "period"
+      ],
+      "fingerFocus": [],
+      "difficulty": 8,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L09-02-E01",
+        "nida-L09-02-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L09-01"
+      }
+    },
+    {
+      "id": "nida-L09-03",
+      "level": "nida-L09",
+      "order": 3,
+      "title": "Top Diacritics (័ ៌ ៍ ៏)",
+      "titleKm": "័ ៌ ៍ ៏",
+      "description": "Top Diacritics (័ ៌ ៍ ៏)",
+      "objective": "Master Top Diacritics (័ ៌ ៍ ៏)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "k7",
+          "layer": "shift",
+          "char": "័",
+          "finger": "ri"
+        },
+        {
+          "keyId": "minus",
+          "layer": "shift",
+          "char": "៌",
+          "finger": "rp"
+        },
+        {
+          "keyId": "k6",
+          "layer": "shift",
+          "char": "៍",
+          "finger": "ri"
+        },
+        {
+          "keyId": "k8",
+          "layer": "shift",
+          "char": "៏",
+          "finger": "rm"
+        }
+      ],
+      "requiredKeys": [
+        "k7",
+        "minus",
+        "k6",
+        "k8"
+      ],
+      "fingerFocus": [],
+      "difficulty": 8,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L09-03-E01",
+        "nida-L09-03-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L09-02"
+      }
+    },
+    {
+      "id": "nida-L09-04",
+      "level": "nida-L09",
+      "order": 4,
+      "title": "៛ (Shift+4) and ៖ (AltGr+;)",
+      "titleKm": "៛ និង ៖",
+      "description": "៛ (Shift+4) and ៖ (AltGr+;)",
+      "objective": "Master ៛ (Shift+4) and ៖ (AltGr+;)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "k4",
+          "layer": "shift",
+          "char": "៛",
+          "finger": "li"
+        },
+        {
+          "keyId": "semicolon",
+          "layer": "altgr",
+          "char": "៖",
+          "finger": "rp"
+        }
+      ],
+      "requiredKeys": [
+        "k4",
+        "semicolon"
+      ],
+      "fingerFocus": [],
+      "difficulty": 9,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L09-04-E01",
+        "nida-L09-04-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L09-03"
+      }
+    },
+    {
+      "id": "nida-L09-05",
+      "level": "nida-L09",
+      "order": 5,
+      "title": "Diacritics Complete Review",
+      "titleKm": "រំលឹកវណ្ណយុត្តិពេញលេញ",
+      "description": "Diacritics Complete Review",
+      "objective": "Master Diacritics Complete Review",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 9,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L09-05-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L09-04"
+      }
+    },
+    {
+      "id": "nida-L10-01",
+      "level": "nida-L10",
+      "order": 1,
+      "title": "Family Words",
+      "titleKm": "ពាក្យគ្រួសារ",
+      "description": "Family Words",
+      "objective": "Master Family Words",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 9,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L10-01-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L09-05"
+      }
+    },
+    {
+      "id": "nida-L10-02",
+      "level": "nida-L10",
+      "order": 2,
+      "title": "School Words",
+      "titleKm": "ពាក្យសាលារៀន",
+      "description": "School Words",
+      "objective": "Master School Words",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 9,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L10-02-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L10-01"
+      }
+    },
+    {
+      "id": "nida-L10-03",
+      "level": "nida-L10",
+      "order": 3,
+      "title": "Food Words",
+      "titleKm": "ពាក្យម្ហូបអាហារ",
+      "description": "Food Words",
+      "objective": "Master Food Words",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 9,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L10-03-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L10-02"
+      }
+    },
+    {
+      "id": "nida-L10-04",
+      "level": "nida-L10",
+      "order": 4,
+      "title": "Place Words",
+      "titleKm": "ពាក្យទីកន្លែង",
+      "description": "Place Words",
+      "objective": "Master Place Words",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 9,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L10-04-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L10-03"
+      }
+    },
+    {
+      "id": "nida-L10-05",
+      "level": "nida-L10",
+      "order": 5,
+      "title": "Common Verbs",
+      "titleKm": "កិរិយាសព្ទ",
+      "description": "Common Verbs",
+      "objective": "Master Common Verbs",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 9,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L10-05-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L10-04"
+      }
+    },
+    {
+      "id": "nida-L10-06",
+      "level": "nida-L10",
+      "order": 6,
+      "title": "Descriptive Adjectives",
+      "titleKm": "គុណនាម",
+      "description": "Descriptive Adjectives",
+      "objective": "Master Descriptive Adjectives",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L10-06-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L10-05"
+      }
+    },
+    {
+      "id": "nida-L10-07",
+      "level": "nida-L10",
+      "order": 7,
+      "title": "Time and Numbers",
+      "titleKm": "ពេលវេលា",
+      "description": "Time and Numbers",
+      "objective": "Master Time and Numbers",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L10-07-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L10-06"
+      }
+    },
+    {
+      "id": "nida-L10-08",
+      "level": "nida-L10",
+      "order": 8,
+      "title": "High-Frequency Words Review",
+      "titleKm": "រំលឹកពាក្យទូទៅ",
+      "description": "High-Frequency Words Review",
+      "objective": "Master High-Frequency Words Review",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L10-08-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L10-07"
+      }
+    },
+    {
+      "id": "nida-L11-01",
+      "level": "nida-L11",
+      "order": 1,
+      "title": "Short Sentences (Shift+Space)",
+      "titleKm": "ប្រយោគខ្លី",
+      "description": "Short Sentences (Shift+Space)",
+      "objective": "Master Short Sentences (Shift+Space)",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "space",
+          "layer": "shift",
+          "char": " ",
+          "finger": "rt"
+        }
+      ],
+      "requiredKeys": [
+        "space"
+      ],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L11-01-E01",
+        "nida-L11-01-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L10-08"
+      }
+    },
+    {
+      "id": "nida-L11-02",
+      "level": "nida-L11",
+      "order": 2,
+      "title": "Medium Sentences",
+      "titleKm": "ប្រយោគមធ្យម",
+      "description": "Medium Sentences",
+      "objective": "Master Medium Sentences",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L11-02-E01",
+        "nida-L11-02-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L11-01"
+      }
+    },
+    {
+      "id": "nida-L11-03",
+      "level": "nida-L11",
+      "order": 3,
+      "title": "Long Sentences",
+      "titleKm": "ប្រយោគវែង",
+      "description": "Long Sentences",
+      "objective": "Master Long Sentences",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L11-03-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L11-02"
+      }
+    },
+    {
+      "id": "nida-L11-04",
+      "level": "nida-L11",
+      "order": 4,
+      "title": "Short Paragraph",
+      "titleKm": "កថាខណ្ឌខ្លី",
+      "description": "Short Paragraph",
+      "objective": "Master Short Paragraph",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L11-04-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L11-03"
+      }
+    },
+    {
+      "id": "nida-L11-05",
+      "level": "nida-L11",
+      "order": 5,
+      "title": "Culture Paragraph",
+      "titleKm": "កថាខណ្ឌវប្បធម៌",
+      "description": "Culture Paragraph",
+      "objective": "Master Culture Paragraph",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L11-05-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L11-04"
+      }
+    },
+    {
+      "id": "nida-L11-06",
+      "level": "nida-L11",
+      "order": 6,
+      "title": "Paragraph Challenge",
+      "titleKm": "ការប្រកួតកថាខណ្ឌ",
+      "description": "Paragraph Challenge",
+      "objective": "Master Paragraph Challenge",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L11-06-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L11-05"
+      }
+    },
+    {
+      "id": "nida-L12-01",
+      "level": "nida-L12",
+      "order": 1,
+      "title": "1-Minute Timed Drill",
+      "titleKm": "ការហ្វឹកហាត់ ១ នាទី",
+      "description": "1-Minute Timed Drill",
+      "objective": "Master 1-Minute Timed Drill",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L12-01-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L11-06"
+      }
+    },
+    {
+      "id": "nida-L12-02",
+      "level": "nida-L12",
+      "order": 2,
+      "title": "3-Minute Timed Drill",
+      "titleKm": "ការហ្វឹកហាត់ ៣ នាទី",
+      "description": "3-Minute Timed Drill",
+      "objective": "Master 3-Minute Timed Drill",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L12-02-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L12-01"
+      }
+    },
+    {
+      "id": "nida-L12-03",
+      "level": "nida-L12",
+      "order": 3,
+      "title": "Speed Challenge",
+      "titleKm": "ការប្រកួតល្បឿន",
+      "description": "Speed Challenge",
+      "objective": "Master Speed Challenge",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L12-03-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L12-02"
+      }
+    },
+    {
+      "id": "nida-L12-04",
+      "level": "nida-L12",
+      "order": 4,
+      "title": "Independent Vowels Bonus",
+      "titleKm": "ស្រៈពេញតួ (AltGr)",
+      "description": "Independent Vowels Bonus",
+      "objective": "Master Independent Vowels Bonus",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "bracketR",
+          "layer": "base",
+          "char": "ឪ",
+          "finger": "rp"
+        },
+        {
+          "keyId": "bracketR",
+          "layer": "shift",
+          "char": "ឧ",
+          "finger": "rp"
+        },
+        {
+          "keyId": "equal",
+          "layer": "base",
+          "char": "ឲ",
+          "finger": "rp"
+        },
+        {
+          "keyId": "e",
+          "layer": "altgr",
+          "char": "ឯ",
+          "finger": "lm"
+        },
+        {
+          "keyId": "o",
+          "layer": "altgr",
+          "char": "ឱ",
+          "finger": "rr"
+        }
+      ],
+      "requiredKeys": [
+        "bracketR",
+        "bracketR",
+        "equal",
+        "e",
+        "o"
+      ],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L12-04-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L12-03"
+      }
+    },
+    {
+      "id": "nida-L12-05",
+      "level": "nida-L12",
+      "order": 5,
+      "title": "NiDA Mastery Test",
+      "titleKm": "ការប្រឡងបញ្ចប់ NiDA",
+      "description": "NiDA Mastery Test",
+      "objective": "Master NiDA Mastery Test",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "nida-L12-05-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "nida-L12-04"
+      }
+    }
+  ]
+}

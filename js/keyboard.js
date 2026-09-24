@@ -122,7 +122,7 @@ const ROW3_NIDA = [
   KEY('f','ថ','','','ធ'),
   KEY('g','ង','','','អ'),
   KEY('h','ហ','','','ះ'),
-  KEY('j','្','','','ញ'),
+  KEY('j','ញ','','','្'),
   KEY('k','ក','','','គ'),
   KEY('l','ល','','','ឡ'),
   KEY('semicolon','ើ','','៖','ោះ'),
@@ -254,6 +254,7 @@ const LAYOUTS = {
   },
 };
 let currentLayoutId = 'standard';
+window.currentLayoutId = currentLayoutId;
 let ALL_ROWS = LAYOUTS[currentLayoutId].rows;
 
 /* physical-keyboard code -> our key id */
@@ -390,10 +391,18 @@ if(document.readyState !== 'loading'){
 /* ---------- layout switching ---------- */
 function switchLayout(id){
   if(!LAYOUTS[id] || id === currentLayoutId) return;
+  const prevLayout = currentLayoutId;
+  if(typeof adaptiveActive !== 'undefined' && adaptiveActive && typeof PK_ADAPTIVE !== 'undefined' && typeof PK_ADAPTIVE.exitSession === 'function'){
+    PK_ADAPTIVE.exitSession();
+  }
   if(typeof lessonActive !== 'undefined' && lessonActive) exitLesson();
   if(typeof trialActive !== 'undefined' && trialActive) stopTrial();
   if(typeof raceMode !== 'undefined' && raceMode) exitRaceMode();
   currentLayoutId = id;
+  window.currentLayoutId = currentLayoutId;
+  if(typeof PK_TRACKER !== 'undefined' && typeof PK_TRACKER.recordLayoutSwitch === 'function'){
+    PK_TRACKER.recordLayoutSwitch(prevLayout, id);
+  }
   ALL_ROWS = LAYOUTS[id].rows;
   if(typeof LESSON_SETS !== 'undefined'){
     LESSONS = LESSON_SETS[id] || LESSONS;
@@ -403,6 +412,9 @@ function switchLayout(id){
     }
     if(typeof renderLessonStrip === 'function') renderLessonStrip();
     if(typeof updateMasteryStat === 'function') updateMasteryStat();
+    if(typeof PK_ADAPTIVE !== 'undefined' && typeof PK_ADAPTIVE.updateSidebarCard === 'function'){
+      PK_ADAPTIVE.updateSidebarCard(id);
+    }
   }
   hoverLayer = null;
   lockedLayer = null;
@@ -444,6 +456,7 @@ const KEY_FINGER = {
   comma:'rm', period:'rr', slash:'rp', extra:'rp', shiftR:'rp',
   ctrlL:'lt', alt:'lt', space:'rt', altgr:'rt', ctrlR:'rp',
 };
+window.KEY_FINGER = KEY_FINGER;
 /* kind drives natural anatomy: relative width, knuckle height, resting reach & fan angle */
 const FINGERS = [
   {id:'lp', hand:'L', home:'a', kind:'pinky',  baseW:12.5, tipW:7.5, kDist:68, restLen:52, restAng:-0.10},

@@ -21,6 +21,9 @@ async function loadExternalData(){
       const tcData = await tcRes.json();
       if(typeof applyTypingContentData === "function") applyTypingContentData(tcData);
     }
+    if(typeof loadAllCurricula === "function"){
+      await loadAllCurricula();
+    }
   } catch(e) {
     // Silent fallback: in-memory data already active
   }

@@ -1,0 +1,1261 @@
+{
+  "version": "1.0.0",
+  "layout": "nida",
+  "exercises": {
+    "nida-L00-01-E01": {
+      "type": "single-char",
+      "content": "ថថថ ថថថ ថថថ",
+      "description": "Left index on F (ថ)"
+    },
+    "nida-L00-01-E02": {
+      "type": "single-char",
+      "content": "ថ ថ ថ ថ ថ",
+      "description": "Tap ថ with rhythm"
+    },
+    "nida-L00-01-E03": {
+      "type": "single-char",
+      "content": "ថថ ថថ ថថ ថថ",
+      "description": "Double taps on ថ"
+    },
+    "nida-L00-02-E01": {
+      "type": "single-char",
+      "content": "កកក កកក កកក",
+      "description": "Right middle on K (ក)"
+    },
+    "nida-L00-02-E02": {
+      "type": "single-char",
+      "content": "ក ក ក ក ក",
+      "description": "Tap ក with right middle"
+    },
+    "nida-L00-02-E03": {
+      "type": "single-char",
+      "content": "កក កក កក កក",
+      "description": "Double taps on ក"
+    },
+    "nida-L00-03-E01": {
+      "type": "drill",
+      "content": "ថ ក ថ ក ថ",
+      "description": "Alternating anchors with space"
+    },
+    "nida-L00-03-E02": {
+      "type": "drill",
+      "content": "ក ថ ក ថ ក",
+      "description": "Reverse alternating rhythm"
+    },
+    "nida-L00-03-E03": {
+      "type": "drill",
+      "content": "ថ ថ ក ក ថ",
+      "description": "Double taps separated by space"
+    },
+    "nida-L00-04-E01": {
+      "type": "drill",
+      "content": "ថក កថ ថក កថ",
+      "description": "Paired anchor coordination"
+    },
+    "nida-L00-04-E02": {
+      "type": "drill",
+      "content": "ថថកក កកថថ",
+      "description": "Double anchor clusters"
+    },
+    "nida-L00-04-E03": {
+      "type": "drill",
+      "content": "កក ថថ កថ ថក",
+      "description": "Anchor dexterity drill"
+    },
+    "nida-L01-01-E01": {
+      "type": "single-char",
+      "content": "ាាា ាាា ាាា",
+      "description": "Left pinky vowel ា"
+    },
+    "nida-L01-01-E02": {
+      "type": "word",
+      "content": [
+        "កា",
+        "កា",
+        "កា",
+        "ថា",
+        "ថា",
+        "ថា"
+      ],
+      "description": "First syllables: កា and ថា"
+    },
+    "nida-L01-01-E03": {
+      "type": "word",
+      "content": [
+        "កាថា",
+        "ថាកា",
+        "កា",
+        "ថា"
+      ],
+      "description": "Combining ា with anchors"
+    },
+    "nida-L01-02-E01": {
+      "type": "single-char",
+      "content": "សសស ដដដ សដស",
+      "description": "Left ring and middle fingers"
+    },
+    "nida-L01-02-E02": {
+      "type": "word",
+      "content": [
+        "សា",
+        "ដា",
+        "កាសា",
+        "ដាកា"
+      ],
+      "description": "Syllables with ស and ដ"
+    },
+    "nida-L01-02-E03": {
+      "type": "word",
+      "content": [
+        "សាក",
+        "ដក",
+        "សដកា"
+      ],
+      "description": "Words with learned keys"
+    },
+    "nida-L01-03-E01": {
+      "type": "single-char",
+      "content": "ងងង ងងង ងងង",
+      "description": "Left index reach to ង"
+    },
+    "nida-L01-03-E02": {
+      "type": "word",
+      "content": [
+        "ងា",
+        "ដង",
+        "កង",
+        "សង"
+      ],
+      "description": "Words with ង"
+    },
+    "nida-L01-03-E03": {
+      "type": "word",
+      "content": [
+        "កាង",
+        "សាង",
+        "ថាង"
+      ],
+      "description": "High-frequency syllables"
+    },
+    "nida-L01-04-E01": {
+      "type": "single-char",
+      "content": "ហហហ លលល ហលហ",
+      "description": "Right hand home row expansion"
+    },
+    "nida-L01-04-E02": {
+      "type": "word",
+      "content": [
+        "ហា",
+        "លា",
+        "ហាល",
+        "លកា"
+      ],
+      "description": "Words with ហ and ល"
+    },
+    "nida-L01-04-E03": {
+      "type": "word",
+      "content": [
+        "សាលា",
+        "កាល",
+        "ហាលដាក"
+      ],
+      "description": "Real Khmer words"
+    },
+    "nida-L01-05-E01": {
+      "type": "word",
+      "content": [
+        "កាស",
+        "សាលា",
+        "ហាង",
+        "ថាស"
+      ],
+      "description": "Home row words 1"
+    },
+    "nida-L01-05-E02": {
+      "type": "word",
+      "content": [
+        "កាល",
+        "ដក",
+        "កក",
+        "សក",
+        "លា"
+      ],
+      "description": "Home row words 2"
+    },
+    "nida-L01-05-E03": {
+      "type": "drill",
+      "content": "សាលា កាល ហាល កាស ថាស",
+      "description": "Fluent home row sequence"
+    },
+    "nida-L02-01-E01": {
+      "type": "single-char",
+      "content": "ើើើ ើើើ ើើើ",
+      "description": "Right pinky on semicolon key"
+    },
+    "nida-L02-01-E02": {
+      "type": "word",
+      "content": [
+        "កើ",
+        "សើ",
+        "ដើ",
+        "ហើ"
+      ],
+      "description": "Syllables with ើ"
+    },
+    "nida-L02-01-E03": {
+      "type": "word",
+      "content": [
+        "លើង",
+        "កើក",
+        "សើល"
+      ],
+      "description": "Combinations with ើ"
+    },
+    "nida-L02-02-E01": {
+      "type": "single-char",
+      "content": "់់់ ់់់ ់់់",
+      "description": "Bantoc key on quote"
+    },
+    "nida-L02-02-E02": {
+      "type": "word",
+      "content": [
+        "កាក់",
+        "ដាក់",
+        "សាក់",
+        "លាក់"
+      ],
+      "description": "Short vowel stop words"
+    },
+    "nida-L02-02-E03": {
+      "type": "word",
+      "content": [
+        "ហាក់",
+        "ដក់",
+        "សក់"
+      ],
+      "description": "Words with ់"
+    },
+    "nida-L02-03-E01": {
+      "type": "word",
+      "content": [
+        "ដក់",
+        "កក់",
+        "សក់",
+        "លាក់",
+        "កាក់"
+      ],
+      "description": "Short vowel stop words"
+    },
+    "nida-L02-03-E02": {
+      "type": "word",
+      "content": [
+        "ដាក់",
+        "សាក់",
+        "ហាក់",
+        "កាក់"
+      ],
+      "description": "Combining Bantoc with home row"
+    },
+    "nida-L02-03-E03": {
+      "type": "drill",
+      "content": "កាក់ ដាក់ សាក់ លាក់ ដក់ សក់",
+      "description": "Bantoc fluency drill"
+    },
+    "nida-L02-04-E01": {
+      "type": "word",
+      "content": [
+        "កើ",
+        "កាក់",
+        "សើ",
+        "សាក់"
+      ],
+      "description": "Review set 1"
+    },
+    "nida-L02-04-E02": {
+      "type": "word",
+      "content": [
+        "ហាក់",
+        "លាក់",
+        "ដាក់",
+        "កាល"
+      ],
+      "description": "Review set 2"
+    },
+    "nida-L02-04-E03": {
+      "type": "drill",
+      "content": "សាលា កាក់ ដាក់ កាល ហាល",
+      "description": "Full home row mastery"
+    },
+    "nida-L03-01-E01": {
+      "type": "single-char",
+      "content": "េេេ រររ េរេ",
+      "description": "Left hand top row keys"
+    },
+    "nida-L03-01-E02": {
+      "type": "word",
+      "content": [
+        "រា",
+        "រើ",
+        "រាក់",
+        "រេ"
+      ],
+      "description": "Syllables with រ"
+    },
+    "nida-L03-01-E03": {
+      "type": "word",
+      "content": [
+        "កេរ",
+        "សេរ",
+        "ដេរ",
+        "រលក"
+      ],
+      "description": "Words with េ និង រ"
+    },
+    "nida-L03-02-E01": {
+      "type": "single-char",
+      "content": "តតត តតត តតត",
+      "description": "Left index reach to ត"
+    },
+    "nida-L03-02-E02": {
+      "type": "word",
+      "content": [
+        "តា",
+        "តើ",
+        "តេ"
+      ],
+      "description": "Syllables with ត"
+    },
+    "nida-L03-02-E03": {
+      "type": "word",
+      "content": [
+        "តារា",
+        "តាក់",
+        "តេរ",
+        "កាត"
+      ],
+      "description": "Words with ត"
+    },
+    "nida-L03-03-E01": {
+      "type": "single-char",
+      "content": "យយយ ុុុ យុយ",
+      "description": "Right index top row"
+    },
+    "nida-L03-03-E02": {
+      "type": "word",
+      "content": [
+        "យា",
+        "យុ",
+        "យុយ",
+        "យារ"
+      ],
+      "description": "Syllables with យ"
+    },
+    "nida-L03-03-E03": {
+      "type": "word",
+      "content": [
+        "កាយ",
+        "ងាយ",
+        "តុ",
+        "យុត"
+      ],
+      "description": "Words with យ and ុ"
+    },
+    "nida-L03-04-E01": {
+      "type": "single-char",
+      "content": "ិិិ ោោោ ិោិ",
+      "description": "Right hand top vowels"
+    },
+    "nida-L03-04-E02": {
+      "type": "word",
+      "content": [
+        "កិ",
+        "កោ",
+        "តិ",
+        "តោ"
+      ],
+      "description": "Vowel syllables"
+    },
+    "nida-L03-04-E03": {
+      "type": "word",
+      "content": [
+        "តិក",
+        "កោ",
+        "តោ",
+        "កោរ"
+      ],
+      "description": "Words with ិ and ោ"
+    },
+    "nida-L03-05-E01": {
+      "type": "word",
+      "content": [
+        "កាត",
+        "កាយ",
+        "រាយ"
+      ],
+      "description": "Words set 1"
+    },
+    "nida-L03-05-E02": {
+      "type": "word",
+      "content": [
+        "កោ",
+        "តោ",
+        "តុ",
+        "ងាយ"
+      ],
+      "description": "Words set 2"
+    },
+    "nida-L03-05-E03": {
+      "type": "word",
+      "content": [
+        "តារា",
+        "យុត",
+        "សាយ",
+        "លាយ"
+      ],
+      "description": "Words set 3"
+    },
+    "nida-L03-06-E01": {
+      "type": "word",
+      "content": [
+        "រាយ",
+        "រេ",
+        "យុត",
+        "យារ"
+      ],
+      "description": "Review set 1"
+    },
+    "nida-L03-06-E02": {
+      "type": "word",
+      "content": [
+        "តារា",
+        "កោ",
+        "តុ",
+        "ងាយ"
+      ],
+      "description": "Review set 2"
+    },
+    "nida-L03-06-E03": {
+      "type": "drill",
+      "content": "តារា ដេក លើ កាត ងាយ",
+      "description": "Top row review drill"
+    },
+    "nida-L04-01-E01": {
+      "type": "single-char",
+      "content": "ចចច វវវ ចវច",
+      "description": "Left hand bottom row"
+    },
+    "nida-L04-01-E02": {
+      "type": "word",
+      "content": [
+        "ចា",
+        "វា",
+        "ចិ",
+        "វិ"
+      ],
+      "description": "Syllables with ច and វ"
+    },
+    "nida-L04-01-E03": {
+      "type": "word",
+      "content": [
+        "ចារ",
+        "វាចា",
+        "វាយ",
+        "ចាក់"
+      ],
+      "description": "Words with ច and វ"
+    },
+    "nida-L04-02-E01": {
+      "type": "single-char",
+      "content": "បបប បបប បបប",
+      "description": "Left index reach to ប"
+    },
+    "nida-L04-02-E02": {
+      "type": "word",
+      "content": [
+        "បា",
+        "បិ",
+        "បុក",
+        "បោក"
+      ],
+      "description": "Syllables with ប"
+    },
+    "nida-L04-02-E03": {
+      "type": "word",
+      "content": [
+        "បើក",
+        "បើ",
+        "បាក់",
+        "បោក"
+      ],
+      "description": "Words with ប"
+    },
+    "nida-L04-03-E01": {
+      "type": "single-char",
+      "content": "ននន មមម នមន",
+      "description": "Right index bottom row"
+    },
+    "nida-L04-03-E02": {
+      "type": "word",
+      "content": [
+        "នា",
+        "មា",
+        "និ",
+        "មិ"
+      ],
+      "description": "Syllables with ន and ម"
+    },
+    "nida-L04-03-E03": {
+      "type": "word",
+      "content": [
+        "មាន",
+        "បាន",
+        "នាម",
+        "មាត់"
+      ],
+      "description": "Words with ន and ម"
+    },
+    "nida-L04-04-E01": {
+      "type": "single-char",
+      "content": "។។។ ។។។ ។។។",
+      "description": "Khmer full stop key"
+    },
+    "nida-L04-04-E02": {
+      "type": "drill",
+      "content": "មាន។ បាន។ មក។ វាចា។",
+      "description": "Words with full stop"
+    },
+    "nida-L04-04-E03": {
+      "type": "drill",
+      "content": "តារា មក។ តោ ដេក។ តារា មាន ចាន។",
+      "description": "Simple phrases with full stop"
+    },
+    "nida-L04-05-E01": {
+      "type": "word",
+      "content": [
+        "ចារ",
+        "វាចា",
+        "បាន",
+        "មាន"
+      ],
+      "description": "Review set 1"
+    },
+    "nida-L04-05-E02": {
+      "type": "word",
+      "content": [
+        "បាន",
+        "នាម",
+        "មាត់",
+        "ចាក់"
+      ],
+      "description": "Review set 2"
+    },
+    "nida-L04-05-E03": {
+      "type": "drill",
+      "content": "តារា មាន ចាន។ វា បាន មក។",
+      "description": "Flowing review sentences"
+    },
+    "nida-L05-01-E01": {
+      "type": "single-char",
+      "content": "ខខខ ឆឆឆ ខឆខ",
+      "description": "Left hand consonants ខ and ឆ"
+    },
+    "nida-L05-01-E02": {
+      "type": "word",
+      "content": [
+        "ខា",
+        "ឆា",
+        "ខុស",
+        "ឆាប់"
+      ],
+      "description": "Words with ខ and ឆ"
+    },
+    "nida-L05-01-E03": {
+      "type": "word",
+      "content": [
+        "ខាន",
+        "ឆោម",
+        "ខាត",
+        "ឆាយ"
+      ],
+      "description": "Vocabulary with ខ and ឆ"
+    },
+    "nida-L05-02-E01": {
+      "type": "single-char",
+      "content": "ផផផ ផផផ ផផផ",
+      "description": "Right pinky reach to ផ"
+    },
+    "nida-L05-02-E02": {
+      "type": "word",
+      "content": [
+        "ផា",
+        "ផាត់",
+        "ផុស",
+        "ផោ"
+      ],
+      "description": "Words with ផ"
+    },
+    "nida-L05-02-E03": {
+      "type": "word",
+      "content": [
+        "ផាត់",
+        "ផុស",
+        "ផាល",
+        "ផាត់មុខ"
+      ],
+      "description": "Extended ផ words"
+    },
+    "nida-L05-03-E01": {
+      "type": "single-char",
+      "content": "ឋឋឋ ឋឋឋ ឋឋឋ",
+      "description": "Left pinky reach to ឋ"
+    },
+    "nida-L05-03-E02": {
+      "type": "word",
+      "content": [
+        "ឋាន",
+        "ឋិត",
+        "ឋិតថេរ"
+      ],
+      "description": "Words with ឋ"
+    },
+    "nida-L05-04-E01": {
+      "type": "single-char",
+      "content": "ៀៀៀ ឹឹឹ ៀឹៀ",
+      "description": "Vowels ៀ and ឹ"
+    },
+    "nida-L05-04-E02": {
+      "type": "word",
+      "content": [
+        "រៀន",
+        "នឹក",
+        "ដឹង",
+        "សៀវ"
+      ],
+      "description": "Words with ៀ and ឹ"
+    },
+    "nida-L05-04-E03": {
+      "type": "word",
+      "content": [
+        "បង រៀន",
+        "នឹក រលឹក",
+        "រៀន ចារ"
+      ],
+      "description": "Phrases with ៀ and ឹ"
+    },
+    "nida-L05-05-E01": {
+      "type": "single-char",
+      "content": "ុំុំុំ ៊៊៊ ុំ៊ុំ",
+      "description": "Compound vowel ុំ and register sign ៊"
+    },
+    "nida-L05-05-E02": {
+      "type": "word",
+      "content": [
+        "កុំ",
+        "សុំ",
+        "រុំ",
+        "ដុំ"
+      ],
+      "description": "Words with ុំ"
+    },
+    "nida-L05-05-E03": {
+      "type": "word",
+      "content": [
+        "ស៊ុប",
+        "ហ៊ាន",
+        "កុំ",
+        "សុំ"
+      ],
+      "description": "Words with ៊"
+    },
+    "nida-L05-06-E01": {
+      "type": "single-char",
+      "content": "ញញញ ញញ ញ",
+      "description": "Consonant ញ key J"
+    },
+    "nida-L05-06-E02": {
+      "type": "drill",
+      "content": "្ ្ ្ ្ ្",
+      "description": "Coeng marker key Shift+J"
+    },
+    "nida-L05-06-E03": {
+      "type": "drill",
+      "content": "ក្ក ក្ម ស្ម ត្ម",
+      "description": "Consonant + Subscript + Consonant"
+    },
+    "nida-L05-06-E04": {
+      "type": "drill",
+      "content": "ក្មេង ក្ដារ ច្បាប់ ខ្លា",
+      "description": "Simple subscript clusters"
+    },
+    "nida-L05-07-E01": {
+      "type": "word",
+      "content": [
+        "ក្រ",
+        "ស្រ",
+        "ប្រ",
+        "ត្រ"
+      ],
+      "description": "Subscript រ (្រ) clusters"
+    },
+    "nida-L05-07-E02": {
+      "type": "word",
+      "content": [
+        "ប្រាក់",
+        "ក្រចក",
+        "ស្រុក",
+        "ច្រក"
+      ],
+      "description": "Common cluster words"
+    },
+    "nida-L05-08-E01": {
+      "type": "word",
+      "content": [
+        "រៀន",
+        "ដឹង",
+        "កុំ",
+        "ប្រាក់"
+      ],
+      "description": "Base layer review 1"
+    },
+    "nida-L05-08-E02": {
+      "type": "word",
+      "content": [
+        "សាលា",
+        "តារា",
+        "មាន",
+        "ឆាប់"
+      ],
+      "description": "Base layer review 2"
+    },
+    "nida-L05-08-E03": {
+      "type": "drill",
+      "content": "តារា និង សុខ មក រៀន។ សាលា រៀន សប្បាយ។",
+      "description": "Base layer paragraph"
+    },
+    "nida-L06-01-E01": {
+      "type": "single-char",
+      "content": "គគគ ជជជ គជគ",
+      "description": "Shift consonants គ and ជ"
+    },
+    "nida-L06-01-E02": {
+      "type": "word",
+      "content": [
+        "គិត",
+        "ជិត",
+        "គូរ",
+        "ជួរ"
+      ],
+      "description": "Words with គ and ជ"
+    },
+    "nida-L06-02-E01": {
+      "type": "single-char",
+      "content": "ទទទ ធធធ ទធទ",
+      "description": "Shift consonants ទ and ធ"
+    },
+    "nida-L06-02-E02": {
+      "type": "word",
+      "content": [
+        "ទី",
+        "ទិញ",
+        "ធំ",
+        "ធារ"
+      ],
+      "description": "Words with ទ and ធ"
+    },
+    "nida-L06-03-E01": {
+      "type": "single-char",
+      "content": "ពពព ភភភ ពភព",
+      "description": "Shift consonants ព and ភ"
+    },
+    "nida-L06-03-E02": {
+      "type": "word",
+      "content": [
+        "ពីរ",
+        "ពូ",
+        "ភាព",
+        "ភ្នំ"
+      ],
+      "description": "Words with ព and ភ"
+    },
+    "nida-L06-04-E01": {
+      "type": "single-char",
+      "content": "ឌឌឌ ណណណ ឌណឌ",
+      "description": "Shift consonants ឌ and ណ"
+    },
+    "nida-L06-04-E02": {
+      "type": "word",
+      "content": [
+        "ឌី",
+        "គណនា",
+        "បុណ្យ",
+        "គុណ"
+      ],
+      "description": "Words with ឌ and ណ"
+    },
+    "nida-L06-05-E01": {
+      "type": "single-char",
+      "content": "អអអ អអអ អអអ",
+      "description": "Shift consonant អ"
+    },
+    "nida-L06-05-E02": {
+      "type": "word",
+      "content": [
+        "អ្នក",
+        "អាន",
+        "ញាតិ",
+        "ញញឹម"
+      ],
+      "description": "Words with អ and ញ"
+    },
+    "nida-L06-06-E01": {
+      "type": "single-char",
+      "content": "ឃឃឃ ឈឈឈ ឍឍឍ ឡឡឡ",
+      "description": "Rare shift consonants"
+    },
+    "nida-L06-06-E02": {
+      "type": "word",
+      "content": [
+        "ឃើញ",
+        "ឈរ",
+        "វឌ្ឍន",
+        "ឡាន"
+      ],
+      "description": "Words with rare consonants"
+    },
+    "nida-L06-07-E01": {
+      "type": "drill",
+      "content": "ក គ ច ជ ត ទ ប ព ផ ភ",
+      "description": "Consonant series pairs"
+    },
+    "nida-L06-07-E02": {
+      "type": "word",
+      "content": [
+        "កូន គិត",
+        "ចាន ជិត",
+        "តាម ទិញ"
+      ],
+      "description": "Contrasting pairs"
+    },
+    "nida-L06-08-E01": {
+      "type": "word",
+      "content": [
+        "ឃើញ",
+        "ជួយ",
+        "ទិញ",
+        "ធំ",
+        "ភ្នំ"
+      ],
+      "description": "Shift consonants vocabulary"
+    },
+    "nida-L06-08-E02": {
+      "type": "drill",
+      "content": "អ្នក ជួយ គិត ពី ភាព សប្បាយ។",
+      "description": "Sentence with shift consonants"
+    },
+    "nida-L07-01-E01": {
+      "type": "single-char",
+      "content": "ីីី ូូូ ីូី",
+      "description": "Long vowels ី and ូ"
+    },
+    "nida-L07-01-E02": {
+      "type": "word",
+      "content": [
+        "ទី",
+        "ពីរ",
+        "កូន",
+        "ទូ"
+      ],
+      "description": "Words with ី and ូ"
+    },
+    "nida-L07-02-E01": {
+      "type": "single-char",
+      "content": "ែែែ ៃៃៃ ែៃែ",
+      "description": "Vowels ែ and ៃ"
+    },
+    "nida-L07-02-E02": {
+      "type": "word",
+      "content": [
+        "កែវ",
+        "ដែក",
+        "ដៃ",
+        "ថ្ងៃ"
+      ],
+      "description": "Words with ែ and ៃ"
+    },
+    "nida-L07-03-E01": {
+      "type": "single-char",
+      "content": "ួួួ ៅៅៅ ួៅួ",
+      "description": "Complex vowels ួ and ៅ"
+    },
+    "nida-L07-03-E02": {
+      "type": "word",
+      "content": [
+        "ជួយ",
+        "រួក",
+        "ទៅ",
+        "នៅ"
+      ],
+      "description": "Words with ួ and ៅ"
+    },
+    "nida-L07-04-E01": {
+      "type": "single-char",
+      "content": "ាំាំាំ ំំំ ាំំាំ",
+      "description": "Nasalized vowels ាំ and ំ"
+    },
+    "nida-L07-04-E02": {
+      "type": "word",
+      "content": [
+        "ចាំ",
+        "នាំ",
+        "ធំ",
+        "កំលាំង"
+      ],
+      "description": "Words with ាំ and ំ"
+    },
+    "nida-L07-05-E01": {
+      "type": "single-char",
+      "content": "ះះះ េះេះេះ ោះោះោះ ុះុះុះ",
+      "description": "Aspirated vowel endings"
+    },
+    "nida-L07-05-E02": {
+      "type": "word",
+      "content": [
+        "ផ្ទះ",
+        "ចេះ",
+        "កោះ",
+        "ចុះ"
+      ],
+      "description": "Words with aspirated endings"
+    },
+    "nida-L07-06-E01": {
+      "type": "single-char",
+      "content": "ឺឺឺ ឿឿឿ ឺឿឺ",
+      "description": "Remaining shift vowels"
+    },
+    "nida-L07-06-E02": {
+      "type": "word",
+      "content": [
+        "គឺ",
+        "រឿង",
+        "ជឿ",
+        "គ្រឿង"
+      ],
+      "description": "Words with ឺ and ឿ"
+    },
+    "nida-L07-07-E01": {
+      "type": "word",
+      "content": [
+        "ទី",
+        "កូន",
+        "ដែក",
+        "ថ្ងៃ",
+        "នៅ"
+      ],
+      "description": "Review set 1"
+    },
+    "nida-L07-07-E02": {
+      "type": "word",
+      "content": [
+        "ផ្ទះ",
+        "ចេះ",
+        "គឺ",
+        "រឿង"
+      ],
+      "description": "Review set 2"
+    },
+    "nida-L08-01-E01": {
+      "type": "word",
+      "content": [
+        "គ្រូ",
+        "ប្រទេស",
+        "ក្រុម",
+        "ព្រៃ"
+      ],
+      "description": "Words with ្រ"
+    },
+    "nida-L08-02-E01": {
+      "type": "word",
+      "content": [
+        "ខ្លា",
+        "ផ្លូវ",
+        "ឆ្លើយ",
+        "ភ្លើង"
+      ],
+      "description": "Words with ្ល"
+    },
+    "nida-L08-03-E01": {
+      "type": "word",
+      "content": [
+        "កញ្ញា",
+        "បញ្ជី",
+        "កម្ពុជា",
+        "សម្បត្តិ"
+      ],
+      "description": "Nasal subscript words"
+    },
+    "nida-L08-04-E01": {
+      "type": "word",
+      "content": [
+        "ក្ក",
+        "ស្ស",
+        "ត្ត",
+        "ន្ន"
+      ],
+      "description": "Doubled consonant clusters"
+    },
+    "nida-L08-04-E02": {
+      "type": "word",
+      "content": [
+        "ចិត្ត",
+        "សន្តិភាព",
+        "សប្បាយ",
+        "បញ្ញត្តិ"
+      ],
+      "description": "Words with doubled consonants"
+    },
+    "nida-L08-05-E01": {
+      "type": "word",
+      "content": [
+        "សង្គ្រាម",
+        "កន្ត្រៃ",
+        "អន្តរជាតិ",
+        "មន្ត្រី"
+      ],
+      "description": "Multi-tier clusters"
+    },
+    "nida-L08-06-E01": {
+      "type": "word",
+      "content": [
+        "ប្រទេស",
+        "កម្ពុជា",
+        "អន្តរជាតិ",
+        "សង្គ្រាម"
+      ],
+      "description": "Mastery cluster words"
+    },
+    "nida-L09-01-E01": {
+      "type": "single-char",
+      "content": "៉ ៉ ៉ ៉ ៉",
+      "description": "Musekkatoan sign"
+    },
+    "nida-L09-01-E02": {
+      "type": "word",
+      "content": [
+        "ប៉ា",
+        "ម៉ាក់",
+        "ប៉ះ",
+        "ស៊ុប"
+      ],
+      "description": "Words with ៉ and ៊"
+    },
+    "nida-L09-02-E01": {
+      "type": "single-char",
+      "content": "ៗៗៗ ៕៕៕ ៗ៕ៗ",
+      "description": "Repetition mark and section end"
+    },
+    "nida-L09-02-E02": {
+      "type": "word",
+      "content": [
+        "ផ្សេងៗ",
+        "ញឹកៗ",
+        "តិចៗ"
+      ],
+      "description": "Repeated words"
+    },
+    "nida-L09-03-E01": {
+      "type": "single-char",
+      "content": "័័័ ៌៌៌ ៍៍៍ ៏៏៏",
+      "description": "Top diacritics"
+    },
+    "nida-L09-03-E02": {
+      "type": "word",
+      "content": [
+        "ព័ត៌មាន",
+        "ទូរស័ព្ទ",
+        "អាទិត្យ",
+        "សព្វថ្ងៃ"
+      ],
+      "description": "Words with diacritics"
+    },
+    "nida-L09-04-E01": {
+      "type": "single-char",
+      "content": "៛៛៛ ៖៖៖",
+      "description": "Currency and colon"
+    },
+    "nida-L09-04-E02": {
+      "type": "word",
+      "content": [
+        "តម្លៃ៛",
+        "ចាយ៛",
+        "ដូចតទៅ៖"
+      ],
+      "description": "Currency and punctuation phrases"
+    },
+    "nida-L09-05-E01": {
+      "type": "word",
+      "content": [
+        "ព័ត៌មាន",
+        "ទូរស័ព្ទ",
+        "អាទិត្យ",
+        "ចាយ៛",
+        "ផ្សេងៗ"
+      ],
+      "description": "Comprehensive diacritic review"
+    },
+    "nida-L10-01-E01": {
+      "type": "word",
+      "content": [
+        "លោកពុក",
+        "ម្តាយ",
+        "កូន",
+        "បង",
+        "ប្អូន"
+      ],
+      "description": "Family vocabulary"
+    },
+    "nida-L10-02-E01": {
+      "type": "word",
+      "content": [
+        "សាលា",
+        "សិស្ស",
+        "គ្រូ",
+        "សៀវភៅ",
+        "ប៊ិច"
+      ],
+      "description": "School vocabulary"
+    },
+    "nida-L10-03-E01": {
+      "type": "word",
+      "content": [
+        "បាយ",
+        "ទឹក",
+        "ត្រី",
+        "សាច់",
+        "បន្លែ"
+      ],
+      "description": "Food vocabulary"
+    },
+    "nida-L10-04-E01": {
+      "type": "word",
+      "content": [
+        "ផ្ទះ",
+        "ភូមិ",
+        "ផ្សារ",
+        "វត្ត",
+        "ក្រុង"
+      ],
+      "description": "Places vocabulary"
+    },
+    "nida-L10-05-E01": {
+      "type": "word",
+      "content": [
+        "ទៅ",
+        "មក",
+        "ញ៉ាំ",
+        "រៀន",
+        "ធ្វើ",
+        "ដើរ"
+      ],
+      "description": "Common verbs"
+    },
+    "nida-L10-06-E01": {
+      "type": "word",
+      "content": [
+        "ល្អ",
+        "ស្អាត",
+        "ធំ",
+        "តូច",
+        "ឆ្ងាញ់",
+        "លឿន"
+      ],
+      "description": "Adjectives"
+    },
+    "nida-L10-07-E01": {
+      "type": "word",
+      "content": [
+        "ថ្ងៃ",
+        "ខែ",
+        "ឆ្នាំ",
+        "ព្រឹក",
+        "យប់"
+      ],
+      "description": "Time words"
+    },
+    "nida-L10-08-E01": {
+      "type": "word",
+      "content": [
+        "ប្រទេស",
+        "កម្ពុជា",
+        "ភាសាខ្មែរ",
+        "ប្រជាជន",
+        "សន្តិភាព"
+      ],
+      "description": "Major Khmer vocabulary"
+    },
+    "nida-L11-01-E01": {
+      "type": "sentence",
+      "content": "ខ្ញុំ រៀន ភាសា ខ្មែរ។",
+      "description": "Short sentence 1"
+    },
+    "nida-L11-01-E02": {
+      "type": "sentence",
+      "content": "កម្ពុជា ជា ប្រទេស ស្អាត។",
+      "description": "Short sentence 2"
+    },
+    "nida-L11-02-E01": {
+      "type": "sentence",
+      "content": "ការ ហ្វឹកហាត់ វាយ អក្សរ ជួយ ឱ្យ យើង វាយ បាន រហ័ស។",
+      "description": "Medium sentence 1"
+    },
+    "nida-L11-02-E02": {
+      "type": "sentence",
+      "content": "ចូរ ដាក់ ម្រាមដៃ លើ ជួរដេក ដើម ជានិច្ច ដើម្បី វាយ ត្រូវ។",
+      "description": "Medium sentence 2"
+    },
+    "nida-L11-03-E01": {
+      "type": "sentence",
+      "content": "ភាសាខ្មែរ ជា ភាសា ផ្លូវការ នៃ ព្រះរាជាណាចក្រ កម្ពុជា ដែល មាន ប្រវត្តិសាស្ត្រ យូរលង់។",
+      "description": "Long sentence 1"
+    },
+    "nida-L11-04-E01": {
+      "type": "paragraph",
+      "content": "ការ រៀន វាយ អក្សរ ទាមទារ ការ អត់ធ្មត់។ កាលណា យើង ព្យាយាម យើង នឹង ទទួល បាន ជោគជ័យ។",
+      "description": "Short paragraph"
+    },
+    "nida-L11-05-E01": {
+      "type": "paragraph",
+      "content": "ប្រាសាទ អង្គរវត្ត ជា សម្បត្តិ វប្បធម៌ ដ៏ ពិសិដ្ឋ របស់ ជាតិ ខ្មែរ និង ពិភពលោក។",
+      "description": "Culture paragraph"
+    },
+    "nida-L11-06-E01": {
+      "type": "paragraph",
+      "content": "សូម ស្វាគមន៍ មកកាន់ កម្មវិធី ហាត់ វាយ អក្សរ ខ្មែរ ដ៏ ល្អ បំផុត។",
+      "description": "Final paragraph challenge"
+    },
+    "nida-L12-01-E01": {
+      "type": "drill",
+      "content": "ការ វាយ អក្សរ ខ្មែរ ដោយ ត្រឹមត្រូវ ជួយ បង្កើន ប្រសិទ្ធភាព ការងារ និង ការ សិក្សា។",
+      "description": "1-minute drill"
+    },
+    "nida-L12-02-E01": {
+      "type": "drill",
+      "content": "ចូរ បន្ត ការ ហ្វឹកហាត់ រាល់ ថ្ងៃ ដើម្បី រក្សា ភាព ស្ទាត់ជំនាញ លើ ក្តារចុច នីដា។",
+      "description": "3-minute drill"
+    },
+    "nida-L12-03-E01": {
+      "type": "drill",
+      "content": "វាយ ឱ្យ បាន លឿន និង ត្រឹមត្រូវ បំផុត ដើម្បី បំបែក កំណត់ត្រា ផ្ទាល់ខ្លួន របស់ អ្នក។",
+      "description": "Speed challenge"
+    },
+    "nida-L12-04-E01": {
+      "type": "drill",
+      "content": "ឪពុក ឲ្យ ឯកសារ ឱកាស ឧត្តម",
+      "description": "Independent vowels"
+    },
+    "nida-L12-05-E01": {
+      "type": "test",
+      "content": "អបអរសាទរ។ អ្នក បាន បញ្ចប់ វគ្គ សិក្សា វាយ អក្សរ ខ្មែរ នីដា ដោយ ជោគជ័យ បំផុត។",
+      "description": "NiDA final mastery test"
+    }
+  }
+}

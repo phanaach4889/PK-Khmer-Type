@@ -1,0 +1,60 @@
+{
+  "version": "1.0.0",
+  "difficulties": [
+    {
+      "id": "easy",
+      "name": "Easy",
+      "nameKm": "ងាយស្រួល",
+      "description": "Common short words",
+      "botWpm": { "nida": 15, "english": 25 },
+      "wordLengthRange": [2, 5],
+      "includesPunctuation": false,
+      "includesNumbers": false
+    },
+    {
+      "id": "medium",
+      "name": "Medium",
+      "nameKm": "មធ្យម",
+      "description": "Average length words",
+      "botWpm": { "nida": 25, "english": 40 },
+      "wordLengthRange": [4, 8],
+      "includesPunctuation": true,
+      "includesNumbers": false
+    },
+    {
+      "id": "hard",
+      "name": "Hard",
+      "nameKm": "ពិបាក",
+      "description": "Complex words and punctuation",
+      "botWpm": { "nida": 35, "english": 60 },
+      "wordLengthRange": [5, 12],
+      "includesPunctuation": true,
+      "includesNumbers": true
+    },
+    {
+      "id": "expert",
+      "name": "Expert",
+      "nameKm": "ជំនាញ",
+      "description": "Advanced typing text",
+      "botWpm": { "nida": 45, "english": 80 },
+      "wordLengthRange": [6, 15],
+      "includesPunctuation": true,
+      "includesNumbers": true
+    }
+  ],
+  "lengths": [
+    { "id": "short", "wordCount": 15, "label": "15 words" },
+    { "id": "medium", "wordCount": 30, "label": "30 words" },
+    { "id": "long", "wordCount": 60, "label": "60 words" },
+    { "id": "custom", "wordCount": null, "label": "Custom text" }
+  ],
+  "scoring": {
+    "formula": "netWPM * accuracyFactor",
+    "accuracyExponent": 2.2,
+    "mistakePenalty": 0.5
+  },
+  "wpmCalculation": {
+    "english": "(totalCharacters / 5) / minutesElapsed",
+    "khmer": "(totalCodepoints / 5) / minutesElapsed"
+  }
+}

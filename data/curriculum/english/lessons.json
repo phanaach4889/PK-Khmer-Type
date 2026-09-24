@@ -1,0 +1,2079 @@
+{
+  "version": "1.0.0",
+  "layout": "english",
+  "language": "en",
+  "lessons": [
+    {
+      "id": "en-L00-01",
+      "level": "en-L00",
+      "order": 1,
+      "title": "Left Index Anchor (F)",
+      "description": "Left Index Anchor (F)",
+      "objective": "Master Left Index Anchor (F)",
+      "type": "key-id",
+      "newKeys": [
+        {
+          "keyId": "f",
+          "layer": "base",
+          "char": "f",
+          "finger": "li"
+        },
+        {
+          "keyId": "space",
+          "layer": "base",
+          "char": " ",
+          "finger": "thumb"
+        }
+      ],
+      "requiredKeys": [
+        "f",
+        "space"
+      ],
+      "fingerFocus": [
+        "li",
+        "thumb"
+      ],
+      "difficulty": 1,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L00-01-E01",
+        "en-L00-01-E02",
+        "en-L00-01-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": null
+      }
+    },
+    {
+      "id": "en-L00-02",
+      "level": "en-L00",
+      "order": 2,
+      "title": "Right Index Anchor (J)",
+      "description": "Right Index Anchor (J)",
+      "objective": "Master Right Index Anchor (J)",
+      "type": "key-id",
+      "newKeys": [
+        {
+          "keyId": "j",
+          "layer": "base",
+          "char": "j",
+          "finger": "ri"
+        }
+      ],
+      "requiredKeys": [
+        "j"
+      ],
+      "fingerFocus": [
+        "ri"
+      ],
+      "difficulty": 1,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L00-02-E01",
+        "en-L00-02-E02",
+        "en-L00-02-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L00-01"
+      }
+    },
+    {
+      "id": "en-L00-03",
+      "level": "en-L00",
+      "order": 3,
+      "title": "F and J Alternation",
+      "description": "F and J Alternation",
+      "objective": "Master F and J Alternation",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [
+        "li",
+        "ri"
+      ],
+      "difficulty": 1,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L00-03-E01",
+        "en-L00-03-E02",
+        "en-L00-03-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L00-02"
+      }
+    },
+    {
+      "id": "en-L00-04",
+      "level": "en-L00",
+      "order": 4,
+      "title": "Tactile Rest & Rhythm",
+      "description": "Tactile Rest & Rhythm",
+      "objective": "Master Tactile Rest & Rhythm",
+      "type": "review",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [
+        "li",
+        "ri",
+        "thumb"
+      ],
+      "difficulty": 1,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L00-04-E01",
+        "en-L00-04-E02",
+        "en-L00-04-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L00-03"
+      }
+    },
+    {
+      "id": "en-L01-01",
+      "level": "en-L01",
+      "order": 1,
+      "title": "Middle Fingers: D and K",
+      "description": "Middle Fingers: D and K",
+      "objective": "Master Middle Fingers: D and K",
+      "type": "single-char",
+      "newKeys": [
+        {
+          "keyId": "d",
+          "layer": "base",
+          "char": "d",
+          "finger": "lm"
+        },
+        {
+          "keyId": "k",
+          "layer": "base",
+          "char": "k",
+          "finger": "rm"
+        }
+      ],
+      "requiredKeys": [
+        "d",
+        "k"
+      ],
+      "fingerFocus": [
+        "lm",
+        "rm"
+      ],
+      "difficulty": 1,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L01-01-E01",
+        "en-L01-01-E02",
+        "en-L01-01-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L00-04"
+      }
+    },
+    {
+      "id": "en-L01-02",
+      "level": "en-L01",
+      "order": 2,
+      "title": "Ring Fingers: S and L",
+      "description": "Ring Fingers: S and L",
+      "objective": "Master Ring Fingers: S and L",
+      "type": "single-char",
+      "newKeys": [
+        {
+          "keyId": "s",
+          "layer": "base",
+          "char": "s",
+          "finger": "lr"
+        },
+        {
+          "keyId": "l",
+          "layer": "base",
+          "char": "l",
+          "finger": "rr"
+        }
+      ],
+      "requiredKeys": [
+        "s",
+        "l"
+      ],
+      "fingerFocus": [
+        "lr",
+        "rr"
+      ],
+      "difficulty": 1,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L01-02-E01",
+        "en-L01-02-E02",
+        "en-L01-02-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L01-01"
+      }
+    },
+    {
+      "id": "en-L01-03",
+      "level": "en-L01",
+      "order": 3,
+      "title": "Six-Key Core Drills",
+      "description": "Six-Key Core Drills",
+      "objective": "Master Six-Key Core Drills",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [
+        "li",
+        "ri",
+        "lm",
+        "rm",
+        "lr",
+        "rr"
+      ],
+      "difficulty": 2,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L01-03-E01",
+        "en-L01-03-E02",
+        "en-L01-03-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L01-02"
+      }
+    },
+    {
+      "id": "en-L01-04",
+      "level": "en-L01",
+      "order": 4,
+      "title": "Core Flow & Rhythm",
+      "description": "Core Flow & Rhythm",
+      "objective": "Master Core Flow & Rhythm",
+      "type": "review",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [
+        "li",
+        "ri",
+        "lm",
+        "rm",
+        "lr",
+        "rr",
+        "thumb"
+      ],
+      "difficulty": 2,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L01-04-E01",
+        "en-L01-04-E02",
+        "en-L01-04-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L01-03"
+      }
+    },
+    {
+      "id": "en-L02-01",
+      "level": "en-L02",
+      "order": 1,
+      "title": "Pinky Fingers: A and Semicolon",
+      "description": "Pinky Fingers: A and Semicolon",
+      "objective": "Master Pinky Fingers: A and Semicolon",
+      "type": "single-char",
+      "newKeys": [
+        {
+          "keyId": "a",
+          "layer": "base",
+          "char": "a",
+          "finger": "lp"
+        },
+        {
+          "keyId": "semicolon",
+          "layer": "base",
+          "char": ";",
+          "finger": "rp"
+        }
+      ],
+      "requiredKeys": [
+        "a",
+        "semicolon"
+      ],
+      "fingerFocus": [
+        "lp",
+        "rp"
+      ],
+      "difficulty": 2,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L02-01-E01",
+        "en-L02-01-E02",
+        "en-L02-01-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L01-04"
+      }
+    },
+    {
+      "id": "en-L02-02",
+      "level": "en-L02",
+      "order": 2,
+      "title": "All 8 Core Keys Combined",
+      "description": "All 8 Core Keys Combined",
+      "objective": "Master All 8 Core Keys Combined",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [
+        "lp",
+        "lr",
+        "lm",
+        "li",
+        "ri",
+        "rm",
+        "rr",
+        "rp"
+      ],
+      "difficulty": 2,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L02-02-E01",
+        "en-L02-02-E02",
+        "en-L02-02-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L02-01"
+      }
+    },
+    {
+      "id": "en-L02-03",
+      "level": "en-L02",
+      "order": 3,
+      "title": "Core Home Row Words",
+      "description": "Core Home Row Words",
+      "objective": "Master Core Home Row Words",
+      "type": "word",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [
+        "lp",
+        "lr",
+        "lm",
+        "li",
+        "ri",
+        "rm",
+        "rr",
+        "rp"
+      ],
+      "difficulty": 2,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L02-03-E01",
+        "en-L02-03-E02",
+        "en-L02-03-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L02-02"
+      }
+    },
+    {
+      "id": "en-L02-04",
+      "level": "en-L02",
+      "order": 4,
+      "title": "Core Home Row Phrases & Flow",
+      "description": "Core Home Row Phrases & Flow",
+      "objective": "Master Core Home Row Phrases & Flow",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [
+        "lp",
+        "lr",
+        "lm",
+        "li",
+        "ri",
+        "rm",
+        "rr",
+        "rp",
+        "thumb"
+      ],
+      "difficulty": 2,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L02-04-E01",
+        "en-L02-04-E02",
+        "en-L02-04-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L02-03"
+      }
+    },
+    {
+      "id": "en-L02-05",
+      "level": "en-L02",
+      "order": 5,
+      "title": "Core Home Row Review & Fluency",
+      "description": "Core Home Row Review & Fluency",
+      "objective": "Master Core Home Row Review & Fluency",
+      "type": "review",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [
+        "lp",
+        "lr",
+        "lm",
+        "li",
+        "ri",
+        "rm",
+        "rr",
+        "rp"
+      ],
+      "difficulty": 3,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L02-05-E01",
+        "en-L02-05-E02",
+        "en-L02-05-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L02-04"
+      }
+    },
+    {
+      "id": "en-L03-01",
+      "level": "en-L03",
+      "order": 1,
+      "title": "Left Index Reach: G",
+      "description": "Left Index Reach: G",
+      "objective": "Master Left Index Reach: G",
+      "type": "single-char",
+      "newKeys": [
+        {
+          "keyId": "g",
+          "layer": "base",
+          "char": "g",
+          "finger": "li"
+        }
+      ],
+      "requiredKeys": [
+        "g"
+      ],
+      "fingerFocus": [
+        "li"
+      ],
+      "difficulty": 3,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L03-01-E01",
+        "en-L03-01-E02",
+        "en-L03-01-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L02-05"
+      }
+    },
+    {
+      "id": "en-L03-02",
+      "level": "en-L03",
+      "order": 2,
+      "title": "Right Index Reach: H",
+      "description": "Right Index Reach: H",
+      "objective": "Master Right Index Reach: H",
+      "type": "single-char",
+      "newKeys": [
+        {
+          "keyId": "h",
+          "layer": "base",
+          "char": "h",
+          "finger": "ri"
+        }
+      ],
+      "requiredKeys": [
+        "h"
+      ],
+      "fingerFocus": [
+        "ri"
+      ],
+      "difficulty": 3,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L03-02-E01",
+        "en-L03-02-E02",
+        "en-L03-02-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L03-01"
+      }
+    },
+    {
+      "id": "en-L03-03",
+      "level": "en-L03",
+      "order": 3,
+      "title": "Words with G and H",
+      "description": "Words with G and H",
+      "objective": "Master Words with G and H",
+      "type": "words",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [
+        "li",
+        "ri"
+      ],
+      "difficulty": 3,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L03-03-E01",
+        "en-L03-03-E02",
+        "en-L03-03-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L03-02"
+      }
+    },
+    {
+      "id": "en-L03-04",
+      "level": "en-L03",
+      "order": 4,
+      "title": "Home Row Mastery Test",
+      "description": "Home Row Mastery Test",
+      "objective": "Master Home Row Mastery Test",
+      "type": "test",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [
+        "li",
+        "ri",
+        "lm",
+        "rm",
+        "lr",
+        "rr",
+        "lp",
+        "rp"
+      ],
+      "difficulty": 3,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L03-04-E01",
+        "en-L03-04-E02",
+        "en-L03-04-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L03-03"
+      }
+    },
+    {
+      "id": "en-L04-01",
+      "level": "en-L04",
+      "order": 1,
+      "title": "Top Row Left Middle: E",
+      "description": "Top Row Left Middle: E",
+      "objective": "Master Top Row Left Middle: E",
+      "type": "single-char",
+      "newKeys": [
+        {
+          "keyId": "e",
+          "layer": "base",
+          "char": "e",
+          "finger": "lm"
+        }
+      ],
+      "requiredKeys": [
+        "e"
+      ],
+      "fingerFocus": [
+        "lm"
+      ],
+      "difficulty": 3,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L04-01-E01",
+        "en-L04-01-E02",
+        "en-L04-01-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L03-04"
+      }
+    },
+    {
+      "id": "en-L04-02",
+      "level": "en-L04",
+      "order": 2,
+      "title": "Top Row Right Middle: I",
+      "description": "Top Row Right Middle: I",
+      "objective": "Master Top Row Right Middle: I",
+      "type": "single-char",
+      "newKeys": [
+        {
+          "keyId": "i",
+          "layer": "base",
+          "char": "i",
+          "finger": "rm"
+        }
+      ],
+      "requiredKeys": [
+        "i"
+      ],
+      "fingerFocus": [
+        "rm"
+      ],
+      "difficulty": 4,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L04-02-E01",
+        "en-L04-02-E02",
+        "en-L04-02-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L04-01"
+      }
+    },
+    {
+      "id": "en-L04-03",
+      "level": "en-L04",
+      "order": 3,
+      "title": "Top Row Left Index: R",
+      "description": "Top Row Left Index: R",
+      "objective": "Master Top Row Left Index: R",
+      "type": "single-char",
+      "newKeys": [
+        {
+          "keyId": "r",
+          "layer": "base",
+          "char": "r",
+          "finger": "li"
+        }
+      ],
+      "requiredKeys": [
+        "r"
+      ],
+      "fingerFocus": [
+        "li"
+      ],
+      "difficulty": 4,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L04-03-E01",
+        "en-L04-03-E02",
+        "en-L04-03-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L04-02"
+      }
+    },
+    {
+      "id": "en-L04-04",
+      "level": "en-L04",
+      "order": 4,
+      "title": "Top Row Right Index: U",
+      "description": "Top Row Right Index: U",
+      "objective": "Master Top Row Right Index: U",
+      "type": "single-char",
+      "newKeys": [
+        {
+          "keyId": "u",
+          "layer": "base",
+          "char": "u",
+          "finger": "ri"
+        }
+      ],
+      "requiredKeys": [
+        "u"
+      ],
+      "fingerFocus": [
+        "ri"
+      ],
+      "difficulty": 4,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L04-04-E01",
+        "en-L04-04-E02",
+        "en-L04-04-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L04-03"
+      }
+    },
+    {
+      "id": "en-L04-05",
+      "level": "en-L04",
+      "order": 5,
+      "title": "Top Row Vowels Review",
+      "description": "Top Row Vowels Review",
+      "objective": "Master Top Row Vowels Review",
+      "type": "review",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [
+        "lm",
+        "rm",
+        "li",
+        "ri"
+      ],
+      "difficulty": 4,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L04-05-E01",
+        "en-L04-05-E02",
+        "en-L04-05-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L04-04"
+      }
+    },
+    {
+      "id": "en-L05-01",
+      "level": "en-L05",
+      "order": 1,
+      "title": "T and Y",
+      "description": "T and Y",
+      "objective": "Master T and Y",
+      "type": "single-char",
+      "newKeys": [
+        {
+          "keyId": "t",
+          "layer": "base",
+          "char": "t",
+          "finger": "li"
+        },
+        {
+          "keyId": "y",
+          "layer": "base",
+          "char": "y",
+          "finger": "ri"
+        }
+      ],
+      "requiredKeys": [
+        "t",
+        "y"
+      ],
+      "fingerFocus": [
+        "li",
+        "ri"
+      ],
+      "difficulty": 4,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L05-01-E01",
+        "en-L05-01-E02",
+        "en-L05-01-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L04-05"
+      }
+    },
+    {
+      "id": "en-L05-02",
+      "level": "en-L05",
+      "order": 2,
+      "title": "W and O",
+      "description": "W and O",
+      "objective": "Master W and O",
+      "type": "single-char",
+      "newKeys": [
+        {
+          "keyId": "w",
+          "layer": "base",
+          "char": "w",
+          "finger": "lr"
+        },
+        {
+          "keyId": "o",
+          "layer": "base",
+          "char": "o",
+          "finger": "rr"
+        }
+      ],
+      "requiredKeys": [
+        "w",
+        "o"
+      ],
+      "fingerFocus": [
+        "lr",
+        "rr"
+      ],
+      "difficulty": 4,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L05-02-E01",
+        "en-L05-02-E02",
+        "en-L05-02-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L05-01"
+      }
+    },
+    {
+      "id": "en-L05-03",
+      "level": "en-L05",
+      "order": 3,
+      "title": "Q and P",
+      "description": "Q and P",
+      "objective": "Master Q and P",
+      "type": "single-char",
+      "newKeys": [
+        {
+          "keyId": "q",
+          "layer": "base",
+          "char": "q",
+          "finger": "lp"
+        },
+        {
+          "keyId": "p",
+          "layer": "base",
+          "char": "p",
+          "finger": "rp"
+        }
+      ],
+      "requiredKeys": [
+        "q",
+        "p"
+      ],
+      "fingerFocus": [
+        "lp",
+        "rp"
+      ],
+      "difficulty": 5,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L05-03-E01",
+        "en-L05-03-E02",
+        "en-L05-03-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L05-02"
+      }
+    },
+    {
+      "id": "en-L05-04",
+      "level": "en-L05",
+      "order": 4,
+      "title": "Top Row Words",
+      "description": "Top Row Words",
+      "objective": "Master Top Row Words",
+      "type": "words",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 5,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L05-04-E01",
+        "en-L05-04-E02",
+        "en-L05-04-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L05-03"
+      }
+    },
+    {
+      "id": "en-L05-05",
+      "level": "en-L05",
+      "order": 5,
+      "title": "Top & Home Row Mastery",
+      "description": "Top & Home Row Mastery",
+      "objective": "Master Top & Home Row Mastery",
+      "type": "review",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 5,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L05-05-E01",
+        "en-L05-05-E02",
+        "en-L05-05-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L05-04"
+      }
+    },
+    {
+      "id": "en-L06-01",
+      "level": "en-L06",
+      "order": 1,
+      "title": "C and V",
+      "description": "C and V",
+      "objective": "Master C and V",
+      "type": "single-char",
+      "newKeys": [
+        {
+          "keyId": "c",
+          "layer": "base",
+          "char": "c",
+          "finger": "lm"
+        },
+        {
+          "keyId": "v",
+          "layer": "base",
+          "char": "v",
+          "finger": "li"
+        }
+      ],
+      "requiredKeys": [
+        "c",
+        "v"
+      ],
+      "fingerFocus": [
+        "lm",
+        "li"
+      ],
+      "difficulty": 5,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L06-01-E01",
+        "en-L06-01-E02",
+        "en-L06-01-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L05-05"
+      }
+    },
+    {
+      "id": "en-L06-02",
+      "level": "en-L06",
+      "order": 2,
+      "title": "B and N",
+      "description": "B and N",
+      "objective": "Master B and N",
+      "type": "single-char",
+      "newKeys": [
+        {
+          "keyId": "b",
+          "layer": "base",
+          "char": "b",
+          "finger": "li"
+        },
+        {
+          "keyId": "n",
+          "layer": "base",
+          "char": "n",
+          "finger": "ri"
+        }
+      ],
+      "requiredKeys": [
+        "b",
+        "n"
+      ],
+      "fingerFocus": [
+        "li",
+        "ri"
+      ],
+      "difficulty": 5,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L06-02-E01",
+        "en-L06-02-E02",
+        "en-L06-02-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L06-01"
+      }
+    },
+    {
+      "id": "en-L06-03",
+      "level": "en-L06",
+      "order": 3,
+      "title": "M",
+      "description": "M",
+      "objective": "Master M",
+      "type": "single-char",
+      "newKeys": [
+        {
+          "keyId": "m",
+          "layer": "base",
+          "char": "m",
+          "finger": "ri"
+        }
+      ],
+      "requiredKeys": [
+        "m"
+      ],
+      "fingerFocus": [
+        "ri"
+      ],
+      "difficulty": 5,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L06-03-E01",
+        "en-L06-03-E02",
+        "en-L06-03-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L06-02"
+      }
+    },
+    {
+      "id": "en-L06-04",
+      "level": "en-L06",
+      "order": 4,
+      "title": "Z and X",
+      "description": "Z and X",
+      "objective": "Master Z and X",
+      "type": "single-char",
+      "newKeys": [
+        {
+          "keyId": "z",
+          "layer": "base",
+          "char": "z",
+          "finger": "lp"
+        },
+        {
+          "keyId": "x",
+          "layer": "base",
+          "char": "x",
+          "finger": "lr"
+        }
+      ],
+      "requiredKeys": [
+        "z",
+        "x"
+      ],
+      "fingerFocus": [
+        "lp",
+        "lr"
+      ],
+      "difficulty": 6,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L06-04-E01",
+        "en-L06-04-E02",
+        "en-L06-04-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L06-03"
+      }
+    },
+    {
+      "id": "en-L06-05",
+      "level": "en-L06",
+      "order": 5,
+      "title": "Comma and Period",
+      "description": "Comma and Period",
+      "objective": "Master Comma and Period",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "comma",
+          "layer": "base",
+          "char": ",",
+          "finger": "rm"
+        },
+        {
+          "keyId": "period",
+          "layer": "base",
+          "char": ".",
+          "finger": "rr"
+        }
+      ],
+      "requiredKeys": [
+        "comma",
+        "period"
+      ],
+      "fingerFocus": [
+        "rm",
+        "rr"
+      ],
+      "difficulty": 6,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L06-05-E01",
+        "en-L06-05-E02",
+        "en-L06-05-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L06-04"
+      }
+    },
+    {
+      "id": "en-L06-06",
+      "level": "en-L06",
+      "order": 6,
+      "title": "Bottom Row Words",
+      "description": "Bottom Row Words",
+      "objective": "Master Bottom Row Words",
+      "type": "words",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 6,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L06-06-E01",
+        "en-L06-06-E02",
+        "en-L06-06-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L06-05"
+      }
+    },
+    {
+      "id": "en-L07-01",
+      "level": "en-L07",
+      "order": 1,
+      "title": "All Letters Practice",
+      "description": "All Letters Practice",
+      "objective": "Master All Letters Practice",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 6,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L07-01-E01",
+        "en-L07-01-E02",
+        "en-L07-01-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L06-06"
+      }
+    },
+    {
+      "id": "en-L07-02",
+      "level": "en-L07",
+      "order": 2,
+      "title": "Pangrams",
+      "description": "Pangrams",
+      "objective": "Master Pangrams",
+      "type": "sentence",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 6,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L07-02-E01",
+        "en-L07-02-E02",
+        "en-L07-02-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L07-01"
+      }
+    },
+    {
+      "id": "en-L07-03",
+      "level": "en-L07",
+      "order": 3,
+      "title": "Common Word List",
+      "description": "Common Word List",
+      "objective": "Master Common Word List",
+      "type": "words",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 6,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L07-03-E01",
+        "en-L07-03-E02",
+        "en-L07-03-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L07-02"
+      }
+    },
+    {
+      "id": "en-L07-04",
+      "level": "en-L07",
+      "order": 4,
+      "title": "Full Alphabet Review",
+      "description": "Full Alphabet Review",
+      "objective": "Master Full Alphabet Review",
+      "type": "test",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 7,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L07-04-E01",
+        "en-L07-04-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L07-03"
+      }
+    },
+    {
+      "id": "en-L08-01",
+      "level": "en-L08",
+      "order": 1,
+      "title": "Shift Basics",
+      "description": "Shift Basics",
+      "objective": "Master Shift Basics",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "shiftLeft",
+          "layer": "shift",
+          "char": "",
+          "finger": "lp"
+        },
+        {
+          "keyId": "shiftRight",
+          "layer": "shift",
+          "char": "",
+          "finger": "rp"
+        }
+      ],
+      "requiredKeys": [
+        "shiftLeft",
+        "shiftRight"
+      ],
+      "fingerFocus": [],
+      "difficulty": 7,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L08-01-E01",
+        "en-L08-01-E02",
+        "en-L08-01-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L07-04"
+      }
+    },
+    {
+      "id": "en-L08-02",
+      "level": "en-L08",
+      "order": 2,
+      "title": "Left-Hand Capitals",
+      "description": "Left-Hand Capitals",
+      "objective": "Master Left-Hand Capitals",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 7,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L08-02-E01",
+        "en-L08-02-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L08-01"
+      }
+    },
+    {
+      "id": "en-L08-03",
+      "level": "en-L08",
+      "order": 3,
+      "title": "Right-Hand Capitals",
+      "description": "Right-Hand Capitals",
+      "objective": "Master Right-Hand Capitals",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 7,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L08-03-E01",
+        "en-L08-03-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L08-02"
+      }
+    },
+    {
+      "id": "en-L08-04",
+      "level": "en-L08",
+      "order": 4,
+      "title": "Proper Nouns",
+      "description": "Proper Nouns",
+      "objective": "Master Proper Nouns",
+      "type": "words",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 7,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L08-04-E01",
+        "en-L08-04-E02",
+        "en-L08-04-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L08-03"
+      }
+    },
+    {
+      "id": "en-L08-05",
+      "level": "en-L08",
+      "order": 5,
+      "title": "Sentence Starts",
+      "description": "Sentence Starts",
+      "objective": "Master Sentence Starts",
+      "type": "sentence",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 7,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L08-05-E01",
+        "en-L08-05-E02",
+        "en-L08-05-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L08-04"
+      }
+    },
+    {
+      "id": "en-L09-01",
+      "level": "en-L09",
+      "order": 1,
+      "title": "Numbers 1-5",
+      "description": "Numbers 1-5",
+      "objective": "Master Numbers 1-5",
+      "type": "single-char",
+      "newKeys": [
+        {
+          "keyId": "k1",
+          "layer": "base",
+          "char": "1",
+          "finger": "lp"
+        },
+        {
+          "keyId": "k2",
+          "layer": "base",
+          "char": "2",
+          "finger": "lr"
+        },
+        {
+          "keyId": "k3",
+          "layer": "base",
+          "char": "3",
+          "finger": "lm"
+        },
+        {
+          "keyId": "k4",
+          "layer": "base",
+          "char": "4",
+          "finger": "li"
+        },
+        {
+          "keyId": "k5",
+          "layer": "base",
+          "char": "5",
+          "finger": "li"
+        }
+      ],
+      "requiredKeys": [
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5"
+      ],
+      "fingerFocus": [],
+      "difficulty": 8,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L09-01-E01",
+        "en-L09-01-E02",
+        "en-L09-01-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L08-05"
+      }
+    },
+    {
+      "id": "en-L09-02",
+      "level": "en-L09",
+      "order": 2,
+      "title": "Numbers 6-0",
+      "description": "Numbers 6-0",
+      "objective": "Master Numbers 6-0",
+      "type": "single-char",
+      "newKeys": [
+        {
+          "keyId": "k6",
+          "layer": "base",
+          "char": "6",
+          "finger": "ri"
+        },
+        {
+          "keyId": "k7",
+          "layer": "base",
+          "char": "7",
+          "finger": "ri"
+        },
+        {
+          "keyId": "k8",
+          "layer": "base",
+          "char": "8",
+          "finger": "rm"
+        },
+        {
+          "keyId": "k9",
+          "layer": "base",
+          "char": "9",
+          "finger": "rr"
+        },
+        {
+          "keyId": "k0",
+          "layer": "base",
+          "char": "0",
+          "finger": "rp"
+        }
+      ],
+      "requiredKeys": [
+        "k6",
+        "k7",
+        "k8",
+        "k9",
+        "k0"
+      ],
+      "fingerFocus": [],
+      "difficulty": 8,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L09-02-E01",
+        "en-L09-02-E02",
+        "en-L09-02-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L09-01"
+      }
+    },
+    {
+      "id": "en-L09-03",
+      "level": "en-L09",
+      "order": 3,
+      "title": "Mixed Numbers",
+      "description": "Mixed Numbers",
+      "objective": "Master Mixed Numbers",
+      "type": "drill",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 8,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L09-03-E01",
+        "en-L09-03-E02",
+        "en-L09-03-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L09-02"
+      }
+    },
+    {
+      "id": "en-L09-04",
+      "level": "en-L09",
+      "order": 4,
+      "title": "Numbers in Sentences",
+      "description": "Numbers in Sentences",
+      "objective": "Master Numbers in Sentences",
+      "type": "sentence",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 8,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L09-04-E01",
+        "en-L09-04-E02",
+        "en-L09-04-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L09-03"
+      }
+    },
+    {
+      "id": "en-L10-01",
+      "level": "en-L10",
+      "order": 1,
+      "title": "Question Mark & Slash",
+      "description": "Question Mark & Slash",
+      "objective": "Master Question Mark & Slash",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "slash",
+          "layer": "shift",
+          "char": "?",
+          "finger": "rp"
+        },
+        {
+          "keyId": "slash",
+          "layer": "base",
+          "char": "/",
+          "finger": "rp"
+        }
+      ],
+      "requiredKeys": [
+        "slash",
+        "slash"
+      ],
+      "fingerFocus": [],
+      "difficulty": 8,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L10-01-E01",
+        "en-L10-01-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L09-04"
+      }
+    },
+    {
+      "id": "en-L10-02",
+      "level": "en-L10",
+      "order": 2,
+      "title": "Apostrophe and Quotes",
+      "description": "Apostrophe and Quotes",
+      "objective": "Master Apostrophe and Quotes",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "quote",
+          "layer": "base",
+          "char": "'",
+          "finger": "rp"
+        },
+        {
+          "keyId": "quote",
+          "layer": "shift",
+          "char": "\"",
+          "finger": "rp"
+        }
+      ],
+      "requiredKeys": [
+        "quote",
+        "quote"
+      ],
+      "fingerFocus": [],
+      "difficulty": 8,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L10-02-E01",
+        "en-L10-02-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L10-01"
+      }
+    },
+    {
+      "id": "en-L10-03",
+      "level": "en-L10",
+      "order": 3,
+      "title": "Exclamation and Colon",
+      "description": "Exclamation and Colon",
+      "objective": "Master Exclamation and Colon",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "k1",
+          "layer": "shift",
+          "char": "!",
+          "finger": "lp"
+        },
+        {
+          "keyId": "semicolon",
+          "layer": "shift",
+          "char": ":",
+          "finger": "rp"
+        }
+      ],
+      "requiredKeys": [
+        "k1",
+        "semicolon"
+      ],
+      "fingerFocus": [],
+      "difficulty": 9,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L10-03-E01",
+        "en-L10-03-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L10-02"
+      }
+    },
+    {
+      "id": "en-L10-04",
+      "level": "en-L10",
+      "order": 4,
+      "title": "Parentheses and Brackets",
+      "description": "Parentheses and Brackets",
+      "objective": "Master Parentheses and Brackets",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "k9",
+          "layer": "shift",
+          "char": "(",
+          "finger": "rr"
+        },
+        {
+          "keyId": "k0",
+          "layer": "shift",
+          "char": ")",
+          "finger": "rp"
+        },
+        {
+          "keyId": "bracketL",
+          "layer": "base",
+          "char": "[",
+          "finger": "rp"
+        },
+        {
+          "keyId": "bracketR",
+          "layer": "base",
+          "char": "]",
+          "finger": "rp"
+        }
+      ],
+      "requiredKeys": [
+        "k9",
+        "k0",
+        "bracketL",
+        "bracketR"
+      ],
+      "fingerFocus": [],
+      "difficulty": 9,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L10-04-E01",
+        "en-L10-04-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L10-03"
+      }
+    },
+    {
+      "id": "en-L10-05",
+      "level": "en-L10",
+      "order": 5,
+      "title": "Hyphen, Plus and Equals",
+      "description": "Hyphen, Plus and Equals",
+      "objective": "Master Hyphen, Plus and Equals",
+      "type": "drill",
+      "newKeys": [
+        {
+          "keyId": "minus",
+          "layer": "base",
+          "char": "-",
+          "finger": "rp"
+        },
+        {
+          "keyId": "equal",
+          "layer": "base",
+          "char": "=",
+          "finger": "rp"
+        },
+        {
+          "keyId": "equal",
+          "layer": "shift",
+          "char": "+",
+          "finger": "rp"
+        }
+      ],
+      "requiredKeys": [
+        "minus",
+        "equal",
+        "equal"
+      ],
+      "fingerFocus": [],
+      "difficulty": 9,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L10-05-E01",
+        "en-L10-05-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L10-04"
+      }
+    },
+    {
+      "id": "en-L11-01",
+      "level": "en-L11",
+      "order": 1,
+      "title": "Short Sentences",
+      "description": "Short Sentences",
+      "objective": "Master Short Sentences",
+      "type": "sentence",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 9,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L11-01-E01",
+        "en-L11-01-E02",
+        "en-L11-01-E03"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L10-05"
+      }
+    },
+    {
+      "id": "en-L11-02",
+      "level": "en-L11",
+      "order": 2,
+      "title": "Medium Sentences",
+      "description": "Medium Sentences",
+      "objective": "Master Medium Sentences",
+      "type": "sentence",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 9,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L11-02-E01",
+        "en-L11-02-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L11-01"
+      }
+    },
+    {
+      "id": "en-L11-03",
+      "level": "en-L11",
+      "order": 3,
+      "title": "Sentences with Punctuation",
+      "description": "Sentences with Punctuation",
+      "objective": "Master Sentences with Punctuation",
+      "type": "sentence",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 9,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L11-03-E01",
+        "en-L11-03-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L11-02"
+      }
+    },
+    {
+      "id": "en-L11-04",
+      "level": "en-L11",
+      "order": 4,
+      "title": "Sentences with Numbers",
+      "description": "Sentences with Numbers",
+      "objective": "Master Sentences with Numbers",
+      "type": "sentence",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L11-04-E01",
+        "en-L11-04-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L11-03"
+      }
+    },
+    {
+      "id": "en-L11-05",
+      "level": "en-L11",
+      "order": 5,
+      "title": "Mixed Sentence Challenge",
+      "description": "Mixed Sentence Challenge",
+      "objective": "Master Mixed Sentence Challenge",
+      "type": "sentence",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L11-05-E01",
+        "en-L11-05-E02"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L11-04"
+      }
+    },
+    {
+      "id": "en-L12-01",
+      "level": "en-L12",
+      "order": 1,
+      "title": "Two-Sentence Paragraph",
+      "description": "Two-Sentence Paragraph",
+      "objective": "Master Two-Sentence Paragraph",
+      "type": "paragraph",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L12-01-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L11-05"
+      }
+    },
+    {
+      "id": "en-L12-02",
+      "level": "en-L12",
+      "order": 2,
+      "title": "Three-Sentence Paragraph",
+      "description": "Three-Sentence Paragraph",
+      "objective": "Master Three-Sentence Paragraph",
+      "type": "paragraph",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L12-02-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L12-01"
+      }
+    },
+    {
+      "id": "en-L12-03",
+      "level": "en-L12",
+      "order": 3,
+      "title": "Story Paragraph",
+      "description": "Story Paragraph",
+      "objective": "Master Story Paragraph",
+      "type": "paragraph",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L12-03-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L12-02"
+      }
+    },
+    {
+      "id": "en-L12-04",
+      "level": "en-L12",
+      "order": 4,
+      "title": "Technology Paragraph",
+      "description": "Technology Paragraph",
+      "objective": "Master Technology Paragraph",
+      "type": "paragraph",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L12-04-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L12-03"
+      }
+    },
+    {
+      "id": "en-L13-01",
+      "level": "en-L13",
+      "order": 1,
+      "title": "One-Minute Speed Drill",
+      "description": "One-Minute Speed Drill",
+      "objective": "Master One-Minute Speed Drill",
+      "type": "speed",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L13-01-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L12-04"
+      }
+    },
+    {
+      "id": "en-L13-02",
+      "level": "en-L13",
+      "order": 2,
+      "title": "Three-Minute Speed Drill",
+      "description": "Three-Minute Speed Drill",
+      "objective": "Master Three-Minute Speed Drill",
+      "type": "speed",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L13-02-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L13-01"
+      }
+    },
+    {
+      "id": "en-L13-03",
+      "level": "en-L13",
+      "order": 3,
+      "title": "Speed Challenge",
+      "description": "Speed Challenge",
+      "objective": "Master Speed Challenge",
+      "type": "speed",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L13-03-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L13-02"
+      }
+    },
+    {
+      "id": "en-L13-04",
+      "level": "en-L13",
+      "order": 4,
+      "title": "English Mastery Test",
+      "description": "English Mastery Test",
+      "objective": "Master English Mastery Test",
+      "type": "test",
+      "newKeys": [],
+      "requiredKeys": [],
+      "fingerFocus": [],
+      "difficulty": 10,
+      "accuracyTarget": 90,
+      "speedTarget": null,
+      "mistakeTolerance": 5,
+      "exerciseRefs": [
+        "en-L13-04-E01"
+      ],
+      "unlockRequirements": {
+        "previousLesson": "en-L13-03"
+      }
+    }
+  ]
+}

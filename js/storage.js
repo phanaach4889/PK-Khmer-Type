@@ -202,6 +202,9 @@ const AccountProgress = (function(){
   function isProgressKey(key){
     if(key === 'khmerTrialBest') return true;
     if(key === 'khmerGlobalStats') return true;
+    if(key === 'khmerTrackingData_v1') return true;
+    if(key === 'khmerReviewData_v1') return true;
+    if(key === 'khmerProgress_v2' || key === 'khmerProgress_v1') return true;
     if(key.indexOf('khmerLessonBest_') === 0) return true;
     if(/^khmerRaceBest[A-Z]/.test(key)) return true;
     return false;

@@ -95,7 +95,10 @@ function celebrateWord(){
 function trialHandleChar(val, el){
   if(!trialActive || !val) return;
   const expected = trialWordChars[trialIndex];
-  if(val === expected){
+  const isMatch = (typeof compareTypingSequence === 'function')
+    ? compareTypingSequence(val, expected)
+    : (val === expected);
+  if(isMatch){
     insertText(val);
     recordKeystroke(true);
     trialIndex++;
@@ -493,10 +496,28 @@ function raceEmberBurst(count){
   }
 }
 
-function raceHandleChar(val, el){
+function raceHandleChar(val, el, stroke){
   if(!raceActive || !val) return;
   const expected = raceChars[raceIndex];
-  if(val === expected){
+  const isMatch = (typeof compareTypingSequence === 'function')
+    ? compareTypingSequence(val, expected)
+    : (val === expected);
+
+  if(typeof PK_TRACKER !== 'undefined' && typeof PK_TRACKER.recordTypingUnit === 'function'){
+    PK_TRACKER.recordTypingUnit({
+      layout: currentLayoutId,
+      unitIndex: raceIndex,
+      expected: expected,
+      produced: val,
+      correct: isMatch,
+      strokeKeyId: stroke ? stroke.id : null,
+      strokeLayer: stroke ? stroke.layer : null,
+      expectedKeyId: raceKeyIds[raceIndex],
+      expectedLayer: raceLayers[raceIndex]
+    });
+  }
+
+  if(isMatch){
     recordKeystroke(true);
     raceCorrectTotal++;
     raceIndex++;
@@ -633,6 +654,13 @@ function startRace(){
   raceRunCountdown(()=>{
     raceActive = true;
     raceStartTime = Date.now();
+    if(typeof PK_TRACKER !== 'undefined' && typeof PK_TRACKER.recordRaceStart === 'function'){
+      PK_TRACKER.recordRaceStart({
+        layout: currentLayoutId,
+        difficulty: raceDifficulty,
+        length: raceLength
+      });
+    }
     lockedLayer = null;
     render();
     raceUpdateKeyHighlight();
@@ -650,6 +678,17 @@ function raceFinish(timedOut){
   const {accuracy, wpm} = raceCurrentStats();
   const score = raceScore(wpm, accuracy, raceMistakes);
   const charsTyped = raceCorrectTotal;
+
+  if(typeof PK_TRACKER !== 'undefined' && typeof PK_TRACKER.recordRaceComplete === 'function'){
+    PK_TRACKER.recordRaceComplete({
+      layout: currentLayoutId,
+      difficulty: raceDifficulty,
+      length: raceLength,
+      wpm: wpm,
+      accuracy: accuracy,
+      score: score
+    });
+  }
 
   lockedLayer = null;
   render();

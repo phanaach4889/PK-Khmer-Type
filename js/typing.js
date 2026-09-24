@@ -2,6 +2,77 @@
    PK Khmer Type — Typing Engine, Manuscript & Key Input Handlers
    ============================================================ */
 
+/* ---------- Unicode Normalization & Character Comparison ---------- */
+const KHMER_COMPOUND_VOWELS = Object.freeze([
+  '\u17BB\u17C6', // ុំ (comma base)
+  '\u17BB\u17C7', // ុះ (comma shift)
+  '\u17B6\u17C6', // ាំ (a shift)
+  '\u17C1\u17C7', // េះ (v shift)
+  '\u17C4\u17C7', // ោះ (semicolon shift)
+]);
+
+function normalizeInput(text){
+  if(text === null || text === undefined) return '';
+  const str = typeof text === 'string' ? text : String(text);
+  return str.normalize('NFC');
+}
+
+function compareTypingSequence(produced, expected){
+  if(produced === expected) return true;
+  const pNorm = normalizeInput(produced);
+  const eNorm = normalizeInput(expected);
+  return pNorm === eNorm;
+}
+
+function splitIntoTypingUnits(text, layoutId){
+  if(!text) return [];
+  const normalized = normalizeInput(text);
+  const units = [];
+  let i = 0;
+  while(i < normalized.length){
+    if(layoutId === 'nida' && i + 1 < normalized.length){
+      const pair = normalized.slice(i, i + 2);
+      if(KHMER_COMPOUND_VOWELS.includes(pair)){
+        units.push(pair);
+        i += 2;
+        continue;
+      }
+    }
+    const code = normalized.codePointAt(i);
+    const ch = String.fromCodePoint(code);
+    units.push(ch);
+    i += ch.length;
+  }
+  return units;
+}
+
+window.normalizeInput = normalizeInput;
+window.compareTypingSequence = compareTypingSequence;
+window.splitIntoTypingUnits = splitIntoTypingUnits;
+
+/* ---------- Composition / IME Awareness ---------- */
+let isComposing = false;
+
+window.addEventListener('compositionstart', ()=>{
+  isComposing = true;
+});
+
+window.addEventListener('compositionupdate', ()=>{
+  isComposing = true;
+});
+
+window.addEventListener('compositionend', (e)=>{
+  isComposing = false;
+  if(typeof lessonActive !== 'undefined' && lessonActive) return;
+  if(typeof raceActive !== 'undefined' && raceActive) return;
+  if(typeof trialActive !== 'undefined' && trialActive) return;
+  const activeEl = document.activeElement;
+  if(activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable)) return;
+  if(e && e.data){
+    insertText(normalizeInput(e.data));
+  }
+});
+
 const outputEl = document.getElementById("output");
 const placeholderEl = document.getElementById("placeholder");
 const clearBtn = document.getElementById("clearBtn");
@@ -282,12 +353,28 @@ function insertText(str){
   insertText._t = setTimeout(()=> outputEl.classList.remove('ink-flash'), 420);
 }
 
-function backspaceText(){
+function backspaceText(specificUnit){
   markTypingBurst();
   const cursor = outputEl.querySelector('.cursor');
-  let node = cursor.previousSibling;
+  let node = cursor ? cursor.previousSibling : null;
   if(node && node.nodeType === 3){
-    node.textContent = node.textContent.slice(0, -1);
+    if(specificUnit && node.textContent.endsWith(specificUnit)){
+      node.textContent = node.textContent.slice(0, -specificUnit.length);
+    } else {
+      let sliced = false;
+      for(const cv of KHMER_COMPOUND_VOWELS){
+        if(node.textContent.endsWith(cv)){
+          node.textContent = node.textContent.slice(0, -cv.length);
+          sliced = true;
+          break;
+        }
+      }
+      if(!sliced){
+        const chars = Array.from(node.textContent);
+        chars.pop();
+        node.textContent = chars.join('');
+      }
+    }
     if(node.textContent.length === 0) node.remove();
   }
   if(!outputEl.textContent.trim()) placeholderEl.style.display = 'inline';
@@ -302,55 +389,112 @@ function clearText(){
   placeholderEl.style.display = 'inline';
 }
 
-function typeKey(id, ev){
-  const el = keyEls[id];
-  press(el);
-  triggerFingerPress(id);
-  if(ev) burst(el, ev); else burst(el);
-  playClick('down');
+/* ---------- Key Stroke Resolution Pipeline ---------- */
+function resolveKeyStroke(id){
+  if(!id) return null;
 
-  if(id === 'backspace'){ if(!trialActive && !lessonActive && !raceActive) backspaceText(); return; }
-  if(id === 'enter'){ if(!trialActive && !lessonActive && !raceActive) insertText('\n'); return; }
-  if(id === 'tab'){ if(!trialActive && !lessonActive && !raceActive) insertText('\u0009'); return; }
+  if(['shiftL','shiftR','ctrlL','ctrlR','alt','altgr'].includes(id)){
+    return { id, kind: 'modifier' };
+  }
+  if(id === 'caps'){
+    return { id, kind: 'caps' };
+  }
+  if(id === 'backspace' || id === 'enter' || id === 'tab'){
+    return {
+      id,
+      kind: 'control',
+      charProduced: id === 'enter' ? '\n' : (id === 'tab' ? '\t' : '')
+    };
+  }
   if(id === 'space'){
     const sm = (LAYOUTS[currentLayoutId] && LAYOUTS[currentLayoutId].spaceMap) ? LAYOUTS[currentLayoutId].spaceMap : null;
     const lyr = currentLayer();
     const charProduced = (sm && sm[lyr] !== undefined) ? sm[lyr] : (lyr === 'shift' ? ' ' : ' ');
-    if(lessonActive){
-      lessonHandleChar(charProduced, el);
-    } else if(raceActive){
-      raceHandleChar(charProduced, el);
-    } else if(typeof trialActive !== 'undefined' && trialActive){
-      if(typeof trialHandleChar === 'function') trialHandleChar(charProduced, el);
-    } else {
-      insertText(charProduced);
-    }
-    return;
+    return {
+      id,
+      kind: 'glyph',
+      layer: lyr,
+      charProduced: normalizeInput(charProduced)
+    };
   }
-  if(id === 'caps'){
-    if(currentLayoutId === 'english'){
-      capsOn = !capsOn;
-      if(el) el.classList.toggle('lit', capsOn);
-    }
-    return;
-  }
-  if(['shiftL','shiftR','ctrlL','ctrlR','alt','altgr'].includes(id)) return;
 
   const data = glyphData[id];
-  if(!data) return;
+  if(!data) return null;
+
   let layer = currentLayer();
   if(currentLayoutId === 'english' && capsOn && /^[a-z]$/.test(id)){
     layer = (layer === 'shift') ? 'base' : (layer === 'base' ? 'shift' : layer);
   }
-  const val = data[layer] !== undefined && data[layer] !== '' ? data[layer] : (layer==='base' ? data.base : '');
+  const val = (data[layer] !== undefined && data[layer] !== '') ? data[layer] : (layer === 'base' ? data.base : '');
+  if(!val) return null;
+
+  return {
+    id,
+    kind: 'glyph',
+    layer,
+    charProduced: normalizeInput(val)
+  };
+}
+
+window.resolveKeyStroke = resolveKeyStroke;
+
+function typeKey(id, ev){
+  const el = keyEls[id];
+  if(el) press(el);
+  triggerFingerPress(id);
+  if(ev) burst(el, ev); else burst(el);
+
+  const stroke = resolveKeyStroke(id);
+  if(!stroke) return;
+
+  if(stroke.kind === 'modifier') return;
+
+  if(stroke.kind === 'caps'){
+    if(currentLayoutId === 'english'){
+      capsOn = !capsOn;
+      if(el) el.classList.toggle('lit', capsOn);
+      playClick('down');
+    }
+    return;
+  }
+
+  if(stroke.id === 'backspace'){
+    playClick('up');
+    if(typeof adaptiveActive !== 'undefined' && adaptiveActive){
+      if(typeof adaptiveHandleBackspace === 'function') adaptiveHandleBackspace();
+    } else if(typeof lessonActive !== 'undefined' && lessonActive){
+      if(typeof lessonHandleBackspace === 'function') lessonHandleBackspace();
+    } else if(typeof raceActive !== 'undefined' && raceActive){
+      // Race mode does not use backspace
+    } else if(typeof trialActive !== 'undefined' && trialActive){
+      // Trial mode does not use backspace
+    } else {
+      backspaceText();
+    }
+    return;
+  }
+
+  playClick('down');
+
+  if(stroke.id === 'enter' || stroke.id === 'tab'){
+    if(!trialActive && !lessonActive && !raceActive && (typeof adaptiveActive === 'undefined' || !adaptiveActive)){
+      insertText(stroke.charProduced);
+    }
+    return;
+  }
+
+  const val = stroke.charProduced;
   if(!val) return;
 
-  if(raceActive){
-    raceHandleChar(val, el);
-  } else if(trialActive){
-    trialHandleChar(val, el);
-  } else if(lessonActive){
-    lessonHandleChar(val, el);
+  // Active consumer routing
+  if(typeof adaptiveActive !== 'undefined' && adaptiveActive){
+    if(typeof adaptiveHandleChar === 'function') adaptiveHandleChar(val, el, stroke);
+  } else if(typeof lessonActive !== 'undefined' && lessonActive){
+    lessonHandleChar(val, el, stroke);
+  } else if(typeof raceActive !== 'undefined' && raceActive){
+    raceHandleChar(val, el, stroke);
+  } else if(typeof trialActive !== 'undefined' && trialActive){
+    if(typeof trialHandleChar === 'function') trialHandleChar(val, el, stroke);
   } else {
     emberBurst(el, ev, 4);
     insertText(val);
@@ -371,6 +515,7 @@ function recomputePhysicalLayer(){
 window.addEventListener('keydown', (e)=>{
   const t = e.target;
   if(t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+  if(e.isComposing || isComposing) return;
 
   const id = CODE_MAP[e.code];
 
@@ -417,6 +562,18 @@ window.addEventListener('keydown', (e)=>{
     return;
   }
 
+  // Intercept Shift+Insert paste
+  if(e.key === 'Insert' && e.shiftKey){
+    e.preventDefault();
+    if((typeof lessonActive !== 'undefined' && lessonActive) ||
+       (typeof raceActive !== 'undefined' && raceActive) ||
+       (typeof trialActive !== 'undefined' && trialActive)) return;
+    if(navigator.clipboard && navigator.clipboard.readText){
+      navigator.clipboard.readText().then(handlePasteText).catch(()=>{});
+    }
+    return;
+  }
+
   const isAltGraph = (e.getModifierState && e.getModifierState('AltGraph')) || heldModifiers.has('altgr') || (e.ctrlKey && e.altKey);
 
   // Handle Ctrl / Meta shortcuts (only when not typing an AltGr glyph)
@@ -436,6 +593,9 @@ window.addEventListener('keydown', (e)=>{
     }
     if(keyLower === 'v'){
       e.preventDefault();
+      if((typeof lessonActive !== 'undefined' && lessonActive) ||
+         (typeof raceActive !== 'undefined' && raceActive) ||
+         (typeof trialActive !== 'undefined' && trialActive)) return;
       if(navigator.clipboard && navigator.clipboard.readText){
         navigator.clipboard.readText().then(handlePasteText).catch(()=>{});
       }

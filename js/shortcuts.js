@@ -67,10 +67,20 @@
     }
 
     // 2. Close lesson completion overlay if present
+    // 2. Close lesson or adaptive completion overlay if present
     const lcOverlay = document.querySelector('.lesson-complete-overlay');
     if(lcOverlay){
       lcOverlay.remove();
       return true;
+    }
+
+    // 2.5 Exit adaptive practice if active
+    if(typeof adaptiveActive !== 'undefined' && adaptiveActive){
+      if(typeof PK_ADAPTIVE !== 'undefined' && typeof PK_ADAPTIVE.exitSession === 'function'){
+        PK_ADAPTIVE.exitSession();
+        if(typeof showToast === 'function') showToast(pkIcon('close', 16), 'Adaptive Practice Exited', 'Returned to keyboard overview.');
+        return true;
+      }
     }
 
     // 3. Exit active lesson if in progress

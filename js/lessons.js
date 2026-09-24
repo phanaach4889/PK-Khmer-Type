@@ -74,8 +74,10 @@ function entriesFromIds(ids, layer, table){
   }).filter(e=> e.ch);
 }
 function resolveCharLocation(ch, table){
-  if(ch === ' ') return spaceEntry(table);
-  const src = table || KEY_BY_ID;
+  const src = table || ((typeof currentLayoutId !== 'undefined' && currentLayoutId==='nida') ? KEY_BY_ID_NIDA
+    : (typeof currentLayoutId !== 'undefined' && currentLayoutId==='english') ? KEY_BY_ID_EN
+    : KEY_BY_ID);
+  if(ch === ' ') return spaceEntry(src);
   for(const id in src){
     const k = src[id];
     if(k.base===ch) return {id, layer:'base', ch};
@@ -85,11 +87,14 @@ function resolveCharLocation(ch, table){
   }
   return null;
 }
-function materialize(entries){
+function materialize(entries, sections){
   return {
     chars: entries.map(e=> e.ch),
     layers: entries.map(e=> e.layer),
     keyIds: entries.map(e=> e.id),
+    sections: sections || [
+      { id: 'sec_1', type: 'drill', title: 'Exercise 1', startIndex: 0, endIndex: Math.max(0, entries.length - 1), totalUnits: entries.length }
+    ]
   };
 }
 function pickRandom(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
@@ -294,7 +299,7 @@ function seqReviewMistakes(missedEntries, companionEntries){
   return seq;
 }
 
-const LEVELS_STANDARD = [
+let LEVELS_STANDARD = [
   {id:1, title:'Level 1 · Home Row Basics'},
   {id:2, title:'Level 2 · Home Row Combinations'},
   {id:3, title:'Level 3 · Home Row + Shift'},
@@ -303,17 +308,16 @@ const LEVELS_STANDARD = [
   {id:6, title:'Level 6 · Khmer Numerals'},
   {id:7, title:'Level 7 · Ctrl / AltGr Layers'},
   {id:8, title:'Level 8 · Full Keyboard & Mastery'},
-  {id:9, title:'Level 4 · Word Practice'},
 ];
 
-const LEVELS_NIDA = [
+let LEVELS_NIDA = [
   {id:1, title:'Level 1 · Beginner: Consonants & Core Vowels'},
   {id:2, title:'Level 2 · Intermediate: Subscripts (Coeng J)'},
   {id:3, title:'Level 3 · Advanced: Independent Vowels & Signs'},
   {id:4, title:'Level 4 · Master: Numerals & Fluid Prose'},
 ];
 
-const LEVELS_ENGLISH = [
+let LEVELS_ENGLISH = [
   {id:1, title:'Level 1 · Home Row Basics'},
   {id:2, title:'Level 2 · Home Row Combinations'},
   {id:3, title:'Level 3 · Top Row Reach'},
@@ -675,17 +679,7 @@ function buildHomeRowCourse(table, idOffset, wordBank){
       ()=> materialize(seqCombo(snap, 2, 8)),
       {newIds:ids, newLayer:'base', examples:[]});
   }
-  // 4. G & H
-  {
-    const ids = ['g', 'h'];
-    const ex = entriesFromIds(ids, 'base', table).map(e=> e.ch + ' ' + e.ch);
-    const priorSnap = pool.slice();
-    addLesson(1, 'intro', 'Home Row — Index Reach (G & H)', `${modLabel.base} · ${ids.map(keyLabel).join(' ')}`,
-      ()=> materialize(seqIntro(entriesFromIds(ids,'base',table), priorSnap, {soloReps:4, examples:ex, table})),
-      {newIds:ids, newLayer:'base', examples:ex});
-    pool = pool.concat(entriesFromIds(ids,'base',table));
-  }
-  // 5. S & L
+  // 4. S & L
   {
     const ids = ['s', 'l'];
     const ex = entriesFromIds(ids, 'base', table).map(e=> e.ch + ' ' + e.ch);
@@ -695,18 +689,36 @@ function buildHomeRowCourse(table, idOffset, wordBank){
       {newIds:ids, newLayer:'base', examples:ex});
     pool = pool.concat(entriesFromIds(ids,'base',table));
   }
-  // 6. Pinkies A, ;, '
+  // 5. Pinkies A & ;
   {
-    const ids = ['a', 'semicolon', 'quote'];
+    const ids = ['a', 'semicolon'];
     const ex = entriesFromIds(ids, 'base', table).map(e=> e.ch + ' ' + e.ch);
     const priorSnap = pool.slice();
-    addLesson(1, 'intro', 'Home Row — Pinky Fingers', `${modLabel.base} · ${ids.map(keyLabel).join(' ')}`,
+    addLesson(1, 'intro', 'Home Row — Pinky Fingers (A & ;)', `${modLabel.base} · ${ids.map(keyLabel).join(' ')}`,
+      ()=> materialize(seqIntro(entriesFromIds(ids,'base',table), priorSnap, {soloReps:4, examples:ex, table})),
+      {newIds:ids, newLayer:'base', examples:ex});
+    pool = pool.concat(entriesFromIds(ids,'base',table));
+  }
+  // 6. Core 8-Key Combos
+  {
+    const ids = ['a', 's', 'd', 'f', 'j', 'k', 'l', 'semicolon'];
+    const snap = pool.slice();
+    addLesson(1, 'combo', 'Home Row — 8 Core Keys Combined', 'Pinkies to Anchors · A S D F J K L ;',
+      ()=> materialize(seqCombo(snap, 2, 8)),
+      {newIds:ids, newLayer:'base', examples:[]});
+  }
+  // 7. G & H (Index Reaches from Anchors)
+  {
+    const ids = ['g', 'h'];
+    const ex = entriesFromIds(ids, 'base', table).map(e=> e.ch + ' ' + e.ch);
+    const priorSnap = pool.slice();
+    addLesson(2, 'intro', 'Home Row — Index Reach (G & H)', `${modLabel.base} · ${ids.map(keyLabel).join(' ')}`,
       ()=> materialize(seqIntro(entriesFromIds(ids,'base',table), priorSnap, {soloReps:4, examples:ex, table})),
       {newIds:ids, newLayer:'base', examples:ex});
     pool = pool.concat(entriesFromIds(ids,'base',table));
   }
 
-  // Level 2 Combos
+  // Level 2 Combos & Tests
   {
     const snap = pool.slice();
     addLesson(2,'combo','Two-Character Combos','Pairs drawn from the Home Row', ()=> materialize(seqCombo(snap, 2, 12)));
@@ -716,7 +728,7 @@ function buildHomeRowCourse(table, idOffset, wordBank){
   }
 
   // Level 3 Shift
-  const shiftEntries = entriesFromIds(['f','j','d','k','g','h','s','l','a','semicolon','quote'], 'shift', table);
+  const shiftEntries = entriesFromIds(['f','j','d','k','g','h','s','l','a','semicolon'], 'shift', table);
   if(shiftEntries.length){
     const priorSnap = pool.slice();
     addLesson(3, 'intro', 'Home Row Shift', 'Hold Shift · Home row keys',
@@ -760,9 +772,9 @@ function buildNidaCourse(){
 
   // Lesson 10001 (Level 1, intro): Home Row Consonant Anchors
   {
-    const ids = ['k', 'd', 'f', 'g', 'h', 'l', 's'];
-    const ex = ['កក', 'គក', 'ដក', 'ថក', 'ធរ', 'សស', 'ហល', 'អក'];
-    addLesson(1, 'intro', 'Home Row — Consonant Anchors', 'K, D, F, H, L, S, G & Shift Consonants',
+    const ids = ['k', 'j', 'd', 'f', 'g', 'h', 'l', 's'];
+    const ex = ['កក', 'គក', 'ដក', 'ថក', 'ធរ', 'សស', 'ហល', 'អក', 'ញញ'];
+    addLesson(1, 'intro', 'Home Row — Consonant Anchors', 'K, J, D, F, H, L, S, G & Shift Consonants',
       () => materialize(seqWords(ex, table)),
       { newIds: ids, newLayer: 'base', examples: ex });
   }
@@ -796,20 +808,20 @@ function buildNidaCourse(){
 
   /* ===== LEVEL 2: Intermediate — Subscripts & Coeng J System ===== */
 
-  // Lesson 10005 (Level 2, intro): Subscripts — Coeng Key (J = ្)
+  // Lesson 10005 (Level 2, intro): Subscripts — Coeng Key (Shift+J = ្)
   {
     const ids = ['j'];
     const ex = ['ត្រី', 'ក្រៅ', 'ខ្លា', 'ឆ្កែ', 'ផ្លូវ', 'ម្ហូប', 'ស្ងួត', 'ក្បាល'];
-    addLesson(2, 'intro', 'Subscripts — Coeng Key (J = ្)', 'Base Consonant + J (្) + Subscript',
+    addLesson(2, 'intro', 'Subscripts — Coeng Key (Shift+J = ្)', 'Base Consonant + Shift+J (្) + Subscript',
       () => materialize(seqWords(ex, table)),
-      { newIds: ids, newLayer: 'base', examples: ex });
+      { newIds: ids, newLayer: 'shift', examples: ex });
   }
 
   // Lesson 10006 (Level 2, combo): Subscripts — Shifted Consonants
   {
     const ids = ['j', 'k', 'x', 'c', 't', 'f', 'p', 'g'];
     const ex = ['ស្គាល់', 'ស្អាត', 'កម្ពុជា', 'បញ្ជី', 'សង្ឃ', 'សម្បត្តិ', 'បន្ទប់'];
-    addLesson(2, 'combo', 'Subscripts — Shifted Consonants', 'J followed by Shifted Consonants (្គ, ្ឃ, ្ជ, ្ទ, ្ធ, ្ភ, ្អ)',
+    addLesson(2, 'combo', 'Subscripts — Shifted Consonants', 'Shift+J followed by Shifted Consonants (្គ, ្ឃ, ្ជ, ្ទ, ្ធ, ្ភ, ្អ)',
       () => materialize(seqWords(ex, table)),
       { newIds: ids, newLayer: 'shift', examples: ex });
   }
@@ -916,15 +928,210 @@ function buildNidaCourse(){
   return lessons;
 }
 
-const LESSONS_STANDARD = buildCourse();
-const LESSONS_NIDA = buildNidaCourse();
-const LESSONS_ENGLISH = buildHomeRowCourse(KEY_BY_ID_EN, 20000, WORD_BANK_EN);
+function createLessonModel(rawLesson, exercisesMap, layoutId, levelObj){
+  let newIds = [];
+  let newLayer = 'base';
+  if(Array.isArray(rawLesson.newKeys)){
+    newIds = rawLesson.newKeys.map(k => (typeof k === 'string' ? k : (k.keyId || ''))).filter(Boolean);
+    if(rawLesson.newKeys[0] && typeof rawLesson.newKeys[0] === 'object' && rawLesson.newKeys[0].layer){
+      newLayer = rawLesson.newKeys[0].layer;
+    }
+  }
+
+  const refs = rawLesson.exerciseRefs || rawLesson.exercises || [];
+  let examples = rawLesson.examples || [];
+  if(!examples.length){
+    const wordsSet = new Set();
+    refs.forEach(eid => {
+      const ex = exercisesMap[eid];
+      if(!ex || !ex.content) return;
+      if(Array.isArray(ex.content)){
+        ex.content.forEach(w => { if(typeof w === 'string' && w.trim()) wordsSet.add(w.trim()); });
+      } else if(typeof ex.content === 'string'){
+        ex.content.split(/\s+/).forEach(w => { if(w.trim()) wordsSet.add(w.trim()); });
+      }
+    });
+    examples = Array.from(wordsSet).slice(0, 4);
+  }
+
+  const threshold = rawLesson.accuracyTarget
+    || (rawLesson.masteryCriteria && rawLesson.masteryCriteria.accuracy)
+    || rawLesson.threshold
+    || 85;
+
+  return {
+    id: rawLesson.id,
+    level: rawLesson.level,
+    title: rawLesson.title,
+    subtitle: rawLesson.subtitle || rawLesson.description || (levelObj ? levelObj.title : ''),
+    type: rawLesson.type || 'drill',
+    threshold: threshold,
+    newIds: newIds,
+    newLayer: newLayer,
+    examples: examples,
+    unlockRequirements: rawLesson.unlockRequirements || null,
+    generate: function(){
+      const currentTable = (layoutId === 'nida') ? KEY_BY_ID_NIDA
+        : (layoutId === 'english') ? KEY_BY_ID_EN
+        : KEY_BY_ID;
+      const entries = [];
+      const sections = [];
+      let unitOffset = 0;
+
+      refs.forEach((eid, idx) => {
+        const ex = exercisesMap[eid];
+        if(!ex || !ex.content) return;
+        const rawContent = Array.isArray(ex.content) ? ex.content.join(' ') : ex.content;
+        if(!rawContent) return;
+
+        const units = (typeof splitIntoTypingUnits === 'function')
+          ? splitIntoTypingUnits(rawContent, layoutId)
+          : rawContent.split('');
+
+        if(!units.length) return;
+        const start = unitOffset;
+
+        for(let i=0; i<units.length; i++){
+          const u = units[i];
+          const loc = resolveCharLocation(u, currentTable);
+          if(loc){
+            entries.push(loc);
+          } else {
+            entries.push({ id: 'space', layer: 'base', ch: u });
+          }
+          unitOffset++;
+        }
+
+        const end = Math.max(start, unitOffset - 1);
+        sections.push({
+          id: eid,
+          type: ex.type || 'drill',
+          title: ex.title || (ex.type ? ex.type.toUpperCase() : `Exercise ${idx + 1}`),
+          startIndex: start,
+          endIndex: end,
+          totalUnits: (end - start + 1)
+        });
+      });
+
+      if(!entries.length){
+        const fallbackText = Array.isArray(examples) ? examples.join(' ') : (typeof examples === 'string' ? examples : '');
+        if(fallbackText){
+          const units = (typeof splitIntoTypingUnits === 'function')
+            ? splitIntoTypingUnits(fallbackText, layoutId)
+            : fallbackText.split('');
+          for(let i=0; i<units.length; i++){
+            const u = units[i];
+            const loc = resolveCharLocation(u, currentTable);
+            entries.push(loc || { id: 'space', layer: 'base', ch: u });
+          }
+          sections.push({
+            id: rawLesson.id + '-main',
+            type: rawLesson.type || 'drill',
+            title: rawLesson.title || 'Main Drill',
+            startIndex: 0,
+            endIndex: Math.max(0, entries.length - 1),
+            totalUnits: entries.length
+          });
+        }
+      }
+
+      return materialize(entries, sections);
+    }
+  };
+}
+
+let LESSONS_STANDARD = buildCourse();
+let LESSONS_NIDA = buildNidaCourse();
+let LESSONS_ENGLISH = buildHomeRowCourse(KEY_BY_ID_EN, 20000, WORD_BANK_EN);
 window.LESSON_SETS = LESSON_SETS = { standard: LESSONS_STANDARD, nida: LESSONS_NIDA, english: LESSONS_ENGLISH };
 window.LESSONS = LESSONS = LESSON_SETS[currentLayoutId] || LESSONS_STANDARD;
+
+function initCurriculumFromData(layoutId, levelsData, lessonsData, exercisesData){
+  if(!levelsData || !lessonsData || !exercisesData) return null;
+  const exMap = Array.isArray(exercisesData)
+    ? exercisesData.reduce((acc, ex)=>{ acc[ex.id] = ex; return acc; }, {})
+    : exercisesData;
+
+  const lvlMap = {};
+  levelsData.forEach(lvl => lvlMap[lvl.id] = lvl);
+
+  const compiledLessons = lessonsData.map(l => createLessonModel(l, exMap, layoutId, lvlMap[l.level]));
+
+  if(layoutId === 'nida'){
+    LEVELS_NIDA.length = 0;
+    LEVELS_NIDA.push(...levelsData);
+    LESSONS_NIDA.length = 0;
+    LESSONS_NIDA.push(...compiledLessons);
+    LESSON_SETS.nida = LESSONS_NIDA;
+    LEVEL_SETS.nida = LEVELS_NIDA;
+  } else if(layoutId === 'english'){
+    LEVELS_ENGLISH.length = 0;
+    LEVELS_ENGLISH.push(...levelsData);
+    LESSONS_ENGLISH.length = 0;
+    LESSONS_ENGLISH.push(...compiledLessons);
+    LESSON_SETS.english = LESSONS_ENGLISH;
+    LEVEL_SETS.english = LEVELS_ENGLISH;
+  }
+
+  if(currentLayoutId === layoutId){
+    window.LESSONS = LESSONS = LESSON_SETS[layoutId];
+    window.LEVELS = LEVELS = LEVEL_SETS[layoutId];
+    if(typeof defaultCollapsedLevels === 'function') collapsedLevels = defaultCollapsedLevels();
+    if(typeof lessonStrip !== 'undefined' && lessonStrip && typeof renderLessonStrip === 'function') renderLessonStrip();
+    if(typeof updateMasteryStat === 'function') updateMasteryStat();
+  }
+
+  window.TOTAL_LESSONS_ALL_LAYOUTS = TOTAL_LESSONS_ALL_LAYOUTS =
+    (LESSON_SETS.standard ? LESSON_SETS.standard.length : 0) +
+    (LESSON_SETS.nida ? LESSON_SETS.nida.length : 0) +
+    (LESSON_SETS.english ? LESSON_SETS.english.length : 0);
+
+  return compiledLessons;
+}
+
+function initCurriculumFromBundle(){
+  const cData = (typeof window !== 'undefined' && window.CURRICULUM_DATA)
+    ? window.CURRICULUM_DATA
+    : (typeof global !== 'undefined' && global.CURRICULUM_DATA)
+    ? global.CURRICULUM_DATA
+    : null;
+  if(!cData) return;
+  if(cData.nida){
+    initCurriculumFromData('nida', cData.nida.levels, cData.nida.lessons, cData.nida.exercises);
+  }
+  if(cData.english){
+    initCurriculumFromData('english', cData.english.levels, cData.english.lessons, cData.english.exercises);
+  }
+}
+
+async function loadAllCurricula(){
+  try {
+    const fetchCurriculum = async (layout) => {
+      const [lvRes, lsRes, exRes] = await Promise.all([
+        fetch(`data/curriculum/${layout}/levels.json`).catch(()=>null),
+        fetch(`data/curriculum/${layout}/lessons.json`).catch(()=>null),
+        fetch(`data/curriculum/${layout}/exercises.json`).catch(()=>null)
+      ]);
+      if(lvRes && lvRes.ok && lsRes && lsRes.ok && exRes && exRes.ok){
+        const [levels, lessons, exercises] = await Promise.all([
+          lvRes.json(), lsRes.json(), exRes.json()
+        ]);
+        initCurriculumFromData(layout, levels, lessons, exercises);
+      }
+    };
+    await Promise.all([fetchCurriculum('nida'), fetchCurriculum('english')]);
+  } catch(err){
+    console.warn('loadAllCurricula fallback to bundled data:', err);
+  }
+}
+window.initCurriculumFromData = initCurriculumFromData;
+window.initCurriculumFromBundle = initCurriculumFromBundle;
+window.loadAllCurricula = loadAllCurricula;
+
 /* Total lesson count across every layout's course — used for stats
    like "Lessons Crafted" that should reflect everything on the site,
    not just whichever layout happens to be selected right now. */
-window.TOTAL_LESSONS_ALL_LAYOUTS = TOTAL_LESSONS_ALL_LAYOUTS = LESSONS_STANDARD.length + LESSONS_NIDA.length + LESSONS_ENGLISH.length;
+window.TOTAL_LESSONS_ALL_LAYOUTS = TOTAL_LESSONS_ALL_LAYOUTS = (LESSON_SETS.standard ? LESSON_SETS.standard.length : 0) + (LESSON_SETS.nida ? LESSON_SETS.nida.length : 0) + (LESSON_SETS.english ? LESSON_SETS.english.length : 0);
 
 
 let lessonActive = false;
@@ -935,6 +1142,7 @@ let lessonKeyIds = [];
 let lessonIndex = 0;
 let lessonMistakes = 0;
 let lessonMistakeChars = {};   // ch -> count of mistakes this attempt, for adaptive drilling + Review Mistakes
+let lessonAcceptedUnits = [];  // Stack of accepted {index, val, expected} units for reliable Backspace
 let lessonStartTime = 0;
 let lessonExtendedOnce = false; // adaptive: only auto-extend a lesson once per attempt
 let remedialActive = false;    // true while running an ad-hoc "Review Mistakes" drill
@@ -952,11 +1160,29 @@ const lessonProgressFillEl = document.getElementById('lessonProgressFill');
 const lessonCharRowEl = document.getElementById('lessonCharRow');
 const lessonAccValEl = document.getElementById('lessonAccVal');
 const lessonMistakesValEl = document.getElementById('lessonMistakesVal');
+const lessonWpmValEl = document.getElementById('lessonWpmVal');
+const lessonStreakValEl = document.getElementById('lessonStreakVal');
+const lessonBackspacesValEl = document.getElementById('lessonBackspacesVal');
+const lessonLiveHintEl = document.getElementById('lessonLiveHint');
 const lessonExitBtn = document.getElementById('lessonExitBtn');
+let lessonSections = [];
 
 function lessonBestKey(id){ return 'khmerLessonBest_' + id; }
 
 function getLessonBest(id){
+  const progressApi = (typeof window !== 'undefined' && window.PK_PROGRESS) || (typeof global !== 'undefined' && global.PK_PROGRESS);
+  if(progressApi && typeof progressApi.getLessonProgress === 'function'){
+    const cLayout = (typeof currentLayoutId !== 'undefined') ? currentLayoutId : 'nida';
+    const prog = progressApi.getLessonProgress(cLayout, id);
+    if(prog && (prog.started || prog.completed || prog.totalAttempts > 0)){
+      return {
+        accuracy: prog.bestAccuracy,
+        time: prog.bestAttempt ? prog.bestAttempt.timeSec : 0,
+        attempts: prog.totalAttempts,
+        mastered: prog.masteryState === 'mastered'
+      };
+    }
+  }
   try{ return JSON.parse(localStorage.getItem(lessonBestKey(id)) || 'null'); }
   catch(e){ return null; }
 }
@@ -966,10 +1192,17 @@ try{ allLessonsUnlocked = localStorage.getItem('khmerUnlockAll') === '1'; }catch
 
 function isLessonLocked(id){
   if(allLessonsUnlocked) return false;
-  if(LESSONS.length && LESSONS[0].id === id) return false;
-  const prevBest = getLessonBest(id-1);
+  if(!LESSONS || !LESSONS.length) return false;
+  const idx = LESSONS.findIndex(l => String(l.id) === String(id));
+  if(idx <= 0) return false;
+  const def = LESSONS[idx];
+  const prevReqId = def && def.unlockRequirements && def.unlockRequirements.previousLesson;
+  const prevId = prevReqId || LESSONS[idx - 1].id;
+  const prevBest = getLessonBest(prevId);
   return !prevBest; // any completed attempt on the previous lesson unlocks the next one
 }
+window.isLessonLocked = isLessonLocked;
+window.getLessonBest = getLessonBest;
 
 function toggleAllLessonsUnlocked(){
   allLessonsUnlocked = !allLessonsUnlocked;
@@ -1025,22 +1258,26 @@ function toggleAllLessonsUnlocked(){
    accordion sections so the whole list isn't overwhelming at once. */
 // collapsedLevels defined at top of module // Set of level ids currently collapsed; null = not yet initialized
 function defaultCollapsedLevels(){
-  // Collapse all levels by default so user can just see all the levels at a glance (not too big)
-  return new Set(LEVELS.map(l => l.id));
+  const s = new Set(LEVELS.map(l => String(l.id)));
+  if(LEVELS.length > 0){
+    s.delete(String(LEVELS[0].id)); // Level 1 open by default for immediate beginner access
+  }
+  return s;
 }
 
 function autoAdvanceLevelAccordion(completedDef){
   if(!completedDef) return;
   if(!collapsedLevels) collapsedLevels = defaultCollapsedLevels();
-  const currentLv = completedDef.level;
-  const levelLessons = LESSONS.filter(l => l.level === currentLv);
+  const currentLv = String(completedDef.level);
+  const levelLessons = LESSONS.filter(l => String(l.level) === currentLv);
   const allFinished = levelLessons.length > 0 && levelLessons.every(l => !!getLessonBest(l.id));
   if(allFinished){
     // Current level is completed! Collapse current level and open the next level!
-    const nextLv = currentLv + 1;
-    if(LEVELS.some(l => l.id === nextLv)){
-      collapsedLevels.add(currentLv);    // Close completed level (e.g. Level 1)
-      collapsedLevels.delete(nextLv);    // Open next level (e.g. Level 2)
+    const curIdx = LEVELS.findIndex(l => String(l.id) === currentLv);
+    if(curIdx >= 0 && curIdx < LEVELS.length - 1){
+      const nextLv = String(LEVELS[curIdx + 1].id);
+      collapsedLevels.add(currentLv);    // Close completed level
+      collapsedLevels.delete(nextLv);    // Open next level
     }
   } else {
     // Current level still has lessons, keep it open
@@ -1055,14 +1292,18 @@ function renderLessonStrip(){
     if(!Array.isArray(LESSONS) || LESSONS.length === 0){
       if(typeof LESSONS_STANDARD !== 'undefined' && Array.isArray(LESSONS_STANDARD) && LESSONS_STANDARD.length){
         LESSONS = LESSONS_STANDARD;
+      } else if(typeof LESSON_SETS !== 'undefined' && LESSON_SETS.standard && LESSON_SETS.standard.length){
+        LESSONS = LESSON_SETS.standard;
       }
     }
+    if(!Array.isArray(LESSONS) || LESSONS.length === 0){
+      lessonStrip.removeAttribute('hidden');
+      lessonStrip.hidden = false;
+      return;
+    }
     if(!collapsedLevels) collapsedLevels = defaultCollapsedLevels();
-    lessonStrip.innerHTML = '';
 
-    lessonStrip.hidden = false;
-    lessonStrip.classList.remove('minimized');
-    lessonStrip.classList.toggle('expanded', isStripExpanded);
+    const frag = document.createDocumentFragment();
 
     let masteredCount = 0;
     LESSONS.forEach(l => { const b = getLessonBest(l.id); if(b && b.mastered) masteredCount++; });
@@ -1072,28 +1313,54 @@ function renderLessonStrip(){
     topBar.innerHTML = `
       <span class="lsh-title">${pkIcon('book', 15)} LESSONS</span>
       <div class="lsh-actions">
+        <button type="button" class="lsh-adaptive-btn" id="lshAdaptiveBtn" title="Start Adaptive Practice" aria-label="Start Adaptive Practice">
+          ${pkIcon('refresh', 12)} <span class="i18n-t" data-en="Adaptive" data-km="ការអនុវត្តបន្ស៊ាំ">Adaptive</span>
+        </button>
         <span class="lsh-badge">${masteredCount}/${LESSONS.length} Mastered</span>
         <button type="button" class="lsh-expand-btn" id="lshExpandBtn" title="${isStripExpanded ? 'Compact sidebar (1 column)' : 'Expand sidebar (2 columns)'}" aria-label="Toggle sidebar width">
           ${pkIcon(isStripExpanded ? 'collapse' : 'expand', 12)}
         </button>
       </div>
     `;
-    lessonStrip.appendChild(topBar);
+    frag.appendChild(topBar);
+
+    const adaptiveCard = document.createElement('div');
+    adaptiveCard.className = 'adaptive-sidebar-card';
+    adaptiveCard.id = 'adaptiveSidebarCard';
+    const sAdaptive = (typeof PK_ADAPTIVE !== 'undefined' && typeof PK_ADAPTIVE.loadAdaptiveState === 'function')
+      ? PK_ADAPTIVE.loadAdaptiveState(currentLayoutId)
+      : null;
+    const activeSub = sAdaptive
+      ? `Stage ${sAdaptive.stage} · ${sAdaptive.unlockedUnits.slice(0, 6).map(u=>u.toUpperCase()).join(' ')}${sAdaptive.unlockedUnits.length > 6 ? ' +' + (sAdaptive.unlockedUnits.length - 6) : ''}`
+      : 'Targeted letters practice';
+    adaptiveCard.innerHTML = `
+      <div class="asc-left">
+        <div class="asc-title">
+          <svg class="pk-icon asc-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          <span class="i18n-t" data-en="Adaptive Practice" data-km="ការអនុវត្តបន្ស៊ាំ">Adaptive Practice</span>
+        </div>
+        <div class="asc-sub" id="adaptiveSidebarSub">${activeSub}</div>
+      </div>
+      <button type="button" class="asc-btn" id="adaptiveStartBtn">
+        <span class="i18n-t" data-en="Train" data-km="ហាត់">Train</span>
+      </button>
+    `;
+    frag.appendChild(adaptiveCard);
 
     let lastLevel = null;
     let listEl = null;
     LESSONS.forEach((def, idx)=>{
       if(def.level !== lastLevel){
-        const lv = LEVELS.find(l=>l.id===def.level);
-        const collapsed = collapsedLevels.has(def.level);
+        const lv = LEVELS.find(l=> String(l.id) === String(def.level));
+        const collapsed = collapsedLevels.has(String(def.level));
         const header = document.createElement('div');
         header.className = 'lesson-level-header' + (collapsed ? ' collapsed' : '');
-        header.dataset.level = def.level;
+        header.dataset.level = String(def.level);
         header.innerHTML = `<span class="llh-chevron">${pkIcon(collapsed ? 'arrow-right' : 'arrow-down', 11)}</span><span>${lv ? lv.title : `Level ${def.level}`}</span>`;
-        lessonStrip.appendChild(header);
+        frag.appendChild(header);
         listEl = document.createElement('div');
         listEl.className = 'lesson-level-list' + (collapsed ? ' collapsed' : '');
-        lessonStrip.appendChild(listEl);
+        frag.appendChild(listEl);
         lastLevel = def.level;
       }
       const card = document.createElement('div');
@@ -1124,9 +1391,18 @@ function renderLessonStrip(){
       `;
       listEl.appendChild(card);
     });
+
+    lessonStrip.replaceChildren(frag);
+    lessonStrip.removeAttribute('hidden');
+    lessonStrip.hidden = false;
+    lessonStrip.classList.remove('minimized');
+    lessonStrip.classList.toggle('expanded', isStripExpanded);
+
     if(typeof updateMasteryStat === 'function') updateMasteryStat();
   } catch(err){
     console.error('renderLessonStrip error:', err);
+    lessonStrip.removeAttribute('hidden');
+    lessonStrip.hidden = false;
   }
 }
 
@@ -1134,13 +1410,36 @@ function renderLessonStrip(){
 lessonStrip.addEventListener('click', (e)=>{
   e.stopPropagation();
 
+  // If clicked adaptive practice button or sidebar card
+  const adaptiveBtn = e.target.closest('#lshAdaptiveBtn, #adaptiveStartBtn, #adaptiveSidebarCard');
+  if(adaptiveBtn){
+    if(typeof PK_ADAPTIVE !== 'undefined' && typeof PK_ADAPTIVE.startAdaptiveSession === 'function'){
+      isStripExpanded = false;
+      PK_ADAPTIVE.startAdaptiveSession(currentLayoutId);
+      return;
+    }
+    if(typeof PK_REVIEW !== 'undefined' && typeof PK_REVIEW.generateReviewDrill === 'function'){
+      const drill = PK_REVIEW.generateReviewDrill(currentLayoutId);
+      if(drill){
+        isStripExpanded = false;
+        startLesson(drill);
+        if(typeof showToast === 'function'){
+          showToast(pkIcon('refresh', 16), 'Adaptive Practice', drill.reason || 'Personalized review drill started!');
+        }
+      } else if(typeof showToast === 'function'){
+        showToast(pkIcon('check', 16), 'Adaptive Practice', 'No weak targets found! Excellent work.');
+      }
+    }
+    return;
+  }
+
   // If clicked expand/compact toggle button
   const expandBtn = e.target.closest('#lshExpandBtn');
   if(expandBtn){
     isStripExpanded = !isStripExpanded;
     // If expanding to 2 columns and all levels are collapsed, open the first level
     if(isStripExpanded && collapsedLevels.size === LEVELS.length){
-      collapsedLevels.delete(LEVELS[0].id);
+      collapsedLevels.delete(String(LEVELS[0].id));
     }
     renderLessonStrip();
     return;
@@ -1149,10 +1448,10 @@ lessonStrip.addEventListener('click', (e)=>{
   // If clicked level accordion header
   const header = e.target.closest('.lesson-level-header');
   if(header){
-    const level = parseInt(header.dataset.level, 10);
+    const level = String(header.dataset.level);
     if(collapsedLevels.has(level)){
       collapsedLevels.delete(level);
-      const openLevelsCount = LEVELS.filter(l => !collapsedLevels.has(l.id)).length;
+      const openLevelsCount = LEVELS.filter(l => !collapsedLevels.has(String(l.id))).length;
       if(openLevelsCount > 1){
         isStripExpanded = true;
       }
@@ -1166,9 +1465,9 @@ lessonStrip.addEventListener('click', (e)=>{
   // If clicked lesson card
   const card = e.target.closest('.lesson-card');
   if(!card) return;
-  const id = parseInt(card.dataset.lesson, 10);
+  const id = card.dataset.lesson;
   if(isLessonLocked(id)) return;
-  if(lessonActive && currentLesson && currentLesson.id === id) return;
+  if(lessonActive && currentLesson && String(currentLesson.id) === String(id)) return;
 
   isStripExpanded = false; // Make it small when clicking on lessons
   startLesson(id);
@@ -1180,22 +1479,22 @@ document.addEventListener('click', (e)=>{
   if(e.composedPath && e.composedPath().includes(lessonStrip)) return;
   if(e.target && e.target.closest && e.target.closest('#lessonStrip')) return;
 
-  const openCount = collapsedLevels ? LEVELS.filter(l => !collapsedLevels.has(l.id)).length : 1;
+  const openCount = collapsedLevels ? LEVELS.filter(l => !collapsedLevels.has(String(l.id))).length : 1;
   if(!isStripExpanded && openCount <= 1) return;
 
   isStripExpanded = false;
   if(collapsedLevels){
-    const keepLv = currentLesson ? currentLesson.level : (LEVELS.length ? LEVELS[0].id : 1);
-    LEVELS.forEach(l => {
-      if(l.id !== keepLv) collapsedLevels.add(l.id);
-      else collapsedLevels.delete(l.id);
-    });
+    const keepLv = currentLesson ? String(currentLesson.level) : (LEVELS.length ? String(LEVELS[0].id) : '1');
+    collapsedLevels = new Set(LEVELS.map(l => String(l.id)));
+    collapsedLevels.delete(keepLv);
+    renderLessonStrip();
   }
-  renderLessonStrip();
 });
 
 function renderLessonMeta(def){
-  lessonMetaBadgeEl.textContent = `Level ${def.level} · ${def.type.toUpperCase()}`;
+  const levelObj = LEVELS.find(l => l.id === def.level);
+  const levelTitle = levelObj ? levelObj.title : `Level ${def.level}`;
+  lessonMetaBadgeEl.textContent = `${levelTitle} · ${(def.type || 'drill').toUpperCase()}`;
   lessonMetaBadgeEl.className = 'lesson-meta-badge' + (def.type==='review' || def.type==='test' || def.type==='words' ? ' badge-'+def.type : '');
   const best = getLessonBest(def.id);
   lessonMetaBestEl.textContent = best ? `Best ${best.accuracy}% in ${best.time.toFixed(1)}s · Attempts ${best.attempts||1}` : 'Not attempted yet';
@@ -1228,8 +1527,8 @@ function renderLessonMeta(def){
 
 function renderLessonChars(){
   lessonCharRowEl.innerHTML = '';
-  const start = Math.max(0, lessonIndex - 3);
-  const end = Math.min(lessonChars.length, start + 12);
+  const start = Math.max(0, lessonIndex - 2);
+  const end = Math.min(lessonChars.length, start + 10);
   for(let i=start;i<end;i++){
     const s = document.createElement('span');
     const ch = lessonChars[i];
@@ -1273,20 +1572,44 @@ function updateLessonKeyHighlight(){
 function updateLessonProgress(){
   lessonProgressValEl.textContent = lessonIndex;
   lessonTotalValEl.textContent = lessonChars.length;
-  lessonProgressFillEl.style.width = (lessonIndex/lessonChars.length*100) + '%';
+  lessonProgressFillEl.style.width = (lessonChars.length > 0 ? (lessonIndex/lessonChars.length*100) : 0) + '%';
   const attempts = lessonIndex + lessonMistakes;
   const accuracy = attempts > 0 ? Math.round((lessonIndex/attempts)*100) : 100;
   lessonAccValEl.textContent = accuracy + '%';
   lessonMistakesValEl.textContent = lessonMistakes;
+
+  // Real-time tracking & learner feedback updates
+  if(typeof PK_TRACKER !== 'undefined' && typeof PK_TRACKER.getLiveLessonMetrics === 'function'){
+    const live = PK_TRACKER.getLiveLessonMetrics();
+    if(live){
+      if(lessonWpmValEl) lessonWpmValEl.textContent = live.wpm || 0;
+      if(lessonStreakValEl) lessonStreakValEl.textContent = live.currentStreak || 0;
+      if(lessonBackspacesValEl) lessonBackspacesValEl.textContent = live.backspaceCount || 0;
+
+      // Real-time subtle hint (only when repeated evidence exists)
+      const hint = (typeof PK_FEEDBACK !== 'undefined' && typeof PK_FEEDBACK.getRealTimeHint === 'function')
+        ? PK_FEEDBACK.getRealTimeHint(live)
+        : live.liveHint;
+
+      if(lessonLiveHintEl){
+        if(hint){
+          lessonLiveHintEl.textContent = hint;
+          lessonLiveHintEl.hidden = false;
+        } else {
+          lessonLiveHintEl.hidden = true;
+        }
+      }
+    }
+  }
 }
 
 /* Accepts either a lesson id from LESSONS, or a transient ad-hoc lesson
    definition object (used by "Review Mistakes" — never saved to the
    course list or to localStorage). */
 function startLesson(idOrDef){
-  if(trialActive) stopTrial();
+  if(typeof trialActive !== 'undefined' && trialActive) stopTrial();
   if(typeof raceMode !== 'undefined' && raceMode) exitRaceMode();
-  const def = (typeof idOrDef === 'object') ? idOrDef : LESSONS.find(l=>l.id===idOrDef);
+  const def = (typeof idOrDef === 'object') ? idOrDef : LESSONS.find(l=> String(l.id) === String(idOrDef));
   if(!def) return;
   if(typeof idOrDef !== 'object' && isLessonLocked(def.id)) return;
 
@@ -1296,20 +1619,32 @@ function startLesson(idOrDef){
   if(collapsedLevels && def.level){
     // Keep only the active lesson's level open
     LEVELS.forEach(l => {
-      if(l.id !== def.level) collapsedLevels.add(l.id);
-      else collapsedLevels.delete(l.id);
+      if(String(l.id) !== String(def.level)) collapsedLevels.add(String(l.id));
+      else collapsedLevels.delete(String(l.id));
     });
   }
   const gen = def.generate();
   lessonChars = gen.chars;
   lessonLayers = gen.layers;
   lessonKeyIds = gen.keyIds;
+  lessonSections = gen.sections || [];
   lessonIndex = 0;
   lessonMistakes = 0;
   lessonMistakeChars = {};
+  lessonAcceptedUnits = [];
   lessonExtendedOnce = false;
   lessonStartTime = Date.now();
   lessonActive = true;
+
+  if(typeof PK_TRACKER !== 'undefined' && typeof PK_TRACKER.recordLessonStart === 'function'){
+    PK_TRACKER.recordLessonStart({
+      layout: currentLayoutId,
+      lessonId: def.id,
+      totalUnits: lessonChars.length,
+      lessonChars: lessonChars,
+      sections: lessonSections
+    });
+  }
 
   lockedLayer = null;
   hoverLayer = null;
@@ -1344,10 +1679,17 @@ function startLesson(idOrDef){
   });
 }
 
-function exitLesson(){
+function executeLessonExit(){
+  if(typeof PK_TRACKER !== 'undefined' && typeof PK_TRACKER.recordLessonExit === 'function'){
+    PK_TRACKER.recordLessonExit({
+      layout: currentLayoutId,
+      lessonId: currentLesson ? currentLesson.id : null
+    });
+  }
   lessonActive = false;
   currentLesson = null;
   remedialActive = false;
+  lessonAcceptedUnits = [];
   lessonPanel.hidden = true;
   manuscriptEl.hidden = false;
   if(lessonStrip) lessonStrip.hidden = false;
@@ -1368,7 +1710,92 @@ function exitLesson(){
     }
   });
 }
-lessonExitBtn.addEventListener('click', exitLesson);
+
+function showIncompleteLesson(){
+  if(!currentLesson){
+    executeLessonExit();
+    return;
+  }
+  const def = currentLesson;
+  let incSummary = null;
+  if(typeof PK_FEEDBACK !== 'undefined' && typeof PK_TRACKER !== 'undefined'){
+    const liveMetrics = PK_TRACKER.getLiveLessonMetrics();
+    incSummary = PK_FEEDBACK.analyzeIncompleteLesson(liveMetrics, def, currentLayoutId);
+  }
+  if(!incSummary || typeof PK_FEEDBACK.buildIncompleteLessonHtml !== 'function'){
+    executeLessonExit();
+    return;
+  }
+
+  const overlay = document.createElement('div');
+  overlay.className = 'lesson-complete-overlay';
+  overlay.innerHTML = PK_FEEDBACK.buildIncompleteLessonHtml(incSummary, def);
+  document.body.appendChild(overlay);
+
+  function cleanup(){
+    window.removeEventListener('keydown', keyHandler);
+    overlay.remove();
+  }
+
+  const keyHandler = (e)=>{
+    if(e.key === 'Escape'){
+      e.preventDefault();
+      cleanup();
+    }
+  };
+  window.addEventListener('keydown', keyHandler);
+
+  const resumeBtn = overlay.querySelector('.lc-resume');
+  if(resumeBtn){
+    resumeBtn.addEventListener('click', ()=>{
+      cleanup();
+      requestAnimationFrame(()=>{
+        if(lessonPanel && !lessonPanel.hidden){
+          lessonPanel.scrollIntoView({ behavior:'smooth', block:'nearest' });
+        }
+      });
+    });
+  }
+
+  const retryBtn = overlay.querySelector('.lc-retry');
+  if(retryBtn){
+    retryBtn.addEventListener('click', ()=>{
+      cleanup();
+      startLesson(remedialActive ? def : def.id);
+    });
+  }
+
+  const exitConfirmBtn = overlay.querySelector('.lc-exit-confirm');
+  if(exitConfirmBtn){
+    exitConfirmBtn.addEventListener('click', ()=>{
+      cleanup();
+      executeLessonExit();
+    });
+  }
+}
+
+function exitLesson(forceImmediate){
+  if(forceImmediate === true || !lessonActive || lessonIndex === 0 || lessonIndex >= lessonChars.length){
+    executeLessonExit();
+    return;
+  }
+  showIncompleteLesson();
+}
+window.exitLesson = exitLesson;
+window.showIncompleteLesson = showIncompleteLesson;
+window.executeLessonExit = executeLessonExit;
+window.startLesson = startLesson;
+window.lessonHandleChar = lessonHandleChar;
+window.lessonHandleBackspace = lessonHandleBackspace;
+try {
+  Object.defineProperty(window, 'lessonActive', { get: () => lessonActive, set: (v) => { lessonActive = v; }, configurable: true });
+  Object.defineProperty(window, 'lessonChars', { get: () => lessonChars, set: (v) => { lessonChars = v; }, configurable: true });
+  Object.defineProperty(window, 'lessonIndex', { get: () => lessonIndex, set: (v) => { lessonIndex = v; }, configurable: true });
+  Object.defineProperty(window, 'lessonKeyIds', { get: () => lessonKeyIds, set: (v) => { lessonKeyIds = v; }, configurable: true });
+  Object.defineProperty(window, 'lessonLayers', { get: () => lessonLayers, set: (v) => { lessonLayers = v; }, configurable: true });
+  Object.defineProperty(window, 'currentLesson', { get: () => currentLesson, set: (v) => { currentLesson = v; }, configurable: true });
+} catch(e){}
+lessonExitBtn.addEventListener('click', ()=> exitLesson(false));
 
 /* Adaptive difficulty: mistake tracking without jarring mid-lesson duplicate spam.
    Mistakes are tracked in lessonMistakeChars and fed directly into the dedicated,
@@ -1395,12 +1822,42 @@ function adaptiveExtend(){
   }
 }
 
-function lessonHandleChar(val, el){
+function lessonHandleChar(val, el, stroke){
   if(!lessonActive || !val) return;
   if(lessonIndex >= lessonChars.length) return;
   const expected = lessonChars[lessonIndex];
   if(!expected) return;
-  if(val === expected){
+
+  const isMatch = (typeof compareTypingSequence === 'function')
+    ? compareTypingSequence(val, expected)
+    : (val === expected);
+
+  const curSection = lessonSections.find(s => lessonIndex >= s.startIndex && lessonIndex <= s.endIndex);
+  const curExId = curSection ? curSection.id : null;
+
+  // Hook real-time tracker
+  if(typeof PK_TRACKER !== 'undefined' && typeof PK_TRACKER.recordTypingUnit === 'function'){
+    PK_TRACKER.recordTypingUnit({
+      layout: currentLayoutId,
+      lessonId: currentLesson ? currentLesson.id : null,
+      exerciseId: curExId,
+      unitIndex: lessonIndex,
+      expected: expected,
+      produced: val,
+      correct: isMatch,
+      strokeKeyId: stroke ? stroke.id : null,
+      strokeLayer: stroke ? stroke.layer : null,
+      expectedKeyId: lessonKeyIds[lessonIndex],
+      expectedLayer: lessonLayers[lessonIndex]
+    });
+  }
+
+  if(isMatch){
+    lessonAcceptedUnits.push({
+      index: lessonIndex,
+      val: val,
+      expected: expected
+    });
     insertText(val);
     recordKeystroke(true);
     lessonIndex++;
@@ -1424,6 +1881,37 @@ function lessonHandleChar(val, el){
     const cur = lessonCharRowEl.querySelector('.lc-char.current');
     if(cur){ cur.classList.add('shake'); setTimeout(()=> cur.classList.remove('shake'), 300); }
   }
+}
+
+function lessonHandleBackspace(){
+  if(!lessonActive) return;
+  if(lessonIndex <= 0 || !lessonAcceptedUnits.length) return;
+
+  const lastUnit = lessonAcceptedUnits.pop();
+  if(!lastUnit) return;
+
+  if(typeof PK_TRACKER !== 'undefined' && typeof PK_TRACKER.recordBackspace === 'function'){
+    PK_TRACKER.recordBackspace({
+      layout: currentLayoutId,
+      lessonId: currentLesson ? currentLesson.id : null,
+      unitIndex: lessonIndex - 1,
+      poppedUnit: lastUnit.expected
+    });
+  }
+
+  lessonIndex = Math.max(0, lessonIndex - 1);
+
+  if(typeof backspaceText === 'function'){
+    backspaceText(lastUnit.val);
+  }
+
+  if(typeof recordLessonBackspace === 'function'){
+    recordLessonBackspace();
+  }
+
+  updateLessonProgress();
+  renderLessonChars();
+  updateLessonKeyHighlight();
 }
 
 function completeLesson(){
@@ -1460,6 +1948,50 @@ function completeLesson(){
     if(typeof updateLessonStatsUI === 'function') updateLessonStatsUI();
   }
 
+  if(typeof PK_TRACKER !== 'undefined' && typeof PK_TRACKER.recordLessonComplete === 'function'){
+    PK_TRACKER.recordLessonComplete({
+      layout: currentLayoutId,
+      lessonId: id,
+      accuracy: accuracy,
+      time: elapsed,
+      wpm: lessonWpm,
+      mistakes: lessonMistakes
+    });
+  }
+
+  // Phase 7 Persistent Progress Tracking
+  if(typeof PK_PROGRESS !== 'undefined' && typeof PK_PROGRESS.recordLessonAttempt === 'function'){
+    const attemptRes = PK_PROGRESS.recordLessonAttempt({
+      layoutId: currentLayoutId,
+      lessonId: id,
+      levelId: def.level,
+      accuracy: accuracy,
+      wpm: lessonWpm,
+      timeSec: elapsed,
+      mistakes: lessonMistakes,
+      corrections: (typeof lessonAcceptedUnits !== 'undefined' && lessonAcceptedUnits) ? lessonAcceptedUnits.length : 0,
+      units: lessonChars.length,
+      threshold: def.threshold || 85,
+      sections: lessonSections
+    });
+    if(attemptRes && attemptRes.isNewBestAccuracy){
+      isNewBest = true;
+    }
+  }
+
+  // Phase 8 Adaptive Review Session Completion
+  if(remedialActive && def && def.beforeStats && typeof PK_REVIEW !== 'undefined' && typeof PK_REVIEW.completeReviewSession === 'function'){
+    const revResult = PK_REVIEW.completeReviewSession(currentLayoutId, def, {
+      accuracy: accuracy,
+      wpm: lessonWpm,
+      timeSec: elapsed,
+      mistakes: lessonMistakes
+    });
+    if(revResult && revResult.message && typeof showToast === 'function'){
+      showToast(pkIcon('zap', 20), 'Review Complete', revResult.message);
+    }
+  }
+
   /* Clean completion without particle burst spam */
   const rect = (boardWrap || document.body).getBoundingClientRect();
   playChime();
@@ -1494,82 +2026,102 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
   const overlay = document.createElement('div');
   overlay.className = 'lesson-complete-overlay';
 
-  const nextLesson = !remedialActive ? LESSONS.find(l=>l.id === def.id+1) : null;
-  const prevLesson = !remedialActive ? LESSONS.find(l=>l.id === def.id-1) : null;
-  const timeStr = elapsed.toFixed(1) + 's';
-  const threshold = def.threshold || 85;
-  const failed = accuracy < threshold;
-  const heading = remedialActive ? 'Mistake Drill Complete'
-    : failed ? 'Keep Practicing'
-    : (isNewBest ? 'New Best!' : 'Lesson Complete');
-  const badgeIcon = remedialActive ? pkIcon('target', 32)
-    : failed ? pkIcon('reset', 32)
-    : accuracy === 100 ? pkIcon('diamond', 32)
-    : isNewBest ? pkIcon('zap', 32)
-    : pkIcon('star', 32);
+  const curIdx = LESSONS.findIndex(l => String(l.id) === String(def.id));
+  const nextLesson = (!remedialActive && curIdx >= 0 && curIdx < LESSONS.length - 1) ? LESSONS[curIdx + 1] : null;
+  const prevLesson = (!remedialActive && curIdx > 0) ? LESSONS[curIdx - 1] : null;
 
-  overlay.innerHTML = `
-    <div class="lesson-complete-card">
-      <div class="lc-badge-halo"><div class="lc-badge">${badgeIcon}</div></div>
-      <h2>${heading}</h2>
-      <p>${def.title}</p>
-      <div class="lc-divider"><span>◆</span></div>
-      <div class="lc-stat-row">
-        <div class="lc-ring-wrap">
-          <div class="lc-ring" style="--pct:0"><b>0%</b></div>
-          <span class="lc-ring-label">Accuracy</span>
+  let feedbackSummary = null;
+  if(typeof PK_FEEDBACK !== 'undefined' && typeof PK_TRACKER !== 'undefined'){
+    const liveMetrics = PK_TRACKER.getLiveLessonMetrics();
+    feedbackSummary = PK_FEEDBACK.analyzeLesson(liveMetrics, def, currentLayoutId);
+  }
+
+  if(feedbackSummary && typeof PK_FEEDBACK.buildPostLessonCardHtml === 'function'){
+    overlay.innerHTML = PK_FEEDBACK.buildPostLessonCardHtml(feedbackSummary, def, isNewBest, prevLesson, nextLesson);
+  } else {
+    const timeStr = elapsed.toFixed(1) + 's';
+    const threshold = def.threshold || 85;
+    const failed = accuracy < threshold;
+    const heading = remedialActive ? 'Mistake Drill Complete'
+      : failed ? 'Keep Practicing'
+      : (isNewBest ? 'New Best!' : 'Lesson Complete');
+    const badgeIcon = remedialActive ? pkIcon('target', 32)
+      : failed ? pkIcon('reset', 32)
+      : accuracy === 100 ? pkIcon('diamond', 32)
+      : isNewBest ? pkIcon('zap', 32)
+      : pkIcon('star', 32);
+
+    overlay.innerHTML = `
+      <div class="lesson-complete-card">
+        <div class="lc-badge-halo"><div class="lc-badge">${badgeIcon}</div></div>
+        <h2>${heading}</h2>
+        <p>${def.title}</p>
+        <div class="lc-divider"><span>◆</span></div>
+        <div class="lc-stat-row">
+          <div class="lc-ring-wrap">
+            <div class="lc-ring" style="--pct:0"><b>0%</b></div>
+            <span class="lc-ring-label">Accuracy</span>
+          </div>
+          <div class="lc-stat"><b class="lc-time">0.0s</b><span>Time</span></div>
         </div>
-        <div class="lc-stat"><b class="lc-time">0.0s</b><span>Time</span></div>
-      </div>
-      ${(mistakeChars && mistakeChars.length && !remedialActive) ? `
-      <div class="lc-mistakes-preview">
-        <span class="lc-mistakes-title">Keys To Practice</span>
-        <div class="lc-mistake-chips">
-          ${mistakeChars.map(ch => {
-            const count = lessonMistakeChars[ch] || 1;
-            return `<span class="lc-mistake-chip"><b>${ch}</b><small>${count}×</small></span>`;
-          }).join('')}
+        ${(mistakeChars && mistakeChars.length && !remedialActive) ? `
+        <div class="lc-mistakes-preview">
+          <span class="lc-mistakes-title">Keys To Practice</span>
+          <div class="lc-mistake-chips">
+            ${mistakeChars.map(ch => {
+              const count = lessonMistakeChars[ch] || 1;
+              return `<span class="lc-mistake-chip"><b>${ch}</b><small>${count}×</small></span>`;
+            }).join('')}
+          </div>
+        </div>` : ''}
+        <div class="lesson-complete-actions">
+          ${(mistakeChars && mistakeChars.length && !remedialActive) ? '<button class="lc-mistakes primary">⟲ Review Mistakes</button>' : ''}
+          ${(prevLesson) ? '<button class="lc-prev">← Previous</button>' : ''}
+          <button class="lc-retry">↻ Retry</button>
+          ${nextLesson ? '<button class="lc-next' + ((!mistakeChars || !mistakeChars.length) ? ' primary' : '') + '">Next Lesson →</button>' : '<button class="lc-close primary">Close</button>'}
+          ${(mistakeChars && mistakeChars.length && !remedialActive) ? `<button class="lc-mistakes primary">${pkIcon('target', 14)} Review Mistakes</button>` : ''}
+          ${(prevLesson) ? `<button class="lc-prev">${pkIcon('arrow-left', 14)} Previous</button>` : ''}
+          <button class="lc-retry">${pkIcon('reset', 14)} Retry</button>
+          ${nextLesson ? `<button class="lc-next${((!mistakeChars || !mistakeChars.length) ? ' primary' : '')}">Next Lesson ${pkIcon('arrow-right', 14)}</button>` : '<button class="lc-close primary">Close</button>'}
+          ${nextLesson ? '<button class="lc-close">Close</button>' : ''}
         </div>
-      </div>` : ''}
-      <div class="lesson-complete-actions">
-        ${(mistakeChars && mistakeChars.length && !remedialActive) ? '<button class="lc-mistakes primary">⟲ Review Mistakes</button>' : ''}
-        ${(prevLesson) ? '<button class="lc-prev">← Previous</button>' : ''}
-        <button class="lc-retry">↻ Retry</button>
-        ${nextLesson ? '<button class="lc-next' + ((!mistakeChars || !mistakeChars.length) ? ' primary' : '') + '">Next Lesson →</button>' : '<button class="lc-close primary">Close</button>'}
-        ${nextLesson ? '<button class="lc-close">Close</button>' : ''}
-      </div>
-    </div>`;
+      </div>`;
+  }
 
   document.body.appendChild(overlay);
 
   /* drifting embers inside the card */
   const emberHost = overlay.querySelector('.lesson-complete-card');
-  const emberCount = 10;
-  for(let i=0;i<emberCount;i++){
-    const p = document.createElement('div');
-    p.className = 'lc-particle';
-    p.style.left = (6 + Math.random()*88) + '%';
-    p.style.animationDuration = (3.2 + Math.random()*2.4) + 's';
-    p.style.animationDelay = (Math.random()*4) + 's';
-    emberHost.appendChild(p);
+  if(emberHost){
+    const emberCount = 10;
+    for(let i=0;i<emberCount;i++){
+      const p = document.createElement('div');
+      p.className = 'lc-particle';
+      p.style.left = (6 + Math.random()*88) + '%';
+      p.style.animationDuration = (3.2 + Math.random()*2.4) + 's';
+      p.style.animationDelay = (Math.random()*4) + 's';
+      emberHost.appendChild(p);
+    }
   }
 
-  /* count up the accuracy ring + time so the numbers feel earned */
+  /* count up the accuracy ring + time if fallback ring exists */
   const ringEl = overlay.querySelector('.lc-ring');
-  const ringValEl = ringEl.querySelector('b');
-  const timeEl = overlay.querySelector('.lc-time');
-  const countStart = performance.now();
-  const countDuration = 900;
-  function stepCount(now){
-    const t = Math.min(1, (now - countStart) / countDuration);
-    const eased = 1 - Math.pow(1 - t, 3);
-    const curAcc = Math.round(accuracy * eased);
-    ringEl.style.setProperty('--pct', curAcc);
-    ringValEl.textContent = curAcc + '%';
-    timeEl.textContent = (elapsed * eased).toFixed(1) + 's';
-    if(t < 1) requestAnimationFrame(stepCount);
+  if(ringEl){
+    const ringValEl = ringEl.querySelector('b');
+    const timeEl = overlay.querySelector('.lc-time');
+    const countStart = performance.now();
+    const countDuration = 900;
+    function stepCount(now){
+      const t = Math.min(1, (now - countStart) / countDuration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const curAcc = Math.round(accuracy * eased);
+      ringEl.style.setProperty('--pct', curAcc);
+      if(ringValEl) ringValEl.textContent = curAcc + '%';
+      if(timeEl) timeEl.textContent = (elapsed * eased).toFixed(1) + 's';
+      if(t < 1) requestAnimationFrame(stepCount);
+    }
+    requestAnimationFrame(stepCount);
   }
-  requestAnimationFrame(stepCount);
 
   let keyHandler = null;
 
@@ -1601,10 +2153,13 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
   };
   window.addEventListener('keydown', keyHandler);
 
-  overlay.querySelector('.lc-retry').addEventListener('click', ()=>{
-    dismissOverlay();
-    startLesson(remedialActive ? def : def.id);
-  });
+  const retryBtn = overlay.querySelector('.lc-retry');
+  if(retryBtn){
+    retryBtn.addEventListener('click', ()=>{
+      dismissOverlay();
+      startLesson(remedialActive ? def : def.id);
+    });
+  }
   const nextBtn = overlay.querySelector('.lc-next');
   if(nextBtn) nextBtn.addEventListener('click', ()=>{ advanceToNext(); });
   const prevBtn = overlay.querySelector('.lc-prev');
@@ -1613,7 +2168,23 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
   if(mistakesBtn){
     mistakesBtn.addEventListener('click', ()=>{
       dismissOverlay();
-      const entries = mistakeChars.map(resolveCharLocation).filter(Boolean);
+      const rawMistakeList = (mistakeChars && mistakeChars.length) ? mistakeChars : Object.keys(lessonMistakeChars);
+      
+      // Phase 8 Adaptive Review Drill Generation
+      if(typeof PK_REVIEW !== 'undefined' && typeof PK_REVIEW.generateReviewDrill === 'function' && rawMistakeList.length > 0){
+        const primaryTarget = rawMistakeList[0];
+        const drillDef = PK_REVIEW.generateReviewDrill(currentLayoutId, {
+          target: primaryTarget,
+          category: 'character',
+          reason: `Targeted review on missed unit ${primaryTarget}`
+        });
+        if(drillDef){
+          startLesson(drillDef);
+          return;
+        }
+      }
+
+      const entries = rawMistakeList.map(resolveCharLocation).filter(Boolean);
       if(!entries.length) return;
       const companions = (lessonChars || []).map(resolveCharLocation).filter(Boolean);
       startLesson({
@@ -1625,9 +2196,12 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
       });
     });
   }
-  const closeBtn = overlay.querySelector('.lc-close');
-  if(closeBtn) closeBtn.addEventListener('click', ()=>{ dismissOverlay(); });
+  const closeBtns = overlay.querySelectorAll('.lc-close');
+  closeBtns.forEach(btn => btn.addEventListener('click', ()=>{ dismissOverlay(); }));
 }
+
+// Immediately hydrate with bundled curriculum data if available
+initCurriculumFromBundle();
 
 if(document.readyState !== 'loading'){
   renderLessonStrip();

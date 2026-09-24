@@ -361,8 +361,8 @@
     <div class="settings-group">
       <h3 class="i18n-t" data-en="Progress" data-km="វឌ្ឍនភាព">Progress</h3>
       <div class="settings-btn-row">
-        <button class="secondary-btn i18n-t" data-en="⇩ Export Backup" data-km="⇩ នាំចេញការបម្រុងទុក" id="exportProgressBtn">⇩ Export Backup</button>
-        <button class="secondary-btn i18n-t" data-en="⇧ Import Backup" data-km="⇧ នាំចូលការបម្រុងទុក" id="importProgressBtn">⇧ Import Backup</button>
+        <button class="secondary-btn" id="exportProgressBtn"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span class="i18n-t" data-en="Export Backup" data-km="នាំចេញការបម្រុងទុក">Export Backup</span></button>
+        <button class="secondary-btn" id="importProgressBtn"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> <span class="i18n-t" data-en="Import Backup" data-km="នាំចូលការបម្រុងទុក">Import Backup</span></button>
         <input type="file" id="importProgressInput" accept="application/json" hidden>
       </div>
       <button class="reset-btn i18n-t" data-en="Reset All Progress" data-km="កំណត់វឌ្ឍនភាពទាំងអស់ឡើងវិញ" id="resetProgressBtn">Reset All Progress</button>
@@ -770,7 +770,134 @@
   <div class="manuscript-text notranslate" id="output" translate="no"><span class="manuscript-placeholder i18n-t" id="placeholder" data-en="Click a key, or just start typing on your keyboard…" data-km="ចុចគ្រាប់ចុច ឬចាប់ផ្តើមវាយលើក្តារចុចរបស់អ្នក…">Click a key, or just start typing on your keyboard…</span><span class="cursor"></span></div>
 </div>
 
-<div class="lesson-strip notranslate" id="lessonStrip" translate="no"><!-- lesson cards are rendered dynamically by renderLessonStrip() from the LESSONS course data --></div>
+<div class="lesson-strip notranslate" id="lessonStrip" translate="no">
+  <div class="lesson-strip-header">
+    <span class="lsh-title"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path><line x1="10" y1="6" x2="16" y2="6"></line><line x1="10" y1="10" x2="14" y2="10"></line></svg> LESSONS</span>
+    <div class="lsh-actions">
+      <button type="button" class="lsh-adaptive-btn" id="lshAdaptiveBtn" title="Launch Adaptive Practice">
+        <svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        <span class="i18n-t" data-en="Adaptive" data-km="បន្ស៊ាំ">Adaptive</span>
+      </button>
+      <span class="lsh-badge">0/60 Mastered</span>
+      <button type="button" class="lsh-expand-btn" id="lshExpandBtn" title="Expand sidebar (2 columns)" aria-label="Toggle sidebar width">
+        <svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+      </button>
+    </div>
+  </div>
+  <div class="adaptive-sidebar-card" id="adaptiveSidebarCard">
+    <div class="asc-left">
+      <div class="asc-title">
+        <svg class="pk-icon asc-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        <span class="i18n-t" data-en="Adaptive Practice" data-km="ការអនុវត្តបន្ស៊ាំ">Adaptive Practice</span>
+      </div>
+      <div class="asc-sub" id="adaptiveSidebarSub">Focus: E N I A R L</div>
+    </div>
+    <button type="button" class="asc-btn" id="adaptiveStartBtn">
+      <span class="i18n-t" data-en="Train" data-km="ហាត់">Train</span>
+    </button>
+  </div>
+  <div class="lesson-level-header" data-level="1">
+    <span class="llh-chevron"><svg class="pk-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg></span>
+    <span>Level 1 · Home Row Basics</span>
+  </div>
+  <div class="lesson-level-list">
+    <div class="lesson-card" data-lesson="1">
+      <div class="lesson-card-num">01</div>
+      <div class="lesson-card-info">
+        <div class="lesson-card-head">
+          <span class="lesson-card-title">Home Row — Index Anchors (F &amp; J)</span>
+          <span class="lesson-card-type type-intro">intro</span>
+        </div>
+        <div class="lesson-card-sub">Left Index F (ថ) · Right Index J (ញ)</div>
+        <div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> <span class="lce-chip">ថ ថ</span> <span class="lce-chip">ញ ញ</span> <span class="lce-chip">ថថ ញញ</span></div>
+      </div>
+    </div>
+    <div class="lesson-card locked" data-lesson="2">
+      <div class="lesson-card-num">02</div>
+      <div class="lesson-card-info">
+        <div class="lesson-card-head">
+          <span class="lesson-card-title">Home Row — Middle Fingers (D &amp; K)</span>
+          <span class="lesson-card-type type-intro">intro</span>
+          <span class="lesson-card-lock"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+        </div>
+        <div class="lesson-card-sub">Left Middle D (ដ) · Right Middle K (ក)</div>
+        <div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> <span class="lce-chip">ដ ដ</span> <span class="lce-chip">ក ក</span> <span class="lce-chip">ដដ កក</span></div>
+      </div>
+    </div>
+    <div class="lesson-card locked" data-lesson="3">
+      <div class="lesson-card-num">03</div>
+      <div class="lesson-card-info">
+        <div class="lesson-card-head">
+          <span class="lesson-card-title">Home Row — 4 Keys Combined</span>
+          <span class="lesson-card-type type-combo">combo</span>
+          <span class="lesson-card-lock"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+        </div>
+        <div class="lesson-card-sub">Index &amp; Middle Anchors · ថ ញ ដ ក</div>
+        <div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> <span class="lce-chip">ថដ</span> <span class="lce-chip">ញក</span> <span class="lce-chip">ដក</span></div>
+      </div>
+    </div>
+    <div class="lesson-card locked" data-lesson="4">
+      <div class="lesson-card-num">04</div>
+      <div class="lesson-card-info">
+        <div class="lesson-card-head">
+          <span class="lesson-card-title">Home Row — Index Reach (G &amp; H)</span>
+          <span class="lesson-card-type type-intro">intro</span>
+          <span class="lesson-card-lock"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+        </div>
+        <div class="lesson-card-sub">Left Reach G (ង) · Right Reach H (ហ)</div>
+        <div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> <span class="lce-chip">ង ង</span> <span class="lce-chip">ហ ហ</span> <span class="lce-chip">ថង</span></div>
+      </div>
+    </div>
+    <div class="lesson-card locked" data-lesson="5">
+      <div class="lesson-card-num">05</div>
+      <div class="lesson-card-info">
+        <div class="lesson-card-head">
+          <span class="lesson-card-title">Home Row — Center 6 Keys</span>
+          <span class="lesson-card-type type-combo">combo</span>
+          <span class="lesson-card-lock"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+        </div>
+        <div class="lesson-card-sub">All Index &amp; Middle Keys · ថ ញ ដ ក ង ហ</div>
+        <div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> <span class="lce-chip">កក</span> <span class="lce-chip">ដក</span> <span class="lce-chip">ងហ</span></div>
+      </div>
+    </div>
+    <div class="lesson-card locked" data-lesson="6">
+      <div class="lesson-card-num">06</div>
+      <div class="lesson-card-info">
+        <div class="lesson-card-head">
+          <span class="lesson-card-title">Home Row — Ring Fingers (S &amp; L)</span>
+          <span class="lesson-card-type type-intro">intro</span>
+          <span class="lesson-card-lock"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+        </div>
+        <div class="lesson-card-sub">Left Ring S (ស) · Right Ring L (ល)</div>
+        <div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> <span class="lce-chip">ស ស</span> <span class="lce-chip">ល ល</span> <span class="lce-chip">សល</span></div>
+      </div>
+    </div>
+    <div class="lesson-card locked" data-lesson="7">
+      <div class="lesson-card-num">07</div>
+      <div class="lesson-card-info">
+        <div class="lesson-card-head">
+          <span class="lesson-card-title">Home Row — Pinky Keys &amp; Vowel A</span>
+          <span class="lesson-card-type type-intro">intro</span>
+          <span class="lesson-card-lock"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+        </div>
+        <div class="lesson-card-sub">Left Pinky A (ា) · Right Pinky ; (ះ) &amp; ' (់)</div>
+        <div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> <span class="lce-chip">កា</span> <span class="lce-chip">សា</span> <span class="lce-chip">ដា</span></div>
+      </div>
+    </div>
+    <div class="lesson-card locked" data-lesson="8">
+      <div class="lesson-card-num">08</div>
+      <div class="lesson-card-info">
+        <div class="lesson-card-head">
+          <span class="lesson-card-title">Home Row Words — Complete Home Row</span>
+          <span class="lesson-card-type type-words">words</span>
+          <span class="lesson-card-lock"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+        </div>
+        <div class="lesson-card-sub">Real Khmer words from Home Row keys</div>
+        <div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> <span class="lce-chip">សាលា</span> <span class="lce-chip">កាក់</span> <span class="lce-chip">ដាក់</span></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <p id="lessonUnavailableNote" style="display:none; width:min(86vw,780px); text-align:center; color:var(--ink-dim); font-size:0.75rem; letter-spacing:0.03em; padding:8px 10px 4px;">Lessons &amp; Temple Trial are built around the <b>Khmer Keyboard Layout</b>. Switch back to it above to practice.</p>
 
@@ -786,10 +913,66 @@
   <div class="lesson-newkeys" id="lessonNewKeys" hidden></div>
   <div class="lesson-progress-bar"><div class="lesson-progress-fill" id="lessonProgressFill"></div></div>
   <div class="lesson-char-row" id="lessonCharRow"></div>
+  <div class="lesson-live-hint" id="lessonLiveHint" hidden></div>
   <div class="lesson-stats">
     <span><span class="i18n-t" data-en="Accuracy" data-km="ភាពសុក្រឹត">Accuracy</span> <b id="lessonAccVal">100%</b></span>
+    <span id="lessonWpmWrap"><span class="i18n-t" data-en="WPM" data-km="WPM">WPM</span> <b id="lessonWpmVal">0</b></span>
+    <span id="lessonStreakWrap"><span class="i18n-t" data-en="Streak" data-km="ពិន្ទុបន្ត">Streak</span> <b id="lessonStreakVal">0</b></span>
     <span><span class="i18n-t" data-en="Mistakes" data-km="កំហុស">Mistakes</span> <b id="lessonMistakesVal">0</b></span>
+    <span id="lessonBackspacesWrap"><span class="i18n-t" data-en="Fixes" data-km="កែ">Fixes</span> <b id="lessonBackspacesVal">0</b></span>
     <button id="lessonExitBtn" class="i18n-t" data-en="Exit Lesson" data-km="ចាកចេញពីមេរៀន">Exit Lesson</button>
+  </div>
+</div>
+
+<div class="lesson-panel adaptive-panel" id="adaptivePanel" hidden>
+  <div class="lesson-top adaptive-top">
+    <div class="adaptive-title-wrap">
+      <span class="adaptive-mode-badge"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> <span class="i18n-t" data-en="Adaptive Practice" data-km="ការអនុវត្តបន្ស៊ាំ">Adaptive Practice</span></span>
+      <span class="adaptive-stage-badge" id="adaptiveStageBadge">Stage 1</span>
+      <span class="adaptive-focus-badge" id="adaptiveFocusBadge" hidden></span>
+    </div>
+    <div class="adaptive-top-actions">
+      <span class="adaptive-unlocked-count" id="adaptiveUnlockedCount">6/26 Active</span>
+      <button type="button" class="adaptive-exit-btn" id="adaptiveExitBtn" title="Exit to Lessons (Esc)"><span class="i18n-t" data-en="Exit Practice" data-km="ចាកចេញ">Exit Practice</span></button>
+    </div>
+  </div>
+
+  <!-- Available Letter Progression Strip -->
+  <div class="adaptive-letter-strip" id="adaptiveLetterStrip" aria-label="Available letter progression"></div>
+
+  <!-- Weak-Key Focus HUD -->
+  <div class="adaptive-focus-hud" id="adaptiveFocusHud">
+    <div class="afh-focus-group">
+      <span class="afh-label">Focus</span>
+      <span class="afh-chip afh-focus-chip" id="afhFocusChip">—</span>
+    </div>
+    <div class="afh-weak-group" id="afhWeakGroup">
+      <span class="afh-label">Needs Practice</span>
+      <div class="afh-chips-wrap" id="afhWeakChips"></div>
+    </div>
+    <div class="afh-finger-group" id="afhFingerGroup" hidden>
+      <span class="afh-label">Pattern</span>
+      <span class="afh-finger-note" id="afhFingerNote"></span>
+    </div>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="lesson-progress-bar"><div class="lesson-progress-fill" id="adaptiveProgressFill"></div></div>
+
+  <!-- Target Words Row -->
+  <div class="lesson-char-row adaptive-char-row" id="adaptiveCharRow"></div>
+
+  <!-- Live Hint & Inline Round Toast -->
+  <div class="lesson-live-hint" id="adaptiveLiveHint" hidden></div>
+  <div class="adaptive-round-toast" id="adaptiveRoundToast" hidden></div>
+
+  <!-- Live Stats HUD -->
+  <div class="lesson-stats adaptive-stats">
+    <span><span class="i18n-t" data-en="Accuracy" data-km="ភាពសុក្រឹត">Accuracy</span> <b id="adaptiveAccVal">100%</b></span>
+    <span><span class="i18n-t" data-en="WPM" data-km="WPM">WPM</span> <b id="adaptiveWpmVal">0</b></span>
+    <span><span class="i18n-t" data-en="Streak" data-km="ពិន្ទុបន្ត">Streak</span> <b id="adaptiveStreakVal">0</b></span>
+    <span><span class="i18n-t" data-en="Mistakes" data-km="កំហុស">Mistakes</span> <b id="adaptiveMistakesVal">0</b></span>
+    <span id="adaptiveFocusWrap" style="display:none;"><span class="i18n-t" data-en="Target" data-km="គោលដៅ">Target</span> <b id="adaptiveFocusVal" style="color:var(--gold-bright);">—</b></span>
   </div>
 </div>
 
@@ -981,7 +1164,14 @@
   <!-- Scripts -->
   <script defer src="js/icons.js"></script>
   <script defer src="js/storage.js"></script>
+  <script defer src="data/curriculum-data.js"></script>
+  <script defer src="data/adaptive-vocab.js"></script>
   <script defer src="js/keyboard.js"></script>
+  <script defer src="js/tracker.js"></script>
+  <script defer src="js/progress.js"></script>
+  <script defer src="js/review.js"></script>
+  <script defer src="js/feedback.js"></script>
+  <script defer src="js/adaptive.js"></script>
   <script defer src="js/lessons.js"></script>
   <script defer src="js/race.js"></script>
   <script defer src="js/typing.js"></script>

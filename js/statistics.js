@@ -94,6 +94,7 @@ function loadSavedLessonStats(){
 }
 
 let savedLessonStats = loadSavedLessonStats();
+window.savedLessonStats = savedLessonStats;
 
 function saveLessonStats(){
   try {
@@ -167,6 +168,21 @@ function recordKeystroke(correct){
     if(savedLessonStats.keys === m) achievementOnce('keys-'+m, pkIcon('flame', 20), `${m} keys typed!`, 'Keep the momentum going');
   });
 }
+
+function recordLessonBackspace(){
+  if(typeof lessonActive === 'undefined' || !lessonActive) return;
+  if(savedLessonStats.keys > 0) savedLessonStats.keys--;
+  if(savedLessonStats.correct > 0) savedLessonStats.correct--;
+
+  const attempts = savedLessonStats.correct + savedLessonStats.wrong;
+  const acc = attempts > 0 ? Math.round((savedLessonStats.correct / attempts) * 100) : 100;
+  savedLessonStats.accuracy = acc;
+
+  saveLessonStats();
+  updateLessonStatsUI();
+}
+
+window.recordLessonBackspace = recordLessonBackspace;
 
 function updateMasteryStat(){
   const total = LESSONS.length;

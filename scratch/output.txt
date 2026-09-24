@@ -1,0 +1,18 @@
+Test server up on http://127.0.0.1:8815
+DESKTOP INITIAL (Standard): {
+  "exists": true,
+  "childrenCount": 17,
+  "rect": {
+    "x": 1097,
+    "y": 84,
+    "width": 275,
+    "height": 796
+  },
+  "hasTopBar": true,
+  "levelHeadersCount": 8,
+  "lessonCardsCount": 60,
+  "firstHeader": "Level 1 · Home Row Basics"
+}
+SWITCHED TO nida: {"layout":"nida","cards":77,"levels":13,"rect":{"x":1097,"y":84,"w":275,"h":737},"hidden":false}
+SWITCHED TO english: {"layout":"english","cards":64,"levels":14,"rect":{"x":1097,"y":84,"w":275,"h":779},"hidden":false}
+SWITCHED TO standard: {"layout":"standard","cards":60,"levels":8,"rect":{"x":1097,"y":84,"w":275,"h":796},"hidden":false}
