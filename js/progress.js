@@ -1131,6 +1131,9 @@
         });
       }
     } catch(e){}
+    if(typeof window !== 'undefined' && typeof window.resetAllCourseLessonStates === 'function'){
+      window.resetAllCourseLessonStates();
+    }
     flush();
     return true;
   }

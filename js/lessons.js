@@ -1147,6 +1147,87 @@ let lessonStartTime = 0;
 let lessonExtendedOnce = false; // adaptive: only auto-extend a lesson once per attempt
 let remedialActive = false;    // true while running an ad-hoc "Review Mistakes" drill
 
+const COURSE_LESSON_STATES = {
+  standard: null,
+  nida: null,
+  english: null
+};
+
+function suspendLessonForLayoutSwitch(prevLayout){
+  if(!lessonActive || !currentLesson) return;
+  document.querySelectorAll('.lesson-complete-overlay').forEach(el => el.remove());
+
+  COURSE_LESSON_STATES[prevLayout] = {
+    lesson: currentLesson,
+    chars: lessonChars,
+    layers: lessonLayers,
+    keyIds: lessonKeyIds,
+    sections: lessonSections,
+    index: lessonIndex,
+    mistakes: lessonMistakes,
+    mistakeChars: Object.assign({}, lessonMistakeChars),
+    acceptedUnits: Array.from(lessonAcceptedUnits),
+    remedialActive: remedialActive,
+    startTime: lessonStartTime,
+    activeTime: (typeof PK_TRACKER !== 'undefined' && typeof PK_TRACKER.getLiveLessonMetrics === 'function')
+      ? (PK_TRACKER.getLiveLessonMetrics()?.activeTimeSec || 0)
+      : 0,
+    layoutId: prevLayout
+  };
+
+  lessonActive = false;
+  currentLesson = null;
+  remedialActive = false;
+  if(lessonPanel) lessonPanel.hidden = true;
+  if(manuscriptEl) manuscriptEl.hidden = false;
+  if(highlightedKeyId && keyEls[highlightedKeyId]){
+    keyEls[highlightedKeyId].classList.remove('lesson-target');
+  }
+  highlightedKeyId = null;
+  if(highlightedModifierKeyId && keyEls[highlightedModifierKeyId]){
+    keyEls[highlightedModifierKeyId].classList.remove('modifier-target');
+  }
+  highlightedModifierKeyId = null;
+  if(typeof setActiveFinger === 'function') setActiveFinger(null);
+}
+
+function restoreLessonAfterLayoutSwitch(newLayout){
+  const saved = COURSE_LESSON_STATES[newLayout];
+  if(!saved || !saved.lesson) return false;
+
+  currentLesson = saved.lesson;
+  lessonChars = saved.chars;
+  lessonLayers = saved.layers;
+  lessonKeyIds = saved.keyIds;
+  lessonSections = saved.sections || [];
+  lessonIndex = saved.index;
+  lessonMistakes = saved.mistakes;
+  lessonMistakeChars = saved.mistakeChars || {};
+  lessonAcceptedUnits = saved.acceptedUnits || [];
+  remedialActive = saved.remedialActive || false;
+  lessonStartTime = saved.startTime;
+  lessonActive = true;
+
+  if(lessonTitleEl) lessonTitleEl.textContent = currentLesson.title;
+  renderLessonMeta(currentLesson);
+  if(lessonPanel) lessonPanel.hidden = false;
+  if(manuscriptEl) manuscriptEl.hidden = true;
+  if(lessonStrip){
+    lessonStrip.hidden = false;
+    renderLessonStrip();
+  }
+  renderLessonChars();
+  updateLessonProgress();
+  updateLessonKeyHighlight();
+  return true;
+}
+
+function resetAllCourseLessonStates(){
+  COURSE_LESSON_STATES.standard = null;
+  COURSE_LESSON_STATES.nida = null;
+  COURSE_LESSON_STATES.english = null;
+}
+
 const lessonStrip = document.getElementById('lessonStrip');
 const lessonPanel = document.getElementById('lessonPanel');
 const lessonUnavailableNote = document.getElementById('lessonUnavailableNote');
@@ -1311,12 +1392,12 @@ function renderLessonStrip(){
     const topBar = document.createElement('div');
     topBar.className = 'lesson-strip-header';
     topBar.innerHTML = `
-      <span class="lsh-title">${pkIcon('book', 15)} LESSONS</span>
+      <span class="lsh-title">${pkIcon('book', 14)} LESSONS</span>
       <div class="lsh-actions">
         <button type="button" class="lsh-adaptive-btn" id="lshAdaptiveBtn" title="Start Adaptive Practice" aria-label="Start Adaptive Practice">
           ${pkIcon('refresh', 12)} <span class="i18n-t" data-en="Adaptive" data-km="ការអនុវត្តបន្ស៊ាំ">Adaptive</span>
         </button>
-        <span class="lsh-badge">${masteredCount}/${LESSONS.length} Mastered</span>
+        <span class="lsh-badge" title="${masteredCount}/${LESSONS.length} Lessons Mastered"><span class="lsh-badge-num">${masteredCount}/${LESSONS.length}</span> <span class="lsh-badge-txt">Mastered</span></span>
         <button type="button" class="lsh-expand-btn" id="lshExpandBtn" title="${isStripExpanded ? 'Compact sidebar (1 column)' : 'Expand sidebar (2 columns)'}" aria-label="Toggle sidebar width">
           ${pkIcon(isStripExpanded ? 'collapse' : 'expand', 12)}
         </button>
@@ -1345,7 +1426,10 @@ function renderLessonStrip(){
         <span class="i18n-t" data-en="Train" data-km="ហាត់">Train</span>
       </button>
     `;
-    frag.appendChild(adaptiveCard);
+    const bodyEl = document.createElement('div');
+    bodyEl.className = 'lesson-strip-body';
+    bodyEl.id = 'lessonStripBody';
+    bodyEl.appendChild(adaptiveCard);
 
     let lastLevel = null;
     let listEl = null;
@@ -1357,10 +1441,10 @@ function renderLessonStrip(){
         header.className = 'lesson-level-header' + (collapsed ? ' collapsed' : '');
         header.dataset.level = String(def.level);
         header.innerHTML = `<span class="llh-chevron">${pkIcon(collapsed ? 'arrow-right' : 'arrow-down', 11)}</span><span>${lv ? lv.title : `Level ${def.level}`}</span>`;
-        frag.appendChild(header);
+        bodyEl.appendChild(header);
         listEl = document.createElement('div');
         listEl.className = 'lesson-level-list' + (collapsed ? ' collapsed' : '');
-        frag.appendChild(listEl);
+        bodyEl.appendChild(listEl);
         lastLevel = def.level;
       }
       const card = document.createElement('div');
@@ -1392,6 +1476,7 @@ function renderLessonStrip(){
       listEl.appendChild(card);
     });
 
+    frag.appendChild(bodyEl);
     lessonStrip.replaceChildren(frag);
     lessonStrip.removeAttribute('hidden');
     lessonStrip.hidden = false;
@@ -1609,11 +1694,18 @@ function updateLessonProgress(){
 function startLesson(idOrDef){
   if(typeof trialActive !== 'undefined' && trialActive) stopTrial();
   if(typeof raceMode !== 'undefined' && raceMode) exitRaceMode();
+  if(typeof window !== 'undefined' && window.adaptiveActive && typeof PK_ADAPTIVE !== 'undefined' && typeof PK_ADAPTIVE.exitSession === 'function'){
+    PK_ADAPTIVE.exitSession(false);
+  }
   const def = (typeof idOrDef === 'object') ? idOrDef : LESSONS.find(l=> String(l.id) === String(idOrDef));
   if(!def) return;
   if(typeof idOrDef !== 'object' && isLessonLocked(def.id)) return;
 
+  if(currentLayoutId && COURSE_LESSON_STATES[currentLayoutId]){
+    COURSE_LESSON_STATES[currentLayoutId] = null;
+  }
   currentLesson = def;
+  if(!def.layoutId) def.layoutId = currentLayoutId;
   remedialActive = !!def.isRemedial;
   isStripExpanded = false; // Make it small when starting a lesson
   if(collapsedLevels && def.level){
@@ -1686,6 +1778,9 @@ function executeLessonExit(){
       lessonId: currentLesson ? currentLesson.id : null
     });
   }
+  if(currentLayoutId && COURSE_LESSON_STATES[currentLayoutId]){
+    COURSE_LESSON_STATES[currentLayoutId] = null;
+  }
   lessonActive = false;
   currentLesson = null;
   remedialActive = false;
@@ -1712,6 +1807,7 @@ function executeLessonExit(){
 }
 
 function showIncompleteLesson(){
+  document.querySelectorAll('.lesson-complete-overlay').forEach(el => el.remove());
   if(!currentLesson){
     executeLessonExit();
     return;
@@ -1785,6 +1881,10 @@ window.exitLesson = exitLesson;
 window.showIncompleteLesson = showIncompleteLesson;
 window.executeLessonExit = executeLessonExit;
 window.startLesson = startLesson;
+window.suspendLessonForLayoutSwitch = suspendLessonForLayoutSwitch;
+window.restoreLessonAfterLayoutSwitch = restoreLessonAfterLayoutSwitch;
+window.resetAllCourseLessonStates = resetAllCourseLessonStates;
+window.COURSE_LESSON_STATES = COURSE_LESSON_STATES;
 window.lessonHandleChar = lessonHandleChar;
 window.lessonHandleBackspace = lessonHandleBackspace;
 try {
@@ -2023,6 +2123,10 @@ function completeLesson(){
 }
 
 function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
+  document.querySelectorAll('.lesson-complete-overlay').forEach(el => el.remove());
+  if(currentLayoutId && COURSE_LESSON_STATES[currentLayoutId]){
+    COURSE_LESSON_STATES[currentLayoutId] = null;
+  }
   const overlay = document.createElement('div');
   overlay.className = 'lesson-complete-overlay';
 
@@ -2074,19 +2178,26 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
             }).join('')}
           </div>
         </div>` : ''}
-        <div class="lesson-complete-actions">
-          ${(mistakeChars && mistakeChars.length && !remedialActive) ? '<button class="lc-mistakes primary">⟲ Review Mistakes</button>' : ''}
-          ${(prevLesson) ? '<button class="lc-prev">← Previous</button>' : ''}
-          <button class="lc-retry">↻ Retry</button>
-          ${nextLesson ? '<button class="lc-next' + ((!mistakeChars || !mistakeChars.length) ? ' primary' : '') + '">Next Lesson →</button>' : '<button class="lc-close primary">Close</button>'}
-          ${(mistakeChars && mistakeChars.length && !remedialActive) ? `<button class="lc-mistakes primary">${pkIcon('target', 14)} Review Mistakes</button>` : ''}
-          ${(prevLesson) ? `<button class="lc-prev">${pkIcon('arrow-left', 14)} Previous</button>` : ''}
-          <button class="lc-retry">${pkIcon('reset', 14)} Retry</button>
-          ${nextLesson ? `<button class="lc-next${((!mistakeChars || !mistakeChars.length) ? ' primary' : '')}">Next Lesson ${pkIcon('arrow-right', 14)}</button>` : '<button class="lc-close primary">Close</button>'}
-          ${nextLesson ? '<button class="lc-close">Close</button>' : ''}
-        </div>
+        ${(typeof renderLessonControlsHtml === 'function')
+          ? renderLessonControlsHtml('completed', {
+              mistakes: (mistakeChars && mistakeChars.length && !remedialActive) ? mistakeChars.length : 0,
+              prevLesson: prevLesson,
+              nextLesson: nextLesson,
+              isRemedial: remedialActive
+            })
+          : `
+          <div class="lesson-complete-actions">
+            ${(mistakeChars && mistakeChars.length && !remedialActive) ? `<button type="button" class="lc-mistakes primary">${pkIcon('target', 14)} Review Mistakes</button>` : ''}
+            ${(prevLesson) ? `<button type="button" class="lc-prev">${pkIcon('arrow-left', 14)} Previous</button>` : ''}
+            <button type="button" class="lc-retry">${pkIcon('reset', 14)} Retry</button>
+            ${nextLesson ? `<button type="button" class="lc-next${((!mistakeChars || !mistakeChars.length) ? ' primary' : '')}">Next Lesson ${pkIcon('arrow-right', 14)}</button>` : '<button type="button" class="lc-close primary">Close</button>'}
+            ${nextLesson ? '<button type="button" class="lc-close">Close</button>' : ''}
+          </div>`
+        }
       </div>`;
   }
+
+  remedialActive = false;
 
   document.body.appendChild(overlay);
 

@@ -460,6 +460,61 @@
      ============================================================ */
 
   /**
+   * Authoritative single generator for lesson control button groups.
+   * Guarantees that each action button exists exactly once with clean icons.
+   *
+   * @param {'active'|'paused'|'completed'|'review'} state
+   * @param {Object} [options]
+   *   - mistakes: number
+   *   - prevLesson: Object|null
+   *   - nextLesson: Object|null
+   *   - isRemedial: boolean
+   * @returns {string} HTML string of unique action buttons
+   */
+  function renderLessonControlsHtml(state, options = {}){
+    const mistakes = options.mistakes || 0;
+    const prevLesson = options.prevLesson || null;
+    const nextLesson = options.nextLesson || null;
+    const isRemedial = !!options.isRemedial;
+
+    if(state === 'paused'){
+      return `
+      <div class="lesson-complete-actions pk-fb-actions">
+        <button type="button" class="lc-resume primary">${safeIcon('play', 14)} Resume Lesson</button>
+        <button type="button" class="lc-retry">${safeIcon('reset', 14)} Restart</button>
+        <button type="button" class="lc-exit-confirm secondary">Exit to Course</button>
+      </div>`;
+    }
+
+    if(state === 'completed' || state === 'review'){
+      const hasMistakes = mistakes > 0 && !isRemedial;
+      const nextIsPrimary = !hasMistakes;
+      const buttons = [];
+
+      if(hasMistakes){
+        buttons.push(`<button type="button" class="lc-mistakes primary">${safeIcon('target', 14)} Review Mistakes</button>`);
+      }
+      if(prevLesson){
+        buttons.push(`<button type="button" class="lc-prev">${safeIcon('arrow-left', 14)} Previous</button>`);
+      }
+      buttons.push(`<button type="button" class="lc-retry">${safeIcon('reset', 14)} Retry</button>`);
+      if(nextLesson){
+        buttons.push(`<button type="button" class="lc-next${nextIsPrimary ? ' primary' : ''}">Next Lesson ${safeIcon('arrow-right', 14)}</button>`);
+        buttons.push(`<button type="button" class="lc-close">Close</button>`);
+      } else {
+        buttons.push(`<button type="button" class="lc-close primary">Close</button>`);
+      }
+
+      return `
+      <div class="lesson-complete-actions pk-fb-actions">
+        ${buttons.join('\n        ')}
+      </div>`;
+    }
+
+    return '';
+  }
+
+  /**
    * Builds the rich post-lesson feedback card HTML with 3 clear sections:
    * 1. Performance Grid (Accuracy, WPM, Units, Mistakes, Fixes, Streak)
    * 2. What Went Well & What Needs Practice
@@ -581,7 +636,6 @@
         </div>
         <div class="pk-fb-stat-box">
           <span class="val">${p.backspaces}</span>
-          <span class="lbl">Fixes (⌫)</span>
           <span class="lbl">Fixes (${safeIcon('backspace', 11)})</span>
         </div>
       </div>
@@ -611,17 +665,12 @@
       </div>
 
       <!-- ACTIONS -->
-      <div class="lesson-complete-actions pk-fb-actions">
-        ${p.mistakes > 0 ? '<button class="lc-mistakes primary">⟲ Review Mistakes</button>' : ''}
-        ${prevLesson ? '<button class="lc-prev">← Previous</button>' : ''}
-        <button class="lc-retry">↻ Retry</button>
-        ${nextLesson ? '<button class="lc-next' + (p.mistakes === 0 ? ' primary' : '') + '">Next Lesson →</button>' : '<button class="lc-close primary">Close</button>'}
-        ${p.mistakes > 0 ? `<button class="lc-mistakes primary">${safeIcon('target', 14)} Review Mistakes</button>` : ''}
-        ${prevLesson ? `<button class="lc-prev">${safeIcon('arrow-left', 14)} Previous</button>` : ''}
-        <button class="lc-retry">${safeIcon('reset', 14)} Retry</button>
-        ${nextLesson ? `<button class="lc-next${(p.mistakes === 0 ? ' primary' : '')}">Next Lesson ${safeIcon('arrow-right', 14)}</button>` : '<button class="lc-close primary">Close</button>'}
-        ${nextLesson ? '<button class="lc-close">Close</button>' : ''}
-      </div>
+      ${renderLessonControlsHtml('completed', {
+        mistakes: p.mistakes,
+        prevLesson: prevLesson,
+        nextLesson: nextLesson,
+        isRemedial: !!(def && def.isRemedial)
+      })}
     </div>`;
   }
 
@@ -673,13 +722,7 @@
         </div>
       </div>
 
-      <div class="lesson-complete-actions pk-fb-actions">
-        <button class="lc-resume primary">▶ Resume Lesson</button>
-        <button class="lc-retry">↻ Restart</button>
-        <button class="lc-resume primary">${safeIcon('play', 14)} Resume Lesson</button>
-        <button class="lc-retry">${safeIcon('reset', 14)} Restart</button>
-        <button class="lc-exit-confirm secondary">Exit to Course</button>
-      </div>
+      ${renderLessonControlsHtml('paused')}
     </div>`;
   }
 
@@ -690,10 +733,12 @@
     getRealTimeHint,
     analyzeLesson,
     analyzeIncompleteLesson,
+    renderLessonControlsHtml,
     buildPostLessonCardHtml,
     buildIncompleteLessonHtml
   };
 
+  global.renderLessonControlsHtml = renderLessonControlsHtml;
   global.PK_FEEDBACK = api;
 
 })(typeof window !== 'undefined' ? window : global);

@@ -392,14 +392,21 @@ if(document.readyState !== 'loading'){
 function switchLayout(id){
   if(!LAYOUTS[id] || id === currentLayoutId) return;
   const prevLayout = currentLayoutId;
+  document.querySelectorAll('.lesson-complete-overlay').forEach(el => el.remove());
   if(typeof adaptiveActive !== 'undefined' && adaptiveActive && typeof PK_ADAPTIVE !== 'undefined' && typeof PK_ADAPTIVE.exitSession === 'function'){
     PK_ADAPTIVE.exitSession();
   }
-  if(typeof lessonActive !== 'undefined' && lessonActive) exitLesson();
+  if(typeof suspendLessonForLayoutSwitch === 'function'){
+    suspendLessonForLayoutSwitch(prevLayout);
+  } else if(typeof executeLessonExit === 'function' && typeof lessonActive !== 'undefined' && lessonActive){
+    executeLessonExit();
+  }
   if(typeof trialActive !== 'undefined' && trialActive) stopTrial();
   if(typeof raceMode !== 'undefined' && raceMode) exitRaceMode();
   currentLayoutId = id;
   window.currentLayoutId = currentLayoutId;
+  window.activeCourse = id;
+  window.activeLayout = id;
   if(typeof PK_TRACKER !== 'undefined' && typeof PK_TRACKER.recordLayoutSwitch === 'function'){
     PK_TRACKER.recordLayoutSwitch(prevLayout, id);
   }
@@ -438,6 +445,9 @@ function switchLayout(id){
   trialToggle.style.display = lessonsAvailable ? '' : 'none';
   if(typeof raceToggle !== 'undefined') raceToggle.style.display = lessonsAvailable ? '' : 'none';
   lessonUnavailableNote.style.display = lessonsAvailable ? 'none' : '';
+  if(typeof restoreLessonAfterLayoutSwitch === 'function'){
+    restoreLessonAfterLayoutSwitch(id);
+  }
 }
 layoutStrip.querySelectorAll('.layout-pill').forEach(p=>{
   p.addEventListener('click', ()=> switchLayout(p.dataset.layout));
