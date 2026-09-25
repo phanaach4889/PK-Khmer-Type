@@ -64,7 +64,8 @@
   // Performance evaluation thresholds
   const CONFIG = {
     minEvidenceAttempts: 4,      // Must have >= 4 attempts before classifying as weak/needs-practice
-    minUnlockAttemptsPerUnit: 5, // All active units must have >= 5 attempts to unlock next
+    minUnlockAttemptsPerUnit: 8, // All active units must have >= 8 attempts to unlock next
+    minStageSessions: 2,         // Must complete at least 2 sessions in stage before next unlocks
     strongAccuracyThreshold: 92, // >= 92% accuracy -> Strong (GREEN)
     needsPracticeThreshold: 80,  // 80% to 91% -> Needs Practice (YELLOW)
     weakAccuracyThreshold: 80,   // < 80% -> Weak (RED)
@@ -105,6 +106,7 @@
       version: '1.0.0',
       layoutId: l,
       stage: 1,
+      stageSessions: 0,
       unlockedUnits: initial,
       focusUnit: null,
       newlyUnlockedUnit: null,
@@ -551,7 +553,7 @@
           reason: `Letter "${u.toUpperCase()}" needs more practice (${uState.attempts}/${CONFIG.minUnlockAttemptsPerUnit} attempts)`
         };
       }
-      if (uState.state === 'weak') {
+      if (uState.state === 'weak' || uState.accuracy < CONFIG.needsPracticeThreshold) {
         return {
           canUnlock: false,
           reason: `Letter "${u.toUpperCase()}" is currently weak (${uState.accuracy}%). Improve it before advancing.`
@@ -583,6 +585,7 @@
     s.newlyUnlockedUnit = check.nextUnit;
     s.focusUnit = check.nextUnit;
     s.stage = (s.stage || 1) + 1;
+    s.stageSessions = 0;
     saveAdaptiveState(l, s);
 
     return {
@@ -873,6 +876,7 @@
     const s = loadAdaptiveState(l);
 
     s.sessionsCompleted = (s.sessionsCompleted || 0) + 1;
+    s.stageSessions = (s.stageSessions || 0) + 1;
 
     const focusUnit = (drillDef && drillDef.focusUnit) || s.focusUnit || s.unlockedUnits[0];
     const beforeStats = (drillDef && drillDef.beforeStats) || null;
@@ -883,8 +887,12 @@
       diffPct = afterState.accuracy - beforeStats.accuracy;
     }
 
-    // Check if new letter can be unlocked
-    const unlockCheck = checkCanUnlockNext(l);
+    // Check if new letter can be unlocked (only if current session met quality threshold and sustained stage sessions)
+    const sessionAcc = sessionResult.accuracy !== undefined ? sessionResult.accuracy : 100;
+    const stageSessionsMet = (s.stageSessions || 0) >= (CONFIG.minStageSessions || 2);
+    const unlockCheck = (sessionAcc >= CONFIG.unlockMinAvgAccuracy && stageSessionsMet)
+      ? checkCanUnlockNext(l)
+      : { canUnlock: false, reason: `Stage sessions (${s.stageSessions || 0}/${CONFIG.minStageSessions || 2}) or accuracy below threshold` };
     let unlockedNew = false;
     let unlockedUnit = null;
 
@@ -893,6 +901,13 @@
       if (unlockRes.unlocked) {
         unlockedNew = true;
         unlockedUnit = unlockRes.unit;
+        // Keep in-memory s synchronized with unlocked units and stage so subsequent saveAdaptiveState preserves it
+        const fresh = loadAdaptiveState(l);
+        s.unlockedUnits = fresh.unlockedUnits.slice();
+        s.stage = fresh.stage;
+        s.newlyUnlockedUnit = fresh.newlyUnlockedUnit;
+        s.focusUnit = fresh.focusUnit;
+        s.stageSessions = 0;
       }
     }
 
@@ -1427,6 +1442,8 @@
 
   function showAdaptiveSummaryModal(res) {
     if (typeof document === 'undefined') return;
+    // Strict guard: Milestone modal only displays when a new letter was genuinely unlocked
+    if (!res || !res.newLetterUnlocked) return;
     const existing = document.querySelector('.adaptive-complete-overlay');
     if (existing) existing.remove();
 

@@ -46,20 +46,17 @@
     }
   }
 
-  @media(min-width:1150px){
+  @media(min-width:1024px){
     .lesson-strip{
       position:fixed;
       right:18px;
       top:80px;
       bottom:auto;
       max-height:calc(100vh - 96px);
-      width:330px;
+      width:360px;
       margin:0;
       z-index:60;
-      overflow-y:auto;
-      overflow-x:hidden;
-      scrollbar-width:thin;
-      scrollbar-color:rgba(255,209,102,0.3) transparent;
+      overflow:hidden;
       backdrop-filter:blur(12px);
       -webkit-backdrop-filter:blur(12px);
       box-shadow:0 12px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,209,102,0.18);

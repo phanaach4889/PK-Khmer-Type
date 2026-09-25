@@ -60,6 +60,9 @@ function newTrialWord(){
 function startTrial(){
   if(typeof lessonActive !== 'undefined' && lessonActive) exitLesson();
   if(typeof raceMode !== 'undefined' && raceMode) exitRaceMode();
+  if(typeof window !== 'undefined' && window.adaptiveActive && typeof PK_ADAPTIVE !== 'undefined' && typeof PK_ADAPTIVE.exitSession === 'function'){
+    PK_ADAPTIVE.exitSession(false);
+  }
   trialActive = true;
   trialPanel.hidden = false;
   boardWrap.classList.add('trial-active');
@@ -572,6 +575,9 @@ function enterRaceMode(){
   if(raceMode) return;
   if(trialActive) stopTrial();
   if(lessonActive) exitLesson();
+  if(typeof window !== 'undefined' && window.adaptiveActive && typeof PK_ADAPTIVE !== 'undefined' && typeof PK_ADAPTIVE.exitSession === 'function'){
+    PK_ADAPTIVE.exitSession(false);
+  }
   raceMode = true;
   racePanel.hidden = false;
   raceToggle.classList.add('on');
