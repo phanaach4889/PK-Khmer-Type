@@ -196,20 +196,22 @@ const AuthProvider = (function(){
    - The display name + avatar shown in the profile card, and the
      Race leaderboard (a shared local high-score table by nickname).
    ===================================================================== */
+function isProgressKey(key){
+  if(!key || typeof key !== 'string') return false;
+  if(key === 'khmerTrialBest') return true;
+  if(key === 'khmerGlobalStats') return true;
+  if(key === 'khmerTrackingData_v1') return true;
+  if(key === 'khmerReviewData_v1') return true;
+  if(key === 'khmerProgress_v2' || key === 'khmerProgress_v1') return true;
+  if(key.indexOf('khmerLessonBest_') === 0) return true;
+  if(/^khmerRaceBest[A-Z]/.test(key)) return true;
+  if(key === 'pk_adaptive_state_v1' || key.startsWith('pk_adaptive_') || key.startsWith('pk_')) return true;
+  return false;
+}
+if(typeof window !== 'undefined') window.isProgressKey = isProgressKey;
+
 const AccountProgress = (function(){
   const STORE_KEY = 'khmerAccountProgress'; // { [emailLower]: { [storageKey]: value } }
-
-  function isProgressKey(key){
-    if(key === 'khmerTrialBest') return true;
-    if(key === 'khmerGlobalStats') return true;
-    if(key === 'khmerTrackingData_v1') return true;
-    if(key === 'khmerReviewData_v1') return true;
-    if(key === 'khmerProgress_v2' || key === 'khmerProgress_v1') return true;
-    if(key.indexOf('khmerLessonBest_') === 0) return true;
-    if(/^khmerRaceBest[A-Z]/.test(key)) return true;
-    if(key === 'pk_adaptive_state_v1' || key.startsWith('pk_adaptive_')) return true;
-    return false;
-  }
 
   function loadStore(){
     try{ return JSON.parse(localStorage.getItem(STORE_KEY) || '{}'); }
@@ -257,7 +259,15 @@ const AccountProgress = (function(){
     }catch(e){}
   }
 
-  return { snapshotAndClear, restore };
+  function clearAccountSnapshot(email){
+    if(!email) return;
+    const key = email.trim().toLowerCase();
+    const store = loadStore();
+    delete store[key];
+    saveStore(store);
+  }
+
+  return { snapshotAndClear, restore, clearAccountSnapshot };
 })();
 
 (function(){
@@ -892,18 +902,35 @@ function initStorageActions(){
     );
     if(!ok) return;
     try{
+      if (typeof window !== 'undefined') {
+        window.__isResettingProgress = true;
+      }
       if (typeof window !== 'undefined' && window.PK_ADAPTIVE && typeof window.PK_ADAPTIVE.resetAdaptiveState === 'function') {
         window.PK_ADAPTIVE.resetAdaptiveState();
       }
       if (typeof window !== 'undefined' && window.PK_PROGRESS && typeof window.PK_PROGRESS.resetAll === 'function') {
         window.PK_PROGRESS.resetAll();
       }
+      if (typeof window !== 'undefined' && window.PK_TRACKER && typeof window.PK_TRACKER.resetAll === 'function') {
+        window.PK_TRACKER.resetAll();
+      }
+      if (typeof window !== 'undefined' && window.PK_REVIEW && typeof window.PK_REVIEW.resetAll === 'function') {
+        window.PK_REVIEW.resetAll();
+      }
+      if (typeof AuthStore !== 'undefined' && typeof AuthStore.getCurrentUser === 'function') {
+        const currentUser = AuthStore.getCurrentUser();
+        if (currentUser && currentUser.email && typeof AccountProgress !== 'undefined' && typeof AccountProgress.clearAccountSnapshot === 'function') {
+          AccountProgress.clearAccountSnapshot(currentUser.email);
+        }
+      }
       Object.keys(localStorage).forEach(k=>{
-        if((k.startsWith('khmer') || k.startsWith('pk_') || isProgressKey(k)) && k !== 'khmerProfile') {
+        if((k.startsWith('khmer') || k.startsWith('pk_') || isProgressKey(k)) && k !== 'khmerProfile' && k !== 'khmerAccounts' && k !== 'khmerActiveSession') {
           localStorage.removeItem(k);
         }
       });
-    }catch(e){}
+    }catch(e){
+      console.error('Reset all progress error:', e);
+    }
     location.reload();
   });
 

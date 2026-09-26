@@ -134,6 +134,7 @@
     }
     try {
       if(typeof localStorage === 'undefined') return;
+      if(typeof window !== 'undefined' && window.__isResettingProgress) return;
       const payload = {
         version: 2,
         completedReviews: reviewState.completedReviews.slice(-50),

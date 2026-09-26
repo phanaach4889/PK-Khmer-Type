@@ -166,6 +166,7 @@
     }
     try {
       if(typeof localStorage === 'undefined') return;
+      if(typeof window !== 'undefined' && window.__isResettingProgress) return;
       const payload = {
         version: state.version,
         updatedAt: Date.now(),

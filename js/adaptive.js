@@ -136,6 +136,7 @@
   }
 
   function saveAllAdaptiveStates(states) {
+    if (typeof window !== 'undefined' && window.__isResettingProgress) return;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(states));
     } catch (e) {
@@ -1443,9 +1444,7 @@
         renderAdaptiveChars();
         updateAdaptiveProgress();
         updateAdaptiveKeyHighlight();
-        if (activeSession.index % 5 === 0) {
-          renderLetterStrip(null, activeSession.layoutId);
-        }
+        renderLetterStrip(null, activeSession.layoutId);
       }
     } else {
       activeSession.mistakes++;
@@ -1466,6 +1465,7 @@
         }
       }
       updateAdaptiveProgress();
+      renderLetterStrip(null, activeSession.layoutId);
     }
   }
 
@@ -1589,9 +1589,10 @@
           ? await templeConfirm('Reset Adaptive Practice progress for this layout? You will restart from the initial letters at 0% completion.', { title: 'Reset Adaptive Progress?', danger: true, confirmLabel: 'Yes, reset' })
           : confirm('Reset Adaptive Practice progress for this layout?');
         if (!ok) return;
-        const l = normalizeLayout(typeof currentLayoutId !== 'undefined' ? currentLayoutId : 'english');
+        const activeL = (activeSession && activeSession.layoutId) || (typeof window !== 'undefined' && window.currentLayoutId) || (typeof currentLayoutId !== 'undefined' ? currentLayoutId : 'english');
+        const l = normalizeLayout(activeL);
         resetAdaptiveState(l);
-        renderLetterStrip();
+        renderLetterStrip(null, l);
         updateSidebarCard();
         startAdaptiveSession(l);
       });
@@ -1600,14 +1601,16 @@
     const lshBtn = document.getElementById('lshAdaptiveBtn');
     if (lshBtn) {
       lshBtn.addEventListener('click', () => {
-        startAdaptiveSession(typeof currentLayoutId !== 'undefined' ? currentLayoutId : 'english');
+        const activeL = (activeSession && activeSession.layoutId) || (typeof window !== 'undefined' && window.currentLayoutId) || (typeof currentLayoutId !== 'undefined' ? currentLayoutId : 'english');
+        startAdaptiveSession(activeL);
       });
     }
 
     const startBtn = document.getElementById('adaptiveStartBtn');
     if (startBtn) {
       startBtn.addEventListener('click', () => {
-        startAdaptiveSession(typeof currentLayoutId !== 'undefined' ? currentLayoutId : 'english');
+        const activeL = (activeSession && activeSession.layoutId) || (typeof window !== 'undefined' && window.currentLayoutId) || (typeof currentLayoutId !== 'undefined' ? currentLayoutId : 'english');
+        startAdaptiveSession(activeL);
       });
     }
 

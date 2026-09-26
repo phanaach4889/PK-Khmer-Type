@@ -368,6 +368,7 @@
     }
     try {
       if(typeof localStorage === 'undefined') return;
+      if(typeof window !== 'undefined' && window.__isResettingProgress) return;
       state.updatedAt = Date.now();
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch(err){
