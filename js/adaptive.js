@@ -1099,7 +1099,11 @@
 
     if (roundToastTimer) clearTimeout(roundToastTimer);
     toast.hidden = false;
-    toast.textContent = `Round Complete · ${summaryResult.accuracy}% Accuracy · Focus: ${summaryResult.focusUnit || '—'}`;
+    if (summaryResult && summaryResult.newLetterUnlocked) {
+      toast.textContent = `Unlocked '${summaryResult.newLetterUnlocked.toUpperCase()}'! · ${summaryResult.accuracy}% Accuracy · Focus: ${summaryResult.focusUnit || '—'}`;
+    } else {
+      toast.textContent = `Round Complete · ${summaryResult ? summaryResult.accuracy : 100}% Accuracy · Focus: ${(summaryResult && summaryResult.focusUnit) || '—'}`;
+    }
     toast.style.opacity = '1';
 
     roundToastTimer = setTimeout(() => {
@@ -1110,7 +1114,7 @@
         toast.style.transition = '';
         toast.style.opacity = '1';
       }, 400);
-    }, 1800);
+    }, 2200);
   }
 
   function renderAdaptiveChars() {
@@ -1429,128 +1433,16 @@
       confettiBurst(rect.left + rect.width / 2, rect.top + rect.height * 0.3, accuracy === 100 ? 36 : 24);
     }
 
-    if (summaryResult.newLetterUnlocked) {
-      exitSession(true);
-      showAdaptiveSummaryModal(summaryResult);
-    } else {
-      // User directive: Modal should show up ONLY when we unlock the new letter.
-      // Continuous practice: seamlessly start next round and display a clean inline toast.
-      startAdaptiveSession(currentLayoutId, { isAutoAdvance: true });
-      showInlineRoundToast(summaryResult);
-    }
+    // Continuous uninterrupted practice: seamlessly start next round and display clean inline feedback
+    startAdaptiveSession(currentLayoutId, { isAutoAdvance: true });
+    showInlineRoundToast(summaryResult);
   }
 
   function showAdaptiveSummaryModal(res) {
+    // Intentionally removed per user request: Adaptive Practice now uses continuous seamless flow without intrusive modal popups.
     if (typeof document === 'undefined') return;
-    // Strict guard: Milestone modal only displays when a new letter was genuinely unlocked
-    if (!res || !res.newLetterUnlocked) return;
     const existing = document.querySelector('.adaptive-complete-overlay');
     if (existing) existing.remove();
-
-    const overlay = document.createElement('div');
-    overlay.className = 'lesson-complete-overlay adaptive-complete-overlay';
-    overlay.setAttribute('role', 'dialog');
-    overlay.setAttribute('aria-modal', 'true');
-
-    const diffPct = (res.beforeAfter && res.beforeAfter.diffPct) || 0;
-    const diffSign = diffPct > 0 ? `+${diffPct}%` : (diffPct < 0 ? `${diffPct}%` : '0%');
-    const diffClass = diffPct > 0 ? 'positive' : (diffPct < 0 ? 'negative' : 'neutral');
-    const focusUnit = (res.focusUnit || (res.beforeAfter && res.beforeAfter.unit) || '—').toUpperCase();
-
-    overlay.innerHTML = `
-      <div class="lesson-complete-card adaptive-summary-card">
-        <div class="adaptive-summary-badge">
-          <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-          New Milestone Reached
-        </div>
-        <h2 class="adaptive-summary-title">Letter Unlocked!</h2>
-
-        ${res.newLetterUnlocked ? `
-          <div class="adaptive-unlocked-banner">
-            ${typeof pkIcon === 'function' ? pkIcon('sparkles', 16) : ''}
-            <span>Unlocked New Letter: <b>'${res.newLetterUnlocked.toUpperCase()}'</b>! Added to active practice.</span>
-          </div>
-        ` : ''}
-
-        <div class="adaptive-before-after">
-          <div class="aba-col">
-            <span class="aba-label">Focus Key</span>
-            <span class="aba-val" style="color:var(--gold-bright);">${focusUnit}</span>
-          </div>
-          <div class="aba-col">
-            <span class="aba-label">Before</span>
-            <span class="aba-val">${res.beforeAfter ? res.beforeAfter.beforeAccuracy : 0}%</span>
-          </div>
-          <div class="aba-col">
-            <span class="aba-label">After</span>
-            <span class="aba-val">${res.beforeAfter ? res.beforeAfter.afterAccuracy : 0}%</span>
-          </div>
-          <div class="aba-col">
-            <span class="aba-label">Progress</span>
-            <span class="aba-diff ${diffClass}">${diffSign}</span>
-          </div>
-        </div>
-
-        <div class="adaptive-stats-grid">
-          <div class="asg-box">
-            <div class="asg-num">${res.accuracy}%</div>
-            <div class="asg-lbl">Accuracy</div>
-          </div>
-          <div class="asg-box">
-            <div class="asg-num">${res.wpm}</div>
-            <div class="asg-lbl">Speed (WPM)</div>
-          </div>
-          <div class="asg-box">
-            <div class="asg-num">${res.mistakes}</div>
-            <div class="asg-lbl">Mistakes</div>
-          </div>
-        </div>
-
-        ${res.weakAnalysis && res.weakAnalysis.needsPractice && res.weakAnalysis.needsPractice.length > 0 ? `
-          <div class="adaptive-modal-breakdown">
-            <span class="amb-label">Needs Practice</span>
-            <div class="amb-chips">
-              ${res.weakAnalysis.needsPractice.map(w => `<span class="afh-weak-chip">${w.unit.toUpperCase()} ${w.accuracy}%</span>`).join('')}
-            </div>
-          </div>
-        ` : ''}
-
-        ${res.fingerPattern ? `
-          <div class="adaptive-modal-finger">
-            ${typeof pkIcon === 'function' ? pkIcon('info', 13) : ''}
-            <span>${res.fingerPattern.message}</span>
-          </div>
-        ` : ''}
-
-        <div class="adaptive-summary-actions">
-          <button type="button" class="adaptive-next-btn" id="adaptiveNextRoundBtn">
-            Continue Practice →
-          </button>
-          <button type="button" class="adaptive-summary-exit-btn" id="adaptiveSummaryExitBtn">
-            Return to Lessons
-          </button>
-        </div>
-      </div>
-    `;
-
-    document.body.appendChild(overlay);
-
-    const nextBtn = overlay.querySelector('#adaptiveNextRoundBtn');
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        overlay.remove();
-        startAdaptiveSession(res.layoutId);
-      });
-      nextBtn.focus();
-    }
-
-    const exitBtn = overlay.querySelector('#adaptiveSummaryExitBtn');
-    if (exitBtn) {
-      exitBtn.addEventListener('click', () => {
-        overlay.remove();
-        exitSession(false);
-      });
-    }
   }
 
   function exitSession(keepSummary = false) {
