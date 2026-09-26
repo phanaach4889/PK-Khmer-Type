@@ -63,8 +63,9 @@
 
   // Performance evaluation thresholds
   const CONFIG = {
+    targetCompletionUnitsPerLetter: 20, // 20 correct typing units required for 100% completion per letter (Hard Rule 13)
     minEvidenceAttempts: 4,      // Must have >= 4 attempts before classifying as weak/needs-practice
-    minUnlockAttemptsPerUnit: 8, // All active units must have >= 8 attempts to unlock next
+    minUnlockAttemptsPerUnit: 20,// All active units must reach 20 units (100% completion) to unlock next
     minStageSessions: 2,         // Must complete at least 2 sessions in stage before next unlocks
     strongAccuracyThreshold: 92, // >= 92% accuracy -> Strong (GREEN)
     needsPracticeThreshold: 80,  // 80% to 91% -> Needs Practice (YELLOW)
@@ -142,12 +143,68 @@
     }
   }
 
+  function sanitizeAdaptiveState(layoutId, state) {
+    if (!state || !Array.isArray(state.unlockedUnits)) return;
+    const l = normalizeLayout(layoutId);
+    const initial = (INITIAL_ACTIVE_SETS[l] || INITIAL_ACTIVE_SETS.english).slice();
+    const progression = PROGRESSIONS[l] || PROGRESSIONS.english;
+
+    // Retain initial active set
+    const validUnlocked = [];
+    for (const u of state.unlockedUnits) {
+      if (initial.includes(u) && !validUnlocked.includes(u)) {
+        validUnlocked.push(u);
+      }
+    }
+    for (const u of initial) {
+      if (!validUnlocked.includes(u)) validUnlocked.push(u);
+    }
+
+    // Sequentially verify each subsequent letter beyond initial set:
+    // It can ONLY remain unlocked if ALL preceding letters in validUnlocked have reached 100% completion!
+    for (let i = initial.length; i < progression.length; i++) {
+      const candidate = progression[i];
+      if (!state.unlockedUnits.includes(candidate)) {
+        break; // Stop at first locked letter in sequential progression
+      }
+      let allPreceding100 = true;
+      for (const req of validUnlocked) {
+        const reqState = getUnitState(l, req, state);
+        if (reqState.completion < 100) {
+          allPreceding100 = false;
+          break;
+        }
+      }
+      if (allPreceding100) {
+        validUnlocked.push(candidate);
+      } else {
+        // Preceding letter is incomplete (< 100%); relock candidate and all subsequent
+        break;
+      }
+    }
+
+    state.unlockedUnits = validUnlocked;
+    state.stage = Math.max(1, validUnlocked.length - initial.length + 1);
+    if (state.newlyUnlockedUnit && !validUnlocked.includes(state.newlyUnlockedUnit)) {
+      state.newlyUnlockedUnit = null;
+    }
+    if (state.focusUnit && !validUnlocked.includes(state.focusUnit)) {
+      state.focusUnit = null;
+    }
+  }
+
   function loadAdaptiveState(layoutId) {
     const l = normalizeLayout(layoutId);
     const all = loadAllAdaptiveStates();
     if (!all[l] || !all[l].unlockedUnits) {
       all[l] = getFreshState(l);
       saveAllAdaptiveStates(all);
+    } else {
+      const prevCount = all[l].unlockedUnits.length;
+      sanitizeAdaptiveState(l, all[l]);
+      if (all[l].unlockedUnits.length !== prevCount) {
+        saveAllAdaptiveStates(all);
+      }
     }
     return all[l];
   }
@@ -284,6 +341,9 @@
         state: 'locked',
         label: 'Locked',
         isUnlocked: false,
+        completion: 0,
+        completedUnits: 0,
+        targetUnits: CONFIG.targetCompletionUnitsPerLetter || 20,
         accuracy: 0,
         attempts: 0,
         mistakes: 0,
@@ -299,6 +359,7 @@
       attempts: 0,
       mistakes: 0,
       correct: 0,
+      completedUnits: 0,
       recentAttempts: [],
       avgResponseMs: 0,
       lastPracticed: null
@@ -332,6 +393,11 @@
     const accuracy = attempts > 0 ? Math.round((correct / attempts) * 100) : 100;
     let avgResponseMs = st.avgResponseMs || p7AvgMs || 0;
     const layoutAvgMs = getLayoutAverageResponseMs(l, s);
+
+    // Completion percentage (Hard Rule 13: 20 / 20 = 100%, separate from accuracy)
+    const targetUnits = CONFIG.targetCompletionUnitsPerLetter || 20;
+    const completedUnits = Math.max(st.completedUnits || 0, correct);
+    const completion = Math.min(100, Math.floor((completedUnits / targetUnits) * 100));
 
     // Calculate recent window accuracy and trend
     const recent = (st.recentAttempts && st.recentAttempts.length > 0)
@@ -393,6 +459,9 @@
         label: label,
         isUnlocked: true,
         isNewlyUnlocked: isNewlyUnlocked,
+        completion: completion,
+        completedUnits: completedUnits,
+        targetUnits: targetUnits,
         accuracy: accuracy,
         attempts: attempts,
         mistakes: mistakes,
@@ -438,6 +507,9 @@
       label: label,
       isUnlocked: true,
       isNewlyUnlocked: isNewlyUnlocked,
+      completion: completion,
+      completedUnits: completedUnits,
+      targetUnits: targetUnits,
       accuracy: accuracy,
       attempts: attempts,
       mistakes: mistakes,
@@ -530,9 +602,11 @@
 
   /* ---------- Controlled Letter Unlocking Logic ---------- */
   /**
-   * Evaluates sustained performance across current active units.
-   * If all active units have sufficient attempts, high accuracy, and no weaknesses,
-   * the next letter is unlocked.
+   * Evaluates completion across current active units.
+   * Hard Rules 10-13:
+   * A new letter can unlock ONLY when every currently required active letter has reached 100% completion.
+   * 99% completion must NOT unlock the next letter.
+   * 100% completion MUST unlock the next letter when all active letters are complete.
    */
   function checkCanUnlockNext(layoutId) {
     const l = normalizeLayout(layoutId);
@@ -544,30 +618,14 @@
       return { canUnlock: false, reason: 'All letters in progression already unlocked' };
     }
 
-    let totalAcc = 0;
     for (const u of active) {
       const uState = getUnitState(l, u, s);
-      if (uState.attempts < CONFIG.minUnlockAttemptsPerUnit) {
+      if (uState.completion < 100) {
         return {
           canUnlock: false,
-          reason: `Letter "${u.toUpperCase()}" needs more practice (${uState.attempts}/${CONFIG.minUnlockAttemptsPerUnit} attempts)`
+          reason: `Letter "${u.toUpperCase()}" is at ${uState.completion}% completion (${uState.completedUnits}/${uState.targetUnits}). Every active letter must reach 100% completion to unlock the next letter.`
         };
       }
-      if (uState.state === 'weak' || uState.accuracy < CONFIG.needsPracticeThreshold) {
-        return {
-          canUnlock: false,
-          reason: `Letter "${u.toUpperCase()}" is currently weak (${uState.accuracy}%). Improve it before advancing.`
-        };
-      }
-      totalAcc += uState.accuracy;
-    }
-
-    const avgAcc = active.length > 0 ? (totalAcc / active.length) : 0;
-    if (avgAcc < CONFIG.unlockMinAvgAccuracy) {
-      return {
-        canUnlock: false,
-        reason: `Overall accuracy is ${Math.round(avgAcc)}%. Reach ${CONFIG.unlockMinAvgAccuracy}% to unlock next letter.`
-      };
     }
 
     const nextIndex = active.length;
@@ -887,12 +945,8 @@
       diffPct = afterState.accuracy - beforeStats.accuracy;
     }
 
-    // Check if new letter can be unlocked (only if current session met quality threshold and sustained stage sessions)
-    const sessionAcc = sessionResult.accuracy !== undefined ? sessionResult.accuracy : 100;
-    const stageSessionsMet = (s.stageSessions || 0) >= (CONFIG.minStageSessions || 2);
-    const unlockCheck = (sessionAcc >= CONFIG.unlockMinAvgAccuracy && stageSessionsMet)
-      ? checkCanUnlockNext(l)
-      : { canUnlock: false, reason: `Stage sessions (${s.stageSessions || 0}/${CONFIG.minStageSessions || 2}) or accuracy below threshold` };
+    // Check if new letter can be unlocked (Hard Rules 10-12: 100% completion on all active letters)
+    const unlockCheck = checkCanUnlockNext(l);
     let unlockedNew = false;
     let unlockedUnit = null;
 
@@ -998,10 +1052,8 @@
       statSpan.className = 'as-pill-stat';
       if (!st.isUnlocked) {
         statSpan.innerHTML = (typeof pkIcon === 'function') ? pkIcon('lock', 10) : '';
-      } else if (st.attempts > 0) {
-        statSpan.textContent = `${st.accuracy}%`;
       } else {
-        statSpan.textContent = '—';
+        statSpan.textContent = `${st.completion}%`;
       }
 
       const dot = document.createElement('span');
@@ -1019,10 +1071,13 @@
 
       tooltip.innerHTML = `
         <div style="font-weight:700;color:var(--gold-bright);">${st.unit.toUpperCase()} · ${statusLabel}</div>
-        ${st.isUnlocked ? `<div>Accuracy: <b>${st.accuracy}%</b> (${st.correct}/${st.attempts})</div>
+        ${st.isUnlocked ? `<div>Completion: <b>${st.completion}%</b> (${st.completedUnits}/${st.targetUnits})</div>
+        <div>Accuracy: <b>${st.accuracy}%</b> (${st.correct}/${st.attempts})</div>
         <div>Avg Speed: <b>${st.avgResponseMs > 0 ? st.avgResponseMs + 'ms' : '—'}</b></div>
-        <div>Trend: <b>${st.trend}</b></div>` : '<div>Unlocks as you progress</div>'}
+        <div>Trend: <b>${st.trend}</b></div>` : '<div>Unlocks when all active letters reach 100%</div>'}
       `;
+
+      pill.setAttribute('aria-label', `${st.unit.toUpperCase()} ${statusLabel}: ${st.isUnlocked ? `${st.completion}% complete, ${st.accuracy}% accuracy` : 'Locked'}`);
 
       pill.appendChild(charSpan);
       pill.appendChild(statSpan);
@@ -1099,11 +1154,7 @@
 
     if (roundToastTimer) clearTimeout(roundToastTimer);
     toast.hidden = false;
-    if (summaryResult && summaryResult.newLetterUnlocked) {
-      toast.textContent = `Unlocked '${summaryResult.newLetterUnlocked.toUpperCase()}'! · ${summaryResult.accuracy}% Accuracy · Focus: ${summaryResult.focusUnit || '—'}`;
-    } else {
-      toast.textContent = `Round Complete · ${summaryResult ? summaryResult.accuracy : 100}% Accuracy · Focus: ${(summaryResult && summaryResult.focusUnit) || '—'}`;
-    }
+    toast.textContent = `Round Complete · ${summaryResult.accuracy}% Accuracy · Focus: ${summaryResult.focusUnit || '—'}`;
     toast.style.opacity = '1';
 
     roundToastTimer = setTimeout(() => {
@@ -1114,7 +1165,7 @@
         toast.style.transition = '';
         toast.style.opacity = '1';
       }, 400);
-    }, 2200);
+    }, 1800);
   }
 
   function renderAdaptiveChars() {
@@ -1433,16 +1484,128 @@
       confettiBurst(rect.left + rect.width / 2, rect.top + rect.height * 0.3, accuracy === 100 ? 36 : 24);
     }
 
-    // Continuous uninterrupted practice: seamlessly start next round and display clean inline feedback
-    startAdaptiveSession(currentLayoutId, { isAutoAdvance: true });
-    showInlineRoundToast(summaryResult);
+    if (summaryResult.newLetterUnlocked) {
+      exitSession(true);
+      showAdaptiveSummaryModal(summaryResult);
+    } else {
+      // User directive: Modal should show up ONLY when we unlock the new letter.
+      // Continuous practice: seamlessly start next round and display a clean inline toast.
+      startAdaptiveSession(currentLayoutId, { isAutoAdvance: true });
+      showInlineRoundToast(summaryResult);
+    }
   }
 
   function showAdaptiveSummaryModal(res) {
-    // Intentionally removed per user request: Adaptive Practice now uses continuous seamless flow without intrusive modal popups.
     if (typeof document === 'undefined') return;
+    // Strict guard: Milestone modal only displays when a new letter was genuinely unlocked
+    if (!res || !res.newLetterUnlocked) return;
     const existing = document.querySelector('.adaptive-complete-overlay');
     if (existing) existing.remove();
+
+    const overlay = document.createElement('div');
+    overlay.className = 'lesson-complete-overlay adaptive-complete-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+
+    const diffPct = (res.beforeAfter && res.beforeAfter.diffPct) || 0;
+    const diffSign = diffPct > 0 ? `+${diffPct}%` : (diffPct < 0 ? `${diffPct}%` : '0%');
+    const diffClass = diffPct > 0 ? 'positive' : (diffPct < 0 ? 'negative' : 'neutral');
+    const focusUnit = (res.focusUnit || (res.beforeAfter && res.beforeAfter.unit) || '—').toUpperCase();
+
+    overlay.innerHTML = `
+      <div class="lesson-complete-card adaptive-summary-card">
+        <div class="adaptive-summary-badge">
+          <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          New Milestone Reached
+        </div>
+        <h2 class="adaptive-summary-title">Letter Unlocked!</h2>
+
+        ${res.newLetterUnlocked ? `
+          <div class="adaptive-unlocked-banner">
+            ${typeof pkIcon === 'function' ? pkIcon('sparkles', 16) : ''}
+            <span>Unlocked New Letter: <b>'${res.newLetterUnlocked.toUpperCase()}'</b>! Added to active practice.</span>
+          </div>
+        ` : ''}
+
+        <div class="adaptive-before-after">
+          <div class="aba-col">
+            <span class="aba-label">Focus Key</span>
+            <span class="aba-val" style="color:var(--gold-bright);">${focusUnit}</span>
+          </div>
+          <div class="aba-col">
+            <span class="aba-label">Before</span>
+            <span class="aba-val">${res.beforeAfter ? res.beforeAfter.beforeAccuracy : 0}%</span>
+          </div>
+          <div class="aba-col">
+            <span class="aba-label">After</span>
+            <span class="aba-val">${res.beforeAfter ? res.beforeAfter.afterAccuracy : 0}%</span>
+          </div>
+          <div class="aba-col">
+            <span class="aba-label">Progress</span>
+            <span class="aba-diff ${diffClass}">${diffSign}</span>
+          </div>
+        </div>
+
+        <div class="adaptive-stats-grid">
+          <div class="asg-box">
+            <div class="asg-num">${res.accuracy}%</div>
+            <div class="asg-lbl">Accuracy</div>
+          </div>
+          <div class="asg-box">
+            <div class="asg-num">${res.wpm}</div>
+            <div class="asg-lbl">Speed (WPM)</div>
+          </div>
+          <div class="asg-box">
+            <div class="asg-num">${res.mistakes}</div>
+            <div class="asg-lbl">Mistakes</div>
+          </div>
+        </div>
+
+        ${res.weakAnalysis && res.weakAnalysis.needsPractice && res.weakAnalysis.needsPractice.length > 0 ? `
+          <div class="adaptive-modal-breakdown">
+            <span class="amb-label">Needs Practice</span>
+            <div class="amb-chips">
+              ${res.weakAnalysis.needsPractice.map(w => `<span class="afh-weak-chip">${w.unit.toUpperCase()} ${w.accuracy}%</span>`).join('')}
+            </div>
+          </div>
+        ` : ''}
+
+        ${res.fingerPattern ? `
+          <div class="adaptive-modal-finger">
+            ${typeof pkIcon === 'function' ? pkIcon('info', 13) : ''}
+            <span>${res.fingerPattern.message}</span>
+          </div>
+        ` : ''}
+
+        <div class="adaptive-summary-actions">
+          <button type="button" class="adaptive-next-btn" id="adaptiveNextRoundBtn">
+            Continue Practice →
+          </button>
+          <button type="button" class="adaptive-summary-exit-btn" id="adaptiveSummaryExitBtn">
+            Return to Lessons
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    const nextBtn = overlay.querySelector('#adaptiveNextRoundBtn');
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        overlay.remove();
+        startAdaptiveSession(res.layoutId);
+      });
+      nextBtn.focus();
+    }
+
+    const exitBtn = overlay.querySelector('#adaptiveSummaryExitBtn');
+    if (exitBtn) {
+      exitBtn.addEventListener('click', () => {
+        overlay.remove();
+        exitSession(false);
+      });
+    }
   }
 
   function exitSession(keepSummary = false) {
@@ -1525,6 +1688,7 @@
     loadAdaptiveState,
     saveAdaptiveState,
     resetAdaptiveState,
+    sanitizeAdaptiveState,
     getUnitState,
     getAllUnitsStatus,
     checkCanUnlockNext,

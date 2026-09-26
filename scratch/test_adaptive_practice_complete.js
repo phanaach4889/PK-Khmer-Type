@@ -116,15 +116,25 @@ console.log('Testing Phase 8 Adaptive Practice Engine (Scenarios A through T)...
   let check = PK_ADAPTIVE.checkCanUnlockNext('english');
   assert.strictEqual(check.canUnlock, false);
 
-  // Train all 6 active letters to high sustained mastery
+  // Train all 6 active letters to 19 units (95% completion)
   ['e', 'n', 'i', 'a', 'r', 'l'].forEach(u => {
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 19; i++) {
       PK_ADAPTIVE.recordStroke('english', u, true, 220);
     }
   });
 
+  // Strict Rule 11: 95% / 99% must NOT unlock!
   check = PK_ADAPTIVE.checkCanUnlockNext('english');
-  assert.strictEqual(check.canUnlock, true);
+  assert.strictEqual(check.canUnlock, false, '95% completion must NOT unlock the next letter');
+
+  // Complete 20th unit on all 6 letters (100% completion)
+  ['e', 'n', 'i', 'a', 'r', 'l'].forEach(u => {
+    PK_ADAPTIVE.recordStroke('english', u, true, 220);
+  });
+
+  // Strict Rule 12: 100% completion MUST unlock!
+  check = PK_ADAPTIVE.checkCanUnlockNext('english');
+  assert.strictEqual(check.canUnlock, true, '100% completion MUST unlock the next letter');
   assert.strictEqual(check.nextUnit, 't');
 
   const unlockRes = PK_ADAPTIVE.unlockNextLetter('english');
