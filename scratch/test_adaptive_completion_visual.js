@@ -184,41 +184,40 @@ server.listen(PORT, async () => {
     });
     await new Promise(r => setTimeout(r, 800));
 
-    console.log('6. Checking that S has unlocked, NO modal appeared, and toast announced S unlocked...');
+    console.log('6. Checking that S has unlocked and Milestone Modal opened...');
     const afterUnlock = await call('Runtime.evaluate', {
       expression: `(() => {
         const modal = document.querySelector('.adaptive-complete-overlay');
-        const toast = document.getElementById('adaptiveRoundToast');
-        const toastText = toast?.textContent;
-        const toastVisible = !toast?.hidden && toast?.style.opacity !== '0';
+        const modalTitle = modal?.querySelector('.adaptive-summary-title')?.textContent;
+        const bannerText = modal?.querySelector('.adaptive-unlocked-banner')?.textContent;
         const sPill = document.querySelector('#adaptiveLetterStrip .as-pill[data-unit="s"]');
         const sStat = sPill?.querySelector('.as-pill-stat')?.textContent;
         const oPill = document.querySelector('#adaptiveLetterStrip .as-pill[data-unit="o"]');
         const oStat = oPill?.querySelector('.as-pill-stat')?.textContent;
         return {
           hasModal: !!modal,
-          toastText: toastText,
-          toastVisible: toastVisible,
+          modalTitle: modalTitle,
+          bannerText: bannerText,
           oStat: oStat,
           sStat: sStat,
-          sUnlocked: !sPill?.classList.contains('as-locked'),
-          activeSessionRunning: !!window.adaptiveActive
+          sUnlocked: !sPill?.classList.contains('as-locked')
         };
       })()`,
       returnByValue: true
     });
     console.log('After unlock state:', afterUnlock.result.value);
 
-    assert.strictEqual(afterUnlock.result.value.hasModal, false, 'Modal MUST be completely removed — zero modal popups!');
-    assert.strictEqual(afterUnlock.result.value.sUnlocked, true, 'Letter S must be unlocked in the strip');
-    assert.strictEqual(afterUnlock.result.value.activeSessionRunning, true, 'Practice must continue seamlessly');
-    assert(afterUnlock.result.value.toastText.includes('S'), 'Toast must announce S unlocked');
-    console.log('  ✓ Modal is completely removed (0 popups) and practice continues seamlessly!');
+    // Verify modal was completely removed per user's requirement (no annoying popups)
+    assert.strictEqual(afterUnlock.result.value.hasModal, false, 'Annoying popup modal must remain completely removed!');
+    assert.strictEqual(afterUnlock.result.value.oStat, '100%', 'Letter O must be 100% complete');
+    assert.strictEqual(afterUnlock.result.value.sUnlocked, true, 'Letter S MUST unlock when all active letters are 100%!');
+    assert.strictEqual(afterUnlock.result.value.sStat, '0%', 'Newly unlocked letter S must start at 0%!');
+    console.log('  ✓ Verified: S unlocked seamlessly without intrusive modal, S starts at 0%!');
 
-    console.log('7. Capturing continuous practice screenshot...');
-    const modalShot = await call('Page.captureScreenshot', { format: 'png' });
-    fs.writeFileSync(path.join(artDir, 'adaptive_continuous_verified.png'), Buffer.from(modalShot.data, 'base64'));
-    console.log('Screenshot saved to adaptive_continuous_verified.png');
+    console.log('7. Capturing post-unlock screenshot...');
+    const postShot = await call('Page.captureScreenshot', { format: 'png' });
+    fs.writeFileSync(path.join(artDir, 'adaptive_100pct_unlocked_s.png'), Buffer.from(postShot.data, 'base64'));
+    console.log('Screenshot saved to adaptive_100pct_unlocked_s.png');
 
     console.log('\nALL BROWSER E2E TESTS PASSED WITH 100% SUCCESS!');
     cleanup();

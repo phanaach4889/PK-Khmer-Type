@@ -197,6 +197,203 @@ console.log('Testing Phase 9/10 Strict 100% Completion Unlocking & UI Strip...')
   console.log('  ✓ Test 7: Khmer NiDA layout strictly requires 100% completion across active units before advancing');
 }
 
-console.log('\n======================================================');
-console.log('ALL STRICT 100% COMPLETION REGRESSION TESTS PASSED! (7/7)');
-console.log('======================================================\n');
+// 8. Explicit Test Suite for Edge Cases 1 through 6
+console.log('Testing Explicit Edge Cases 1 through 6 from specification...');
+
+// Edge Case 1: [20/20, 20/20, 20/20, 20/20, 20/20, 19/20] -> LOCKED
+{
+  PK_ADAPTIVE.resetAdaptiveState('english');
+  const s = PK_ADAPTIVE.loadAdaptiveState('english');
+  s.unlockedUnits = ['e', 'n', 'i', 'a', 'r', 'l'];
+  s.unitStats = {
+    e: { completedUnits: 20, correct: 20, attempts: 20 },
+    n: { completedUnits: 20, correct: 20, attempts: 20 },
+    i: { completedUnits: 20, correct: 20, attempts: 20 },
+    a: { completedUnits: 20, correct: 20, attempts: 20 },
+    r: { completedUnits: 20, correct: 20, attempts: 20 },
+    l: { completedUnits: 19, correct: 19, attempts: 19 } // 19/20 = 95%
+  };
+  PK_ADAPTIVE.saveAdaptiveState('english', s);
+
+  const check = PK_ADAPTIVE.checkCanUnlockNext('english');
+  assert.strictEqual(check.canUnlock, false, 'Edge Case 1 must be LOCKED (19/20 on L)');
+  console.log('  ✓ Edge Case 1 PASSED: [20/20, 20/20, 20/20, 20/20, 20/20, 19/20] -> LOCKED');
+}
+
+// Edge Case 2: [20/20, 20/20, 20/20, 20/20, 20/20, 20/20] -> UNLOCK NEXT LETTER
+{
+  PK_ADAPTIVE.resetAdaptiveState('english');
+  const s = PK_ADAPTIVE.loadAdaptiveState('english');
+  s.unlockedUnits = ['e', 'n', 'i', 'a', 'r', 'l'];
+  s.unitStats = {
+    e: { completedUnits: 20, correct: 20, attempts: 20 },
+    n: { completedUnits: 20, correct: 20, attempts: 20 },
+    i: { completedUnits: 20, correct: 20, attempts: 20 },
+    a: { completedUnits: 20, correct: 20, attempts: 20 },
+    r: { completedUnits: 20, correct: 20, attempts: 20 },
+    l: { completedUnits: 20, correct: 20, attempts: 20 }
+  };
+  PK_ADAPTIVE.saveAdaptiveState('english', s);
+
+  const check = PK_ADAPTIVE.checkCanUnlockNext('english');
+  assert.strictEqual(check.canUnlock, true, 'Edge Case 2 MUST unlock next letter');
+  assert.strictEqual(check.nextUnit, 't');
+  console.log('  ✓ Edge Case 2 PASSED: [20/20, 20/20, 20/20, 20/20, 20/20, 20/20] -> UNLOCK NEXT LETTER (T)');
+}
+
+// Edge Case 3: One letter has: 100% completion, 50% accuracy -> COMPLETE (Accuracy must NOT prevent unlocking)
+{
+  PK_ADAPTIVE.resetAdaptiveState('english');
+  const s = PK_ADAPTIVE.loadAdaptiveState('english');
+  s.unlockedUnits = ['e', 'n', 'i', 'a', 'r', 'l'];
+  s.unitStats = {
+    e: { completedUnits: 20, correct: 20, attempts: 40, mistakes: 20 }, // 50% accuracy, 20/20 complete
+    n: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 },
+    i: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 },
+    a: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 },
+    r: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 },
+    l: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 }
+  };
+  PK_ADAPTIVE.saveAdaptiveState('english', s);
+
+  const eState = PK_ADAPTIVE.getUnitState('english', 'e');
+  assert.strictEqual(eState.completion, 100);
+  assert.strictEqual(eState.accuracy, 50);
+
+  const check = PK_ADAPTIVE.checkCanUnlockNext('english');
+  assert.strictEqual(check.canUnlock, true, 'Edge Case 3: 50% accuracy must NOT block unlocking when completion is 100%');
+  console.log('  ✓ Edge Case 3 PASSED: 100% completion with 50% accuracy -> COMPLETE (unlocks T)');
+}
+
+// Edge Case 4: One letter has: 99% completion, 100% accuracy -> LOCKED
+{
+  PK_ADAPTIVE.resetAdaptiveState('english');
+  const s = PK_ADAPTIVE.loadAdaptiveState('english');
+  s.unlockedUnits = ['e', 'n', 'i', 'a', 'r', 'l'];
+  s.unitStats = {
+    e: { completion: 99, accuracy: 100, completedUnits: 19 }, // 99% completion, 100% accuracy
+    n: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 },
+    i: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 },
+    a: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 },
+    r: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 },
+    l: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 }
+  };
+  PK_ADAPTIVE.saveAdaptiveState('english', s);
+
+  const eState = PK_ADAPTIVE.getUnitState('english', 'e');
+  assert.strictEqual(eState.completion, 99);
+
+  const check = PK_ADAPTIVE.checkCanUnlockNext('english');
+  assert.strictEqual(check.canUnlock, false, 'Edge Case 4: 99% completion with 100% accuracy must remain LOCKED');
+  console.log('  ✓ Edge Case 4 PASSED: 99% completion, 100% accuracy -> LOCKED');
+}
+
+// Edge Case 5: One letter has: 95% completion, 99% accuracy -> LOCKED
+{
+  PK_ADAPTIVE.resetAdaptiveState('english');
+  const s = PK_ADAPTIVE.loadAdaptiveState('english');
+  s.unlockedUnits = ['e', 'n', 'i', 'a', 'r', 'l'];
+  s.unitStats = {
+    e: { completedUnits: 19, correct: 99, attempts: 100, mistakes: 1 }, // 95% completion (19/20), 99% accuracy
+    n: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 },
+    i: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 },
+    a: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 },
+    r: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 },
+    l: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 }
+  };
+  PK_ADAPTIVE.saveAdaptiveState('english', s);
+
+  const eState = PK_ADAPTIVE.getUnitState('english', 'e');
+  assert.strictEqual(eState.completion, 95);
+  assert.strictEqual(eState.accuracy, 99);
+
+  const check = PK_ADAPTIVE.checkCanUnlockNext('english');
+  assert.strictEqual(check.canUnlock, false, 'Edge Case 5: 95% completion with 99% accuracy must remain LOCKED');
+  console.log('  ✓ Edge Case 5 PASSED: 95% completion, 99% accuracy -> LOCKED');
+}
+
+// Edge Case 6: One letter has: 100% completion, but poor accuracy -> COMPLETE
+{
+  PK_ADAPTIVE.resetAdaptiveState('english');
+  const s = PK_ADAPTIVE.loadAdaptiveState('english');
+  s.unlockedUnits = ['e', 'n', 'i', 'a', 'r', 'l'];
+  s.unitStats = {
+    e: { completedUnits: 20, correct: 20, attempts: 100, mistakes: 80 }, // 20% accuracy (poor), 100% completion
+    n: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 },
+    i: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 },
+    a: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 },
+    r: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 },
+    l: { completedUnits: 20, correct: 20, attempts: 20, mistakes: 0 }
+  };
+  PK_ADAPTIVE.saveAdaptiveState('english', s);
+
+  const eState = PK_ADAPTIVE.getUnitState('english', 'e');
+  assert.strictEqual(eState.completion, 100);
+  assert.strictEqual(eState.accuracy, 20);
+
+  const check = PK_ADAPTIVE.checkCanUnlockNext('english');
+  assert.strictEqual(check.canUnlock, true, 'Edge Case 6: 100% completion with poor accuracy must UNLOCK next letter');
+  console.log('  ✓ Edge Case 6 PASSED: 100% completion with poor accuracy -> COMPLETE (unlocks T)');
+}
+
+// 9. Every active letter checked individually: Incomplete letter at EACH position blocks unlock
+console.log('Testing each active letter individually as sole incomplete letter...');
+{
+  const activeLetters = ['e', 'n', 'i', 'a', 'r', 'l'];
+  for (let idx = 0; idx < activeLetters.length; idx++) {
+    PK_ADAPTIVE.resetAdaptiveState('english');
+    const s = PK_ADAPTIVE.loadAdaptiveState('english');
+    s.unlockedUnits = activeLetters.slice();
+    s.unitStats = {};
+    activeLetters.forEach((ch, i) => {
+      s.unitStats[ch] = {
+        completedUnits: i === idx ? 19 : 20, // idx is at 19/20 (95%), all others at 20/20 (100%)
+        correct: i === idx ? 19 : 20,
+        attempts: i === idx ? 19 : 20
+      };
+    });
+    PK_ADAPTIVE.saveAdaptiveState('english', s);
+
+    const check = PK_ADAPTIVE.checkCanUnlockNext('english');
+    assert.strictEqual(check.canUnlock, false, `Letter at index ${idx} (${activeLetters[idx].toUpperCase()}) must block unlocking when at 19/20`);
+    assert(check.reason.includes(activeLetters[idx].toUpperCase()));
+  }
+  console.log('  ✓ All 6 active letter positions individually verified: ANY letter < 100% blocks unlock');
+}
+
+// 10. Isolation from Phase 7 Standard Lesson Progress: Newly unlocked letter starts at 0/20 (0%)
+console.log('Testing isolation from Phase 7 standard lesson progress...');
+{
+  global.PK_PROGRESS = {
+    getAllCharsProgress: () => ({
+      t: { attempts: 200, incorrect: 0, avgResponseTimeMs: 150 } // Standard lessons has 200 attempts on T
+    })
+  };
+
+  PK_ADAPTIVE.resetAdaptiveState('english');
+  const s = PK_ADAPTIVE.loadAdaptiveState('english');
+  ['e', 'n', 'i', 'a', 'r', 'l'].forEach(ch => {
+    s.unitStats[ch] = { completedUnits: 20, correct: 20, attempts: 20 };
+  });
+  PK_ADAPTIVE.saveAdaptiveState('english', s);
+
+  // All 6 letters are at 100%, unlock T
+  const unlockRes = PK_ADAPTIVE.unlockNextLetter('english');
+  assert.strictEqual(unlockRes.unlocked, true);
+  assert.strictEqual(unlockRes.unit, 't');
+
+  // Verify T starts at 0/20 and 0% completion despite P7 having 200 attempts!
+  const tState = PK_ADAPTIVE.getUnitState('english', 't');
+  assert.strictEqual(tState.completedUnits, 0, 'Newly unlocked letter T must start with completedUnits = 0');
+  assert.strictEqual(tState.completion, 0, 'Newly unlocked letter T must start at 0% completion');
+
+  // Verify letter O is strictly locked because T is at 0/20
+  const checkNext = PK_ADAPTIVE.checkCanUnlockNext('english');
+  assert.strictEqual(checkNext.canUnlock, false, 'Letter O must remain locked because T is at 0% completion');
+  console.log('  ✓ Phase 7 progress isolation verified: Newly unlocked T starts at 0/20 (0%), O remains locked');
+}
+
+console.log('\n================================================================');
+console.log('ALL STRICT 100% COMPLETION REGRESSION TESTS PASSED! (10/10 SUITES)');
+console.log('================================================================\n');
+
