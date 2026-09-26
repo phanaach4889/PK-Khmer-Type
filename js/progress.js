@@ -1125,12 +1125,15 @@
     try {
       if(typeof localStorage !== 'undefined'){
         getAllStorageKeys().forEach(k => {
-          if(k.startsWith('khmerLessonBest_') || k === STORAGE_KEY || k === 'khmerTrackingData_v1'){
+          if(k.startsWith('khmerLessonBest_') || k === STORAGE_KEY || k === 'khmerTrackingData_v1' || k === 'pk_adaptive_state_v1' || k.startsWith('pk_adaptive_')){
             localStorage.removeItem(k);
           }
         });
       }
     } catch(e){}
+    if(typeof window !== 'undefined' && window.PK_ADAPTIVE && typeof window.PK_ADAPTIVE.resetAdaptiveState === 'function'){
+      try { window.PK_ADAPTIVE.resetAdaptiveState(); } catch(e){}
+    }
     if(typeof window !== 'undefined' && typeof window.resetAllCourseLessonStates === 'function'){
       window.resetAllCourseLessonStates();
     }

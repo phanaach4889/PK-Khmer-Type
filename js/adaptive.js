@@ -219,6 +219,15 @@
   }
 
   function resetAdaptiveState(layoutId) {
+    if (!layoutId) {
+      saveAllAdaptiveStates({});
+      try {
+        if (typeof localStorage !== 'undefined') {
+          localStorage.removeItem(STORAGE_KEY);
+        }
+      } catch (e) {}
+      return {};
+    }
     const l = normalizeLayout(layoutId);
     const all = loadAllAdaptiveStates();
     all[l] = getFreshState(l);
@@ -1571,6 +1580,21 @@
     const exitBtn = document.getElementById('adaptiveExitBtn');
     if (exitBtn) {
       exitBtn.addEventListener('click', () => exitSession(false));
+    }
+
+    const resetBtn = document.getElementById('adaptiveResetBtn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', async () => {
+        const ok = (typeof templeConfirm === 'function')
+          ? await templeConfirm('Reset Adaptive Practice progress for this layout? You will restart from the initial letters at 0% completion.', { title: 'Reset Adaptive Progress?', danger: true, confirmLabel: 'Yes, reset' })
+          : confirm('Reset Adaptive Practice progress for this layout?');
+        if (!ok) return;
+        const l = normalizeLayout(typeof currentLayoutId !== 'undefined' ? currentLayoutId : 'english');
+        resetAdaptiveState(l);
+        renderLetterStrip();
+        updateSidebarCard();
+        startAdaptiveSession(l);
+      });
     }
 
     const lshBtn = document.getElementById('lshAdaptiveBtn');

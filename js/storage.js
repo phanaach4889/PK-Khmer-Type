@@ -207,6 +207,7 @@ const AccountProgress = (function(){
     if(key === 'khmerProgress_v2' || key === 'khmerProgress_v1') return true;
     if(key.indexOf('khmerLessonBest_') === 0) return true;
     if(/^khmerRaceBest[A-Z]/.test(key)) return true;
+    if(key === 'pk_adaptive_state_v1' || key.startsWith('pk_adaptive_')) return true;
     return false;
   }
 
@@ -886,13 +887,21 @@ function initStorageActions(){
   /* ---------- reset progress ---------- */
   document.getElementById('resetProgressBtn').addEventListener('click', async ()=>{
     const ok = await templeConfirm(
-      'This will permanently erase all lesson scores, Temple Trial records, and practice statistics.',
+      'This will permanently erase all lesson scores, Temple Trial records, practice statistics, and Adaptive Practice progress.',
       { title:'Erase all progress?', danger:true, confirmLabel:'Yes, erase it' }
     );
     if(!ok) return;
     try{
+      if (typeof window !== 'undefined' && window.PK_ADAPTIVE && typeof window.PK_ADAPTIVE.resetAdaptiveState === 'function') {
+        window.PK_ADAPTIVE.resetAdaptiveState();
+      }
+      if (typeof window !== 'undefined' && window.PK_PROGRESS && typeof window.PK_PROGRESS.resetAll === 'function') {
+        window.PK_PROGRESS.resetAll();
+      }
       Object.keys(localStorage).forEach(k=>{
-        if(k.startsWith('khmer') && k !== 'khmerProfile') localStorage.removeItem(k);
+        if((k.startsWith('khmer') || k.startsWith('pk_') || isProgressKey(k)) && k !== 'khmerProfile') {
+          localStorage.removeItem(k);
+        }
       });
     }catch(e){}
     location.reload();
