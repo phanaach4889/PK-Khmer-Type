@@ -464,9 +464,9 @@
     let finalState = 'active';
     let label = 'Active';
 
-    if (attempts < CONFIG.minEvidenceAttempts) {
-      finalState = isFocus ? 'focus' : 'active';
-      label = isFocus ? 'Focus' : 'Active';
+    if (completion === 0 || attempts === 0 || attempts < CONFIG.minEvidenceAttempts) {
+      finalState = (completion > 0 && isFocus) ? 'focus' : 'active';
+      label = (completion > 0 && isFocus) ? 'Focus' : 'Active';
       return {
         unit: unit,
         keyId: loc.keyId,
@@ -736,7 +736,11 @@
     // Evaluate performance and determine focus + weak keys
     const evalRes = evaluateWeaknesses(l, s);
     const unitWeights = {};
-    let primaryWeakUnit = (evalRes.focus && evalRes.focus.unit) ? evalRes.focus.unit : unlockedUnits[0];
+    let primaryWeakUnit = (evalRes.focus && evalRes.focus.unit) ? evalRes.focus.unit : null;
+
+    if (!primaryWeakUnit && evalRes.needsPractice && evalRes.needsPractice.length > 0) {
+      primaryWeakUnit = evalRes.needsPractice[0].unit;
+    }
 
     // If caller specified an explicit focus target
     if (options.focusUnit) {
@@ -749,7 +753,7 @@
       const uState = getUnitState(l, u, s);
       let w = CONFIG.weightStrong; // default 1.0
 
-      if (uLower === primaryWeakUnit.toLowerCase()) {
+      if (primaryWeakUnit && uLower === primaryWeakUnit.toLowerCase()) {
         w = 4.5; // Primary focus highest weight
       } else if (uState.isNewlyUnlocked) {
         w = CONFIG.weightNew; // 3.5
@@ -876,15 +880,15 @@
     }
 
     // Snapshot target unit beforeStats for Before/After measurement
-    const focusState = getUnitState(l, primaryWeakUnit, s);
-    const beforeStats = {
+    const focusState = primaryWeakUnit ? getUnitState(l, primaryWeakUnit, s) : null;
+    const beforeStats = focusState ? {
       unit: primaryWeakUnit,
       accuracy: focusState.accuracy,
       attempts: focusState.attempts,
       mistakes: focusState.mistakes,
       avgResponseMs: focusState.avgResponseMs,
       timestamp: Date.now()
-    };
+    } : null;
 
     s.focusUnit = primaryWeakUnit;
     saveAdaptiveState(l, s);
@@ -894,7 +898,7 @@
       isAdaptive: true,
       layoutId: l,
       title: `Adaptive Practice — Stage ${s.stage || 1}`,
-      subtitle: `Focus: ${primaryWeakUnit ? primaryWeakUnit.toUpperCase() : 'Mixed'} (${focusState.label}) · Available: ${unlockedUnits.map(u => u.toUpperCase()).join(' ')}`,
+      subtitle: `Focus: ${primaryWeakUnit ? primaryWeakUnit.toUpperCase() : 'Mixed'} (${focusState ? focusState.label : 'Active'}) · Available: ${unlockedUnits.map(u => u.toUpperCase()).join(' ')}`,
       words: selectedWords,
       chars: chars,
       layers: layers,
@@ -1083,8 +1087,12 @@
     container.innerHTML = '';
 
     statuses.forEach(st => {
+      const isZero = st.isUnlocked && (st.completion === 0);
+      const isFocusPill = !isZero && (st.unit === s.focusUnit || st.state === 'focus');
+      const pillStateClass = isZero ? 'as-active as-zero' : `as-${st.state}`;
+
       const pill = document.createElement('div');
-      pill.className = `as-pill as-${st.state}` + (st.unit === s.focusUnit ? ' as-focus' : '');
+      pill.className = `as-pill ${pillStateClass}` + (isFocusPill ? ' as-focus' : '');
       pill.setAttribute('data-unit', st.unit);
 
       const charSpan = document.createElement('span');
@@ -1106,6 +1114,7 @@
       const tooltip = document.createElement('div');
       tooltip.className = 'as-tooltip';
       const statusLabel = st.state === 'locked' ? 'Locked'
+        : isZero ? 'Active'
         : st.state === 'strong' ? 'Strong (Mastered)'
         : st.state === 'needs-practice' ? 'Needs Practice'
         : st.state === 'weak' ? 'Weak Target'
@@ -1124,7 +1133,7 @@
 
       pill.appendChild(charSpan);
       pill.appendChild(statSpan);
-      if (st.isUnlocked) pill.appendChild(dot);
+      if (st.isUnlocked && !isZero) pill.appendChild(dot);
       pill.appendChild(tooltip);
       container.appendChild(pill);
     });

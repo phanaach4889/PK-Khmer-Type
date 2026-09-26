@@ -1569,10 +1569,25 @@
     border-color: rgba(255, 255, 255, 0.05);
     color: #64748b;
   }
-  .as-pill.as-active {
+  .as-pill.as-active,
+  .as-pill.as-zero {
     background: rgba(59, 130, 246, 0.1);
     border-color: rgba(59, 130, 246, 0.3);
     color: #93c5fd;
+  }
+  .as-pill.as-active .as-pill-char,
+  .as-pill.as-zero .as-pill-char {
+    color: #93c5fd;
+  }
+  .as-pill.as-active .as-pill-stat,
+  .as-pill.as-zero .as-pill-stat {
+    color: #93c5fd;
+    opacity: 0.85;
+  }
+  .as-pill.as-zero.as-focus {
+    border-color: rgba(59, 130, 246, 0.3) !important;
+    box-shadow: none !important;
+    color: #93c5fd !important;
   }
   .as-pill.as-strong {
     background: rgba(16, 185, 129, 0.12);
