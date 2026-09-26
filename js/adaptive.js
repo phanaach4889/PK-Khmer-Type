@@ -377,50 +377,29 @@
       lastPracticed: null
     };
 
-    // Lookup Phase 7 cumulative progress if available
-    let p7Attempts = 0;
-    let p7Mistakes = 0;
-    let p7AvgMs = 0;
-    let p7Recent = [];
-    if (typeof global.PK_PROGRESS !== 'undefined') {
-      try {
-        if (typeof global.PK_PROGRESS.getAllCharsProgress === 'function') {
-          const chars = global.PK_PROGRESS.getAllCharsProgress(l);
-          const chData = chars ? (chars[unit] || chars[uLower]) : null;
-          if (chData) {
-            p7Attempts = chData.attempts || 0;
-            p7Mistakes = chData.incorrect || 0;
-            p7AvgMs = chData.avgResponseTimeMs || 0;
-            if (chData.recentPerformance && Array.isArray(chData.recentPerformance)) {
-              p7Recent = chData.recentPerformance;
-            }
-          }
-        }
-      } catch (e) {}
-    }
-
-    const attempts = (st.attempts || 0) + p7Attempts;
-    const mistakes = (st.mistakes || 0) + p7Mistakes;
+    const attempts = st.attempts || 0;
+    const mistakes = st.mistakes || 0;
     const correct = Math.max(0, attempts - mistakes);
     const accuracy = attempts > 0 ? Math.round((correct / attempts) * 100) : 100;
-    let avgResponseMs = st.avgResponseMs || p7AvgMs || 0;
+    let avgResponseMs = st.avgResponseMs || 0;
     const layoutAvgMs = getLayoutAverageResponseMs(l, s);
 
-    // Completion percentage (Strict 100% unlock: 20 / 20 = 100%, separate from accuracy & P7 lesson history)
+    // Completion percentage (Strict 100% unlock: 20 / 20 = 100%, separate from accuracy)
     const targetUnits = CONFIG.targetCompletionUnitsPerLetter || 20;
-    let completedUnits = st.completedUnits !== undefined ? st.completedUnits : (st.correct || 0);
+    let completedUnits = (st.completedUnits !== undefined) ? Number(st.completedUnits) : 0;
     let completion = Math.min(100, Math.floor((completedUnits / targetUnits) * 100));
-    if (st.completion !== undefined) {
-      completion = st.completion;
-      if (st.completedUnits === undefined) {
-        completedUnits = Math.min(targetUnits, Math.floor((completion / 100) * targetUnits));
+    if (st.completion !== undefined && completedUnits > 0) {
+      if (completedUnits >= targetUnits && st.completion === 100) {
+        completion = 100;
+      } else if (completedUnits < targetUnits) {
+        completion = Math.min(99, Number(st.completion));
       }
     }
 
     // Calculate recent window accuracy and trend
     const recent = (st.recentAttempts && st.recentAttempts.length > 0)
       ? st.recentAttempts
-      : p7Recent;
+      : [];
     let recentAccuracy = accuracy;
     let recentMistakes = 0;
     if (recent.length > 0) {
@@ -668,22 +647,15 @@
 
     // Newly unlocked letter starts at 0/20 (0% completion)
     const nextULower = check.nextUnit.toLowerCase();
-    if (!s.unitStats[nextULower]) {
-      s.unitStats[nextULower] = {
-        attempts: 0,
-        mistakes: 0,
-        correct: 0,
-        completedUnits: 0,
-        recentAttempts: [],
-        avgResponseMs: 0,
-        lastPracticed: null
-      };
-    } else {
-      s.unitStats[nextULower].completedUnits = 0;
-      s.unitStats[nextULower].correct = 0;
-      s.unitStats[nextULower].attempts = 0;
-      s.unitStats[nextULower].mistakes = 0;
-    }
+    s.unitStats[nextULower] = {
+      attempts: 0,
+      mistakes: 0,
+      correct: 0,
+      completedUnits: 0,
+      recentAttempts: [],
+      avgResponseMs: 0,
+      lastPracticed: null
+    };
 
     saveAdaptiveState(l, s);
 
@@ -1008,6 +980,7 @@
         s.stage = fresh.stage;
         s.newlyUnlockedUnit = fresh.newlyUnlockedUnit;
         s.focusUnit = fresh.focusUnit;
+        s.unitStats = fresh.unitStats;
         s.stageSessions = 0;
       }
     }

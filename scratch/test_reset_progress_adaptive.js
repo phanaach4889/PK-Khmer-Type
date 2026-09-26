@@ -63,8 +63,8 @@ console.log('Testing Reset Progress & Adaptive Practice Isolation...');
   assert.strictEqual(eState.completion, 0, 'Wrong typing must keep completion at 0%!');
   assert.strictEqual(eState.accuracy, 0, 'Accuracy must be 0% due to all mistakes');
   assert.strictEqual(eState.mistakes, 10, 'Mistake count must be 10');
-  assert.strictEqual(eState.state, 'weak', 'State must be weak (RED dot)');
-  console.log('  ✓ Test 3: Typing wrong does NOT increase completion (stays at 0%), accuracy drops to 0%, marked weak (RED)');
+  assert.strictEqual(eState.state, 'active', 'When completion is 0%, state must stay active (same blue color, no red dot)');
+  console.log('  ✓ Test 3: Typing wrong does NOT increase completion (stays at 0%), accuracy drops to 0%, letter stays active (same blue color, no red dot)');
 }
 
 // 4. Verify typing correctly advances completion, and typing wrong later does NOT decrement it
