@@ -1049,6 +1049,206 @@
       "type": "test",
       "content": "congratulations! you have mastered the complete english us qwerty keyboard layout with excellent precision.",
       "description": "Final test"
+    },
+    "en-L01-01-E04": {
+      "type": "drill",
+      "content": "ddd d dd kkk k kk df jd dj kf jk kj ddd d dd kkk k kk",
+      "description": "Rhythm and fluency consolidation for Middle Fingers: D and K"
+    },
+    "en-L01-02-E04": {
+      "type": "drill",
+      "content": "sss s ss lll l ll sf js sj lf jl lj sss s ss lll l ll",
+      "description": "Rhythm and fluency consolidation for Ring Fingers: S and L"
+    },
+    "en-L01-03-E04": {
+      "type": "drill",
+      "content": "ddd d dd kkk k kk sss s ss lll l ll df jd dj kf jk kj",
+      "description": "Rhythm and fluency consolidation for Six-Key Core Drills"
+    },
+    "en-L01-04-E04": {
+      "type": "drill",
+      "content": "ddd d dd kkk k kk sss s ss lll l ll df jd dj kf jk kj sf js sj",
+      "description": "Rhythm and fluency consolidation for Core Flow & Rhythm"
+    },
+    "en-L02-01-E04": {
+      "type": "drill",
+      "content": "aaa a aa ;;; ; ;; af ja aj ;f j; ;j aaa a aa ;;; ; ;;",
+      "description": "Rhythm and fluency consolidation for Pinky Fingers: A and Semicolon"
+    },
+    "en-L02-02-E04": {
+      "type": "drill",
+      "content": "sss s ss lll l ll aaa a aa ;;; ; ;; sf js sj",
+      "description": "Rhythm and fluency consolidation for All 8 Core Keys Combined"
+    },
+    "en-L02-03-E04": {
+      "type": "drill",
+      "content": "sss s ss lll l ll aaa a aa ;;; ; ;; sf js sj",
+      "description": "Rhythm and fluency consolidation for Core Home Row Words"
+    },
+    "en-L02-04-E04": {
+      "type": "drill",
+      "content": "sss s ss lll l ll aaa a aa ;;; ; ;;",
+      "description": "Rhythm and fluency consolidation for Core Home Row Phrases & Flow"
+    },
+    "en-L03-01-E04": {
+      "type": "drill",
+      "content": "ggg g gg gf jg gj ggg g gg gf jg gj ggg g gg gf jg gj",
+      "description": "Rhythm and fluency consolidation for Left Index Reach: G"
+    },
+    "en-L03-02-E04": {
+      "type": "drill",
+      "content": "hhh h hh hf jh hj hhh h hh hf jh hj hhh h hh hf jh hj",
+      "description": "Rhythm and fluency consolidation for Right Index Reach: H"
+    },
+    "en-L03-03-E04": {
+      "type": "drill",
+      "content": "aaa a aa ;;; ; ;; ggg g gg hhh h hh",
+      "description": "Rhythm and fluency consolidation for Words with G and H"
+    },
+    "en-L04-01-E04": {
+      "type": "drill",
+      "content": "eee e ee ef je ej eee e ee ef je ej eee e ee",
+      "description": "Rhythm and fluency consolidation for Top Row Left Middle: E"
+    },
+    "en-L04-02-E04": {
+      "type": "drill",
+      "content": "iii i ii if ji ij iii i ii if ji ij iii i ii",
+      "description": "Rhythm and fluency consolidation for Top Row Right Middle: I"
+    },
+    "en-L04-03-E04": {
+      "type": "drill",
+      "content": "rrr r rr rf jr rj rrr r rr rf jr rj",
+      "description": "Rhythm and fluency consolidation for Top Row Left Index: R"
+    },
+    "en-L04-04-E04": {
+      "type": "drill",
+      "content": "uuu u uu uf ju uj uuu u uu uf ju uj",
+      "description": "Rhythm and fluency consolidation for Top Row Right Index: U"
+    },
+    "en-L04-05-E04": {
+      "type": "drill",
+      "content": "eee e ee iii i ii rrr r rr uuu u uu",
+      "description": "Rhythm and fluency consolidation for Top Row Vowels Review"
+    },
+    "en-L05-01-E04": {
+      "type": "drill",
+      "content": "ttt t tt yyy y yy tf jt tj yf jy yj ttt t tt",
+      "description": "Rhythm and fluency consolidation for T and Y"
+    },
+    "en-L05-02-E04": {
+      "type": "drill",
+      "content": "www w ww ooo o oo wf jw wj of jo oj",
+      "description": "Rhythm and fluency consolidation for W and O"
+    },
+    "en-L05-03-E04": {
+      "type": "drill",
+      "content": "qqq q qq ppp p pp qf jq qj pf jp pj",
+      "description": "Rhythm and fluency consolidation for Q and P"
+    },
+    "en-L05-04-E04": {
+      "type": "drill",
+      "content": "www w ww ooo o oo qqq q qq",
+      "description": "Rhythm and fluency consolidation for Top Row Words"
+    },
+    "en-L05-05-E04": {
+      "type": "drill",
+      "content": "www w ww ooo o oo qqq q qq",
+      "description": "Rhythm and fluency consolidation for Top & Home Row Mastery"
+    },
+    "en-L06-01-E04": {
+      "type": "drill",
+      "content": "ccc c cc vvv v vv cf jc cj vf jv vj",
+      "description": "Rhythm and fluency consolidation for C and V"
+    },
+    "en-L06-02-E04": {
+      "type": "drill",
+      "content": "bbb b bb nnn n nn bf jb bj nf jn nj bbb b bb",
+      "description": "Rhythm and fluency consolidation for B and N"
+    },
+    "en-L06-03-E04": {
+      "type": "drill",
+      "content": "mmm m mm mf jm mj mmm m mm mf jm mj mmm m mm mf jm mj",
+      "description": "Rhythm and fluency consolidation for M"
+    },
+    "en-L06-04-E04": {
+      "type": "drill",
+      "content": "zzz z zz xxx x xx zf jz zj xf jx xj zzz z zz",
+      "description": "Rhythm and fluency consolidation for Z and X"
+    },
+    "en-L06-05-E04": {
+      "type": "drill",
+      "content": ",,, , ,, ... . .. ,f j, ,j",
+      "description": "Rhythm and fluency consolidation for Comma and Period"
+    },
+    "en-L06-06-E04": {
+      "type": "drill",
+      "content": "zzz z zz xxx x xx ,,, , ,,",
+      "description": "Rhythm and fluency consolidation for Bottom Row Words"
+    },
+    "en-L07-01-E04": {
+      "type": "drill",
+      "content": "zzz z zz xxx x xx ,,, , ,, ... . ..",
+      "description": "Rhythm and fluency consolidation for All Letters Practice"
+    },
+    "en-L07-04-E03": {
+      "type": "drill",
+      "content": "zzz z zz xxx x xx ,,, , ,,",
+      "description": "Rhythm and fluency consolidation for Full Alphabet Review"
+    },
+    "en-L08-01-E04": {
+      "type": "drill",
+      "content": "zzz z zz xxx x xx ,,, , ,, ... . .. zf jz zj xf jx xj",
+      "description": "Rhythm and fluency consolidation for Shift Basics"
+    },
+    "en-L08-02-E03": {
+      "type": "drill",
+      "content": "zzz z zz xxx x xx ,,, , ,, ... . ..",
+      "description": "Rhythm and fluency consolidation for Left-Hand Capitals"
+    },
+    "en-L08-03-E03": {
+      "type": "drill",
+      "content": "zzz z zz xxx x xx ,,, , ,, ... . ..",
+      "description": "Rhythm and fluency consolidation for Right-Hand Capitals"
+    },
+    "en-L09-01-E04": {
+      "type": "drill",
+      "content": "111 1 11 222 2 22 333 3 33 444 4 44 555 5 55 1f j1 1j",
+      "description": "Rhythm and fluency consolidation for Numbers 1-5"
+    },
+    "en-L09-02-E04": {
+      "type": "drill",
+      "content": "666 6 66 777 7 77 888 8 88 999 9 99 000 0 00 6f j6 6j",
+      "description": "Rhythm and fluency consolidation for Numbers 6-0"
+    },
+    "en-L10-01-E03": {
+      "type": "drill",
+      "content": "??? ? ?? /// / // ?f j? ?j",
+      "description": "Rhythm and fluency consolidation for Question Mark & Slash"
+    },
+    "en-L10-02-E03": {
+      "type": "drill",
+      "content": "''' ' '' \"\"\" \" \"\" 'f j' 'j \"f j\" \"j",
+      "description": "Rhythm and fluency consolidation for Apostrophe and Quotes"
+    },
+    "en-L10-03-E03": {
+      "type": "drill",
+      "content": "!!! ! !! ::: : :: !f j! !j :f j: :j",
+      "description": "Rhythm and fluency consolidation for Exclamation and Colon"
+    },
+    "en-L10-04-E03": {
+      "type": "drill",
+      "content": "((( ( (( ))) ) )) [[[ [ [[",
+      "description": "Rhythm and fluency consolidation for Parentheses and Brackets"
+    },
+    "en-L10-05-E03": {
+      "type": "drill",
+      "content": "--- - -- === = == +++ + ++ -f j- -j =f j= =j",
+      "description": "Rhythm and fluency consolidation for Hyphen, Plus and Equals"
+    },
+    "en-L11-01-E04": {
+      "type": "drill",
+      "content": "[[[ [ [[ ]]] ] ]] --- - --",
+      "description": "Rhythm and fluency consolidation for Short Sentences"
     }
   }
 }
