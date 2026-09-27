@@ -377,29 +377,50 @@
       lastPracticed: null
     };
 
-    const attempts = st.attempts || 0;
-    const mistakes = st.mistakes || 0;
+    // Lookup Phase 7 cumulative progress if available
+    let p7Attempts = 0;
+    let p7Mistakes = 0;
+    let p7AvgMs = 0;
+    let p7Recent = [];
+    if (typeof global.PK_PROGRESS !== 'undefined') {
+      try {
+        if (typeof global.PK_PROGRESS.getAllCharsProgress === 'function') {
+          const chars = global.PK_PROGRESS.getAllCharsProgress(l);
+          const chData = chars ? (chars[unit] || chars[uLower]) : null;
+          if (chData) {
+            p7Attempts = chData.attempts || 0;
+            p7Mistakes = chData.incorrect || 0;
+            p7AvgMs = chData.avgResponseTimeMs || 0;
+            if (chData.recentPerformance && Array.isArray(chData.recentPerformance)) {
+              p7Recent = chData.recentPerformance;
+            }
+          }
+        }
+      } catch (e) {}
+    }
+
+    const attempts = (st.attempts || 0) + p7Attempts;
+    const mistakes = (st.mistakes || 0) + p7Mistakes;
     const correct = Math.max(0, attempts - mistakes);
     const accuracy = attempts > 0 ? Math.round((correct / attempts) * 100) : 100;
-    let avgResponseMs = st.avgResponseMs || 0;
+    let avgResponseMs = st.avgResponseMs || p7AvgMs || 0;
     const layoutAvgMs = getLayoutAverageResponseMs(l, s);
 
-    // Completion percentage (Strict 100% unlock: 20 / 20 = 100%, separate from accuracy)
+    // Completion percentage (Strict 100% unlock: 20 / 20 = 100%, separate from accuracy & P7 lesson history)
     const targetUnits = CONFIG.targetCompletionUnitsPerLetter || 20;
-    let completedUnits = (st.completedUnits !== undefined) ? Number(st.completedUnits) : 0;
+    let completedUnits = st.completedUnits !== undefined ? st.completedUnits : (st.correct || 0);
     let completion = Math.min(100, Math.floor((completedUnits / targetUnits) * 100));
-    if (st.completion !== undefined && completedUnits > 0) {
-      if (completedUnits >= targetUnits && st.completion === 100) {
-        completion = 100;
-      } else if (completedUnits < targetUnits) {
-        completion = Math.min(99, Number(st.completion));
+    if (st.completion !== undefined) {
+      completion = st.completion;
+      if (st.completedUnits === undefined) {
+        completedUnits = Math.min(targetUnits, Math.floor((completion / 100) * targetUnits));
       }
     }
 
     // Calculate recent window accuracy and trend
     const recent = (st.recentAttempts && st.recentAttempts.length > 0)
       ? st.recentAttempts
-      : [];
+      : p7Recent;
     let recentAccuracy = accuracy;
     let recentMistakes = 0;
     if (recent.length > 0) {
@@ -443,9 +464,9 @@
     let finalState = 'active';
     let label = 'Active';
 
-    if (completion === 0 || attempts === 0 || attempts < CONFIG.minEvidenceAttempts) {
-      finalState = (completion > 0 && isFocus) ? 'focus' : 'active';
-      label = (completion > 0 && isFocus) ? 'Focus' : 'Active';
+    if (attempts === 0 || attempts < CONFIG.minEvidenceAttempts) {
+      finalState = isFocus ? 'focus' : 'active';
+      label = isFocus ? 'Focus' : 'Active';
       return {
         unit: unit,
         keyId: loc.keyId,
@@ -647,15 +668,22 @@
 
     // Newly unlocked letter starts at 0/20 (0% completion)
     const nextULower = check.nextUnit.toLowerCase();
-    s.unitStats[nextULower] = {
-      attempts: 0,
-      mistakes: 0,
-      correct: 0,
-      completedUnits: 0,
-      recentAttempts: [],
-      avgResponseMs: 0,
-      lastPracticed: null
-    };
+    if (!s.unitStats[nextULower]) {
+      s.unitStats[nextULower] = {
+        attempts: 0,
+        mistakes: 0,
+        correct: 0,
+        completedUnits: 0,
+        recentAttempts: [],
+        avgResponseMs: 0,
+        lastPracticed: null
+      };
+    } else {
+      s.unitStats[nextULower].completedUnits = 0;
+      s.unitStats[nextULower].correct = 0;
+      s.unitStats[nextULower].attempts = 0;
+      s.unitStats[nextULower].mistakes = 0;
+    }
 
     saveAdaptiveState(l, s);
 
@@ -980,7 +1008,6 @@
         s.stage = fresh.stage;
         s.newlyUnlockedUnit = fresh.newlyUnlockedUnit;
         s.focusUnit = fresh.focusUnit;
-        s.unitStats = fresh.unitStats;
         s.stageSessions = 0;
       }
     }
@@ -1273,7 +1300,10 @@
     if (wpmVal) wpmVal.textContent = wpm;
 
     const streakVal = document.getElementById('adaptiveStreakVal');
-    if (streakVal) streakVal.textContent = activeSession.streak || 0;
+    if (streakVal) {
+      const curScore = (activeSession.counter !== undefined) ? activeSession.counter : (activeSession.streak || 0);
+      streakVal.textContent = curScore;
+    }
 
     const mistakesVal = document.getElementById('adaptiveMistakesVal');
     if (mistakesVal) mistakesVal.textContent = activeSession.mistakes;
@@ -1296,15 +1326,41 @@
     const drill = generateAdaptiveDrill(l, options);
     const s = loadAdaptiveState(l);
 
+    const wordRanges = [];
+    if (drill && drill.words) {
+      let curPos = 0;
+      for (let i = 0; i < drill.words.length; i++) {
+        const w = drill.words[i];
+        const start = curPos;
+        const end = curPos + w.length - 1;
+        wordRanges.push({
+          index: i,
+          word: w,
+          startIndex: start,
+          endIndex: end,
+          hadMistake: false,
+          completed: false,
+          scoreDelta: 0
+        });
+        curPos += w.length + 1; // +1 for the space separator between words
+      }
+    }
+
+    const initCounter = (options && typeof options.initialCounter === 'number')
+      ? Math.max(0, options.initialCounter)
+      : 0;
+
     activeSession = {
       layoutId: l,
       drill: drill,
+      wordRanges: wordRanges,
       index: 0,
       mistakes: 0,
       mistakeUnits: {},
       startTime: Date.now(),
       acceptedUnits: [],
-      streak: 0,
+      counter: initCounter,
+      streak: initCounter,
       lastStrokeTime: Date.now()
     };
     if (typeof window !== 'undefined') window.adaptiveActive = true;
@@ -1403,12 +1459,29 @@
     }
 
     if (isMatch) {
+      // Evaluate word completion if this character is the end of a word
+      if (activeSession.wordRanges) {
+        const curWord = activeSession.wordRanges.find(
+          wr => activeSession.index >= wr.startIndex && activeSession.index <= wr.endIndex
+        );
+        if (curWord && activeSession.index === curWord.endIndex && !curWord.completed) {
+          curWord.completed = true;
+          const prev = (typeof activeSession.counter === 'number') ? activeSession.counter : 0;
+          if (curWord.hadMistake) {
+            activeSession.counter = Math.max(0, prev - 10);
+          } else {
+            activeSession.counter = prev + 10;
+          }
+          curWord.scoreDelta = activeSession.counter - prev;
+          activeSession.streak = activeSession.counter;
+        }
+      }
+
       activeSession.acceptedUnits.push({
         index: activeSession.index,
         val: val,
         expected: expected
       });
-      activeSession.streak = (activeSession.streak || 0) + 1;
       if (typeof insertText === 'function') insertText(val);
       if (typeof recordKeystroke === 'function') recordKeystroke(true);
       activeSession.index++;
@@ -1430,7 +1503,14 @@
       }
     } else {
       activeSession.mistakes++;
-      activeSession.streak = 0;
+      if (activeSession.wordRanges) {
+        const curWord = activeSession.wordRanges.find(
+          wr => activeSession.index >= wr.startIndex && activeSession.index <= wr.endIndex
+        );
+        if (curWord) {
+          curWord.hadMistake = true;
+        }
+      }
       activeSession.mistakeUnits[expected] = (activeSession.mistakeUnits[expected] || 0) + 1;
       if (typeof recordKeystroke === 'function') recordKeystroke(false);
 
@@ -1457,6 +1537,19 @@
 
     const last = activeSession.acceptedUnits.pop();
     activeSession.index--;
+
+    // If backspacing into an already completed word, revert the scoreDelta
+    if (activeSession.wordRanges) {
+      const curWord = activeSession.wordRanges.find(
+        wr => activeSession.index <= wr.endIndex && wr.completed
+      );
+      if (curWord) {
+        activeSession.counter = Math.max(0, (activeSession.counter || 0) - curWord.scoreDelta);
+        activeSession.streak = activeSession.counter;
+        curWord.completed = false;
+        curWord.scoreDelta = 0;
+      }
+    }
 
     if (typeof backspaceText === 'function') {
       backspaceText(last.val);
@@ -1644,7 +1737,15 @@
     evaluateWeaknesses,
     getWeakKeyFocus,
     resolveKeyAndFinger,
-    getActiveSession: () => activeSession
+    getActiveSession: () => activeSession,
+    getCounter: () => activeSession ? (activeSession.counter || 0) : 0,
+    setCounter: (val) => {
+      if (activeSession) {
+        activeSession.counter = Math.max(0, val);
+        activeSession.streak = activeSession.counter;
+        updateAdaptiveProgress();
+      }
+    }
   };
 
   if (typeof module !== 'undefined' && module.exports) {
