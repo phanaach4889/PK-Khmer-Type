@@ -18,6 +18,7 @@ class MockElement {
     this.className = '';
     this.innerHTML = '';
     this.textContent = '';
+    this.style = {};
   }
   setAttribute(k, v) { this.attributes[k] = String(v); }
   getAttribute(k) { return this.attributes[k]; }

@@ -1093,8 +1093,29 @@
 
     statuses.forEach(st => {
       const isZero = st.isUnlocked && (st.completion === 0);
+      const isMastered = st.isUnlocked && (st.completion >= 100);
+      const isAdvancing = st.isUnlocked && (st.completion >= 60 && st.completion < 100);
+      const isLearning = st.isUnlocked && (st.completion > 0 && st.completion < 60);
       const isFocusPill = !isZero && (st.unit === s.focusUnit || st.state === 'focus');
-      const pillStateClass = isZero ? 'as-active as-zero' : `as-${st.state}`;
+
+      let pillStateClass = 'as-locked';
+      let statusLabel = 'Locked';
+
+      if (st.isUnlocked) {
+        if (isZero) {
+          pillStateClass = 'as-active as-zero';
+          statusLabel = 'Active (New)';
+        } else if (isMastered) {
+          pillStateClass = 'as-mastered as-strong';
+          statusLabel = 'Mastered (100%)';
+        } else if (isAdvancing) {
+          pillStateClass = 'as-advancing as-improving';
+          statusLabel = 'Advancing';
+        } else {
+          pillStateClass = 'as-learning as-needs-practice';
+          statusLabel = 'Learning';
+        }
+      }
 
       const pill = document.createElement('div');
       pill.className = `as-pill ${pillStateClass}` + (isFocusPill ? ' as-focus' : '');
@@ -1115,16 +1136,21 @@
       const dot = document.createElement('span');
       dot.className = 'as-pill-dot';
 
+      // Mini progress bar for Keybr-style visual mastery tracking
+      const barTrack = document.createElement('div');
+      barTrack.className = 'as-pill-bar-track';
+      if (st.isUnlocked) {
+        const barFill = document.createElement('div');
+        barFill.className = 'as-pill-bar-fill';
+        if (barFill.style) {
+          barFill.style.width = `${Math.min(100, Math.max(0, st.completion))}%`;
+        }
+        barTrack.appendChild(barFill);
+      }
+
       // Tooltip on hover
       const tooltip = document.createElement('div');
       tooltip.className = 'as-tooltip';
-      const statusLabel = st.state === 'locked' ? 'Locked'
-        : isZero ? 'Active'
-        : st.state === 'strong' ? 'Strong (Mastered)'
-        : st.state === 'needs-practice' ? 'Needs Practice'
-        : st.state === 'weak' ? 'Weak Target'
-        : st.state === 'improving' ? 'Improving'
-        : 'Active';
 
       tooltip.innerHTML = `
         <div style="font-weight:700;color:var(--gold-bright);">${st.unit.toUpperCase()} · ${statusLabel}</div>
@@ -1139,6 +1165,7 @@
       pill.appendChild(charSpan);
       pill.appendChild(statSpan);
       if (st.isUnlocked && !isZero) pill.appendChild(dot);
+      if (st.isUnlocked) pill.appendChild(barTrack);
       pill.appendChild(tooltip);
       container.appendChild(pill);
     });
