@@ -956,7 +956,6 @@
       }
     } else {
       st.mistakes = (st.mistakes || 0) + 1;
-      st.completedUnits = Math.max(0, (st.completedUnits || 0) - 1);
     }
 
     // Update sliding recent window

@@ -105,24 +105,20 @@ console.log('Testing Phase 9/10 Strict 100% Completion Unlocking & UI Strip...')
   console.log('  ✓ Test 3: Rule 12 verified — 100% completion unlocks T, which starts at 0% while O remains locked');
 }
 
-// 4. Mistake decrement: Mistakes dynamically reduce completion units and percentage down to 0
+// 4. Permanent Completion: Mistakes reduce Accuracy & Streak, but letter completion stays permanent
 {
   const lBefore = PK_ADAPTIVE.getUnitState('english', 'l');
-  const prevUnits = lBefore.completedUnits;
-
-  // Learner makes 1 mistake on L
-  PK_ADAPTIVE.recordStroke('english', 'l', false, 350);
-  const lAfter1 = PK_ADAPTIVE.getUnitState('english', 'l');
-  assert.strictEqual(lAfter1.completedUnits, Math.max(0, prevUnits - 1), 'Completed units must decrement by 1 on mistake');
+  assert.strictEqual(lBefore.completion, 100);
 
   // Learner makes 403 mistakes on L
   for (let i = 0; i < 403; i++) {
     PK_ADAPTIVE.recordStroke('english', 'l', false, 350);
   }
   const lAfter403 = PK_ADAPTIVE.getUnitState('english', 'l');
-  assert.strictEqual(lAfter403.completedUnits, 0, 'Completed units must drop to 0 on repeated mistakes (never negative)');
-  assert.strictEqual(lAfter403.completion, 0, 'Completion percentage must drop to 0%');
-  console.log('  ✓ Test 4: Mistakes dynamically reduce completion units and percentage (never stuck at 25% or 100%)');
+  assert(lAfter403.accuracy < 100, `Accuracy drops on mistakes (got ${lAfter403.accuracy}%)`);
+  assert.strictEqual(lAfter403.completedUnits, 20, 'Completed units stay permanent once earned');
+  assert.strictEqual(lAfter403.completion, 100, 'Completion percentage stays permanent once earned');
+  console.log('  ✓ Test 4: Completion progress is permanent once earned while accuracy reflects mistakes');
 }
 
 // 5. State Sanitization: Incomplete letter relocks prematurely unlocked future letters
