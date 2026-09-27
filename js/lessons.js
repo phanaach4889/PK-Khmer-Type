@@ -1057,7 +1057,14 @@ function initCurriculumFromData(layoutId, levelsData, lessonsData, exercisesData
 
   const compiledLessons = lessonsData.map(l => createLessonModel(l, exMap, layoutId, lvlMap[l.level]));
 
-  if(layoutId === 'nida'){
+  if(layoutId === 'standard'){
+    LEVELS_STANDARD.length = 0;
+    LEVELS_STANDARD.push(...levelsData);
+    LESSONS_STANDARD.length = 0;
+    LESSONS_STANDARD.push(...compiledLessons);
+    LESSON_SETS.standard = LESSONS_STANDARD;
+    LEVEL_SETS.standard = LEVELS_STANDARD;
+  } else if(layoutId === 'nida'){
     LEVELS_NIDA.length = 0;
     LEVELS_NIDA.push(...levelsData);
     LESSONS_NIDA.length = 0;
@@ -1096,6 +1103,9 @@ function initCurriculumFromBundle(){
     ? global.CURRICULUM_DATA
     : null;
   if(!cData) return;
+  if(cData.standard){
+    initCurriculumFromData('standard', cData.standard.levels, cData.standard.lessons, cData.standard.exercises);
+  }
   if(cData.nida){
     initCurriculumFromData('nida', cData.nida.levels, cData.nida.lessons, cData.nida.exercises);
   }
@@ -1119,7 +1129,7 @@ async function loadAllCurricula(){
         initCurriculumFromData(layout, levels, lessons, exercises);
       }
     };
-    await Promise.all([fetchCurriculum('nida'), fetchCurriculum('english')]);
+    await Promise.all([fetchCurriculum('standard'), fetchCurriculum('nida'), fetchCurriculum('english')]);
   } catch(err){
     console.warn('loadAllCurricula fallback to bundled data:', err);
   }
