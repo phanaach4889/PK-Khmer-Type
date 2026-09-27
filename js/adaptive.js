@@ -168,17 +168,18 @@
       if (!state.unlockedUnits.includes(candidate)) {
         break; // Stop at first locked letter in sequential progression
       }
-      let allPreceding100 = true;
+      let allPrecedingMastered = true;
       for (const req of validUnlocked) {
         const reqState = getUnitState(l, req, state);
+        const reqStat = (state.unitStats && state.unitStats[req]) || {};
         const reqTarget = reqState.targetUnits || CONFIG.targetCompletionUnitsPerLetter || 20;
-        const isReqComplete = (reqState.completedUnits >= reqTarget) && (reqState.completion === 100);
-        if (!isReqComplete) {
-          allPreceding100 = false;
+        const isMastered = reqStat.everMastered || (reqState.completedUnits >= reqTarget && reqState.completion === 100);
+        if (!isMastered) {
+          allPrecedingMastered = false;
           break;
         }
       }
-      if (allPreceding100) {
+      if (allPrecedingMastered) {
         validUnlocked.push(candidate);
       } else {
         // Preceding letter is incomplete (< 100%); relock candidate and all subsequent
@@ -946,11 +947,16 @@
 
     const st = s.unitStats[u];
     st.attempts = (st.attempts || 0) + 1;
+    const target = CONFIG.targetCompletionUnitsPerLetter || 20;
     if (isCorrect) {
       st.correct = (st.correct || 0) + 1;
-      st.completedUnits = (st.completedUnits || 0) + 1;
+      st.completedUnits = Math.min(target, (st.completedUnits || 0) + 1);
+      if (st.completedUnits >= target) {
+        st.everMastered = true;
+      }
     } else {
       st.mistakes = (st.mistakes || 0) + 1;
+      st.completedUnits = Math.max(0, (st.completedUnits || 0) - 1);
     }
 
     // Update sliding recent window

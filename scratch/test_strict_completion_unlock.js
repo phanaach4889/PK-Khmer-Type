@@ -105,23 +105,24 @@ console.log('Testing Phase 9/10 Strict 100% Completion Unlocking & UI Strip...')
   console.log('  ✓ Test 3: Rule 12 verified — 100% completion unlocks T, which starts at 0% while O remains locked');
 }
 
-// 4. Strict Rule 13: Completion is separate from Accuracy; Mistakes do NOT decrement completion
+// 4. Mistake decrement: Mistakes dynamically reduce completion units and percentage down to 0
 {
   const lBefore = PK_ADAPTIVE.getUnitState('english', 'l');
-  assert.strictEqual(lBefore.completion, 100);
+  const prevUnits = lBefore.completedUnits;
 
-  // Learner makes 5 mistakes on L
-  for (let i = 0; i < 5; i++) {
+  // Learner makes 1 mistake on L
+  PK_ADAPTIVE.recordStroke('english', 'l', false, 350);
+  const lAfter1 = PK_ADAPTIVE.getUnitState('english', 'l');
+  assert.strictEqual(lAfter1.completedUnits, Math.max(0, prevUnits - 1), 'Completed units must decrement by 1 on mistake');
+
+  // Learner makes 403 mistakes on L
+  for (let i = 0; i < 403; i++) {
     PK_ADAPTIVE.recordStroke('english', 'l', false, 350);
   }
-
-  const lAfter = PK_ADAPTIVE.getUnitState('english', 'l');
-  // Accuracy has dropped
-  assert(lAfter.accuracy < 100, `Accuracy should decrease with mistakes (got ${lAfter.accuracy}%)`);
-  // Completion MUST remain 100%!
-  assert.strictEqual(lAfter.completion, 100, 'Mistakes must NOT reduce completion from 100%!');
-  assert.strictEqual(lAfter.completedUnits, 20, 'Completed units must NOT decrement on mistake!');
-  console.log(`  ✓ Test 4: Rule 13 verified — Completion remains 100% even as accuracy drops to ${lAfter.accuracy}%`);
+  const lAfter403 = PK_ADAPTIVE.getUnitState('english', 'l');
+  assert.strictEqual(lAfter403.completedUnits, 0, 'Completed units must drop to 0 on repeated mistakes (never negative)');
+  assert.strictEqual(lAfter403.completion, 0, 'Completion percentage must drop to 0%');
+  console.log('  ✓ Test 4: Mistakes dynamically reduce completion units and percentage (never stuck at 25% or 100%)');
 }
 
 // 5. State Sanitization: Incomplete letter relocks prematurely unlocked future letters
@@ -154,6 +155,9 @@ console.log('Testing Phase 9/10 Strict 100% Completion Unlocking & UI Strip...')
 
 // 6. Letter Strip Rendering: Stat displays completion percentage (100%, 50%, lock)
 {
+  for (let i = 0; i < 20; i++) {
+    PK_ADAPTIVE.recordStroke('english', 'l', true, 200);
+  }
   const mockContainer = new MockElement('div');
   PK_ADAPTIVE.renderLetterStrip(mockContainer, 'english');
   assert(mockContainer.children.length >= 26);
