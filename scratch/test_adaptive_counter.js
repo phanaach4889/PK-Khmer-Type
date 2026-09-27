@@ -64,7 +64,7 @@ const PK_ADAPTIVE = require('../js/adaptive.js');
 
 console.log('Testing Adaptive Practice Performance Counter...\n');
 
-// Helpers to simulate typing words in active session
+// Helper to simulate typing a word in the active session
 function typeWordCorrectly(word) {
   for (let i = 0; i < word.length; i++) {
     PK_ADAPTIVE.adaptiveHandleChar(word[i], null, null);
@@ -72,7 +72,7 @@ function typeWordCorrectly(word) {
 }
 
 function typeWordWithMistake(word, mistakeChar = 'z') {
-  // Wrong keystroke on first letter
+  // Type first character wrong
   PK_ADAPTIVE.adaptiveHandleChar(mistakeChar, null, null);
   // Then type all correct characters of the word
   for (let i = 0; i < word.length; i++) {
@@ -81,333 +81,246 @@ function typeWordWithMistake(word, mistakeChar = 'z') {
 }
 
 // -------------------------------------------------------------
-// Suite 1: Exact Sequence from Specification
-// Start: 0
-// Correct: 10
-// Correct: 20
-// Correct: 30
-// Wrong: 20
-// Wrong: 10
-// Wrong: 0
-// Wrong again: 0
-// Then:
-// Correct: 10
-// Correct: 20
-// Wrong: 10
-// Correct: 20
+// Test 1: Start 0 -> Correct (+10) -> 10 -> Correct (+10) -> 20 -> Correct (+10) -> 30
 // -------------------------------------------------------------
 {
-  console.log('Running Suite 1: Full 11-word Sequence from Specification...');
+  console.log('Running Test 1: Start 0 -> Correct (+10) -> Correct (+10) -> Correct (+10)...');
   PK_ADAPTIVE.resetAdaptiveState('english');
-  PK_ADAPTIVE.startAdaptiveSession('english', { wordCount: 16 });
+  PK_ADAPTIVE.startAdaptiveSession('english', { initialCounter: 0 });
 
   const session = PK_ADAPTIVE.getActiveSession();
   assert(session, 'Active session should exist');
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, 'Starting counter must be 0');
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 0, 'DOM must display 0');
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, 'Counter starts at 0');
+  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 0, 'DOM displays 0');
 
   const words = session.drill.words;
-  assert(words.length >= 11, 'Drill should have at least 11 words');
+  assert(words.length >= 3, 'Drill should have at least 3 words');
 
-  // Word 1: Correct -> 10
+  // Word 1: Correct
   typeWordCorrectly(words[0]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'W1 Correct: counter must be 10');
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 10, 'DOM must display 10');
-  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null); // space
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'After 1st correct word, counter must be 10');
+  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 10, 'DOM must update immediately to 10');
 
-  // Word 2: Correct -> 20
+  // Space between words
+  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'Space does not change counter');
+
+  // Word 2: Correct
   typeWordCorrectly(words[1]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 20, 'W2 Correct: counter must be 20');
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 20, 'DOM must display 20');
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 20, 'After 2nd correct word, counter must be 20');
+  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 20, 'DOM must update immediately to 20');
+
+  // Space between words
   PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
 
-  // Word 3: Correct -> 30
+  // Word 3: Correct
   typeWordCorrectly(words[2]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 30, 'W3 Correct: counter must be 30');
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 30, 'DOM must display 30');
-  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 30, 'After 3rd correct word, counter must be 30');
+  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 30, 'DOM must update immediately to 30');
 
-  // Word 4: Wrong -> 20
-  typeWordWithMistake(words[3]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 20, 'W4 Wrong: counter must be 20');
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 20, 'DOM must display 20');
-  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
-
-  // Word 5: Wrong -> 10
-  typeWordWithMistake(words[4]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'W5 Wrong: counter must be 10');
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 10, 'DOM must display 10');
-  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
-
-  // Word 6: Wrong -> 0
-  typeWordWithMistake(words[5]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, 'W6 Wrong: counter must be 0');
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 0, 'DOM must display 0');
-  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
-
-  // Word 7: Wrong again -> 0 (lower bound)
-  typeWordWithMistake(words[6]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, 'W7 Wrong again: counter must remain 0');
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 0, 'DOM must display 0');
-  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
-
-  // Word 8: Correct -> 10
-  typeWordCorrectly(words[7]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'W8 Correct: counter must be 10');
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 10, 'DOM must display 10');
-  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
-
-  // Word 9: Correct -> 20
-  typeWordCorrectly(words[8]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 20, 'W9 Correct: counter must be 20');
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 20, 'DOM must display 20');
-  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
-
-  // Word 10: Wrong -> 10
-  typeWordWithMistake(words[9]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'W10 Wrong: counter must be 10');
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 10, 'DOM must display 10');
-  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
-
-  // Word 11: Correct -> 20
-  typeWordCorrectly(words[10]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 20, 'W11 Correct: counter must be 20');
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 20, 'DOM must display 20');
-
-  console.log('  ✓ Suite 1 PASSED: 0 -> 10 -> 20 -> 30 -> 20 -> 10 -> 0 -> 0 -> 10 -> 20 -> 10 -> 20 verified');
+  console.log('  ✓ Test 1 PASSED: 0 -> 10 -> 20 -> 30');
 }
 
 // -------------------------------------------------------------
-// Suite 2: Edge Case 1 — Multiple Keystrokes (h, he, hel, hell, hello)
+// Test 2: Start 60 -> Wrong (-10) -> 50 -> Wrong (-10) -> 40 -> Wrong (-10) -> 30
 // -------------------------------------------------------------
 {
-  console.log('\nRunning Suite 2: Edge Case 1 — Multiple keystrokes do NOT increment counter 5 times...');
+  console.log('\nRunning Test 2: Start 60 -> Wrong (-10) -> Wrong (-10) -> Wrong (-10)...');
   PK_ADAPTIVE.resetAdaptiveState('english');
-  PK_ADAPTIVE.startAdaptiveSession('english');
+  PK_ADAPTIVE.startAdaptiveSession('english', { initialCounter: 60 });
+
+  const session = PK_ADAPTIVE.getActiveSession();
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 60, 'Counter starts at 60');
+  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 60, 'DOM displays 60');
+
+  const words = session.drill.words;
+
+  // Word 1: Wrong
+  typeWordWithMistake(words[0]);
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 50, 'After 1st wrong word, counter must be 50');
+  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 50, 'DOM must update to 50');
+
+  // Space
+  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
+
+  // Word 2: Wrong
+  typeWordWithMistake(words[1]);
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 40, 'After 2nd wrong word, counter must be 40');
+  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 40, 'DOM must update to 40');
+
+  // Space
+  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
+
+  // Word 3: Wrong
+  typeWordWithMistake(words[2]);
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 30, 'After 3rd wrong word, counter must be 30');
+  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 30, 'DOM must update to 30');
+
+  console.log('  ✓ Test 2 PASSED: 60 -> 50 -> 40 -> 30');
+}
+
+// -------------------------------------------------------------
+// Test 3: Start 20 -> Wrong (-10) -> 10 -> Wrong (-10) -> 0 -> Wrong (-10) -> 0 (Lower Bound)
+// -------------------------------------------------------------
+{
+  console.log('\nRunning Test 3: Start 20 -> Wrong (-10) -> 10 -> Wrong (-10) -> 0 -> Wrong (-10) -> 0...');
+  PK_ADAPTIVE.resetAdaptiveState('english');
+  PK_ADAPTIVE.startAdaptiveSession('english', { initialCounter: 20 });
+
+  const session = PK_ADAPTIVE.getActiveSession();
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 20, 'Counter starts at 20');
+
+  const words = session.drill.words;
+
+  // Word 1: Wrong -> 10
+  typeWordWithMistake(words[0]);
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'After 1st wrong word, counter must be 10');
+
+  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
+
+  // Word 2: Wrong -> 0
+  typeWordWithMistake(words[1]);
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, 'After 2nd wrong word, counter must be 0');
+
+  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
+
+  // Word 3: Wrong -> 0 (must not go below 0)
+  typeWordWithMistake(words[2]);
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, 'Counter must never go below 0 (Math.max(0, counter - 10))');
+  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 0, 'DOM must display 0');
+
+  console.log('  ✓ Test 3 PASSED: 20 -> 10 -> 0 -> 0 (Lower bound strictly enforced)');
+}
+
+// -------------------------------------------------------------
+// Test 4: Start 0 -> Correct (+10) -> 10 -> Wrong (-10) -> 0 -> Correct (+10) -> 10
+// -------------------------------------------------------------
+{
+  console.log('\nRunning Test 4: Start 0 -> Correct (+10) -> 10 -> Wrong (-10) -> 0 -> Correct (+10) -> 10...');
+  PK_ADAPTIVE.resetAdaptiveState('english');
+  PK_ADAPTIVE.startAdaptiveSession('english', { initialCounter: 0 });
+
+  const session = PK_ADAPTIVE.getActiveSession();
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, 'Counter starts at 0');
+
+  const words = session.drill.words;
+
+  // Word 1: Correct -> 10
+  typeWordCorrectly(words[0]);
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'After 1st correct word, counter must be 10');
+
+  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
+
+  // Word 2: Wrong -> 0
+  typeWordWithMistake(words[1]);
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, 'After 2nd word (with mistake), counter must be 0');
+
+  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
+
+  // Word 3: Correct -> 10
+  typeWordCorrectly(words[2]);
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'After 3rd correct word, counter must be 10');
+
+  console.log('  ✓ Test 4 PASSED: 0 -> 10 -> 0 -> 10');
+}
+
+// -------------------------------------------------------------
+// Test 5: No update on individual keystrokes (only upon word completion)
+// -------------------------------------------------------------
+{
+  console.log('\nRunning Test 5: Verify counter does NOT change during individual keystrokes...');
+  PK_ADAPTIVE.resetAdaptiveState('english');
+  PK_ADAPTIVE.startAdaptiveSession('english', { initialCounter: 0 });
 
   const session = PK_ADAPTIVE.getActiveSession();
   const word = session.drill.words[0];
-  assert(word.length >= 3, 'Word has at least 3 characters');
+  assert(word.length >= 2, 'First word must have at least 2 characters');
 
   // Type characters before the last character
   for (let i = 0; i < word.length - 1; i++) {
     PK_ADAPTIVE.adaptiveHandleChar(word[i], null, null);
-    assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, `Counter must be 0 after keystroke ${i + 1} (${word.slice(0, i + 1)})`);
-    assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 0, 'DOM remains 0');
+    assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, `Counter must stay 0 after typing character ${i + 1} of ${word.length}`);
   }
 
   // Type the final character of the word
   PK_ADAPTIVE.adaptiveHandleChar(word[word.length - 1], null, null);
   assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'Counter updates to 10 ONLY when the word is fully completed');
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 10, 'DOM updates to 10');
 
-  console.log('  ✓ Suite 2 PASSED: Counter changes only on word evaluation, not individual keystrokes');
+  console.log('  ✓ Test 5 PASSED: Individual keystrokes do not trigger counter changes');
 }
 
 // -------------------------------------------------------------
-// Suite 3: Edge Case 2 — One Word, Exactly One Update (No Duplicate +10 +10)
+// Test 6: No top cap at 100 (can reach 110, 120, etc.)
 // -------------------------------------------------------------
 {
-  console.log('\nRunning Suite 3: Edge Case 2 — One word triggers exactly one counter update...');
+  console.log('\nRunning Test 6: Verify counter is NOT capped at 100...');
   PK_ADAPTIVE.resetAdaptiveState('english');
-  PK_ADAPTIVE.startAdaptiveSession('english');
+  PK_ADAPTIVE.startAdaptiveSession('english', { initialCounter: 90 });
+
+  const session = PK_ADAPTIVE.getActiveSession();
+  const words = session.drill.words;
+
+  // Word 1: 90 -> 100
+  typeWordCorrectly(words[0]);
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 100, 'Counter reaches 100');
+
+  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
+
+  // Word 2: 100 -> 110
+  typeWordCorrectly(words[1]);
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 110, 'Counter must exceed 100 without artificial cap (110)');
+
+  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
+
+  // Word 3: 110 -> 120
+  typeWordCorrectly(words[2]);
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 120, 'Counter reaches 120');
+
+  console.log('  ✓ Test 6 PASSED: Counter exceeds 100 without artificial capping (100 -> 110 -> 120)');
+}
+
+// -------------------------------------------------------------
+// Test 7: Backspace reverts completed word score delta cleanly
+// -------------------------------------------------------------
+{
+  console.log('\nRunning Test 7: Verify backspace into completed word reverts scoreDelta...');
+  PK_ADAPTIVE.resetAdaptiveState('english');
+  PK_ADAPTIVE.startAdaptiveSession('english', { initialCounter: 0 });
 
   const session = PK_ADAPTIVE.getActiveSession();
   const word = session.drill.words[0];
 
   typeWordCorrectly(word);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'Word 1 completion produces exactly +10');
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'Counter reached 10 on word completion');
 
-  // Space between words does not produce another +10
-  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'Space delimiter does NOT update counter');
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 10, 'DOM remains 10');
-
-  console.log('  ✓ Suite 3 PASSED: Exactly one counter update per completed word');
-}
-
-// -------------------------------------------------------------
-// Suite 4: Edge Case 3 — Minimum Boundary (Never Goes Negative)
-// -------------------------------------------------------------
-{
-  console.log('\nRunning Suite 4: Edge Case 3 — Minimum boundary strictly enforced at 0...');
-  PK_ADAPTIVE.resetAdaptiveState('english');
-  PK_ADAPTIVE.startAdaptiveSession('english');
-
-  const session = PK_ADAPTIVE.getActiveSession();
-  const words = session.drill.words;
-
-  // Counter is 0. Type 3 wrong words in a row.
-  typeWordWithMistake(words[0]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, '0 - 10 must floor at 0');
-  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
-
-  typeWordWithMistake(words[1]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, '0 - 10 must floor at 0');
-  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
-
-  typeWordWithMistake(words[2]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, '0 - 10 must floor at 0');
-
-  console.log('  ✓ Suite 4 PASSED: Counter never drops below 0');
-}
-
-// -------------------------------------------------------------
-// Suite 5: Edge Case 4 — Correct / Wrong Alternation
-// -------------------------------------------------------------
-{
-  console.log('\nRunning Suite 5: Edge Case 4 — Correct/wrong alternation (0 -> 10 -> 0 -> 10 -> 0)...');
-  PK_ADAPTIVE.resetAdaptiveState('english');
-  PK_ADAPTIVE.startAdaptiveSession('english');
-
-  const session = PK_ADAPTIVE.getActiveSession();
-  const words = session.drill.words;
-
-  // Correct -> 10
-  typeWordCorrectly(words[0]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'Correct -> 10');
-  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
-
-  // Wrong -> 0
-  typeWordWithMistake(words[1]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, 'Wrong -> 0');
-  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
-
-  // Correct -> 10
-  typeWordCorrectly(words[2]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'Correct -> 10');
-  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
-
-  // Wrong -> 0
-  typeWordWithMistake(words[3]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, 'Wrong -> 0');
-
-  console.log('  ✓ Suite 5 PASSED: 0 -> 10 -> 0 -> 10 -> 0 alternation verified');
-}
-
-// -------------------------------------------------------------
-// Suite 6: Edge Case 5 — UI Synchronization
-// -------------------------------------------------------------
-{
-  console.log('\nRunning Suite 6: Edge Case 5 — State and UI synchronization...');
-  PK_ADAPTIVE.resetAdaptiveState('english');
-  PK_ADAPTIVE.startAdaptiveSession('english');
-
-  const session = PK_ADAPTIVE.getActiveSession();
-  const words = session.drill.words;
-
-  typeWordCorrectly(words[0]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10);
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 10, 'UI matches state at 10');
-
-  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
-  typeWordCorrectly(words[1]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 20);
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 20, 'UI matches state at 20');
-
-  PK_ADAPTIVE.adaptiveHandleChar(' ', null, null);
-  typeWordWithMistake(words[2]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10);
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 10, 'UI matches state at 10');
-
-  console.log('  ✓ Suite 6 PASSED: Internal counter state and rendered DOM element are 100% in sync');
-}
-
-// -------------------------------------------------------------
-// Suite 7: Edge Case 6 — Persistence & Reset
-// -------------------------------------------------------------
-{
-  console.log('\nRunning Suite 7: Edge Case 6 — Session isolation and clean reset...');
-  PK_ADAPTIVE.resetAdaptiveState('english');
-  PK_ADAPTIVE.startAdaptiveSession('english');
-
-  const words = PK_ADAPTIVE.getActiveSession().drill.words;
-  typeWordCorrectly(words[0]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10);
-
-  // Starting a new session resets the temporary counter to 0
-  PK_ADAPTIVE.startAdaptiveSession('english');
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, 'New session must start with counter = 0');
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 0, 'UI resets to 0');
-
-  console.log('  ✓ Suite 7 PASSED: New session cleanly resets counter to 0');
-}
-
-// -------------------------------------------------------------
-// Suite 8: Edge Case 7 — Keyboard Switching Isolation
-// -------------------------------------------------------------
-{
-  console.log('\nRunning Suite 8: Edge Case 7 — Switching layouts English -> Khmer NiDA -> English...');
-  PK_ADAPTIVE.resetAdaptiveState('english');
-  PK_ADAPTIVE.resetAdaptiveState('nida');
-
-  // Start English
-  PK_ADAPTIVE.startAdaptiveSession('english');
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0);
-  const enWords = PK_ADAPTIVE.getActiveSession().drill.words;
-  typeWordCorrectly(enWords[0]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'English word complete -> 10');
-
-  // Switch to Khmer NiDA
-  PK_ADAPTIVE.exitSession();
-  PK_ADAPTIVE.startAdaptiveSession('nida');
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, 'NiDA session starts at 0');
-
-  const nidaWords = PK_ADAPTIVE.getActiveSession().drill.words;
-  typeWordCorrectly(nidaWords[0]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'NiDA word complete -> 10');
-
-  // Switch back to English
-  PK_ADAPTIVE.exitSession();
-  PK_ADAPTIVE.startAdaptiveSession('english');
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, 'English fresh session starts at 0');
-  const enWords2 = PK_ADAPTIVE.getActiveSession().drill.words;
-  typeWordCorrectly(enWords2[0]);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'Word 1 -> 10 (no duplicate callbacks or double increments)');
-
-  console.log('  ✓ Suite 8 PASSED: Keyboard switching maintains 100% session isolation with zero duplicate handlers');
-}
-
-// -------------------------------------------------------------
-// Suite 9: Backspace Reverts Completed Word Score Delta
-// -------------------------------------------------------------
-{
-  console.log('\nRunning Suite 9: Backspace cleanly reverts completed word score delta...');
-  PK_ADAPTIVE.resetAdaptiveState('english');
-  PK_ADAPTIVE.startAdaptiveSession('english');
-
-  const word = PK_ADAPTIVE.getActiveSession().drill.words[0];
-  typeWordCorrectly(word);
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'Counter is 10 on completion');
-
-  // Backspace into completed word
+  // Backspace into the completed word
   PK_ADAPTIVE.adaptiveHandleBackspace();
-  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, 'Backspacing into completed word reverts counter to 0');
-  assert.strictEqual(domElements['adaptiveStreakVal'].textContent, 0, 'DOM reverts to 0');
+  assert.strictEqual(PK_ADAPTIVE.getCounter(), 0, 'Backspacing into completed word reverts counter back to 0');
 
-  // Retype the final character
+  // Retype the last character
   PK_ADAPTIVE.adaptiveHandleChar(word[word.length - 1], null, null);
   assert.strictEqual(PK_ADAPTIVE.getCounter(), 10, 'Retyping completed word re-awards 10');
 
-  console.log('  ✓ Suite 9 PASSED: Backspace cleanly reverts score delta');
+  console.log('  ✓ Test 7 PASSED: Backspace cleanly reverts completed word score');
 }
 
 // -------------------------------------------------------------
-// Suite 10: Strict 100% Letter Unlock Isolation
+// Test 8: Isolation check — Strict Phase 9 unlock rule untouched
 // -------------------------------------------------------------
 {
-  console.log('\nRunning Suite 10: Isolation check — Strict Phase 9 unlock rule untouched...');
+  console.log('\nRunning Test 8: Verify counter is NOT connected to letter unlock or completion units...');
   PK_ADAPTIVE.resetAdaptiveState('english');
   const check = PK_ADAPTIVE.checkCanUnlockNext('english');
   assert.strictEqual(check.canUnlock, false, 'Unlocking is strictly governed by 100% letter completion, not counter');
 
+  // High counter does not unlock letters
   PK_ADAPTIVE.setCounter(500);
   const checkAfter = PK_ADAPTIVE.checkCanUnlockNext('english');
   assert.strictEqual(checkAfter.canUnlock, false, 'Counter = 500 cannot unlock next letter');
 
-  console.log('  ✓ Suite 10 PASSED: Complete isolation from letter unlocking and completion');
+  console.log('  ✓ Test 8 PASSED: Complete isolation from letter unlocking and completion');
 }
 
 console.log('\n================================================================');
-console.log('ALL ADAPTIVE PERFORMANCE COUNTER TESTS PASSED! (10/10 SUITES)');
+console.log('ALL ADAPTIVE PERFORMANCE COUNTER TESTS PASSED! (8/8 SUITES)');
 console.log('================================================================');

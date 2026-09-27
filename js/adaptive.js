@@ -1346,10 +1346,10 @@
       }
     }
 
-    const initCounter = (options && typeof options.initialCounter === 'number')
-      ? Math.max(0, options.initialCounter)
-      : (options && options.isAutoAdvance && activeSession && typeof activeSession.counter === 'number')
-        ? activeSession.counter
+    const initStreak = (options && typeof options.initialStreak === 'number')
+      ? Math.max(0, options.initialStreak)
+      : (options && typeof options.initialCounter === 'number')
+        ? Math.max(0, options.initialCounter)
         : 0;
 
     activeSession = {
@@ -1361,8 +1361,7 @@
       mistakeUnits: {},
       startTime: Date.now(),
       acceptedUnits: [],
-      counter: initCounter,
-      streak: initCounter,
+      streak: initStreak,
       lastStrokeTime: Date.now()
     };
     if (typeof window !== 'undefined') window.adaptiveActive = true;
@@ -1468,14 +1467,13 @@
         );
         if (curWord && activeSession.index === curWord.endIndex && !curWord.completed) {
           curWord.completed = true;
-          const prev = (typeof activeSession.counter === 'number') ? activeSession.counter : 0;
+          const prev = (typeof activeSession.streak === 'number') ? activeSession.streak : 0;
           if (curWord.hadMistake) {
-            activeSession.counter = Math.max(0, prev - 10);
+            activeSession.streak = Math.max(0, prev - 10);
           } else {
-            activeSession.counter = prev + 10;
+            activeSession.streak = prev + 10;
           }
-          curWord.scoreDelta = activeSession.counter - prev;
-          activeSession.streak = activeSession.counter;
+          curWord.scoreDelta = activeSession.streak - prev;
         }
       }
 
@@ -1540,14 +1538,13 @@
     const last = activeSession.acceptedUnits.pop();
     activeSession.index--;
 
-    // If backspacing out of an already completed word, revert the scoreDelta
+    // If backspacing into an already completed word, revert the scoreDelta
     if (activeSession.wordRanges) {
       const curWord = activeSession.wordRanges.find(
         wr => activeSession.index === wr.endIndex && wr.completed
       );
       if (curWord) {
-        activeSession.counter = Math.max(0, (activeSession.counter || 0) - curWord.scoreDelta);
-        activeSession.streak = activeSession.counter;
+        activeSession.streak = Math.max(0, (activeSession.streak || 0) - curWord.scoreDelta);
         curWord.completed = false;
         curWord.scoreDelta = 0;
       }
@@ -1740,11 +1737,17 @@
     getWeakKeyFocus,
     resolveKeyAndFinger,
     getActiveSession: () => activeSession,
-    getCounter: () => activeSession ? (activeSession.counter || 0) : 0,
+    getStreak: () => activeSession ? (activeSession.streak || 0) : 0,
+    setStreak: (val) => {
+      if (activeSession) {
+        activeSession.streak = Math.max(0, val);
+        updateAdaptiveProgress();
+      }
+    },
+    getCounter: () => activeSession ? (activeSession.streak || 0) : 0,
     setCounter: (val) => {
       if (activeSession) {
-        activeSession.counter = Math.max(0, val);
-        activeSession.streak = activeSession.counter;
+        activeSession.streak = Math.max(0, val);
         updateAdaptiveProgress();
       }
     }
