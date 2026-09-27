@@ -1256,6 +1256,346 @@
       "type": "test",
       "content": "អបអរសាទរ។ អ្នក បាន បញ្ចប់ វគ្គ សិក្សា វាយ អក្សរ ខ្មែរ នីដា ដោយ ជោគជ័យ បំផុត។",
       "description": "NiDA final mastery test"
+    },
+    "nida-L01-01-E04": {
+      "type": "drill",
+      "content": "ាាា ា ាា ាថ កា ាក ាាា ា ាា ាថ កា ាក ាាា ា ាា ាថ កា ាក",
+      "description": "Rhythm and cadence reinforcement for Vowel ា (A)"
+    },
+    "nida-L01-02-E04": {
+      "type": "drill",
+      "content": "សសស ស សស ដដដ ដ ដដ សថ កស សក ដថ កដ ដក សសស ស សស ដដដ ដ ដដ សថ កស សក",
+      "description": "Rhythm and cadence reinforcement for ស (S) and ដ (D)"
+    },
+    "nida-L01-03-E04": {
+      "type": "drill",
+      "content": "ងងង ង ងង ងថ កង ងក ងងង ង ងង ងថ កង ងក ងងង ង ងង ងថ កង ងក ងងង ង ងង",
+      "description": "Rhythm and cadence reinforcement for Left Index Reach ង (G)"
+    },
+    "nida-L01-04-E04": {
+      "type": "drill",
+      "content": "ហហហ ហ ហហ លលល ល លល ហថ កហ ហក លថ កល លក ហហហ ហ ហហ លលល ល លល ហថ កហ ហក",
+      "description": "Rhythm and cadence reinforcement for ហ (H) and ល (L)"
+    },
+    "nida-L01-05-E04": {
+      "type": "drill",
+      "content": "ដដដ ដ ដដ ងងង ង ងង ហហហ ហ ហហ លលល ល លល ដថ កដ ដក",
+      "description": "Rhythm and cadence reinforcement for Home Row Consonants Review"
+    },
+    "nida-L02-01-E04": {
+      "type": "drill",
+      "content": "ើើើ ើ ើើ ើថ កើ ើក ើើើ ើ ើើ ើថ កើ ើក ើើើ ើ ើើ ើថ កើ ើក ើើើ ើ ើើ",
+      "description": "Rhythm and cadence reinforcement for Right Pinky Vowel ើ (;)"
+    },
+    "nida-L02-02-E04": {
+      "type": "drill",
+      "content": "់់់ ់ ់់ ់ថ ក់ ់ក ់់់ ់ ់់ ់ថ ក់ ់ក ់់់ ់ ់់ ់ថ ក់ ់ក",
+      "description": "Rhythm and cadence reinforcement for Final Stop Mark ់ (' Bantoc)"
+    },
+    "nida-L02-03-E04": {
+      "type": "drill",
+      "content": "ហហហ ហ ហហ លលល ល លល ើើើ ើ ើើ ់់់ ់ ់់",
+      "description": "Rhythm and cadence reinforcement for Bantoc Short Words"
+    },
+    "nida-L02-04-E04": {
+      "type": "drill",
+      "content": "ហហហ ហ ហហ លលល ល លល ើើើ ើ ើើ ់់់ ់ ់់ ហថ កហ ហក",
+      "description": "Rhythm and cadence reinforcement for Home Row Complete Review"
+    },
+    "nida-L03-01-E04": {
+      "type": "drill",
+      "content": "េេេ េ េេ រររ រ ររ េថ កេ េក រថ ករ រក េេេ េ េេ រររ រ ររ េថ កេ េក",
+      "description": "Rhythm and cadence reinforcement for Top Row េ (E) and រ (R)"
+    },
+    "nida-L03-02-E04": {
+      "type": "drill",
+      "content": "តតត ត តត តថ កត តក តតត ត តត តថ កត តក តតត ត តត តថ កត តក តតត ត តត",
+      "description": "Rhythm and cadence reinforcement for Left Index ត (T)"
+    },
+    "nida-L03-03-E04": {
+      "type": "drill",
+      "content": "យយយ យ យយ ុុុ ុ ុុ យថ កយ យក ុថ កុ ុក យយយ យ យយ ុុុ ុ ុុ យថ កយ យក",
+      "description": "Rhythm and cadence reinforcement for Right Index យ (Y) and ុ (U)"
+    },
+    "nida-L03-04-E04": {
+      "type": "drill",
+      "content": "ិិិ ិ ិិ ោោោ ោ ោោ ិថ កិ ិក ោថ កោ ោក ិិិ ិ ិិ ោោោ ោ ោោ ិថ កិ ិក",
+      "description": "Rhythm and cadence reinforcement for Right Hand Vowels ិ (I) and ោ (O)"
+    },
+    "nida-L03-05-E04": {
+      "type": "drill",
+      "content": "យយយ យ យយ ុុុ ុ ុុ ិិិ ិ ិិ ោោោ ោ ោោ យថ កយ យក ុថ កុ ុក ិថ កិ ិក",
+      "description": "Rhythm and cadence reinforcement for Top + Home Row Words"
+    },
+    "nida-L03-06-E04": {
+      "type": "drill",
+      "content": "យយយ យ យយ ុុុ ុ ុុ ិិិ ិ ិិ ោោោ ោ ោោ យថ កយ យក ុថ កុ ុក",
+      "description": "Rhythm and cadence reinforcement for Top Row Review"
+    },
+    "nida-L04-01-E04": {
+      "type": "drill",
+      "content": "ចចច ច ចច វវវ វ វវ ចថ កច ចក វថ កវ វក ចចច ច ចច វវវ វ វវ ចថ កច ចក",
+      "description": "Rhythm and cadence reinforcement for ច (C) and វ (V)"
+    },
+    "nida-L04-02-E04": {
+      "type": "drill",
+      "content": "បបប ប បប បថ កប បក បបប ប បប បថ កប បក បបប ប បប បថ កប បក បបប ប បប",
+      "description": "Rhythm and cadence reinforcement for ប (B)"
+    },
+    "nida-L04-03-E04": {
+      "type": "drill",
+      "content": "ននន ន នន មមម ម មម នថ កន នក មថ កម មក ននន ន នន មមម ម មម នថ កន នក",
+      "description": "Rhythm and cadence reinforcement for ន (N) and ម (M)"
+    },
+    "nida-L04-04-E04": {
+      "type": "drill",
+      "content": "។។។ ។ ។។ ។ថ ក។ ។ក ។។។ ។ ។។ ។ថ ក។ ។ក",
+      "description": "Rhythm and cadence reinforcement for Khan Full Stop ។ (Period)"
+    },
+    "nida-L04-05-E04": {
+      "type": "drill",
+      "content": "បបប ប បប ននន ន នន មមម ម មម ។។។ ។ ។។ បថ កប បក",
+      "description": "Rhythm and cadence reinforcement for Bottom Row Review"
+    },
+    "nida-L05-01-E04": {
+      "type": "drill",
+      "content": "ខខខ ខ ខខ ឆឆឆ ឆ ឆឆ ខថ កខ ខក ឆថ កឆ ឆក ខខខ ខ ខខ ឆឆឆ ឆ ឆឆ ខថ កខ ខក",
+      "description": "Rhythm and cadence reinforcement for ខ (X) and ឆ (Q)"
+    },
+    "nida-L05-02-E04": {
+      "type": "drill",
+      "content": "ផផផ ផ ផផ ផថ កផ ផក ផផផ ផ ផផ ផថ កផ ផក ផផផ ផ ផផ ផថ កផ ផក",
+      "description": "Rhythm and cadence reinforcement for ផ (P)"
+    },
+    "nida-L05-03-E03": {
+      "type": "drill",
+      "content": "ឋឋឋ ឋ ឋឋ ឋថ កឋ ឋក ឋឋឋ ឋ ឋឋ ឋថ កឋ ឋក ឋឋឋ ឋ ឋឋ ឋថ កឋ ឋក ឋឋឋ ឋ ឋឋ ឋថ កឋ ឋក",
+      "description": "Rhythm and cadence reinforcement for ឋ (Z)"
+    },
+    "nida-L05-04-E04": {
+      "type": "drill",
+      "content": "ៀៀៀ ៀ ៀៀ ឹឹឹ ឹ ឹឹ ៀថ កៀ ៀក ឹថ កឹ ឹក ៀៀៀ ៀ ៀៀ ឹឹឹ ឹ ឹឹ",
+      "description": "Rhythm and cadence reinforcement for ៀ ([) and ឹ (W)"
+    },
+    "nida-L05-05-E04": {
+      "type": "drill",
+      "content": "ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ុំថ កុំ ុំក ៊ថ ក៊ ៊ក ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ុំថ កុំ ុំក",
+      "description": "Rhythm and cadence reinforcement for Compound ុំ (,) and ៊ (/)"
+    },
+    "nida-L05-06-E05": {
+      "type": "drill",
+      "content": "ញញញ ញ ញញ ្្្ ្ ្្ ញថ កញ ញក ្ថ ក្ ្ក ញញញ ញ ញញ",
+      "description": "Rhythm and cadence reinforcement for ញ (J) and Subscript ្ (Shift+J)"
+    },
+    "nida-L05-07-E03": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ៊ថ ក៊ ៊ក",
+      "description": "Rhythm and cadence reinforcement for Consonant Clusters (ក្រ, ស្រ, ប្រ)"
+    },
+    "nida-L05-08-E04": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊",
+      "description": "Rhythm and cadence reinforcement for Base Layer Mastery Review"
+    },
+    "nida-L06-01-E03": {
+      "type": "drill",
+      "content": "គគគ គ គគ ជជជ ជ ជជ គថ កគ គក ជថ កជ ជក គគគ គ គគ ជជជ ជ ជជ គថ កគ គក ជថ កជ ជក",
+      "description": "Rhythm and cadence reinforcement for គ (Shift+K) and ជ (Shift+C)"
+    },
+    "nida-L06-02-E03": {
+      "type": "drill",
+      "content": "ទទទ ទ ទទ ធធធ ធ ធធ ទថ កទ ទក ធថ កធ ធក ទទទ ទ ទទ ធធធ ធ ធធ ទថ កទ ទក ធថ កធ ធក",
+      "description": "Rhythm and cadence reinforcement for ទ (Shift+T) and ធ (Shift+F)"
+    },
+    "nida-L06-03-E03": {
+      "type": "drill",
+      "content": "ពពព ព ពព ភភភ ភ ភភ ពថ កព ពក ភថ កភ ភក ពពព ព ពព ភភភ ភ ភភ ពថ កព ពក ភថ កភ ភក",
+      "description": "Rhythm and cadence reinforcement for ព (Shift+B) and ភ (Shift+P)"
+    },
+    "nida-L06-04-E03": {
+      "type": "drill",
+      "content": "ឌឌឌ ឌ ឌឌ ណណណ ណ ណណ ឌថ កឌ ឌក ណថ កណ ណក ឌឌឌ ឌ ឌឌ ណណណ ណ ណណ ឌថ កឌ ឌក ណថ កណ ណក",
+      "description": "Rhythm and cadence reinforcement for ឌ (Shift+D) and ណ (Shift+N)"
+    },
+    "nida-L06-05-E03": {
+      "type": "drill",
+      "content": "អអអ អ អអ អថ កអ អក អអអ អ អអ អថ កអ អក អអអ អ អអ អថ កអ អក អអអ អ អអ អថ កអ អក",
+      "description": "Rhythm and cadence reinforcement for អ (Shift+G)"
+    },
+    "nida-L06-06-E03": {
+      "type": "drill",
+      "content": "ឃឃឃ ឃ ឃឃ ឈឈឈ ឈ ឈឈ ឍឍឍ ឍ ឍឍ ឡឡឡ ឡ ឡឡ ឃថ កឃ ឃក ឈថ កឈ ឈក ឍថ កឍ ឍក ឡថ កឡ ឡក",
+      "description": "Rhythm and cadence reinforcement for ឃ ឈ ឍ ឡ"
+    },
+    "nida-L06-07-E03": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក",
+      "description": "Rhythm and cadence reinforcement for Base vs Shift Pairs Drill"
+    },
+    "nida-L06-08-E03": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក",
+      "description": "Rhythm and cadence reinforcement for Shift Consonants Review"
+    },
+    "nida-L07-01-E03": {
+      "type": "drill",
+      "content": "ីីី ី ីី ូូូ ូ ូូ ីថ កី ីក ូថ កូ ូក ីីី ី ីី ូូូ ូ ូូ ីថ កី ីក ូថ កូ ូក",
+      "description": "Rhythm and cadence reinforcement for ី (Shift+I) and ូ (Shift+U)"
+    },
+    "nida-L07-02-E03": {
+      "type": "drill",
+      "content": "ែែែ ែ ែែ ៃៃៃ ៃ ៃៃ ែថ កែ ែក ៃថ កៃ ៃក ែែែ ែ ែែ ៃៃៃ ៃ ៃៃ ែថ កែ ែក ៃថ កៃ ៃក",
+      "description": "Rhythm and cadence reinforcement for ែ (Shift+E) and ៃ (Shift+S)"
+    },
+    "nida-L07-03-E03": {
+      "type": "drill",
+      "content": "ួួួ ួ ួួ ៅៅៅ ៅ ៅៅ ួថ កួ ួក ៅថ កៅ ៅក ួួួ ួ ួួ ៅៅៅ ៅ ៅៅ ួថ កួ ួក ៅថ កៅ ៅក",
+      "description": "Rhythm and cadence reinforcement for ួ (Shift+Y) and ៅ (Shift+O)"
+    },
+    "nida-L07-04-E03": {
+      "type": "drill",
+      "content": "ាំាំាំ ាំ ាំាំ ំំំ ំ ំំ ាំថ កាំ ាំក ំថ កំ ំក ាំាំាំ ាំ ាំាំ ំំំ ំ ំំ ាំថ កាំ ាំក ំថ កំ ំក",
+      "description": "Rhythm and cadence reinforcement for ាំ (Shift+A) and ំ (Shift+M)"
+    },
+    "nida-L07-05-E03": {
+      "type": "drill",
+      "content": "ះះះ ះ ះះ េះេះេះ េះ េះេះ ោះោះោះ ោះ ោះោះ ុះុះុះ ុះ ុះុះ ះថ កះ ះក េះថ កេះ េះក ោះថ កោះ ោះក ុះថ កុះ ុះក",
+      "description": "Rhythm and cadence reinforcement for ះ េះ ោះ ុះ"
+    },
+    "nida-L07-06-E03": {
+      "type": "drill",
+      "content": "ឺឺឺ ឺ ឺឺ ឿឿឿ ឿ ឿឿ ឺថ កឺ ឺក ឿថ កឿ ឿក ឺឺឺ ឺ ឺឺ ឿឿឿ ឿ ឿឿ ឺថ កឺ ឺក ឿថ កឿ ឿក",
+      "description": "Rhythm and cadence reinforcement for ឺ (Shift+W) and ឿ (Shift+[)"
+    },
+    "nida-L07-07-E03": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ៊ថ ក៊ ៊ក",
+      "description": "Rhythm and cadence reinforcement for All Vowels Review"
+    },
+    "nida-L08-01-E02": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ៊ថ ក៊ ៊ក ញថ កញ ញក ឹឹឹ ឹ ឹឹ",
+      "description": "Rhythm and cadence reinforcement for ្រ (Subscript R) Clusters"
+    },
+    "nida-L08-02-E02": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ៊ថ ក៊ ៊ក ញថ កញ ញក ឹឹឹ ឹ ឹឹ",
+      "description": "Rhythm and cadence reinforcement for ្ល (Subscript L) Clusters"
+    },
+    "nida-L08-03-E02": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ៊ថ ក៊ ៊ក ញថ កញ ញក",
+      "description": "Rhythm and cadence reinforcement for Subscript ញ ណ ន ម"
+    },
+    "nida-L08-04-E03": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក",
+      "description": "Rhythm and cadence reinforcement for Doubled Consonants"
+    },
+    "nida-L08-05-E02": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ៊ថ ក៊ ៊ក",
+      "description": "Rhythm and cadence reinforcement for Complex Subscripts"
+    },
+    "nida-L08-06-E02": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ៊ថ ក៊ ៊ក",
+      "description": "Rhythm and cadence reinforcement for Coeng Mastery Review"
+    },
+    "nida-L09-01-E03": {
+      "type": "drill",
+      "content": "៉៉៉ ៉ ៉៉ ៉ថ ក៉ ៉ក ៉៉៉ ៉ ៉៉ ៉ថ ក៉ ៉ក ៉៉៉ ៉ ៉៉ ៉ថ ក៉ ៉ក ៉៉៉ ៉ ៉៉ ៉ថ ក៉ ៉ក",
+      "description": "Rhythm and cadence reinforcement for ៉ (Shift+') and ៊ (Shift+/)"
+    },
+    "nida-L09-02-E03": {
+      "type": "drill",
+      "content": "ៗៗៗ ៗ ៗៗ ៕៕៕ ៕ ៕៕ ៗថ កៗ ៗក ៕ថ ក៕ ៕ក ៗៗៗ ៗ ៗៗ ៕៕៕ ៕ ៕៕ ៗថ កៗ ៗក ៕ថ ក៕ ៕ក",
+      "description": "Rhythm and cadence reinforcement for ៗ (Shift+2) and ៕ (Shift+Period)"
+    },
+    "nida-L09-03-E03": {
+      "type": "drill",
+      "content": "័័័ ័ ័័ ៌៌៌ ៌ ៌៌ ៍៍៍ ៍ ៍៍ ៏៏៏ ៏ ៏៏ ័ថ ក័ ័ក ៌ថ ក៌ ៌ក",
+      "description": "Rhythm and cadence reinforcement for Top Diacritics (័ ៌ ៍ ៏)"
+    },
+    "nida-L09-04-E03": {
+      "type": "drill",
+      "content": "៛៛៛ ៛ ៛៛ ៖៖៖ ៖ ៖៖ ៛ថ ក៛ ៛ក ៖ថ ក៖ ៖ក ៛៛៛ ៛ ៛៛ ៖៖៖ ៖ ៖៖ ៛ថ ក៛ ៛ក ៖ថ ក៖ ៖ក",
+      "description": "Rhythm and cadence reinforcement for ៛ (Shift+4) and ៖ (AltGr+;)"
+    },
+    "nida-L09-05-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក",
+      "description": "Rhythm and cadence reinforcement for Diacritics Complete Review"
+    },
+    "nida-L10-01-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក",
+      "description": "Rhythm and cadence reinforcement for Family Words"
+    },
+    "nida-L10-02-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក",
+      "description": "Rhythm and cadence reinforcement for School Words"
+    },
+    "nida-L10-03-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក",
+      "description": "Rhythm and cadence reinforcement for Food Words"
+    },
+    "nida-L10-04-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក",
+      "description": "Rhythm and cadence reinforcement for Place Words"
+    },
+    "nida-L10-05-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក ឥឥឥ ឥ ឥឥ",
+      "description": "Rhythm and cadence reinforcement for Common Verbs"
+    },
+    "nida-L10-06-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក",
+      "description": "Rhythm and cadence reinforcement for Descriptive Adjectives"
+    },
+    "nida-L10-07-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក ឥឥឥ ឥ ឥឥ",
+      "description": "Rhythm and cadence reinforcement for Time and Numbers"
+    },
+    "nida-L10-08-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក",
+      "description": "Rhythm and cadence reinforcement for High-Frequency Words Review"
+    },
+    "nida-L11-01-E03": {
+      "type": "drill",
+      "content": "          ថ ក   ក           ថ ក   ក           ថ ក   ក",
+      "description": "Rhythm and cadence reinforcement for Short Sentences (Shift+Space)"
+    },
+    "nida-L11-05-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦",
+      "description": "Rhythm and cadence reinforcement for Culture Paragraph"
+    },
+    "nida-L11-06-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤",
+      "description": "Rhythm and cadence reinforcement for Paragraph Challenge"
+    },
+    "nida-L12-02-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦",
+      "description": "Rhythm and cadence reinforcement for 3-Minute Timed Drill"
+    },
+    "nida-L12-04-E02": {
+      "type": "drill",
+      "content": "ឪឪឪ ឪ ឪឪ ឧឧឧ ឧ ឧឧ ឲឲឲ ឲ ឲឲ ឯឯឯ ឯ ឯឯ ឱឱឱ ឱ ឱឱ ឪថ កឪ ឪក ឧថ កឧ ឧក ឲថ កឲ ឲក",
+      "description": "Rhythm and cadence reinforcement for Independent Vowels Bonus"
+    },
+    "nida-L12-05-E02": {
+      "type": "drill",
+      "content": "៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឪឪឪ ឪ ឪឪ",
+      "description": "Rhythm and cadence reinforcement for NiDA Mastery Test"
     }
   }
 }
