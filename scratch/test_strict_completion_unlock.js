@@ -18,7 +18,6 @@ class MockElement {
     this.className = '';
     this.innerHTML = '';
     this.textContent = '';
-    this.style = {};
   }
   setAttribute(k, v) { this.attributes[k] = String(v); }
   getAttribute(k) { return this.attributes[k]; }
@@ -56,31 +55,36 @@ console.log('Testing Phase 9/10 Strict 100% Completion Unlocking & UI Strip...')
 // 2. Strict Rule 11: 95% completion (19/20) must NOT unlock next letter
 {
   PK_ADAPTIVE.resetAdaptiveState('english');
-  // Type 20 correct units for E, N, I, A, R (100% completion)
+  // Type correct units for E, N, I, A, R until 100% completion
   ['e', 'n', 'i', 'a', 'r'].forEach(ch => {
-    for (let i = 0; i < 20; i++) PK_ADAPTIVE.recordStroke('english', ch, true, 200);
+    while (PK_ADAPTIVE.getUnitState('english', ch).completion < 100) {
+      PK_ADAPTIVE.recordStroke('english', ch, true, 200);
+    }
     const st = PK_ADAPTIVE.getUnitState('english', ch);
     assert.strictEqual(st.completion, 100);
     assert.strictEqual(st.completedUnits, 20);
   });
 
-  // Type 19 correct units for L (95% completion)
-  for (let i = 0; i < 19; i++) PK_ADAPTIVE.recordStroke('english', 'l', true, 200);
+  // Type correct units for L up to 95% completion
+  while (PK_ADAPTIVE.getUnitState('english', 'l').completion < 95) {
+    PK_ADAPTIVE.recordStroke('english', 'l', true, 200);
+  }
   const lState = PK_ADAPTIVE.getUnitState('english', 'l');
-  assert.strictEqual(lState.completion, 95);
-  assert.strictEqual(lState.completedUnits, 19);
+  assert.strictEqual(lState.completion >= 95 && lState.completion < 100, true);
 
   // Check unlock
   const check = PK_ADAPTIVE.checkCanUnlockNext('english');
-  assert.strictEqual(check.canUnlock, false, 'Letter T must NOT unlock when L is 95% complete!');
-  assert(check.reason.includes('95%'));
-  console.log('  ✓ Test 2: Rule 11 verified — 95% completion on L strictly prevents T from unlocking');
+  assert.strictEqual(check.canUnlock, false, 'Letter T must NOT unlock when L is incomplete (< 100%)!');
+  assert(check.reason.includes(`${lState.completion}%`));
+  console.log(`  ✓ Test 2: Rule 11 verified — ${lState.completion}% completion on L strictly prevents T from unlocking`);
 }
 
 // 3. Strict Rule 12: 100% completion (20/20) MUST unlock next letter
 {
-  // Complete 20th stroke on L
-  PK_ADAPTIVE.recordStroke('english', 'l', true, 200);
+  // Complete remaining strokes on L until 100%
+  while (PK_ADAPTIVE.getUnitState('english', 'l').completion < 100) {
+    PK_ADAPTIVE.recordStroke('english', 'l', true, 200);
+  }
   const lState = PK_ADAPTIVE.getUnitState('english', 'l');
   assert.strictEqual(lState.completion, 100);
   assert.strictEqual(lState.completedUnits, 20);
@@ -106,20 +110,45 @@ console.log('Testing Phase 9/10 Strict 100% Completion Unlocking & UI Strip...')
   console.log('  ✓ Test 3: Rule 12 verified — 100% completion unlocks T, which starts at 0% while O remains locked');
 }
 
-// 4. Permanent Completion: Mistakes reduce Accuracy & Streak, but letter completion stays permanent
+// 4. Dynamic Gain & Penalty: +2%/+3% on correct, -1%..-4% on mistakes down to 0 lower bound
 {
-  const lBefore = PK_ADAPTIVE.getUnitState('english', 'l');
-  assert.strictEqual(lBefore.completion, 100);
+  PK_ADAPTIVE.resetAdaptiveState('english');
+  const e0 = PK_ADAPTIVE.getUnitState('english', 'e');
+  assert.strictEqual(e0.completion, 0);
 
-  // Learner makes 403 mistakes on L
-  for (let i = 0; i < 403; i++) {
-    PK_ADAPTIVE.recordStroke('english', 'l', false, 350);
+  // Correct stroke (standard) -> +2%
+  PK_ADAPTIVE.recordStroke('english', 'e', true, 600);
+  const e1 = PK_ADAPTIVE.getUnitState('english', 'e');
+  assert.strictEqual(e1.completion, 2, 'Initial stroke gives +2%');
+
+  // Fast correct stroke -> +3%
+  PK_ADAPTIVE.recordStroke('english', 'e', true, 200);
+  const e2 = PK_ADAPTIVE.getUnitState('english', 'e');
+  assert.strictEqual(e2.completion, 5, 'Fast stroke gives +3% (2% -> 5%)');
+
+  // Another fast correct stroke -> +3%
+  PK_ADAPTIVE.recordStroke('english', 'e', true, 200);
+  const e3 = PK_ADAPTIVE.getUnitState('english', 'e');
+  assert.strictEqual(e3.completion, 8, 'Consecutive fast stroke gives +3% (5% -> 8%)');
+
+  // Single mistake -> -1% penalty
+  PK_ADAPTIVE.recordStroke('english', 'e', false, 350);
+  const e4 = PK_ADAPTIVE.getUnitState('english', 'e');
+  assert.strictEqual(e4.completion, 7, 'Single mistake gives -1% (8% -> 7%)');
+
+  // Second mistake in sliding window -> -2% penalty
+  PK_ADAPTIVE.recordStroke('english', 'e', false, 350);
+  const e5 = PK_ADAPTIVE.getUnitState('english', 'e');
+  assert.strictEqual(e5.completion, 5, 'Second mistake gives -2% (7% -> 5%)');
+
+  // Repeated mistakes down to 0
+  for (let i = 0; i < 20; i++) {
+    PK_ADAPTIVE.recordStroke('english', 'e', false, 350);
   }
-  const lAfter403 = PK_ADAPTIVE.getUnitState('english', 'l');
-  assert(lAfter403.accuracy < 100, `Accuracy drops on mistakes (got ${lAfter403.accuracy}%)`);
-  assert.strictEqual(lAfter403.completedUnits, 20, 'Completed units stay permanent once earned');
-  assert.strictEqual(lAfter403.completion, 100, 'Completion percentage stays permanent once earned');
-  console.log('  ✓ Test 4: Completion progress is permanent once earned while accuracy reflects mistakes');
+  const e6 = PK_ADAPTIVE.getUnitState('english', 'e');
+  assert.strictEqual(e6.completion, 0, 'Completion never drops below 0%');
+
+  console.log('  ✓ Test 4: Dynamic +2%/+3% gain and -1%..-4% penalty with 0% lower bound verified');
 }
 
 // 5. State Sanitization: Incomplete letter relocks prematurely unlocked future letters
@@ -150,11 +179,14 @@ console.log('Testing Phase 9/10 Strict 100% Completion Unlocking & UI Strip...')
   console.log('  ✓ Test 5: State sanitization successfully relocks prematurely unlocked letters (S relocked until O hits 100%)');
 }
 
-// 6. Letter Strip Rendering: Stat displays completion percentage (100%, 50%, lock)
+// 6. Letter Strip Rendering: Stat displays completion percentage (100%, 0%, lock)
 {
-  for (let i = 0; i < 20; i++) {
-    PK_ADAPTIVE.recordStroke('english', 'l', true, 200);
-  }
+  ['e', 'n', 'i', 'a', 'r', 'l'].forEach(ch => {
+    while (PK_ADAPTIVE.getUnitState('english', ch).completion < 100) {
+      PK_ADAPTIVE.recordStroke('english', ch, true, 200);
+    }
+  });
+  PK_ADAPTIVE.unlockNextLetter('english');
   const mockContainer = new MockElement('div');
   PK_ADAPTIVE.renderLetterStrip(mockContainer, 'english');
   assert(mockContainer.children.length >= 26);
@@ -187,7 +219,7 @@ console.log('Testing Phase 9/10 Strict 100% Completion Unlocking & UI Strip...')
 
   // Complete all 10 initial units to 100%
   initialNida.forEach(u => {
-    for (let i = 0; i < 20; i++) {
+    while (PK_ADAPTIVE.getUnitState('nida', u).completion < 100) {
       PK_ADAPTIVE.recordStroke('nida', u, true, 250);
     }
   });

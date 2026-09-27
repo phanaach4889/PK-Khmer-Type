@@ -407,15 +407,19 @@
     let avgResponseMs = st.avgResponseMs || p7AvgMs || 0;
     const layoutAvgMs = getLayoutAverageResponseMs(l, s);
 
-    // Completion percentage (Strict 100% unlock: 20 / 20 = 100%, separate from accuracy & P7 lesson history)
+    // Completion percentage (Strict 100% unlock, dynamic +2%/+3% / -1%..-4%)
     const targetUnits = CONFIG.targetCompletionUnitsPerLetter || 20;
-    let completedUnits = st.completedUnits !== undefined ? st.completedUnits : (st.correct || 0);
-    let completion = Math.min(100, Math.floor((completedUnits / targetUnits) * 100));
+    let completion = 0;
+    let completedUnits = 0;
     if (st.completion !== undefined) {
-      completion = st.completion;
-      if (st.completedUnits === undefined) {
-        completedUnits = Math.min(targetUnits, Math.floor((completion / 100) * targetUnits));
-      }
+      completion = Math.min(100, Math.max(0, Math.round(st.completion)));
+      completedUnits = Math.min(targetUnits, Math.floor((completion / 100) * targetUnits));
+    } else if (st.completedUnits !== undefined) {
+      completedUnits = Math.min(targetUnits, Math.max(0, st.completedUnits));
+      completion = Math.min(100, Math.floor((completedUnits / targetUnits) * 100));
+    } else {
+      completedUnits = Math.min(targetUnits, Math.max(0, st.correct || 0));
+      completion = Math.min(100, Math.floor((completedUnits / targetUnits) * 100));
     }
 
     // Calculate recent window accuracy and trend
@@ -938,6 +942,7 @@
         attempts: 0,
         mistakes: 0,
         correct: 0,
+        completion: 0,
         completedUnits: 0,
         recentAttempts: [],
         avgResponseMs: 0,
@@ -948,15 +953,52 @@
     const st = s.unitStats[u];
     st.attempts = (st.attempts || 0) + 1;
     const target = CONFIG.targetCompletionUnitsPerLetter || 20;
+
+    let currentPct = (typeof st.completion === 'number')
+      ? st.completion
+      : (typeof st.completedUnits === 'number')
+        ? Math.min(100, Math.round((st.completedUnits / target) * 100))
+        : 0;
+
+    const recent = st.recentAttempts || [];
+    const recentMistakesCount = recent.filter(r => !r).length;
+
     if (isCorrect) {
       st.correct = (st.correct || 0) + 1;
-      st.completedUnits = Math.min(target, (st.completedUnits || 0) + 1);
-      if (st.completedUnits >= target) {
+
+      // Dynamic gain: +3% or +2%
+      // Fast response (<= 450ms) or consecutive correct strokes get +3%, standard correct gets +2%
+      let gain = 2;
+      const isFast = responseTimeMs && responseTimeMs > 0 && responseTimeMs <= 450;
+      const recentStreak = (recent.length >= 2 && recent.slice(-2).every(Boolean));
+      if (isFast || recentStreak) {
+        gain = 3;
+      }
+      currentPct = Math.min(100, currentPct + gain);
+
+      if (currentPct >= 100) {
         st.everMastered = true;
       }
     } else {
       st.mistakes = (st.mistakes || 0) + 1;
+
+      // Dynamic penalty: -1% to -4%
+      // -1% for isolated slip, -2% / -3% for repeated mistakes, -4% if struggling heavily
+      let penalty = 1;
+      if (recentMistakesCount >= 3) {
+        penalty = 4;
+      } else if (recentMistakesCount >= 2) {
+        penalty = 3;
+      } else if (recentMistakesCount >= 1) {
+        penalty = 2;
+      } else {
+        penalty = 1;
+      }
+      currentPct = Math.max(0, currentPct - penalty);
     }
+
+    st.completion = currentPct;
+    st.completedUnits = Math.min(target, Math.floor((currentPct / 100) * target));
 
     // Update sliding recent window
     if (!st.recentAttempts) st.recentAttempts = [];
