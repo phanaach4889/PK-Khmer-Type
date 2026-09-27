@@ -1348,7 +1348,9 @@
 
     const initCounter = (options && typeof options.initialCounter === 'number')
       ? Math.max(0, options.initialCounter)
-      : 0;
+      : (options && options.isAutoAdvance && activeSession && typeof activeSession.counter === 'number')
+        ? activeSession.counter
+        : 0;
 
     activeSession = {
       layoutId: l,
@@ -1538,10 +1540,10 @@
     const last = activeSession.acceptedUnits.pop();
     activeSession.index--;
 
-    // If backspacing into an already completed word, revert the scoreDelta
+    // If backspacing out of an already completed word, revert the scoreDelta
     if (activeSession.wordRanges) {
       const curWord = activeSession.wordRanges.find(
-        wr => activeSession.index <= wr.endIndex && wr.completed
+        wr => activeSession.index === wr.endIndex && wr.completed
       );
       if (curWord) {
         activeSession.counter = Math.max(0, (activeSession.counter || 0) - curWord.scoreDelta);
