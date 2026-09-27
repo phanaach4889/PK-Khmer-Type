@@ -16,10 +16,12 @@ function buildKeyById(rows){
 
 const KEY_BY_ID_NIDA = buildKeyById(kb.LAYOUTS.nida.rows);
 const KEY_BY_ID_EN = buildKeyById(kb.LAYOUTS.english.rows);
+const KEY_BY_ID_STD = buildKeyById(kb.LAYOUTS.standard.rows);
 
 function spaceEntry(table){
-  const layer = (table === KEY_BY_ID_EN) ? 'base' : 'shift';
-  return { id: 'space', layer, ch: ' ' };
+  if (table === KEY_BY_ID_EN) return { id: 'space', layer: 'base', ch: ' ' };
+  // For both NiDA and Standard, word space is Shift+Space
+  return { id: 'space', layer: 'shift', ch: ' ' };
 }
 
 function resolveCharLocation(ch, table){
@@ -42,7 +44,7 @@ function validateCurriculum(layoutId) {
   const levels = JSON.parse(fs.readFileSync(levelsPath, 'utf8')).levels;
   const lessons = JSON.parse(fs.readFileSync(lessonsPath, 'utf8')).lessons;
   const exercises = JSON.parse(fs.readFileSync(exercisesPath, 'utf8')).exercises;
-  const table = (layoutId === 'nida') ? KEY_BY_ID_NIDA : KEY_BY_ID_EN;
+  const table = (layoutId === 'nida') ? KEY_BY_ID_NIDA : (layoutId === 'standard') ? KEY_BY_ID_STD : KEY_BY_ID_EN;
 
   console.log(`\n==================================================`);
   console.log(`AUDITING ${layoutId.toUpperCase()} CURRICULUM (STRUCTURE & PROGRESSION)`);
@@ -231,16 +233,69 @@ function validateCurriculum(layoutId) {
   console.log(`Failed Lessons: ${failedLessons}`);
   console.log(`Total Violations: ${totalViolations}`);
   console.log(`--------------------------------------------------`);
-  return failedLessons === 0;
+
+  // 4. Keystroke Depth Check (minimum units per lesson)
+  const MIN_UNITS = 80;
+  const MIN_UNITS_ORIENTATION = 20; // orientation/anchor lessons allowed smaller
+  let depthWarnings = 0;
+
+  console.log(`\n  KEYSTROKE DEPTH CHECK (target >= ${MIN_UNITS} units/lesson):`);
+  lessons.forEach(l => {
+    const refs = l.exerciseRefs || l.exercises || [];
+    let totalUnits = 0;
+    refs.forEach(eid => {
+      const ex = exercises[eid];
+      if (ex && ex.content) {
+        const text = Array.isArray(ex.content) ? ex.content.join(' ') : ex.content;
+        totalUnits += splitIntoTypingUnits(text, layoutId).length;
+      }
+    });
+
+    const isOrientation = l.level && l.level.match(/L00/);
+    const threshold = isOrientation ? MIN_UNITS_ORIENTATION : MIN_UNITS;
+
+    if (totalUnits < threshold) {
+      console.log(`  ⚠ ${l.id} (${l.title}): ${totalUnits} units < ${threshold} minimum`);
+      depthWarnings++;
+    }
+  });
+
+  if (depthWarnings === 0) {
+    console.log(`  [PASS] All lessons meet minimum keystroke depth.`);
+  } else {
+    console.log(`  [WARN] ${depthWarnings} lesson(s) below minimum keystroke depth.`);
+  }
+
+  return { passed: failedLessons === 0, depthWarnings };
 }
 
-const enPassed = validateCurriculum('english');
-const nidaPassed = validateCurriculum('nida');
+function curriculumExists(layoutId) {
+  const dir = path.join(__dirname, `../data/curriculum/${layoutId}`);
+  return fs.existsSync(path.join(dir, 'levels.json'))
+      && fs.existsSync(path.join(dir, 'lessons.json'))
+      && fs.existsSync(path.join(dir, 'exercises.json'));
+}
 
-if (!enPassed || !nidaPassed) {
+const enResult = validateCurriculum('english');
+const nidaResult = validateCurriculum('nida');
+
+let stdResult = { passed: true, depthWarnings: 0 };
+if (curriculumExists('standard')) {
+  stdResult = validateCurriculum('standard');
+} else {
+  console.log(`\n[SKIP] Standard curriculum not yet created (data/curriculum/standard/ missing).`);
+}
+
+const allPassed = enResult.passed && nidaResult.passed && stdResult.passed;
+const totalDepthWarnings = enResult.depthWarnings + nidaResult.depthWarnings + stdResult.depthWarnings;
+
+if (!allPassed) {
   console.log('\nOVERALL RESULT: FAIL (Prerequisite or ordering violations detected)');
   process.exit(1);
+} else if (totalDepthWarnings > 0) {
+  console.log(`\nOVERALL RESULT: PASS with ${totalDepthWarnings} depth warning(s)`);
+  process.exit(0);
 } else {
-  console.log('\nOVERALL RESULT: PASS (All curriculum prerequisites verified)');
+  console.log('\nOVERALL RESULT: PASS (All curriculum prerequisites and depth checks verified)');
   process.exit(0);
 }

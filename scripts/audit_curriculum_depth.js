@@ -33,6 +33,11 @@ function analyzeCourse(layoutId) {
 
   const cumulativeKeys = new Set();
   const cumulativeChars = new Set();
+  const MIN_UNITS = 80;
+  const MIN_UNITS_ORIENTATION = 20;
+  let totalLessons = 0;
+  let totalUnitsAll = 0;
+  let lessonsUnderMin = 0;
 
   levels.forEach((lvl, lvlIdx) => {
     const lvlLessons = lessons.filter(l => l.level === lvl.id);
@@ -41,18 +46,28 @@ function analyzeCourse(layoutId) {
     const newKeysInLevel = [];
     const newCharsInLevel = [];
     let reviewLessonCount = 0;
+    const perLessonUnits = [];
 
     lvlLessons.forEach(l => {
       const refs = l.exerciseRefs || l.exercises || [];
       totalExercises += refs.length;
+      let lessonUnits = 0;
       refs.forEach(eid => {
         const ex = exercises[eid];
         if (ex && ex.content) {
           const text = Array.isArray(ex.content) ? ex.content.join(' ') : ex.content;
           const units = splitIntoTypingUnits(text, layoutId);
           totalTypingUnits += units.length;
+          lessonUnits += units.length;
         }
       });
+      perLessonUnits.push({ id: l.id, title: l.title, units: lessonUnits });
+      totalLessons++;
+      totalUnitsAll += lessonUnits;
+
+      const isOrientation = l.level && l.level.match(/L00/);
+      const threshold = isOrientation ? MIN_UNITS_ORIENTATION : MIN_UNITS;
+      if (lessonUnits < threshold) lessonsUnderMin++;
 
       (l.newKeys || []).forEach(k => {
         const kid = typeof k === 'string' ? k : k.keyId;
@@ -74,19 +89,47 @@ function analyzeCourse(layoutId) {
 
     const isTooShort = lvlLessons.length <= 2 || totalTypingUnits < 100;
     const reviewRatio = lvlLessons.length > 0 ? Math.round((reviewLessonCount / lvlLessons.length) * 100) : 0;
+    const avgPerLesson = lvlLessons.length > 0 ? Math.round(totalTypingUnits / lvlLessons.length) : 0;
 
     console.log(`\n[${lvl.id}] ${lvl.title} (Level ${lvl.levelNumber})`);
     console.log(`  - Lesson Count:     ${lvlLessons.length} lessons`);
     console.log(`  - Exercise Count:   ${totalExercises} exercises`);
-    console.log(`  - Approx Units:     ${totalTypingUnits} keystroke units`);
+    console.log(`  - Approx Units:     ${totalTypingUnits} keystroke units (avg ${avgPerLesson}/lesson)`);
     console.log(`  - New Keys:         ${newKeysInLevel.join(', ') || 'none (consolidation / application)'}`);
     console.log(`  - New Chars:        ${newCharsInLevel.join(', ') || 'none'}`);
     console.log(`  - Cumulative Keys:  ${cumulativeKeys.size} keys known`);
     console.log(`  - Review Coverage:  ${reviewLessonCount}/${lvlLessons.length} (${reviewRatio}%)`);
     console.log(`  - Assessment:       ${isTooShort ? '⚠️ TOO SHALLOW / NEEDS DEPTH' : '✓ Good depth'}`);
+
+    // Per-lesson breakdown
+    perLessonUnits.forEach(pl => {
+      const isOrientation = pl.id && pl.id.match(/L00/);
+      const threshold = isOrientation ? MIN_UNITS_ORIENTATION : MIN_UNITS;
+      const flag = pl.units < threshold ? ` ⚠ UNDER ${threshold}` : '';
+      console.log(`    ${pl.id}: ${pl.units} units${flag}`);
+    });
   });
+
+  const avgOverall = totalLessons > 0 ? Math.round(totalUnitsAll / totalLessons) : 0;
+  console.log(`\n----------------------------------------------------------------------`);
+  console.log(`${layoutId.toUpperCase()} SUMMARY: ${totalLessons} lessons, ${totalUnitsAll} total units, avg ${avgOverall} units/lesson`);
+  console.log(`Lessons under minimum: ${lessonsUnderMin}/${totalLessons}`);
+  console.log(`----------------------------------------------------------------------`);
+}
+
+function courseExists(layoutId) {
+  const dir = path.join(__dirname, `../data/curriculum/${layoutId}`);
+  return fs.existsSync(path.join(dir, 'levels.json'))
+      && fs.existsSync(path.join(dir, 'lessons.json'))
+      && fs.existsSync(path.join(dir, 'exercises.json'));
 }
 
 analyzeCourse('english');
 analyzeCourse('nida');
+
+if (courseExists('standard')) {
+  analyzeCourse('standard');
+} else {
+  console.log(`\n[SKIP] Standard curriculum not yet created (data/curriculum/standard/ missing).`);
+}
 
