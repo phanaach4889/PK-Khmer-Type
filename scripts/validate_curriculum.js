@@ -26,6 +26,7 @@ function spaceEntry(table){
 
 function resolveCharLocation(ch, table){
   if(ch === ' ') return spaceEntry(table);
+  if(ch === '្' && table === KEY_BY_ID_STD) return { id: 'space', layer: 'base', ch: '្' };
   for(const id in table){
     const k = table[id];
     if(k.base===ch) return {id, layer:'base', ch};
