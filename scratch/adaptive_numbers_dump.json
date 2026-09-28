@@ -1,0 +1,502 @@
+[
+  {
+    "tag": "SPAN",
+    "id": "adaptiveStageBadge",
+    "className": "adaptive-stage-badge",
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "adaptive-title-wrap",
+    "text": "STAGE 1",
+    "parentText": "ADAPTIVE PRACTICE STAGE 1"
+  },
+  {
+    "tag": "SPAN",
+    "id": "adaptiveUnlockedCount",
+    "className": "adaptive-unlocked-count",
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "adaptive-top-actions",
+    "text": "6/26 ACTIVE",
+    "parentText": "6/26 ACTIVE Reset Exit Practice"
+  },
+  {
+    "tag": "SPAN",
+    "id": null,
+    "className": "as-pill-stat",
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-pill as-active as-zero",
+    "text": "0%",
+    "parentText": "E 0%"
+  },
+  {
+    "tag": "B",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "",
+    "text": "0%",
+    "parentText": "Completion: 0% (0/20)"
+  },
+  {
+    "tag": "B",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "",
+    "text": "100%",
+    "parentText": "Accuracy: 100% (undefined/0)"
+  },
+  {
+    "tag": "B",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "",
+    "text": "0",
+    "parentText": "Trend: 0"
+  },
+  {
+    "tag": "SPAN",
+    "id": null,
+    "className": "as-pill-stat",
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-pill as-active as-zero",
+    "text": "0%",
+    "parentText": "N 0%"
+  },
+  {
+    "tag": "B",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "",
+    "text": "0%",
+    "parentText": "Completion: 0% (0/20)"
+  },
+  {
+    "tag": "B",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "",
+    "text": "100%",
+    "parentText": "Accuracy: 100% (undefined/0)"
+  },
+  {
+    "tag": "B",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "",
+    "text": "0",
+    "parentText": "Trend: 0"
+  },
+  {
+    "tag": "SPAN",
+    "id": null,
+    "className": "as-pill-stat",
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-pill as-active as-zero",
+    "text": "0%",
+    "parentText": "I 0%"
+  },
+  {
+    "tag": "B",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "",
+    "text": "0%",
+    "parentText": "Completion: 0% (0/20)"
+  },
+  {
+    "tag": "B",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "",
+    "text": "100%",
+    "parentText": "Accuracy: 100% (undefined/0)"
+  },
+  {
+    "tag": "B",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "",
+    "text": "0",
+    "parentText": "Trend: 0"
+  },
+  {
+    "tag": "SPAN",
+    "id": null,
+    "className": "as-pill-stat",
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-pill as-active as-zero",
+    "text": "0%",
+    "parentText": "A 0%"
+  },
+  {
+    "tag": "B",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "",
+    "text": "0%",
+    "parentText": "Completion: 0% (0/20)"
+  },
+  {
+    "tag": "B",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "",
+    "text": "100%",
+    "parentText": "Accuracy: 100% (undefined/0)"
+  },
+  {
+    "tag": "B",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "",
+    "text": "0",
+    "parentText": "Trend: 0"
+  },
+  {
+    "tag": "SPAN",
+    "id": null,
+    "className": "as-pill-stat",
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-pill as-active as-zero",
+    "text": "0%",
+    "parentText": "R 0%"
+  },
+  {
+    "tag": "B",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "",
+    "text": "0%",
+    "parentText": "Completion: 0% (0/20)"
+  },
+  {
+    "tag": "B",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "",
+    "text": "100%",
+    "parentText": "Accuracy: 100% (undefined/0)"
+  },
+  {
+    "tag": "B",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "",
+    "text": "0",
+    "parentText": "Trend: 0"
+  },
+  {
+    "tag": "SPAN",
+    "id": null,
+    "className": "as-pill-stat",
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-pill as-active as-zero",
+    "text": "0%",
+    "parentText": "L 0%"
+  },
+  {
+    "tag": "B",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "",
+    "text": "0%",
+    "parentText": "Completion: 0% (0/20)"
+  },
+  {
+    "tag": "B",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "",
+    "text": "100%",
+    "parentText": "Accuracy: 100% (undefined/0)"
+  },
+  {
+    "tag": "B",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "",
+    "text": "0",
+    "parentText": "Trend: 0"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "T · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "O · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "S · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "U · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "D · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "Y · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "C · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "G · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "H · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "P · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "M · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "K · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "B · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "W · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "F · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "Z · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "V · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "X · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "Q · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "DIV",
+    "id": null,
+    "className": null,
+    "parentTag": "DIV",
+    "parentId": "",
+    "parentClass": "as-tooltip",
+    "text": "Unlocks when all active letters reach 100%",
+    "parentText": "J · Locked Unlocks when all active letters reach 100%"
+  },
+  {
+    "tag": "B",
+    "id": "adaptiveAccVal",
+    "className": null,
+    "parentTag": "SPAN",
+    "parentId": "",
+    "parentClass": "",
+    "text": "100%",
+    "parentText": "ACCURACY 100%"
+  },
+  {
+    "tag": "B",
+    "id": "adaptiveWpmVal",
+    "className": null,
+    "parentTag": "SPAN",
+    "parentId": "",
+    "parentClass": "",
+    "text": "0",
+    "parentText": "WPM 0"
+  },
+  {
+    "tag": "B",
+    "id": "adaptiveStreakVal",
+    "className": null,
+    "parentTag": "SPAN",
+    "parentId": "",
+    "parentClass": "",
+    "text": "0",
+    "parentText": "STREAK 0"
+  },
+  {
+    "tag": "B",
+    "id": "adaptiveMistakesVal",
+    "className": null,
+    "parentTag": "SPAN",
+    "parentId": "",
+    "parentClass": "",
+    "text": "0",
+    "parentText": "MISTAKES 0"
+  }
+]
