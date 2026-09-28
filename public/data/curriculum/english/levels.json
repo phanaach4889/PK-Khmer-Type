@@ -1,0 +1,295 @@
+{
+  "version": "1.0.0",
+  "layout": "english",
+  "language": "en",
+  "levels": [
+    {
+      "id": "en-L00",
+      "levelNumber": 0,
+      "title": "Anchor Keys & Orientation",
+      "description": "Identify physical anchor keys and home row posture",
+      "objective": "Feel F and J bumps, place index fingers correctly",
+      "lessons": [
+        "en-L00-01",
+        "en-L00-02",
+        "en-L00-03",
+        "en-L00-04"
+      ],
+      "unlockRequirements": {
+        "previousLevel": null
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": null
+      }
+    },
+    {
+      "id": "en-L01",
+      "levelNumber": 1,
+      "title": "Core Home Row: D, K, S, L",
+      "description": "Middle and ring finger home-row keys",
+      "objective": "Master D, K, S, and L from anchor positions",
+      "lessons": [
+        "en-L01-01",
+        "en-L01-02",
+        "en-L01-03",
+        "en-L01-04"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "en-L00"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "en-L02",
+      "levelNumber": 2,
+      "title": "Full Core Home Row & Words",
+      "description": "A, Semicolon, and core home-row words",
+      "objective": "Type all 8 core home-row keys and common words",
+      "lessons": [
+        "en-L02-01",
+        "en-L02-02",
+        "en-L02-03",
+        "en-L02-04",
+        "en-L02-05"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "en-L01"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "en-L03",
+      "levelNumber": 3,
+      "title": "Home Row Reaches",
+      "description": "G and H index reaches",
+      "objective": "Type home row reach keys smoothly",
+      "lessons": [
+        "en-L03-01",
+        "en-L03-02",
+        "en-L03-03",
+        "en-L03-04"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "en-L02"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "en-L04",
+      "levelNumber": 4,
+      "title": "Top Row Vowels",
+      "description": "E, I, R, U",
+      "objective": "Master frequent top row vowels and reaches",
+      "lessons": [
+        "en-L04-01",
+        "en-L04-02",
+        "en-L04-03",
+        "en-L04-04",
+        "en-L04-05"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "en-L03"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "en-L05",
+      "levelNumber": 5,
+      "title": "Top Row Remaining",
+      "description": "T, Y, W, O, Q, P",
+      "objective": "Complete the entire top row",
+      "lessons": [
+        "en-L05-01",
+        "en-L05-02",
+        "en-L05-03",
+        "en-L05-04",
+        "en-L05-05"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "en-L04"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "en-L06",
+      "levelNumber": 6,
+      "title": "Bottom Row",
+      "description": "C, V, B, N, M, Z, X, Comma, Period",
+      "objective": "Type all bottom row keys and basic punctuation",
+      "lessons": [
+        "en-L06-01",
+        "en-L06-02",
+        "en-L06-03",
+        "en-L06-04",
+        "en-L06-05",
+        "en-L06-06"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "en-L05"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "en-L07",
+      "levelNumber": 7,
+      "title": "Full Alphabet",
+      "description": "Consolidation of all 26 letters",
+      "objective": "Type all 26 letters fluently",
+      "lessons": [
+        "en-L07-01",
+        "en-L07-02",
+        "en-L07-03",
+        "en-L07-04"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "en-L06"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "en-L08",
+      "levelNumber": 8,
+      "title": "Capital Letters",
+      "description": "Shift key coordination",
+      "objective": "Apply opposite-hand Shift for capitalization",
+      "lessons": [
+        "en-L08-01",
+        "en-L08-02",
+        "en-L08-03",
+        "en-L08-04",
+        "en-L08-05"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "en-L07"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "en-L09",
+      "levelNumber": 9,
+      "title": "Number Row",
+      "description": "Digits 1 through 0",
+      "objective": "Reach the number row accurately",
+      "lessons": [
+        "en-L09-01",
+        "en-L09-02",
+        "en-L09-03",
+        "en-L09-04"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "en-L08"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "en-L10",
+      "levelNumber": 10,
+      "title": "Punctuation & Symbols",
+      "description": "Question mark, quotes, colon, brackets, symbols",
+      "objective": "Type standard punctuation and symbols",
+      "lessons": [
+        "en-L10-01",
+        "en-L10-02",
+        "en-L10-03",
+        "en-L10-04",
+        "en-L10-05"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "en-L09"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "en-L11",
+      "levelNumber": 11,
+      "title": "Sentences",
+      "description": "Complete sentences with punctuation",
+      "objective": "Type complete English sentences fluently",
+      "lessons": [
+        "en-L11-01",
+        "en-L11-02",
+        "en-L11-03",
+        "en-L11-04",
+        "en-L11-05"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "en-L10"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "en-L12",
+      "levelNumber": 12,
+      "title": "Paragraphs",
+      "description": "Multi-sentence continuous prose",
+      "objective": "Maintain typing rhythm across paragraphs",
+      "lessons": [
+        "en-L12-01",
+        "en-L12-02",
+        "en-L12-03",
+        "en-L12-04"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "en-L11"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "en-L13",
+      "levelNumber": 13,
+      "title": "Speed & Mastery",
+      "description": "Timed speed challenges",
+      "objective": "Achieve high speed and accuracy mastery",
+      "lessons": [
+        "en-L13-01",
+        "en-L13-02",
+        "en-L13-03",
+        "en-L13-04"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "en-L12"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    }
+  ]
+}

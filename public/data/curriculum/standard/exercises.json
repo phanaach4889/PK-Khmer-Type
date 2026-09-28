@@ -1,0 +1,1601 @@
+{
+  "version": "1.0.0",
+  "layout": "standard",
+  "exercises": {
+    "standard-L00-01-E01": {
+      "type": "single-char",
+      "content": "ថថថ ថថថ ថថថ",
+      "description": "Left index on F (ថ)"
+    },
+    "standard-L00-01-E02": {
+      "type": "single-char",
+      "content": "ថ ថ ថ ថ ថ",
+      "description": "Tap ថ with rhythm"
+    },
+    "standard-L00-01-E03": {
+      "type": "single-char",
+      "content": "ថថ ថថ ថថ ថថ",
+      "description": "Double taps on ថ"
+    },
+    "standard-L00-02-E01": {
+      "type": "single-char",
+      "content": "កកក កកក កកក",
+      "description": "Right middle on K (ក)"
+    },
+    "standard-L00-02-E02": {
+      "type": "single-char",
+      "content": "ក ក ក ក ក",
+      "description": "Tap ក with right middle"
+    },
+    "standard-L00-02-E03": {
+      "type": "single-char",
+      "content": "កក កក កក កក",
+      "description": "Double taps on ក"
+    },
+    "standard-L00-03-E01": {
+      "type": "drill",
+      "content": "ថ ក ថ ក ថ",
+      "description": "Alternating anchors with space"
+    },
+    "standard-L00-03-E02": {
+      "type": "drill",
+      "content": "ក ថ ក ថ ក",
+      "description": "Reverse alternating rhythm"
+    },
+    "standard-L00-03-E03": {
+      "type": "drill",
+      "content": "ថ ថ ក ក ថ",
+      "description": "Double taps separated by space"
+    },
+    "standard-L00-04-E01": {
+      "type": "drill",
+      "content": "ថក កថ ថក កថ",
+      "description": "Paired anchor coordination"
+    },
+    "standard-L00-04-E02": {
+      "type": "drill",
+      "content": "ថថកក កកថថ",
+      "description": "Double anchor clusters"
+    },
+    "standard-L00-04-E03": {
+      "type": "drill",
+      "content": "កក ថថ កថ ថក",
+      "description": "Anchor dexterity drill"
+    },
+    "standard-L01-01-E01": {
+      "type": "single-char",
+      "content": "ាាា ាាា ាាា",
+      "description": "Left pinky vowel ា"
+    },
+    "standard-L01-01-E02": {
+      "type": "word",
+      "content": [
+        "កា",
+        "កា",
+        "កា",
+        "ថា",
+        "ថា",
+        "ថា"
+      ],
+      "description": "First syllables: កា and ថា"
+    },
+    "standard-L01-01-E03": {
+      "type": "word",
+      "content": [
+        "កាថា",
+        "ថាកា",
+        "កា",
+        "ថា"
+      ],
+      "description": "Combining ា with anchors"
+    },
+    "standard-L01-01-E04": {
+      "type": "drill",
+      "content": "ាាា ា ាា ាថ កា ាក ាាា ា ាា ាថ កា ាក ាាា ា ាា ាថ កា ាក",
+      "description": "Rhythm and cadence reinforcement for Vowel ា (A)"
+    },
+    "standard-L01-02-E01": {
+      "type": "single-char",
+      "content": "សសស ដដដ សដស",
+      "description": "Left ring and middle fingers"
+    },
+    "standard-L01-02-E02": {
+      "type": "word",
+      "content": [
+        "សា",
+        "ដា",
+        "កាសា",
+        "ដាកា"
+      ],
+      "description": "Syllables with ស and ដ"
+    },
+    "standard-L01-02-E03": {
+      "type": "word",
+      "content": [
+        "សាក",
+        "ដក",
+        "សដកា"
+      ],
+      "description": "Words with learned keys"
+    },
+    "standard-L01-02-E04": {
+      "type": "drill",
+      "content": "សសស ស សស ដដដ ដ ដដ សថ កស សក ដថ កដ ដក សសស ស សស ដដដ ដ ដដ សថ កស សក",
+      "description": "Rhythm and cadence reinforcement for ស (S) and ដ (D)"
+    },
+    "standard-L01-03-E01": {
+      "type": "single-char",
+      "content": "ងងង ងងង ងងង",
+      "description": "Left index reach to ង"
+    },
+    "standard-L01-03-E02": {
+      "type": "word",
+      "content": [
+        "ងា",
+        "ដង",
+        "កង",
+        "សង"
+      ],
+      "description": "Words with ង"
+    },
+    "standard-L01-03-E03": {
+      "type": "word",
+      "content": [
+        "កាង",
+        "សាង",
+        "ថាង"
+      ],
+      "description": "High-frequency syllables"
+    },
+    "standard-L01-03-E04": {
+      "type": "drill",
+      "content": "ងងង ង ងង ងថ កង ងក ងងង ង ងង ងថ កង ងក ងងង ង ងង ងថ កង ងក ងងង ង ងង",
+      "description": "Rhythm and cadence reinforcement for Left Index Reach ង (G)"
+    },
+    "standard-L01-04-E01": {
+      "type": "single-char",
+      "content": "ហហហ លលល ហលហ",
+      "description": "Right hand home row expansion"
+    },
+    "standard-L01-04-E02": {
+      "type": "word",
+      "content": [
+        "ហា",
+        "លា",
+        "ហាល",
+        "លកា"
+      ],
+      "description": "Words with ហ and ល"
+    },
+    "standard-L01-04-E03": {
+      "type": "word",
+      "content": [
+        "សាលា",
+        "កាល",
+        "ហាលដាក"
+      ],
+      "description": "Real Khmer words"
+    },
+    "standard-L01-04-E04": {
+      "type": "drill",
+      "content": "ហហហ ហ ហហ លលល ល លល ហថ កហ ហក លថ កល លក ហហហ ហ ហហ លលល ល លល ហថ កហ ហក",
+      "description": "Rhythm and cadence reinforcement for ហ (H) and ល (L)"
+    },
+    "standard-L01-05-E01": {
+      "type": "word",
+      "content": [
+        "កាស",
+        "សាលា",
+        "ហាង",
+        "ថាស"
+      ],
+      "description": "Home row words 1"
+    },
+    "standard-L01-05-E02": {
+      "type": "word",
+      "content": [
+        "កាល",
+        "ដក",
+        "កក",
+        "សក",
+        "លា"
+      ],
+      "description": "Home row words 2"
+    },
+    "standard-L01-05-E03": {
+      "type": "drill",
+      "content": "សាលា កាល ហាល កាស ថាស",
+      "description": "Fluent home row sequence"
+    },
+    "standard-L01-05-E04": {
+      "type": "drill",
+      "content": "ដដដ ដ ដដ ងងង ង ងង ហហហ ហ ហហ លលល ល លល ដថ កដ ដក",
+      "description": "Rhythm and cadence reinforcement for Home Row Consonants Review"
+    },
+    "standard-L02-01-E01": {
+      "type": "single-char",
+      "content": "ើើើ ើើើ ើើើ",
+      "description": "Right pinky on semicolon key"
+    },
+    "standard-L02-01-E02": {
+      "type": "word",
+      "content": [
+        "កើ",
+        "សើ",
+        "ដើ",
+        "ហើ"
+      ],
+      "description": "Syllables with ើ"
+    },
+    "standard-L02-01-E03": {
+      "type": "word",
+      "content": [
+        "លើង",
+        "កើក",
+        "សើល"
+      ],
+      "description": "Combinations with ើ"
+    },
+    "standard-L02-01-E04": {
+      "type": "drill",
+      "content": "ើើើ ើ ើើ ើថ កើ ើក ើើើ ើ ើើ ើថ កើ ើក ើើើ ើ ើើ ើថ កើ ើក ើើើ ើ ើើ",
+      "description": "Rhythm and cadence reinforcement for Right Pinky Vowel ើ (;)"
+    },
+    "standard-L02-02-E01": {
+      "type": "single-char",
+      "content": "់់់ ់់់ ់់់",
+      "description": "Bantoc key on quote"
+    },
+    "standard-L02-02-E02": {
+      "type": "word",
+      "content": [
+        "កាក់",
+        "ដាក់",
+        "សាក់",
+        "លាក់"
+      ],
+      "description": "Short vowel stop words"
+    },
+    "standard-L02-02-E03": {
+      "type": "word",
+      "content": [
+        "ហាក់",
+        "ដក់",
+        "សក់"
+      ],
+      "description": "Words with ់"
+    },
+    "standard-L02-02-E04": {
+      "type": "drill",
+      "content": "់់់ ់ ់់ ់ថ ក់ ់ក ់់់ ់ ់់ ់ថ ក់ ់ក ់់់ ់ ់់ ់ថ ក់ ់ក",
+      "description": "Rhythm and cadence reinforcement for Final Stop Mark ់ (' Bantoc)"
+    },
+    "standard-L02-03-E01": {
+      "type": "word",
+      "content": [
+        "ដក់",
+        "កក់",
+        "សក់",
+        "លាក់",
+        "កាក់"
+      ],
+      "description": "Short vowel stop words"
+    },
+    "standard-L02-03-E02": {
+      "type": "word",
+      "content": [
+        "ដាក់",
+        "សាក់",
+        "ហាក់",
+        "កាក់"
+      ],
+      "description": "Combining Bantoc with home row"
+    },
+    "standard-L02-03-E03": {
+      "type": "drill",
+      "content": "កាក់ ដាក់ សាក់ លាក់ ដក់ សក់",
+      "description": "Bantoc fluency drill"
+    },
+    "standard-L02-03-E04": {
+      "type": "drill",
+      "content": "ហហហ ហ ហហ លលល ល លល ើើើ ើ ើើ ់់់ ់ ់់",
+      "description": "Rhythm and cadence reinforcement for Bantoc Short Words"
+    },
+    "standard-L02-04-E01": {
+      "type": "word",
+      "content": [
+        "កើ",
+        "កាក់",
+        "សើ",
+        "សាក់"
+      ],
+      "description": "Review set 1"
+    },
+    "standard-L02-04-E02": {
+      "type": "word",
+      "content": [
+        "ហាក់",
+        "លាក់",
+        "ដាក់",
+        "កាល"
+      ],
+      "description": "Review set 2"
+    },
+    "standard-L02-04-E03": {
+      "type": "drill",
+      "content": "សាលា កាក់ ដាក់ កាល ហាល",
+      "description": "Full home row mastery"
+    },
+    "standard-L02-04-E04": {
+      "type": "drill",
+      "content": "ហហហ ហ ហហ លលល ល លល ើើើ ើ ើើ ់់់ ់ ់់ ហថ កហ ហក",
+      "description": "Rhythm and cadence reinforcement for Home Row Complete Review"
+    },
+    "standard-L03-01-E01": {
+      "type": "single-char",
+      "content": "េេេ រររ េរេ",
+      "description": "Left hand top row keys"
+    },
+    "standard-L03-01-E02": {
+      "type": "word",
+      "content": [
+        "រា",
+        "រើ",
+        "រាក់",
+        "រេ"
+      ],
+      "description": "Syllables with រ"
+    },
+    "standard-L03-01-E03": {
+      "type": "word",
+      "content": [
+        "កេរ",
+        "សេរ",
+        "ដេរ",
+        "រលក"
+      ],
+      "description": "Words with េ និង រ"
+    },
+    "standard-L03-01-E04": {
+      "type": "drill",
+      "content": "េេេ េ េេ រររ រ ររ េថ កេ េក រថ ករ រក េេេ េ េេ រររ រ ររ េថ កេ េក",
+      "description": "Rhythm and cadence reinforcement for Top Row េ (E) and រ (R)"
+    },
+    "standard-L03-02-E01": {
+      "type": "single-char",
+      "content": "តតត តតត តតត",
+      "description": "Left index reach to ត"
+    },
+    "standard-L03-02-E02": {
+      "type": "word",
+      "content": [
+        "តា",
+        "តើ",
+        "តេ"
+      ],
+      "description": "Syllables with ត"
+    },
+    "standard-L03-02-E03": {
+      "type": "word",
+      "content": [
+        "តារា",
+        "តាក់",
+        "តេរ",
+        "កាត"
+      ],
+      "description": "Words with ត"
+    },
+    "standard-L03-02-E04": {
+      "type": "drill",
+      "content": "តតត ត តត តថ កត តក តតត ត តត តថ កត តក តតត ត តត តថ កត តក តតត ត តត",
+      "description": "Rhythm and cadence reinforcement for Left Index ត (T)"
+    },
+    "standard-L03-03-E01": {
+      "type": "single-char",
+      "content": "យយយ ុុុ យុយ",
+      "description": "Right index top row"
+    },
+    "standard-L03-03-E02": {
+      "type": "word",
+      "content": [
+        "យា",
+        "យុ",
+        "យុយ",
+        "យារ"
+      ],
+      "description": "Syllables with យ"
+    },
+    "standard-L03-03-E03": {
+      "type": "word",
+      "content": [
+        "កាយ",
+        "ងាយ",
+        "តុ",
+        "យុត"
+      ],
+      "description": "Words with យ and ុ"
+    },
+    "standard-L03-03-E04": {
+      "type": "drill",
+      "content": "យយយ យ យយ ុុុ ុ ុុ យថ កយ យក ុថ កុ ុក យយយ យ យយ ុុុ ុ ុុ យថ កយ យក",
+      "description": "Rhythm and cadence reinforcement for Right Index យ (Y) and ុ (U)"
+    },
+    "standard-L03-04-E01": {
+      "type": "single-char",
+      "content": "ិិិ ោោោ ិោិ",
+      "description": "Right hand top vowels"
+    },
+    "standard-L03-04-E02": {
+      "type": "word",
+      "content": [
+        "កិ",
+        "កោ",
+        "តិ",
+        "តោ"
+      ],
+      "description": "Vowel syllables"
+    },
+    "standard-L03-04-E03": {
+      "type": "word",
+      "content": [
+        "តិក",
+        "កោ",
+        "តោ",
+        "កោរ"
+      ],
+      "description": "Words with ិ and ោ"
+    },
+    "standard-L03-04-E04": {
+      "type": "drill",
+      "content": "ិិិ ិ ិិ ោោោ ោ ោោ ិថ កិ ិក ោថ កោ ោក ិិិ ិ ិិ ោោោ ោ ោោ ិថ កិ ិក",
+      "description": "Rhythm and cadence reinforcement for Right Hand Vowels ិ (I) and ោ (O)"
+    },
+    "standard-L03-05-E01": {
+      "type": "word",
+      "content": [
+        "កាត",
+        "កាយ",
+        "រាយ"
+      ],
+      "description": "Words set 1"
+    },
+    "standard-L03-05-E02": {
+      "type": "word",
+      "content": [
+        "កោ",
+        "តោ",
+        "តុ",
+        "ងាយ"
+      ],
+      "description": "Words set 2"
+    },
+    "standard-L03-05-E03": {
+      "type": "word",
+      "content": [
+        "តារា",
+        "យុត",
+        "សាយ",
+        "លាយ"
+      ],
+      "description": "Words set 3"
+    },
+    "standard-L03-05-E04": {
+      "type": "drill",
+      "content": "យយយ យ យយ ុុុ ុ ុុ ិិិ ិ ិិ ោោោ ោ ោោ យថ កយ យក ុថ កុ ុក ិថ កិ ិក",
+      "description": "Rhythm and cadence reinforcement for Top + Home Row Words"
+    },
+    "standard-L03-06-E01": {
+      "type": "word",
+      "content": [
+        "រាយ",
+        "រេ",
+        "យុត",
+        "យារ"
+      ],
+      "description": "Review set 1"
+    },
+    "standard-L03-06-E02": {
+      "type": "word",
+      "content": [
+        "តារា",
+        "កោ",
+        "តុ",
+        "ងាយ"
+      ],
+      "description": "Review set 2"
+    },
+    "standard-L03-06-E03": {
+      "type": "drill",
+      "content": "តារា ដេក លើ កាត ងាយ",
+      "description": "Top row review drill"
+    },
+    "standard-L03-06-E04": {
+      "type": "drill",
+      "content": "យយយ យ យយ ុុុ ុ ុុ ិិិ ិ ិិ ោោោ ោ ោោ យថ កយ យក ុថ កុ ុក",
+      "description": "Rhythm and cadence reinforcement for Top Row Review"
+    },
+    "standard-L04-01-E01": {
+      "type": "single-char",
+      "content": "ចចច វវវ ចវច",
+      "description": "Left hand bottom row"
+    },
+    "standard-L04-01-E02": {
+      "type": "word",
+      "content": [
+        "ចា",
+        "វា",
+        "ចិ",
+        "វិ"
+      ],
+      "description": "Syllables with ច and វ"
+    },
+    "standard-L04-01-E03": {
+      "type": "word",
+      "content": [
+        "ចារ",
+        "វាចា",
+        "វាយ",
+        "ចាក់"
+      ],
+      "description": "Words with ច and វ"
+    },
+    "standard-L04-01-E04": {
+      "type": "drill",
+      "content": "ចចច ច ចច វវវ វ វវ ចថ កច ចក វថ កវ វក ចចច ច ចច វវវ វ វវ ចថ កច ចក",
+      "description": "Rhythm and cadence reinforcement for ច (C) and វ (V)"
+    },
+    "standard-L04-02-E01": {
+      "type": "single-char",
+      "content": "បបប បបប បបប",
+      "description": "Left index reach to ប"
+    },
+    "standard-L04-02-E02": {
+      "type": "word",
+      "content": [
+        "បា",
+        "បិ",
+        "បុក",
+        "បោក"
+      ],
+      "description": "Syllables with ប"
+    },
+    "standard-L04-02-E03": {
+      "type": "word",
+      "content": [
+        "បើក",
+        "បើ",
+        "បាក់",
+        "បោក"
+      ],
+      "description": "Words with ប"
+    },
+    "standard-L04-02-E04": {
+      "type": "drill",
+      "content": "បបប ប បប បថ កប បក បបប ប បប បថ កប បក បបប ប បប បថ កប បក បបប ប បប",
+      "description": "Rhythm and cadence reinforcement for ប (B)"
+    },
+    "standard-L04-03-E01": {
+      "type": "single-char",
+      "content": "ននន មមម នមន",
+      "description": "Right index bottom row"
+    },
+    "standard-L04-03-E02": {
+      "type": "word",
+      "content": [
+        "នា",
+        "មា",
+        "និ",
+        "មិ"
+      ],
+      "description": "Syllables with ន and ម"
+    },
+    "standard-L04-03-E03": {
+      "type": "word",
+      "content": [
+        "មាន",
+        "បាន",
+        "នាម",
+        "មាត់"
+      ],
+      "description": "Words with ន and ម"
+    },
+    "standard-L04-03-E04": {
+      "type": "drill",
+      "content": "ននន ន នន មមម ម មម នថ កន នក មថ កម មក ននន ន នន មមម ម មម នថ កន នក",
+      "description": "Rhythm and cadence reinforcement for ន (N) and ម (M)"
+    },
+    "standard-L04-04-E01": {
+      "type": "single-char",
+      "content": "។។។ ។។។ ។។។",
+      "description": "Khmer full stop key"
+    },
+    "standard-L04-04-E02": {
+      "type": "drill",
+      "content": "មាន។ បាន។ មក។ វាចា។",
+      "description": "Words with full stop"
+    },
+    "standard-L04-04-E03": {
+      "type": "drill",
+      "content": "តារា មក។ តោ ដេក។ តារា មាន ចាន។",
+      "description": "Simple phrases with full stop"
+    },
+    "standard-L04-04-E04": {
+      "type": "drill",
+      "content": "។។។ ។ ។។ ។ថ ក។ ។ក ។។។ ។ ។។ ។ថ ក។ ។ក",
+      "description": "Rhythm and cadence reinforcement for Khan Full Stop ។ (Period)"
+    },
+    "standard-L04-05-E01": {
+      "type": "word",
+      "content": [
+        "ចារ",
+        "វាចា",
+        "បាន",
+        "មាន"
+      ],
+      "description": "Review set 1"
+    },
+    "standard-L04-05-E02": {
+      "type": "word",
+      "content": [
+        "បាន",
+        "នាម",
+        "មាត់",
+        "ចាក់"
+      ],
+      "description": "Review set 2"
+    },
+    "standard-L04-05-E03": {
+      "type": "drill",
+      "content": "តារា មាន ចាន។ វា បាន មក។",
+      "description": "Flowing review sentences"
+    },
+    "standard-L04-05-E04": {
+      "type": "drill",
+      "content": "បបប ប បប ននន ន នន មមម ម មម ។។។ ។ ។។ បថ កប បក",
+      "description": "Rhythm and cadence reinforcement for Bottom Row Review"
+    },
+    "standard-L05-01-E01": {
+      "type": "single-char",
+      "content": "ខខខ ឆឆឆ ខឆខ",
+      "description": "Left hand consonants ខ and ឆ"
+    },
+    "standard-L05-01-E02": {
+      "type": "word",
+      "content": [
+        "ខា",
+        "ឆា",
+        "ខុស",
+        "ឆាប់"
+      ],
+      "description": "Words with ខ and ឆ"
+    },
+    "standard-L05-01-E03": {
+      "type": "word",
+      "content": [
+        "ខាន",
+        "ឆោម",
+        "ខាត",
+        "ឆាយ"
+      ],
+      "description": "Vocabulary with ខ and ឆ"
+    },
+    "standard-L05-01-E04": {
+      "type": "drill",
+      "content": "ខខខ ខ ខខ ឆឆឆ ឆ ឆឆ ខថ កខ ខក ឆថ កឆ ឆក ខខខ ខ ខខ ឆឆឆ ឆ ឆឆ ខថ កខ ខក",
+      "description": "Rhythm and cadence reinforcement for ខ (X) and ឆ (Q)"
+    },
+    "standard-L05-02-E01": {
+      "type": "single-char",
+      "content": "ផផផ ផផផ ផផផ",
+      "description": "Right pinky reach to ផ"
+    },
+    "standard-L05-02-E02": {
+      "type": "word",
+      "content": [
+        "ផា",
+        "ផាត់",
+        "ផុស",
+        "ផោ"
+      ],
+      "description": "Words with ផ"
+    },
+    "standard-L05-02-E03": {
+      "type": "word",
+      "content": [
+        "ផាត់",
+        "ផុស",
+        "ផាល",
+        "ផាត់មុខ"
+      ],
+      "description": "Extended ផ words"
+    },
+    "standard-L05-02-E04": {
+      "type": "drill",
+      "content": "ផផផ ផ ផផ ផថ កផ ផក ផផផ ផ ផផ ផថ កផ ផក ផផផ ផ ផផ ផថ កផ ផក",
+      "description": "Rhythm and cadence reinforcement for ផ (P)"
+    },
+    "standard-L05-03-E01": {
+      "type": "single-char",
+      "content": "ឋឋឋ ឋឋឋ ឋឋឋ",
+      "description": "Left pinky reach to ឋ"
+    },
+    "standard-L05-03-E02": {
+      "type": "word",
+      "content": [
+        "ឋាន",
+        "ឋិត",
+        "ឋិតថេរ"
+      ],
+      "description": "Words with ឋ"
+    },
+    "standard-L05-03-E03": {
+      "type": "drill",
+      "content": "ឋឋឋ ឋ ឋឋ ឋថ កឋ ឋក ឋឋឋ ឋ ឋឋ ឋថ កឋ ឋក ឋឋឋ ឋ ឋឋ ឋថ កឋ ឋក ឋឋឋ ឋ ឋឋ ឋថ កឋ ឋក",
+      "description": "Rhythm and cadence reinforcement for ឋ (Z)"
+    },
+    "standard-L05-04-E01": {
+      "type": "single-char",
+      "content": "ៀៀៀ ឹឹឹ ៀឹៀ",
+      "description": "Vowels ៀ and ឹ"
+    },
+    "standard-L05-04-E02": {
+      "type": "word",
+      "content": [
+        "រៀន",
+        "នឹក",
+        "ដឹង",
+        "សៀវ"
+      ],
+      "description": "Words with ៀ and ឹ"
+    },
+    "standard-L05-04-E03": {
+      "type": "word",
+      "content": [
+        "បង រៀន",
+        "នឹក រលឹក",
+        "រៀន ចារ"
+      ],
+      "description": "Phrases with ៀ and ឹ"
+    },
+    "standard-L05-04-E04": {
+      "type": "drill",
+      "content": "ៀៀៀ ៀ ៀៀ ឹឹឹ ឹ ឹឹ ៀថ កៀ ៀក ឹថ កឹ ឹក ៀៀៀ ៀ ៀៀ ឹឹឹ ឹ ឹឹ",
+      "description": "Rhythm and cadence reinforcement for ៀ ([) and ឹ (W)"
+    },
+    "standard-L05-05-E01": {
+      "type": "single-char",
+      "content": "ុំុំុំ ់់់ ុំ់ុំ",
+      "description": "Compound vowel ុំ and register sign ់"
+    },
+    "standard-L05-05-E02": {
+      "type": "word",
+      "content": [
+        "កុំ",
+        "សុំ",
+        "រុំ",
+        "ដុំ"
+      ],
+      "description": "Words with ុំ"
+    },
+    "standard-L05-05-E03": {
+      "type": "word",
+      "content": [
+        "ស់ុប",
+        "ហ់ាន",
+        "កុំ",
+        "សុំ"
+      ],
+      "description": "Words with ់"
+    },
+    "standard-L05-05-E04": {
+      "type": "drill",
+      "content": "ុំុំុំ ុំ ុំុំ ់់់ ់ ់់ ុំថ កុំ ុំក ់ថ ក់ ់ក ុំុំុំ ុំ ុំុំ ់់់ ់ ់់ ុំថ កុំ ុំក",
+      "description": "Rhythm and cadence reinforcement for Compound ុំ (,) and ់ (/)"
+    },
+    "standard-L05-06-E01": {
+      "type": "single-char",
+      "content": "ញញញ ញញ ញ",
+      "description": "Consonant ញ key J"
+    },
+    "standard-L05-06-E02": {
+      "type": "drill",
+      "content": "្ ្ ្ ្ ្",
+      "description": "Coeng marker key Shift+J"
+    },
+    "standard-L05-06-E03": {
+      "type": "drill",
+      "content": "ក្ក ក្ម ស្ម ត្ម",
+      "description": "Consonant + Subscript + Consonant"
+    },
+    "standard-L05-06-E04": {
+      "type": "drill",
+      "content": "ក្មេង ក្ដារ ច្បាប់ ខ្លា",
+      "description": "Simple subscript clusters"
+    },
+    "standard-L05-06-E05": {
+      "type": "drill",
+      "content": "ញញញ ញ ញញ ្្្ ្ ្្ ញថ កញ ញក ្ថ ក្ ្ក ញញញ ញ ញញ",
+      "description": "Rhythm and cadence reinforcement for ញ (J) and Subscript ្ (Shift+J)"
+    },
+    "standard-L05-07-E01": {
+      "type": "word",
+      "content": [
+        "ក្រ",
+        "ស្រ",
+        "ប្រ",
+        "ត្រ"
+      ],
+      "description": "Subscript រ (្រ) clusters"
+    },
+    "standard-L05-07-E02": {
+      "type": "word",
+      "content": [
+        "ប្រាក់",
+        "ក្រចក",
+        "ស្រុក",
+        "ច្រក"
+      ],
+      "description": "Common cluster words"
+    },
+    "standard-L05-07-E03": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ់់់ ់ ់់ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ់ថ ក់ ់ក",
+      "description": "Rhythm and cadence reinforcement for Consonant Clusters (ក្រ, ស្រ, ប្រ)"
+    },
+    "standard-L05-08-E01": {
+      "type": "word",
+      "content": [
+        "រៀន",
+        "ដឹង",
+        "កុំ",
+        "ប្រាក់"
+      ],
+      "description": "Base layer review 1"
+    },
+    "standard-L05-08-E02": {
+      "type": "word",
+      "content": [
+        "សាលា",
+        "តារា",
+        "មាន",
+        "ឆាប់"
+      ],
+      "description": "Base layer review 2"
+    },
+    "standard-L05-08-E03": {
+      "type": "drill",
+      "content": "តារា និង សុខ មក រៀន។ សាលា រៀន សប្បាយ។",
+      "description": "Base layer paragraph"
+    },
+    "standard-L05-08-E04": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ់់់ ់ ់់",
+      "description": "Rhythm and cadence reinforcement for Base Layer Mastery Review"
+    },
+    "standard-L06-01-E01": {
+      "type": "single-char",
+      "content": "គគគ ជជជ គជគ",
+      "description": "Shift consonants គ and ជ"
+    },
+    "standard-L06-01-E02": {
+      "type": "word",
+      "content": [
+        "គិត",
+        "ជិត",
+        "គូរ",
+        "ជួរ"
+      ],
+      "description": "Words with គ and ជ"
+    },
+    "standard-L06-01-E03": {
+      "type": "drill",
+      "content": "គគគ គ គគ ជជជ ជ ជជ គថ កគ គក ជថ កជ ជក គគគ គ គគ ជជជ ជ ជជ គថ កគ គក ជថ កជ ជក",
+      "description": "Rhythm and cadence reinforcement for គ (Shift+K) and ជ (Shift+C)"
+    },
+    "standard-L06-02-E01": {
+      "type": "single-char",
+      "content": "ទទទ ធធធ ទធទ",
+      "description": "Shift consonants ទ and ធ"
+    },
+    "standard-L06-02-E02": {
+      "type": "word",
+      "content": [
+        "ទី",
+        "ទិញ",
+        "ធំ",
+        "ធារ"
+      ],
+      "description": "Words with ទ and ធ"
+    },
+    "standard-L06-02-E03": {
+      "type": "drill",
+      "content": "ទទទ ទ ទទ ធធធ ធ ធធ ទថ កទ ទក ធថ កធ ធក ទទទ ទ ទទ ធធធ ធ ធធ ទថ កទ ទក ធថ កធ ធក",
+      "description": "Rhythm and cadence reinforcement for ទ (Shift+T) and ធ (Shift+F)"
+    },
+    "standard-L06-03-E01": {
+      "type": "single-char",
+      "content": "ពពព ភភភ ពភព",
+      "description": "Shift consonants ព and ភ"
+    },
+    "standard-L06-03-E02": {
+      "type": "word",
+      "content": [
+        "ពីរ",
+        "ពូ",
+        "ភាព",
+        "ភ្នំ"
+      ],
+      "description": "Words with ព and ភ"
+    },
+    "standard-L06-03-E03": {
+      "type": "drill",
+      "content": "ពពព ព ពព ភភភ ភ ភភ ពថ កព ពក ភថ កភ ភក ពពព ព ពព ភភភ ភ ភភ ពថ កព ពក ភថ កភ ភក",
+      "description": "Rhythm and cadence reinforcement for ព (Shift+B) and ភ (Shift+P)"
+    },
+    "standard-L06-04-E01": {
+      "type": "single-char",
+      "content": "ឌឌឌ ណណណ ឌណឌ",
+      "description": "Shift consonants ឌ and ណ"
+    },
+    "standard-L06-04-E02": {
+      "type": "word",
+      "content": [
+        "ឌី",
+        "គណនា",
+        "បុណ្យ",
+        "គុណ"
+      ],
+      "description": "Words with ឌ and ណ"
+    },
+    "standard-L06-04-E03": {
+      "type": "drill",
+      "content": "ឌឌឌ ឌ ឌឌ ណណណ ណ ណណ ឌថ កឌ ឌក ណថ កណ ណក ឌឌឌ ឌ ឌឌ ណណណ ណ ណណ ឌថ កឌ ឌក ណថ កណ ណក",
+      "description": "Rhythm and cadence reinforcement for ឌ (Shift+D) and ណ (Shift+N)"
+    },
+    "standard-L06-05-E01": {
+      "type": "single-char",
+      "content": "អអអ អអអ អអអ",
+      "description": "Shift consonant អ"
+    },
+    "standard-L06-05-E02": {
+      "type": "word",
+      "content": [
+        "អ្នក",
+        "អាន",
+        "ញាតិ",
+        "ញញឹម"
+      ],
+      "description": "Words with អ and ញ"
+    },
+    "standard-L06-05-E03": {
+      "type": "drill",
+      "content": "អអអ អ អអ អថ កអ អក អអអ អ អអ អថ កអ អក អអអ អ អអ អថ កអ អក អអអ អ អអ អថ កអ អក",
+      "description": "Rhythm and cadence reinforcement for អ (Shift+G)"
+    },
+    "standard-L06-06-E01": {
+      "type": "single-char",
+      "content": "ឃឃឃ ឈឈឈ ឍឍឍ ឡឡឡ",
+      "description": "Rare shift consonants"
+    },
+    "standard-L06-06-E02": {
+      "type": "word",
+      "content": [
+        "ឃើញ",
+        "ឈរ",
+        "វឌ្ឍន",
+        "ឡាន"
+      ],
+      "description": "Words with rare consonants"
+    },
+    "standard-L06-06-E03": {
+      "type": "drill",
+      "content": "ឃឃឃ ឃ ឃឃ ឈឈឈ ឈ ឈឈ ឍឍឍ ឍ ឍឍ ឡឡឡ ឡ ឡឡ ឃថ កឃ ឃក ឈថ កឈ ឈក ឍថ កឍ ឍក ឡថ កឡ ឡក",
+      "description": "Rhythm and cadence reinforcement for ឃ ឈ ឍ ឡ"
+    },
+    "standard-L06-07-E01": {
+      "type": "drill",
+      "content": "ក គ ច ជ ត ទ ប ព ផ ភ",
+      "description": "Consonant series pairs"
+    },
+    "standard-L06-07-E02": {
+      "type": "word",
+      "content": [
+        "កូន គិត",
+        "ចាន ជិត",
+        "តាម ទិញ"
+      ],
+      "description": "Contrasting pairs"
+    },
+    "standard-L06-07-E03": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ់់់ ់ ់់ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក",
+      "description": "Rhythm and cadence reinforcement for Base vs Shift Pairs Drill"
+    },
+    "standard-L06-08-E01": {
+      "type": "word",
+      "content": [
+        "ឃើញ",
+        "ជួយ",
+        "ទិញ",
+        "ធំ",
+        "ភ្នំ"
+      ],
+      "description": "Shift consonants vocabulary"
+    },
+    "standard-L06-08-E02": {
+      "type": "drill",
+      "content": "អ្នក ជួយ គិត ពី ភាព សប្បាយ។",
+      "description": "Sentence with shift consonants"
+    },
+    "standard-L06-08-E03": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ់់់ ់ ់់ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក",
+      "description": "Rhythm and cadence reinforcement for Shift Consonants Review"
+    },
+    "standard-L07-01-E01": {
+      "type": "single-char",
+      "content": "ីីី ូូូ ីូី",
+      "description": "Long vowels ី and ូ"
+    },
+    "standard-L07-01-E02": {
+      "type": "word",
+      "content": [
+        "ទី",
+        "ពីរ",
+        "កូន",
+        "ទូ"
+      ],
+      "description": "Words with ី and ូ"
+    },
+    "standard-L07-01-E03": {
+      "type": "drill",
+      "content": "ីីី ី ីី ូូូ ូ ូូ ីថ កី ីក ូថ កូ ូក ីីី ី ីី ូូូ ូ ូូ ីថ កី ីក ូថ កូ ូក",
+      "description": "Rhythm and cadence reinforcement for ី (Shift+I) and ូ (Shift+U)"
+    },
+    "standard-L07-02-E01": {
+      "type": "single-char",
+      "content": "ែែែ ៃៃៃ ែៃែ",
+      "description": "Vowels ែ and ៃ"
+    },
+    "standard-L07-02-E02": {
+      "type": "word",
+      "content": [
+        "កែវ",
+        "ដែក",
+        "ដៃ",
+        "ថ្ងៃ"
+      ],
+      "description": "Words with ែ and ៃ"
+    },
+    "standard-L07-02-E03": {
+      "type": "drill",
+      "content": "ែែែ ែ ែែ ៃៃៃ ៃ ៃៃ ែថ កែ ែក ៃថ កៃ ៃក ែែែ ែ ែែ ៃៃៃ ៃ ៃៃ ែថ កែ ែក ៃថ កៃ ៃក",
+      "description": "Rhythm and cadence reinforcement for ែ (Shift+E) and ៃ (Shift+S)"
+    },
+    "standard-L07-03-E01": {
+      "type": "single-char",
+      "content": "ួួួ ៅៅៅ ួៅួ",
+      "description": "Complex vowels ួ and ៅ"
+    },
+    "standard-L07-03-E02": {
+      "type": "word",
+      "content": [
+        "ជួយ",
+        "រួក",
+        "ទៅ",
+        "នៅ"
+      ],
+      "description": "Words with ួ and ៅ"
+    },
+    "standard-L07-03-E03": {
+      "type": "drill",
+      "content": "ួួួ ួ ួួ ៅៅៅ ៅ ៅៅ ួថ កួ ួក ៅថ កៅ ៅក ួួួ ួ ួួ ៅៅៅ ៅ ៅៅ ួថ កួ ួក ៅថ កៅ ៅក",
+      "description": "Rhythm and cadence reinforcement for ួ (Shift+Y) and ៅ (Shift+O)"
+    },
+    "standard-L07-04-E01": {
+      "type": "single-char",
+      "content": "ាំាំាំ ំំំ ាំំាំ",
+      "description": "Nasalized vowels ាំ and ំ"
+    },
+    "standard-L07-04-E02": {
+      "type": "word",
+      "content": [
+        "ចាំ",
+        "នាំ",
+        "ធំ",
+        "កំលាំង"
+      ],
+      "description": "Words with ាំ and ំ"
+    },
+    "standard-L07-04-E03": {
+      "type": "drill",
+      "content": "ាំាំាំ ាំ ាំាំ ំំំ ំ ំំ ាំថ កាំ ាំក ំថ កំ ំក ាំាំាំ ាំ ាំាំ ំំំ ំ ំំ ាំថ កាំ ាំក ំថ កំ ំក",
+      "description": "Rhythm and cadence reinforcement for ាំ (Shift+A) and ំ (Shift+M)"
+    },
+    "standard-L07-05-E01": {
+      "type": "single-char",
+      "content": "ះះះ េះេះេះ ោះោះោះ ុះុះុះ",
+      "description": "Aspirated vowel endings"
+    },
+    "standard-L07-05-E02": {
+      "type": "word",
+      "content": [
+        "ផ្ទះ",
+        "ចេះ",
+        "កោះ",
+        "ចុះ"
+      ],
+      "description": "Words with aspirated endings"
+    },
+    "standard-L07-05-E03": {
+      "type": "drill",
+      "content": "ះះះ ះ ះះ េះេះេះ េះ េះេះ ោះោះោះ ោះ ោះោះ ុះុះុះ ុះ ុះុះ ះថ កះ ះក េះថ កេះ េះក ោះថ កោះ ោះក ុះថ កុះ ុះក",
+      "description": "Rhythm and cadence reinforcement for ះ េះ ោះ ុះ"
+    },
+    "standard-L07-06-E01": {
+      "type": "single-char",
+      "content": "ឺឺឺ ឿឿឿ ឺឿឺ",
+      "description": "Remaining shift vowels"
+    },
+    "standard-L07-06-E02": {
+      "type": "word",
+      "content": [
+        "គឺ",
+        "រឿង",
+        "ជឿ",
+        "គ្រឿង"
+      ],
+      "description": "Words with ឺ and ឿ"
+    },
+    "standard-L07-06-E03": {
+      "type": "drill",
+      "content": "ឺឺឺ ឺ ឺឺ ឿឿឿ ឿ ឿឿ ឺថ កឺ ឺក ឿថ កឿ ឿក ឺឺឺ ឺ ឺឺ ឿឿឿ ឿ ឿឿ ឺថ កឺ ឺក ឿថ កឿ ឿក",
+      "description": "Rhythm and cadence reinforcement for ឺ (Shift+W) and ឿ (Shift+[)"
+    },
+    "standard-L07-07-E01": {
+      "type": "word",
+      "content": [
+        "ទី",
+        "កូន",
+        "ដែក",
+        "ថ្ងៃ",
+        "នៅ"
+      ],
+      "description": "Review set 1"
+    },
+    "standard-L07-07-E02": {
+      "type": "word",
+      "content": [
+        "ផ្ទះ",
+        "ចេះ",
+        "គឺ",
+        "រឿង"
+      ],
+      "description": "Review set 2"
+    },
+    "standard-L07-07-E03": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ់់់ ់ ់់ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ់ថ ក់ ់ក",
+      "description": "Rhythm and cadence reinforcement for All Vowels Review"
+    },
+    "standard-L08-01-E01": {
+      "type": "word",
+      "content": [
+        "គ្រូ",
+        "ប្រទេស",
+        "ក្រុម",
+        "ព្រៃ"
+      ],
+      "description": "Words with ្រ"
+    },
+    "standard-L08-01-E02": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ់់់ ់ ់់ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ់ថ ក់ ់ក ញថ កញ ញក ឹឹឹ ឹ ឹឹ",
+      "description": "Rhythm and cadence reinforcement for ្រ (Subscript R) Clusters"
+    },
+    "standard-L08-02-E01": {
+      "type": "word",
+      "content": [
+        "ខ្លា",
+        "ផ្លូវ",
+        "ឆ្លើយ",
+        "ភ្លើង"
+      ],
+      "description": "Words with ្ល"
+    },
+    "standard-L08-02-E02": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ់់់ ់ ់់ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ់ថ ក់ ់ក ញថ កញ ញក ឹឹឹ ឹ ឹឹ",
+      "description": "Rhythm and cadence reinforcement for ្ល (Subscript L) Clusters"
+    },
+    "standard-L08-03-E01": {
+      "type": "word",
+      "content": [
+        "កញ្ញា",
+        "បញ្ជី",
+        "កម្ពុជា",
+        "សម្បត្តិ"
+      ],
+      "description": "Nasal subscript words"
+    },
+    "standard-L08-03-E02": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ់់់ ់ ់់ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ់ថ ក់ ់ក ញថ កញ ញក",
+      "description": "Rhythm and cadence reinforcement for Subscript ញ ណ ន ម"
+    },
+    "standard-L08-04-E01": {
+      "type": "word",
+      "content": [
+        "ក្ក",
+        "ស្ស",
+        "ត្ត",
+        "ន្ន"
+      ],
+      "description": "Doubled consonant clusters"
+    },
+    "standard-L08-04-E02": {
+      "type": "word",
+      "content": [
+        "ចិត្ត",
+        "សន្តិភាព",
+        "សប្បាយ",
+        "បញ្ញត្តិ"
+      ],
+      "description": "Words with doubled consonants"
+    },
+    "standard-L08-04-E03": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ់់់ ់ ់់ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក",
+      "description": "Rhythm and cadence reinforcement for Doubled Consonants"
+    },
+    "standard-L08-05-E01": {
+      "type": "word",
+      "content": [
+        "សង្គ្រាម",
+        "កន្ត្រៃ",
+        "អន្តរជាតិ",
+        "មន្ត្រី"
+      ],
+      "description": "Multi-tier clusters"
+    },
+    "standard-L08-05-E02": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ់់់ ់ ់់ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ់ថ ក់ ់ក",
+      "description": "Rhythm and cadence reinforcement for Complex Subscripts"
+    },
+    "standard-L08-06-E01": {
+      "type": "word",
+      "content": [
+        "ប្រទេស",
+        "កម្ពុជា",
+        "អន្តរជាតិ",
+        "សង្គ្រាម"
+      ],
+      "description": "Mastery cluster words"
+    },
+    "standard-L08-06-E02": {
+      "type": "drill",
+      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ់់់ ់ ់់ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ់ថ ក់ ់ក",
+      "description": "Rhythm and cadence reinforcement for Coeng Mastery Review"
+    },
+    "standard-L09-01-E01": {
+      "type": "single-char",
+      "content": "៉ ៉ ៉ ៉ ៉",
+      "description": "Musekkatoan sign"
+    },
+    "standard-L09-01-E02": {
+      "type": "word",
+      "content": [
+        "ប៉ា",
+        "ម៉ាក់",
+        "ប៉ះ",
+        "ស់ុប"
+      ],
+      "description": "Words with ៉ and ់"
+    },
+    "standard-L09-01-E03": {
+      "type": "drill",
+      "content": "៉៉៉ ៉ ៉៉ ៉ថ ក៉ ៉ក ៉៉៉ ៉ ៉៉ ៉ថ ក៉ ៉ក ៉៉៉ ៉ ៉៉ ៉ថ ក៉ ៉ក ៉៉៉ ៉ ៉៉ ៉ថ ក៉ ៉ក",
+      "description": "Rhythm and cadence reinforcement for ៉ (Shift+') and ់ (Shift+/)"
+    },
+    "standard-L09-02-E01": {
+      "type": "single-char",
+      "content": "ៗៗៗ ៕៕៕ ៗ៕ៗ",
+      "description": "Repetition mark and section end"
+    },
+    "standard-L09-02-E02": {
+      "type": "word",
+      "content": [
+        "ផ្សេងៗ",
+        "ញឹកៗ",
+        "តិចៗ"
+      ],
+      "description": "Repeated words"
+    },
+    "standard-L09-02-E03": {
+      "type": "drill",
+      "content": "ៗៗៗ ៗ ៗៗ ៕៕៕ ៕ ៕៕ ៗថ កៗ ៗក ៕ថ ក៕ ៕ក ៗៗៗ ៗ ៗៗ ៕៕៕ ៕ ៕៕ ៗថ កៗ ៗក ៕ថ ក៕ ៕ក",
+      "description": "Rhythm and cadence reinforcement for ៗ (Shift+2) and ៕ (Shift+Period)"
+    },
+    "standard-L09-03-E01": {
+      "type": "single-char",
+      "content": "័័័ ៌៌៌ ៍៍៍ ៏៏៏",
+      "description": "Top diacritics"
+    },
+    "standard-L09-03-E02": {
+      "type": "word",
+      "content": [
+        "ព័ត៌មាន",
+        "ទូរស័ព្ទ",
+        "អាទិត្យ",
+        "សព្វថ្ងៃ"
+      ],
+      "description": "Words with diacritics"
+    },
+    "standard-L09-03-E03": {
+      "type": "drill",
+      "content": "័័័ ័ ័័ ៌៌៌ ៌ ៌៌ ៍៍៍ ៍ ៍៍ ៏៏៏ ៏ ៏៏ ័ថ ក័ ័ក ៌ថ ក៌ ៌ក",
+      "description": "Rhythm and cadence reinforcement for Top Diacritics (័ ៌ ៍ ៏)"
+    },
+    "standard-L09-04-E01": {
+      "type": "single-char",
+      "content": "៛៛៛ ៖៖៖",
+      "description": "Currency and colon"
+    },
+    "standard-L09-04-E02": {
+      "type": "word",
+      "content": [
+        "តម្លៃ៛",
+        "ចាយ៛",
+        "ដូចតទៅ៖"
+      ],
+      "description": "Currency and punctuation phrases"
+    },
+    "standard-L09-04-E03": {
+      "type": "drill",
+      "content": "៛៛៛ ៛ ៛៛ ៖៖៖ ៖ ៖៖ ៛ថ ក៛ ៛ក ៖ថ ក៖ ៖ក ៛៛៛ ៛ ៛៛ ៖៖៖ ៖ ៖៖ ៛ថ ក៛ ៛ក ៖ថ ក៖ ៖ក",
+      "description": "Rhythm and cadence reinforcement for ៛ (Shift+4) and ៖ (AltGr+;)"
+    },
+    "standard-L09-05-E01": {
+      "type": "word",
+      "content": [
+        "ព័ត៌មាន",
+        "ទូរស័ព្ទ",
+        "អាទិត្យ",
+        "ចាយ៛",
+        "ផ្សេងៗ"
+      ],
+      "description": "Comprehensive diacritic review"
+    },
+    "standard-L09-05-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក",
+      "description": "Rhythm and cadence reinforcement for Diacritics Complete Review"
+    },
+    "standard-L10-01-E01": {
+      "type": "word",
+      "content": [
+        "លោកពុក",
+        "ម្តាយ",
+        "កូន",
+        "បង",
+        "ប្អូន"
+      ],
+      "description": "Family vocabulary"
+    },
+    "standard-L10-01-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក",
+      "description": "Rhythm and cadence reinforcement for Family Words"
+    },
+    "standard-L10-02-E01": {
+      "type": "word",
+      "content": [
+        "សាលា",
+        "សិស្ស",
+        "គ្រូ",
+        "សៀវភៅ",
+        "ប់ិច"
+      ],
+      "description": "School vocabulary"
+    },
+    "standard-L10-02-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក",
+      "description": "Rhythm and cadence reinforcement for School Words"
+    },
+    "standard-L10-03-E01": {
+      "type": "word",
+      "content": [
+        "បាយ",
+        "ទឹក",
+        "ត្រី",
+        "សាច់",
+        "បន្លែ"
+      ],
+      "description": "Food vocabulary"
+    },
+    "standard-L10-03-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក",
+      "description": "Rhythm and cadence reinforcement for Food Words"
+    },
+    "standard-L10-04-E01": {
+      "type": "word",
+      "content": [
+        "ផ្ទះ",
+        "ភូមិ",
+        "ផ្សារ",
+        "វត្ត",
+        "ក្រុង"
+      ],
+      "description": "Places vocabulary"
+    },
+    "standard-L10-04-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក",
+      "description": "Rhythm and cadence reinforcement for Place Words"
+    },
+    "standard-L10-05-E01": {
+      "type": "word",
+      "content": [
+        "ទៅ",
+        "មក",
+        "ញ៉ាំ",
+        "រៀន",
+        "ធ្វើ",
+        "ដើរ"
+      ],
+      "description": "Common verbs"
+    },
+    "standard-L10-05-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក ឥឥឥ ឥ ឥឥ",
+      "description": "Rhythm and cadence reinforcement for Common Verbs"
+    },
+    "standard-L10-06-E01": {
+      "type": "word",
+      "content": [
+        "ល្អ",
+        "ស្អាត",
+        "ធំ",
+        "តូច",
+        "ឆ្ងាញ់",
+        "លឿន"
+      ],
+      "description": "Adjectives"
+    },
+    "standard-L10-06-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក",
+      "description": "Rhythm and cadence reinforcement for Descriptive Adjectives"
+    },
+    "standard-L10-07-E01": {
+      "type": "word",
+      "content": [
+        "ថ្ងៃ",
+        "ខែ",
+        "ឆ្នាំ",
+        "ព្រឹក",
+        "យប់"
+      ],
+      "description": "Time words"
+    },
+    "standard-L10-07-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក ឥឥឥ ឥ ឥឥ",
+      "description": "Rhythm and cadence reinforcement for Time and Numbers"
+    },
+    "standard-L10-08-E01": {
+      "type": "word",
+      "content": [
+        "ប្រទេស",
+        "កម្ពុជា",
+        "ភាសាខ្មែរ",
+        "ប្រជាជន",
+        "សន្តិភាព"
+      ],
+      "description": "Major Khmer vocabulary"
+    },
+    "standard-L10-08-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក",
+      "description": "Rhythm and cadence reinforcement for High-Frequency Words Review"
+    },
+    "standard-L11-01-E01": {
+      "type": "sentence",
+      "content": "ខ្ញុំ រៀន ភាសា ខ្មែរ។",
+      "description": "Short sentence 1"
+    },
+    "standard-L11-01-E02": {
+      "type": "sentence",
+      "content": "កម្ពុជា ជា ប្រទេស ស្អាត។",
+      "description": "Short sentence 2"
+    },
+    "standard-L11-01-E03": {
+      "type": "drill",
+      "content": "          ថ ក   ក           ថ ក   ក           ថ ក   ក",
+      "description": "Rhythm and cadence reinforcement for Short Sentences (Shift+Space)"
+    },
+    "standard-L11-02-E01": {
+      "type": "sentence",
+      "content": "ការ ហ្វឹកហាត់ វាយ អក្សរ ជួយ ឱ្យ យើង វាយ បាន រហ័ស។",
+      "description": "Medium sentence 1"
+    },
+    "standard-L11-02-E02": {
+      "type": "sentence",
+      "content": "ចូរ ដាក់ ម្រាមដៃ លើ ជួរដេក ដើម ជានិច្ច ដើម្បី វាយ ត្រូវ។",
+      "description": "Medium sentence 2"
+    },
+    "standard-L11-03-E01": {
+      "type": "sentence",
+      "content": "ភាសាខ្មែរ ជា ភាសា ផ្លូវការ នៃ ព្រះរាជាណាចក្រ កម្ពុជា ដែល មាន ប្រវត្តិសាស្ត្រ យូរលង់។",
+      "description": "Long sentence 1"
+    },
+    "standard-L11-04-E01": {
+      "type": "paragraph",
+      "content": "ការ រៀន វាយ អក្សរ ទាមទារ ការ អត់ធ្មត់។ កាលណា យើង ព្យាយាម យើង នឹង ទទួល បាន ជោគជ័យ។",
+      "description": "Short paragraph"
+    },
+    "standard-L11-05-E01": {
+      "type": "paragraph",
+      "content": "ប្រាសាទ អង្គរវត្ត ជា សម្បត្តិ វប្បធម៌ ដ៏ ពិសិដ្ឋ របស់ ជាតិ ខ្មែរ និង ពិភពលោក។",
+      "description": "Culture paragraph"
+    },
+    "standard-L11-05-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦",
+      "description": "Rhythm and cadence reinforcement for Culture Paragraph"
+    },
+    "standard-L11-06-E01": {
+      "type": "paragraph",
+      "content": "សូម ស្វាគមន៍ មកកាន់ កម្មវិធី ហាត់ វាយ អក្សរ ខ្មែរ ដ៏ ល្អ បំផុត។",
+      "description": "Final paragraph challenge"
+    },
+    "standard-L11-06-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤",
+      "description": "Rhythm and cadence reinforcement for Paragraph Challenge"
+    },
+    "standard-L12-01-E01": {
+      "type": "drill",
+      "content": "ការ វាយ អក្សរ ខ្មែរ ដោយ ត្រឹមត្រូវ ជួយ បង្កើន ប្រសិទ្ធភាព ការងារ និង ការ សិក្សា។",
+      "description": "1-minute drill"
+    },
+    "standard-L12-02-E01": {
+      "type": "drill",
+      "content": "ចូរ បន្ត ការ ហ្វឹកហាត់ រាល់ ថ្ងៃ ដើម្បី រក្សា ភាព ស្ទាត់ជំនាញ លើ ក្តារចុច នីដា។",
+      "description": "3-minute drill"
+    },
+    "standard-L12-02-E02": {
+      "type": "drill",
+      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦",
+      "description": "Rhythm and cadence reinforcement for 3-Minute Timed Drill"
+    },
+    "standard-L12-03-E01": {
+      "type": "drill",
+      "content": "វាយ ឱ្យ បាន លឿន និង ត្រឹមត្រូវ បំផុត ដើម្បី បំបែក កំណត់ត្រា ផ្ទាល់ខ្លួន របស់ អ្នក។",
+      "description": "Speed challenge"
+    },
+    "standard-L12-04-E01": {
+      "type": "drill",
+      "content": "ឪពុក ឱ្យ ឯកសារ ឱកាស ឧត្តម",
+      "description": "Independent vowels"
+    },
+    "standard-L12-04-E02": {
+      "type": "drill",
+      "content": "ឪឪឪ ឪ ឪឪ ឧឧឧ ឧ ឧឧ ឱឱឱ ឱ ឱឱ ឯឯឯ ឯ ឯឯ ឱឱឱ ឱ ឱឱ ឪថ កឪ ឪក ឧថ កឧ ឧក ឱថ កឱ ឱក",
+      "description": "Rhythm and cadence reinforcement for Independent Vowels Bonus"
+    },
+    "standard-L12-05-E01": {
+      "type": "test",
+      "content": "អបអរសាទរ។ អ្នក បាន បញ្ចប់ វគ្គ សិក្សា វាយ អក្សរ ខ្មែរ នីដា ដោយ ជោគជ័យ បំផុត។",
+      "description": "NiDA final mastery test"
+    },
+    "standard-L12-05-E02": {
+      "type": "drill",
+      "content": "៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឪឪឪ ឪ ឪឪ",
+      "description": "Rhythm and cadence reinforcement for NiDA Mastery Test"
+    }
+  }
+}

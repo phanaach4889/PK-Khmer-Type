@@ -1,0 +1,65 @@
+{
+  "version": "1.0.0",
+  "triggerRules": [
+    {
+      "id": "low-accuracy",
+      "condition": "characterAccuracy < threshold in recent window",
+      "threshold": 0.85,
+      "recentWindow": 20,
+      "action": "generate-targeted-drill",
+      "priority": "high"
+    },
+    {
+      "id": "confusion-pair",
+      "condition": "two chars confused > threshold times",
+      "threshold": 3,
+      "recentWindow": 100,
+      "action": "generate-alternating-pair-drill",
+      "priority": "high"
+    },
+    {
+      "id": "slow-key",
+      "condition": "response time > 2x average",
+      "threshold": 2.0,
+      "recentWindow": 50,
+      "action": "generate-speed-drill",
+      "priority": "medium"
+    },
+    {
+      "id": "shift-mistake",
+      "condition": "> threshold shift errors on a char",
+      "threshold": 3,
+      "recentWindow": 50,
+      "action": "generate-shift-specific-drill",
+      "priority": "medium"
+    },
+    {
+      "id": "stale-character",
+      "condition": "not practiced in > threshold days",
+      "threshold": 7,
+      "recentWindow": null,
+      "action": "include-in-next-review",
+      "priority": "low"
+    },
+    {
+      "id": "level-regression",
+      "condition": "level accuracy drops below unlock threshold",
+      "threshold": 0.85,
+      "recentWindow": 100,
+      "action": "suggest-level-review",
+      "priority": "high"
+    }
+  ],
+  "drillComposition": {
+    "singleCharRepetition": 0.4,
+    "pairDrills": 0.3,
+    "wordPractice": 0.2,
+    "sentencePractice": 0.1
+  },
+  "reviewSchedule": {
+    "insertEveryNLessons": 5,
+    "maxCharactersPerReview": 8,
+    "minAccuracyToClear": 0.85,
+    "staleDays": 7
+  }
+}

@@ -1,0 +1,305 @@
+{
+  "version": "1.0.0",
+  "layout": "nida",
+  "language": "km",
+  "levels": [
+    {
+      "id": "nida-L00",
+      "levelNumber": 0,
+      "title": "Keyboard Orientation",
+      "titleKm": "ការស្គាល់ក្ដារចុច",
+      "description": "Understand the NiDA layout and index anchors",
+      "objective": "Feel physical anchor keys and place fingers",
+      "lessons": [
+        "nida-L00-01",
+        "nida-L00-02",
+        "nida-L00-03",
+        "nida-L00-04"
+      ],
+      "unlockRequirements": {
+        "previousLevel": null
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": null
+      }
+    },
+    {
+      "id": "nida-L01",
+      "levelNumber": 1,
+      "title": "Home Row Consonants",
+      "titleKm": "ព្យញ្ជនៈជួរផ្ទះ",
+      "description": "Base layer home row consonants and vowel ា",
+      "objective": "Type home row consonants accurately",
+      "lessons": [
+        "nida-L01-01",
+        "nida-L01-02",
+        "nida-L01-03",
+        "nida-L01-04",
+        "nida-L01-05"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "nida-L00"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "nida-L02",
+      "levelNumber": 2,
+      "title": "Home Row Vowels & Bantoc",
+      "titleKm": "ស្រៈជួរផ្ទះ និងបន្តក់",
+      "description": "ើ and final stop mark ់",
+      "objective": "Master home row vowels and final stop",
+      "lessons": [
+        "nida-L02-01",
+        "nida-L02-02",
+        "nida-L02-03",
+        "nida-L02-04"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "nida-L01"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "nida-L03",
+      "levelNumber": 3,
+      "title": "Top Row Common",
+      "titleKm": "ជួរលើទូទៅ",
+      "description": "Common top row consonants and vowels",
+      "objective": "Type top row reaches accurately",
+      "lessons": [
+        "nida-L03-01",
+        "nida-L03-02",
+        "nida-L03-03",
+        "nida-L03-04",
+        "nida-L03-05",
+        "nida-L03-06"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "nida-L02"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "nida-L04",
+      "levelNumber": 4,
+      "title": "Bottom Row Common",
+      "titleKm": "ជួរក្រោមទូទៅ",
+      "description": "Bottom row consonants and full stop",
+      "objective": "Type bottom row reaches accurately",
+      "lessons": [
+        "nida-L04-01",
+        "nida-L04-02",
+        "nida-L04-03",
+        "nida-L04-04",
+        "nida-L04-05"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "nida-L03"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "nida-L05",
+      "levelNumber": 5,
+      "title": "Remaining Base Layer & Coeng",
+      "titleKm": "តួអក្សរមូលដ្ឋាន និងជើង",
+      "description": "Remaining consonants, vowels and Coeng key",
+      "objective": "Master all base layer keys and Coeng subscripting",
+      "lessons": [
+        "nida-L05-01",
+        "nida-L05-02",
+        "nida-L05-03",
+        "nida-L05-04",
+        "nida-L05-05",
+        "nida-L05-06",
+        "nida-L05-07",
+        "nida-L05-08"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "nida-L04"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "nida-L06",
+      "levelNumber": 6,
+      "title": "Shift Consonants",
+      "titleKm": "ព្យញ្ជនៈទី២ (Shift)",
+      "description": "Aspirated consonants on the Shift layer",
+      "objective": "Coordinate opposite-hand Shift for consonants",
+      "lessons": [
+        "nida-L06-01",
+        "nida-L06-02",
+        "nida-L06-03",
+        "nida-L06-04",
+        "nida-L06-05",
+        "nida-L06-06",
+        "nida-L06-07",
+        "nida-L06-08"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "nida-L05"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "nida-L07",
+      "levelNumber": 7,
+      "title": "Shift Vowels & Compounds",
+      "titleKm": "ស្រៈទី២ និងស្រៈផ្សំ",
+      "description": "Shift vowels and compound vowel keys",
+      "objective": "Type shift vowels and compound marks fluently",
+      "lessons": [
+        "nida-L07-01",
+        "nida-L07-02",
+        "nida-L07-03",
+        "nida-L07-04",
+        "nida-L07-05",
+        "nida-L07-06",
+        "nida-L07-07"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "nida-L06"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "nida-L08",
+      "levelNumber": 8,
+      "title": "Coeng Combinations",
+      "titleKm": "ការផ្សំជើង",
+      "description": "Consonant clusters and subscripts",
+      "objective": "Type complex consonant clusters with ease",
+      "lessons": [
+        "nida-L08-01",
+        "nida-L08-02",
+        "nida-L08-03",
+        "nida-L08-04",
+        "nida-L08-05",
+        "nida-L08-06"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "nida-L07"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "nida-L09",
+      "levelNumber": 9,
+      "title": "Diacritics & Signs",
+      "titleKm": "វណ្ណយុត្តិ និងសញ្ញាពិសេស",
+      "description": "Diacritics, punctuation and currency",
+      "objective": "Master all diacritics and special marks",
+      "lessons": [
+        "nida-L09-01",
+        "nida-L09-02",
+        "nida-L09-03",
+        "nida-L09-04",
+        "nida-L09-05"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "nida-L08"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "nida-L10",
+      "levelNumber": 10,
+      "title": "Word Practice",
+      "titleKm": "ការអនុវត្តពាក្យ",
+      "description": "High-frequency Khmer vocabulary",
+      "objective": "Type complete Khmer words fluidly",
+      "lessons": [
+        "nida-L10-01",
+        "nida-L10-02",
+        "nida-L10-03",
+        "nida-L10-04",
+        "nida-L10-05",
+        "nida-L10-06",
+        "nida-L10-07",
+        "nida-L10-08"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "nida-L09"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "nida-L11",
+      "levelNumber": 11,
+      "title": "Sentences & Paragraphs",
+      "titleKm": "ប្រយោគ និងកថាខណ្ឌ",
+      "description": "Natural Khmer sentences with Shift+Space",
+      "objective": "Type flowing sentences with Shift+Space word separation",
+      "lessons": [
+        "nida-L11-01",
+        "nida-L11-02",
+        "nida-L11-03",
+        "nida-L11-04",
+        "nida-L11-05",
+        "nida-L11-06"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "nida-L10"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "nida-L12",
+      "levelNumber": 12,
+      "title": "Speed & Mastery",
+      "titleKm": "ល្បឿន និងភាពស្ទាត់ជំនាញ",
+      "description": "Timed challenges and AltGr independent vowels",
+      "objective": "Achieve mastery speed and accuracy targets",
+      "lessons": [
+        "nida-L12-01",
+        "nida-L12-02",
+        "nida-L12-03",
+        "nida-L12-04",
+        "nida-L12-05"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "nida-L11"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "WORD_BANK": [
+    "អាវ",
+    "តា",
+    "យាយ",
+    "មាន",
+    "ខាន",
+    "បាន",
+    "ចាន",
+    "តារា",
+    "កាច"
+  ],
+  "WORD_BANK_EN": [
+    "cat",
+    "dog",
+    "sun",
+    "run",
+    "desk",
+    "lamp",
+    "fish",
+    "bird",
+    "tree",
+    "king",
+    "fast",
+    "slow",
+    "jump",
+    "walk",
+    "hand",
+    "word",
+    "type",
+    "game",
+    "song",
+    "play"
+  ],
+  "RACE_DIFFICULTIES": [
+    "easy",
+    "medium",
+    "hard",
+    "expert"
+  ],
+  "RACE_LENGTHS": [
+    "15",
+    "30",
+    "60",
+    "text"
+  ]
+}

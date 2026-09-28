@@ -1,0 +1,305 @@
+{
+  "version": "1.0.0",
+  "layout": "standard",
+  "language": "km",
+  "levels": [
+    {
+      "id": "standard-L00",
+      "levelNumber": 0,
+      "title": "Keyboard Orientation",
+      "titleKm": "ការស្គាល់ក្ដារចុច",
+      "description": "Understand the Standard layout, anchors, and spacebar Coeng",
+      "objective": "Feel physical anchor keys and understand spacebar Coeng",
+      "lessons": [
+        "standard-L00-01",
+        "standard-L00-02",
+        "standard-L00-03",
+        "standard-L00-04"
+      ],
+      "unlockRequirements": {
+        "previousLevel": null
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": null
+      }
+    },
+    {
+      "id": "standard-L01",
+      "levelNumber": 1,
+      "title": "Home Row Consonants",
+      "titleKm": "ព្យញ្ជនៈជួរផ្ទះ",
+      "description": "Base layer home row consonants and vowel ា",
+      "objective": "Type home row consonants accurately",
+      "lessons": [
+        "standard-L01-01",
+        "standard-L01-02",
+        "standard-L01-03",
+        "standard-L01-04",
+        "standard-L01-05"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "standard-L00"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "standard-L02",
+      "levelNumber": 2,
+      "title": "Home Row Vowels & Signs",
+      "titleKm": "ស្រៈជួរផ្ទះ និងសញ្ញា",
+      "description": "ះ (Semicolon) and final stop mark ់ (Quote)",
+      "objective": "Master home row vowels and final stop",
+      "lessons": [
+        "standard-L02-01",
+        "standard-L02-02",
+        "standard-L02-03",
+        "standard-L02-04"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "standard-L01"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "standard-L03",
+      "levelNumber": 3,
+      "title": "Top Row Reaches",
+      "titleKm": "ជួរលើទូទៅ",
+      "description": "Common top row consonants and vowels (េ, រ, ត, យ, ុ, ិ, ោ)",
+      "objective": "Type top row reaches accurately",
+      "lessons": [
+        "standard-L03-01",
+        "standard-L03-02",
+        "standard-L03-03",
+        "standard-L03-04",
+        "standard-L03-05",
+        "standard-L03-06"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "standard-L02"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "standard-L04",
+      "levelNumber": 4,
+      "title": "Bottom Row Reaches",
+      "titleKm": "ជួរក្រោមទូទៅ",
+      "description": "Bottom row consonants and full stop (ច, វ, ប, ន, ម, អ, ។)",
+      "objective": "Type bottom row reaches accurately",
+      "lessons": [
+        "standard-L04-01",
+        "standard-L04-02",
+        "standard-L04-03",
+        "standard-L04-04",
+        "standard-L04-05"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "standard-L03"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "standard-L05",
+      "levelNumber": 5,
+      "title": "Spacebar Subscript Clusters",
+      "titleKm": "ការផ្សំជើងដោយ Spacebar",
+      "description": "Master Coeng (្) on Spacebar and remaining base keys",
+      "objective": "Use spacebar to create consonant clusters and subscripts",
+      "lessons": [
+        "standard-L05-01",
+        "standard-L05-02",
+        "standard-L05-03",
+        "standard-L05-04",
+        "standard-L05-05",
+        "standard-L05-06",
+        "standard-L05-07",
+        "standard-L05-08"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "standard-L04"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "standard-L06",
+      "levelNumber": 6,
+      "title": "Standard Shift Consonants",
+      "titleKm": "ព្យញ្ជនៈ Shift ស្តង់ដារ",
+      "description": "Aspirated consonants on the Shift layer (ធ, គ, ឡ, ឈ, ឃ, ជ...)",
+      "objective": "Coordinate opposite-hand Shift for consonants",
+      "lessons": [
+        "standard-L06-01",
+        "standard-L06-02",
+        "standard-L06-03",
+        "standard-L06-04",
+        "standard-L06-05",
+        "standard-L06-06",
+        "standard-L06-07",
+        "standard-L06-08"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "standard-L05"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "standard-L07",
+      "levelNumber": 7,
+      "title": "Standard Shift Vowels",
+      "titleKm": "ស្រៈ Shift ស្តង់ដារ",
+      "description": "Shift vowels: ៃ (Shift+A), ាំ (Shift+S), ុះ (Shift+G), ុំ (Shift+J)...",
+      "objective": "Type Standard shift vowels and compounds fluently",
+      "lessons": [
+        "standard-L07-01",
+        "standard-L07-02",
+        "standard-L07-03",
+        "standard-L07-04",
+        "standard-L07-05",
+        "standard-L07-06",
+        "standard-L07-07"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "standard-L06"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "standard-L08",
+      "levelNumber": 8,
+      "title": "Coeng Combinations",
+      "titleKm": "ការផ្សំជើងស្មុគស្មាញ",
+      "description": "Advanced consonant clusters and doubled consonants",
+      "objective": "Type complex consonant clusters with ease",
+      "lessons": [
+        "standard-L08-01",
+        "standard-L08-02",
+        "standard-L08-03",
+        "standard-L08-04",
+        "standard-L08-05",
+        "standard-L08-06"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "standard-L07"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "standard-L09",
+      "levelNumber": 9,
+      "title": "Diacritics & Signs",
+      "titleKm": "វណ្ណយុត្តិ និងសញ្ញាពិសេស",
+      "description": "Diacritics, punctuation and currency (៍, ័, ៏, ៌, ៛, ៗ)",
+      "objective": "Master all diacritics and special marks",
+      "lessons": [
+        "standard-L09-01",
+        "standard-L09-02",
+        "standard-L09-03",
+        "standard-L09-04",
+        "standard-L09-05"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "standard-L08"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "standard-L10",
+      "levelNumber": 10,
+      "title": "Word Practice",
+      "titleKm": "ការអនុវត្តពាក្យ",
+      "description": "High-frequency Khmer vocabulary in domains",
+      "objective": "Type complete Khmer words fluidly",
+      "lessons": [
+        "standard-L10-01",
+        "standard-L10-02",
+        "standard-L10-03",
+        "standard-L10-04",
+        "standard-L10-05",
+        "standard-L10-06",
+        "standard-L10-07",
+        "standard-L10-08"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "standard-L09"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "standard-L11",
+      "levelNumber": 11,
+      "title": "Sentences & Paragraphs",
+      "titleKm": "ប្រយោគ និងកថាខណ្ឌ",
+      "description": "Natural Khmer sentences with Shift+Space",
+      "objective": "Type flowing sentences with Shift+Space word separation",
+      "lessons": [
+        "standard-L11-01",
+        "standard-L11-02",
+        "standard-L11-03",
+        "standard-L11-04",
+        "standard-L11-05",
+        "standard-L11-06"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "standard-L10"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    },
+    {
+      "id": "standard-L12",
+      "levelNumber": 12,
+      "title": "Speed & Mastery",
+      "titleKm": "ល្បឿន និងភាពស្ទាត់ជំនាញ",
+      "description": "Timed challenges and independent vowels",
+      "objective": "Achieve mastery speed and accuracy targets",
+      "lessons": [
+        "standard-L12-01",
+        "standard-L12-02",
+        "standard-L12-03",
+        "standard-L12-04",
+        "standard-L12-05"
+      ],
+      "unlockRequirements": {
+        "previousLevel": "standard-L11"
+      },
+      "completionRequirements": {
+        "allLessonsCompleted": true,
+        "minLevelAccuracy": 90
+      }
+    }
+  ]
+}

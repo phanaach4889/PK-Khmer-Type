@@ -1,0 +1,18 @@
+{
+  "name": "PK Khmer Type",
+  "short_name": "PK Type",
+  "description": "Master Khmer typing with interactive layouts, speed drills, and real-time guidance.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#11131f",
+  "theme_color": "#ff9d2e",
+  "icons": [
+    {
+      "src": "logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
+
