@@ -177,3 +177,17 @@ Issues and contributions are welcome. Before submitting a change, run `npm run v
 ## Credits
 
 Created by **Phanna Kurosaki** to make Khmer typing education more accessible.
+
+---
+
+<p align="center">
+  <img src="https://img.shields.io/badge/LANGUAGE-KHMER%20%7C%20ENGLISH-00f5c4?style=flat-square&labelColor=1a1a2e&color=00f5c4" alt="Language: Khmer | English">
+  &nbsp;
+  <img src="https://img.shields.io/badge/%E2%9A%9B%20React-UI-61dafb?style=flat-square&labelColor=23272f&color=61dafb&logo=react&logoColor=61dafb" alt="React UI">
+  &nbsp;
+  <img src="https://img.shields.io/badge/%E2%9A%A1%20Vite-build-646cff?style=flat-square&labelColor=23272f&color=646cff&logo=vite&logoColor=white" alt="Vite build">
+  &nbsp;
+  <img src="https://img.shields.io/badge/%E2%89%88%20Tailwind-CSS-38bdf8?style=flat-square&labelColor=23272f&color=38bdf8&logo=tailwindcss&logoColor=white" alt="Tailwind CSS">
+  &nbsp;
+  <img src="https://img.shields.io/badge/Curriculum-218%20lessons-f0b44d?style=flat-square&labelColor=23272f&color=f0b44d" alt="Curriculum: 218 lessons">
+</p>
