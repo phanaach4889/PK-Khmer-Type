@@ -1819,3 +1819,16 @@ The learning system of PK Khmer Type is 100% complete and ready for release when
 9. **Localization & Accessibility:** 100% translation coverage in English and Khmer, keyboard-accessible navigation, and WCAG high-contrast compliance.
 10. **Full Regression Clearance:** Headless test battery confirms 218/218 lessons complete cleanly with zero errors.
 
+---
+
+## 19. FRONTEND TECHNOLOGY STACK
+
+The lesson overhaul frontend must use **React + Vite + Tailwind CSS only**:
+
+- **React** is the sole UI framework. Build lesson views and interactions as React components; do not add a parallel vanilla-DOM UI framework.
+- **Vite** is the sole frontend development server and build tool.
+- **Tailwind CSS** is the sole styling framework. Do not add another CSS framework or component library.
+- Keep the existing curriculum JSON and domain data as application inputs; this stack decision does not authorize changes to curriculum content or unrelated subsystems.
+
+Do not introduce alternative frontend frameworks, build tools, or styling frameworks for this work.
+
