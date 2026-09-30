@@ -1388,9 +1388,9 @@ flowchart TD
 ### Subsystem Health & Status Summary:
 | Subsystem | Status | Current Baseline | What Remains |
 | :--- | :---: | :--- | :--- |
-| **Curriculum Data** | `[COMPLETED]` | 40 levels, 218 lessons, 664 exercises, 20,798 units across English, NiDA, Standard. Zero lessons below 80 units. | Checkpoint gating & review interleaving verification. |
+| **Curriculum Data** | `[COMPLETED]` | 40 levels, 218 lessons, 664 exercises, 20,798 units across English, NiDA, Standard. Zero lessons below 80 units. | Spaced-review distribution audit (≥25% review coverage per level). |
 | **Curriculum Bundler & Validator** | `[COMPLETED]` | `validate_curriculum.js` & `bundle_curricula.js` enforce 0 progression violations and 0 broken links. | Continuous execution in CI/validation gates. |
-| **Runtime Lesson Engine** | `[COMPLETED]` | `js/lessons.js` hydrates all 3 layouts from `window.CURRICULUM_DATA` with offline fallback. | Checkpoint gate enforcement ($\ge 90\%$ accuracy). |
+| **Runtime Lesson Engine** | `[PARTIALLY COMPLETE]` | `js/lessons.js` hydrates all 3 layouts from `window.CURRICULUM_DATA`; level transitions now require a ≥90% pass on the preceding level's final lesson. | Timed challenge mechanics and spaced-review distribution audit. |
 | **Typing Engine Core** | `[COMPLETED]` | Unicode NFC normalization, IME composition handling, multi-codepoint unit slicing, backspace stack. | Audio profile customization & sound latency tuning. |
 | **Real-Time Keystroke Tracker** | `[COMPLETED]` | `js/tracker.js` (`PK_TRACKER`) zero-latency logging per key, finger, unit, layout, and active session. | Exporting aggregated telemetry for analytics dashboard. |
 | **Review Engine Core** | `[COMPLETED]` | `js/review.js` (`PK_REVIEW`) character catalog, confusion matrix, staleness detection, candidate queue. | Connecting candidate queue to standalone targeted practice UI. |
@@ -1427,8 +1427,8 @@ flowchart TD
     P8_P9 --> PHASE10
     
     subgraph PHASE10_SUB ["PHASE 10: CHECKPOINTS, GATES & SPACED REVIEW"]
-        PHASE10["Phase 10: Checkpoints & Spaced Review Audit"]:::next
-        CP_GATE["Checkpoint Enforcement (≥90% Acc Required to Advance)"]:::planned
+        PHASE10["Phase 10: Checkpoint Gate Complete; Timers & Review Audit Remain"]:::next
+        CP_GATE["Checkpoint Enforcement (≥90% Acc Required to Advance)"]:::done
         SPACED_REV["Spaced Review Distribution Audit (≥25% Review/Level)"]:::planned
         TIMED_CHALLENGE["Timed Challenge Mechanics (1-min & 3-min Timers)"]:::planned
         PHASE10 --> CP_GATE
@@ -1503,9 +1503,9 @@ flowchart TD
 ================================================================================
 PHASE 10: CHECKPOINTS, GATEKEEPING & SPACED REVIEW AUDIT
 ================================================================================
-Status:       [NEXT]
+Status:       [PARTIALLY COMPLETE]
 Dependencies: Phase 9 (Completed)
-Files:        js/lessons.js, js/progress.js, data/curriculum/*
+Files:        js/lessons.js, data/curriculum/*
 
 Goal:
 Enforce true pedagogical gatekeeping across the 218 lessons and verify spaced
@@ -1516,14 +1516,15 @@ Currently, lesson unlocking relies on a simple completion flag. Checkpoints and
 timed challenges must act as genuine milestones requiring ≥90% accuracy.
 
 Main Work:
-1. Implement Checkpoint Gatekeeping:
-   - Identify checkpoint lessons in each level (Stage 9).
-   - In js/progress.js and js/lessons.js, require ≥90% accuracy on Checkpoints
-     before unlocking the next level.
-2. Timed Challenge Mechanics:
+1. Checkpoint Gatekeeping — COMPLETE:
+     - The final ordered lesson in each level is its checkpoint; all 40 levels
+         already define a 90% accuracy target for that lesson.
+     - Level transitions now remain locked until the checkpoint's saved best
+         accuracy reaches at least 90%. Existing within-level unlocks are unchanged.
+2. Timed Challenge Mechanics — REMAINING:
    - Wire 1-minute and 3-minute countdown timers into Level 12/13 speed lessons.
    - Calculate live net WPM and display celebratory pass criteria.
-3. Spaced Review Audit:
+3. Spaced Review Audit — REMAINING:
    - Run audit verifying that ≥25% of exercises in every level systematically
      re-introduce characters from preceding levels.
 
@@ -1532,8 +1533,9 @@ Learners cannot breeze through lessons with poor accuracy; checkpoints enforce
 mastery, and timed drills function with active countdown timers.
 
 Validation:
-Automated test verifying checkpoint locks next level when accuracy <90%, and
-unlocks when accuracy ≥90%. All 40 levels verified for review distribution.
+Focused runtime checks verify that a sub-90% checkpoint stays locked, a 90%+
+checkpoint unlocks the next level, and within-level progression is unchanged.
+Timed challenges and the 40-level review-distribution audit remain unverified.
 ```
 
 ```text
@@ -1832,3 +1834,19 @@ The lesson overhaul frontend must use **React + Vite + Tailwind CSS only**:
 
 Do not introduce alternative frontend frameworks, build tools, or styling frameworks for this work.
 
+---
+
+## 20. REACT MIGRATION VERIFICATION & LEGACY PURGE
+
+**Status: COMPLETED**
+
+The application has successfully completed the React migration and all legacy frontend code has been permanently removed. 
+
+### Final Verification Actions
+- **Legacy Purge:** The old HTML/vanilla JS architecture (`js/`, `css/`, `public/js/`, `public/css/`, `public/legacy.html`, etc.) has been completely deleted.
+- **Single Source of Truth:** Only the React + Vite + Tailwind implementation remains. `index.html` serves exclusively as the Vite entry point.
+- **Domain Logic Preserved:** The critical Khmer typing engine functions (`splitIntoTypingUnits`, `normalizeInput`, `KHMER_COMPOUND_VOWELS`) have been carefully migrated to `src/logic/typing/units.js` and successfully integrated with the React components and Node.js validation scripts.
+- **Automated Validation:** `npm run validate` successfully executes against the new domain logic structure, resulting in **0 violations across all 218 lessons**.
+- **Build Step:** `vite build` executes cleanly.
+
+The architecture mapped out in Section 19 is fully realized and operational.

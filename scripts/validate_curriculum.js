@@ -4,7 +4,8 @@ const path = require('path');
 global.window = { addEventListener: () => {} };
 global.document = { activeElement: null, getElementById: () => null, addEventListener: () => {} };
 
-eval(fs.readFileSync(path.join(__dirname, '../js/typing.js'), 'utf8'));
+const unitsCode = fs.readFileSync(path.join(__dirname, '../src/logic/typing/units.js'), 'utf8');
+eval(unitsCode.replace(/export /g, ''));
 
 const kb = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/keyboard.json'), 'utf8'));
 

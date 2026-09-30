@@ -7,14 +7,6 @@
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <link rel="manifest" href="/manifest.json" />
     <title>PK Khmer Type</title>
-    <script>
-      // ES modules served by Vite cannot be imported from file://. Keep the
-      // established offline application available when this file is opened
-      // directly, while HTTP development and production builds use React.
-      if (location.protocol === 'file:') {
-        location.replace(new URL('./public/legacy.html', location.href));
-      }
-    </script>
   </head>
   <body>
     <div id="root"></div>
