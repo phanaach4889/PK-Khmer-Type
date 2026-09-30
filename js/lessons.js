@@ -1311,7 +1311,15 @@ function isLessonLocked(id){
   const prevReqId = def && def.unlockRequirements && def.unlockRequirements.previousLesson;
   const prevId = prevReqId || LESSONS[idx - 1].id;
   const prevBest = getLessonBest(prevId);
-  return !prevBest; // any completed attempt on the previous lesson unlocks the next one
+  if (!prevBest) return true;
+  
+  const prevDef = LESSONS.find(l => String(l.id) === String(prevId));
+  if (prevDef && def && prevDef.level !== def.level) {
+    if (prevBest.gateVersion !== 0 && (prevBest.bestAttempt?.accuracy || 0) < 90) {
+      return true;
+    }
+  }
+  return false;
 }
 window.isLessonLocked = isLessonLocked;
 window.getLessonBest = getLessonBest;

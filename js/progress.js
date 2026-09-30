@@ -248,6 +248,7 @@
               };
             });
           }
+          if (safeL.completed && typeof safeL.gateVersion === 'undefined') safeL.gateVersion = 0;
           target.lessons[lid] = safeL;
         });
       }
@@ -775,6 +776,7 @@
     };
 
     lesson.mostRecentAttempt = attemptRecord;
+    if(typeof lesson.gateVersion === 'undefined') lesson.gateVersion = 1;
 
     // Track best attempt record
     if(!lesson.bestAttempt || accuracy > lesson.bestAttempt.accuracy || (accuracy === lesson.bestAttempt.accuracy && timeSec < lesson.bestAttempt.timeSec)){
