@@ -1,15 +1,1184 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#ff9d2e" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <link rel="manifest" href="/manifest.json" />
-    <title>PK Khmer Type</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="km" class="notranslate" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="google" content="notranslate">
+<meta name="googlebot" content="notranslate">
+<meta name="author" content="Phanna Kurosaki">
+<meta name="description" content="PK Khmer Type — an interactive Khmer typing trainer founded and built by Phanna Kurosaki.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>PK Khmer Type — Master Your Layout</title>
+
+<!-- ============ App / PWA metadata ============ -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff9d2e">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="icon" type="image/png" sizes="16x16" href="icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<!-- iOS "Add to Home Screen" support (iOS ignores the manifest) -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="PK Khmer Type">
+<link rel="apple-touch-icon" href="icon-180.png">
+<!-- Android/Chrome standalone launch -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Noto+Serif+Khmer:wght@400;600;700&family=Noto+Sans+Khmer:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/keyboard.css">
+  <link rel="stylesheet" href="css/typing.css">
+  <link rel="stylesheet" href="css/lessons.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<div id="customWallpaperLayer" class="custom-wallpaper-layer" aria-hidden="true"></div>
+<div id="customWallpaperDim" class="custom-wallpaper-dim" aria-hidden="true"></div>
+
+<svg class="horizon" id="horizon" viewBox="0 0 1600 420" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="horizonFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#05070d" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#05070d" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+  <g class="horizon-layer far" fill="#0c0e1c">
+    <path d="M0 420 L0 300 L120 300 L120 250 L150 250 L150 210 L175 180 L200 210 L200 250 L230 250 L230 300 L1370 300 L1370 250 L1400 210 L1425 180 L1450 210 L1450 250 L1480 250 L1480 300 L1600 300 L1600 420 Z"/>
+  </g>
+  <g class="horizon-layer near" fill="#0f1226">
+    <path d="M480 420 L480 240 L520 240 L520 190 L545 150 L570 110 L595 150 L620 190 L620 240 L660 240 L660 200 L690 160 L720 200 L720 240 L760 240 L790 40 L820 240 L860 240 L860 200 L890 160 L920 200 L920 240 L960 240 L960 190 L985 150 L1010 110 L1035 150 L1060 190 L1060 240 L1100 240 L1100 420 Z"/>
+  </g>
+  <rect x="0" y="300" width="1600" height="120" fill="url(#horizonFade)"/>
+</svg>
+
+<div class="motes" id="motes"></div>
+<div class="scanline-overlay" id="scanlineOverlay" aria-hidden="true"></div>
+
+<div class="toast-stack" id="toastStack"></div>
+
+<div class="top-actions">
+  <button id="focusModeBtn" class="focus-mode-btn" aria-label="Toggle Focus Mode" title="Focus Mode (Hide distractions, Alt+F)"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M3 12h3m12 0h3M12 3v3m0 12v3"/></svg> <span class="focus-btn-text i18n-t" data-en="Focus" data-km="ផ្ដោត">Focus</span></button>
+  <button id="shortcutsOpenBtn" aria-haspopup="dialog" aria-label="Open keyboard shortcuts" title="Keyboard Shortcuts (?)"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/><line x1="10" y1="12" x2="14" y2="12"/></svg> <span class="i18n-t" data-en="Shortcuts" data-km="ផ្លូវកាត់">Shortcuts</span></button>
+  <button id="topLangToggleBtn" class="top-action-btn lang-toggle-btn" aria-label="Translate English to Khmer" title="Translate English to Khmer (Alt+L)"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> <span id="topLangToggleLabel">Translate to Khmer</span></button>
+  <button id="statsOpenBtn" aria-haspopup="dialog" aria-label="Open statistics dashboard"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> <span class="i18n-t" data-en="Statistics" data-km="ស្ថិតិ">Statistics</span></button>
+  <button id="settingsOpenBtn" aria-haspopup="dialog" aria-label="Open settings"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33 1.65 1.65 0 0 0 1.51-1V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> <span class="i18n-t" data-en="Settings" data-km="ការកំណត់">Settings</span></button>
+  <button id="authOpenBtn" class="auth-nav-btn" aria-haspopup="dialog" aria-label="Sign in or create an account" hidden><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> <span class="i18n-t" data-en="Sign In" data-km="ចូល">Sign In</span></button>
+  <button id="authAccountChip" class="auth-account-chip" aria-haspopup="dialog" aria-label="Your account" hidden>
+    <span class="auth-chip-avatar" id="authChipAvatar">?</span>
+    <span id="authChipName">—</span>
+  </button>
+</div>
+
+<div class="profile-sidebar profile-card expanded tier-5" id="profileSidebar" aria-label="Your profile" role="button" tabindex="0" aria-expanded="true">
+  <div class="profile-fx-particles" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="profile-banner">
+    <div class="fx-laser" aria-hidden="true"></div>
+    <div class="banner-sheen" aria-hidden="true"></div>
+    <div class="corner-bl" aria-hidden="true"></div>
+    <div class="profile-avatar-wrap">
+      <div class="profile-avatar-clip">
+        <img class="profile-avatar-img" id="profileAvatarImg" alt="HOpdI3TWkAAIVWv.jpg" hidden>
+        <span id="profileAvatarFallback"><svg class="pk-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+      </div>
+      <input type="file" id="profileAvatarInput" accept="image/*" hidden>
+      <span class="profile-level-badge" id="profileLevelBadge" aria-hidden="true">⟡</span>
+      <span class="profile-est-seal" aria-hidden="true">EST.<br>2026</span>
+    </div>
+    <div class="profile-eyebrow-row">
+      <div class="profile-eyebrow" id="profileEyebrow"><span class="rank-dot"></span><span id="profileRankLabel" class="i18n-t" data-en="Founder &amp; Creator" data-km="ស្ថាបនិក និង អ្នកបង្កើត">Founder &amp; Creator</span></div>
+    </div>
+    <div class="profile-name-row">
+      <h3 class="profile-name" id="profileNameDisplay" data-text="Phanna Kurosaki">Phanna Kurosaki</h3>
+      <svg class="profile-verified" viewBox="0 0 24 24" aria-label="Verified founder" role="img">
+        <title>Verified founder</title>
+        <path d="M12 1.5 14.4 3.9 17.7 3.3 18.6 6.5 21.6 8.1 20.4 11.3 21.6 14.5 18.6 16.1 17.7 19.3 14.4 18.7 12 21.1 9.6 18.7 6.3 19.3 5.4 16.1 2.4 14.5 3.6 11.3 2.4 8.1 5.4 6.5 6.3 3.3 9.6 3.9 Z" fill="url(#verifiedGrad)"/>
+        <path d="M7.8 11.6 10.4 14.2 16.2 8.4" stroke="#04101c" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <defs>
+          <linearGradient id="verifiedGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#4fe8ff"/>
+            <stop offset="100%" stop-color="#a06bff"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="profile-founder-line i18n-t" data-en="The vision behind PK Khmer Type" data-km="ចក្ខុវិស័យនៅពីក្រោយ PK Khmer Type">The vision behind PK Khmer Type</div>
+    <div class="profile-substats" id="profileSubstats">• 57 lessons shipped · 3 layouts live</div>
+    <div class="profile-xp-track" id="profileXpTrack"><div class="profile-xp-fill" id="profileXpFill"></div></div>
+    <div class="profile-xp-label" id="profileXpLabel"></div>
+    <div class="profile-made-by i18n-t" data-en="Founded by Phanna Kurosaki" data-km="បង្កើតឡើងដោយ Phanna Kurosaki" aria-hidden="true">Founded by Phanna Kurosaki</div>
+    <div class="profile-expand-hint" aria-hidden="true">›</div>
+  </div>
+  <div class="stats-grid" id="profileStatsGrid"></div>
+</div>
+
+<aside class="guide-dock" id="guideDock" aria-label="Khmer typing guide">
+  <div class="guide-dock-header">
+    <span class="gdh-title"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01"/><path d="M10 8h.01"/><path d="M14 8h.01"/><path d="M18 8h.01"/><path d="M6 12h.01"/><path d="M10 12h.01"/><path d="M14 12h.01"/><path d="M18 12h.01"/><path d="M7 16h10"/></svg> <span class="i18n-t" data-en="QUICK GUIDE" data-km="ការណែនាំរហ័ស">QUICK GUIDE</span></span>
+    <span class="gdh-badge i18n-t" data-en="Reference" data-km="ឯកសារយោង">Reference</span>
+  </div>
+
+  <div class="guide-section">
+    <div class="guide-sec-head"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg> <span class="i18n-t" data-en="Home Row Position" data-km="ទីតាំងគ្រាប់ចុចដើម">Home Row Position</span></div>
+    <div class="guide-home-grid">
+      <div class="guide-hand-block">
+        <div class="guide-hand-label"><span class="i18n-t" data-en="Left Hand" data-km="ដៃឆ្វេង">Left Hand</span></div>
+        <div class="guide-key-row">
+          <div class="guide-mini-key" title="Left Pinky"><span class="km-ch">ថ</span><span class="en-ch">F</span></div>
+          <div class="guide-mini-key" title="Left Ring"><span class="km-ch">ង</span><span class="en-ch">G</span></div>
+          <div class="guide-mini-key" title="Left Middle"><span class="km-ch">ដ</span><span class="en-ch">D</span></div>
+          <div class="guide-mini-key" title="Left Index"><span class="km-ch">ស</span><span class="en-ch">S</span></div>
+        </div>
+      </div>
+      <div class="guide-hand-block">
+        <div class="guide-hand-label"><span class="i18n-t" data-en="Right Hand" data-km="ដៃស្ដាំ">Right Hand</span></div>
+        <div class="guide-key-row">
+          <div class="guide-mini-key" title="Right Index"><span class="km-ch">ហ</span><span class="en-ch">H</span></div>
+          <div class="guide-mini-key" title="Right Middle"><span class="km-ch">ញ</span><span class="en-ch">J</span></div>
+          <div class="guide-mini-key" title="Right Ring"><span class="km-ch">ក</span><span class="en-ch">K</span></div>
+          <div class="guide-mini-key" title="Right Pinky"><span class="km-ch">ល</span><span class="en-ch">L</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="guide-sec-head"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg> <span class="i18n-t" data-en="Subscripts (ជើងអក្សរ)" data-km="ជើងព្យញ្ជនៈ">Subscripts (ជើងអក្សរ)</span></div>
+    <div class="guide-rule-item">
+      <div class="guide-rule-row">
+        <span class="i18n-t" data-en="Rule: &lt;kbd class=&quot;guide-kbd&quot;&gt;្&lt;/kbd&gt; + Consonant" data-km="ក្បួន៖ &lt;kbd class=&quot;guide-kbd&quot;&gt;្&lt;/kbd&gt; + ព្យញ្ជនៈ">Rule: <kbd class="guide-kbd">្</kbd> + Consonant</span>
+        <span class="guide-sample">ក + ្ + ក = ក្ក</span>
+      </div>
+      <div class="guide-rule-row">
+        <span class="i18n-t" data-en="Coeng Key" data-km="គ្រាប់ចុចជើង">Coeng Key</span>
+        <span class="guide-sample"><kbd class="guide-kbd">J</kbd> <span class="i18n-t" data-en="(Standard)" data-km="(ស្តង់ដារ)">(Standard)</span></span>
+      </div>
+      <div class="guide-rule-row">
+        <span class="i18n-t" data-en="Example" data-km="ឧទាហរណ៍">Example</span>
+        <span class="guide-sample">ស + ្ + ង = ស្ង</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="guide-sec-head"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> <span class="i18n-t" data-en="Live Session" data-km="សម័យបច្ចុប្បន្ន">Live Session</span></div>
+    <div class="guide-stats-grid">
+      <div class="guide-stat-box">
+        <div class="guide-stat-num" id="gStatKeys">0</div>
+        <div class="guide-stat-lbl i18n-t" data-en="Keys" data-km="គ្រាប់ចុច">Keys</div>
+      </div>
+      <div class="guide-stat-box">
+        <div class="guide-stat-num" id="gStatAcc">100%</div>
+        <div class="guide-stat-lbl i18n-t" data-en="Accuracy" data-km="ភាពសុក្រឹត">Accuracy</div>
+      </div>
+      <div class="guide-stat-box">
+        <div class="guide-stat-num" id="gStatWpm">0</div>
+        <div class="guide-stat-lbl i18n-t" data-en="Speed (WPM)" data-km="ល្បឿន">Speed (WPM)</div>
+      </div>
+      <div class="guide-stat-box">
+        <div class="guide-stat-num" id="gStatMastery">0/0</div>
+        <div class="guide-stat-lbl i18n-t" data-en="Mastered" data-km="ស្ទាត់ជំនាញ">Mastered</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="guide-sec-head"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> <span class="i18n-t" data-en="Shortcuts" data-km="ផ្លូវកាត់">Shortcuts</span></div>
+    <div class="guide-rule-item">
+      <div class="guide-rule-row">
+        <span class="i18n-t" data-en="Type Space" data-km="វាយដកឃ្លា">Type Space</span>
+        <kbd class="guide-kbd">Shift + Space</kbd>
+      </div>
+      <div class="guide-rule-row">
+        <span class="i18n-t" data-en="Shift Layer" data-km="ស្រទាប់ Shift">Shift Layer</span>
+        <kbd class="guide-kbd">Shift</kbd>
+      </div>
+      <div class="guide-rule-row">
+        <span class="i18n-t" data-en="Exit Lesson" data-km="ចាកចេញ">Exit Lesson</span>
+        <kbd class="guide-kbd">Esc</kbd>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<div class="modal-backdrop" id="statsModal" hidden role="dialog" aria-modal="true" aria-labelledby="statsModalTitle">
+  <div class="modal-card stats-card">
+    <div class="stats-header">
+      <div class="modal-top">
+        <h2 id="statsModalTitle"><span class="stats-title-glyph">᯽</span><span class="i18n-t" data-en="Your Statistics" data-km="ស្ថិតិរបស់អ្នក">Your Statistics</span></h2>
+        <button class="modal-close" id="statsCloseBtn" aria-label="Close statistics">&times;</button>
+      </div>
+      <p class="stats-subtitle i18n-t" data-en="Your journey across the keyboard, carved in stone." data-km="ដំណើររបស់អ្នកលើក្តារចុច ដែលឆ្លាក់ក្នុងថ្ម។">Your journey across the keyboard, carved in stone.</p>
+      <div class="stats-hero" id="statsHero"></div>
+    </div>
+    <div class="stats-grid" id="statsGrid"></div>
+    <div class="stats-levels-head">
+      <h3 class="i18n-t" data-en="Progress by Level" data-km="វឌ្ឍនភាពតាមកម្រិត">Progress by Level</h3>
+      <span class="stats-levels-head-line"></span>
+    </div>
+    <div id="statsLessonBars"></div>
+    <div class="stats-levels-head">
+      <h3 class="i18n-t" data-en="Typing Race Records" data-km="កំណត់ត្រាការប្រណាំងវាយអក្សរ"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>Typing Race Records</h3>
+      <span class="stats-levels-head-line"></span>
+    </div>
+    <div id="statsRaceRecords"></div>
+    <div class="stats-levels-head">
+      <h3 class="i18n-t" data-en="Lessons Leaderboard" data-km="តារាងអ្នកឈ្នះមេរៀន"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:6px;"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>Lessons Leaderboard</h3>
+      <span class="stats-levels-head-line"></span>
+    </div>
+    <p class="stats-subtitle i18n-t" id="lessonsLbSubtitle" data-en="See who has mastered the most lessons on this device." data-km="មើលថាអ្នកណាបានស្ទាត់ជំនាញមេរៀនច្រើនជាងគេនៅលើឧបករណ៍នេះ។">See who has mastered the most lessons on this device.</p>
+    <div class="lessons-lb-name-row">
+      <input type="text" class="race-name-input" id="lessonsLbNameInput" maxlength="24" placeholder="Enter your name" autocomplete="off">
+      <button type="button" class="secondary-btn i18n-t" id="lessonsLbSaveBtn" data-en="Save my score" data-km="រក្សាទុកពិន្ទុរបស់ខ្ញុំ">Save my score</button>
+    </div>
+    <ol class="race-lb-list" id="lessonsLbList"></ol>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="settingsModal" hidden role="dialog" aria-modal="true" aria-labelledby="settingsModalTitle">
+  <div class="modal-card">
+    <div class="modal-top">
+      <h2 id="settingsModalTitle" class="i18n-t" data-en="Settings" data-km="ការកំណត់">Settings</h2>
+      <button class="modal-close" id="settingsCloseBtn" aria-label="Close settings">&times;</button>
+    </div>
+
+    <div class="settings-group">
+      <h3 class="i18n-t" data-en="Appearance" data-km="រូបរាង">Appearance</h3>
+      <div class="settings-row">
+        <span class="i18n-t" data-en="Theme" data-km="រូបរាង/ស្បែក">Theme</span>
+        <div class="settings-choice" id="themeChoice">
+          <button data-theme="dark" class="active i18n-t" data-en="Dark" data-km="ងងឹត">Dark</button>
+          <button data-theme="temple" class="i18n-t" data-en="Temple" data-km="ប្រាសាទ">Temple</button>
+          <button data-theme="moonlight" class="i18n-t" data-en="Moonlight" data-km="ពន្លឺព្រះច័ន្ទ">Moonlight</button>
+          <button data-theme="jungle" class="i18n-t" data-en="Jungle" data-km="ព្រៃ">Jungle</button>
+          <button data-theme="sunset" class="i18n-t" data-en="Sunset" data-km="ថ្ងៃលិច">Sunset</button>
+          <button data-theme="sepia" class="i18n-t" data-en="Sepia" data-km="សេពៀ">Sepia</button>
+          <button data-theme="light" class="i18n-t" data-en="Light" data-km="ភ្លឺ">Light</button>
+          <button data-theme="system" class="i18n-t" data-en="System" data-km="ប្រព័ន្ធ">System</button>
+        </div>
+      </div>
+      <div class="settings-row">
+        <span class="i18n-t" data-en="Accent color" data-km="ពណ៌សំខាន់">Accent color</span>
+        <div class="settings-choice accent-choice" id="accentChoice">
+          <button data-accent="gold" class="active" style="--sw:#ffd166" aria-label="Cyan accent"></button>
+          <button data-accent="jade" style="--sw:#5fd694" aria-label="Jade accent"></button>
+          <button data-accent="sapphire" style="--sw:#2dd4a7" aria-label="Sapphire accent"></button>
+          <button data-accent="ruby" style="--sw:#ff5a70" aria-label="Ruby accent"></button>
+        </div>
+      </div>
+      <div class="settings-row">
+        <span class="i18n-t" data-en="Larger text" data-km="អក្សរធំជាង">Larger text</span>
+        <div class="toggle-switch" id="largeTextToggle" role="switch" aria-checked="false" aria-label="Toggle larger text" tabindex="0"></div>
+      </div>
+      <div class="settings-row">
+        <span class="i18n-t" data-en="Compact keyboard" data-km="ក្តារចុចតូចបង្រួម">Compact keyboard</span>
+        <div class="toggle-switch" id="compactKeysToggle" role="switch" aria-checked="false" aria-label="Toggle a smaller, tighter keyboard" tabindex="0"></div>
+      </div>
+      <div class="settings-row wallpaper-settings-row">
+        <div>
+          <span class="i18n-t" data-en="Custom wallpaper" data-km="ផ្ទាំងរូបភាពផ្ទៃខាងក្រោយ">Custom wallpaper</span>
+          <div class="settings-subtext i18n-t" data-en="Set your own background image" data-km="ដាក់រូបភាពផ្ទៃខាងក្រោយតាមចិត្ត">Set your own background image</div>
+        </div>
+        <div class="wallpaper-actions">
+          <input type="file" id="wallpaperFileInput" accept="image/*" style="display:none;">
+          <button type="button" class="wallpaper-btn" id="uploadWallpaperBtn">
+            <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="i18n-t" data-en="Choose Image" data-km="ជ្រើសរើសរូបភាព">Choose Image</span>
+          </button>
+          <button type="button" class="wallpaper-btn" id="urlWallpaperBtn">
+            <span class="i18n-t" data-en="URL" data-km="តំណភ្ជាប់">URL</span>
+          </button>
+          <button type="button" class="wallpaper-btn danger" id="removeWallpaperBtn" style="display:none;">
+            <span class="i18n-t" data-en="Remove" data-km="ដករូបភាពចេញ">Remove</span>
+          </button>
+        </div>
+      </div>
+      <div class="settings-row wallpaper-dim-row" id="wallpaperDimControl" style="display:none;">
+        <span class="i18n-t" data-en="Wallpaper dimming" data-km="បន្ថយពន្លឺរូបភាព">Wallpaper dimming</span>
+        <div class="wallpaper-slider-container">
+          <input type="range" id="wallpaperDimSlider" min="15" max="90" value="65" aria-label="Wallpaper dimming level">
+          <span id="wallpaperDimValue">65%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-group">
+      <h3 class="i18n-t" data-en="Typing" data-km="ការ​វាយ​​អក្សរ">Typing</h3>
+      <div class="settings-row">
+        <span class="i18n-t" data-en="Finger guide" data-km="មគ្គុទ្ទេសក៍ម្រាមដៃ">Finger guide</span>
+        <div class="toggle-switch on" id="settingsHandsToggle" role="switch" aria-checked="true" aria-label="Toggle finger guide" tabindex="0"></div>
+      </div>
+      <div class="settings-row">
+        <span class="i18n-t" data-en="Sound effects" data-km="បែបផែនសំឡេង">Sound effects</span>
+        <div class="toggle-switch on" id="settingsSoundToggle" role="switch" aria-checked="true" aria-label="Toggle sound effects" tabindex="0"></div>
+      </div>
+      <div class="settings-row">
+        <span class="i18n-t" data-en="Shift-key preview" data-km="មើលមុនគ្រាប់ចុច Shift">Shift-key preview</span>
+        <div class="toggle-switch on" id="shiftPreviewToggle" role="switch" aria-checked="true" aria-label="Toggle shift-key corner previews" tabindex="0"></div>
+      </div>
+      <div class="settings-row">
+        <span class="i18n-t" data-en="Highlight next key" data-km="បន្លិចគ្រាប់ចុចបន្ទាប់">Highlight next key</span>
+        <div class="toggle-switch on" id="keyHighlightToggle" role="switch" aria-checked="true" aria-label="Toggle the next-key glow during lessons" tabindex="0"></div>
+      </div>
+      <div class="settings-row">
+        <span class="i18n-t" data-en="Key press effects" data-km="បែបផែនពេលចុចគ្រាប់ចុច">Key press effects</span>
+        <div class="toggle-switch on" id="keyFxToggle" role="switch" aria-checked="true" aria-label="Toggle ripple and ember effects on key press" tabindex="0"></div>
+      </div>
+    </div>
+
+    <div class="settings-group">
+      <h3 class="i18n-t" data-en="Immersion" data-km="បរិយាកាស">Immersion</h3>
+      <div class="settings-row">
+        <span class="i18n-t" data-en="Ember particles" data-km="ភ្លើងបាតុភូតអណ្តែត">Ember particles</span>
+        <div class="toggle-switch on" id="motesToggle" role="switch" aria-checked="true" aria-label="Toggle drifting ember particles" tabindex="0"></div>
+      </div>
+      <div class="settings-row">
+        <span class="i18n-t" data-en="Torch flames" data-km="អណ្តាតភ្លើងចង្កៀង">Torch flames</span>
+        <div class="toggle-switch on" id="torchesToggle" role="switch" aria-checked="true" aria-label="Toggle the side torch flames" tabindex="0"></div>
+      </div>
+      <div class="settings-row">
+        <span class="i18n-t" data-en="Scanline overlay" data-km="ស្រទាប់បន្ទាត់ស្កេន">Scanline overlay</span>
+        <div class="toggle-switch" id="scanlinesToggle" role="switch" aria-checked="false" aria-label="Toggle a holographic scanline overlay" tabindex="0"></div>
+      </div>
+      <div class="settings-row">
+        <span class="i18n-t" data-en="Focus mode" data-km="របៀបផ្តោតអារម្មណ៍">Focus mode</span>
+        <div class="toggle-switch" id="focusModeToggle" role="switch" aria-checked="false" aria-label="Toggle focus mode, dimming everything but the keyboard" tabindex="0"></div>
+      </div>
+    </div>
+
+    <div class="settings-group">
+      <h3 class="i18n-t" data-en="Accessibility" data-km="ភាពងាយស្រួលប្រើ">Accessibility</h3>
+      <div class="settings-row">
+        <span class="i18n-t" data-en="Reduced motion" data-km="កាត់បន្ថយចលនា">Reduced motion</span>
+        <div class="toggle-switch" id="reducedMotionToggle" role="switch" aria-checked="false" aria-label="Toggle reduced motion" tabindex="0"></div>
+      </div>
+      <div class="settings-row">
+        <span class="i18n-t" data-en="High contrast" data-km="កម្រិតពណ៌ខ្ពស់">High contrast</span>
+        <div class="toggle-switch" id="highContrastToggle" role="switch" aria-checked="false" aria-label="Toggle high contrast" tabindex="0"></div>
+      </div>
+    </div>
+
+    <div class="settings-group">
+      <h3 class="i18n-t" data-en="Progress" data-km="វឌ្ឍនភាព">Progress</h3>
+      <div class="settings-btn-row">
+        <button class="secondary-btn" id="exportProgressBtn"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span class="i18n-t" data-en="Export Backup" data-km="នាំចេញការបម្រុងទុក">Export Backup</span></button>
+        <button class="secondary-btn" id="importProgressBtn"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> <span class="i18n-t" data-en="Import Backup" data-km="នាំចូលការបម្រុងទុក">Import Backup</span></button>
+        <input type="file" id="importProgressInput" accept="application/json" hidden>
+      </div>
+      <button class="reset-btn i18n-t" data-en="Reset All Progress" data-km="កំណត់វឌ្ឍនភាពទាំងអស់ឡើងវិញ" id="resetProgressBtn">Reset All Progress</button>
+    </div>
+
+    <div class="settings-group">
+      <h3 class="i18n-t" data-en="About" data-km="អំពី">About</h3>
+      <p class="settings-about-text i18n-t" data-en="&lt;b&gt;PK Khmer Type — Layer Viewer &amp;amp; Typing Trainer.&lt;/b&gt;&lt;br&gt;All progress and settings are stored locally in this browser only — nothing is sent anywhere." data-km="&lt;b&gt;PK Khmer Type — កម្មវិធីមើលស្រទាប់ និងហ្វឹកហាត់វាយអក្សរ។&lt;/b&gt;&lt;br&gt;វឌ្ឍនភាព និងការកំណត់ទាំងអស់ត្រូវបានរក្សាទុកនៅក្នុងកម្មវិធីរុករកនេះប៉ុណ្ណោះ — គ្មានអ្វីត្រូវបានផ្ញើទៅកន្លែងណាឡើយ។"><b>PK Khmer Type — Layer Viewer &amp; Typing Trainer.</b><br>All progress and settings are stored locally in this browser only — nothing is sent anywhere.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ================= Keyboard shortcuts modal ================= -->
+<div class="modal-backdrop" id="shortcutsModal" hidden role="dialog" aria-modal="true" aria-labelledby="shortcutsModalTitle">
+  <div class="modal-card shortcuts-card">
+    <div class="modal-top">
+      <h2 id="shortcutsModalTitle"><span class="i18n-t" data-en="Keyboard Shortcuts" data-km="ផ្លូវកាត់ក្តារចុច">Keyboard Shortcuts</span></h2>
+      <button class="modal-close" id="shortcutsCloseBtn" aria-label="Close shortcuts">&times;</button>
+    </div>
+
+    <div class="shortcuts-section">
+      <h3 class="shortcuts-section-title i18n-t" data-en="Editing &amp; Clipboard" data-km="ការកែសម្រួល និងក្ដារខ្ទាស់">Editing &amp; Clipboard</h3>
+      <div class="shortcuts-grid">
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Copy text" data-km="ចម្លងអត្ថបទ">Copy text</span>
+          <span class="shortcut-keys"><kbd>Ctrl</kbd><span class="shortcut-plus">+</span><kbd>C</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Paste text" data-km="បិទភ្ជាប់អត្ថបទ">Paste text</span>
+          <span class="shortcut-keys"><kbd>Ctrl</kbd><span class="shortcut-plus">+</span><kbd>V</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Cut text" data-km="កាត់អត្ថបទ">Cut text</span>
+          <span class="shortcut-keys"><kbd>Ctrl</kbd><span class="shortcut-plus">+</span><kbd>X</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Select all" data-km="ជ្រើសទាំងអស់">Select all</span>
+          <span class="shortcut-keys"><kbd>Ctrl</kbd><span class="shortcut-plus">+</span><kbd>A</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Undo typing" data-km="មិនធ្វើវិញ">Undo typing</span>
+          <span class="shortcut-keys"><kbd>Ctrl</kbd><span class="shortcut-plus">+</span><kbd>Z</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Redo typing" data-km="ធ្វើវិញ">Redo typing</span>
+          <span class="shortcut-keys"><kbd>Ctrl</kbd><span class="shortcut-plus">+</span><kbd>Y</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Delete previous word" data-km="លុបពាក្យមុន">Delete previous word</span>
+          <span class="shortcut-keys"><kbd>Ctrl</kbd><span class="shortcut-plus">+</span><kbd>Bksp</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Clear manuscript" data-km="សម្អាតអត្ថបទ">Clear manuscript</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>C</kbd></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shortcuts-section">
+      <h3 class="shortcuts-section-title i18n-t" data-en="Controls &amp; Layout" data-km="ការគ្រប់គ្រង និងប្លង់">Controls &amp; Layout</h3>
+      <div class="shortcuts-grid">
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Focus Mode" data-km="របៀបផ្ដោត">Focus Mode</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>F</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Toggle Key Sound" data-km="បិទ/បើក សំឡេង">Toggle Key Sound</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>S</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Toggle Finger Guide" data-km="បិទ/បើក មគ្គុទ្ទេសក៍ដៃ">Toggle Finger Guide</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>H</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Toggle Ambience" data-km="បិទ/បើក បរិយាកាស">Toggle Ambience</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>T</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Switch Language" data-km="ប្តូរភាសា">Switch Language</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>L</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Khmer Layout" data-km="ប្លង់ក្តារចុចខ្មែរ">Khmer Layout</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>1</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Khmer NiDA Layout" data-km="ប្លង់ក្តារចុច Khmer NiDA">Khmer NiDA Layout</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>2</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="English (US) Layout" data-km="ប្លង់ English (US)">English (US) Layout</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>3</kbd></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shortcuts-section">
+      <h3 class="shortcuts-section-title i18n-t" data-en="Navigation &amp; Practice" data-km="ការរុករក និងការអនុវត្ត">Navigation &amp; Practice</h3>
+      <div class="shortcuts-grid">
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Restart Lesson / Race" data-km="ចាប់ផ្តើមមេរៀនឡើងវិញ">Restart Lesson / Race</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>R</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Open Settings" data-km="បើកការកំណត់">Open Settings</span>
+          <span class="shortcut-keys"><kbd>Ctrl</kbd><span class="shortcut-plus">+</span><kbd>,</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Open Statistics" data-km="បើកស្ថិតិ">Open Statistics</span>
+          <span class="shortcut-keys"><kbd>Alt</kbd><span class="shortcut-plus">+</span><kbd>P</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Shortcuts Guide" data-km="មគ្គុទ្ទេសក៍ផ្លូវកាត់">Shortcuts Guide</span>
+          <span class="shortcut-keys"><kbd>?</kbd></span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-label i18n-t" data-en="Close / Cancel" data-km="បិទ / បោះបង់">Close / Cancel</span>
+          <span class="shortcut-keys"><kbd>Esc</kbd></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= Authentication modal ================= -->
+<div class="modal-backdrop auth-backdrop" id="authModal" hidden role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+  <div class="auth-ambient" aria-hidden="true"><span class="auth-orb auth-orb-1"></span><span class="auth-orb auth-orb-2"></span></div>
+  <div class="modal-card auth-card" id="authCard">
+
+    <div class="modal-top">
+      <h2 id="authModalTitle"><span class="auth-title-icon" aria-hidden="true"><svg class="pk-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="12" r="3"/><path d="M11 12h9m-3 0v3m3-3v2"/></svg></span><span id="authModalTitleText">Sign In</span></h2>
+      <button class="modal-close" id="authCloseBtn" aria-label="Close authentication">&times;</button>
+    </div>
+
+    <div class="auth-tabs" id="authTabs" role="tablist" aria-label="Sign in or create an account">
+      <button type="button" class="auth-tab active i18n-t" data-en="Sign In" data-km="ចូល" id="authTabSignIn" role="tab" aria-selected="true">Sign In</button>
+      <button type="button" class="auth-tab i18n-t" data-en="Sign Up" data-km="ចុះឈ្មោះ" id="authTabSignUp" role="tab" aria-selected="false">Sign Up</button>
+      <span class="auth-tab-thumb" aria-hidden="true"></span>
+    </div>
+
+    <div class="auth-panels" id="authPanels">
+
+      <!-- ---------- Sign In ---------- -->
+      <form class="auth-panel auth-panel-signin" id="signInForm" novalidate autocomplete="on">
+        <p class="auth-subtitle">Welcome back — your training awaits.</p>
+
+        <div class="auth-field">
+          <label for="signInIdentifier">Email or username</label>
+          <div class="auth-input-wrap">
+            <span class="auth-input-icon" aria-hidden="true"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+            <input type="text" id="signInIdentifier" name="identifier" autocomplete="username" aria-describedby="signInIdentifierError" required>
+          </div>
+          <p class="auth-field-error" id="signInIdentifierError" role="alert"></p>
+        </div>
+
+        <div class="auth-field">
+          <label for="signInPassword">Password</label>
+          <div class="auth-password-wrap">
+            <span class="auth-input-icon" aria-hidden="true"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+            <input type="password" id="signInPassword" name="password" autocomplete="current-password" aria-describedby="signInPasswordError" required>
+            <button type="button" class="auth-toggle-pw" data-target="signInPassword" aria-label="Show password" aria-pressed="false"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 6.5 12 6.5s9.5 5.5 9.5 5.5-3.5 5.5-9.5 5.5S2.5 12 2.5 12"/><circle cx="12" cy="12" r="2"/></svg></button>
+          </div>
+          <p class="auth-field-error" id="signInPasswordError" role="alert"></p>
+        </div>
+
+        <div class="auth-row-between auth-row-end">
+          <button type="button" class="auth-link-btn" id="forgotPasswordLink">Forgot password?</button>
+        </div>
+
+        <p class="auth-form-error" id="signInFormError" role="alert" hidden></p>
+
+        <button type="submit" class="auth-submit-btn" id="signInSubmitBtn">
+          <span class="auth-submit-label">Sign In</span>
+          <span class="auth-submit-spinner" aria-hidden="true"></span>
+        </button>
+
+        <p class="auth-switch">Don't have an account? <button type="button" class="auth-link-btn" id="gotoSignUpBtn">Sign Up</button></p>
+        <p class="auth-session-note"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:4px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>You'll stay signed in on this device until you sign out.</p>
+      </form>
+
+      <!-- ---------- Sign Up ---------- -->
+      <form class="auth-panel auth-panel-signup" id="signUpForm" novalidate autocomplete="on" hidden>
+        <p class="auth-subtitle">Create your account and begin mastering Khmer.</p>
+
+        <div class="auth-field">
+          <label for="signUpUsername">Username</label>
+          <div class="auth-input-wrap">
+            <span class="auth-input-icon" aria-hidden="true"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+            <input type="text" id="signUpUsername" name="username" autocomplete="username" aria-describedby="signUpUsernameError" required minlength="3" maxlength="24">
+          </div>
+          <p class="auth-field-error" id="signUpUsernameError" role="alert"></p>
+        </div>
+
+        <div class="auth-field">
+          <label for="signUpEmail">Email</label>
+          <div class="auth-input-wrap">
+            <span class="auth-input-icon" aria-hidden="true"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+            <input type="email" id="signUpEmail" name="email" autocomplete="email" aria-describedby="signUpEmailError" required>
+          </div>
+          <p class="auth-field-error" id="signUpEmailError" role="alert"></p>
+        </div>
+
+        <div class="auth-field">
+          <label for="signUpPassword">Password</label>
+          <div class="auth-password-wrap">
+            <span class="auth-input-icon" aria-hidden="true"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+            <input type="password" id="signUpPassword" name="new-password" autocomplete="new-password" aria-describedby="signUpPasswordError authPasswordStrengthLabel" required minlength="8">
+            <button type="button" class="auth-toggle-pw" data-target="signUpPassword" aria-label="Show password" aria-pressed="false"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 6.5 12 6.5s9.5 5.5 9.5 5.5-3.5 5.5-9.5 5.5S2.5 12 2.5 12"/><circle cx="12" cy="12" r="2"/></svg></button>
+          </div>
+          <div class="auth-strength-wrap" aria-hidden="true">
+            <div class="auth-strength-bars">
+              <div class="auth-strength-bar" id="authBar1"></div>
+              <div class="auth-strength-bar" id="authBar2"></div>
+              <div class="auth-strength-bar" id="authBar3"></div>
+              <div class="auth-strength-bar" id="authBar4"></div>
+            </div>
+            <p class="auth-strength-label" id="authPasswordStrengthLabel">Strength: <b>—</b></p>
+          </div>
+          <p class="auth-field-error" id="signUpPasswordError" role="alert"></p>
+        </div>
+
+        <div class="auth-field">
+          <label for="signUpConfirmPassword">Confirm password</label>
+          <div class="auth-password-wrap">
+            <span class="auth-input-icon" aria-hidden="true"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+            <input type="password" id="signUpConfirmPassword" name="confirm-password" autocomplete="new-password" aria-describedby="signUpConfirmError" required>
+            <button type="button" class="auth-toggle-pw" data-target="signUpConfirmPassword" aria-label="Show password" aria-pressed="false"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 6.5 12 6.5s9.5 5.5 9.5 5.5-3.5 5.5-9.5 5.5S2.5 12 2.5 12"/><circle cx="12" cy="12" r="2"/></svg></button>
+          </div>
+          <p class="auth-field-error" id="signUpConfirmError" role="alert"></p>
+        </div>
+
+        <label class="auth-checkbox auth-terms-row">
+          <input type="checkbox" id="signUpTerms" required aria-describedby="signUpTermsError">
+          <span>I agree to the <button type="button" class="auth-link-btn auth-terms-link" id="authTermsLink">Terms &amp; Conditions</button></span>
+        </label>
+        <p class="auth-field-error" id="signUpTermsError" role="alert"></p>
+
+        <p class="auth-form-error" id="signUpFormError" role="alert" hidden></p>
+
+        <button type="submit" class="auth-submit-btn" id="signUpSubmitBtn">
+          <span class="auth-submit-label">Create Account</span>
+          <span class="auth-submit-spinner" aria-hidden="true"></span>
+        </button>
+
+        <p class="auth-switch">Already have an account? <button type="button" class="auth-link-btn" id="gotoSignInBtn">Sign In</button></p>
+      </form>
+
+      <!-- ---------- Forgot password ---------- -->
+      <form class="auth-panel auth-panel-forgot" id="forgotForm" novalidate hidden>
+        <p class="auth-subtitle">Enter your account email and we'll send a reset link.</p>
+
+        <div class="auth-field">
+          <label for="forgotEmail">Email</label>
+          <div class="auth-input-wrap">
+            <span class="auth-input-icon" aria-hidden="true"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+            <input type="email" id="forgotEmail" name="email" autocomplete="email" aria-describedby="forgotEmailError" required>
+          </div>
+          <p class="auth-field-error" id="forgotEmailError" role="alert"></p>
+        </div>
+
+        <p class="auth-form-error" id="forgotFormError" role="alert" hidden></p>
+        <p class="auth-form-note" id="forgotFormNote" hidden></p>
+
+        <button type="submit" class="auth-submit-btn" id="forgotSubmitBtn">
+          <span class="auth-submit-label">Send Reset Link</span>
+          <span class="auth-submit-spinner" aria-hidden="true"></span>
+        </button>
+
+        <p class="auth-switch"><button type="button" class="auth-link-btn" id="backToSignInBtn">← Back to Sign In</button></p>
+      </form>
+
+      <!-- ---------- Signed-in account panel ---------- -->
+      <div class="auth-panel auth-panel-account" id="accountPanel" hidden>
+
+        <div class="acc-session-pill" id="accSessionPill"><span class="acc-session-dot" aria-hidden="true"></span>Signed in on this device</div>
+
+        <div class="acc-hero">
+          <div class="acc-avatar-wrap">
+            <div class="auth-account-avatar" id="authAccountAvatar" aria-hidden="true"><svg class="pk-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <button type="button" class="acc-avatar-edit" id="accAvatarEditBtn" title="Change profile picture" aria-label="Change profile picture"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg></button>
+            <input type="file" id="accAvatarInput" accept="image/*" hidden>
+          </div>
+          <div class="acc-hero-text">
+            <p class="auth-account-name" id="authAccountName">—</p>
+            <p class="acc-rank-badge" id="authAccountRank">Novice Scribe</p>
+            <p class="auth-account-email" id="authAccountEmail">—</p>
+          </div>
+        </div>
+
+        <div class="acc-meta-row">
+          <span class="acc-meta-item"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><rect width="18" height="18" x="3" y="4" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Member since <b id="authAccountJoined">—</b></span>
+        </div>
+
+        <div class="acc-xp-track" id="accXpTrack" aria-hidden="true"><div class="acc-xp-fill" id="accXpFill"></div></div>
+        <div class="acc-xp-label" id="accXpLabel">Next rank at —</div>
+
+        <div class="acc-stats-grid" id="accountStatsGrid" aria-label="Your progress stats"></div>
+
+        <div class="acc-action-row">
+          <button type="button" class="secondary-btn" id="accountViewStatsBtn"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Full Statistics</button>
+          <button type="button" class="secondary-btn" id="accountSettingsBtn"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33 1.65 1.65 0 0 0 1.51-1V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Settings</button>
+        </div>
+
+        <button type="button" class="auth-submit-btn auth-signout-btn" id="signOutBtn">
+          <span class="auth-submit-label">Sign Out</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ================= Terms & Conditions modal ================= -->
+<div class="modal-backdrop terms-backdrop" id="termsModal" hidden role="dialog" aria-modal="true" aria-labelledby="termsModalTitle">
+  <div class="modal-card terms-card" id="termsCard">
+    <div class="terms-glow" aria-hidden="true"></div>
+
+    <div class="terms-top">
+      <div class="terms-badge" aria-hidden="true"><svg class="pk-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="10" y1="6" x2="16" y2="6"/><line x1="10" y1="10" x2="14" y2="10"/></svg></div>
+      <div>
+        <h2 id="termsModalTitle" class="i18n-t" data-en="Terms &amp;amp; Conditions" data-km="ខចែងលក្ខខណ្ឌ">Terms &amp; Conditions</h2>
+        <p class="terms-subtitle i18n-t" data-en="PK Khmer Type — demo account system" data-km="PK Khmer Type — ប្រព័ន្ធគណនីសាកល្បង">PK Khmer Type — demo account system</p>
+      </div>
+      <button class="modal-close" id="termsCloseBtn" aria-label="Close Terms &amp; Conditions">&times;</button>
+    </div>
+
+    <div class="terms-body">
+      <div class="terms-notice">
+        <span class="terms-notice-icon" aria-hidden="true"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 21 7.2 21 16.8 12 22 3 16.8 3 7.2"/><path d="M12 8v5"/><circle cx="12" cy="16.5" r="1" fill="currentColor"/></svg></span>
+        <span>This is a <b>demo account system</b>. No real personal data should be entered — accounts exist only in this browser.</span>
+      </div>
+
+      <div class="terms-section">
+        <h3><span class="terms-section-num">01</span>Where your data lives</h3>
+        <p>Everything you enter — username, email, and a hashed password — is saved to this browser's local storage. Nothing is sent to a server, and nothing leaves this device.</p>
+      </div>
+
+      <div class="terms-section">
+        <h3><span class="terms-section-num">02</span>Password handling</h3>
+        <p>Passwords are never stored as plain text. Each one is combined with a random salt and hashed with SHA-256 before it touches storage. This is still not real-world security — it simply avoids the most obvious mistake.</p>
+      </div>
+
+      <div class="terms-section">
+        <h3><span class="terms-section-num">03</span>Staying signed in</h3>
+        <p>Once you sign in, your session is kept on this device until you explicitly sign out — including after refreshing the page or navigating back and forward.</p>
+      </div>
+
+      <div class="terms-section">
+        <h3><span class="terms-section-num">04</span>Clearing your data</h3>
+        <p>Clearing your browser's site data, using a different browser, or switching devices will remove your demo account. There is no recovery — this is a local-only trainer, not a hosted service.</p>
+      </div>
+    </div>
+
+    <button type="button" class="auth-submit-btn terms-ack-btn" id="termsAckBtn">
+      <span class="auth-submit-label">I Understand</span>
+    </button>
+  </div>
+</div>
+
+<div class="modal-backdrop temple-confirm-backdrop" id="templeConfirmModal" hidden role="alertdialog" aria-modal="true" aria-labelledby="templeConfirmTitle" aria-describedby="templeConfirmMsg">
+  <div class="modal-card temple-confirm-card">
+    <div class="temple-confirm-icon" id="templeConfirmIcon"><svg class="pk-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 21 7.2 21 16.8 12 22 3 16.8 3 7.2"/><path d="M12 8v5"/><circle cx="12" cy="16.5" r="1" fill="currentColor"/></svg></div>
+    <h2 class="temple-confirm-title i18n-t" id="templeConfirmTitle" data-en="Are you sure?" data-km="តើអ្នកប្រាកដទេ?">Are you sure?</h2>
+    <p class="temple-confirm-msg i18n-t" id="templeConfirmMsg" data-en="This action cannot be undone." data-km="សកម្មភាពនេះមិនអាចត្រឡប់វិញបានទេ។">This action cannot be undone.</p>
+    <div class="temple-confirm-actions">
+      <button type="button" class="secondary-btn temple-confirm-cancel" id="templeConfirmCancelBtn">Cancel</button>
+      <button type="button" class="reset-btn temple-confirm-ok" id="templeConfirmOkBtn">Continue</button>
+    </div>
+  </div>
+</div>
+
+<div class="site-crest-icon" id="siteLogo" aria-hidden="true" title="PK Khmer Type">
+  <img src="logo.svg" alt="PK Logo" width="52" height="52">
+</div>
+
+<h1><span class="km">ក ខ គ</span>PK Khmer Type</h1>
+<p class="subtitle i18n-t" id="mainSubtitle" data-en="Rest your pointer on &lt;kbd&gt;Shift&lt;/kbd&gt;, &lt;kbd&gt;Ctrl&lt;/kbd&gt;, or &lt;kbd&gt;AltGr&lt;/kbd&gt; to preview a layer — click to pin it, click keys to type, or just use your real keyboard." data-km="ដាក់ព្រួញកណ្ដុរលើ &lt;kbd&gt;Shift&lt;/kbd&gt;, &lt;kbd&gt;Ctrl&lt;/kbd&gt; ឬ &lt;kbd&gt;AltGr&lt;/kbd&gt; ដើម្បីមើលស្រទាប់ជាមុន — ចុចដើម្បីភ្ជាប់វា ចុចគ្រាប់ចុចដើម្បីវាយ ឬគ្រាន់តែប្រើក្តារចុចពិតរបស់អ្នក។">Rest your pointer on <kbd>Shift</kbd>, <kbd>Ctrl</kbd>, or <kbd>AltGr</kbd> to preview a layer — click to pin it, click keys to type, or just use your real keyboard.</p>
+<div class="founder-byline">
+  <span class="founder-byline-mark" aria-hidden="true">&bull;</span>
+  <span class="i18n-t" data-en="Founded &amp;amp; built by &lt;strong&gt;Phanna Kurosaki&lt;/strong&gt;" data-km="បង្កើត និងសាងសង់ដោយ &lt;strong&gt;Phanna Kurosaki&lt;/strong&gt;">Founded &amp; built by <strong>Phanna Kurosaki</strong></span>
+</div>
+
+<div class="layout-strip" id="layoutStrip" role="tablist" aria-label="Keyboard layout">
+  <div class="layout-pill active i18n-t" data-layout="standard" data-en="Khmer Keyboard Layout" data-km="ប្លង់ក្តារចុចខ្មែរ" role="tab" tabindex="0" aria-selected="true">Khmer Keyboard Layout</div>
+  <div class="layout-pill i18n-t" data-layout="nida" data-en="Khmer NiDA Keyboard" data-km="ក្តារចុច Khmer NiDA" role="tab" tabindex="0" aria-selected="false">Khmer NiDA Keyboard</div>
+  <div class="layout-pill i18n-t" data-layout="english" data-en="English (US)" data-km="English (US)" role="tab" tabindex="0" aria-selected="false">English (US)</div>
+</div>
+
+<div class="session-bar" id="sessionBar">
+  <div class="session-stat"><span class="session-stat-val" id="statKeys">0</span><span class="session-stat-label i18n-t" data-en="Keys Typed" data-km="គ្រាប់ចុចបានវាយ">Keys Typed</span></div>
+  <div class="session-stat"><span class="session-stat-val" id="statAccuracy">100%</span><span class="session-stat-label i18n-t" data-en="Accuracy" data-km="ភាពត្រឹមត្រូវ">Accuracy</span></div>
+  <div class="session-stat"><span class="session-stat-val" id="statWpm">0</span><span class="session-stat-label i18n-t" data-en="WPM" data-km="WPM (ពាក្យ/នាទី)">WPM</span></div>
+  <div class="session-stat mastery-stat"><span class="session-stat-val" id="statMastery">0/0</span><span class="session-stat-label i18n-t" data-en="Lessons Mastered" data-km="មេរៀនបានស្ទាត់ជំនាញ">Lessons Mastered</span></div>
+</div>
+
+<div class="layer-strip">
+  <div class="layer-pill i18n-t" data-pill="base" data-en="Base — Khmer" data-km="Base — ខ្មែរ">Base — Khmer</div>
+  <div class="layer-pill i18n-t" data-pill="shift" data-en="Shift — Voiced consonants" data-km="Shift — ព្យញ្ជនៈឃោសៈ">Shift — Voiced consonants</div>
+  <div class="layer-pill pill-ctrl i18n-t" data-pill="ctrl" data-en="Ctrl — Currency &amp; punctuation" data-km="Ctrl — រូបិយប័ណ្ណ និងសញ្ញា">Ctrl — Currency &amp; punctuation</div>
+  <div class="layer-pill pill-altgr i18n-t" data-pill="altgr" data-en="AltGr — Numerals &amp; clusters" data-km="AltGr — លេខ និងបណ្ដុំអក្សរ">AltGr — Numerals &amp; clusters</div>
+</div>
+
+<div class="manuscript notranslate" id="manuscript" translate="no">
+  <div class="manuscript-label"><span class="i18n-t" data-en="Type here" data-km="វាយនៅទីនេះ">Type here</span><span style="display:flex;gap:8px;"><button id="copyBtn" class="i18n-t" data-en="Copy" data-km="ចម្លង"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy</button><button id="clearBtn" class="i18n-t" data-en="Clear" data-km="សម្អាត"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg> Clear</button></span></div>
+  <div class="manuscript-text notranslate" id="output" translate="no"><span class="manuscript-placeholder i18n-t" id="placeholder" data-en="Click a key, or just start typing on your keyboard…" data-km="ចុចគ្រាប់ចុច ឬចាប់ផ្តើមវាយលើក្តារចុចរបស់អ្នក…">Click a key, or just start typing on your keyboard…</span><span class="cursor"></span></div>
+</div>
+
+<div class="lesson-strip notranslate" id="lessonStrip" translate="no">
+  <div class="lesson-strip-header">
+    <span class="lsh-title"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path><line x1="10" y1="6" x2="16" y2="6"></line><line x1="10" y1="10" x2="14" y2="10"></line></svg> LESSONS</span>
+    <div class="lsh-actions">
+      <button type="button" class="lsh-adaptive-btn" id="lshAdaptiveBtn" title="Launch Adaptive Practice">
+        <svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        <span class="i18n-t" data-en="Adaptive" data-km="បន្ស៊ាំ">Adaptive</span>
+      </button>
+      <span class="lsh-badge" title="0/60 Lessons Mastered"><span class="lsh-badge-num">0/60</span> <span class="lsh-badge-txt">Mastered</span></span>
+      <button type="button" class="lsh-expand-btn" id="lshExpandBtn" title="Expand sidebar (2 columns)" aria-label="Toggle sidebar width">
+        <svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+      </button>
+    </div>
+  </div>
+  <div class="adaptive-sidebar-card" id="adaptiveSidebarCard">
+    <div class="asc-left">
+      <div class="asc-title">
+        <svg class="pk-icon asc-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        <span class="i18n-t" data-en="Adaptive Practice" data-km="ការអនុវត្តបន្ស៊ាំ">Adaptive Practice</span>
+      </div>
+      <div class="asc-sub" id="adaptiveSidebarSub">Focus: E N I A R L</div>
+    </div>
+    <button type="button" class="asc-btn" id="adaptiveStartBtn">
+      <span class="i18n-t" data-en="Train" data-km="ហាត់">Train</span>
+    </button>
+  </div>
+  <div class="lesson-level-header" data-level="1">
+    <span class="llh-chevron"><svg class="pk-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg></span>
+    <span>Level 1 · Home Row Basics</span>
+  </div>
+  <div class="lesson-level-list">
+    <div class="lesson-card" data-lesson="1">
+      <div class="lesson-card-num">01</div>
+      <div class="lesson-card-info">
+        <div class="lesson-card-head">
+          <span class="lesson-card-title">Home Row — Index Anchors (F &amp; J)</span>
+          <span class="lesson-card-type type-intro">intro</span>
+        </div>
+        <div class="lesson-card-sub">Left Index F (ថ) · Right Index J (ញ)</div>
+        <div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> <span class="lce-chip">ថ ថ</span> <span class="lce-chip">ញ ញ</span> <span class="lce-chip">ថថ ញញ</span></div>
+      </div>
+    </div>
+    <div class="lesson-card locked" data-lesson="2">
+      <div class="lesson-card-num">02</div>
+      <div class="lesson-card-info">
+        <div class="lesson-card-head">
+          <span class="lesson-card-title">Home Row — Middle Fingers (D &amp; K)</span>
+          <span class="lesson-card-type type-intro">intro</span>
+          <span class="lesson-card-lock"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+        </div>
+        <div class="lesson-card-sub">Left Middle D (ដ) · Right Middle K (ក)</div>
+        <div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> <span class="lce-chip">ដ ដ</span> <span class="lce-chip">ក ក</span> <span class="lce-chip">ដដ កក</span></div>
+      </div>
+    </div>
+    <div class="lesson-card locked" data-lesson="3">
+      <div class="lesson-card-num">03</div>
+      <div class="lesson-card-info">
+        <div class="lesson-card-head">
+          <span class="lesson-card-title">Home Row — 4 Keys Combined</span>
+          <span class="lesson-card-type type-combo">combo</span>
+          <span class="lesson-card-lock"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+        </div>
+        <div class="lesson-card-sub">Index &amp; Middle Anchors · ថ ញ ដ ក</div>
+        <div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> <span class="lce-chip">ថដ</span> <span class="lce-chip">ញក</span> <span class="lce-chip">ដក</span></div>
+      </div>
+    </div>
+    <div class="lesson-card locked" data-lesson="4">
+      <div class="lesson-card-num">04</div>
+      <div class="lesson-card-info">
+        <div class="lesson-card-head">
+          <span class="lesson-card-title">Home Row — Index Reach (G &amp; H)</span>
+          <span class="lesson-card-type type-intro">intro</span>
+          <span class="lesson-card-lock"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+        </div>
+        <div class="lesson-card-sub">Left Reach G (ង) · Right Reach H (ហ)</div>
+        <div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> <span class="lce-chip">ង ង</span> <span class="lce-chip">ហ ហ</span> <span class="lce-chip">ថង</span></div>
+      </div>
+    </div>
+    <div class="lesson-card locked" data-lesson="5">
+      <div class="lesson-card-num">05</div>
+      <div class="lesson-card-info">
+        <div class="lesson-card-head">
+          <span class="lesson-card-title">Home Row — Center 6 Keys</span>
+          <span class="lesson-card-type type-combo">combo</span>
+          <span class="lesson-card-lock"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+        </div>
+        <div class="lesson-card-sub">All Index &amp; Middle Keys · ថ ញ ដ ក ង ហ</div>
+        <div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> <span class="lce-chip">កក</span> <span class="lce-chip">ដក</span> <span class="lce-chip">ងហ</span></div>
+      </div>
+    </div>
+    <div class="lesson-card locked" data-lesson="6">
+      <div class="lesson-card-num">06</div>
+      <div class="lesson-card-info">
+        <div class="lesson-card-head">
+          <span class="lesson-card-title">Home Row — Ring Fingers (S &amp; L)</span>
+          <span class="lesson-card-type type-intro">intro</span>
+          <span class="lesson-card-lock"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+        </div>
+        <div class="lesson-card-sub">Left Ring S (ស) · Right Ring L (ល)</div>
+        <div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> <span class="lce-chip">ស ស</span> <span class="lce-chip">ល ល</span> <span class="lce-chip">សល</span></div>
+      </div>
+    </div>
+    <div class="lesson-card locked" data-lesson="7">
+      <div class="lesson-card-num">07</div>
+      <div class="lesson-card-info">
+        <div class="lesson-card-head">
+          <span class="lesson-card-title">Home Row — Pinky Keys &amp; Vowel A</span>
+          <span class="lesson-card-type type-intro">intro</span>
+          <span class="lesson-card-lock"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+        </div>
+        <div class="lesson-card-sub">Left Pinky A (ា) · Right Pinky ; (ះ) &amp; ' (់)</div>
+        <div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> <span class="lce-chip">កា</span> <span class="lce-chip">សា</span> <span class="lce-chip">ដា</span></div>
+      </div>
+    </div>
+    <div class="lesson-card locked" data-lesson="8">
+      <div class="lesson-card-num">08</div>
+      <div class="lesson-card-info">
+        <div class="lesson-card-head">
+          <span class="lesson-card-title">Home Row Words — Complete Home Row</span>
+          <span class="lesson-card-type type-words">words</span>
+          <span class="lesson-card-lock"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+        </div>
+        <div class="lesson-card-sub">Real Khmer words from Home Row keys</div>
+        <div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> <span class="lce-chip">សាលា</span> <span class="lce-chip">កាក់</span> <span class="lce-chip">ដាក់</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p id="lessonUnavailableNote" style="display:none; width:min(86vw,780px); text-align:center; color:var(--ink-dim); font-size:0.75rem; letter-spacing:0.03em; padding:8px 10px 4px;">Lessons &amp; Temple Trial are built around the <b>Khmer Keyboard Layout</b>. Switch back to it above to practice.</p>
+
+<div class="lesson-panel" id="lessonPanel" hidden>
+  <div class="lesson-top">
+    <span id="lessonTitle" class="i18n-t" data-en="Lesson" data-km="មេរៀន">Lesson</span>
+    <span><b id="lessonProgressVal">0</b>/<span id="lessonTotalVal">0</span></span>
+  </div>
+  <div class="lesson-meta-row">
+    <span class="lesson-meta-badge" id="lessonMetaBadge">Level 1</span>
+    <span class="lesson-meta-best" id="lessonMetaBest"></span>
+  </div>
+  <div class="lesson-newkeys" id="lessonNewKeys" hidden></div>
+  <div class="lesson-progress-bar"><div class="lesson-progress-fill" id="lessonProgressFill"></div></div>
+  <div class="lesson-char-row" id="lessonCharRow"></div>
+  <div class="lesson-live-hint" id="lessonLiveHint" hidden></div>
+  <div class="lesson-stats">
+    <span><span class="i18n-t" data-en="Accuracy" data-km="ភាពសុក្រឹត">Accuracy</span> <b id="lessonAccVal">100%</b></span>
+    <span id="lessonWpmWrap"><span class="i18n-t" data-en="WPM" data-km="WPM">WPM</span> <b id="lessonWpmVal">0</b></span>
+    <span id="lessonStreakWrap"><span class="i18n-t" data-en="Streak" data-km="ពិន្ទុបន្ត">Streak</span> <b id="lessonStreakVal">0</b></span>
+    <span><span class="i18n-t" data-en="Mistakes" data-km="កំហុស">Mistakes</span> <b id="lessonMistakesVal">0</b></span>
+    <span id="lessonBackspacesWrap"><span class="i18n-t" data-en="Fixes" data-km="កែ">Fixes</span> <b id="lessonBackspacesVal">0</b></span>
+    <button id="lessonExitBtn" class="i18n-t" data-en="Exit Lesson" data-km="ចាកចេញពីមេរៀន">Exit Lesson</button>
+  </div>
+</div>
+
+<div class="lesson-panel adaptive-panel" id="adaptivePanel" hidden>
+  <div class="lesson-top adaptive-top">
+    <div class="adaptive-title-wrap">
+      <span class="adaptive-mode-badge"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> <span class="i18n-t" data-en="Adaptive Practice" data-km="ការអនុវត្តបន្ស៊ាំ">Adaptive Practice</span></span>
+      <span class="adaptive-stage-badge" id="adaptiveStageBadge">Stage 1</span>
+      <span class="adaptive-focus-badge" id="adaptiveFocusBadge" hidden></span>
+    </div>
+    <div class="adaptive-top-actions">
+      <span class="adaptive-unlocked-count" id="adaptiveUnlockedCount">6/26 Active</span>
+      <button type="button" class="adaptive-reset-btn" id="adaptiveResetBtn" title="Reset Adaptive Practice Progress"><span class="i18n-t" data-en="Reset" data-km="កំណត់ឡើងវិញ">Reset</span></button>
+      <button type="button" class="adaptive-exit-btn" id="adaptiveExitBtn" title="Exit to Lessons (Esc)"><span class="i18n-t" data-en="Exit Practice" data-km="ចាកចេញ">Exit Practice</span></button>
+    </div>
+  </div>
+
+  <!-- Available Letter Progression Strip -->
+  <div class="adaptive-letter-strip" id="adaptiveLetterStrip" aria-label="Available letter progression"></div>
+
+  <!-- Weak-Key Focus HUD -->
+  <div class="adaptive-focus-hud" id="adaptiveFocusHud">
+    <div class="afh-focus-group">
+      <span class="afh-label">Focus</span>
+      <span class="afh-chip afh-focus-chip" id="afhFocusChip">—</span>
+    </div>
+    <div class="afh-weak-group" id="afhWeakGroup">
+      <span class="afh-label">Needs Practice</span>
+      <div class="afh-chips-wrap" id="afhWeakChips"></div>
+    </div>
+    <div class="afh-finger-group" id="afhFingerGroup" hidden>
+      <span class="afh-label">Pattern</span>
+      <span class="afh-finger-note" id="afhFingerNote"></span>
+    </div>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="lesson-progress-bar"><div class="lesson-progress-fill" id="adaptiveProgressFill"></div></div>
+
+  <!-- Target Words Row -->
+  <div class="lesson-char-row adaptive-char-row" id="adaptiveCharRow"></div>
+
+  <!-- Live Hint & Inline Round Toast -->
+  <div class="lesson-live-hint" id="adaptiveLiveHint" hidden></div>
+  <div class="adaptive-round-toast" id="adaptiveRoundToast" hidden></div>
+
+  <!-- Live Stats HUD -->
+  <div class="lesson-stats adaptive-stats">
+    <span><span class="i18n-t" data-en="Accuracy" data-km="ភាពសុក្រឹត">Accuracy</span> <b id="adaptiveAccVal">100%</b></span>
+    <span><span class="i18n-t" data-en="WPM" data-km="WPM">WPM</span> <b id="adaptiveWpmVal">0</b></span>
+    <span><span class="i18n-t" data-en="Streak" data-km="ពិន្ទុបន្ត">Streak</span> <b id="adaptiveStreakVal">0</b></span>
+    <span><span class="i18n-t" data-en="Mistakes" data-km="កំហុស">Mistakes</span> <b id="adaptiveMistakesVal">0</b></span>
+    <span id="adaptiveFocusWrap" style="display:none;"><span class="i18n-t" data-en="Target" data-km="គោលដៅ">Target</span> <b id="adaptiveFocusVal" style="color:var(--gold-bright);">—</b></span>
+  </div>
+</div>
+
+<div class="trial-panel" id="trialPanel" hidden>
+  <div class="trial-top">
+    <span><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><polyline points="14.5 17.5 3 6 6 3 17.5 14.5"/><line x1="13" y1="19" x2="19" y2="13"/><line x1="16" y1="16" x2="20" y2="20"/><line x1="19" y1="21" x2="21" y2="19"/></svg><span class="i18n-t" data-en="Temple Trial — type the word" data-km="ការសាកល្បងប្រាសាទ — វាយពាក្យ">Temple Trial — type the word</span></span>
+    <span class="trial-stats"><span class="i18n-t" data-en="Streak" data-km="ពិន្ទុបន្ត">Streak</span> <b id="streakVal">0</b>&nbsp;&nbsp;·&nbsp;&nbsp;<span class="i18n-t" data-en="Best" data-km="ល្អបំផុត">Best</span> <b id="bestVal">0</b></span>
+  </div>
+  <div class="trial-word" id="trialWord"></div>
+</div>
+
+<div class="race-panel" id="racePanel" hidden>
+
+  <div class="race-setup" id="raceSetup">
+    <div class="race-setup-title"><svg class="pk-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:6px;"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg><span class="i18n-t" data-en="Typing Race" data-km="ការប្រណាំងវាយអក្សរ">Typing Race</span></div>
+    <p class="race-setup-sub i18n-t" data-en="Type the text as fast and accurately as you can!" data-km="វាយអត្ថបទឱ្យបានលឿន និងត្រឹមត្រូវតាមដែលអាចធ្វើបាន!">Type the text as fast and accurately as you can!</p>
+
+    <div class="race-setup-group">
+      <span class="race-setup-label i18n-t" data-en="Racer Name" data-km="ឈ្មោះអ្នកប្រណាំង">Racer Name</span>
+      <input type="text" class="race-name-input" id="raceNameInput" maxlength="18" placeholder="Enter a nickname" autocomplete="off">
+    </div>
+
+    <div class="race-setup-group">
+      <span class="race-setup-label i18n-t" data-en="Difficulty" data-km="កម្រិតលំបាក">Difficulty</span>
+      <div class="race-pill-row" id="raceDifficultyRow" role="radiogroup" aria-label="Race difficulty">
+        <button type="button" class="race-pill i18n-t" data-difficulty="easy" role="radio" aria-checked="false" data-en="Easy" data-km="ងាយស្រួល">Easy</button>
+        <button type="button" class="race-pill i18n-t" data-difficulty="medium" role="radio" aria-checked="false" data-en="Medium" data-km="មធ្យម">Medium</button>
+        <button type="button" class="race-pill i18n-t" data-difficulty="hard" role="radio" aria-checked="false" data-en="Hard" data-km="ពិបាក">Hard</button>
+        <button type="button" class="race-pill i18n-t" data-difficulty="expert" role="radio" aria-checked="false" data-en="Expert" data-km="ជំនាញ">Expert</button>
+      </div>
+    </div>
+
+    <div class="race-setup-group">
+      <span class="race-setup-label i18n-t" data-en="Race Length" data-km="ថិរវេលាប្រណាំង">Race Length</span>
+      <div class="race-pill-row" id="raceLengthRow" role="radiogroup" aria-label="Race length">
+        <button type="button" class="race-pill" data-length="15" role="radio" aria-checked="false">15s</button>
+        <button type="button" class="race-pill" data-length="30" role="radio" aria-checked="false">30s</button>
+        <button type="button" class="race-pill" data-length="60" role="radio" aria-checked="false">60s</button>
+        <button type="button" class="race-pill i18n-t" data-length="text" role="radio" aria-checked="false" data-en="Full Text" data-km="អត្ថបទពេញ">Full Text</button>
+      </div>
+    </div>
+
+    <div class="race-setup-best" id="raceSetupBest"></div>
+
+    <button class="race-start-btn i18n-t" id="raceStartBtn" data-en="Start Race →" data-km="ចាប់ផ្តើមប្រណាំង →">Start Race →</button>
+    <button class="race-leaderboard-link" id="raceLeaderboardBtn" type="button"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg><span class="i18n-t" data-en="View Leaderboard" data-km="មើលតារាងអ្នកឈ្នះ">View Leaderboard</span></button>
+  </div>
+
+  <div class="race-leaderboard" id="raceLeaderboardPanel" hidden>
+    <div class="race-setup-title"><svg class="pk-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-3px;margin-right:6px;"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg><span class="i18n-t" data-en="Leaderboard" data-km="តារាងអ្នកឈ្នះ">Leaderboard</span></div>
+    <p class="race-setup-sub i18n-t" data-en="Best racers on this device" data-km="អ្នកប្រណាំងឆ្នើមលើឧបករណ៍នេះ">Best racers on this device</p>
+
+    <div class="race-pill-row race-lb-tabs" id="raceLbDifficultyTabs" role="radiogroup" aria-label="Leaderboard difficulty">
+      <button type="button" class="race-pill" data-lb-difficulty="easy" role="radio" aria-checked="false">Easy</button>
+      <button type="button" class="race-pill" data-lb-difficulty="medium" role="radio" aria-checked="false">Medium</button>
+      <button type="button" class="race-pill" data-lb-difficulty="hard" role="radio" aria-checked="false">Hard</button>
+      <button type="button" class="race-pill" data-lb-difficulty="expert" role="radio" aria-checked="false">Expert</button>
+    </div>
+    <div class="race-pill-row race-lb-tabs" id="raceLbLengthTabs" role="radiogroup" aria-label="Leaderboard race length">
+      <button type="button" class="race-pill" data-lb-length="15" role="radio" aria-checked="false">15s</button>
+      <button type="button" class="race-pill" data-lb-length="30" role="radio" aria-checked="false">30s</button>
+      <button type="button" class="race-pill" data-lb-length="60" role="radio" aria-checked="false">60s</button>
+      <button type="button" class="race-pill" data-lb-length="text" role="radio" aria-checked="false">Full Text</button>
+    </div>
+
+    <ol class="race-lb-list" id="raceLbList"></ol>
+
+    <button class="race-leaderboard-link" id="raceLeaderboardBackBtn" type="button">← Back to Race Setup</button>
+  </div>
+
+  <div class="race-live" id="raceLive" hidden>
+    <div class="race-top">
+      <span class="race-top-label"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg> Typing Race — <span id="raceDifficultyLabel">Easy</span></span>
+      <span class="race-stats">
+        <span>WPM <b id="raceWpmVal">0</b></span>
+        <span>Acc <b id="raceAccVal">100%</b></span>
+        <span>Time <b id="raceTimeVal">0.0s</b></span>
+        <span>Mistakes <b id="raceMistakesVal">0</b></span>
+      </span>
+    </div>
+
+    <div class="race-track">
+      <div class="race-track-row">
+        <span class="race-track-tag">YOU</span>
+        <div class="race-track-bar"><div class="race-track-fill" id="raceTrackFill"></div></div>
+        <span class="race-track-pct" id="raceTrackPct">0%</span>
+      </div>
+    </div>
+
+    <div class="race-text-wrap">
+      <div class="race-text" id="raceText"></div>
+      <div class="race-countdown" id="raceCountdown" hidden></div>
+    </div>
+
+    <div class="race-live-actions">
+      <button id="raceExitLiveBtn" class="i18n-t" data-en="Exit Race" data-km="ចាកចេញពីការប្រណាំង">Exit Race</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="board-wrap notranslate" id="boardWrap" translate="no">
+  <div class="torch left"><div class="glow"></div><div class="flame"></div><div class="stick"></div></div>
+  <div class="torch right"><div class="glow"></div><div class="flame"></div><div class="stick"></div></div>
+  <div class="keyboard notranslate" id="keyboard" translate="no"></div>
+  <svg class="hands-overlay" id="handsOverlay"></svg>
+</div>
+
+<div class="toolbar">
+  <button id="soundToggle" class="on i18n-t" data-en="Key sound" data-km="សំឡេងគ្រាប់ចុច" aria-pressed="true"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg> Key sound</button>
+  <button id="handsToggle" class="on i18n-t" data-en="Finger guide" data-km="មគ្គុទ្ទេសក៍ម្រាមដៃ" aria-pressed="true"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/><line x1="10" y1="12" x2="14" y2="12"/></svg> Finger guide</button>
+  <button id="ambienceToggle" class="i18n-t" data-en="Temple ambience" data-km="បរិយាកាសប្រាសាទ" aria-pressed="false"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V8h3V5h2v3h4V5h2v3h3v12M5 20h14M8 11v2m8-2v2"/><path d="M11 20v-5h2v5M5 8h14"/></svg> Temple ambience</button>
+  <button id="trialToggle" class="i18n-t" data-en="Temple Trial" data-km="ការសាកល្បងប្រាសាទ" aria-pressed="false"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="14.5 17.5 3 6 6 3 17.5 14.5"/><line x1="13" y1="19" x2="19" y2="13"/><line x1="16" y1="16" x2="20" y2="20"/><line x1="19" y1="21" x2="21" y2="19"/></svg> Temple Trial</button>
+  <button id="raceToggle" class="race-toggle-btn i18n-t" data-en="Typing Race" data-km="ការប្រណាំងវាយអក្សរ" aria-pressed="false"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg> Typing Race</button>
+</div>
+
+<p class="hint i18n-t" data-en="Pick a layout above: the &lt;b&gt;Khmer Keyboard Layout&lt;/b&gt;, the official &lt;b&gt;Khmer NiDA Keyboard&lt;/b&gt;, or plain &lt;b&gt;English (US)&lt;/b&gt;. Blank keys carry no mapping on that layer — just like the real thing. Pick a &lt;b&gt;Lesson&lt;/b&gt; above to drill one layer at a time, or try &lt;b&gt;Temple Trial&lt;/b&gt; to type real Khmer words from memory." data-km="ជ្រើសរើសប្លង់ខាងលើ៖ &lt;b&gt;ប្លង់ក្តារចុចខ្មែរ&lt;/b&gt; ជាផ្លូវការ &lt;b&gt;ក្តារចុចខ្មែរ និដា&lt;/b&gt; ឬ &lt;b&gt;English (US)&lt;/b&gt; សុទ្ធ។ គ្រាប់ចុចទទេគ្មានតម្លៃលើស្រទាប់នោះទេ — ដូចក្តារចុចពិតដែរ។ ជ្រើសរើស &lt;b&gt;មេរៀន&lt;/b&gt; ខាងលើ ដើម្បីហ្វឹកហាត់ស្រទាប់មួយក្នុងមួយពេល ឬសាកល្បង &lt;b&gt;ការសាកល្បងប្រាសាទ&lt;/b&gt; ដើម្បីវាយពាក្យខ្មែរពិតៗពីការចងចាំ។">Pick a layout above: the <b>Khmer Keyboard Layout</b>, the official <b>Khmer NiDA Keyboard</b>, or plain <b>English (US)</b>. Blank keys carry no mapping on that layer — just like the real thing. Pick a <b>Lesson</b> above to drill one layer at a time, or try <b>Temple Trial</b> to type real Khmer words from memory.</p>
+
+</div>
+
+<!-- ============================================================
+     OPTIONAL: real cross-visitor leaderboard via Firebase.
+     Everything works fine without this (it falls back to a
+     per-device leaderboard automatically). To make the "Lessons
+     Leaderboard" shared across everyone who visits:
+       1. Go to https://console.firebase.google.com and create a
+          free project.
+       2. Build → Firestore Database → Create database (test mode
+          is fine to start).
+       3. Project settings (gear icon) → General → "Your apps" →
+          click the </> (web) icon → register an app → copy the
+          firebaseConfig object it shows you.
+       4. Paste that object into FIREBASE_CONFIG below, replacing
+          the placeholder values.
+       5. In Firestore → Rules, use something like:
+            rules_version = '2';
+            service cloud.firestore {
+              match /databases/{database}/documents {
+                match /lessons_leaderboard/{doc} {
+<footer class="site-footer" id="siteFooter">
+  <div class="site-footer-inner">
+    <span class="site-footer-credit i18n-t" data-en="PK Khmer Type — built by Phanna Kurosaki" data-km="PK Khmer Type — សាងសង់ដោយ Phanna Kurosaki">PK Khmer Type — built by Phanna Kurosaki</span>
+    <a class="site-footer-link" id="siteFacebookLink" href="https://web.facebook.com/Wphanakurasaki/" target="_blank" rel="noopener noreferrer" aria-label="Phanna Kurosaki on Facebook">
+      <svg class="site-footer-link-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.08 5.66 21.23 10.44 22v-7.03H7.9v-2.91h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22C18.34 21.23 22 17.08 22 12.06Z"/></svg>
+      <span class="i18n-t" data-en="Facebook" data-km="Facebook">Facebook</span>
+    </a>
+    <button type="button" class="site-footer-link" id="siteDevNoteBtn" aria-haspopup="dialog">
+      <svg class="site-footer-link-icon pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <span class="i18n-t" data-en="Developer Note" data-km="សំបុត្រពីអ្នកអភិវឌ្ឍន៍">Developer Note</span>
+    </button>
+    <button type="button" class="site-lang-toggle" id="siteLangToggle" aria-pressed="false">
+      <span class="site-lang-toggle-icon" aria-hidden="true">ភ</span>
+      <span id="siteLangToggleLabel">Translate to Khmer</span>
+    </button>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="devNoteModal" hidden role="dialog" aria-modal="true" aria-labelledby="devNoteTitle">
+  <div class="modal-card dev-note-card">
+    <div class="dev-note-glow" aria-hidden="true"></div>
+    <div class="dev-note-scanline" aria-hidden="true"></div>
+    <span class="dev-note-sparkle" style="top:22%; left:8%; font-size:0.7rem; animation-delay:0s;" aria-hidden="true">&bull;</span>
+    <span class="dev-note-sparkle" style="top:64%; left:5%; font-size:0.55rem; animation-delay:1.1s;" aria-hidden="true">&bull;</span>
+    <span class="dev-note-sparkle" style="top:15%; right:7%; font-size:0.6rem; animation-delay:0.6s;" aria-hidden="true">&bull;</span>
+    <span class="dev-note-sparkle" style="top:70%; right:9%; font-size:0.75rem; animation-delay:1.8s;" aria-hidden="true">&bull;</span>
+    <div class="dev-note-corner tl" aria-hidden="true"></div>
+    <div class="dev-note-corner br" aria-hidden="true"></div>
+    <button class="modal-close dev-note-close" id="devNoteCloseBtn" aria-label="Close developer note">&times;</button>
+    <div class="dev-note-seal" aria-hidden="true"><svg class="pk-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="6" y1="8" x2="6" y2="8"/><line x1="10" y1="8" x2="10" y2="8"/><line x1="14" y1="8" x2="14" y2="8"/><line x1="18" y1="8" x2="18" y2="8"/><line x1="6" y1="12" x2="6" y2="12"/><line x1="10" y1="12" x2="10" y2="12"/><line x1="14" y1="12" x2="14" y2="12"/><line x1="18" y1="12" x2="18" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/></svg></div>
+    <h2 id="devNoteTitle" class="dev-note-title i18n-t" data-en="A Note From the Developer" data-km="សំបុត្រពីអ្នកអភិវឌ្ឍន៍">A Note From the Developer</h2>
+    <div class="dev-note-divider" aria-hidden="true"><span class="line"></span><span class="mark">&bull;</span><span class="line"></span></div>
+    <p class="dev-note-text dev-note-lead i18n-t" data-en="This website is made with care and high quality — built to be the best free way to learn how to type Khmer and English, one honest keystroke at a time. Every lesson, every layout, and every line of code was crafted by hand, not copied from a template. If it helps you type a little faster or feel a little closer to your own language, then it did its job. Thank you for practicing here." data-km="គេហទំព័រនេះត្រូវបានបង្កើតឡើងដោយក្តីយកចិត្តទុកដាក់ និងគុណភាពខ្ពស់ — សាងសង់ឡើងដើម្បីក្លាយជាមធ្យោបាយឥតគិតថ្លៃដ៏ល្អបំផុតសម្រាប់រៀនវាយអក្សរខ្មែរ និងអង់គ្លេស ម្តងមួយគ្រាប់ចុចដោយស្មោះត្រង់។ រាល់មេរៀន រាល់ប្លង់ក្តារចុច និងរាល់បន្ទាត់កូដត្រូវបានសាងសង់ដោយដៃ មិនមែនចម្លងពីគំរូឡើយ។ ប្រសិនបើវាជួយឱ្យអ្នកវាយអក្សរលឿនជាងមុនបន្តិច ឬមានអារម្មណ៍ជិតស្និទ្ធនឹងភាសារបស់អ្នកផ្ទាល់បន្តិច នោះវាបានសម្រេចគោលដៅរបស់វាហើយ។ សូមអរគុណដែលបានហ្វឹកហាត់នៅទីនេះ។">This website is made with care and high quality — built to be the best free way to learn how to type Khmer and English, one honest keystroke at a time. Every lesson, every layout, and every line of code was crafted by hand, not copied from a template. If it helps you type a little faster or feel a little closer to your own language, then it did its job. Thank you for practicing here.</p>
+    <p class="dev-note-text i18n-t" data-en="Made by a 14-year-old student — still learning, still building, one project at a time. I don't have a big team or a company behind me, just a desktop computer, a lot of late nights, and a genuine love for the Khmer language and for code. If you're young and want to build something too: start small, keep going, and don't wait until you feel &quot;ready.&quot; You already are." data-km="បង្កើតឡើងដោយសិស្សអាយុ១៤ឆ្នាំ — នៅតែសិក្សា នៅតែសាងសង់ គម្រោងម្តងមួយៗ។ ខ្ញុំមិនមានក្រុមធំ ឬក្រុមហ៊ុនគាំទ្រនោះទេ មានតែកុំព្យូទ័រតុមួយ យប់ជាច្រើនដែលធ្វើការយឺត និងសេចក្តីស្រលាញ់ពិតប្រាកដចំពោះភាសាខ្មែរ និងកូដកម្មវិធី។ ប្រសិនបើអ្នកនៅក្មេង ហើយចង់សាងសង់អ្វីមួយដែរ៖ ចាប់ផ្តើមពីតូច បន្តទៅមុខ ហើយកុំរង់ចាំរហូតដល់អ្នកមានអារម្មណ៍ថា &quot;រួចរាល់&quot;។ អ្នករួចរាល់ហើយ។">Made by a 14-year-old student — still learning, still building, one project at a time. I don't have a big team or a company behind me, just a desktop computer, a lot of late nights, and a genuine love for the Khmer language and for code. If you're young and want to build something too: start small, keep going, and don't wait until you feel "ready." You already are.</p>
+    <p class="dev-note-text i18n-t" data-en="I built this because I noticed how few good, free tools exist for learning the Khmer keyboard layout — most guides are just static pictures you have to squint at. So I set out to make the one I wished I had: something you can actually practice on, layer by layer, key by key, until it's muscle memory. It's still growing. Lessons, the leaderboard, new themes — all of it gets built a little at a time, between homework and sleep." data-km="ខ្ញុំបានសាងសង់វានេះឡើងព្រោះខ្ញុំបានសម្គាល់ឃើញថាមានឧបករណ៍ល្អៗ និងឥតគិតថ្លៃតិចតួចប៉ុណ្ណោះសម្រាប់រៀនប្លង់ក្តារចុចខ្មែរ — មគ្គុទ្ទេសក៍ភាគច្រើនគ្រាន់តែជារូបភាពស្ថិតដែលអ្នកត្រូវសម្លឹងមើលដោយពិបាក។ ដូច្នេះខ្ញុំបានប៉ុនប៉ងបង្កើតឧបករណ៍ដែលខ្ញុំចង់បានផ្ទាល់ខ្លួន៖ អ្វីមួយដែលអ្នកអាចហ្វឹកហាត់បានផ្ទាល់ ស្រទាប់ម្តងមួយៗ គ្រាប់ចុចម្តងមួយៗ រហូតដល់វាក្លាយជាការចងចាំរបស់ដៃ។ វានៅតែបន្តរីកចម្រើន។ មេរៀន តារាងអ្នកឈ្នះ រូបរាងថ្មីៗ — ទាំងអស់នេះត្រូវបានបង្កើតបន្តិចម្តងៗ ក្នុងចន្លោះពេលធ្វើកិច្ចការផ្ទះ និងគេង។">I built this because I noticed how few good, free tools exist for learning the Khmer keyboard layout — most guides are just static pictures you have to squint at. So I set out to make the one I wished I had: something you can actually practice on, layer by layer, key by key, until it's muscle memory. It's still growing. Lessons, the leaderboard, new themes — all of it gets built a little at a time, between homework and sleep.</p>
+    <p class="dev-note-text i18n-t" data-en="Found a bug, or have an idea for a lesson you wish existed? I read every message on Facebook. This site isn't going anywhere — I'm planning to keep adding to it for as long as it's useful to someone." data-km="រកឃើញកំហុស ឬមានគំនិតអំពីមេរៀនដែលអ្នកចង់ឱ្យមានទេ? ខ្ញុំអានគ្រប់សារនៅលើហ្វេសប៊ុក។ គេហទំព័រនេះនឹងមិនបាត់ទៅណាឡើយ — ខ្ញុំគ្រោងនឹងបន្តបន្ថែមចូលទៅក្នុងវាដរាបណាវានៅតែមានប្រយោជន៍ដល់នរណាម្នាក់។">Found a bug, or have an idea for a lesson you wish existed? I read every message on Facebook. This site isn't going anywhere — I'm planning to keep adding to it for as long as it's useful to someone.</p>
+    <div class="dev-note-ps">
+      <p class="dev-note-ps-tag i18n-t" data-en="&bull; One more thing, before you go" data-km="&bull; មានរឿងមួយទៀត មុននឹងអ្នកចាកចេញ">&bull; One more thing, before you go</p>
+      <p class="dev-note-ps-text i18n-t" data-en="Since you've read this far, do me a favor — don't get up yet. Sit back down, hands on home row, and finish the drill you were on. Muscle memory isn't built during the breaks; it's built in the next ninety seconds. Ten more words. One more layer. That's it. Whatever pulled you away can wait a minute longer, and future-you will thank you for staying in the seat." data-km="ដោយសារអ្នកបានអានមកដល់ទីនេះ សូមធ្វើឱ្យខ្ញុំមួយម៉ាត់ — សូមកុំទើបតែក្រោកឡើងឥឡូវ។ អង្គុយចុះម្តងទៀត ដាក់ដៃលើជួរដើម ហើយបញ្ចប់លំហាត់ដែលអ្នកកំពុងធ្វើ។ ការចងចាំរបស់ដៃមិនត្រូវបានបង្កើតឡើងកំឡុងពេលសម្រាកនោះទេ វាត្រូវបានបង្កើតឡើងក្នុងវិនាទីទី៩០បន្ទាប់។ វាយបន្ថែមទៀតដប់ពាក្យ។ ស្រទាប់មួយទៀត។ គ្រាន់តែប៉ុណ្ណឹង។ អ្វីដែលទាញអ្នកចេញអាចរង់ចាំបានមួយភ្លែតទៀត ហើយអ្នកនាពេលអនាគតនឹងអរគុណអ្នកដែលនៅតែអង្គុយបន្ត។">Since you've read this far, do me a favor — don't get up yet. Sit back down, hands on home row, and finish the drill you were on. Muscle memory isn't built during the breaks; it's built in the next ninety seconds. Ten more words. One more layer. That's it. Whatever pulled you away can wait a minute longer, and future-you will thank you for staying in the seat.</p>
+    </div>
+    <div class="dev-note-footer">
+      <span class="dev-note-badge i18n-t" data-en="&bull; 14 y/o · Student Developer" data-km="&bull; អាយុ១៤ឆ្នាំ · អ្នកអភិវឌ្ឍន៍សិស្ស">&bull; 14 y/o · Student Developer</span>
+      <p class="dev-note-signature i18n-t" data-en="— Phanna Kurosaki, founder &amp;amp; developer" data-km="— Phanna Kurosaki, ស្ថាបនិក និងអ្នកអភិវឌ្ឍន៍">— Phanna Kurosaki, founder &amp; developer</p>
+    </div>
+    <button type="button" class="auth-submit-btn dev-note-ack-btn i18n-t" id="devNoteCloseBtn2" data-en="Close" data-km="បិទ">Close</button>
+  </div>
+</div>
+
+
+  <!-- Scripts -->
+  <script defer src="js/icons.js"></script>
+  <script defer src="js/storage.js"></script>
+  <script defer src="data/curriculum-data.js"></script>
+  <script defer src="data/adaptive-vocab.js"></script>
+  <script defer src="js/keyboard.js"></script>
+  <script defer src="js/tracker.js"></script>
+  <script defer src="js/progress.js"></script>
+  <script defer src="js/review.js"></script>
+  <script defer src="js/feedback.js"></script>
+  <script defer src="js/adaptive.js"></script>
+  <script defer src="js/lessons.js"></script>
+  <script defer src="js/race.js"></script>
+  <script defer src="js/typing.js"></script>
+  <script defer src="js/statistics.js"></script>
+  <script defer src="js/settings.js"></script>
+  <script defer src="js/shortcuts.js"></script>
+  <script defer src="js/app.js"></script>
+</body>
 </html>

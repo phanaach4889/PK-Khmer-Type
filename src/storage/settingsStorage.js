@@ -1,1 +1,0 @@
-import { readJson, writeJson } from './storageUtils.js'; const KEY = 'pk_settings_v1'; export const readSettings = () => readJson(KEY, { layout: 'standard', sound: false, reducedMotion: false }); export const saveSettings = value => writeJson(KEY, value);
