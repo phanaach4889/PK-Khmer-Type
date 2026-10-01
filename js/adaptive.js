@@ -427,6 +427,16 @@
       completion = Math.min(100, Math.floor((completedUnits / targetUnits) * 100));
     }
 
+    // Dynamic Mastery Score (Keybr style: +5% on correct, -5% on mistake)
+    let score = 0;
+    if (typeof st.score === 'number') {
+      score = Math.min(100, Math.max(0, Math.round(st.score)));
+    } else if (st.everMastered || completion >= 100) {
+      score = 100;
+    } else {
+      score = completion;
+    }
+
     // Calculate recent window accuracy and trend
     const recent = (st.recentAttempts && st.recentAttempts.length > 0)
       ? st.recentAttempts
@@ -490,6 +500,7 @@
         completion: completion,
         completedUnits: completedUnits,
         targetUnits: targetUnits,
+        score: score,
         accuracy: accuracy,
         attempts: attempts,
         adaptiveAttempts: adaptiveAttempts,
@@ -539,6 +550,7 @@
       completion: completion,
       completedUnits: completedUnits,
       targetUnits: targetUnits,
+      score: score,
       accuracy: accuracy,
       attempts: attempts,
       adaptiveAttempts: adaptiveAttempts,
@@ -694,12 +706,16 @@
         mistakes: 0,
         correct: 0,
         completedUnits: 0,
+        completion: 0,
+        score: 0,
         recentAttempts: [],
         avgResponseMs: 0,
         lastPracticed: null
       };
     } else {
       s.unitStats[nextULower].completedUnits = 0;
+      s.unitStats[nextULower].completion = 0;
+      s.unitStats[nextULower].score = 0;
       s.unitStats[nextULower].correct = 0;
       s.unitStats[nextULower].attempts = 0;
       s.unitStats[nextULower].mistakes = 0;
@@ -1063,18 +1079,34 @@
 
     if (isCorrect) {
       st.correct = (st.correct || 0) + 1;
+      const curScore = (typeof st.score === 'number')
+        ? st.score
+        : (st.everMastered || (st.completion >= 100))
+          ? 100
+          : (st.completion || 0);
+      st.score = Math.min(100, curScore + 5);
+
       if (st.everMastered) {
         st.completion = 100;
         st.completedUnits = target;
       } else {
         st.completedUnits = Math.min(target, (st.completedUnits || 0) + 1);
         st.completion = Math.min(100, Math.round((st.completedUnits / target) * 100));
-        if (st.completion >= 100) {
+        if (st.completion >= 100 || st.score >= 100) {
           st.everMastered = true;
+          st.completion = 100;
+          st.completedUnits = target;
         }
       }
     } else {
       st.mistakes = (st.mistakes || 0) + 1;
+      const curScore = (typeof st.score === 'number')
+        ? st.score
+        : (st.everMastered || (st.completion >= 100))
+          ? 100
+          : (st.completion || 0);
+      st.score = Math.max(0, curScore - 5);
+
       if (st.everMastered) {
         st.completion = 100;
         st.completedUnits = target;
@@ -1216,10 +1248,11 @@
 
     statuses.forEach(st => {
       const isZero = st.isUnlocked && ((st.adaptiveAttempts !== undefined ? st.adaptiveAttempts === 0 : st.attempts === 0) || (st.completedUnits === 0 && (st.correct || 0) === 0 && st.attempts === 0));
-      const isWeak = st.isUnlocked && !isZero && (st.state === 'weak' || st.accuracy < CONFIG.weakAccuracyThreshold);
-      const isNeedsPractice = st.isUnlocked && !isZero && !isWeak && (st.state === 'needs-practice' || st.accuracy < CONFIG.strongAccuracyThreshold);
-      const isImproving = st.isUnlocked && !isZero && !isWeak && !isNeedsPractice && (st.state === 'improving');
-      const isMastered = st.isUnlocked && !isZero && !isWeak && !isNeedsPractice && !isImproving;
+      const displayScore = (typeof st.score === 'number') ? st.score : (st.completion || 0);
+      const isWeak = st.isUnlocked && !isZero && (displayScore < CONFIG.weakAccuracyThreshold);
+      const isMastered = st.isUnlocked && !isZero && (displayScore >= CONFIG.strongAccuracyThreshold);
+      const isImproving = st.isUnlocked && !isZero && !isWeak && !isMastered && (st.state === 'improving');
+      const isNeedsPractice = st.isUnlocked && !isZero && !isWeak && !isMastered && !isImproving;
       const isFocusPill = !isZero && (st.unit === s.focusUnit || st.state === 'focus');
 
       let pillStateClass = 'as-locked';
@@ -1231,16 +1264,16 @@
           statusLabel = 'Active (New)';
         } else if (isWeak) {
           pillStateClass = 'as-weak';
-          statusLabel = `Weak (${st.accuracy}%)`;
-        } else if (isNeedsPractice) {
-          pillStateClass = 'as-learning as-needs-practice';
-          statusLabel = `Needs Practice (${st.accuracy}%)`;
+          statusLabel = `Weak (${displayScore}%)`;
+        } else if (isMastered) {
+          pillStateClass = 'as-mastered as-strong';
+          statusLabel = `Mastered (${displayScore}%)`;
         } else if (isImproving) {
           pillStateClass = 'as-advancing as-improving';
-          statusLabel = `Improving (${st.accuracy}%)`;
+          statusLabel = `Improving (${displayScore}%)`;
         } else {
-          pillStateClass = 'as-mastered as-strong';
-          statusLabel = `Mastered (${st.accuracy}%)`;
+          pillStateClass = 'as-learning as-needs-practice';
+          statusLabel = `Needs Practice (${displayScore}%)`;
         }
       }
 
@@ -1259,7 +1292,7 @@
       } else if (isZero) {
         statSpan.textContent = '0%';
       } else {
-        statSpan.textContent = `${st.accuracy}%`;
+        statSpan.textContent = `${displayScore}%`;
       }
 
       const dot = document.createElement('span');
@@ -1272,7 +1305,7 @@
         const barFill = document.createElement('div');
         barFill.className = 'as-pill-bar-fill';
         if (barFill.style) {
-          const displayPct = isZero ? 0 : Math.min(100, Math.max(0, st.accuracy));
+          const displayPct = isZero ? 0 : Math.min(100, Math.max(0, displayScore));
           barFill.style.width = `${displayPct}%`;
         }
         barTrack.appendChild(barFill);
@@ -1284,13 +1317,14 @@
 
       tooltip.innerHTML = `
         <div style="font-weight:700;color:var(--gold-bright);">${st.unit.toUpperCase()} · ${statusLabel}</div>
-        ${st.isUnlocked ? `<div>Accuracy: <b>${isZero ? '—' : st.accuracy + '%'}</b> (${st.correct}/${st.attempts})</div>
+        ${st.isUnlocked ? `<div>Mastery: <b>${isZero ? '0%' : displayScore + '%'}</b></div>
+        <div>Accuracy: <b>${st.accuracy}%</b> (${st.correct}/${st.attempts})</div>
         <div>Stage Milestone: <b>${st.completion}%</b> (${st.completedUnits}/${st.targetUnits})</div>
         <div>Avg Speed: <b>${st.avgResponseMs > 0 ? st.avgResponseMs + 'ms' : '—'}</b></div>
         <div>Trend: <b>${isZero ? '—' : (st.trend > 0 ? '+' + st.trend : st.trend) + '%'}</b></div>` : '<div>Unlocks when all active letters reach 100%</div>'}
       `;
 
-      pill.setAttribute('aria-label', `${st.unit.toUpperCase()} ${statusLabel}: ${st.isUnlocked ? `${isZero ? '0% (new)' : `${st.accuracy}% accuracy`}, ${st.completion}% unlock progress` : 'Locked'}`);
+      pill.setAttribute('aria-label', `${st.unit.toUpperCase()} ${statusLabel}: ${st.isUnlocked ? `${displayScore}% mastery, ${st.accuracy}% accuracy` : 'Locked'}`);
 
       pill.appendChild(charSpan);
       pill.appendChild(statSpan);

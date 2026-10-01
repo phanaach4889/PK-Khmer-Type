@@ -149,7 +149,7 @@ console.log('Testing Phase 9/10 Strict 100% Completion Unlocking & UI Strip...')
   console.log('  ✓ Test 5: State sanitization successfully relocks prematurely unlocked letters (S relocked until O hits 100%)');
 }
 
-// 6. Letter Strip Rendering: Stat displays live Accuracy % and drops on mistakes
+// 6. Letter Strip Rendering: Stat displays Dynamic Mastery Score (+5% on right, -5% on wrong)
 {
   for (let i = 0; i < 20; i++) {
     PK_ADAPTIVE.recordStroke('english', 'l', true, 200);
@@ -158,8 +158,8 @@ console.log('Testing Phase 9/10 Strict 100% Completion Unlocking & UI Strip...')
   PK_ADAPTIVE.renderLetterStrip(mockContainer, 'english');
   assert(mockContainer.children.length >= 26);
 
-  // High-accuracy letters (E, N, I, A, R) show 100%
-  for (let i = 0; i < 5; i++) {
+  // All 6 initial letters (E, N, I, A, R, L) show 100% after 20 correct strokes
+  for (let i = 0; i < 6; i++) {
     const pill = mockContainer.children[i];
     const stat = pill.children.find(c => c.className === 'as-pill-stat');
     assert.ok(stat, `Pill ${i} missing statSpan`);
@@ -167,30 +167,47 @@ console.log('Testing Phase 9/10 Strict 100% Completion Unlocking & UI Strip...')
     assert.ok(pill.className.includes('as-mastered') || pill.className.includes('as-strong'));
   }
 
-  // Pill 5 (L) had 403 mistakes, so its displayed accuracy drops to 9% and shows as-weak (red)
-  const lPill = mockContainer.children[5];
-  const lStat = lPill.children.find(c => c.className === 'as-pill-stat');
-  assert.strictEqual(lStat.textContent, '9%');
-  assert.ok(lPill.className.includes('as-weak'), 'Letter L with mistakes must show as-weak class');
-
-  // Verify dynamic drop: Type 1 mistake on E (previously 100% with 20/20)
+  // Verify dynamic drop: Type 1 mistake on E (drops -5% to 95%)
   PK_ADAPTIVE.recordStroke('english', 'e', false, 200);
-  const containerAfterMistake = new MockElement('div');
-  PK_ADAPTIVE.renderLetterStrip(containerAfterMistake, 'english');
-  const eStatAfterMistake = containerAfterMistake.children[0].children.find(c => c.className === 'as-pill-stat');
-  assert.strictEqual(eStatAfterMistake.textContent, '95%', 'Typing a mistake on E must drop displayed number from 100% to 95%!');
+  const cMistake1 = new MockElement('div');
+  PK_ADAPTIVE.renderLetterStrip(cMistake1, 'english');
+  const eStat1 = cMistake1.children[0].children.find(c => c.className === 'as-pill-stat');
+  assert.strictEqual(eStat1.textContent, '95%', 'Typing 1 mistake on E must drop displayed number from 100% to 95% (-5%)!');
+
+  // Type 2nd mistake on E (drops -5% to 90% and turns yellow)
+  PK_ADAPTIVE.recordStroke('english', 'e', false, 200);
+  const cMistake2 = new MockElement('div');
+  PK_ADAPTIVE.renderLetterStrip(cMistake2, 'english');
+  const eStat2 = cMistake2.children[0].children.find(c => c.className === 'as-pill-stat');
+  assert.strictEqual(eStat2.textContent, '90%', 'Typing 2nd mistake on E must drop displayed number to 90% (-5%)!');
+  assert.ok(cMistake2.children[0].className.includes('as-needs-practice'), 'E at 90% must turn yellow (as-needs-practice)');
+
+  // Verify dynamic rise: Type 1 correct stroke on E (climbs +5% to 95%)
+  PK_ADAPTIVE.recordStroke('english', 'e', true, 200);
+  const cRise1 = new MockElement('div');
+  PK_ADAPTIVE.renderLetterStrip(cRise1, 'english');
+  const eStatRise1 = cRise1.children[0].children.find(c => c.className === 'as-pill-stat');
+  assert.strictEqual(eStatRise1.textContent, '95%', 'Typing 1 correct stroke on E must raise displayed number from 90% to 95% (+5%)!');
+
+  // Type 2nd correct stroke on E (climbs +5% back to 100% and turns green)
+  PK_ADAPTIVE.recordStroke('english', 'e', true, 200);
+  const cRise2 = new MockElement('div');
+  PK_ADAPTIVE.renderLetterStrip(cRise2, 'english');
+  const eStatRise2 = cRise2.children[0].children.find(c => c.className === 'as-pill-stat');
+  assert.strictEqual(eStatRise2.textContent, '100%', 'Typing 2nd correct stroke on E must restore displayed number to 100% (+5%)!');
+  assert.ok(cRise2.children[0].className.includes('as-mastered'), 'E at 100% must turn green (as-mastered)');
 
   // T pill should show 0% (unlocked but 0 units typed)
-  const tPill = containerAfterMistake.children[6];
+  const tPill = cRise2.children[6];
   const tStat = tPill.children.find(c => c.className === 'as-pill-stat');
   assert.strictEqual(tStat.textContent, '0%');
   assert.ok(tPill.className.includes('as-zero') && tPill.className.includes('as-active'));
 
   // Locked pills should contain lock icon
-  const uPill = containerAfterMistake.children[9]; // U is locked
+  const uPill = cRise2.children[9]; // U is locked
   const uStat = uPill.children.find(c => c.className === 'as-pill-stat');
   assert(uStat.innerHTML.includes('svg') || uStat.textContent === '');
-  console.log('  ✓ Test 6: Letter strip correctly renders live accuracy (drops on mistakes e.g. 100% -> 95%), 0% for newly unlocked, and lock icon for locked');
+  console.log('  ✓ Test 6: Letter strip correctly renders dynamic score (+5% on right, -5% on wrong), 0% for newly unlocked, and lock icon for locked');
 }
 
 // 7. Khmer NiDA progression strict unlock
