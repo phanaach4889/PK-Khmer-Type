@@ -123,7 +123,7 @@
     <div class="guide-home-grid">
       <div class="guide-hand-block">
         <div class="guide-hand-label"><span class="i18n-t" data-en="Left Hand" data-km="ដៃឆ្វេង">Left Hand</span></div>
-        <div class="guide-key-row">
+        <div class="guide-key-row" id="guideLeftHand">
           <div class="guide-mini-key" title="Left Pinky"><span class="km-ch">ថ</span><span class="en-ch">F</span></div>
           <div class="guide-mini-key" title="Left Ring"><span class="km-ch">ង</span><span class="en-ch">G</span></div>
           <div class="guide-mini-key" title="Left Middle"><span class="km-ch">ដ</span><span class="en-ch">D</span></div>
@@ -132,7 +132,7 @@
       </div>
       <div class="guide-hand-block">
         <div class="guide-hand-label"><span class="i18n-t" data-en="Right Hand" data-km="ដៃស្ដាំ">Right Hand</span></div>
-        <div class="guide-key-row">
+        <div class="guide-key-row" id="guideRightHand">
           <div class="guide-mini-key" title="Right Index"><span class="km-ch">ហ</span><span class="en-ch">H</span></div>
           <div class="guide-mini-key" title="Right Middle"><span class="km-ch">ញ</span><span class="en-ch">J</span></div>
           <div class="guide-mini-key" title="Right Ring"><span class="km-ch">ក</span><span class="en-ch">K</span></div>
@@ -142,20 +142,20 @@
     </div>
   </div>
 
-  <div class="guide-section">
+  <div class="guide-section" id="guideSubscriptsSec">
     <div class="guide-sec-head"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg> <span class="i18n-t" data-en="Subscripts (ជើងអក្សរ)" data-km="ជើងព្យញ្ជនៈ">Subscripts (ជើងអក្សរ)</span></div>
     <div class="guide-rule-item">
       <div class="guide-rule-row">
         <span class="i18n-t" data-en="Rule: &lt;kbd class=&quot;guide-kbd&quot;&gt;្&lt;/kbd&gt; + Consonant" data-km="ក្បួន៖ &lt;kbd class=&quot;guide-kbd&quot;&gt;្&lt;/kbd&gt; + ព្យញ្ជនៈ">Rule: <kbd class="guide-kbd">្</kbd> + Consonant</span>
-        <span class="guide-sample">ក + ្ + ក = ក្ក</span>
+        <span class="guide-sample" id="guideCoengExample1">ក + ្ + ក = ក្ក</span>
       </div>
       <div class="guide-rule-row">
         <span class="i18n-t" data-en="Coeng Key" data-km="គ្រាប់ចុចជើង">Coeng Key</span>
-        <span class="guide-sample"><kbd class="guide-kbd">J</kbd> <span class="i18n-t" data-en="(Standard)" data-km="(ស្តង់ដារ)">(Standard)</span></span>
+        <span class="guide-sample" id="guideCoengKeyWrap"><kbd class="guide-kbd">J</kbd> <span class="i18n-t" data-en="(Standard)" data-km="(ស្តង់ដារ)">(Standard)</span></span>
       </div>
       <div class="guide-rule-row">
         <span class="i18n-t" data-en="Example" data-km="ឧទាហរណ៍">Example</span>
-        <span class="guide-sample">ស + ្ + ង = ស្ង</span>
+        <span class="guide-sample" id="guideCoengExample2">ស + ្ + ង = ស្ង</span>
       </div>
     </div>
   </div>
@@ -187,7 +187,7 @@
     <div class="guide-rule-item">
       <div class="guide-rule-row">
         <span class="i18n-t" data-en="Type Space" data-km="វាយដកឃ្លា">Type Space</span>
-        <kbd class="guide-kbd">Shift + Space</kbd>
+        <kbd class="guide-kbd" id="guideTypeSpaceKbd">Shift + Space</kbd>
       </div>
       <div class="guide-rule-row">
         <span class="i18n-t" data-en="Shift Layer" data-km="ស្រទាប់ Shift">Shift Layer</span>

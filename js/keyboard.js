@@ -384,11 +384,71 @@ if(document.readyState !== 'loading'){
 } else {
   document.addEventListener('DOMContentLoaded', ()=>{
     if(board && board.children.length === 0) buildBoard();
+    if(typeof updateQuickGuide === 'function') updateQuickGuide();
   });
 }
 
 
 /* ---------- layout switching ---------- */
+function updateQuickGuide() {
+  const leftHand = document.getElementById('guideLeftHand');
+  const rightHand = document.getElementById('guideRightHand');
+  const subscriptsSec = document.getElementById('guideSubscriptsSec');
+  const typeSpaceKbd = document.getElementById('guideTypeSpaceKbd');
+  const coengKeyWrap = document.getElementById('guideCoengKeyWrap');
+
+  if (!leftHand) return;
+
+  if (currentLayoutId === 'english') {
+    leftHand.innerHTML = `
+      <div class="guide-mini-key" title="Left Pinky"><span class="km-ch" style="opacity:0">A</span><span class="en-ch">A</span></div>
+      <div class="guide-mini-key" title="Left Ring"><span class="km-ch" style="opacity:0">S</span><span class="en-ch">S</span></div>
+      <div class="guide-mini-key" title="Left Middle"><span class="km-ch" style="opacity:0">D</span><span class="en-ch">D</span></div>
+      <div class="guide-mini-key" title="Left Index"><span class="km-ch" style="opacity:0">F</span><span class="en-ch">F</span></div>
+    `;
+    rightHand.innerHTML = `
+      <div class="guide-mini-key" title="Right Index"><span class="km-ch" style="opacity:0">H</span><span class="en-ch">J</span></div>
+      <div class="guide-mini-key" title="Right Middle"><span class="km-ch" style="opacity:0">J</span><span class="en-ch">K</span></div>
+      <div class="guide-mini-key" title="Right Ring"><span class="km-ch" style="opacity:0">K</span><span class="en-ch">L</span></div>
+      <div class="guide-mini-key" title="Right Pinky"><span class="km-ch" style="opacity:0">L</span><span class="en-ch">;</span></div>
+    `;
+    subscriptsSec.style.display = 'none';
+    typeSpaceKbd.textContent = 'Space';
+  } else if (currentLayoutId === 'standard') {
+    leftHand.innerHTML = `
+      <div class="guide-mini-key" title="Left Pinky"><span class="km-ch">ា</span><span class="en-ch">A</span></div>
+      <div class="guide-mini-key" title="Left Ring"><span class="km-ch">ស</span><span class="en-ch">S</span></div>
+      <div class="guide-mini-key" title="Left Middle"><span class="km-ch">ដ</span><span class="en-ch">D</span></div>
+      <div class="guide-mini-key" title="Left Index"><span class="km-ch">ថ</span><span class="en-ch">F</span></div>
+    `;
+    rightHand.innerHTML = `
+      <div class="guide-mini-key" title="Right Index"><span class="km-ch">ម</span><span class="en-ch">J</span></div>
+      <div class="guide-mini-key" title="Right Middle"><span class="km-ch">ក</span><span class="en-ch">K</span></div>
+      <div class="guide-mini-key" title="Right Ring"><span class="km-ch">ល</span><span class="en-ch">L</span></div>
+      <div class="guide-mini-key" title="Right Pinky"><span class="km-ch">ើ</span><span class="en-ch">;</span></div>
+    `;
+    subscriptsSec.style.display = 'block';
+    typeSpaceKbd.textContent = 'Space';
+    coengKeyWrap.innerHTML = '<kbd class="guide-kbd">J</kbd> <span class="i18n-t" data-en="(Standard)" data-km="(ស្តង់ដារ)">(Standard)</span>';
+  } else if (currentLayoutId === 'nida') {
+    leftHand.innerHTML = `
+      <div class="guide-mini-key" title="Left Pinky"><span class="km-ch">ា</span><span class="en-ch">A</span></div>
+      <div class="guide-mini-key" title="Left Ring"><span class="km-ch">ស</span><span class="en-ch">S</span></div>
+      <div class="guide-mini-key" title="Left Middle"><span class="km-ch">ដ</span><span class="en-ch">D</span></div>
+      <div class="guide-mini-key" title="Left Index"><span class="km-ch">ថ</span><span class="en-ch">F</span></div>
+    `;
+    rightHand.innerHTML = `
+      <div class="guide-mini-key" title="Right Index"><span class="km-ch">ញ</span><span class="en-ch">J</span></div>
+      <div class="guide-mini-key" title="Right Middle"><span class="km-ch">ក</span><span class="en-ch">K</span></div>
+      <div class="guide-mini-key" title="Right Ring"><span class="km-ch">ល</span><span class="en-ch">L</span></div>
+      <div class="guide-mini-key" title="Right Pinky"><span class="km-ch">ើ</span><span class="en-ch">;</span></div>
+    `;
+    subscriptsSec.style.display = 'block';
+    typeSpaceKbd.textContent = 'Shift + Space';
+    coengKeyWrap.innerHTML = '<kbd class="guide-kbd">Shift</kbd> + <kbd class="guide-kbd">J</kbd> <span class="i18n-t" data-en="(NiDA)" data-km="(នីដា)">(NiDA)</span>';
+  }
+}
+
 function switchLayout(id){
   if(!LAYOUTS[id] || id === currentLayoutId) return;
   const prevLayout = currentLayoutId;
@@ -405,6 +465,7 @@ function switchLayout(id){
   if(typeof raceMode !== 'undefined' && raceMode) exitRaceMode();
   currentLayoutId = id;
   window.currentLayoutId = currentLayoutId;
+  if(typeof updateQuickGuide === 'function') updateQuickGuide();
   window.activeCourse = id;
   window.activeLayout = id;
   if(typeof PK_TRACKER !== 'undefined' && typeof PK_TRACKER.recordLayoutSwitch === 'function'){

@@ -1,9 +1,8 @@
 const fs = require('fs');
 const path = require('path');
-global.window = { addEventListener: () => {} };
-global.document = { activeElement: null, getElementById: () => null, addEventListener: () => {} };
 
-eval(fs.readFileSync(path.join(__dirname, '../js/typing.js'), 'utf8'));
+const unitsCode = fs.readFileSync(path.join(__dirname, '../src/logic/typing/units.js'), 'utf8');
+eval(unitsCode.replace(/export /g, ''));
 
 const courses = ['standard', 'nida', 'english'];
 let allPass = true;
@@ -40,7 +39,7 @@ for (const course of courses) {
         totalExercises++;
         const ex = exercises[ref];
         if (!ex) continue;
-        const text = Array.isArray(ex.content) ? ex.content.join(" ") : ex.content; const units = typeof tokenizeTextForLayout !== "undefined" ? tokenizeTextForLayout(text) : text.split("");
+        const units = normalizeUnits(ex.content);
         let hasReview = false;
         for (const unit of units) {
           if (priorLevelKeys.has(unit) && !thisLevelKeys.has(unit)) {
@@ -61,8 +60,3 @@ for (const course of courses) {
   }
 }
 process.exit(allPass ? 0 : 1);
-
-
-
-
-
