@@ -2479,7 +2479,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L11-06"
-      }
+      },
+      "timeLimit": 60
     },
     {
       "id": "nida-L12-02",
@@ -2503,7 +2504,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L12-01"
-      }
+      },
+      "timeLimit": 60
     },
     {
       "id": "nida-L12-03",
@@ -2526,7 +2528,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L12-02"
-      }
+      },
+      "timeLimit": 60
     },
     {
       "id": "nida-L12-04",
@@ -2587,7 +2590,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L12-03"
-      }
+      },
+      "timeLimit": 60
     },
     {
       "id": "nida-L12-05",
@@ -2611,7 +2615,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L12-04"
-      }
+      },
+      "timeLimit": 60
     }
   ]
 }

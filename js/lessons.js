@@ -1175,6 +1175,9 @@ let lessonMistakes = 0;
 let lessonMistakeChars = {};   // ch -> count of mistakes this attempt, for adaptive drilling + Review Mistakes
 let lessonAcceptedUnits = [];  // Stack of accepted {index, val, expected} units for reliable Backspace
 let lessonStartTime = 0;
+let lessonTimerInterval = null;
+let lessonTimeLeft = 0;
+let lessonHasTimer = false;
 let lessonExtendedOnce = false; // adaptive: only auto-extend a lesson once per attempt
 let remedialActive = false;    // true while running an ad-hoc "Review Mistakes" drill
 
@@ -1311,15 +1314,7 @@ function isLessonLocked(id){
   const prevReqId = def && def.unlockRequirements && def.unlockRequirements.previousLesson;
   const prevId = prevReqId || LESSONS[idx - 1].id;
   const prevBest = getLessonBest(prevId);
-  if (!prevBest) return true;
-  
-  const prevDef = LESSONS.find(l => String(l.id) === String(prevId));
-  if (prevDef && def && prevDef.level !== def.level) {
-    if (prevBest.gateVersion !== 0 && (prevBest.bestAttempt?.accuracy || 0) < 90) {
-      return true;
-    }
-  }
-  return false;
+  return !prevBest; // any completed attempt on the previous lesson unlocks the next one
 }
 window.isLessonLocked = isLessonLocked;
 window.getLessonBest = getLessonBest;
@@ -1776,6 +1771,13 @@ function updateLessonKeyHighlight(){
 }
 
 function updateLessonProgress(){
+  const tw = document.getElementById('lessonTimerWrap');
+  if (lessonHasTimer && tw) {
+    tw.style.display = 'inline';
+    document.getElementById('lessonTimerVal').textContent = Math.floor(lessonTimeLeft/60) + ':' + String(lessonTimeLeft%60).padStart(2, '0');
+  } else if (tw) {
+    tw.style.display = 'none';
+  }
   lessonProgressValEl.textContent = lessonIndex;
   lessonTotalValEl.textContent = lessonChars.length;
   lessonProgressFillEl.style.width = (lessonChars.length > 0 ? (lessonIndex/lessonChars.length*100) : 0) + '%';
@@ -1850,6 +1852,22 @@ function startLesson(idOrDef){
   lessonAcceptedUnits = [];
   lessonExtendedOnce = false;
   lessonStartTime = Date.now();
+  if (lessonTimerInterval) clearInterval(lessonTimerInterval);
+  if (currentLesson && currentLesson.timeLimit) {
+    lessonHasTimer = true;
+    lessonTimeLeft = currentLesson.timeLimit;
+    lessonTimerInterval = setInterval(() => {
+      if (!lessonActive) return;
+      lessonTimeLeft--;
+      updateLessonProgress();
+      if (lessonTimeLeft <= 0) {
+        clearInterval(lessonTimerInterval);
+        completeLesson();
+      }
+    }, 1000);
+  } else {
+    lessonHasTimer = false;
+  }
   lessonActive = true;
 
   if(typeof PK_TRACKER !== 'undefined' && typeof PK_TRACKER.recordLessonStart === 'function'){
@@ -1896,6 +1914,7 @@ function startLesson(idOrDef){
 }
 
 function executeLessonExit(){
+  if (lessonTimerInterval) clearInterval(lessonTimerInterval);
   if(typeof PK_TRACKER !== 'undefined' && typeof PK_TRACKER.recordLessonExit === 'function'){
     PK_TRACKER.recordLessonExit({
       layout: currentLayoutId,
@@ -2139,6 +2158,7 @@ function lessonHandleBackspace(){
 }
 
 function completeLesson(){
+  if (lessonTimerInterval) clearInterval(lessonTimerInterval);
   const elapsed = (Date.now() - lessonStartTime) / 1000;
   const attempts = lessonChars.length + lessonMistakes;
   const accuracy = Math.round((lessonChars.length/attempts)*100);
@@ -2463,3 +2483,7 @@ function applyLessonsData(data){
   if(typeof renderLessonStrip === "function") renderLessonStrip();
   if(typeof updateMasteryStat === "function") updateMasteryStat();
 }
+
+
+
+

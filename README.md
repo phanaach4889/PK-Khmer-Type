@@ -2,9 +2,9 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Language-Khmer%20%7C%20English-00f5c4?style=for-the-badge" alt="Bilingual">
-  <img src="https://img.shields.io/badge/React-UI-61dafb?logo=react&logoColor=white" alt="React">
-  <img src="https://img.shields.io/badge/Vite-build-646cff?logo=vite&logoColor=white" alt="Vite">
-  <img src="https://img.shields.io/badge/Tailwind-CSS-38bdf8?logo=tailwindcss&logoColor=white" alt="Tailwind CSS">
+  <img src="https://img.shields.io/badge/Vanilla-JS-f7df1e?logo=javascript&logoColor=black" alt="Vanilla JS">
+  <img src="https://img.shields.io/badge/Zero-Dependencies-ff69b4" alt="Zero Dependencies">
+  <img src="https://img.shields.io/badge/Offline-PWA-4caf50" alt="Offline PWA">
   <img src="https://img.shields.io/badge/Curriculum-218%20lessons-f0b44d" alt="218 lessons">
 </p>
 
@@ -177,3 +177,4 @@ Issues and contributions are welcome. Before submitting a change, run `npm run v
 ## Credits
 
 Created by **Phanna Kurosaki** to make Khmer typing education more accessible.
+

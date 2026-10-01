@@ -1959,7 +1959,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L11-05"
-      }
+      },
+      "timeLimit": 60
     },
     {
       "id": "en-L12-02",
@@ -1981,7 +1982,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L12-01"
-      }
+      },
+      "timeLimit": 60
     },
     {
       "id": "en-L12-03",
@@ -2003,7 +2005,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L12-02"
-      }
+      },
+      "timeLimit": 60
     },
     {
       "id": "en-L12-04",
@@ -2025,7 +2028,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L12-03"
-      }
+      },
+      "timeLimit": 60
     },
     {
       "id": "en-L13-01",
@@ -2047,7 +2051,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L12-04"
-      }
+      },
+      "timeLimit": 180
     },
     {
       "id": "en-L13-02",
@@ -2069,7 +2074,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L13-01"
-      }
+      },
+      "timeLimit": 180
     },
     {
       "id": "en-L13-03",
@@ -2091,7 +2097,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L13-02"
-      }
+      },
+      "timeLimit": 180
     },
     {
       "id": "en-L13-04",
@@ -2113,7 +2120,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L13-03"
-      }
+      },
+      "timeLimit": 180
     }
   ]
 }

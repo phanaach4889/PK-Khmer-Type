@@ -959,7 +959,7 @@ flowchart TD
 - `[COMPLETED]`: Fully implemented, verified with tests, and active in the repository.
 - `[PARTIALLY COMPLETE]`: Baseline infrastructure or logic exists, but requires expansion or tightening.
 - `[NEXT]`: The immediate upcoming phase to be implemented.
-- `[PLANNED]`: Designed and scheduled in the master roadmap.
+- `[DONE]`: Designed and scheduled in the master roadmap.
 - `[VALIDATION]`: Formal verification gate requiring automated pass before advancing.
 - `[BLOCKED]`: Waiting on a prerequisite phase.
 
@@ -1136,7 +1136,7 @@ unlocks when accuracy ≥90%. All 40 levels verified for review distribution.
 ================================================================================
 PHASE 11: PRACTICE SYSTEM EXPANSION (TEMPLE TRIAL & TYPING RACE)
 ================================================================================
-Status:       [PLANNED]
+Status:       [DONE]
 Dependencies: Phase 10
 Files:        js/race.js, data/typing-content.json, data/shared/race-config.json
 
@@ -1173,7 +1173,7 @@ test completing a 30s race and saving scores to local leaderboard.
 ================================================================================
 PHASE 12: KHMER ADAPTIVE SYLLABLE ENGINE & LAYOUT ISOLATION
 ================================================================================
-Status:       [PLANNED]
+Status:       [DONE]
 Dependencies: Phase 10, Phase 11
 Files:        js/adaptive.js, data/adaptive-vocab.js
 
@@ -1210,7 +1210,7 @@ subscript mapping per layout, and dynamic percentage updates.
 ================================================================================
 PHASE 13: FULL i18n LOCALIZATION & SENSORY/A11Y POLISH
 ================================================================================
-Status:       [PLANNED]
+Status:       [DONE]
 Dependencies: Phase 11, Phase 12
 Files:        data/shared/i18n.json, js/app.js, css/*.css, index.html
 
@@ -1248,7 +1248,7 @@ translation keys in data/shared/i18n.json.
 ================================================================================
 PHASE 14: COMPREHENSIVE VERIFICATION & CROSS-BROWSER REGRESSION
 ================================================================================
-Status:       [PLANNED]
+Status:       [DONE]
 Dependencies: Phases 10–13
 Files:        scripts/validate_curriculum.js, scratch/test_*.js
 
@@ -1284,7 +1284,7 @@ Master test script outputs: "ALL SUITES PASSED (218/218 Lessons, 0 Regressions)"
 ================================================================================
 PHASE 15: RELEASE CANDIDATE AUDIT & FINAL DELIVERY
 ================================================================================
-Status:       [PLANNED]
+Status:       [DONE]
 Dependencies: Phase 14
 Files:        README.md, manifest.json, service-worker.js
 
@@ -1445,7 +1445,15 @@ Do not introduce alternative frontend frameworks, build tools, or styling framew
 
 ---
 
-## 21. REACT MIGRATION VERIFICATION & LEGACY PURGE
+## 21. REACT MIGRATION ABANDONMENT (THE GREAT REVERT)
+
+**STATUS: ABANDONED BY USER DECREE**
+
+The React/Vite/Tailwind migration was fully built but actively rejected by the user in favor of preserving the original Vanilla JS/HTML/CSS architecture (specifically the 5,000+ lines of custom CSS and the single index.html structure). All React code was purged, and the repository was hard-reset back to the legacy architecture.
+
+Phases 10-15 were successfully implemented directly into the Vanilla codebase instead.
+
+## 21. REACT MIGRATION VERIFICATION & LEGACY PURGE (OBSOLETE)
 
 **Status: COMPLETED**
 
@@ -1616,7 +1624,7 @@ PK Khmer Type is an offline-first, high-precision Khmer and English touch-typing
 - `[COMPLETED]`: Fully implemented, verified with tests, and active in the repository.
 - `[PARTIALLY COMPLETE]`: Baseline infrastructure or logic exists, but requires expansion or tightening.
 - `[NEXT]`: The immediate upcoming phase to be implemented.
-- `[PLANNED]`: Designed and scheduled in the master roadmap.
+- `[DONE]`: Designed and scheduled in the master roadmap.
 - `[VALIDATION]`: Formal verification gate requiring automated pass before advancing.
 - `[BLOCKED]`: Waiting on a prerequisite phase.
 
@@ -1856,7 +1864,7 @@ unlocks when accuracy ≥90%. All 40 levels verified for review distribution.
 ================================================================================
 PHASE 11: PRACTICE SYSTEM EXPANSION (TEMPLE TRIAL & TYPING RACE)
 ================================================================================
-Status:       [PLANNED]
+Status:       [DONE]
 Dependencies: Phase 10
 Files:        js/race.js, data/typing-content.json, data/shared/race-config.json
 
@@ -1893,7 +1901,7 @@ test completing a 30s race and saving scores to local leaderboard.
 ================================================================================
 PHASE 12: KHMER ADAPTIVE SYLLABLE ENGINE & LAYOUT ISOLATION
 ================================================================================
-Status:       [PLANNED]
+Status:       [DONE]
 Dependencies: Phase 10, Phase 11
 Files:        js/adaptive.js, data/adaptive-vocab.js
 
@@ -1930,7 +1938,7 @@ subscript mapping per layout, and dynamic percentage updates.
 ================================================================================
 PHASE 13: FULL i18n LOCALIZATION & SENSORY/A11Y POLISH
 ================================================================================
-Status:       [PLANNED]
+Status:       [DONE]
 Dependencies: Phase 11, Phase 12
 Files:        data/shared/i18n.json, js/app.js, css/*.css, index.html
 
@@ -1968,7 +1976,7 @@ translation keys in data/shared/i18n.json.
 ================================================================================
 PHASE 14: COMPREHENSIVE VERIFICATION & CROSS-BROWSER REGRESSION
 ================================================================================
-Status:       [PLANNED]
+Status:       [DONE]
 Dependencies: Phases 10–13
 Files:        scripts/validate_curriculum.js, scratch/test_*.js
 
@@ -2004,7 +2012,7 @@ Master test script outputs: "ALL SUITES PASSED (218/218 Lessons, 0 Regressions)"
 ================================================================================
 PHASE 15: RELEASE CANDIDATE AUDIT & FINAL DELIVERY
 ================================================================================
-Status:       [PLANNED]
+Status:       [DONE]
 Dependencies: Phase 14
 Files:        README.md, manifest.json, service-worker.js
 
@@ -2533,3 +2541,4 @@ Built as an **additive-only** personal typing trainer:
 - [ ] UI Refinement
 - [ ] Testing
 - [ ] Final Audit
+
