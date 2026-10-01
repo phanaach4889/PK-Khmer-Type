@@ -914,10 +914,7 @@
     border-radius:16px;
     padding:22px 24px 26px;
     box-shadow:0 30px 60px -20px rgba(0,0,0,0.7);
-    /* hide scrollbar when not needed */
-    scrollbar-width:none;
   }
-  .modal-card::-webkit-scrollbar{ display:none; }
 
   /* auth-card never needs scrollbar — content is sized to fit */
   .auth-card{
@@ -1992,8 +1989,10 @@
   /* ================= new: statistics dashboard ================= */
   .stats-card{
     width:min(92vw, 640px);
+    max-height:88vh;
     padding:0;
-    overflow:hidden;
+    overflow-y:auto;
+    overflow-x:hidden;
     position:relative;
   }
   .stats-header{
@@ -2063,7 +2062,7 @@
   }
 
   .stats-grid{
-    display:grid; grid-template-columns:repeat(4, 1fr); gap:10px;
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:10px;
     padding:20px 26px 4px;
   }
   .stat-tile{

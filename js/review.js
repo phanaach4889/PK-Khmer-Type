@@ -811,33 +811,49 @@
       };
     }
 
-    // Build drill tokens using alternating anchoring patterns
+    // Build drill tokens
     const tokens = [];
-    const a1 = activeAnchors[0] || 'f';
-    const a2 = activeAnchors[1] || 'j';
-    const a3 = activeAnchors[2] || 'd';
-    const a4 = activeAnchors[3] || 'k';
+    if(options.target || options.pureTarget || options.category === 'character' || options.isolateTarget){
+      // Pure target review — strictly focus on the target character with zero anchor interference
+      tokens.push(targetChar, targetChar, targetChar, ' ');
+      tokens.push(targetChar, ' ');
+      tokens.push(targetChar, targetChar, ' ');
+      tokens.push(targetChar, targetChar, targetChar, ' ');
+      tokens.push(targetChar, targetChar, ' ');
+      tokens.push(targetChar, ' ');
+      tokens.push(targetChar, targetChar, targetChar, targetChar, ' ');
+      tokens.push(targetChar, targetChar, ' ');
+      tokens.push(targetChar, ' ');
+      tokens.push(targetChar, targetChar, targetChar, ' ');
+      tokens.push(targetChar, targetChar, ' ');
+      tokens.push(targetChar, ' ');
+    } else {
+      const a1 = activeAnchors[0] || 'f';
+      const a2 = activeAnchors[1] || 'j';
+      const a3 = activeAnchors[2] || 'd';
+      const a4 = activeAnchors[3] || 'k';
 
-    // Pattern 1: Target Isolation Focus (e.g. F F F F)
-    tokens.push(targetChar, targetChar, targetChar, targetChar, ' ');
+      // Pattern 1: Target Isolation Focus (e.g. F F F F)
+      tokens.push(targetChar, targetChar, targetChar, targetChar, ' ');
 
-    // Pattern 2: Home Row Sandwich (e.g. A1 T A1 Space A2 T A2 Space)
-    tokens.push(a1, targetChar, a1, ' ', a2, targetChar, a2, ' ');
+      // Pattern 2: Home Row Sandwich (e.g. A1 T A1 Space A2 T A2 Space)
+      tokens.push(a1, targetChar, a1, ' ', a2, targetChar, a2, ' ');
 
-    // Pattern 3: Alternating Contrast (e.g. T A3 T A3 Space T A4 T A4 Space)
-    tokens.push(targetChar, a3, targetChar, a3, ' ', targetChar, a4, targetChar, a4, ' ');
+      // Pattern 3: Alternating Contrast (e.g. T A3 T A3 Space T A4 T A4 Space)
+      tokens.push(targetChar, a3, targetChar, a3, ' ', targetChar, a4, targetChar, a4, ' ');
 
-    // Pattern 4: Double Anchor Integration (e.g. A1 A1 T T A2 A2 Space)
-    tokens.push(a1, a1, targetChar, targetChar, a2, a2, ' ');
+      // Pattern 4: Double Anchor Integration (e.g. A1 A1 T T A2 A2 Space)
+      tokens.push(a1, a1, targetChar, targetChar, a2, a2, ' ');
 
-    // Pattern 5: Fluency Rhythm
-    tokens.push(targetChar, a2, targetChar, a1, targetChar, ' ');
+      // Pattern 5: Fluency Rhythm
+      tokens.push(targetChar, a2, targetChar, a1, targetChar, ' ');
+    }
 
     // Slice or pad to requested length
     let chars = tokens.slice(0, length);
     if(chars.length < length){
       while(chars.length < length){
-        chars.push(targetChar, a1, ' ');
+        chars.push(targetChar, ' ');
       }
       chars = chars.slice(0, length);
     }
@@ -850,7 +866,7 @@
     // Guarantee NO unintroduced characters are in the generated drill
     chars = chars.map(c => {
       if(c === ' ') return ' ';
-      return introducedChars.has(c) ? c : a1;
+      return (c === targetChar || introducedChars.has(c)) ? c : targetChar;
     });
 
     // Build parallel layers and keyIds arrays

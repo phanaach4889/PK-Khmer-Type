@@ -28,8 +28,21 @@ function charFor(id, layer){
     : KEY_BY_ID;
   const k = table[id];
   if(!k) return '';
-  const v = k[layer];
-  return (v !== undefined && v !== '') ? v : '';
+  const lyr = layer || 'base';
+  const v = k[lyr];
+  return (v !== undefined && v !== '') ? v : (k.base || '');
+}
+
+function formatDisplayGlyph(ch){
+  if(!ch) return '';
+  if(ch === ' ') return 'Space';
+  const code = ch.codePointAt(0);
+  // Khmer combining marks (Coeng 0x17D2, vowels 0x17B4-0x17BD, diacritics 0x17C6-0x17D3)
+  // Need a base dotted circle (◌ U+25CC) so they render legibly instead of collapsing into a dot
+  if((code >= 0x17B4 && code <= 0x17D3) || code === 0x17DD){
+    return '\u25CC' + ch;
+  }
+  return ch;
 }
 
 const FINGER_LABELS = {
@@ -227,72 +240,80 @@ function seqWords(words, table){
 /* Intelligent mistake review: pairs each missed character with contrasting context keys.
    Never produces consecutive identical letters (e.g. never 'កក' or 'ក ក ក').
    Generates rhythmic, bite-sized Khmer syllables (2-3 chars) for maximum muscle memory. */
-function seqReviewMistakes(missedEntries, companionEntries){
+function seqReviewMistakes(missedEntries){
   if(!missedEntries || !missedEntries.length) return [];
-
-  // Default companions from home row anchors if companion list is empty
-  const fallbackChars = ['ដ', 'ថ', 'ញ', 'ក', 'ស', 'ង', 'ហ', 'ា', 'ម', 'រ', 'ប'];
-  let companions = (companionEntries && companionEntries.length)
-    ? companionEntries.filter(c => c && c.ch && !missedEntries.some(m => m.ch === c.ch))
-    : [];
-
-  if(!companions.length){
-    fallbackChars.forEach(ch => {
-      if(!missedEntries.some(m => m.ch === ch)){
-        const loc = resolveCharLocation(ch);
-        if(loc) companions.push(loc);
-      }
-    });
-  }
-  if(!companions.length) companions = missedEntries;
+  // Filter out any empty or whitespace entries
+  const valid = missedEntries.filter(m => m && m.ch && m.ch.trim() !== '');
+  const targets = valid.length ? valid : missedEntries;
+  if(!targets.length) return [];
 
   const seq = [];
   function addWord(arr){
+    if(!arr || !arr.length) return;
     for(let i=0; i<arr.length; i++){
       const item = arr[i];
       if(!item || !item.ch) continue;
-      // Strictly prevent identical consecutive letters
-      if(seq.length && seq[seq.length-1].ch === item.ch) continue;
       seq.push(item);
     }
     seq.push(spaceEntry());
   }
 
-  // Phase 1: For each missed key, alternate with companion keys in 2-3 character syllables
-  missedEntries.forEach((m, idx) => {
-    const c1 = companions[idx % companions.length];
-    const c2 = companions[(idx + 1) % companions.length] || c1;
-
-    // Word 1: [Companion, Missed] e.g. ដក
-    addWord([c1, m]);
-    // Word 2: [Missed, Companion] e.g. កដ
-    addWord([m, c1]);
-    // Word 3: [Companion, Missed, Companion] or [Missed, Companion, Missed]
-    if(c2 && c2.ch !== c1.ch && c2.ch !== m.ch){
-      addWord([c1, m, c2]);
-    } else {
-      addWord([m, c1, m]);
-    }
-  });
-
-  // Phase 2: If multiple keys were missed, cross-train them against each other
-  if(missedEntries.length >= 2){
-    for(let i=0; i<missedEntries.length - 1; i++){
-      const m1 = missedEntries[i];
-      const m2 = missedEntries[i+1];
-      const c = companions[i % companions.length];
+  if(targets.length === 1){
+    const m = targets[0];
+    // Rhythmic cadence drills exclusively on the single missed character
+    addWord([m, m, m]);
+    addWord([m]);
+    addWord([m, m]);
+    addWord([m, m, m]);
+    addWord([m, m]);
+    addWord([m]);
+    addWord([m, m]);
+    addWord([m, m, m]);
+    addWord([m]);
+    addWord([m, m]);
+    addWord([m, m, m, m]);
+    addWord([m, m]);
+    addWord([m]);
+  } else if(targets.length === 2){
+    const m1 = targets[0];
+    const m2 = targets[1];
+    // Focused combinations purely between the two missed keys
+    addWord([m1, m1, m1]);
+    addWord([m2, m2, m2]);
+    addWord([m1, m2]);
+    addWord([m2, m1]);
+    addWord([m1, m1, m2]);
+    addWord([m2, m2, m1]);
+    addWord([m1, m2, m1]);
+    addWord([m2, m1, m2]);
+    addWord([m1, m2]);
+    addWord([m2, m1]);
+    addWord([m1, m1]);
+    addWord([m2, m2]);
+    addWord([m1, m2, m1, m2]);
+  } else {
+    // 3 or more missed characters: isolated bursts followed by pure combinations
+    targets.forEach(m => {
+      addWord([m, m, m]);
+    });
+    for(let i = 0; i < targets.length; i++){
+      const m1 = targets[i];
+      const m2 = targets[(i + 1) % targets.length];
       addWord([m1, m2]);
       addWord([m2, m1]);
-      if(c && c.ch !== m1.ch && c.ch !== m2.ch) addWord([m1, c, m2]);
     }
-  }
-
-  // Phase 3: Final review round if only 1 key was missed so it's a satisfying ~14 char drill
-  if(missedEntries.length === 1 && companions.length >= 3){
-    const m = missedEntries[0];
-    const c3 = companions[2];
-    addWord([m, c3]);
-    addWord([c3, m, companions[0]]);
+    for(let i = 0; i < targets.length; i++){
+      const m1 = targets[i];
+      const m2 = targets[(i + 1) % targets.length];
+      const m3 = targets[(i + 2) % targets.length];
+      addWord([m1, m2, m3]);
+    }
+    for(let i = 0; i < targets.length; i++){
+      const m1 = targets[i];
+      const m2 = targets[(i + 1) % targets.length];
+      addWord([m1, m1, m2]);
+      addWord([m2, m2, m1]);
+    }
   }
 
   while(seq.length && seq[seq.length-1].ch === ' ') seq.pop();
@@ -808,22 +829,22 @@ function buildNidaCourse(){
 
   /* ===== LEVEL 2: Intermediate — Subscripts & Coeng J System ===== */
 
-  // Lesson 10005 (Level 2, intro): Subscripts — Coeng Key (Shift+J = ្)
+  // Lesson 10005 (Level 2, intro): Subscripts — Coeng Key (J = ្)
   {
     const ids = ['j'];
     const ex = ['ត្រី', 'ក្រៅ', 'ខ្លា', 'ឆ្កែ', 'ផ្លូវ', 'ម្ហូប', 'ស្ងួត', 'ក្បាល'];
-    addLesson(2, 'intro', 'Subscripts — Coeng Key (Shift+J = ្)', 'Base Consonant + Shift+J (្) + Subscript',
+    addLesson(2, 'intro', 'Subscripts — Coeng Key (J = ្)', 'Base Consonant + J (្) + Subscript',
       () => materialize(seqWords(ex, table)),
-      { newIds: ids, newLayer: 'shift', examples: ex });
+      { newIds: ids, newLayer: 'base', examples: ex });
   }
 
   // Lesson 10006 (Level 2, combo): Subscripts — Shifted Consonants
   {
     const ids = ['j', 'k', 'x', 'c', 't', 'f', 'p', 'g'];
     const ex = ['ស្គាល់', 'ស្អាត', 'កម្ពុជា', 'បញ្ជី', 'សង្ឃ', 'សម្បត្តិ', 'បន្ទប់'];
-    addLesson(2, 'combo', 'Subscripts — Shifted Consonants', 'Shift+J followed by Shifted Consonants (្គ, ្ឃ, ្ជ, ្ទ, ្ធ, ្ភ, ្អ)',
+    addLesson(2, 'combo', 'Subscripts — Shifted Consonants', 'J (្) followed by Shifted Consonants (្គ, ្ឃ, ្ជ, ្ទ, ្ធ, ្ភ, ្អ)',
       () => materialize(seqWords(ex, table)),
-      { newIds: ids, newLayer: 'shift', examples: ex });
+      { newIds: ids, newLayer: 'base', examples: ex });
   }
 
   // Lesson 10007 (Level 2, words): Subscripts — Complex Vowels
@@ -1415,6 +1436,19 @@ function renderLessonStrip(){
     `;
     frag.appendChild(topBar);
 
+    const isKm = document.documentElement.classList.contains('site-km-mode');
+    const searchPlaceholder = isKm ? "ស្វែងរកមេរៀន អក្សរ..." : "Search lessons, letters...";
+    
+    const searchBar = document.createElement('div');
+    searchBar.className = 'lesson-strip-search';
+    searchBar.innerHTML = `
+      <div class="lss-input-wrap">
+        <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="lessonSearchInput" class="i18n-ph" data-en="Search lessons, letters..." data-km="ស្វែងរកមេរៀន អក្សរ..." placeholder="${searchPlaceholder}" autocomplete="off">
+      </div>
+    `;
+    frag.appendChild(searchBar);
+
     const adaptiveCard = document.createElement('div');
     adaptiveCard.className = 'adaptive-sidebar-card';
     adaptiveCard.id = 'adaptiveSidebarCard';
@@ -1500,6 +1534,46 @@ function renderLessonStrip(){
     lessonStrip.hidden = false;
   }
 }
+
+lessonStrip.addEventListener('input', (e)=>{
+  if(e.target.id === 'lessonSearchInput') {
+    const term = e.target.value.toLowerCase().trim();
+    const levelHeaders = lessonStrip.querySelectorAll('.lesson-level-header');
+    const levelLists = lessonStrip.querySelectorAll('.lesson-level-list');
+    
+    levelLists.forEach((list, idx) => {
+      const header = levelHeaders[idx];
+      if(!header) return;
+      const headerMatches = header.textContent.toLowerCase().includes(term);
+      const cards = list.querySelectorAll('.lesson-card');
+      let visibleCount = 0;
+      
+      cards.forEach(card => {
+        const cardMatches = card.textContent.toLowerCase().includes(term);
+        if(headerMatches || cardMatches) {
+          card.style.display = '';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      if(visibleCount === 0) {
+        header.style.display = 'none';
+        list.style.display = 'none';
+      } else {
+        header.style.display = '';
+        list.style.display = '';
+        if(term.length > 0) {
+          list.classList.remove('collapsed');
+          header.classList.remove('collapsed');
+          const chevron = header.querySelector('.llh-chevron');
+          if(chevron) chevron.innerHTML = typeof pkIcon === 'function' ? pkIcon('arrow-down', 11) : '';
+        }
+      }
+    });
+  }
+});
 
 /* Toggle a level section open/closed, toggle 1-col/2-col expand, or start lesson */
 lessonStrip.addEventListener('click', (e)=>{
@@ -1597,8 +1671,11 @@ function renderLessonMeta(def){
   if(def.newIds && def.newIds.length){
     lessonNewKeysEl.hidden = false;
     lessonNewKeysEl.innerHTML = '<span class="lesson-newkeys-label">Target Keys</span>' + def.newIds.map(id=>{
-      const ch = charFor(id, def.newLayer) || '·';
-      return `<span class="lesson-newkey-chip"><span class="nk-char">${ch}</span><span class="nk-sub">${keyLabel(id)} · ${fingerLabel(id)}</span></span>`;
+      const layer = def.newLayer || def.layer || 'base';
+      let ch = (def.newChars && def.newChars[id]) || charFor(id, layer);
+      if(!ch) ch = charFor(id, 'base') || charFor(id, 'shift') || '';
+      const displayChar = formatDisplayGlyph(ch) || keyLabel(id);
+      return `<span class="lesson-newkey-chip"><span class="nk-char">${displayChar}</span><span class="nk-sub">${keyLabel(id)} · ${fingerLabel(id)}</span></span>`;
     }).join('');
   } else {
     lessonNewKeysEl.hidden = true;
@@ -1613,10 +1690,36 @@ function renderLessonMeta(def){
     lessonNewKeysEl.parentNode.insertBefore(exEl, lessonNewKeysEl.nextSibling);
   }
   if(def.examples && def.examples.length){
-    exEl.hidden = false;
-    exEl.innerHTML = '<span class="leb-label">Lesson Examples:</span>' + def.examples.map(ex=> `<span class="leb-chip">${ex}</span>`).join('');
+    // Flatten and split in case examples are space-separated strings or arrays
+    const rawList = Array.isArray(def.examples) ? def.examples : [def.examples];
+    const tokens = [];
+    rawList.forEach(item => {
+      if(typeof item === 'string'){
+        const parts = item.trim().split(/[\s,]+/).filter(Boolean);
+        parts.forEach(p => {
+          if(!tokens.includes(p)) tokens.push(p);
+        });
+      }
+    });
+
+    if(tokens.length){
+      exEl.hidden = false;
+      const isKm = document.documentElement.classList.contains('site-km-mode');
+      const labelText = isKm ? 'គំរូវាយ៖' : 'Lesson Examples:';
+      const iconSvg = typeof pkIcon === 'function' ? pkIcon('book', 13) : '';
+      exEl.innerHTML = `
+        <span class="leb-label i18n-t" data-en="Lesson Examples:" data-km="គំរូវាយ៖">${iconSvg} ${labelText}</span>
+        <div class="leb-chips">
+          ${tokens.slice(0, 10).map(ex => `<span class="leb-chip">${ex}</span>`).join('')}
+        </div>
+      `;
+    } else {
+      exEl.hidden = true;
+      exEl.innerHTML = '';
+    }
   } else {
     exEl.hidden = true;
+    exEl.innerHTML = '';
   }
 }
 
@@ -1702,6 +1805,9 @@ function updateLessonProgress(){
    definition object (used by "Review Mistakes" — never saved to the
    course list or to localStorage). */
 function startLesson(idOrDef){
+  if(document.activeElement && typeof document.activeElement.blur === 'function'){
+    document.activeElement.blur();
+  }
   if(typeof trialActive !== 'undefined' && trialActive) stopTrial();
   if(typeof raceMode !== 'undefined' && raceMode) exitRaceMode();
   if(typeof window !== 'undefined' && window.adaptiveActive && typeof PK_ADAPTIVE !== 'undefined' && typeof PK_ADAPTIVE.exitSession === 'function'){
@@ -2291,29 +2397,27 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
       dismissOverlay();
       const rawMistakeList = (mistakeChars && mistakeChars.length) ? mistakeChars : Object.keys(lessonMistakeChars);
       
-      // Phase 8 Adaptive Review Drill Generation
-      if(typeof PK_REVIEW !== 'undefined' && typeof PK_REVIEW.generateReviewDrill === 'function' && rawMistakeList.length > 0){
-        const primaryTarget = rawMistakeList[0];
-        const drillDef = PK_REVIEW.generateReviewDrill(currentLayoutId, {
-          target: primaryTarget,
-          category: 'character',
-          reason: `Targeted review on missed unit ${primaryTarget}`
-        });
-        if(drillDef){
-          startLesson(drillDef);
-          return;
-        }
-      }
-
       const entries = rawMistakeList.map(resolveCharLocation).filter(Boolean);
       if(!entries.length) return;
-      const companions = (lessonChars || []).map(resolveCharLocation).filter(Boolean);
+      
+      const isKm = document.documentElement.classList.contains('site-km-mode');
+      const mistakeStr = rawMistakeList.join(' ');
+      const title = isKm ? `រំលឹកកំហុស — ${def.title}` : `Review Mistakes — ${def.title}`;
+      const subtitle = isKm ? `ហ្វឹកហាត់លើគ្រាប់ចុចខុស៖ ${mistakeStr}` : `Targeted practice on missed keys: ${mistakeStr}`;
+      
       startLesson({
-        id:-1, level:def.level, type:'review', isRemedial:true,
-        title:'Review Mistakes — ' + def.title,
-        subtitle:'Targeted combinations on missed keys (no repeating letters)',
-        layer: entries[0].layer, threshold:0, newIds:[],
-        generate: ()=> materialize(seqReviewMistakes(entries, companions)),
+        id: -1,
+        level: def.level,
+        type: 'review',
+        isRemedial: true,
+        title: title,
+        subtitle: subtitle,
+        layer: entries[0].layer,
+        newLayer: entries[0].layer,
+        newChars: entries.reduce((acc, e) => { acc[e.id] = e.ch; return acc; }, {}),
+        threshold: 0,
+        newIds: entries.map(e => e.id),
+        generate: () => materialize(seqReviewMistakes(entries)),
       });
     });
   }

@@ -149,7 +149,7 @@ console.log('Testing Phase 9/10 Strict 100% Completion Unlocking & UI Strip...')
   console.log('  ✓ Test 5: State sanitization successfully relocks prematurely unlocked letters (S relocked until O hits 100%)');
 }
 
-// 6. Letter Strip Rendering: Stat displays completion percentage (100%, 50%, lock)
+// 6. Letter Strip Rendering: Stat displays live Accuracy % and drops on mistakes
 {
   for (let i = 0; i < 20; i++) {
     PK_ADAPTIVE.recordStroke('english', 'l', true, 200);
@@ -158,24 +158,39 @@ console.log('Testing Phase 9/10 Strict 100% Completion Unlocking & UI Strip...')
   PK_ADAPTIVE.renderLetterStrip(mockContainer, 'english');
   assert(mockContainer.children.length >= 26);
 
-  // First 6 pills (E, N, I, A, R, L) should show 100%
-  for (let i = 0; i < 6; i++) {
+  // High-accuracy letters (E, N, I, A, R) show 100%
+  for (let i = 0; i < 5; i++) {
     const pill = mockContainer.children[i];
     const stat = pill.children.find(c => c.className === 'as-pill-stat');
     assert.ok(stat, `Pill ${i} missing statSpan`);
     assert.strictEqual(stat.textContent, '100%');
+    assert.ok(pill.className.includes('as-mastered') || pill.className.includes('as-strong'));
   }
 
+  // Pill 5 (L) had 403 mistakes, so its displayed accuracy drops to 9% and shows as-weak (red)
+  const lPill = mockContainer.children[5];
+  const lStat = lPill.children.find(c => c.className === 'as-pill-stat');
+  assert.strictEqual(lStat.textContent, '9%');
+  assert.ok(lPill.className.includes('as-weak'), 'Letter L with mistakes must show as-weak class');
+
+  // Verify dynamic drop: Type 1 mistake on E (previously 100% with 20/20)
+  PK_ADAPTIVE.recordStroke('english', 'e', false, 200);
+  const containerAfterMistake = new MockElement('div');
+  PK_ADAPTIVE.renderLetterStrip(containerAfterMistake, 'english');
+  const eStatAfterMistake = containerAfterMistake.children[0].children.find(c => c.className === 'as-pill-stat');
+  assert.strictEqual(eStatAfterMistake.textContent, '95%', 'Typing a mistake on E must drop displayed number from 100% to 95%!');
+
   // T pill should show 0% (unlocked but 0 units typed)
-  const tPill = mockContainer.children[6];
+  const tPill = containerAfterMistake.children[6];
   const tStat = tPill.children.find(c => c.className === 'as-pill-stat');
   assert.strictEqual(tStat.textContent, '0%');
+  assert.ok(tPill.className.includes('as-zero') && tPill.className.includes('as-active'));
 
   // Locked pills should contain lock icon
-  const uPill = mockContainer.children[9]; // U is locked
+  const uPill = containerAfterMistake.children[9]; // U is locked
   const uStat = uPill.children.find(c => c.className === 'as-pill-stat');
   assert(uStat.innerHTML.includes('svg') || uStat.textContent === '');
-  console.log('  ✓ Test 6: Letter strip correctly renders 100% for completed, 0% for newly unlocked, and lock icon for locked');
+  console.log('  ✓ Test 6: Letter strip correctly renders live accuracy (drops on mistakes e.g. 100% -> 95%), 0% for newly unlocked, and lock icon for locked');
 }
 
 // 7. Khmer NiDA progression strict unlock

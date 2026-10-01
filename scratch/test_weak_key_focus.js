@@ -143,6 +143,9 @@ console.log(`  ✓ Focus key representation: ${focusCount}/16 words contained fo
 console.log('\nTest 5: Finger pattern detection when multiple weak keys share a finger');
 // Unlock up to 'o'
 const state = PK_ADAPTIVE.loadAdaptiveState('english');
+['e', 'n', 'i', 'a', 'r', 'l', 't'].forEach(k => {
+  state.unitStats[k] = { completedUnits: 20, correct: 20, attempts: 20, completion: 100, everMastered: true };
+});
 state.unlockedUnits = ['e', 'n', 'i', 'a', 'r', 'l', 't', 'o'];
 PK_ADAPTIVE.saveAdaptiveState('english', state);
 
@@ -179,9 +182,11 @@ const unlockedState = PK_ADAPTIVE.loadAdaptiveState('english');
 unlockedState.unlockedUnits.forEach(u => {
   unlockedState.unitStats[u] = {
     attempts: 20,
-    correct: 19,
-    mistakes: 1,
-    recentAccuracy: 95,
+    correct: 20,
+    completedUnits: 20,
+    completion: 100,
+    mistakes: 0,
+    recentAccuracy: 100,
     recentResponseMs: 320,
     history: []
   };

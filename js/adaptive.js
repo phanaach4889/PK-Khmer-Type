@@ -400,11 +400,16 @@
       } catch (e) {}
     }
 
-    const attempts = (st.attempts || 0) + p7Attempts;
-    const mistakes = (st.mistakes || 0) + p7Mistakes;
-    const correct = Math.max(0, attempts - mistakes);
+    const adaptiveAttempts = st.attempts || 0;
+    const adaptiveMistakes = st.mistakes || 0;
+    const adaptiveCorrect = st.correct !== undefined ? st.correct : Math.max(0, adaptiveAttempts - adaptiveMistakes);
+    const hasAdaptiveAttempts = adaptiveAttempts > 0;
+
+    const attempts = hasAdaptiveAttempts ? adaptiveAttempts : p7Attempts;
+    const mistakes = hasAdaptiveAttempts ? adaptiveMistakes : p7Mistakes;
+    const correct = hasAdaptiveAttempts ? adaptiveCorrect : Math.max(0, attempts - mistakes);
     const accuracy = attempts > 0 ? Math.round((correct / attempts) * 100) : 100;
-    let avgResponseMs = st.avgResponseMs || p7AvgMs || 0;
+    let avgResponseMs = hasAdaptiveAttempts ? (st.avgResponseMs || 0) : (p7AvgMs || 0);
     const layoutAvgMs = getLayoutAverageResponseMs(l, s);
 
     // Completion percentage (Strict 100% unlock, dynamic +2%/+3% / -1%..-4%)
@@ -487,6 +492,7 @@
         targetUnits: targetUnits,
         accuracy: accuracy,
         attempts: attempts,
+        adaptiveAttempts: adaptiveAttempts,
         mistakes: mistakes,
         avgResponseMs: avgResponseMs,
         recentAccuracy: recentAccuracy,
@@ -535,6 +541,7 @@
       targetUnits: targetUnits,
       accuracy: accuracy,
       attempts: attempts,
+      adaptiveAttempts: adaptiveAttempts,
       mistakes: mistakes,
       avgResponseMs: avgResponseMs,
       recentAccuracy: recentAccuracy,
@@ -567,13 +574,21 @@
     // Filter units that have genuine weakness evidence (attempts >= minEvidenceAttempts)
     const struggling = sorted.filter(u => !u.insufficientEvidence && (u.state === 'weak' || u.state === 'needs-practice' || u.priorityScore >= 35));
 
-    // Primary focus: highest priority among struggling units, or existing focusUnit if valid, or null if none
+    // Primary focus determination:
+    // 1. If newlyUnlockedUnit is set and incomplete, it has highest focus priority
     let focus = null;
-    if (struggling.length > 0) {
+    if (s.newlyUnlockedUnit) {
+      const newUnitState = evaluated.find(u => u.unit.toLowerCase() === s.newlyUnlockedUnit.toLowerCase());
+      if (newUnitState && newUnitState.completion < 100) {
+        focus = newUnitState;
+      }
+    }
+    // 2. Struggling units (weak / needs-practice with sufficient evidence)
+    if (!focus && struggling.length > 0) {
       focus = struggling[0];
-    } else if (s.focusUnit) {
+    } else if (!focus && s.focusUnit) {
       const explicit = evaluated.find(u => u.unit.toLowerCase() === s.focusUnit.toLowerCase());
-      if (explicit && !explicit.insufficientEvidence) focus = explicit;
+      if (explicit) focus = explicit;
     }
 
     // Needs practice: other weak / needs-practice units
@@ -705,7 +720,13 @@
   function getValidWordsForUnlocked(layoutId, unlockedUnits) {
     const l = normalizeLayout(layoutId);
     const vocab = getVocabList(l);
-    const validSet = new Set((unlockedUnits || []).map(u => u.toLowerCase()));
+    const validUnits = (unlockedUnits || []).map(u => u.toLowerCase());
+    const validSet = new Set(validUnits);
+
+    // For multi-codepoint units (like ុំ or ាំ), decompose into individual codepoints as well
+    validUnits.forEach(u => {
+      for (const ch of u) validSet.add(ch);
+    });
 
     const filtered = vocab.filter(w => {
       const lower = w.toLowerCase();
@@ -738,43 +759,47 @@
     const rng = mulberry32(options.seed !== undefined ? options.seed : (Date.now() & 0xFFFFFFFF));
     const targetWordCount = options.wordCount || CONFIG.defaultDrillWords;
 
+    // Helper: Fisher-Yates shuffle with PRNG
+    function shuffleArray(arr) {
+      const copy = arr.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(rng() * (i + 1));
+        const temp = copy[i];
+        copy[i] = copy[j];
+        copy[j] = temp;
+      }
+      return copy;
+    }
+
     // Evaluate performance and determine focus + weak keys
     const evalRes = evaluateWeaknesses(l, s);
-    const unitWeights = {};
-    let primaryWeakUnit = (evalRes.focus && evalRes.focus.unit) ? evalRes.focus.unit : null;
-
+    let primaryWeakUnit = options.focusUnit;
+    if (!primaryWeakUnit && s.newlyUnlockedUnit && unlockedSet.has(s.newlyUnlockedUnit.toLowerCase())) {
+      const nuState = getUnitState(l, s.newlyUnlockedUnit, s);
+      if (nuState && nuState.completion < 100) {
+        primaryWeakUnit = s.newlyUnlockedUnit;
+      }
+    }
+    if (!primaryWeakUnit && evalRes.focus && evalRes.focus.unit) {
+      primaryWeakUnit = evalRes.focus.unit;
+    }
+    if (!primaryWeakUnit && s.focusUnit && unlockedSet.has(s.focusUnit.toLowerCase())) {
+      primaryWeakUnit = s.focusUnit;
+    }
     if (!primaryWeakUnit && evalRes.needsPractice && evalRes.needsPractice.length > 0) {
       primaryWeakUnit = evalRes.needsPractice[0].unit;
     }
-
-    // If caller specified an explicit focus target
-    if (options.focusUnit) {
-      primaryWeakUnit = options.focusUnit;
+    if (!primaryWeakUnit) {
+      // Find any active unit not yet at 100% completion (lowest completion / most needing practice)
+      const incomplete = unlockedUnits.map(u => getUnitState(l, u, s)).filter(st => st && st.completion < 100);
+      if (incomplete.length > 0) {
+        incomplete.sort((a, b) => a.completion - b.completion || b.mistakes - a.mistakes);
+        primaryWeakUnit = incomplete[0].unit;
+      }
     }
 
-    // Set weights for all active units
-    unlockedUnits.forEach(u => {
-      const uLower = u.toLowerCase();
-      const uState = getUnitState(l, u, s);
-      let w = CONFIG.weightStrong; // default 1.0
-
-      if (primaryWeakUnit && uLower === primaryWeakUnit.toLowerCase()) {
-        w = 4.5; // Primary focus highest weight
-      } else if (uState.isNewlyUnlocked) {
-        w = CONFIG.weightNew; // 3.5
-      } else if (uState.state === 'weak') {
-        w = 3.2; // Weak targets
-      } else if (uState.state === 'needs-practice') {
-        w = 2.4; // Needs practice
-      } else if (uState.state === 'improving') {
-        w = 2.0; // Consolidate improvement
-      } else if (uState.state === 'normal' || uState.state === 'active') {
-        w = 1.5;
-      }
-      unitWeights[uLower] = w;
-    });
-
-    const weakUnitsList = evalRes.needsPractice.map(u => u.unit.toLowerCase());
+    const primaryWeakLower = primaryWeakUnit ? primaryWeakUnit.toLowerCase() : null;
+    const weakUnitsList = (evalRes.needsPractice || []).map(u => u.unit.toLowerCase());
 
     // Get candidate words containing ONLY unlocked letters
     const validWords = getValidWordsForUnlocked(l, unlockedUnits);
@@ -796,74 +821,153 @@
       });
     }
 
-    // Score and rank candidates by how well they practice target letters (with Combination Bonus)
-    const scoredWords = candidatePool.map(w => {
-      let score = 0;
-      let containsWeak = false;
+    // Partition candidate words into focus, weak, and maintenance pools
+    const focusWords = [];
+    const weakWords = [];
+    const maintenanceWords = [];
+
+    const weakSet = new Set(weakUnitsList);
+
+    candidatePool.forEach(w => {
       const lower = w.toLowerCase();
-      let weakMatches = 0;
-      let hasFocus = false;
-
+      const hasFocus = primaryWeakLower ? lower.includes(primaryWeakLower) : false;
+      let hasWeak = false;
       for (const ch of lower) {
-        const weight = unitWeights[ch] || 1.0;
-        score += weight;
-        if (primaryWeakUnit && ch === primaryWeakUnit.toLowerCase()) {
-          hasFocus = true;
-          score += 2.5;
-        }
-        if (weakUnitsList.includes(ch)) {
-          weakMatches++;
+        if (weakSet.has(ch)) {
+          hasWeak = true;
+          break;
         }
       }
 
-      // Combination bonus: weak keys + focus combinations (Requirements 5 & 6)
-      if (hasFocus && weakMatches > 0) {
-        score += 3.5;
-        containsWeak = true;
-      } else if (hasFocus || weakMatches > 0) {
-        containsWeak = true;
+      if (hasFocus) {
+        focusWords.push(w);
+      } else if (hasWeak) {
+        weakWords.push(w);
+      } else {
+        maintenanceWords.push(w);
       }
-      if (weakMatches >= 2) {
-        score += weakMatches * 2.0;
-      }
-
-      // Add controlled diversity jitter from PRNG
-      const jitter = rng() * 1.5;
-      return { word: w, score: score + jitter, containsWeak };
     });
 
-    scoredWords.sort((a, b) => b.score - a.score);
+    // If primary focus unit has limited words in vocabulary,
+    // generate natural combinations of target unit + already unlocked anchor letters
+    if (primaryWeakLower && focusWords.length < 12) {
+      const anchors = unlockedUnits.filter(u => u.toLowerCase() !== primaryWeakLower).slice(0, 5);
+      anchors.forEach(a => {
+        const p1 = a + primaryWeakUnit;
+        const p2 = primaryWeakUnit + a;
+        const p3 = a + primaryWeakUnit + a;
+        const p4 = primaryWeakUnit + a + primaryWeakUnit;
+        if (!focusWords.includes(p1)) focusWords.push(p1);
+        if (!focusWords.includes(p2)) focusWords.push(p2);
+        if (!focusWords.includes(p3)) focusWords.push(p3);
+        if (!focusWords.includes(p4)) focusWords.push(p4);
+      });
+    }
 
-    // Partition words into target-emphasizing and maintenance words
-    const targetWords = scoredWords.filter(sw => sw.containsWeak).map(sw => sw.word);
-    const maintenanceWords = scoredWords.filter(sw => !sw.containsWeak).map(sw => sw.word);
-
-    // Select targetWordCount words with balanced rotation (no immediate consecutive repeats)
     const selectedWords = [];
-    let lastWord = null;
+    const usedWords = new Set();
 
-    for (let i = 0; i < targetWordCount; i++) {
-      let cand = null;
-      // Every 3rd or 4th word, pick a maintenance word if available to keep strong letters active
-      const preferMaintenance = (i % 3 === 2) && maintenanceWords.length > 0;
+    if (focusWords.length > 0) {
+      // Bucketing focus words by length to provide rhythmic, natural pacing (short, medium, rich)
+      const shortFocus = shuffleArray(focusWords.filter(w => w.length <= 3));
+      const medFocus = shuffleArray(focusWords.filter(w => w.length >= 4 && w.length <= 5));
+      const richFocus = shuffleArray(focusWords.filter(w => w.length >= 6));
 
-      if (preferMaintenance && maintenanceWords.length > 0) {
-        const pIdx = Math.floor(rng() * Math.min(8, maintenanceWords.length));
-        cand = maintenanceWords[pIdx];
-      } else if (targetWords.length > 0) {
-        const pIdx = Math.floor(rng() * Math.min(10, targetWords.length));
-        cand = targetWords[pIdx];
-      } else if (scoredWords.length > 0) {
-        cand = scoredWords[i % scoredWords.length].word;
-      } else {
-        cand = candidatePool[i % candidatePool.length];
+      const maintPool = shuffleArray(maintenanceWords.length ? maintenanceWords : (weakWords.length ? weakWords : candidatePool));
+      const weakPool = shuffleArray(weakWords);
+
+      let sIdx = 0, mIdx = 0, rIdx = 0, maintIdx = 0, weakIdx = 0;
+
+      function getNextFocusWord(bucketOrder) {
+        for (const b of bucketOrder) {
+          if (b === 'short') {
+            while (sIdx < shortFocus.length) {
+              const w = shortFocus[sIdx++];
+              if (!usedWords.has(w)) { usedWords.add(w); return w; }
+            }
+          } else if (b === 'med') {
+            while (mIdx < medFocus.length) {
+              const w = medFocus[mIdx++];
+              if (!usedWords.has(w)) { usedWords.add(w); return w; }
+            }
+          } else if (b === 'rich') {
+            while (rIdx < richFocus.length) {
+              const w = richFocus[rIdx++];
+              if (!usedWords.has(w)) { usedWords.add(w); return w; }
+            }
+          }
+        }
+        // Fallback: any unused focus word
+        const unused = focusWords.filter(w => !usedWords.has(w));
+        if (unused.length > 0) {
+          const w = unused[Math.floor(rng() * unused.length)];
+          usedWords.add(w);
+          return w;
+        }
+        // If all focus words used, cycle with minimal repeat
+        return focusWords[Math.floor(rng() * focusWords.length)];
       }
 
-      if (cand === lastWord && candidatePool.length > 1) {
-        cand = candidatePool[(i + 1) % candidatePool.length];
+      function getNextMaintenanceWord() {
+        while (maintIdx < maintPool.length) {
+          const w = maintPool[maintIdx++];
+          if (!usedWords.has(w)) { usedWords.add(w); return w; }
+        }
+        while (weakIdx < weakPool.length) {
+          const w = weakPool[weakIdx++];
+          if (!usedWords.has(w)) { usedWords.add(w); return w; }
+        }
+        const nonFocusUnused = candidatePool.filter(w => (!primaryWeakLower || !w.toLowerCase().includes(primaryWeakLower)) && !usedWords.has(w));
+        if (nonFocusUnused.length > 0) {
+          const w = nonFocusUnused[Math.floor(rng() * nonFocusUnused.length)];
+          usedWords.add(w);
+          return w;
+        }
+        return getNextFocusWord(['med', 'short', 'rich']);
       }
-      selectedWords.push(cand);
-      lastWord = cand;
+
+      // Fill drill with ~80% focus words (13/16) and ~20% maintenance words (3/16 from previous letters)
+      for (let i = 0; i < targetWordCount; i++) {
+        // Maintenance slots placed at rhythmic intervals: e.g. positions 4, 9, 14
+        const isMaintenanceSlot = (i % 5 === 4) && (maintPool.length > 0);
+        let cand = null;
+        if (isMaintenanceSlot) {
+          cand = getNextMaintenanceWord();
+        } else {
+          // Rhythmic pacing alternating short, medium, and rich words
+          const rhythm = (i % 3 === 0)
+            ? ['short', 'med', 'rich']
+            : ((i % 3 === 1) ? ['med', 'short', 'rich'] : ['rich', 'med', 'short']);
+          cand = getNextFocusWord(rhythm);
+        }
+
+        // Avoid immediate consecutive repeats
+        if (selectedWords.length > 0 && cand === selectedWords[selectedWords.length - 1] && candidatePool.length > 1) {
+          const alt = candidatePool.find(w => w !== cand && !usedWords.has(w)) || candidatePool.find(w => w !== cand);
+          if (alt) cand = alt;
+        }
+        selectedWords.push(cand);
+      }
+    } else {
+      // General practice across all active units when no specific focus unit is designated
+      const shuffledCandidates = shuffleArray(candidatePool);
+      let candIdx = 0;
+      for (let i = 0; i < targetWordCount; i++) {
+        let cand = null;
+        while (candIdx < shuffledCandidates.length) {
+          const w = shuffledCandidates[candIdx++];
+          if (!usedWords.has(w)) {
+            cand = w;
+            usedWords.add(w);
+            break;
+          }
+        }
+        if (!cand) cand = candidatePool[i % candidatePool.length];
+        if (selectedWords.length > 0 && cand === selectedWords[selectedWords.length - 1] && candidatePool.length > 1) {
+          cand = candidatePool[(i + 1) % candidatePool.length];
+        }
+        selectedWords.push(cand);
+      }
     }
 
     // Convert into exercise text and key sequences
@@ -905,6 +1009,7 @@
       title: `Adaptive Practice — Stage ${s.stage || 1}`,
       subtitle: `Focus: ${primaryWeakUnit ? primaryWeakUnit.toUpperCase() : 'Mixed'} (${focusState ? focusState.label : 'Active'}) · Available: ${unlockedUnits.map(u => u.toUpperCase()).join(' ')}`,
       words: selectedWords,
+      exerciseText: fullText,
       chars: chars,
       layers: layers,
       keyIds: keyIds,
@@ -919,7 +1024,7 @@
         }
       ],
       unlockedUnits: unlockedUnits,
-      targetUnits: Object.keys(unitWeights).filter(k => unitWeights[k] > 1.5),
+      targetUnits: primaryWeakUnit ? [primaryWeakUnit] : [],
       focusUnit: primaryWeakUnit,
       focusTarget: evalRes.focus,
       needsPractice: evalRes.needsPractice,
@@ -954,51 +1059,27 @@
     st.attempts = (st.attempts || 0) + 1;
     const target = CONFIG.targetCompletionUnitsPerLetter || 20;
 
-    let currentPct = (typeof st.completion === 'number')
-      ? st.completion
-      : (typeof st.completedUnits === 'number')
-        ? Math.min(100, Math.round((st.completedUnits / target) * 100))
-        : 0;
 
-    const recent = st.recentAttempts || [];
-    const recentMistakesCount = recent.filter(r => !r).length;
 
     if (isCorrect) {
       st.correct = (st.correct || 0) + 1;
-
-      // Dynamic gain: +3% or +2%
-      // Fast response (<= 450ms) or consecutive correct strokes get +3%, standard correct gets +2%
-      let gain = 2;
-      const isFast = responseTimeMs && responseTimeMs > 0 && responseTimeMs <= 450;
-      const recentStreak = (recent.length >= 2 && recent.slice(-2).every(Boolean));
-      if (isFast || recentStreak) {
-        gain = 3;
-      }
-      currentPct = Math.min(100, currentPct + gain);
-
-      if (currentPct >= 100) {
-        st.everMastered = true;
+      if (st.everMastered) {
+        st.completion = 100;
+        st.completedUnits = target;
+      } else {
+        st.completedUnits = Math.min(target, (st.completedUnits || 0) + 1);
+        st.completion = Math.min(100, Math.round((st.completedUnits / target) * 100));
+        if (st.completion >= 100) {
+          st.everMastered = true;
+        }
       }
     } else {
       st.mistakes = (st.mistakes || 0) + 1;
-
-      // Dynamic penalty: -1% to -4%
-      // -1% for isolated slip, -2% / -3% for repeated mistakes, -4% if struggling heavily
-      let penalty = 1;
-      if (recentMistakesCount >= 3) {
-        penalty = 4;
-      } else if (recentMistakesCount >= 2) {
-        penalty = 3;
-      } else if (recentMistakesCount >= 1) {
-        penalty = 2;
-      } else {
-        penalty = 1;
+      if (st.everMastered) {
+        st.completion = 100;
+        st.completedUnits = target;
       }
-      currentPct = Math.max(0, currentPct - penalty);
     }
-
-    st.completion = currentPct;
-    st.completedUnits = Math.min(target, Math.floor((currentPct / 100) * target));
 
     // Update sliding recent window
     if (!st.recentAttempts) st.recentAttempts = [];
@@ -1134,10 +1215,11 @@
     container.innerHTML = '';
 
     statuses.forEach(st => {
-      const isZero = st.isUnlocked && (st.completion === 0);
-      const isMastered = st.isUnlocked && (st.completion >= 100);
-      const isAdvancing = st.isUnlocked && (st.completion >= 60 && st.completion < 100);
-      const isLearning = st.isUnlocked && (st.completion > 0 && st.completion < 60);
+      const isZero = st.isUnlocked && ((st.adaptiveAttempts !== undefined ? st.adaptiveAttempts === 0 : st.attempts === 0) || (st.completedUnits === 0 && (st.correct || 0) === 0 && st.attempts === 0));
+      const isWeak = st.isUnlocked && !isZero && (st.state === 'weak' || st.accuracy < CONFIG.weakAccuracyThreshold);
+      const isNeedsPractice = st.isUnlocked && !isZero && !isWeak && (st.state === 'needs-practice' || st.accuracy < CONFIG.strongAccuracyThreshold);
+      const isImproving = st.isUnlocked && !isZero && !isWeak && !isNeedsPractice && (st.state === 'improving');
+      const isMastered = st.isUnlocked && !isZero && !isWeak && !isNeedsPractice && !isImproving;
       const isFocusPill = !isZero && (st.unit === s.focusUnit || st.state === 'focus');
 
       let pillStateClass = 'as-locked';
@@ -1147,15 +1229,18 @@
         if (isZero) {
           pillStateClass = 'as-active as-zero';
           statusLabel = 'Active (New)';
-        } else if (isMastered) {
-          pillStateClass = 'as-mastered as-strong';
-          statusLabel = 'Mastered (100%)';
-        } else if (isAdvancing) {
-          pillStateClass = 'as-advancing as-improving';
-          statusLabel = 'Advancing';
-        } else {
+        } else if (isWeak) {
+          pillStateClass = 'as-weak';
+          statusLabel = `Weak (${st.accuracy}%)`;
+        } else if (isNeedsPractice) {
           pillStateClass = 'as-learning as-needs-practice';
-          statusLabel = 'Learning';
+          statusLabel = `Needs Practice (${st.accuracy}%)`;
+        } else if (isImproving) {
+          pillStateClass = 'as-advancing as-improving';
+          statusLabel = `Improving (${st.accuracy}%)`;
+        } else {
+          pillStateClass = 'as-mastered as-strong';
+          statusLabel = `Mastered (${st.accuracy}%)`;
         }
       }
 
@@ -1171,8 +1256,10 @@
       statSpan.className = 'as-pill-stat';
       if (!st.isUnlocked) {
         statSpan.innerHTML = (typeof pkIcon === 'function') ? pkIcon('lock', 10) : '';
+      } else if (isZero) {
+        statSpan.textContent = '0%';
       } else {
-        statSpan.textContent = `${st.completion}%`;
+        statSpan.textContent = `${st.accuracy}%`;
       }
 
       const dot = document.createElement('span');
@@ -1185,7 +1272,8 @@
         const barFill = document.createElement('div');
         barFill.className = 'as-pill-bar-fill';
         if (barFill.style) {
-          barFill.style.width = `${Math.min(100, Math.max(0, st.completion))}%`;
+          const displayPct = isZero ? 0 : Math.min(100, Math.max(0, st.accuracy));
+          barFill.style.width = `${displayPct}%`;
         }
         barTrack.appendChild(barFill);
       }
@@ -1196,13 +1284,13 @@
 
       tooltip.innerHTML = `
         <div style="font-weight:700;color:var(--gold-bright);">${st.unit.toUpperCase()} · ${statusLabel}</div>
-        ${st.isUnlocked ? `<div>Completion: <b>${st.completion}%</b> (${st.completedUnits}/${st.targetUnits})</div>
-        <div>Accuracy: <b>${st.accuracy}%</b> (${st.correct}/${st.attempts})</div>
+        ${st.isUnlocked ? `<div>Accuracy: <b>${isZero ? '—' : st.accuracy + '%'}</b> (${st.correct}/${st.attempts})</div>
+        <div>Stage Milestone: <b>${st.completion}%</b> (${st.completedUnits}/${st.targetUnits})</div>
         <div>Avg Speed: <b>${st.avgResponseMs > 0 ? st.avgResponseMs + 'ms' : '—'}</b></div>
-        <div>Trend: <b>${st.trend}</b></div>` : '<div>Unlocks when all active letters reach 100%</div>'}
+        <div>Trend: <b>${isZero ? '—' : (st.trend > 0 ? '+' + st.trend : st.trend) + '%'}</b></div>` : '<div>Unlocks when all active letters reach 100%</div>'}
       `;
 
-      pill.setAttribute('aria-label', `${st.unit.toUpperCase()} ${statusLabel}: ${st.isUnlocked ? `${st.completion}% complete, ${st.accuracy}% accuracy` : 'Locked'}`);
+      pill.setAttribute('aria-label', `${st.unit.toUpperCase()} ${statusLabel}: ${st.isUnlocked ? `${isZero ? '0% (new)' : `${st.accuracy}% accuracy`}, ${st.completion}% unlock progress` : 'Locked'}`);
 
       pill.appendChild(charSpan);
       pill.appendChild(statSpan);

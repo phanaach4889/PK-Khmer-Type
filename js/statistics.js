@@ -381,6 +381,10 @@ function initStatisticsDashboard(){
 
     const overallPct = LESSONS.length ? Math.round((lessonsMastered / LESSONS.length) * 100) : 0;
     const R = 29, C = 2 * Math.PI * R;
+    const isKm = document.documentElement.classList.contains('site-km-mode');
+    
+    const heroTitle = isKm ? `${lessonsMastered} នៃ ${LESSONS.length} មេរៀនដែលស្ទាត់` : `${lessonsMastered} of ${LESSONS.length} lessons mastered`;
+    
     const statsHero = document.getElementById('statsHero');
     statsHero.innerHTML = `
       <div class="stats-ring-wrap">
@@ -395,31 +399,32 @@ function initStatisticsDashboard(){
         <div class="stats-ring-label">${overallPct}%</div>
       </div>
       <div class="stats-hero-text">
-        <p class="stats-hero-title">${lessonsMastered} of ${LESSONS.length} lessons mastered</p>
-        <div class="stats-hero-sub">Best run: <b>${t.bestWpm} WPM</b> · <b>${acc}%</b> accuracy</div>
+        <p class="stats-hero-title i18n-t" data-en="${lessonsMastered} of ${LESSONS.length} lessons mastered" data-km="${lessonsMastered} នៃ ${LESSONS.length} មេរៀនដែលស្ទាត់">${heroTitle}</p>
+        <div class="stats-hero-sub i18n-t" data-en="Best run: &lt;b&gt;${t.bestWpm} WPM&lt;/b&gt; · &lt;b&gt;${acc}%&lt;/b&gt; accuracy" data-km="ល្បឿនល្អបំផុត: &lt;b&gt;${t.bestWpm} WPM&lt;/b&gt; · សុក្រឹតភាព &lt;b&gt;${acc}%&lt;/b&gt;">${isKm ? `ល្បឿនល្អបំផុត: <b>${t.bestWpm} WPM</b> · សុក្រឹតភាព <b>${acc}%</b>` : `Best run: <b>${t.bestWpm} WPM</b> · <b>${acc}%</b> accuracy`}</div>
       </div>
-      <div class="stats-hero-streak">${pkIcon('flame', 15)} ${streak}-day streak</div>`;
+      <div class="stats-hero-streak">${pkIcon('flame', 15)} <span class="i18n-t" data-en="${streak}-day streak" data-km="${streak} ថ្ងៃជាប់គ្នា">${isKm ? `${streak} ថ្ងៃជាប់គ្នា` : `${streak}-day streak`}</span></div>`;
     requestAnimationFrame(()=>{
       const fill = statsHero.querySelector('.stats-ring-fill');
       if(fill) fill.style.strokeDashoffset = String(C - (overallPct/100)*C);
     });
 
+
     const tiles = [
-      [pkIcon('edit', 22), t.keys, 'Total Characters'],
-      [pkIcon('target', 22), acc + '%', 'Avg Accuracy'],
-      [pkIcon('zap', 22), t.bestWpm, 'Best WPM'],
-      [pkIcon('timer', 22), mins + 'm', 'Practice Time'],
-      [pkIcon('scroll', 22), lessonsMastered + '/' + LESSONS.length, 'Lessons Mastered'],
-      [pkIcon('flame', 22), streak, 'Day Streak'],
-      [pkIcon('castle', 22), trialBest, 'Temple Trial Best'],
-      [pkIcon('flag', 22), raceBestWpmOverall, 'Race Best WPM'],
-      [pkIcon('calendar', 22), t.days.length, 'Days Practiced'],
+      [pkIcon('edit', 22), t.keys, 'Total Characters', 'តួអក្សរសរុប'],
+      [pkIcon('target', 22), acc + '%', 'Avg Accuracy', 'ភាពសុក្រឹតមធ្យម'],
+      [pkIcon('zap', 22), t.bestWpm, 'Best WPM', 'ល្បឿន WPM ល្អបំផុត'],
+      [pkIcon('timer', 22), mins + 'm', 'Practice Time', 'រយៈពេលហាត់'],
+      [pkIcon('scroll', 22), lessonsMastered + '/' + LESSONS.length, 'Lessons Mastered', 'មេរៀនដែលស្ទាត់'],
+      [pkIcon('flame', 22), streak, 'Day Streak', 'បន្តបន្ទាប់ (ថ្ងៃ)'],
+      [pkIcon('castle', 22), trialBest, 'Temple Trial Best', 'ពិន្ទុសាកល្បងល្អបំផុត'],
+      [pkIcon('flag', 22), raceBestWpmOverall, 'Race Best WPM', 'ប្រណាំង WPM ល្អបំផុត'],
+      [pkIcon('calendar', 22), t.days.length, 'Days Practiced', 'ថ្ងៃដែលបានហាត់'],
     ];
-    statsGrid.innerHTML = tiles.map(([icon,val,label],i)=>
+    statsGrid.innerHTML = tiles.map(([icon,val,en,km],i)=>
       `<div class="stat-tile" style="animation-delay:${i*45}ms">
         <div class="stat-tile-icon">${icon}</div>
         <div class="stat-tile-val">${val}</div>
-        <div class="stat-tile-label">${label}</div>
+        <div class="stat-tile-label i18n-t" data-en="${en}" data-km="${km}">${isKm ? km : en}</div>
       </div>`
     ).join('');
 
@@ -431,8 +436,10 @@ function initStatisticsDashboard(){
       const pct = ls.length ? Math.round((done/ls.length)*100) : 0;
       const name = (lv.title.split('·')[1] || lv.title).trim();
       const complete = pct >= 100 ? ' is-complete' : '';
+      const rawNum = lv.levelNumber != null ? Number(lv.levelNumber) : parseInt(String(lv.id).split('-').pop().replace(/^L/i, ''), 10);
+      const displayNum = !isNaN(rawNum) ? (rawNum < 10 ? '0' + rawNum : String(rawNum)) : String(lv.id);
       return `<div class="stats-bar-row${complete}" style="animation-delay:${i*55}ms">
-        <span class="stats-bar-num">${complete ? pkIcon("check", 12) : lv.id}</span>
+        <span class="stats-bar-num">${complete ? pkIcon("check", 12) : displayNum}</span>
         <span class="stats-bar-name">${name}</span>
         <div class="stats-bar-track"><div class="stats-bar-fill" style="width:${pct}%"></div></div>
         <span class="stats-bar-pct">${pct}%</span></div>`;
@@ -489,7 +496,11 @@ function initStatisticsDashboard(){
 
   const statsOpenBtn = document.getElementById('statsOpenBtn');
   const statsCloseBtn = document.getElementById('statsCloseBtn');
-  statsOpenBtn.addEventListener('click', ()=>{ renderStats(); statsModal.hidden = false; statsCloseBtn.focus(); });
+  statsOpenBtn.addEventListener('click', ()=>{
+    try { renderStats(); } catch(err){ console.error('renderStats error:', err); }
+    statsModal.hidden = false;
+    if(statsCloseBtn) statsCloseBtn.focus();
+  });
   statsCloseBtn.addEventListener('click', ()=> statsModal.hidden = true);
   statsModal.addEventListener('click', e=>{ if(e.target === statsModal) statsModal.hidden = true; });
 
