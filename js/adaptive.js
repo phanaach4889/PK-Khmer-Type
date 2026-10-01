@@ -427,7 +427,7 @@
       completion = Math.min(100, Math.floor((completedUnits / targetUnits) * 100));
     }
 
-    // Dynamic Mastery Score (Keybr style: +5% on correct, -5% on mistake)
+    // Dynamic Mastery Score (Speed-dependent on correct, -3% on mistake)
     let score = 0;
     if (typeof st.score === 'number') {
       score = Math.min(100, Math.max(0, Math.round(st.score)));
@@ -1084,7 +1084,25 @@
         : (st.everMastered || (st.completion >= 100))
           ? 100
           : (st.completion || 0);
-      st.score = Math.min(100, curScore + 5);
+
+      // Speed-dependent gain on correct keystroke:
+      // Fast (<300ms): +5%
+      // Normal (300–600ms): +3%
+      // Slow (600–1000ms): +2%
+      // Very Slow (>1000ms or unmeasured): +1%
+      let gain = 3;
+      if (typeof responseTimeMs === 'number' && responseTimeMs > 0) {
+        if (responseTimeMs < 300) {
+          gain = 5;
+        } else if (responseTimeMs <= 600) {
+          gain = 3;
+        } else if (responseTimeMs <= 1000) {
+          gain = 2;
+        } else {
+          gain = 1;
+        }
+      }
+      st.score = Math.min(100, curScore + gain);
 
       if (st.everMastered) {
         st.completion = 100;
@@ -1105,7 +1123,7 @@
         : (st.everMastered || (st.completion >= 100))
           ? 100
           : (st.completion || 0);
-      st.score = Math.max(0, curScore - 5);
+      st.score = Math.max(0, curScore - 3);
 
       if (st.everMastered) {
         st.completion = 100;

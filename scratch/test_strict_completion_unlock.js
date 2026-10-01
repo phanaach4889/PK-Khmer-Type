@@ -167,47 +167,71 @@ console.log('Testing Phase 9/10 Strict 100% Completion Unlocking & UI Strip...')
     assert.ok(pill.className.includes('as-mastered') || pill.className.includes('as-strong'));
   }
 
-  // Verify dynamic drop: Type 1 mistake on E (drops -5% to 95%)
+  // Verify dynamic drop: Type 1 mistake on E (drops -3% to 97%)
   PK_ADAPTIVE.recordStroke('english', 'e', false, 200);
   const cMistake1 = new MockElement('div');
   PK_ADAPTIVE.renderLetterStrip(cMistake1, 'english');
   const eStat1 = cMistake1.children[0].children.find(c => c.className === 'as-pill-stat');
-  assert.strictEqual(eStat1.textContent, '95%', 'Typing 1 mistake on E must drop displayed number from 100% to 95% (-5%)!');
+  assert.strictEqual(eStat1.textContent, '97%', 'Typing 1 mistake on E must drop displayed number from 100% to 97% (-3%)!');
 
-  // Type 2nd mistake on E (drops -5% to 90% and turns yellow)
+  // Type 2nd, 3rd, 4th mistakes on E (drops -3% each: 94%, 91%, 88% and turns yellow)
+  PK_ADAPTIVE.recordStroke('english', 'e', false, 200);
+  PK_ADAPTIVE.recordStroke('english', 'e', false, 200);
   PK_ADAPTIVE.recordStroke('english', 'e', false, 200);
   const cMistake2 = new MockElement('div');
   PK_ADAPTIVE.renderLetterStrip(cMistake2, 'english');
   const eStat2 = cMistake2.children[0].children.find(c => c.className === 'as-pill-stat');
-  assert.strictEqual(eStat2.textContent, '90%', 'Typing 2nd mistake on E must drop displayed number to 90% (-5%)!');
-  assert.ok(cMistake2.children[0].className.includes('as-needs-practice'), 'E at 90% must turn yellow (as-needs-practice)');
+  assert.strictEqual(eStat2.textContent, '88%', 'Typing mistakes on E must drop displayed number to 88% (-3% each)!');
+  assert.ok(cMistake2.children[0].className.includes('as-needs-practice'), 'E at 88% must turn yellow (as-needs-practice)');
 
-  // Verify dynamic rise: Type 1 correct stroke on E (climbs +5% to 95%)
+  // Verify dynamic rise based on speed:
+  // 1. Fast speed (<300ms, 200ms): +5% gain -> 88% + 5% = 93%
   PK_ADAPTIVE.recordStroke('english', 'e', true, 200);
-  const cRise1 = new MockElement('div');
-  PK_ADAPTIVE.renderLetterStrip(cRise1, 'english');
-  const eStatRise1 = cRise1.children[0].children.find(c => c.className === 'as-pill-stat');
-  assert.strictEqual(eStatRise1.textContent, '95%', 'Typing 1 correct stroke on E must raise displayed number from 90% to 95% (+5%)!');
+  const cRiseFast = new MockElement('div');
+  PK_ADAPTIVE.renderLetterStrip(cRiseFast, 'english');
+  const eStatFast = cRiseFast.children[0].children.find(c => c.className === 'as-pill-stat');
+  assert.strictEqual(eStatFast.textContent, '93%', 'Fast stroke (<300ms) on E must raise displayed number by +5% (88% -> 93%)!');
 
-  // Type 2nd correct stroke on E (climbs +5% back to 100% and turns green)
+  // 2. Normal speed (300-600ms, 450ms): +3% gain -> 93% + 3% = 96%
+  PK_ADAPTIVE.recordStroke('english', 'e', true, 450);
+  const cRiseNormal = new MockElement('div');
+  PK_ADAPTIVE.renderLetterStrip(cRiseNormal, 'english');
+  const eStatNormal = cRiseNormal.children[0].children.find(c => c.className === 'as-pill-stat');
+  assert.strictEqual(eStatNormal.textContent, '96%', 'Normal speed stroke (300-600ms) on E must raise displayed number by +3% (93% -> 96%)!');
+
+  // 3. Slow speed (600-1000ms, 800ms): +2% gain -> 96% + 2% = 98%
+  PK_ADAPTIVE.recordStroke('english', 'e', true, 800);
+  const cRiseSlow = new MockElement('div');
+  PK_ADAPTIVE.renderLetterStrip(cRiseSlow, 'english');
+  const eStatSlow = cRiseSlow.children[0].children.find(c => c.className === 'as-pill-stat');
+  assert.strictEqual(eStatSlow.textContent, '98%', 'Slow speed stroke (600-1000ms) on E must raise displayed number by +2% (96% -> 98%)!');
+
+  // 4. Very slow speed (>1000ms, 1200ms): +1% gain -> 98% + 1% = 99%
+  PK_ADAPTIVE.recordStroke('english', 'e', true, 1200);
+  const cRiseVerySlow = new MockElement('div');
+  PK_ADAPTIVE.renderLetterStrip(cRiseVerySlow, 'english');
+  const eStatVerySlow = cRiseVerySlow.children[0].children.find(c => c.className === 'as-pill-stat');
+  assert.strictEqual(eStatVerySlow.textContent, '99%', 'Very slow stroke (>1000ms) on E must raise displayed number by +1% (98% -> 99%)!');
+
+  // 5. Fast stroke (<300ms, 200ms): +5% gain -> capped at 100% and turns green (as-mastered)
   PK_ADAPTIVE.recordStroke('english', 'e', true, 200);
-  const cRise2 = new MockElement('div');
-  PK_ADAPTIVE.renderLetterStrip(cRise2, 'english');
-  const eStatRise2 = cRise2.children[0].children.find(c => c.className === 'as-pill-stat');
-  assert.strictEqual(eStatRise2.textContent, '100%', 'Typing 2nd correct stroke on E must restore displayed number to 100% (+5%)!');
-  assert.ok(cRise2.children[0].className.includes('as-mastered'), 'E at 100% must turn green (as-mastered)');
+  const cRiseCap = new MockElement('div');
+  PK_ADAPTIVE.renderLetterStrip(cRiseCap, 'english');
+  const eStatCap = cRiseCap.children[0].children.find(c => c.className === 'as-pill-stat');
+  assert.strictEqual(eStatCap.textContent, '100%', 'Stroke on E must restore displayed number to 100%!');
+  assert.ok(cRiseCap.children[0].className.includes('as-mastered'), 'E at 100% must turn green (as-mastered)');
 
   // T pill should show 0% (unlocked but 0 units typed)
-  const tPill = cRise2.children[6];
+  const tPill = cRiseCap.children[6];
   const tStat = tPill.children.find(c => c.className === 'as-pill-stat');
   assert.strictEqual(tStat.textContent, '0%');
   assert.ok(tPill.className.includes('as-zero') && tPill.className.includes('as-active'));
 
   // Locked pills should contain lock icon
-  const uPill = cRise2.children[9]; // U is locked
+  const uPill = cRiseCap.children[9]; // U is locked
   const uStat = uPill.children.find(c => c.className === 'as-pill-stat');
   assert(uStat.innerHTML.includes('svg') || uStat.textContent === '');
-  console.log('  ✓ Test 6: Letter strip correctly renders dynamic score (+5% on right, -5% on wrong), 0% for newly unlocked, and lock icon for locked');
+  console.log('  ✓ Test 6: Letter strip correctly renders dynamic score (speed-based on correct, -3% on mistake), 0% for newly unlocked, and lock icon for locked');
 }
 
 // 7. Khmer NiDA progression strict unlock
