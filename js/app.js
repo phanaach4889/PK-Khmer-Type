@@ -32,9 +32,11 @@ async function loadExternalData(){
 function initApp(){
   // Synchronous initial render for zero-delay offline startup
   try { if(typeof buildBoard === "function") buildBoard(); } catch(e){ console.error("buildBoard error:", e); }
+  try { if(typeof syncLayoutUI === "function") syncLayoutUI(window.currentLayoutId); } catch(e){}
   try { if(typeof renderLessonStrip === "function") renderLessonStrip(); } catch(e){ console.error("renderLessonStrip error:", e); }
   try { if(typeof updateHandsOverlay === "function") updateHandsOverlay(); } catch(e){ console.error("updateHandsOverlay error:", e); }
   try { if(typeof updateMasteryStat === "function") updateMasteryStat(); } catch(e){ console.error("updateMasteryStat error:", e); }
+  try { if(typeof restoreSavedLessonSession === "function") restoreSavedLessonSession(); } catch(e){ console.error("restoreSavedLessonSession error:", e); }
 
   // Async data enrichment when hosted on server
   loadExternalData();

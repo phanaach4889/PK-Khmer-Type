@@ -253,7 +253,24 @@ const LAYOUTS = {
     layerLabels: {base:'Base — lowercase', shift:'Shift — UPPERCASE & symbols', ctrl:'Ctrl — (unused)', altgr:'AltGr — (unused)'},
   },
 };
-let currentLayoutId = 'standard';
+const LAYOUT_STORAGE_KEY = 'pk_active_layout';
+
+let initialLayout = 'standard';
+try {
+  const sessionRaw = (typeof localStorage !== 'undefined') ? localStorage.getItem('pk_active_lesson_session') : null;
+  if (sessionRaw) {
+    const sObj = JSON.parse(sessionRaw);
+    if (sObj && sObj.layoutId && LAYOUTS[sObj.layoutId]) {
+      initialLayout = sObj.layoutId;
+    }
+  }
+  if (initialLayout === 'standard' && typeof localStorage !== 'undefined') {
+    const savedL = localStorage.getItem(LAYOUT_STORAGE_KEY) || localStorage.getItem('khmerActiveLayout');
+    if (savedL && LAYOUTS[savedL]) initialLayout = savedL;
+  }
+} catch(e){}
+
+let currentLayoutId = initialLayout;
 window.currentLayoutId = currentLayoutId;
 let ALL_ROWS = LAYOUTS[currentLayoutId].rows;
 
@@ -378,13 +395,46 @@ ALL_ROWS.forEach(rowDef=>{
 });
 }
 
+function syncLayoutUI(id){
+  const targetId = id || currentLayoutId;
+  if(layoutStrip){
+    layoutStrip.querySelectorAll('.layout-pill').forEach(p=>{
+      const isActive = p.dataset.layout === targetId;
+      p.classList.toggle('active', isActive);
+      p.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+  }
+  const ll = LAYOUTS[targetId] && LAYOUTS[targetId].layerLabels;
+  if(ll){
+    document.querySelectorAll('.layer-pill').forEach(p=>{
+      const key = p.dataset.pill;
+      if(ll[key]) p.textContent = ll[key];
+    });
+  }
+  const lessonsAvailable = LAYOUTS[targetId] && LAYOUTS[targetId].hasLessons;
+  const lsEl = typeof lessonStrip !== 'undefined' ? lessonStrip : document.getElementById('lessonStrip');
+  if(lsEl) {
+    lsEl.style.display = lessonsAvailable ? '' : 'none';
+    if(lessonsAvailable) lsEl.hidden = false;
+  }
+  const ttEl = typeof trialToggle !== 'undefined' ? trialToggle : document.getElementById('trialToggle');
+  if(ttEl) ttEl.style.display = lessonsAvailable ? '' : 'none';
+  const rtEl = typeof raceToggle !== 'undefined' ? raceToggle : document.getElementById('raceToggle');
+  if(rtEl) rtEl.style.display = lessonsAvailable ? '' : 'none';
+  const lunEl = typeof lessonUnavailableNote !== 'undefined' ? lessonUnavailableNote : document.getElementById('lessonUnavailableNote');
+  if(lunEl) lunEl.style.display = lessonsAvailable ? 'none' : '';
+  if(typeof updateQuickGuide === 'function') updateQuickGuide();
+}
+window.syncLayoutUI = syncLayoutUI;
+
 // Self-booting fallback so keyboard is guaranteed to render reliably
 if(document.readyState !== 'loading'){
   buildBoard();
+  syncLayoutUI(currentLayoutId);
 } else {
   document.addEventListener('DOMContentLoaded', ()=>{
     if(board && board.children.length === 0) buildBoard();
-    if(typeof updateQuickGuide === 'function') updateQuickGuide();
+    syncLayoutUI(currentLayoutId);
   });
 }
 
@@ -449,8 +499,8 @@ function updateQuickGuide() {
   }
 }
 
-function switchLayout(id){
-  if(!LAYOUTS[id] || id === currentLayoutId) return;
+function switchLayout(id, force = false){
+  if(!LAYOUTS[id] || (id === currentLayoutId && !force)) return;
   const prevLayout = currentLayoutId;
   document.querySelectorAll('.lesson-complete-overlay').forEach(el => el.remove());
   if(typeof adaptiveActive !== 'undefined' && adaptiveActive && typeof PK_ADAPTIVE !== 'undefined' && typeof PK_ADAPTIVE.exitSession === 'function'){
@@ -465,6 +515,12 @@ function switchLayout(id){
   if(typeof raceMode !== 'undefined' && raceMode) exitRaceMode();
   currentLayoutId = id;
   window.currentLayoutId = currentLayoutId;
+  try {
+    if(typeof localStorage !== 'undefined'){
+      localStorage.setItem(LAYOUT_STORAGE_KEY, id);
+      localStorage.setItem('khmerActiveLayout', id);
+    }
+  } catch(e){}
   if(typeof updateQuickGuide === 'function') updateQuickGuide();
   window.activeCourse = id;
   window.activeLayout = id;
@@ -492,20 +548,7 @@ function switchLayout(id){
   buildBoard();
   updateHandsOverlay();
   render();
-  layoutStrip.querySelectorAll('.layout-pill').forEach(p=>{
-    p.classList.toggle('active', p.dataset.layout === id);
-  });
-  const ll = LAYOUTS[id].layerLabels;
-  document.querySelectorAll('.layer-pill').forEach(p=>{
-    const key = p.dataset.pill;
-    if(ll && ll[key]) p.textContent = ll[key];
-  });
-  const lessonsAvailable = LAYOUTS[id].hasLessons;
-  lessonStrip.style.display = lessonsAvailable ? '' : 'none';
-  if(lessonsAvailable) lessonStrip.hidden = false;
-  trialToggle.style.display = lessonsAvailable ? '' : 'none';
-  if(typeof raceToggle !== 'undefined') raceToggle.style.display = lessonsAvailable ? '' : 'none';
-  lessonUnavailableNote.style.display = lessonsAvailable ? 'none' : '';
+  syncLayoutUI(id);
   if(typeof restoreLessonAfterLayoutSwitch === 'function'){
     restoreLessonAfterLayoutSwitch(id);
   }

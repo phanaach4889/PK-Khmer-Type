@@ -1151,6 +1151,9 @@ async function loadAllCurricula(){
       }
     };
     await Promise.all([fetchCurriculum('standard'), fetchCurriculum('nida'), fetchCurriculum('english')]);
+    if(typeof restoreSavedLessonSession === 'function' && !lessonActive){
+      restoreSavedLessonSession();
+    }
   } catch(err){
     console.warn('loadAllCurricula fallback to bundled data:', err);
   }
@@ -1213,7 +1216,7 @@ function suspendLessonForLayoutSwitch(prevLayout){
   currentLesson = null;
   remedialActive = false;
   if(lessonPanel) lessonPanel.hidden = true;
-  if(manuscriptEl) manuscriptEl.hidden = false;
+  const mStash = document.getElementById('manuscript'); if(mStash) mStash.hidden = false;
   if(highlightedKeyId && keyEls[highlightedKeyId]){
     keyEls[highlightedKeyId].classList.remove('lesson-target');
   }
@@ -1245,7 +1248,7 @@ function restoreLessonAfterLayoutSwitch(newLayout){
   if(lessonTitleEl) lessonTitleEl.textContent = currentLesson.title;
   renderLessonMeta(currentLesson);
   if(lessonPanel) lessonPanel.hidden = false;
-  if(manuscriptEl) manuscriptEl.hidden = true;
+  const mRestore = document.getElementById('manuscript'); if(mRestore) mRestore.hidden = true;
   if(lessonStrip){
     lessonStrip.hidden = false;
     renderLessonStrip();
@@ -1260,6 +1263,175 @@ function resetAllCourseLessonStates(){
   COURSE_LESSON_STATES.standard = null;
   COURSE_LESSON_STATES.nida = null;
   COURSE_LESSON_STATES.english = null;
+}
+
+/* ============================================================
+   Persistent Active Lesson Session across page refreshes
+   ============================================================ */
+const ACTIVE_LESSON_KEY = 'pk_active_lesson_session';
+
+function saveActiveLessonSession(){
+  if(!lessonActive || !currentLesson || currentLesson.id === -1) {
+    return;
+  }
+  try {
+    if(typeof localStorage === 'undefined') return;
+    const session = {
+      layoutId: currentLayoutId,
+      lessonId: currentLesson.id,
+      index: lessonIndex,
+      mistakes: lessonMistakes,
+      mistakeChars: lessonMistakeChars ? Object.assign({}, lessonMistakeChars) : {},
+      acceptedUnits: lessonAcceptedUnits ? Array.from(lessonAcceptedUnits) : [],
+      startTime: lessonStartTime,
+      timeLeft: (lessonHasTimer && typeof lessonTimeLeft === 'number') ? lessonTimeLeft : null,
+      chars: lessonChars || [],
+      layers: lessonLayers || [],
+      keyIds: lessonKeyIds || [],
+      sections: lessonSections || [],
+      remedialActive: remedialActive,
+      timestamp: Date.now()
+    };
+    localStorage.setItem(ACTIVE_LESSON_KEY, JSON.stringify(session));
+  } catch(e){}
+}
+
+function clearActiveLessonSession(){
+  try {
+    if(typeof localStorage !== 'undefined'){
+      localStorage.removeItem(ACTIVE_LESSON_KEY);
+    }
+  } catch(e){}
+}
+
+function restoreSavedLessonSession(){
+  let session = null;
+  try {
+    if(typeof localStorage === 'undefined') return false;
+    const raw = localStorage.getItem(ACTIVE_LESSON_KEY);
+    if(raw) session = JSON.parse(raw);
+  } catch(e){
+    return false;
+  }
+  if(!session || !session.lessonId) return false;
+
+  const targetLayout = session.layoutId || currentLayoutId;
+
+  if(targetLayout !== currentLayoutId && typeof switchLayout === 'function'){
+    switchLayout(targetLayout, true);
+  }
+
+  const list = (typeof LESSON_SETS !== 'undefined' && LESSON_SETS[targetLayout])
+    ? LESSON_SETS[targetLayout]
+    : LESSONS;
+  if(!list || !list.length) return false;
+
+  const def = list.find(l => String(l.id) === String(session.lessonId));
+  if(!def) return false;
+
+  currentLesson = def;
+  if(!def.layoutId) def.layoutId = targetLayout;
+  remedialActive = !!session.remedialActive;
+  isStripExpanded = false;
+
+  if(session.chars && session.chars.length){
+    lessonChars = session.chars;
+    lessonLayers = session.layers || [];
+    lessonKeyIds = session.keyIds || [];
+    lessonSections = session.sections || [];
+  } else {
+    const gen = def.generate();
+    lessonChars = gen.chars;
+    lessonLayers = gen.layers;
+    lessonKeyIds = gen.keyIds;
+    lessonSections = gen.sections || [];
+  }
+
+  if(session.index >= lessonChars.length){
+    clearActiveLessonSession();
+    return false;
+  }
+
+  lessonIndex = Math.min(lessonChars.length, Math.max(0, session.index || 0));
+  lessonMistakes = session.mistakes || 0;
+  lessonMistakeChars = session.mistakeChars || {};
+  lessonAcceptedUnits = session.acceptedUnits || [];
+  lessonStartTime = session.startTime || Date.now();
+  lessonActive = true;
+
+  if (lessonTimerInterval) clearInterval(lessonTimerInterval);
+  if (currentLesson && currentLesson.timeLimit) {
+    lessonHasTimer = true;
+    lessonTimeLeft = (typeof session.timeLeft === 'number' && session.timeLeft > 0)
+      ? session.timeLeft
+      : currentLesson.timeLimit;
+    lessonTimerInterval = setInterval(() => {
+      if (!lessonActive) return;
+      lessonTimeLeft--;
+      updateLessonProgress();
+      if (lessonTimeLeft <= 0) {
+        clearInterval(lessonTimerInterval);
+        completeLesson();
+      }
+    }, 1000);
+  } else {
+    lessonHasTimer = false;
+  }
+
+  if(lessonTitleEl) lessonTitleEl.textContent = def.title;
+  renderLessonMeta(def);
+  if(lessonPanel) lessonPanel.hidden = false;
+  const mElSaved = document.getElementById('manuscript'); if(mElSaved) mElSaved.hidden = true;
+  if(lessonStrip){
+    lessonStrip.hidden = false;
+    if(collapsedLevels && def.level){
+      LEVELS.forEach(l => {
+        if(String(l.id) !== String(def.level)) collapsedLevels.add(String(l.id));
+        else collapsedLevels.delete(String(l.id));
+      });
+    }
+    renderLessonStrip();
+    setTimeout(()=>{
+      const activeCard = document.querySelector(`.lesson-card[data-lesson="${def.id}"]`);
+      if(activeCard && typeof activeCard.scrollIntoView === 'function'){
+        activeCard.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    }, 120);
+  }
+
+  if(typeof insertText === 'function' && lessonAcceptedUnits.length > 0){
+    const typedText = lessonAcceptedUnits.map(u => u.val).join('');
+    const outputEl = document.getElementById('output');
+    if(outputEl) outputEl.textContent = typedText;
+  }
+
+  renderLessonChars();
+  updateLessonProgress();
+  updateLessonKeyHighlight();
+
+  if(typeof PK_TRACKER !== 'undefined' && typeof PK_TRACKER.recordLessonStart === 'function'){
+    PK_TRACKER.recordLessonStart({
+      layout: targetLayout,
+      lessonId: def.id,
+      totalUnits: lessonChars.length,
+      lessonChars: lessonChars,
+      sections: lessonSections
+    });
+  }
+
+  return true;
+}
+
+window.saveActiveLessonSession = saveActiveLessonSession;
+window.clearActiveLessonSession = clearActiveLessonSession;
+window.restoreSavedLessonSession = restoreSavedLessonSession;
+
+if(typeof window !== 'undefined'){
+  window.addEventListener('beforeunload', ()=>{
+    if(typeof lessonActive !== 'undefined' && lessonActive && currentLesson){
+      saveActiveLessonSession();
+    }
+  });
 }
 
 const lessonStrip = document.getElementById('lessonStrip');
@@ -1374,7 +1546,9 @@ function toggleAllLessonsUnlocked(){
 // collapsedLevels defined at top of module // Set of level ids currently collapsed; null = not yet initialized
 function defaultCollapsedLevels(){
   const s = new Set(LEVELS.map(l => String(l.id)));
-  if(LEVELS.length > 0){
+  if(currentLesson && currentLesson.level){
+    s.delete(String(currentLesson.level));
+  } else if(LEVELS.length > 0){
     s.delete(String(LEVELS[0].id)); // Level 1 open by default for immediate beginner access
   }
   return s;
@@ -1887,7 +2061,7 @@ function startLesson(idOrDef){
   lessonTitleEl.textContent = def.title;
   renderLessonMeta(def);
   lessonPanel.hidden = false;
-  manuscriptEl.hidden = true;
+  const mEl = document.getElementById('manuscript'); if(mEl) mEl.hidden = true;
   if(lessonStrip){
     lessonStrip.hidden = false;
     renderLessonStrip();
@@ -1895,6 +2069,7 @@ function startLesson(idOrDef){
   clearText();
   renderLessonChars();
   updateLessonProgress();
+  saveActiveLessonSession();
 
   requestAnimationFrame(()=>{
     if(lessonPanel && !lessonPanel.hidden && boardWrap){
@@ -1924,12 +2099,13 @@ function executeLessonExit(){
   if(currentLayoutId && COURSE_LESSON_STATES[currentLayoutId]){
     COURSE_LESSON_STATES[currentLayoutId] = null;
   }
+  clearActiveLessonSession();
   lessonActive = false;
   currentLesson = null;
   remedialActive = false;
   lessonAcceptedUnits = [];
   lessonPanel.hidden = true;
-  manuscriptEl.hidden = false;
+  const mElExit = document.getElementById('manuscript'); if(mElExit) mElExit.hidden = false;
   if(lessonStrip) lessonStrip.hidden = false;
   lockedLayer = null;
   render();
@@ -2113,6 +2289,7 @@ function lessonHandleChar(val, el, stroke){
     } else {
       renderLessonChars();
       updateLessonProgress();
+      saveActiveLessonSession();
     }
   } else {
     lessonMistakes++;
@@ -2120,6 +2297,7 @@ function lessonHandleChar(val, el, stroke){
     recordKeystroke(false);
     adaptiveReinforce(expected);
     updateLessonProgress();
+    saveActiveLessonSession();
     if(el){ el.classList.add('wrong'); setTimeout(()=> el.classList.remove('wrong'), 300); }
     const cur = lessonCharRowEl.querySelector('.lc-char.current');
     if(cur){ cur.classList.add('shake'); setTimeout(()=> cur.classList.remove('shake'), 300); }
@@ -2155,6 +2333,7 @@ function lessonHandleBackspace(){
   updateLessonProgress();
   renderLessonChars();
   updateLessonKeyHighlight();
+  saveActiveLessonSession();
 }
 
 function completeLesson(){
@@ -2241,9 +2420,10 @@ function completeLesson(){
   playChime();
   confettiBurst(rect.left + rect.width/2, rect.top + rect.height*0.3, accuracy === 100 ? 34 : 22);
 
+  clearActiveLessonSession();
   lessonActive = false;
   lessonPanel.hidden = true;
-  manuscriptEl.hidden = false;
+  const mElComplete = document.getElementById('manuscript'); if(mElComplete) mElComplete.hidden = false;
   if(lessonStrip) lessonStrip.hidden = false;
   lockedLayer = null;
   render();
@@ -2456,10 +2636,17 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
 // Immediately hydrate with bundled curriculum data if available
 initCurriculumFromBundle();
 
+if(typeof restoreSavedLessonSession === 'function'){
+  restoreSavedLessonSession();
+}
+
 if(document.readyState !== 'loading'){
-  renderLessonStrip();
+  if(!lessonActive) renderLessonStrip();
 } else {
   document.addEventListener('DOMContentLoaded', ()=>{
+    if(typeof restoreSavedLessonSession === 'function' && !lessonActive){
+      restoreSavedLessonSession();
+    }
     if(lessonStrip && lessonStrip.children.length === 0) renderLessonStrip();
   });
 }
