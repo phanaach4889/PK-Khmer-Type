@@ -623,6 +623,61 @@
     font-weight:800;
   }
 
+  .chassis-actions{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+
+  .chassis-docs-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    font-weight:700;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:6px 14px;
+    border-radius:999px;
+    color:#38bdf8;
+    background:
+      linear-gradient(135deg, rgba(56,189,248,0.2), rgba(99,102,241,0.18)),
+      rgba(14,18,36,0.88);
+    border:1px solid rgba(56,189,248,0.45);
+    box-shadow:0 3px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.12);
+    transition:all .22s cubic-bezier(.22,1,.36,1);
+    cursor:pointer;
+  }
+
+  .chassis-docs-btn:hover{
+    color:#f0f9ff;
+    border-color:#38bdf8;
+    background:
+      linear-gradient(135deg, rgba(56,189,248,0.34), rgba(99,102,241,0.3)),
+      rgba(22,28,52,0.96);
+    box-shadow:0 6px 20px rgba(0,0,0,0.55), 0 0 22px rgba(56,189,248,0.42), inset 0 1px 0 rgba(255,255,255,0.22);
+    transform:translateY(-1.5px);
+  }
+
+  .chassis-docs-icon{
+    flex-shrink:0;
+    color:#38bdf8;
+    transition:transform .2s ease;
+  }
+
+  .chassis-docs-btn:hover .chassis-docs-icon{
+    transform:rotate(-8deg) scale(1.12);
+  }
+
+  .chassis-docs-badge{
+    background:rgba(56,189,248,0.22);
+    border:1px solid rgba(56,189,248,0.5);
+    color:#e0f2fe;
+  }
+
   .chassis-3d-btn{
     display:inline-flex;
     align-items:center;
