@@ -998,6 +998,40 @@ code {
   gap: 4px;
 }
 
+.keycap3d-hud-right {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  background: rgba(10, 14, 26, 0.75);
+  border: 1px solid rgba(255, 209, 102, 0.3);
+  border-radius: 10px;
+  padding: 6px 12px;
+  backdrop-filter: blur(8px);
+}
+.readout-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--doc-ink-dim);
+}
+.readout-val {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--doc-gold-bright);
+  font-family: 'Space Grotesk', 'Kantumruy Pro', sans-serif;
+}
+.readout-finger {
+  font-size: 0.72rem;
+  color: #38bdf8;
+  font-family: 'JetBrains Mono', monospace;
+}
+
 .keycap3d-badge {
   display: inline-flex;
   align-items: center;
@@ -1053,7 +1087,7 @@ code {
   margin-right: 4px;
 }
 
-.key-glyph-btn, .key-theme-btn, .key-action-btn, .key-layout-btn, .key-view-btn {
+.key-glyph-btn, .key-theme-btn, .key-action-btn, .key-layout-btn, .key-view-btn, .key-angle-btn {
   padding: 6px 12px;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.05);
@@ -1069,13 +1103,13 @@ code {
   gap: 6px;
 }
 
-.key-glyph-btn:hover, .key-theme-btn:hover, .key-action-btn:hover, .key-layout-btn:hover, .key-view-btn:hover {
+.key-glyph-btn:hover, .key-theme-btn:hover, .key-action-btn:hover, .key-layout-btn:hover, .key-view-btn:hover, .key-angle-btn:hover {
   background: rgba(255, 209, 102, 0.12);
   color: var(--doc-ink);
   border-color: rgba(255, 209, 102, 0.3);
 }
 
-.key-glyph-btn.active, .key-theme-btn.active, .key-action-btn.active, .key-layout-btn.active, .key-view-btn.active {
+.key-glyph-btn.active, .key-theme-btn.active, .key-action-btn.active, .key-layout-btn.active, .key-view-btn.active, .key-angle-btn.active {
   background: linear-gradient(135deg, rgba(255, 209, 102, 0.25), rgba(255, 157, 46, 0.35));
   border-color: var(--doc-gold);
   color: var(--doc-gold-bright);

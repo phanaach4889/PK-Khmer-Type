@@ -744,10 +744,12 @@
             this.isPressed = true;
             this.targetY = 0.06; // Spring stroke depth
             this.topMat.emissive.setHex(currentTheme.underglow);
-            this.topMat.emissiveIntensity = 0.85;
-            this.keyLight.intensity = 1.6;
+            this.topMat.emissiveIntensity = 0.95;
+            this.keyLight.intensity = 1.8;
             playMechanicalSound(true, 1.0 + (Math.random() * 0.1 - 0.05));
             strikeHolographicFinger(this.def);
+            triggerKeystrokeRipple(this);
+            updateKeyReadoutHUD(this.def);
           },
           release() {
             this.isPressed = false;
@@ -1010,6 +1012,69 @@
       }
     }
 
+    // Reactive Keystroke Light Ripple Wave
+    function triggerKeystrokeRipple(originKey) {
+      const ox = originKey.group.position.x;
+      const oz = originKey.group.position.z;
+      const color = currentTheme.underglow;
+
+      keyObjects.forEach(k => {
+        if (k === originKey) return;
+        const dx = k.group.position.x - ox;
+        const dz = k.group.position.z - oz;
+        const dist = Math.sqrt(dx * dx + dz * dz);
+
+        if (dist <= 6.5) {
+          const delayMs = dist * 28;
+          setTimeout(() => {
+            if (!k.isPressed) {
+              k.topMat.emissive.setHex(color);
+              k.topMat.emissiveIntensity = 0.55 * (1 - dist / 6.5);
+              setTimeout(() => {
+                if (!k.isPressed && currentThemeKey !== 'rgb') {
+                  k.topMat.emissive.setHex(0x000000);
+                  k.topMat.emissiveIntensity = 0;
+                }
+              }, 130);
+            }
+          }, delayMs);
+        }
+      });
+    }
+
+    // Real-time Cybernetic HUD Keystroke Readout
+    function updateKeyReadoutHUD(keyDef) {
+      const valEl = document.getElementById('readoutKeyVal');
+      const fingerEl = document.getElementById('readoutFingerVal');
+      if (!valEl || !fingerEl) return;
+
+      const fingerNames = {
+        lp: 'Left Hand · Pinky',
+        lr: 'Left Hand · Ring',
+        lm: 'Left Hand · Middle',
+        li: 'Left Hand · Index',
+        lt: 'Left Hand · Thumb',
+        ri: 'Right Hand · Index',
+        rm: 'Right Hand · Middle',
+        rr: 'Right Hand · Ring',
+        rp: 'Right Hand · Pinky',
+        rt: 'Right Hand · Thumb'
+      };
+
+      let label = '';
+      if (keyDef.isMod) {
+        label = keyDef.label ? `[ ${keyDef.label} ]` : (keyDef.isSpace ? '[ Spacebar ]' : `[ ${keyDef.id} ]`);
+      } else {
+        const map = keyDef[currentLayout] || keyDef.std || {};
+        const baseChar = map.base || '';
+        const enChar = keyDef.en ? keyDef.en.base.toUpperCase() : '';
+        label = baseChar && enChar ? `[ ${baseChar}  /  ${enChar} ]` : `[ ${baseChar || enChar || keyDef.id} ]`;
+      }
+
+      valEl.textContent = label;
+      fingerEl.textContent = (fingerNames[keyDef.finger] || 'Any Finger') + (keyDef.isHome ? ' · Home Anchor' : '');
+    }
+
     // I. Smooth Orbit & Pan Camera Controller
     let isDragging = false;
     let prevMouseX = 0;
@@ -1149,7 +1214,34 @@
         });
       });
 
-      // 4. Action Buttons
+      // 4. Camera Angle Presets
+      const angleButtons = document.querySelectorAll('.key-angle-btn');
+      angleButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          angleButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const angle = btn.dataset.angle;
+          autoRotate = false;
+          const spinBtn = document.getElementById('btnAutoRotate');
+          if (spinBtn) spinBtn.classList.remove('active');
+
+          if (angle === 'iso') {
+            sphericalTheta = 0;
+            sphericalPhi = Math.PI / 3.4;
+            targetRadius = 18.5;
+          } else if (angle === 'top') {
+            sphericalTheta = 0;
+            sphericalPhi = 0.18;
+            targetRadius = 16.5;
+          } else if (angle === 'profile') {
+            sphericalTheta = -0.45;
+            sphericalPhi = Math.PI / 2.3;
+            targetRadius = 14.5;
+          }
+        });
+      });
+
+      // 5. Action Buttons
       const btnRotate = document.getElementById('btnAutoRotate');
       if (btnRotate) {
         btnRotate.addEventListener('click', () => {
