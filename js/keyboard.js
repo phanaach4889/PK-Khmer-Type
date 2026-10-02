@@ -310,6 +310,8 @@ function buildBoard(){
   board.innerHTML = '';
   keyEls = {};
   glyphData = {};
+  window.keyEls = keyEls;
+  window.glyphData = glyphData;
 ALL_ROWS.forEach(rowDef=>{
   const rowEl = document.createElement('div');
   rowEl.className = 'row';
@@ -591,6 +593,8 @@ window.keyEls = keyEls;
 window.currentLayer = currentLayer;
 window.setActiveFinger = setActiveFinger;
 window.render = render;
+window.LAYOUTS = LAYOUTS;
+window.glyphData = glyphData;
 const FINGERS = [
   {id:'lp', hand:'L', home:'a', kind:'pinky',  baseW:12.5, tipW:7.5, kDist:68, restLen:52, restAng:-0.10},
   {id:'lr', hand:'L', home:'s', kind:'ring',   baseW:14.5, tipW:9.0, kDist:60, restLen:56, restAng:-0.04},

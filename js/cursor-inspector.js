@@ -256,13 +256,18 @@
     hudEl.style.top = posY + 'px';
   }
 
+  function getKeyEl(keyId){
+    if(!keyId) return null;
+    return document.querySelector(`.key[data-key="${keyId}"]`) || (global.keyEls && global.keyEls[keyId]) || document.getElementById('key-' + keyId);
+  }
+
   /* ---- Render HUD Content for a Key ---- */
   function inspectKey(keyId, ev){
     if(!inspectorEnabled) return;
     ensureDOM();
     currentInspectedKeyId = keyId;
 
-    const keyEl = (global.keyEls && global.keyEls[keyId]) || document.getElementById('key-' + keyId);
+    const keyEl = getKeyEl(keyId);
     const layoutId = global.currentLayoutId || 'standard';
     const layer = typeof global.currentLayer === 'function' ? global.currentLayer() : 'base';
     const fid = (global.KEY_FINGER && global.KEY_FINGER[keyId]) || null;
@@ -482,6 +487,53 @@
   }
 
   /* ---- Exercise Text Character Inspector ---- */
+  let activeBeaconKeyEl = null;
+
+  function clearTargetKeyBeacon(){
+    if(activeBeaconKeyEl){
+      activeBeaconKeyEl.classList.remove('inspector-beacon');
+      activeBeaconKeyEl = null;
+    }
+  }
+
+  function highlightKeyBeacon(keyId){
+    clearTargetKeyBeacon();
+    if(!keyId) return;
+    const keyEl = getKeyEl(keyId);
+    if(keyEl){
+      keyEl.classList.add('inspector-beacon');
+      activeBeaconKeyEl = keyEl;
+    }
+  }
+
+  function getCharUnderCursor(ev){
+    let textNode = null;
+    let offset = 0;
+    if(document.caretRangeFromPoint){
+      const range = document.caretRangeFromPoint(ev.clientX, ev.clientY);
+      if(range){
+        textNode = range.startContainer;
+        offset = range.startOffset;
+      }
+    } else if(document.caretPositionFromPoint){
+      const pos = document.caretPositionFromPoint(ev.clientX, ev.clientY);
+      if(pos){
+        textNode = pos.offsetNode;
+        offset = pos.offset;
+      }
+    }
+    if(textNode && textNode.nodeType === Node.TEXT_NODE){
+      const text = textNode.textContent;
+      if(offset < text.length){
+        const ch = text[offset];
+        if(ch && ch.trim()) return ch;
+      }
+    }
+    const t = ev.target && ev.target.textContent && ev.target.textContent.trim();
+    if(t && t.length === 1) return t;
+    return null;
+  }
+
   function inspectTextCharacter(char, ev){
     if(!inspectorEnabled || !char || char === ' ' || char === '\n') return;
     ensureDOM();
@@ -544,8 +596,12 @@
     `;
 
     hudEl.classList.add('visible');
-    if(foundKey && typeof global.setActiveFinger === 'function'){
-      global.setActiveFinger(foundKey, foundLayer);
+    if(foundKey){
+      highlightKeyBeacon(foundKey);
+      if(typeof global.setActiveFinger === 'function'){
+        global.setActiveFinger(foundKey, foundLayer);
+      }
+      highlightQuickGuideMiniKey(foundKey, fid);
     }
     if(ev) updatePosition(ev.clientX, ev.clientY);
   }
@@ -561,7 +617,7 @@
     ];
 
     modifiers.forEach(m=>{
-      const el = (global.keyEls && global.keyEls[m.id]) || document.getElementById('key-' + m.id);
+      const el = getKeyEl(m.id);
       if(!el) return;
       el.addEventListener('mouseenter', ()=>{
         if(!inspectorEnabled) return;
@@ -614,17 +670,33 @@
   function attachEventListeners(){
     ensureDOM();
 
-    // Global mouse tracking for smooth reticle and HUD
+    // Global mouse tracking for precision reticle and HUD
     window.addEventListener('mousemove', (ev)=>{
       updatePosition(ev.clientX, ev.clientY);
       if(reticleEl && inspectorEnabled){
-        const board = document.getElementById('boardWrap');
-        const inBoard = board && board.contains(ev.target);
-        reticleEl.classList.toggle('active', inBoard || (hudEl && hudEl.classList.contains('visible')));
+        reticleEl.classList.add('active');
+        const interactive = ev.target && ev.target.closest('button, a, .layer-pill, .layout-btn, .lesson-card, .level-header, input, select, .action-btn, .mini-btn');
+        reticleEl.classList.toggle('interactive', !!interactive);
       }
     }, { passive: true });
 
-    // Keyboard Key Hover Delegation
+    window.addEventListener('mouseleave', ()=>{
+      if(reticleEl) reticleEl.classList.remove('active');
+      uninspectKey();
+    });
+
+    // Global click ripple shockwave
+    window.addEventListener('mousedown', (ev)=>{
+      if(!inspectorEnabled) return;
+      const wave = document.createElement('div');
+      wave.className = 'pk-cursor-shockwave';
+      wave.style.left = ev.clientX + 'px';
+      wave.style.top = ev.clientY + 'px';
+      document.body.appendChild(wave);
+      setTimeout(()=>{ if(wave.parentNode) wave.parentNode.removeChild(wave); }, 460);
+    }, { passive: true });
+
+    // Keyboard Key Hover & Click Delegation
     const board = document.getElementById('boardWrap');
     if(board){
       board.addEventListener('mouseover', (ev)=>{
@@ -649,23 +721,42 @@
           uninspectKey();
         }
       });
+
+      // Interactive mouse click on keys
+      board.addEventListener('click', (ev)=>{
+        const keyEl = ev.target.closest('.key');
+        if(!keyEl || !keyEl.dataset || !keyEl.dataset.key) return;
+        const keyId = keyEl.dataset.key;
+        if(typeof global.playKeySound === 'function'){
+          global.playKeySound(keyId);
+        }
+        keyEl.classList.add('active');
+        setTimeout(()=> keyEl.classList.remove('active'), 140);
+      });
     }
 
-    // Exercise Prompt & Manuscript Hover Delegation
-    const textContainers = ['output', 'exerciseText', 'exerciseTarget', 'raceText'];
+    // Exercise Prompt & Manuscript Character Hover Delegation
+    const textContainers = ['output', 'exerciseText', 'exerciseTarget', 'sampleText', 'raceText', 'lessonPrompt'];
     textContainers.forEach(id=>{
       const el = document.getElementById(id);
       if(!el) return;
-      el.addEventListener('mouseover', (ev)=>{
-        const target = ev.target;
-        if(target && target.textContent && target.textContent.trim().length === 1){
-          inspectTextCharacter(target.textContent.trim(), ev);
+      el.addEventListener('mousemove', (ev)=>{
+        if(!inspectorEnabled) return;
+        const ch = getCharUnderCursor(ev);
+        if(ch){
+          inspectTextCharacter(ch, ev);
+        } else if(!currentInspectedKeyId){
+          clearTargetKeyBeacon();
+          if(hudEl) hudEl.classList.remove('visible');
         }
       });
-      el.addEventListener('mouseout', (ev)=>{
-        if(hudEl && hudEl.classList.contains('visible') && !currentInspectedKeyId){
-          hudEl.classList.remove('visible');
-          if(typeof global.setActiveFinger === 'function') global.setActiveFinger(null);
+      el.addEventListener('mouseleave', ()=>{
+        if(!currentInspectedKeyId){
+          clearTargetKeyBeacon();
+          if(hudEl && hudEl.classList.contains('visible')){
+            hudEl.classList.remove('visible');
+            if(typeof global.setActiveFinger === 'function') global.setActiveFinger(null);
+          }
         }
       });
     });
@@ -675,33 +766,25 @@
 
   /* ---- Toolbar Toggle Control ---- */
   function setupToolbarToggle(){
-    const toolbar = document.querySelector('.toolbar');
-    if(!toolbar) return;
-    if(document.getElementById('cursorGuideToggle')) return;
+    let btn = document.getElementById('cursorGuideToggle');
+    if(!btn){
+      const toolbar = document.querySelector('.toolbar');
+      if(!toolbar) return;
+      btn = document.createElement('button');
+      btn.id = 'cursorGuideToggle';
+      btn.className = (inspectorEnabled ? 'on' : '') + ' i18n-t';
+      btn.setAttribute('data-en', 'Mouse inspector');
+      btn.setAttribute('data-km', 'ត្រួតពិនិត្យដោយកណ្ដុរ');
+      btn.setAttribute('title', 'Smart Mouse Inspector & Interactive Kinematic Guide (Alt+M)');
+      const handsToggle = document.getElementById('handsToggle');
+      if(handsToggle && handsToggle.nextSibling){
+        toolbar.insertBefore(btn, handsToggle.nextSibling);
+      } else {
+        toolbar.appendChild(btn);
+      }
+    }
 
-    const btn = document.createElement('button');
-    btn.id = 'cursorGuideToggle';
-    btn.className = (inspectorEnabled ? 'on' : '') + ' i18n-t';
-    btn.setAttribute('data-en', 'Mouse inspector');
-    btn.setAttribute('data-km', 'ត្រួតពិនិត្យដោយកណ្ដុរ');
-    btn.setAttribute('aria-pressed', inspectorEnabled ? 'true' : 'false');
-    btn.setAttribute('title', 'Smart Mouse Inspector & Interactive Kinematic Guide (Alt+M)');
-
-    btn.innerHTML = `
-      <svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"/>
-        <circle cx="12" cy="12" r="3"/>
-        <line x1="12" y1="2" x2="12" y2="5"/>
-        <line x1="12" y1="19" x2="12" y2="22"/>
-        <line x1="2" y1="12" x2="5" y2="12"/>
-        <line x1="19" y1="12" x2="22" y2="12"/>
-      </svg>
-      <span>Mouse inspector</span>${inspectorEnabled ? '' : ' (off)'}
-    `;
-
-    btn.addEventListener('click', ()=>{
-      inspectorEnabled = !inspectorEnabled;
-      savePreference();
+    const renderBtn = () => {
       btn.classList.toggle('on', inspectorEnabled);
       btn.setAttribute('aria-pressed', inspectorEnabled ? 'true' : 'false');
       btn.innerHTML = `
@@ -715,9 +798,19 @@
         </svg>
         <span>Mouse inspector</span>${inspectorEnabled ? '' : ' (off)'}
       `;
+    };
+
+    renderBtn();
+
+    btn.onclick = () => {
+      inspectorEnabled = !inspectorEnabled;
+      savePreference();
+      renderBtn();
       if(!inspectorEnabled){
         uninspectKey();
-        if(reticleEl) reticleEl.classList.remove('active', 'target-key');
+        if(reticleEl) reticleEl.classList.remove('active', 'target-key', 'interactive');
+      } else if(reticleEl){
+        reticleEl.classList.add('active');
       }
       if(typeof global.showToast === 'function'){
         global.showToast(
@@ -726,15 +819,7 @@
           inspectorEnabled ? 'Hover over keys or text to view phonetic guides, finger reach, and subscript formulas.' : 'Standard mouse pointer restored.'
         );
       }
-    });
-
-    // Insert right after handsToggle or at beginning
-    const handsToggle = document.getElementById('handsToggle');
-    if(handsToggle && handsToggle.nextSibling){
-      toolbar.insertBefore(btn, handsToggle.nextSibling);
-    } else {
-      toolbar.appendChild(btn);
-    }
+    };
   }
 
   // Keyboard shortcut (Alt+M) to toggle mouse inspector
