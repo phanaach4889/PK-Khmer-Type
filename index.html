@@ -9,6 +9,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>PK Khmer Type — Master Your Layout</title>
 
+<script>
+  if (window.location.pathname.toLowerCase().replace(/\/$/, '').endsWith('/documents')) {
+    window.location.replace('Documents/index.html' + window.location.search + window.location.hash);
+  }
+</script>
+
 <!-- ============ App / PWA metadata ============ -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#ff9d2e">
@@ -58,6 +64,7 @@
 <div class="toast-stack" id="toastStack"></div>
 
 <div class="top-actions">
+  <a href="Documents/index.html" class="top-action-btn docs-nav-btn" aria-label="Documentation" title="Official Documentation & Layout Guides" style="display:inline-flex; align-items:center; gap:6px; text-decoration:none;"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> <span class="i18n-t" data-en="Docs" data-km="ឯកសារ">Docs</span></a>
   <button id="focusModeBtn" class="focus-mode-btn" aria-label="Toggle Focus Mode" title="Focus Mode (Hide distractions, Alt+F)"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M3 12h3m12 0h3M12 3v3m0 12v3"/></svg> <span class="focus-btn-text i18n-t" data-en="Focus" data-km="ផ្ដោត">Focus</span></button>
   <button id="shortcutsOpenBtn" aria-haspopup="dialog" aria-label="Open keyboard shortcuts" title="Keyboard Shortcuts (?)"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/><line x1="10" y1="12" x2="14" y2="12"/></svg> <span class="i18n-t" data-en="Shortcuts" data-km="ផ្លូវកាត់">Shortcuts</span></button>
   <button id="topLangToggleBtn" class="top-action-btn lang-toggle-btn" aria-label="Translate English to Khmer" title="Translate English to Khmer (Alt+L)"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> <span id="topLangToggleLabel">Translate to Khmer</span></button>
