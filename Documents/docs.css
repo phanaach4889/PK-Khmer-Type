@@ -1026,43 +1026,6 @@ code {
   font-family: 'JetBrains Mono', monospace;
 }
 
-.keycap3d-telemetry {
-  position: absolute;
-  top: 18px;
-  right: 20px;
-  pointer-events: none;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  padding: 8px 14px;
-  border-radius: 10px;
-  background: rgba(10, 14, 26, 0.75);
-  border: 1px solid rgba(255, 209, 102, 0.22);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-}
-
-.telemetry-lbl {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--doc-ink-dim);
-  text-transform: uppercase;
-}
-
-.telemetry-key {
-  font-size: 1.3rem;
-  font-weight: 800;
-  font-family: 'JetBrains Mono', monospace;
-  color: var(--doc-gold-bright);
-  line-height: 1.2;
-}
-
-.telemetry-sub {
-  font-size: 0.72rem;
-  color: var(--doc-ink-muted);
-}
-
 .keycap3d-toolbar {
   padding: 16px 20px;
   background: rgba(12, 16, 30, 0.85);

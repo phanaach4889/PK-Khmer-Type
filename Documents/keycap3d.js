@@ -471,7 +471,7 @@
     let currentTheme = THEMES.angkor;
     let viewMode = 'keyboard'; // 'keyboard' | 'switch'
     let autoRotate = true;
-    let showHands = true;
+    let showHands = false;
     let isWireframe = false;
     let isExploded = false;
 
@@ -702,34 +702,26 @@
         const map = keyDef[layoutKey] || keyDef.std || {};
         const baseChar = map.base || '';
         const shiftChar = map.shift || '';
-        const altgrChar = map.altgr || '';
 
-        // Shifted Glyph (Upper right)
+        // Shifted Glyph (Top Center badge - clean and readable)
         if (shiftChar) {
-          ctx.font = 'bold 102px "Khmer OS Siemreap", "Kantumruy Pro", "Segoe UI", sans-serif';
+          ctx.font = 'bold 104px "Khmer OS Siemreap", "Kantumruy Pro", "Segoe UI", sans-serif';
           ctx.fillStyle = theme.legendShift;
           ctx.shadowColor = 'rgba(245, 158, 11, 0.45)';
-          ctx.shadowBlur = 10;
-          ctx.textAlign = 'right';
-          ctx.fillText(shiftChar, cvWidth - 52, 128);
+          ctx.shadowBlur = 8;
+          ctx.textAlign = 'center';
+          ctx.fillText(shiftChar, cvWidth / 2, 114);
         }
 
-        // AltGr Glyph (Upper left)
-        if (altgrChar) {
-          ctx.font = 'bold 84px "Khmer OS Siemreap", "Kantumruy Pro", "Segoe UI", sans-serif';
-          ctx.fillStyle = theme.legendAltgr;
-          ctx.textAlign = 'left';
-          ctx.fillText(altgrChar, 52, 128);
-        }
-
-        // Base Glyph (Center/lower prominent)
+        // Base Glyph (Center Prominent)
         if (baseChar) {
           ctx.font = 'bold 172px "Khmer OS Siemreap", "Kantumruy Pro", "Segoe UI", sans-serif';
           ctx.fillStyle = theme.legendBase;
           ctx.shadowColor = 'rgba(0,0,0,0.7)';
           ctx.shadowBlur = 14;
           ctx.textAlign = 'center';
-          ctx.fillText(baseChar, cvWidth * 0.48, cvHeight * 0.62);
+          const yPos = shiftChar ? cvHeight * 0.64 : cvHeight * 0.52;
+          ctx.fillText(baseChar, cvWidth / 2, yPos);
         }
 
         // Homing nub on F and J
@@ -1187,6 +1179,7 @@
     // G. JARVIS / CYBER HUD HOLOGRAPHIC HANDS GUIDE
     // ============================================================
     const handsGuideGroup = new THREE.Group();
+    handsGuideGroup.visible = false;
     keyboardRoot.add(handsGuideGroup);
 
     const leftHandColor = 0x06b6d4;  // Electric Cyan (Left hand)
