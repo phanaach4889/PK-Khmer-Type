@@ -1092,12 +1092,12 @@
       <span class="chassis-layout-label" id="chassisLayoutLabel">STANDARD</span>
     </div>
     <div class="chassis-actions">
-      <a href="Documents/index.html" class="chassis-docs-btn" title="PK Khmer Type Documents &amp; Architecture Guide" aria-label="Open PK Khmer Type Documents">
+      <a href="Documents/index.html" class="chassis-docs-btn" title="PK Khmer Type Documents &amp; Architecture Guide" aria-label="Open Documentation">
         <svg class="chassis-docs-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
           <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
         </svg>
-        <span class="chassis-docs-text i18n-t" data-en="PK Khmer Type Documents" data-km="ឯកសារ PK Khmer Type">PK Khmer Type Documents</span>
+        <span class="chassis-docs-text i18n-t" data-en="Documents" data-km="ឯកសារ">Documents</span>
         <span class="chassis-badge chassis-docs-badge">DOCS</span>
       </a>
       <a href="Documents/index.html#keycap-3d" class="chassis-3d-btn" title="Launch Interactive 3D Mechanical Keyboard Experience" aria-label="Open 3D Mechanical Studio">
@@ -1118,6 +1118,7 @@
 <div class="toolbar">
   <button id="soundToggle" class="on i18n-t" data-en="Key sound" data-km="សំឡេងគ្រាប់ចុច" aria-pressed="true"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg> Key sound</button>
   <button id="handsToggle" class="on i18n-t" data-en="Finger guide" data-km="មគ្គុទ្ទេសក៍ម្រាមដៃ" aria-pressed="true"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/><line x1="10" y1="12" x2="14" y2="12"/></svg> Finger guide</button>
+  <button id="cursorGuideToggle" class="on i18n-t" data-en="Mouse inspector" data-km="ត្រួតពិនិត្យដោយកណ្ដុរ" aria-pressed="true" title="Smart Mouse Inspector &amp; Interactive Kinematic Guide (Alt+M)"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg> Mouse inspector</button>
   <button id="ambienceToggle" class="i18n-t" data-en="Temple ambience" data-km="បរិយាកាសប្រាសាទ" aria-pressed="false"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V8h3V5h2v3h4V5h2v3h3v12M5 20h14M8 11v2m8-2v2"/><path d="M11 20v-5h2v5M5 8h14"/></svg> Temple ambience</button>
   <button id="trialToggle" class="i18n-t" data-en="Temple Trial" data-km="ការសាកល្បងប្រាសាទ" aria-pressed="false"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="14.5 17.5 3 6 6 3 17.5 14.5"/><line x1="13" y1="19" x2="19" y2="13"/><line x1="16" y1="16" x2="20" y2="20"/><line x1="19" y1="21" x2="21" y2="19"/></svg> Temple Trial</button>
   <button id="raceToggle" class="race-toggle-btn i18n-t" data-en="Typing Race" data-km="ការប្រណាំងវាយអក្សរ" aria-pressed="false"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg> Typing Race</button>
@@ -1184,6 +1185,7 @@
   <script defer src="js/tracker.js"></script>
   <script defer src="js/progress.js"></script>
   <script defer src="js/review.js"></script>
+  <script defer src="js/cursor-inspector.js"></script>
   <script defer src="js/feedback.js"></script>
   <script defer src="js/adaptive.js"></script>
   <script defer src="js/lessons.js"></script>

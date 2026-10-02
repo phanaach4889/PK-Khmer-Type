@@ -317,6 +317,7 @@ ALL_ROWS.forEach(rowDef=>{
     const el = document.createElement('div');
     el.className = 'key notranslate';
     el.setAttribute('translate', 'no');
+    el.dataset.key = k.id;
     if(k.wide) el.style.flexGrow = k.wide;
     if(k.cls) el.classList.add(k.cls);
     keyEls[k.id] = el;
@@ -357,9 +358,17 @@ ALL_ROWS.forEach(rowDef=>{
 
       el.addEventListener('mouseenter', ()=>{
         tip.classList.add('show');
+        if(!physicalLayer && !lockedLayer){
+          hoverLayer = layerName;
+          render();
+        }
       });
       el.addEventListener('mouseleave', ()=>{
         tip.classList.remove('show');
+        if(hoverLayer === layerName){
+          hoverLayer = null;
+          render();
+        }
       });
 
       const activateModifier = (ev)=>{
@@ -578,7 +587,10 @@ const KEY_FINGER = {
   ctrlL:'lt', alt:'lt', space:'rt', altgr:'rt', ctrlR:'rp',
 };
 window.KEY_FINGER = KEY_FINGER;
-/* kind drives natural anatomy: relative width, knuckle height, resting reach & fan angle */
+window.keyEls = keyEls;
+window.currentLayer = currentLayer;
+window.setActiveFinger = setActiveFinger;
+window.render = render;
 const FINGERS = [
   {id:'lp', hand:'L', home:'a', kind:'pinky',  baseW:12.5, tipW:7.5, kDist:68, restLen:52, restAng:-0.10},
   {id:'lr', hand:'L', home:'s', kind:'ring',   baseW:14.5, tipW:9.0, kDist:60, restLen:56, restAng:-0.04},
@@ -589,8 +601,8 @@ const FINGERS = [
   {id:'ri', hand:'R', home:'j', kind:'index',  baseW:15.0, tipW:9.0, kDist:58, restLen:56, restAng:-0.06},
   {id:'rm', hand:'R', home:'k', kind:'middle', baseW:15.5, tipW:9.5, kDist:54, restLen:60, restAng:0.0},
   {id:'rr', hand:'R', home:'l', kind:'ring',   baseW:14.5, tipW:9.0, kDist:60, restLen:56, restAng:0.04},
-  {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:12.5, tipW:7.5, kDist:68, restLen:52, restAng:0.10},
 ];
+window.FINGERS = FINGERS;
 
 const handsOverlay = document.getElementById('handsOverlay');
 const handsToggle = document.getElementById('handsToggle');
@@ -836,7 +848,7 @@ function buildHand(hand, fingers, wrapRect, activeF, targetKey){
   });
 
   const order = ['pinky','ring','middle','index'].map(k=>fingers.find(f=>f.kind===k));
-  if(order.some(f=> !homes[f.id])) return null;
+  if(order.some(f=> !f || !homes[f.id])) return null;
 
   // Whole-hand reach translation (fingers float palm; thumbs articulate independently)
   let shiftX = 0, shiftY = 0;

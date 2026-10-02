@@ -519,6 +519,7 @@
 
   /* tooltip */
   .tooltip{
+    display:none !important;
     position:absolute;
     bottom:calc(100% + 10px);
     left:0;
@@ -573,18 +574,12 @@
     display:flex;
     align-items:center;
     justify-content:space-between;
-    flex-wrap:wrap;
-    gap:10px;
+    gap:12px;
     padding:0 4px 12px 4px;
     margin-bottom:10px;
     border-bottom:1px solid rgba(255,255,255,0.07);
     position:relative;
     z-index:2;
-  }
-  @media(min-width:1024px) and (max-width:1540px){
-    .board-chassis-bar{
-      padding-right:52px;
-    }
   }
 
   .chassis-deck-id{
@@ -735,6 +730,265 @@
     background:rgba(255,209,102,0.22);
     border:1px solid rgba(255,209,102,0.5);
     color:#fff;
+  }
+
+  /* ============================================================
+     Interactive Mouse Cursor Inspector & Kinematic Guide HUD
+     ============================================================ */
+
+  .pk-cursor-hud {
+    position: fixed;
+    z-index: 10000;
+    pointer-events: none;
+    width: 280px;
+    max-width: calc(100vw - 32px);
+    padding: 12px 14px;
+    background: rgba(10, 14, 28, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(56, 189, 248, 0.38);
+    border-radius: 12px;
+    box-shadow:
+      0 16px 40px rgba(0, 0, 0, 0.7),
+      0 0 24px rgba(56, 189, 248, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+    font-family: 'JetBrains Mono', 'Kantumruy Pro', monospace;
+    opacity: 0;
+    transform: translate(16px, 16px) scale(0.96);
+    transition: opacity 0.14s ease, transform 0.14s ease;
+    will-change: transform, opacity;
+  }
+
+  .pk-cursor-hud.visible {
+    opacity: 1;
+    transform: translate(16px, 16px) scale(1);
+  }
+
+  .pk-chud-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .pk-chud-glyph-box {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.15));
+    border: 1px solid rgba(56, 189, 248, 0.5);
+    border-radius: 10px;
+    font-family: 'Kantumruy Pro', 'Khmer OS Battambang', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+    flex-shrink: 0;
+  }
+
+  .pk-chud-title-wrap {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .pk-chud-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #f8fafc;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .pk-chud-category {
+    display: inline-block;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #38bdf8;
+    margin-top: 2px;
+  }
+
+  .pk-chud-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .pk-chud-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 0.68rem;
+  }
+
+  .pk-chud-label {
+    color: #94a3b8;
+    font-size: 0.64rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .pk-chud-recipe {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 2px 7px;
+    border-radius: 5px;
+    color: #ffd166;
+    font-weight: 700;
+    font-size: 0.68rem;
+  }
+
+  .pk-chud-recipe kbd {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    padding: 0 4px;
+    font-family: inherit;
+    color: #fff;
+  }
+
+  .pk-chud-finger {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    color: #cbd5e1;
+  }
+
+  .pk-chud-finger-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 6px currentColor;
+  }
+
+  .pk-chud-subscript-badge {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 4px 8px;
+    margin-top: 6px;
+    background: rgba(147, 51, 234, 0.15);
+    border: 1px solid rgba(168, 85, 247, 0.35);
+    border-radius: 6px;
+    font-size: 0.65rem;
+    color: #e9d5ff;
+  }
+
+  .pk-chud-subscript-badge .sub-glyph {
+    font-family: 'Kantumruy Pro', sans-serif;
+    font-size: 1.1rem;
+    color: #fff;
+  }
+
+  .pk-chud-desc {
+    font-size: 0.62rem;
+    color: #94a3b8;
+    margin-top: 6px;
+    line-height: 1.35;
+    font-style: italic;
+  }
+
+  /* Subtle Cursor Reticle Tracker */
+  .pk-cursor-reticle {
+    position: fixed;
+    z-index: 9998;
+    pointer-events: none;
+    width: 24px;
+    height: 24px;
+    margin-left: -12px;
+    margin-top: -12px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(56, 189, 248, 0.6);
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 0.2s ease, transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.2s ease;
+    will-change: transform, left, top;
+  }
+
+  .pk-cursor-reticle.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .pk-cursor-reticle.target-key {
+    width: 32px;
+    height: 32px;
+    margin-left: -16px;
+    margin-top: -16px;
+    border-color: #ffd166;
+    box-shadow: 0 0 16px rgba(255, 209, 102, 0.6);
+    transform: scale(1.1);
+  }
+
+  .pk-cursor-reticle-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    margin-left: -2px;
+    margin-top: -2px;
+    border-radius: 50%;
+    background: #38bdf8;
+    box-shadow: 0 0 6px #38bdf8;
+  }
+
+  .pk-cursor-reticle.target-key .pk-cursor-reticle-dot {
+    background: #ffd166;
+    box-shadow: 0 0 8px #ffd166;
+  }
+
+  /* Home row mini keys active state */
+  .guide-mini-key.active {
+    border-color: #ffd166 !important;
+    background: rgba(255, 209, 102, 0.25) !important;
+    box-shadow: 0 0 12px rgba(255, 209, 102, 0.55), inset 0 0 6px rgba(255, 209, 102, 0.3) !important;
+    transform: translateY(-2px);
+    transition: all 0.15s ease;
+  }
+  .guide-mini-key.active .km-ch {
+    color: #fff !important;
+    text-shadow: 0 0 8px rgba(255, 209, 102, 0.8) !important;
+  }
+  .guide-mini-key.active .en-ch {
+    color: #ffd166 !important;
+    opacity: 1 !important;
+  }
+
+  /* Layer pills interactive state */
+  .layer-pill {
+    cursor: pointer;
+    transition: all 0.18s ease;
+  }
+  .layer-pill:hover {
+    border-color: #38bdf8 !important;
+    color: #f0f9ff !important;
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.35) !important;
+    transform: translateY(-1px);
+  }
+  .layer-pill.locked {
+    border-color: #ffd166 !important;
+    background: rgba(255, 209, 102, 0.18) !important;
+    color: #ffd166 !important;
+    box-shadow: 0 0 16px rgba(255, 209, 102, 0.45) !important;
   }
 
 
