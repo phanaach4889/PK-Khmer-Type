@@ -17,12 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Noto+Serif+Khmer:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
 
-  <!-- Anti-caching directives for live 3D assets -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-
-  <link rel="stylesheet" href="docs.css?v=3.2.0">
+  <link rel="stylesheet" href="docs.css">
 </head>
 <body>
 
@@ -260,12 +255,10 @@
               <span class="keycap3d-title">PK Khmer Type Mechanical ANSI 61-Key</span>
               <span class="keycap3d-hint">Type on physical keyboard or click keys · Drag to orbit · Scroll to zoom</span>
             </div>
-
-            <!-- Real-time HUD Keystroke Readout -->
-            <div class="keycap3d-hud-right" id="keyReadoutHUD">
-              <span class="readout-label doc-i18n" data-en="Active Keystroke" data-km="គ្រាប់ចុចសកម្ម">Active Keystroke</span>
-              <span class="readout-val" id="readoutKeyVal">Ready</span>
-              <span class="readout-finger" id="readoutFingerVal">Press any key or click in 3D</span>
+            <div class="keycap3d-telemetry" id="keycap3dTelemetry">
+              <span class="telemetry-lbl">Active Keystroke</span>
+              <span class="telemetry-key" id="telemetryKeyName">READY</span>
+              <span class="telemetry-sub" id="telemetryKeyDetail">Press any key or click in 3D</span>
             </div>
           </div>
 
@@ -276,13 +269,6 @@
               <button class="key-layout-btn active" data-layout="standard">Khmer Standard</button>
               <button class="key-layout-btn" data-layout="nida">Khmer NiDA</button>
               <button class="key-layout-btn" data-layout="english">English US</button>
-            </div>
-
-            <div class="keycap-ctrl-group">
-              <span class="keycap-ctrl-label doc-i18n" data-en="Angle:" data-km="មុំ៖">Angle:</span>
-              <button class="key-angle-btn active" data-angle="iso">3D Isometric</button>
-              <button class="key-angle-btn" data-angle="top">Top-Down</button>
-              <button class="key-angle-btn" data-angle="profile">Low Profile</button>
             </div>
 
             <div class="keycap-ctrl-group">
@@ -1180,9 +1166,9 @@ node scratch/test_documents_endpoint.js</code></pre>
     </main>
   </div>
 
-  <!-- Scripts with cache-busting version stamps -->
-  <script src="three.min.js?v=3.2.0"></script>
-  <script src="keycap3d.js?v=3.2.0"></script>
-  <script src="docs.js?v=3.2.0"></script>
+  <!-- Scripts -->
+  <script src="three.min.js"></script>
+  <script src="keycap3d.js"></script>
+  <script src="docs.js"></script>
 </body>
 </html>

@@ -60,9 +60,9 @@ assert(docsHtml.includes('data-glyph="ក"'), 'Contains Khmer glyph button data-
 assert(docsHtml.includes('data-theme="angkor"'), 'Contains theme button data-theme="angkor"');
 
 // Script tags order
-const threePos = docsHtml.indexOf('src="three.min.js');
-const keycapPos = docsHtml.indexOf('src="keycap3d.js');
-const docsJsPos = docsHtml.indexOf('src="docs.js');
+const threePos = docsHtml.indexOf('src="three.min.js"');
+const keycapPos = docsHtml.indexOf('src="keycap3d.js"');
+const docsJsPos = docsHtml.indexOf('src="docs.js"');
 assert(threePos !== -1, 'Script three.min.js is included');
 assert(keycapPos !== -1, 'Script keycap3d.js is included');
 assert(docsJsPos !== -1, 'Script docs.js is included');
