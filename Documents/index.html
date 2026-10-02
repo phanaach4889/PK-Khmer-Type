@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en" class="notranslate" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="author" content="Phanna Kurosaki">
+  <meta name="description" content="Official documentation, keyboard layout guides, and curriculum specifications for PK Khmer Type — the premier interactive Khmer & English typing trainer.">
+  <title>PK Khmer Type — Official Documentation & Architecture Guide</title>
+
+  <!-- Favicon & PWA -->
+  <link rel="icon" type="image/svg+xml" href="../logo.svg">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#ff9d2e">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Noto+Serif+Khmer:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="docs.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="docs-header">
+    <div style="display:flex; align-items:center; gap:16px;">
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <a href="../index.html" class="brand-group" title="Back to PK Khmer Type application">
+        <img src="../logo.svg" alt="PK Logo" class="brand-logo">
+        <div class="brand-text">
+          <div class="brand-title">PK Khmer Type <span class="brand-badge">DOCS</span></div>
+          <div class="brand-sub">ក្តារចុចខ្មែរ PK — ឯកសារផ្លូវការ</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="header-center">
+      <div class="search-wrap">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="docsSearchInput" class="search-input" placeholder="Search documentation... (Press '/' to focus)" aria-label="Search documentation">
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn-ghost" id="docsLangToggle" title="Toggle language / ប្តូរភាសា">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span class="lang-label">ខ្មែរ</span>
+      </button>
+      <a href="../index.html" class="btn-primary-glow" title="Launch the Interactive Typing Trainer">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <span class="doc-i18n" data-en="Launch Tutor" data-km="បើកកម្មវិធី">Launch Tutor</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Documentation Layout -->
+  <div class="docs-layout">
+
+    <!-- Sticky Table of Contents Sidebar -->
+    <aside class="docs-sidebar" id="docsSidebar">
+      <div class="toc-group">
+        <div class="toc-heading">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          <span class="doc-i18n" data-en="GETTING STARTED" data-km="ការចាប់ផ្តើម">GETTING STARTED</span>
+        </div>
+        <ul class="toc-list">
+          <li><a href="#overview" class="toc-link"><span class="doc-i18n" data-en="Overview &amp; Vision" data-km="ទិដ្ឋភាពទូទៅ និងចក្ខុវិស័យ">Overview &amp; Vision</span></a></li>
+          <li><a href="#quickstart" class="toc-link"><span class="doc-i18n" data-en="Quick Start Guide" data-km="មគ្គុទ្ទេសក៍រហ័ស">Quick Start Guide</span></a></li>
+          <li><a href="#shortcuts" class="toc-link"><span class="doc-i18n" data-en="Keyboard Shortcuts" data-km="គ្រាប់ចុចកាត់">Keyboard Shortcuts</span></a></li>
+        </ul>
+      </div>
+
+      <div class="toc-group">
+        <div class="toc-heading">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/></svg>
+          <span class="doc-i18n" data-en="KEYBOARDS &amp; SCRIPT" data-km="ក្តារចុច និងអក្សរ">KEYBOARDS &amp; SCRIPT</span>
+        </div>
+        <ul class="toc-list">
+          <li><a href="#keyboard-layouts" class="toc-link"><span class="doc-i18n" data-en="Keyboard Layouts" data-km="ប្លង់ក្តារចុច">Keyboard Layouts</span> <span class="toc-badge">3</span></a></li>
+          <li><a href="#khmer-mechanics" class="toc-link"><span class="doc-i18n" data-en="Khmer Typing Rules" data-km="ក្បួនវាយអក្សរខ្មែរ">Khmer Typing Rules</span></a></li>
+          <li><a href="#modifier-layers" class="toc-link"><span class="doc-i18n" data-en="Modifier Layers" data-km="ស្រទាប់គ្រាប់ចុច">Modifier Layers</span></a></li>
+        </ul>
+      </div>
+
+      <div class="toc-group">
+        <div class="toc-heading">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <span class="doc-i18n" data-en="PEDAGOGY &amp; DRILLS" data-km="គរុកោសល្យ និងលំហាត់">PEDAGOGY &amp; DRILLS</span>
+        </div>
+        <ul class="toc-list">
+          <li><a href="#curriculum" class="toc-link"><span class="doc-i18n" data-en="Curriculum &amp; Levels" data-km="កម្មវិធីសិក្សា និងកម្រិត">Curriculum &amp; Levels</span> <span class="toc-badge">218</span></a></li>
+          <li><a href="#adaptive-practice" class="toc-link"><span class="doc-i18n" data-en="Adaptive Practice Engine" data-km="ប្រព័ន្ធអនុវត្តបត់បែន">Adaptive Practice Engine</span></a></li>
+          <li><a href="#interactive-modes" class="toc-link"><span class="doc-i18n" data-en="Practice Modes &amp; Race" data-km="ទម្រង់ហាត់ និងការប្រណាំង">Practice Modes &amp; Race</span></a></li>
+        </ul>
+      </div>
+
+      <div class="toc-group">
+        <div class="toc-heading">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <span class="doc-i18n" data-en="SYSTEM &amp; SPECS" data-km="ប្រព័ន្ធ និងបច្ចេកទេស">SYSTEM &amp; SPECS</span>
+        </div>
+        <ul class="toc-list">
+          <li><a href="#persistence" class="toc-link"><span class="doc-i18n" data-en="Session Persistence" data-km="ការរក្សាទិន្នន័យ">Session Persistence</span></a></li>
+          <li><a href="#audio-engine" class="toc-link"><span class="doc-i18n" data-en="Web Audio Engine" data-km="ប្រព័ន្ធសំឡេង">Web Audio Engine</span></a></li>
+          <li><a href="#tech-reference" class="toc-link"><span class="doc-i18n" data-en="Technical Reference" data-km="ឯកសារយោងបច្ចេកទេស">Technical Reference</span></a></li>
+          <li><a href="#faq" class="toc-link"><span class="doc-i18n" data-en="FAQ &amp; Support" data-km="សំណួរញឹកញាប់">FAQ &amp; Support</span></a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Documentation Article -->
+    <main class="docs-main">
+
+      <!-- Hero Banner -->
+      <section class="doc-hero">
+        <div class="hero-meta">
+          <span class="hero-tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+            <span class="doc-i18n" data-en="Official Documentation" data-km="ឯកសារផ្លូវការ">Official Documentation</span>
+          </span>
+          <span class="hero-version">Endpoint: <code>/Documents</code> · Version 2.2</span>
+        </div>
+        <h1 class="hero-title doc-i18n" data-en="Master Khmer &amp; English Typing with Real Muscle Memory" data-km="រៀនវាយអក្សរខ្មែរ និងអង់គ្លេស តាមរយៈការចងចាំសាច់ដុំពិតប្រាកដ">Master Khmer &amp; English Typing with Real Muscle Memory</h1>
+        <p class="hero-lead doc-i18n" 
+           data-en="PK Khmer Type (ក្តារចុចខ្មែរ PK) is a zero-dependency, browser-based touch typing tutor for Khmer Standard, Khmer NiDA, and English US QWERTY. Crafted with live key feedback, dynamic letter mastery, real-time hand guidance, and strict curriculum gating."
+           data-km="PK Khmer Type (ក្តារចុចខ្មែរ PK) គឺជាកម្មវិធីហ្វឹកហាត់វាយអក្សរតាមរយៈកម្មវិធីរុករកឥតគិតថ្លៃសម្រាប់ប្លង់ Khmer Standard, Khmer NiDA និង English US QWERTY។ បង្កើតឡើងដោយមានការបង្ហាញគ្រាប់ចុចផ្ទាល់ ប្រព័ន្ធអនុវត្តបត់បែន ការណែនាំម្រាមដៃ និងមេរៀនជាលំដាប់លំដោយ។">
+          PK Khmer Type (ក្តារចុចខ្មែរ PK) is a zero-dependency, browser-based touch typing tutor for Khmer Standard, Khmer NiDA, and English US QWERTY. Crafted with live key feedback, dynamic letter mastery, real-time hand guidance, and strict curriculum gating.
+        </p>
+
+        <!-- Metric badges -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-val">3</div>
+            <div class="metric-lbl doc-i18n" data-en="Keyboard Layouts" data-km="ប្លង់ក្តារចុច">Keyboard Layouts</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">40</div>
+            <div class="metric-lbl doc-i18n" data-en="Levels Crafted" data-km="កម្រិតសិក្សា">Levels Crafted</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">218</div>
+            <div class="metric-lbl doc-i18n" data-en="Structured Lessons" data-km="មេរៀនលម្អិត">Structured Lessons</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">664</div>
+            <div class="metric-lbl doc-i18n" data-en="Typing Exercises" data-km="លំហាត់ជាក់ស្តែង">Typing Exercises</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">100%</div>
+            <div class="metric-lbl doc-i18n" data-en="Zero Dependencies" data-km="ឥតពឹងផ្អែកបណ្ណាល័យក្រៅ">Zero Dependencies</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1. Overview & Vision -->
+      <section id="overview" class="doc-section">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span class="section-icon">⟡</span>
+            <span class="doc-i18n" data-en="Overview &amp; Philosophy" data-km="ទិដ្ឋភាពទូទៅ និងទស្សនវិស័យ">Overview &amp; Philosophy</span>
+          </h2>
+          <a href="#overview" class="section-anchor">#</a>
+        </div>
+        <p class="doc-p doc-i18n"
+           data-en="Typing in Khmer is notoriously challenging for newcomers. Unlike simple alphabet systems, Khmer is an abugida script with 33 consonants, 23 dependent vowels, 14 independent vowels, and stacked subscript consonants (Coeng ្). Most available learning materials are static poster images that users have to squint at without any feedback."
+           data-km="ការរៀនវាយអក្សរខ្មែរតែងតែជាឧបសគ្គធំសម្រាប់អ្នកចាប់ផ្តើមដំបូង។ ខុសពីអក្ខរក្រមធម្មតា អក្សរខ្មែរជាភាសាអប៊ូហ្គីដា ដែលមានព្យញ្ជនៈ ៣៣ ស្រៈនិស្ស័យ ២៣ ស្រៈពេញតួ ១៤ និងជើងព្យញ្ជនៈត្រួតគ្នា (ជើង ្)។ ឯកសារភាគច្រើនកន្លងមក គឺជារូបភាពក្តារចុចស្ងៀមៗ ដែលពិបាកមើល និងគ្មានការឆ្លើយតបជាក់ស្តែង។">
+          Typing in Khmer is notoriously challenging for newcomers. Unlike simple alphabet systems, Khmer is an abugida script with 33 consonants, 23 dependent vowels, 14 independent vowels, and stacked subscript consonants (Coeng ្). Most available learning materials are static poster images that users have to squint at without any feedback.
+        </p>
+
+        <div class="callout tip">
+          <div class="callout-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </div>
+          <div>
+            <strong class="doc-i18n" data-en="The Core Philosophy:" data-km="ទស្សនវិស័យស្នូល៖">The Core Philosophy:</strong>
+            <span class="doc-i18n"
+                  data-en=" Authentic muscle memory is built one honest keystroke at a time. Every lesson, every key mapping, and every line of code was crafted from scratch by hand to give learners clear visual guidance, instant auditory feedback, and targeted repetition without shortcuts."
+                  data-km=" ការចងចាំរបស់ម្រាមដៃពិតប្រាកដ គឺសាងសង់ឡើងម្តងមួយគ្រាប់ចុចដោយស្មោះត្រង់។ រាល់មេរៀន រាល់ការផ្គូផ្គង និងរាល់កូដត្រូវបានបង្កើតឡើងដោយដៃផ្ទាល់ ដើម្បីផ្តល់នូវការណែនាំច្បាស់លាស់ សំឡេងឆ្លើយតបភ្លាមៗ និងការហ្វឹកហាត់ចំគោលដៅ។">
+              Authentic muscle memory is built one honest keystroke at a time. Every lesson, every key mapping, and every line of code was crafted from scratch by hand to give learners clear visual guidance, instant auditory feedback, and targeted repetition without shortcuts.
+            </span>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-box">
+            <div class="feature-head">
+              <div class="feature-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/></svg>
+              </div>
+              <div class="feature-name doc-i18n" data-en="Live Virtual Keyboard" data-km="ក្តារចុចនិម្មិតផ្សាយបន្តផ្ទាល់">Live Virtual Keyboard</div>
+            </div>
+            <div class="feature-desc doc-i18n" data-en="Illuminates the exact target key, modifier state (Shift, AltGr, Coeng), and translucent finger indicator on every character." data-km="បំភ្លឺគ្រាប់ចុចគោលដៅ ស្រទាប់បន្ថែម (Shift, AltGr, ជើង) និងបង្ហាញម្រាមដៃដែលត្រូវចុចដោយស្វ័យប្រវត្តិ។">
+              Illuminates the exact target key, modifier state (Shift, AltGr, Coeng), and translucent finger indicator on every character.
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-head">
+              <div class="feature-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
+              </div>
+              <div class="feature-name doc-i18n" data-en="Dynamic Keybr-Style Engine" data-km="ប្រព័ន្ធអនុវត្តបត់បែន">Dynamic Keybr-Style Engine</div>
+            </div>
+            <div class="feature-desc doc-i18n" data-en="Tracks per-letter speed and accuracy in real-time. Mistake penalty is -3%, while correct strokes award speed-dependent gains up to +5%." data-km="តាមដានល្បឿន និងភាពសុក្រឹតតាមតួអក្សរ។ វាយខុសដក -3% ហើយវាយត្រូវបន្ថែមពិន្ទុរហូតដល់ +5% ផ្អែកលើល្បឿន។">
+              Tracks per-letter speed and accuracy in real-time. Mistake penalty is -3%, while correct strokes award speed-dependent gains up to +5%.
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-head">
+              <div class="feature-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div class="feature-name doc-i18n" data-en="Strict 100% Gatekeeping" data-km="ការចាក់សោតាមកម្រិត ១០០%">Strict 100% Gatekeeping</div>
+            </div>
+            <div class="feature-desc doc-i18n" data-en="Next letters and lesson levels remain locked until all active units hit 100% completion, ensuring durable mastery before advancement." data-km="អក្សរនិងមេរៀនបន្ទាប់ត្រូវចាក់សោរហូតដល់អក្សរកំពុងរៀនទាំងអស់ឈានដល់ ១០០% ធានាការចងចាំមុនឈានទៅមុខ។">
+              Next letters and lesson levels remain locked until all active units hit 100% completion, ensuring durable mastery before advancement.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Quick Start Guide -->
+      <section id="quickstart" class="doc-section">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span class="section-icon">⚡</span>
+            <span class="doc-i18n" data-en="Quick Start Guide" data-km="មគ្គុទ្ទេសក៍រហ័ស">Quick Start Guide</span>
+          </h2>
+          <a href="#quickstart" class="section-anchor">#</a>
+        </div>
+        <p class="doc-p doc-i18n"
+           data-en="Getting started with PK Khmer Type takes less than ten seconds. No sign-up is required, and all progress is safely saved directly in your web browser."
+           data-km="ការចាប់ផ្តើមអនុវត្តជាមួយ PK Khmer Type ចំណាយពេលមិនដល់ដប់វិនាទីឡើយ។ មិនទាមទារការចុះឈ្មោះ ហើយទិន្នន័យត្រូវបានរក្សាទុកក្នុងកម្មវិធីរុករកដោយសុវត្ថិភាព។">
+          Getting started with PK Khmer Type takes less than ten seconds. No sign-up is required, and all progress is safely saved directly in your web browser.
+        </p>
+
+        <div class="doc-table-wrap">
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th class="doc-i18n" data-en="Step" data-km="ជំហាន">Step</th>
+                <th class="doc-i18n" data-en="Action" data-km="សកម្មភាព">Action</th>
+                <th class="doc-i18n" data-en="Description" data-km="ការពិពណ៌នា">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1</strong></td>
+                <td><span class="doc-i18n" data-en="Choose Layout" data-km="ជ្រើសរើសប្លង់">Choose Layout</span></td>
+                <td class="doc-i18n" data-en="Select Khmer Standard, Khmer NiDA, or English from the layout bar at the bottom." data-km="ជ្រើសរើស Khmer Standard, Khmer NiDA ឬ English ពីរបារខាងក្រោម។">Select Khmer Standard, Khmer NiDA, or English from the layout bar at the bottom.</td>
+              </tr>
+              <tr>
+                <td><strong>2</strong></td>
+                <td><span class="doc-i18n" data-en="Place Hands" data-km="ដាក់ដៃលើជួរដើម">Place Hands</span></td>
+                <td class="doc-i18n" data-en="Rest fingers on the Home Row (F and J bumps). The translucent hand overlay shows proper finger positioning." data-km="ដាក់ម្រាមដៃលើជួរដើម (គន្លឹះ F និង J)។ ផ្ទាំងដៃនឹងបង្ហាញម្រាមដៃត្រឹមត្រូវ។">Rest fingers on the Home Row (F and J bumps). The translucent hand overlay shows proper finger positioning.</td>
+              </tr>
+              <tr>
+                <td><strong>3</strong></td>
+                <td><span class="doc-i18n" data-en="Select Lesson or Adaptive" data-km="ជ្រើសរើសមេរៀន">Select Lesson or Adaptive</span></td>
+                <td class="doc-i18n" data-en="Click Level 0 / Lesson 1 in the side curriculum strip, or launch Adaptive Practice for dynamic letter drilling." data-km="ចុចកម្រិត ០ / មេរៀន ១ ក្នុងបញ្ជីមេរៀន ឬចុច 'Adaptive Practice' ដើម្បីហាត់បត់បែន។">Click Level 0 / Lesson 1 in the side curriculum strip, or launch Adaptive Practice for dynamic letter drilling.</td>
+              </tr>
+              <tr>
+                <td><strong>4</strong></td>
+                <td><span class="doc-i18n" data-en="Type without Looking Down" data-km="វាយដោយមិនបាច់មើលក្តារចុច">Type without Looking Down</span></td>
+                <td class="doc-i18n" data-en="Keep your eyes on the screen! The virtual keyboard highlights each target key and layer shift automatically." data-km="មើលតែអេក្រង់! ក្តារចុចនិម្មិតនឹងបំភ្លឺគ្រាប់ចុចដែលត្រូវវាយ និងស្រទាប់ប្តូរដោយស្វ័យប្រវត្តិ។">Keep your eyes on the screen! The virtual keyboard highlights each target key and layer shift automatically.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Keyboard Shortcuts -->
+      <section id="shortcuts" class="doc-section">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span class="section-icon">⌨</span>
+            <span class="doc-i18n" data-en="Keyboard Shortcuts &amp; Hotkeys" data-km="គ្រាប់ចុចកាត់ និងផ្លូវកាត់">Keyboard Shortcuts &amp; Hotkeys</span>
+          </h2>
+          <a href="#shortcuts" class="section-anchor">#</a>
+        </div>
+        <p class="doc-p doc-i18n"
+           data-en="Boost your training efficiency with these native hotkeys available throughout the application:"
+           data-km="បង្កើនប្រសិទ្ធភាពនៃការហ្វឹកហាត់ជាមួយគ្រាប់ចុចកាត់ដែលមានក្នុងកម្មវិធី៖">
+          Boost your training efficiency with these native hotkeys available throughout the application:
+        </p>
+
+        <div class="doc-table-wrap">
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th class="doc-i18n" data-en="Shortcut" data-km="ផ្លូវកាត់">Shortcut</th>
+                <th class="doc-i18n" data-en="Action" data-km="សកម្មភាព">Action</th>
+                <th class="doc-i18n" data-en="Scope / Notes" data-km="វិសាលភាព">Scope / Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><kbd>Shift</kbd> + <kbd>Space</kbd></td>
+                <td><strong class="doc-i18n" data-en="Insert Word Space" data-km="ដកឃ្លាពាក្យ">Insert Word Space</strong></td>
+                <td class="doc-i18n" data-en="Essential for Khmer layouts (where plain Space is reserved for Coeng or joiners)" data-km="សំខាន់សម្រាប់ប្លង់ខ្មែរ (ដែល Space ធម្មតាប្រើសម្រាប់ជើង)">Essential for Khmer layouts (where plain Space is reserved for Coeng or joiners)</td>
+              </tr>
+              <tr>
+                <td><kbd>Alt</kbd> + <kbd>F</kbd></td>
+                <td><strong class="doc-i18n" data-en="Toggle Focus Mode" data-km="បិទ/បើក ផ្ដោតអារម្មណ៍">Toggle Focus Mode</strong></td>
+                <td class="doc-i18n" data-en="Hides sidebars, navigation controls, and headers for pure deep practice" data-km="លាក់របារចំហៀង និងកាត់បន្ថយការរំខានសម្រាប់ការហ្វឹកហាត់ស្ងប់ស្ងាត់">Hides sidebars, navigation controls, and headers for pure deep practice</td>
+              </tr>
+              <tr>
+                <td><kbd>Esc</kbd></td>
+                <td><strong class="doc-i18n" data-en="Exit / Dismiss" data-km="ចាកចេញ / បិទ">Exit / Dismiss</strong></td>
+                <td class="doc-i18n" data-en="Closes active modal dialogs or exits full-screen Focus Mode" data-km="បិទផ្ទាំងសារ ឬចាកចេញពី Focus Mode">Closes active modal dialogs or exits full-screen Focus Mode</td>
+              </tr>
+              <tr>
+                <td><kbd>Alt</kbd> + <kbd>L</kbd></td>
+                <td><strong class="doc-i18n" data-en="Toggle UI Language" data-km="ប្តូរភាសាបង្ហាញ">Toggle UI Language</strong></td>
+                <td class="doc-i18n" data-en="Switches between English and Khmer interface labels" data-km="ប្តូររវាងភាសាអង់គ្លេស និងភាសាខ្មែរ">Switches between English and Khmer interface labels</td>
+              </tr>
+              <tr>
+                <td><kbd>Caps Lock</kbd></td>
+                <td><strong class="doc-i18n" data-en="Caps Lock (English)" data-km="អក្សរធំ (អង់គ្លេស)">Caps Lock (English)</strong></td>
+                <td class="doc-i18n" data-en="Locks Shift uppercase layer on English US layout" data-km="ចាក់សោស្រទាប់អក្សរធំលើប្លង់អង់គ្លេស">Locks Shift uppercase layer on English US layout</td>
+              </tr>
+              <tr>
+                <td><kbd>/</kbd></td>
+                <td><strong class="doc-i18n" data-en="Search Docs" data-km="ស្វែងរកឯកសារ">Search Docs</strong></td>
+                <td class="doc-i18n" data-en="Focuses documentation search input on the /Documents endpoint" data-km="ដាក់ cursor ក្នុងប្រអប់ស្វែងរកលើទំព័រ /Documents">Focuses documentation search input on the /Documents endpoint</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 4. Keyboard Layouts -->
+      <section id="keyboard-layouts" class="doc-section">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span class="section-icon">⌨</span>
+            <span class="doc-i18n" data-en="Keyboard Layouts &amp; Mapping" data-km="ប្លង់ក្តារចុច និងការផ្គូផ្គង">Keyboard Layouts &amp; Mapping</span>
+          </h2>
+          <a href="#keyboard-layouts" class="section-anchor">#</a>
+        </div>
+        <p class="doc-p doc-i18n"
+           data-en="PK Khmer Type provides full curriculum and interactive visualizer support for three standard layouts:"
+           data-km="PK Khmer Type គាំទ្រកម្មវិធីសិក្សា និងក្តារចុចនិម្មិតពេញលេញសម្រាប់ប្លង់ស្តង់ដារចំនួនបី៖">
+          PK Khmer Type provides full curriculum and interactive visualizer support for three standard layouts:
+        </p>
+
+        <!-- Interactive Layout Comparison Tabs -->
+        <div class="tab-row">
+          <button class="tab-btn active" data-tab="tab-standard">Khmer Standard (ក្បាច់)</button>
+          <button class="tab-btn" data-tab="tab-nida">Khmer NiDA (នីដា)</button>
+          <button class="tab-btn" data-tab="tab-english">English US QWERTY</button>
+        </div>
+
+        <div id="tab-standard" class="tab-pane active">
+          <div class="callout note">
+            <div class="callout-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </div>
+            <div>
+              <strong>Khmer Standard (Unicode Standard Layout):</strong>
+              <div class="doc-i18n"
+                   data-en="The official government and educational standard layout. Consonants and vowels are arranged phonetically across 5 rows. In Khmer Standard, pressing &lt;kbd&gt;Space&lt;/kbd&gt; inserts the Coeng marker (&lt;code&gt;្&lt;/code&gt; U+17D2) to produce subscript consonants. To insert an actual word space, press &lt;kbd&gt;Shift + Space&lt;/kbd&gt;."
+                   data-km="ប្លង់ស្តង់ដារផ្លូវការរបស់រដ្ឋាភិបាល និងស្ថាប័នអប់រំ។ ព្យញ្ជនៈ និងស្រៈត្រូវបានរៀបចំតាមសូរសព្ទលើ ៥ ជួរ។ ក្នុង Khmer Standard ការចុច &lt;kbd&gt;Space&lt;/kbd&gt; គឺសម្រាប់ដាក់ជើងព្យញ្ជនៈ (&lt;code&gt;្&lt;/code&gt;)។ ដើម្បីដកឃ្លាពាក្យធម្មតា សូមចុច &lt;kbd&gt;Shift + Space&lt;/kbd&gt;។">
+                The official government and educational standard layout. Consonants and vowels are arranged phonetically across 5 rows. In Khmer Standard, pressing <kbd>Space</kbd> inserts the Coeng marker (<code>្</code> U+17D2) to produce subscript consonants. To insert an actual word space, press <kbd>Shift + Space</kbd>.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-nida" class="tab-pane">
+          <div class="callout note">
+            <div class="callout-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </div>
+            <div>
+              <strong>Khmer NiDA (National Information Development Authority):</strong>
+              <div class="doc-i18n"
+                   data-en="Designed for touch-typists transitioning from typewriter layouts. Focuses on the home row for the most frequent consonants. In NiDA, the Coeng subscript marker is typed with &lt;kbd&gt;Shift + J&lt;/kbd&gt;. Pressing &lt;kbd&gt;Shift + Space&lt;/kbd&gt; produces a visible word space."
+                   data-km="រៀបចំឡើងសម្រាប់អ្នកវាយអក្សរដែលចង់បានទីតាំងជួរដើមស្រដៀងនឹងម៉ាស៊ីនអង្គុលីលេខ។ ក្នុង NiDA ជើងព្យញ្ជនៈត្រូវបានវាយតាមរយៈ &lt;kbd&gt;Shift + J&lt;/kbd&gt;។ ចំណែកការដកឃ្លាពាក្យ គឺប្រើ &lt;kbd&gt;Shift + Space&lt;/kbd&gt;។">
+                Designed for touch-typists transitioning from typewriter layouts. Focuses on the home row for the most frequent consonants. In NiDA, the Coeng subscript marker is typed with <kbd>Shift + J</kbd>. Pressing <kbd>Shift + Space</kbd> produces a visible word space.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-english" class="tab-pane">
+          <div class="callout note">
+            <div class="callout-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </div>
+            <div>
+              <strong>English US QWERTY:</strong>
+              <div class="doc-i18n"
+                   data-en="Standard international QWERTY layout. Follows the classical touch-typing curriculum starting with home row anchor keys (&lt;code&gt;f&lt;/code&gt;, &lt;code&gt;j&lt;/code&gt;), expanding outward through top and bottom rows, capital letters with Shift, and punctuation."
+                   data-km="ប្លង់ QWERTY ស្តង់ដារអន្តរជាតិ។ អនុវត្តតាមវិធីសាស្ត្ររៀនវាយអក្សរចាប់ពីជួរដើម (&lt;code&gt;f&lt;/code&gt;, &lt;code&gt;j&lt;/code&gt;) រហូតដល់ជួរលើ ជួរក្រោម អក្សរធំ និងសញ្ញាវណ្ណយុត្តិ។">
+                Standard international QWERTY layout. Follows the classical touch-typing curriculum starting with home row anchor keys (<code>f</code>, <code>j</code>), expanding outward through top and bottom rows, capital letters with Shift, and punctuation.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Khmer Typing Rules & Mechanics -->
+      <section id="khmer-mechanics" class="doc-section">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span class="section-icon">📜</span>
+            <span class="doc-i18n" data-en="Khmer Typing Mechanics &amp; Rules" data-km="ក្បួន និងយន្តការវាយអក្សរខ្មែរ">Khmer Typing Mechanics &amp; Rules</span>
+          </h2>
+          <a href="#khmer-mechanics" class="section-anchor">#</a>
+        </div>
+        <p class="doc-p doc-i18n"
+           data-en="Understanding the grammatical order of the Khmer Unicode engine is critical for clean typing without broken glyphs or dotted circles:"
+           data-km="ការយល់ដឹងពីលំដាប់លំដោយនៃអក្សរខ្មែរយូនីកូដ គឺចាំបាច់បំផុតដើម្បីវាយបានត្រឹមត្រូវ មិនចេញរង្វង់មូលចំនុចៗ (◌)៖">
+          Understanding the grammatical order of the Khmer Unicode engine is critical for clean typing without broken glyphs or dotted circles:
+        </p>
+
+        <div class="callout rule">
+          <div class="callout-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <div>
+            <strong class="doc-i18n" data-en="Golden Rule 1: Base Consonant First" data-km="ក្បួនមាស ១៖ វាយព្យញ្ជនៈដើមមុនគេ">Golden Rule 1: Base Consonant First</strong><br>
+            <span class="doc-i18n"
+                  data-en="Even if a vowel visually appears to the left of the consonant (e.g. ស្រៈ េ in គេ), you MUST ALWAYS type the base consonant first, followed by the vowel."
+                  data-km="ទោះបីជាស្រៈស្ថិតនៅខាងឆ្វេងនៃព្យញ្ជនៈ (ឧទាហរណ៍ ស្រៈ េ ក្នុងពាក្យ 'គេ') អ្នកត្រូវតែវាយព្យញ្ជនៈដើមជាមុនសិន រួចទើបវាយស្រៈតាមក្រោយ។">
+              Even if a vowel visually appears to the left of the consonant (e.g. ស្រៈ េ in គេ), you MUST ALWAYS type the base consonant first, followed by the vowel.
+            </span>
+            <div style="margin-top:6px;">
+              <code>ក (K) + ា (A) = កា</code> · <code>គ (K) + េ (E) = គេ</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout rule">
+          <div class="callout-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div>
+            <strong class="doc-i18n" data-en="Golden Rule 2: Subscripts (Coeng ្)" data-km="ក្បួនមាស ២៖ ការវាយជើងព្យញ្ជនៈ (ជើង ្)">Golden Rule 2: Subscripts (Coeng ្)</strong><br>
+            <span class="doc-i18n"
+                  data-en="To type a subscript consonant below another, press the Coeng trigger key, followed by the consonant to be subscripted."
+                  data-km="ដើម្បីវាយជើងព្យញ្ជនៈនៅក្រោមព្យញ្ជនៈមួយទៀត សូមចុចគ្រាប់ចុចជើង (Coeng) រួចចុចព្យញ្ជនៈដែលចង់ធ្វើជាជើង។">
+              To type a subscript consonant below another, press the Coeng trigger key, followed by the consonant to be subscripted.
+            </span>
+            <div style="margin-top:6px;">
+              <code>Khmer Standard: ក + Space + ខ = ក្ខ</code><br>
+              <code>Khmer NiDA: ក + (Shift+J) + ខ = ក្ខ</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout rule">
+          <div class="callout-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div>
+            <strong class="doc-i18n" data-en="Golden Rule 3: Word Spacing" data-km="ក្បួនមាស ៣៖ ការដកឃ្លាពាក្យ">Golden Rule 3: Word Spacing</strong><br>
+            <span class="doc-i18n"
+                  data-en="Khmer text does not use spaces between individual words, but uses spaces between clauses or sentences. Press &lt;kbd&gt;Shift + Space&lt;/kbd&gt; on both Khmer Standard and NiDA layouts to insert a visible space."
+                  data-km="ភាសាខ្មែរមិនដកឃ្លារវាងពាក្យនិមួយៗទេ ប៉ុន្តែដកឃ្លារវាងឃ្លា ឬប្រយោគ។ សូមចុច &lt;kbd&gt;Shift + Space&lt;/kbd&gt; លើប្លង់ទាំងពីរដើម្បីដកឃ្លា។">
+              Khmer text does not use spaces between individual words, but uses spaces between clauses or sentences. Press <kbd>Shift + Space</kbd> on both Khmer Standard and NiDA layouts to insert a visible space.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Modifier Layers -->
+      <section id="modifier-layers" class="doc-section">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span class="section-icon">🗂</span>
+            <span class="doc-i18n" data-en="Modifier Layers Architecture" data-km="ស្រទាប់គ្រាប់ចុចបន្ថែម">Modifier Layers Architecture</span>
+          </h2>
+          <a href="#modifier-layers" class="section-anchor">#</a>
+        </div>
+        <p class="doc-p doc-i18n"
+           data-en="Because Khmer has more than 70 unique graphemes, physical keys are partitioned across four modifier layers:"
+           data-km="ដោយសារអក្សរខ្មែរមានច្រើនជាង ៧០ តួអក្សរ គ្រាប់ចុចត្រូវបានបែងចែកជា ៤ ស្រទាប់៖">
+          Because Khmer has more than 70 unique graphemes, physical keys are partitioned across four modifier layers:
+        </p>
+
+        <div class="doc-table-wrap">
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th class="doc-i18n" data-en="Layer" data-km="ស្រទាប់">Layer</th>
+                <th class="doc-i18n" data-en="Trigger" data-km="របៀបបើក">Trigger</th>
+                <th class="doc-i18n" data-en="Contents" data-km="តួអក្សរ">Contents</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Base</strong></td>
+                <td><span class="doc-i18n" data-en="None (type directly)" data-km="ធម្មតា (ចុចផ្ទាល់)">None (type directly)</span></td>
+                <td class="doc-i18n" data-en="High-frequency consonants, common vowels (ា, ិ, ី, ឹ, ឺ, ុ, ូ, េ, ោ), Bantoc (់)" data-km="ព្យញ្ជនៈប្រើញឹកញាប់ ស្រៈទូទៅ និងបន្តក់ (់)">High-frequency consonants, common vowels (ា, ិ, ី, ឹ, ឺ, ុ, ូ, េ, ោ), Bantoc (់)</td>
+              </tr>
+              <tr>
+                <td><strong>Shift</strong></td>
+                <td><kbd>Shift</kbd> (hold)</td>
+                <td class="doc-i18n" data-en="Secondary consonants (ឃ, ឈ, ឍ, ឡ, គ, ជ), compound vowels (ែ, ៃ, ៅ, ាំ, ំ, ះ), visible space" data-km="ព្យញ្ជនៈជួរទីពីរ ស្រៈផ្សំ និងការដកឃ្លា">Secondary consonants (ឃ, ឈ, ឍ, ឡ, គ, ជ), compound vowels (ែ, ៃ, ៅ, ាំ, ំ, ះ), visible space</td>
+              </tr>
+              <tr>
+                <td><strong>AltGr</strong></td>
+                <td><kbd>Right Alt</kbd> (AltGr)</td>
+                <td class="doc-i18n" data-en="Rare punctuation, Khmer currency symbol (៛), Camnuc Pikuu (៖), independent vowels" data-km="សញ្ញាកម្រ សញ្ញារៀល (៛) ចំណុចពីរគូស (៖) ស្រៈពេញតួ">Rare punctuation, Khmer currency symbol (៛), Camnuc Pikuu (៖), independent vowels</td>
+              </tr>
+              <tr>
+                <td><strong>Ctrl</strong></td>
+                <td><kbd>Ctrl</kbd> (hold)</td>
+                <td class="doc-i18n" data-en="Specialized religious and archaic Khmer symbols" data-km="សញ្ញាបុរាណ និងសាសនា">Specialized religious and archaic Khmer symbols</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 7. Curriculum & Progression -->
+      <section id="curriculum" class="doc-section">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span class="section-icon">📚</span>
+            <span class="doc-i18n" data-en="Curriculum &amp; Pedagogical Architecture" data-km="កម្មវិធីសិក្សា និងរចនាសម្ព័ន្ធគរុកោសល្យ">Curriculum &amp; Pedagogical Architecture</span>
+          </h2>
+          <a href="#curriculum" class="section-anchor">#</a>
+        </div>
+        <p class="doc-p doc-i18n"
+           data-en="The curriculum is structured across 40 levels, 218 handcrafted lessons, and 664 exercises. Every lesson is validated by automated CI audit scripts to enforce strict prerequisite ordering."
+           data-km="កម្មវិធីសិក្សាត្រូវបានរៀបចំឡើងជា ៤០ កម្រិត ២១៨ មេរៀន និង ៦៦៤ លំហាត់។ រាល់មេរៀនទាំងអស់សុទ្ធតែឆ្លងកាត់ការផ្ទៀងផ្ទាត់ដោយស្វ័យប្រវត្តិតាមរយៈកូដសវនកម្មយ៉ាងតឹងរ៉ឹង។">
+          The curriculum is structured across 40 levels, 218 handcrafted lessons, and 664 exercises. Every lesson is validated by automated CI audit scripts to enforce strict prerequisite ordering.
+        </p>
+
+        <div class="feature-grid">
+          <div class="feature-box">
+            <div class="feature-head">
+              <div class="feature-icon-badge">🎯</div>
+              <div class="feature-name">Khmer Standard Track</div>
+            </div>
+            <div class="feature-desc">
+              <strong>13 Levels · 77 Lessons</strong><br>
+              Begins with anchor keys (ថ, ក) and home row consonants, advancing through vowels, subscripts, diacritics, vocab, and paragraph challenges.
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-head">
+              <div class="feature-icon-badge">⚡</div>
+              <div class="feature-name">Khmer NiDA Track</div>
+            </div>
+            <div class="feature-desc">
+              <strong>13 Levels · 77 Lessons</strong><br>
+              Follows NiDA typewriter ergonomics starting with home row anchors, Shift+J Coeng combinations, and speed tests.
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-head">
+              <div class="feature-icon-badge">🔤</div>
+              <div class="feature-name">English US Track</div>
+            </div>
+            <div class="feature-desc">
+              <strong>14 Levels · 64 Lessons</strong><br>
+              Home row anchors (F, J, D, K, S, L, A, ;), expanding to top and bottom rows, Shift capitals, numbers, and symbols.
+            </div>
+          </div>
+        </div>
+
+        <div class="callout tip">
+          <div class="callout-icon">💡</div>
+          <div>
+            <strong class="doc-i18n" data-en="Secret Master Unlock:" data-km="កូដដោះសោសម្ងាត់៖">Secret Master Unlock:</strong>
+            <span class="doc-i18n"
+                  data-en=" Need to inspect advanced lessons or test a specific level immediately? Rapidly tap the PK crest logo in the header 5 times to unlock all 218 lessons instantly!"
+                  data-km=" ចង់ពិនិត្យមើលមេរៀនកម្រិតខ្ពស់ ឬសាកល្បងកម្រិតជាក់លាក់ភ្លាមៗមែនទេ? ចុចលើឡូហ្គោ PK នៅខាងលើលឿនៗចំនួន ៥ ដង ដើម្បីដោះសោមេរៀនទាំងអស់ ២១៨ ភ្លាមៗ!">
+              Need to inspect advanced lessons or test a specific level immediately? Rapidly tap the PK crest logo in the header 5 times to unlock all 218 lessons instantly!
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Adaptive Practice Engine -->
+      <section id="adaptive-practice" class="doc-section">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span class="section-icon">🔄</span>
+            <span class="doc-i18n" data-en="Adaptive Practice Engine (Keybr-Style)" data-km="ប្រព័ន្ធអនុវត្តបត់បែន (រចនាបថ Keybr)">Adaptive Practice Engine (Keybr-Style)</span>
+          </h2>
+          <a href="#adaptive-practice" class="section-anchor">#</a>
+        </div>
+        <p class="doc-p doc-i18n"
+           data-en="Adaptive Practice is a continuous, intelligent drill generator inspired by Keybr. Rather than memorizing static paragraphs, the engine generates pseudo-words and real vocabulary targeting the learner's weakest letters."
+           data-km="Adaptive Practice គឺជាប្រព័ន្ធបង្កើតលំហាត់បន្តបន្ទាប់ដ៏ឆ្លាតវៃ។ ជំនួសឱ្យការទន្ទេញកថាខណ្ឌដដែលៗ ប្រព័ន្ធបង្កើតពាក្យជាក់ស្តែង និងពាក្យហ្វឹកហាត់ដែលផ្តោតលើតួអក្សរដែលអ្នកវាយខ្សោយបំផុត។">
+          Adaptive Practice is a continuous, intelligent drill generator inspired by Keybr. Rather than memorizing static paragraphs, the engine generates pseudo-words and real vocabulary targeting the learner's weakest letters.
+        </p>
+
+        <div class="doc-table-wrap">
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th class="doc-i18n" data-en="Engine Rule" data-km="ក្បួនប្រព័ន្ធ">Engine Rule</th>
+                <th class="doc-i18n" data-en="Specification" data-km="លក្ខណៈបច្ចេកទេស">Specification</th>
+                <th class="doc-i18n" data-en="Rationale" data-km="ហេតុផល">Rationale</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Mistake Penalty</strong></td>
+                <td><code>-3% score</code> per wrong stroke</td>
+                <td>Quickly flags hesitation and inaccuracy without completely wiping out progress.</td>
+              </tr>
+              <tr>
+                <td><strong>Fast Keystroke Gain (&lt;300ms)</strong></td>
+                <td><code>+5% score</code></td>
+                <td>Rewards genuine muscle memory and fluid touch-typing response.</td>
+              </tr>
+              <tr>
+                <td><strong>Normal Keystroke Gain (300–600ms)</strong></td>
+                <td><code>+3% score</code></td>
+                <td>Steady progression at comfortable typing cadence.</td>
+              </tr>
+              <tr>
+                <td><strong>Slow Keystroke Gain (600–1000ms)</strong></td>
+                <td><code>+2% score</code></td>
+                <td>Recognizes correct identification while encouraging speed.</td>
+              </tr>
+              <tr>
+                <td><strong>Very Slow Keystroke Gain (&gt;1000ms)</strong></td>
+                <td><code>+1% score</code></td>
+                <td>Prevents stalling while nudging the learner toward confidence.</td>
+              </tr>
+              <tr>
+                <td><strong>Strict 100% Unlock Gate</strong></td>
+                <td>Next letter locked until ALL active letters = 100%</td>
+                <td>Prevents premature advancement. Learners must thoroughly master all current letters.</td>
+              </tr>
+              <tr>
+                <td><strong>Continuous Flow</strong></td>
+                <td>Zero popup modals between rounds</td>
+                <td>Maintains unbroken typing rhythm. Rounds advance automatically with subtle inline toasts.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 9. Practice Modes & Race -->
+      <section id="interactive-modes" class="doc-section">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span class="section-icon">🏎</span>
+            <span class="doc-i18n" data-en="Interactive Practice Modes &amp; Race" data-km="ទម្រង់ហ្វឹកហាត់ និងការប្រណាំង">Interactive Practice Modes &amp; Race</span>
+          </h2>
+          <a href="#interactive-modes" class="section-anchor">#</a>
+        </div>
+        <p class="doc-p doc-i18n"
+           data-en="Different learning styles require different practice environments. PK Khmer Type includes four dedicated modes:"
+           data-km="អ្នករៀនម្នាក់ៗមានចំណូលចិត្តខុសគ្នា។ PK Khmer Type មានទម្រង់ហាត់ចំនួន ៤ ផ្សេងគ្នា៖">
+          Different learning styles require different practice environments. PK Khmer Type includes four dedicated modes:
+        </p>
+
+        <div class="feature-grid">
+          <div class="feature-box">
+            <div class="feature-head">
+              <div class="feature-name">📚 Guided Curriculum</div>
+            </div>
+            <div class="feature-desc">
+              Step-by-step sequential courses. Unlocks one lesson at a time with live keyboard illumination, finger guide, and accuracy grading.
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-head">
+              <div class="feature-name">🔄 Adaptive Practice</div>
+            </div>
+            <div class="feature-desc">
+              Infinite intelligent drills with live mastery meters. Focuses heavily on weak keys and unlocks new letters progressively.
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-head">
+              <div class="feature-name">🏁 Temple Trial / Race Mode</div>
+            </div>
+            <div class="feature-desc">
+              Competitive typing race against automated bot pacers (Novice, Adept, Master). Features real-time WPM gauges, split times, and celebration bursts.
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-head">
+              <div class="feature-name">🎯 Remedial Drills</div>
+            </div>
+            <div class="feature-desc">
+              Detects error-prone keys during standard practice and builds focused 15-word review drills to eliminate habitual mistakes.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. Session Persistence -->
+      <section id="persistence" class="doc-section">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span class="section-icon">💾</span>
+            <span class="doc-i18n" data-en="Session Persistence Across Page Refresh" data-km="ការរក្សាទុកទិន្នន័យពេល Refresh">Session Persistence Across Page Refresh</span>
+          </h2>
+          <a href="#persistence" class="section-anchor">#</a>
+        </div>
+        <p class="doc-p doc-i18n"
+           data-en="A key architectural feature of PK Khmer Type is state resilience. If a user accidentally closes or refreshes the page mid-lesson, their exact state is seamlessly preserved:"
+           data-km="លក្ខណៈពិសេសមួយរបស់ PK Khmer Type គឺភាពធន់នៃទិន្នន័យ។ ប្រសិនបើអ្នកប្រើប្រាស់ច្រឡំ reload ឬ refresh ទំព័រពេលកំពុងវាយមេរៀន ទីតាំងចុងក្រោយនឹងត្រូវបានរក្សាទុក៖">
+          A key architectural feature of PK Khmer Type is state resilience. If a user accidentally closes or refreshes the page mid-lesson, their exact state is seamlessly preserved:
+        </p>
+
+        <div class="callout tip">
+          <div class="callout-icon">✓</div>
+          <div>
+            <strong>What is Restored Automatically:</strong>
+            <ul style="margin: 6px 0 0 18px; line-height: 1.7;">
+              <li><strong>Active Keyboard Layout:</strong> Restores English, NiDA, or Standard layout pills and keyboard state.</li>
+              <li><strong>Active Lesson Runner:</strong> Restores the current lesson panel and hides the blank manuscript.</li>
+              <li><strong>Exact Character Index:</strong> Cursor stays at the exact keystroke index where the user left off.</li>
+              <li><strong>Mistakes &amp; Timer:</strong> Preserves error count, accepted keystrokes, and remaining time limit.</li>
+              <li><strong>Target Key &amp; Finger Glow:</strong> Re-highlights the target key and anatomic finger on the virtual board.</li>
+              <li><strong>Accordion Level Strip:</strong> Automatically scrolls to and highlights the active lesson card.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="code-block-wrap">
+          <div class="code-header">
+            <span>localStorage State Schema</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><code>// 'pk_active_lesson_session' in localStorage:
+{
+  "layoutId": "english",
+  "lessonId": "en-L00-01",
+  "index": 7,
+  "mistakes": 0,
+  "mistakeChars": {},
+  "startTime": 1727824800000,
+  "timeLeft": null,
+  "chars": ["f", "f", "f", "␣", "j", "j", "j", "␣", "f", "j"],
+  "layers": ["base", "base", "base", "base", "base", ...],
+  "keyIds": ["f", "f", "f", "space", "j", "j", "j", ...]
+}</code></pre>
+        </div>
+      </section>
+
+      <!-- 11. Web Audio Engine -->
+      <section id="audio-engine" class="doc-section">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span class="section-icon">🔊</span>
+            <span class="doc-i18n" data-en="Web Audio Sound Synthesizer" data-km="ប្រព័ន្ធសំឡេង Web Audio">Web Audio Sound Synthesizer</span>
+          </h2>
+          <a href="#audio-engine" class="section-anchor">#</a>
+        </div>
+        <p class="doc-p doc-i18n"
+           data-en="PK Khmer Type synthesizes its sound effects purely using the browser's native Web Audio API. Zero external audio files or bandwidth are required."
+           data-km="PK Khmer Type បង្កើតសំឡេងចុចក្តារចុចតាមរយៈ Web Audio API ផ្ទាល់របស់ browser ដោយមិនបាច់ទាញយក file សំឡេងពីក្រៅឡើយ។">
+          PK Khmer Type synthesizes its sound effects purely using the browser's native Web Audio API. Zero external audio files or bandwidth are required.
+        </p>
+
+        <div class="doc-table-wrap">
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th>Sound Effect</th>
+                <th>Synthesis Method</th>
+                <th>Acoustic Character</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Key Click</strong></td>
+                <td>High-pass white noise burst + resonant bandpass filter</td>
+                <td>Crisp mechanical switch tactile response (Blue / Brown switch feel).</td>
+              </tr>
+              <tr>
+                <td><strong>Error Click</strong></td>
+                <td>Low-frequency square wave (120 Hz) with rapid decay</td>
+                <td>Subtle dull thud alerting to mistakes without jarring the ear.</td>
+              </tr>
+              <tr>
+                <td><strong>Chime / Burst</strong></td>
+                <td>Sine wave chord progression with exponential gain envelope</td>
+                <td>Satisfying temple gong / bell chime on lesson completion.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 12. Technical Reference -->
+      <section id="tech-reference" class="doc-section">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span class="section-icon">⚙</span>
+            <span class="doc-i18n" data-en="Technical Architecture &amp; Repository Map" data-km="រចនាសម្ព័ន្ធបច្ចេកទេស និងផែនទីកូដ">Technical Architecture &amp; Repository Map</span>
+          </h2>
+          <a href="#tech-reference" class="section-anchor">#</a>
+        </div>
+        <p class="doc-p doc-i18n"
+           data-en="The repository is built on a clean, modular Vanilla HTML/CSS/JS architecture designed for maximum performance, offline reliability, and zero bundler overhead:"
+           data-km="គម្រោងនេះសាងសង់ឡើងលើស្ថាបត្យកម្ម Vanilla HTML/CSS/JS យ៉ាងស្អាត និងលឿនបំផុត អាចដំណើរការ offline បាន និងគ្មានភាពស្មុគស្មាញនៃ bundler ឡើយ៖">
+          The repository is built on a clean, modular Vanilla HTML/CSS/JS architecture designed for maximum performance, offline reliability, and zero bundler overhead:
+        </p>
+
+        <div class="code-block-wrap">
+          <div class="code-header">
+            <span>Project Directory Structure</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><code>pk-khmer-type/
+├── index.html                   # Main interactive typing tutor (Classic UI)
+├── logo.svg                     # Official PK Khmer Type crest vector
+├── manifest.json                # PWA standalone web app configuration
+├── Documents/                   # Official Documentation Endpoint (/Documents)
+│   ├── index.html               # Documentation portal markup
+│   ├── docs.css                 # Documentation stylesheet & design system
+│   └── docs.js                  # Search, scrollspy, and interactive docs logic
+├── css/
+│   ├── base.css                 # Design tokens, variables, typography & layout
+│   ├── keyboard.css             # Virtual keyboard styling & key illumination
+│   ├── typing.css               # Manuscript & interactive typing stream
+│   ├── lessons.css              # Curriculum strip, lesson cards, modal overlays
+│   └── responsive.css           # Mobile & tablet viewports
+├── js/
+│   ├── app.js                   # Application bootstrapper & layout synchronization
+│   ├── keyboard.js              # Layout definitions, key rendering, layer switching
+│   ├── lessons.js               # Curriculum engine, runner, session persistence
+│   ├── adaptive.js              # Keybr-style adaptive practice & letter strip
+│   ├── race.js                  # Temple Trial competitive race mode & bot pacers
+│   ├── typing.js                # Core keystroke dispatcher & unit normalization
+│   ├── progress.js              # Local progress storage, unlocking & stats
+│   ├── review.js                # Weak-key tracking & spaced repetition audit
+│   ├── statistics.js            # User analytics, speed graphs & accuracy metrics
+│   └── settings.js              # Theme switcher, sound toggles, backup export
+├── data/
+│   ├── keyboard.json            # Layout glyph maps across all 3 keyboard courses
+│   ├── curriculum-data.js       # Bundled curriculum for instant offline hydration
+│   └── curriculum/              # JSON curriculum files (levels, lessons, exercises)
+└── scripts/
+    ├── validate_curriculum.js   # Automated CI curriculum validation & depth check
+    └── audit_spaced_review.js   # Spaced repetition key verification suite</code></pre>
+        </div>
+
+        <div class="code-block-wrap">
+          <div class="code-header">
+            <span>Running Automated Audits</span>
+            <button class="copy-btn">Copy</button>
+          </div>
+          <pre><code># Run curriculum structural integrity & prerequisite audit:
+node scripts/validate_curriculum.js
+
+# Run spaced repetition audit across all 3 layouts:
+node scripts/audit_spaced_review.js
+
+# Run refresh persistence test harness:
+node scratch/test_refresh_lesson_persistence.js</code></pre>
+        </div>
+      </section>
+
+      <!-- 13. FAQ & Troubleshooting -->
+      <section id="faq" class="doc-section">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span class="section-icon">❓</span>
+            <span class="doc-i18n" data-en="Frequently Asked Questions (FAQ)" data-km="សំណួរដែលសួរញឹកញាប់ (FAQ)">Frequently Asked Questions (FAQ)</span>
+          </h2>
+          <a href="#faq" class="section-anchor">#</a>
+        </div>
+
+        <div class="callout note">
+          <div class="callout-icon">?</div>
+          <div>
+            <strong>Q: Why do some Khmer vowels show a dotted circle (◌)?</strong><br>
+            <span class="doc-i18n"
+                  data-en="Khmer dependent vowels (ស្រៈនិស្ស័យ) cannot stand alone in Unicode. When displayed in isolation on a keyboard key, a dotted circle (U+25CC) is deliberately added so the vowel mark renders clearly instead of collapsing into an illegible dot."
+                  data-km="ស្រៈនិស្ស័យក្នុងយូនីកូដមិនអាចឈរតែឯងបានឡើយ។ នៅពេលបង្ហាញដាច់តែឯងលើគ្រាប់ចុច រង្វង់មូលចំនុចៗ (U+25CC) ត្រូវបានបន្ថែមដោយចេតនា ដើម្បីឱ្យស្រៈបង្ហាញបានច្បាស់។">
+              Khmer dependent vowels (ស្រៈនិស្ស័យ) cannot stand alone in Unicode. When displayed in isolation on a keyboard key, a dotted circle (U+25CC) is deliberately added so the vowel mark renders clearly instead of collapsing into an illegible dot.
+            </span>
+          </div>
+        </div>
+
+        <div class="callout note">
+          <div class="callout-icon">?</div>
+          <div>
+            <strong>Q: Can I use PK Khmer Type completely offline?</strong><br>
+            <span class="doc-i18n"
+                  data-en="Yes! PK Khmer Type is a Progressive Web App (PWA). All layout definitions, audio synthesizers, and 218 lessons are completely bundled locally in vanilla JavaScript. You can save or bookmark the page and practice with zero internet connection."
+                  data-km="បានយ៉ាងពិតប្រាកដ! PK Khmer Type ជា Progressive Web App (PWA)។ រាល់ប្លង់ មេរៀនទាំង ២១៨ និងសំឡេង គឺមានស្រាប់ក្នុងកូដ local អាចដំណើរការដោយគ្មានអ៊ីនធឺណិត។">
+              Yes! PK Khmer Type is a Progressive Web App (PWA). All layout definitions, audio synthesizers, and 218 lessons are completely bundled locally in vanilla JavaScript. You can save or bookmark the page and practice with zero internet connection.
+            </span>
+          </div>
+        </div>
+
+        <div class="callout note">
+          <div class="callout-icon">?</div>
+          <div>
+            <strong>Q: How do I export or backup my typing progress?</strong><br>
+            <span class="doc-i18n"
+                  data-en="Open the Settings menu (or click the gear icon in the top right), then click &quot;Export Backup (JSON)&quot;. You can import this file anytime to restore your completed lessons, stats, and badges on another computer or browser."
+                  data-km="ចូលទៅកាន់ 'ការកំណត់' (Settings) រួចចុច 'Export Backup (JSON)'។ អ្នកអាចយក file នោះទៅ import លើកុំព្យូទ័រផ្សេងទៀតបានគ្រប់ពេលវេលា។">
+              Open the Settings menu (or click the gear icon in the top right), then click "Export Backup (JSON)". You can import this file anytime to restore your completed lessons, stats, and badges on another computer or browser.
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="docs-footer">
+        <div class="footer-copy">
+          <div><strong>PK Khmer Type</strong> · Official Documentation Portal (<code>/Documents</code>)</div>
+          <div>Founded &amp; Developed with care by <strong>Phanna Kurosaki</strong></div>
+        </div>
+        <div class="footer-links">
+          <a href="../index.html" class="footer-link doc-i18n" data-en="Typing Tutor" data-km="កម្មវិធីហាត់វាយ">Typing Tutor</a>
+          <a href="#overview" class="footer-link doc-i18n" data-en="Back to Top" data-km="ត្រឡប់ទៅលើ">Back to Top</a>
+        </div>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="docs.js"></script>
+</body>
+</html>
