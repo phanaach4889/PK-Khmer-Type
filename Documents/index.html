@@ -67,6 +67,7 @@
         </div>
         <ul class="toc-list">
           <li><a href="#overview" class="toc-link"><span class="doc-i18n" data-en="Overview &amp; Vision" data-km="ទិដ្ឋភាពទូទៅ និងចក្ខុវិស័យ">Overview &amp; Vision</span></a></li>
+          <li><a href="#keycap-3d" class="toc-link"><span class="doc-i18n" data-en="3D Keycap Object" data-km="ម៉ូឌែលគ្រាប់ចុច 3D">3D Keycap Object</span> <span class="toc-badge">3D</span></a></li>
           <li><a href="#quickstart" class="toc-link"><span class="doc-i18n" data-en="Quick Start Guide" data-km="មគ្គុទ្ទេសក៍រហ័ស">Quick Start Guide</span></a></li>
           <li><a href="#shortcuts" class="toc-link"><span class="doc-i18n" data-en="Keyboard Shortcuts" data-km="គ្រាប់ចុចកាត់">Keyboard Shortcuts</span></a></li>
         </ul>
@@ -117,7 +118,7 @@
       <section class="doc-hero">
         <div class="hero-meta">
           <span class="hero-tag">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+            <svg class="doc-icon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
             <span class="doc-i18n" data-en="Official Documentation" data-km="ឯកសារផ្លូវការ">Official Documentation</span>
           </span>
           <span class="hero-version">Endpoint: <code>/Documents</code> · Version 2.2</span>
@@ -154,11 +155,87 @@
         </div>
       </section>
 
+      <!-- Interactive 3D Model Section -->
+      <section id="keycap-3d" class="doc-section">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span class="section-icon">
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            </span>
+            <span class="doc-i18n" data-en="Interactive 3D Mechanical Keycap &amp; Switch Model" data-km="ម៉ូឌែល 3D គ្រាប់ចុចមេកានិច និង Switch">Interactive 3D Mechanical Keycap &amp; Switch Model</span>
+          </h2>
+          <a href="#keycap-3d" class="section-anchor">#</a>
+        </div>
+        <p class="doc-p doc-i18n"
+           data-en="Inspect the anatomical construction of a mechanical keycap and switch in real-time 3D. Click or press the keycap to feel the simulated mechanical spring action with sound feedback, orbit 360°, inspect inner switch layers, or change legends and materials."
+           data-km="ពិនិត្យមើលរចនាសម្ព័ន្ធនៃគ្រាប់ចុចមេកានិចក្នុងទម្រង់ 3D ជាក់ស្តែង។ ចុចលើគ្រាប់ចុចដើម្បីសាកល្បងសំឡេង និងចលនារុញស្ព្រីង បង្វិល ៣៦០ ដឺក្រេ ឬប្តូរតួអក្សរ និងរូបរាង។">
+          Inspect the anatomical construction of a mechanical keycap and switch in real-time 3D. Click or press the keycap to feel the simulated mechanical spring action with sound feedback, orbit 360°, inspect inner switch layers, or change legends and materials.
+        </p>
+
+        <!-- 3D Viewport Stage -->
+        <div class="keycap3d-card">
+          <div class="keycap3d-viewport" id="keycap3dContainer">
+            <div class="keycap3d-hud">
+              <span class="keycap3d-badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+                <span class="doc-i18n" data-en="Live 3D Object" data-km="វត្ថុ 3D ផ្ទាល់">Live 3D Object</span>
+              </span>
+              <span class="keycap3d-title">OEM Profile Switch Assembly</span>
+              <span class="keycap3d-hint">Click / Tap to press · Drag to orbit · Scroll to zoom</span>
+            </div>
+          </div>
+
+          <!-- 3D Controls Toolbar -->
+          <div class="keycap3d-toolbar">
+            <div class="keycap-ctrl-group">
+              <span class="keycap-ctrl-label doc-i18n" data-en="Legend:" data-km="អក្សរ៖">Legend:</span>
+              <button class="key-glyph-btn active" data-glyph="ក">ក</button>
+              <button class="key-glyph-btn" data-glyph="ថ">ថ</button>
+              <button class="key-glyph-btn" data-glyph="្">្ (Coeng)</button>
+              <button class="key-glyph-btn" data-glyph="PK">PK</button>
+              <button class="key-glyph-btn" data-glyph="A">A</button>
+            </div>
+
+            <div class="keycap-ctrl-group">
+              <span class="keycap-ctrl-label doc-i18n" data-en="Material:" data-km="សម្ភារៈ៖">Material:</span>
+              <button class="key-theme-btn active" data-theme="angkor">Angkor Gold</button>
+              <button class="key-theme-btn" data-theme="neon">Cyber Neon</button>
+              <button class="key-theme-btn" data-theme="ceramic">Ivory Ceramic</button>
+            </div>
+
+            <div class="keycap-ctrl-group">
+              <button class="key-action-btn" id="btnExplodedView" title="Explode keycap off stem">
+                <svg class="doc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+                <span class="doc-i18n" data-en="Explode" data-km="ពង្រីកផ្នែក">Explode</span>
+              </button>
+              <button class="key-action-btn active" id="btnAutoRotate" title="Toggle Auto-Rotation">
+                <svg class="doc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                <span class="doc-i18n" data-en="Spin" data-km="បង្វិល">Spin</span>
+              </button>
+              <button class="key-action-btn" id="btnWireframe" title="Toggle 3D Wireframe">
+                <svg class="doc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+                <span class="doc-i18n" data-en="Wireframe" data-km="គ្រោងឆ្អឹង">Wireframe</span>
+              </button>
+              <button class="key-action-btn" id="btnReset3DView" title="Reset View Angle">
+                <svg class="doc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 8 12 12 16"/><line x1="16" y1="12" x2="8" y2="12"/></svg>
+                <span class="doc-i18n" data-en="Reset" data-km="កំណត់ឡើងវិញ">Reset</span>
+              </button>
+              <button class="key-action-btn btn-press-cta" id="btnPressTrigger" title="Press key switch">
+                <svg class="doc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="6 9 12 15 18 9"/></svg>
+                <span class="doc-i18n" data-en="Press Key" data-km="ចុចគ្រាប់">Press Key</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- 1. Overview & Vision -->
       <section id="overview" class="doc-section">
         <div class="section-head">
           <h2 class="section-title">
-            <span class="section-icon">⟡</span>
+            <span class="section-icon">
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </span>
             <span class="doc-i18n" data-en="Overview &amp; Philosophy" data-km="ទិដ្ឋភាពទូទៅ និងទស្សនវិស័យ">Overview &amp; Philosophy</span>
           </h2>
           <a href="#overview" class="section-anchor">#</a>
@@ -171,7 +248,7 @@
 
         <div class="callout tip">
           <div class="callout-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
           </div>
           <div>
             <strong class="doc-i18n" data-en="The Core Philosophy:" data-km="ទស្សនវិស័យស្នូល៖">The Core Philosophy:</strong>
@@ -187,7 +264,7 @@
           <div class="feature-box">
             <div class="feature-head">
               <div class="feature-icon-badge">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/></svg>
+                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/></svg>
               </div>
               <div class="feature-name doc-i18n" data-en="Live Virtual Keyboard" data-km="ក្តារចុចនិម្មិតផ្សាយបន្តផ្ទាល់">Live Virtual Keyboard</div>
             </div>
@@ -199,7 +276,7 @@
           <div class="feature-box">
             <div class="feature-head">
               <div class="feature-icon-badge">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
+                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
               </div>
               <div class="feature-name doc-i18n" data-en="Dynamic Keybr-Style Engine" data-km="ប្រព័ន្ធអនុវត្តបត់បែន">Dynamic Keybr-Style Engine</div>
             </div>
@@ -211,7 +288,7 @@
           <div class="feature-box">
             <div class="feature-head">
               <div class="feature-icon-badge">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               </div>
               <div class="feature-name doc-i18n" data-en="Strict 100% Gatekeeping" data-km="ការចាក់សោតាមកម្រិត ១០០%">Strict 100% Gatekeeping</div>
             </div>
@@ -226,7 +303,9 @@
       <section id="quickstart" class="doc-section">
         <div class="section-head">
           <h2 class="section-title">
-            <span class="section-icon">⚡</span>
+            <span class="section-icon">
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </span>
             <span class="doc-i18n" data-en="Quick Start Guide" data-km="មគ្គុទ្ទេសក៍រហ័ស">Quick Start Guide</span>
           </h2>
           <a href="#quickstart" class="section-anchor">#</a>
@@ -276,7 +355,9 @@
       <section id="shortcuts" class="doc-section">
         <div class="section-head">
           <h2 class="section-title">
-            <span class="section-icon">⌨</span>
+            <span class="section-icon">
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+            </span>
             <span class="doc-i18n" data-en="Keyboard Shortcuts &amp; Hotkeys" data-km="គ្រាប់ចុចកាត់ និងផ្លូវកាត់">Keyboard Shortcuts &amp; Hotkeys</span>
           </h2>
           <a href="#shortcuts" class="section-anchor">#</a>
@@ -336,7 +417,9 @@
       <section id="keyboard-layouts" class="doc-section">
         <div class="section-head">
           <h2 class="section-title">
-            <span class="section-icon">⌨</span>
+            <span class="section-icon">
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+            </span>
             <span class="doc-i18n" data-en="Keyboard Layouts &amp; Mapping" data-km="ប្លង់ក្តារចុច និងការផ្គូផ្គង">Keyboard Layouts &amp; Mapping</span>
           </h2>
           <a href="#keyboard-layouts" class="section-anchor">#</a>
@@ -357,7 +440,7 @@
         <div id="tab-standard" class="tab-pane active">
           <div class="callout note">
             <div class="callout-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
             </div>
             <div>
               <strong>Khmer Standard (Unicode Standard Layout):</strong>
@@ -373,7 +456,7 @@
         <div id="tab-nida" class="tab-pane">
           <div class="callout note">
             <div class="callout-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
             </div>
             <div>
               <strong>Khmer NiDA (National Information Development Authority):</strong>
@@ -389,7 +472,7 @@
         <div id="tab-english" class="tab-pane">
           <div class="callout note">
             <div class="callout-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
             </div>
             <div>
               <strong>English US QWERTY:</strong>
@@ -407,7 +490,9 @@
       <section id="khmer-mechanics" class="doc-section">
         <div class="section-head">
           <h2 class="section-title">
-            <span class="section-icon">📜</span>
+            <span class="section-icon">
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </span>
             <span class="doc-i18n" data-en="Khmer Typing Mechanics &amp; Rules" data-km="ក្បួន និងយន្តការវាយអក្សរខ្មែរ">Khmer Typing Mechanics &amp; Rules</span>
           </h2>
           <a href="#khmer-mechanics" class="section-anchor">#</a>
@@ -420,7 +505,7 @@
 
         <div class="callout rule">
           <div class="callout-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           </div>
           <div>
             <strong class="doc-i18n" data-en="Golden Rule 1: Base Consonant First" data-km="ក្បួនមាស ១៖ វាយព្យញ្ជនៈដើមមុនគេ">Golden Rule 1: Base Consonant First</strong><br>
@@ -437,7 +522,7 @@
 
         <div class="callout rule">
           <div class="callout-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </div>
           <div>
             <strong class="doc-i18n" data-en="Golden Rule 2: Subscripts (Coeng ្)" data-km="ក្បួនមាស ២៖ ការវាយជើងព្យញ្ជនៈ (ជើង ្)">Golden Rule 2: Subscripts (Coeng ្)</strong><br>
@@ -455,7 +540,7 @@
 
         <div class="callout rule">
           <div class="callout-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           </div>
           <div>
             <strong class="doc-i18n" data-en="Golden Rule 3: Word Spacing" data-km="ក្បួនមាស ៣៖ ការដកឃ្លាពាក្យ">Golden Rule 3: Word Spacing</strong><br>
@@ -472,7 +557,9 @@
       <section id="modifier-layers" class="doc-section">
         <div class="section-head">
           <h2 class="section-title">
-            <span class="section-icon">🗂</span>
+            <span class="section-icon">
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </span>
             <span class="doc-i18n" data-en="Modifier Layers Architecture" data-km="ស្រទាប់គ្រាប់ចុចបន្ថែម">Modifier Layers Architecture</span>
           </h2>
           <a href="#modifier-layers" class="section-anchor">#</a>
@@ -522,7 +609,9 @@
       <section id="curriculum" class="doc-section">
         <div class="section-head">
           <h2 class="section-title">
-            <span class="section-icon">📚</span>
+            <span class="section-icon">
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </span>
             <span class="doc-i18n" data-en="Curriculum &amp; Pedagogical Architecture" data-km="កម្មវិធីសិក្សា និងរចនាសម្ព័ន្ធគរុកោសល្យ">Curriculum &amp; Pedagogical Architecture</span>
           </h2>
           <a href="#curriculum" class="section-anchor">#</a>
@@ -536,7 +625,9 @@
         <div class="feature-grid">
           <div class="feature-box">
             <div class="feature-head">
-              <div class="feature-icon-badge">🎯</div>
+              <div class="feature-icon-badge">
+                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              </div>
               <div class="feature-name">Khmer Standard Track</div>
             </div>
             <div class="feature-desc">
@@ -547,7 +638,9 @@
 
           <div class="feature-box">
             <div class="feature-head">
-              <div class="feature-icon-badge">⚡</div>
+              <div class="feature-icon-badge">
+                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
               <div class="feature-name">Khmer NiDA Track</div>
             </div>
             <div class="feature-desc">
@@ -558,7 +651,9 @@
 
           <div class="feature-box">
             <div class="feature-head">
-              <div class="feature-icon-badge">🔤</div>
+              <div class="feature-icon-badge">
+                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+              </div>
               <div class="feature-name">English US Track</div>
             </div>
             <div class="feature-desc">
@@ -569,7 +664,9 @@
         </div>
 
         <div class="callout tip">
-          <div class="callout-icon">💡</div>
+          <div class="callout-icon">
+            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"/></svg>
+          </div>
           <div>
             <strong class="doc-i18n" data-en="Secret Master Unlock:" data-km="កូដដោះសោសម្ងាត់៖">Secret Master Unlock:</strong>
             <span class="doc-i18n"
@@ -585,7 +682,9 @@
       <section id="adaptive-practice" class="doc-section">
         <div class="section-head">
           <h2 class="section-title">
-            <span class="section-icon">🔄</span>
+            <span class="section-icon">
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            </span>
             <span class="doc-i18n" data-en="Adaptive Practice Engine (Keybr-Style)" data-km="ប្រព័ន្ធអនុវត្តបត់បែន (រចនាបថ Keybr)">Adaptive Practice Engine (Keybr-Style)</span>
           </h2>
           <a href="#adaptive-practice" class="section-anchor">#</a>
@@ -650,7 +749,9 @@
       <section id="interactive-modes" class="doc-section">
         <div class="section-head">
           <h2 class="section-title">
-            <span class="section-icon">🏎</span>
+            <span class="section-icon">
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+            </span>
             <span class="doc-i18n" data-en="Interactive Practice Modes &amp; Race" data-km="ទម្រង់ហ្វឹកហាត់ និងការប្រណាំង">Interactive Practice Modes &amp; Race</span>
           </h2>
           <a href="#interactive-modes" class="section-anchor">#</a>
@@ -664,7 +765,10 @@
         <div class="feature-grid">
           <div class="feature-box">
             <div class="feature-head">
-              <div class="feature-name">📚 Guided Curriculum</div>
+              <div class="feature-icon-badge">
+                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <div class="feature-name">Guided Curriculum</div>
             </div>
             <div class="feature-desc">
               Step-by-step sequential courses. Unlocks one lesson at a time with live keyboard illumination, finger guide, and accuracy grading.
@@ -673,7 +777,10 @@
 
           <div class="feature-box">
             <div class="feature-head">
-              <div class="feature-name">🔄 Adaptive Practice</div>
+              <div class="feature-icon-badge">
+                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+              </div>
+              <div class="feature-name">Adaptive Practice</div>
             </div>
             <div class="feature-desc">
               Infinite intelligent drills with live mastery meters. Focuses heavily on weak keys and unlocks new letters progressively.
@@ -682,7 +789,10 @@
 
           <div class="feature-box">
             <div class="feature-head">
-              <div class="feature-name">🏁 Temple Trial / Race Mode</div>
+              <div class="feature-icon-badge">
+                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+              </div>
+              <div class="feature-name">Temple Trial Race Mode</div>
             </div>
             <div class="feature-desc">
               Competitive typing race against automated bot pacers (Novice, Adept, Master). Features real-time WPM gauges, split times, and celebration bursts.
@@ -691,7 +801,10 @@
 
           <div class="feature-box">
             <div class="feature-head">
-              <div class="feature-name">🎯 Remedial Drills</div>
+              <div class="feature-icon-badge">
+                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              </div>
+              <div class="feature-name">Remedial Drills</div>
             </div>
             <div class="feature-desc">
               Detects error-prone keys during standard practice and builds focused 15-word review drills to eliminate habitual mistakes.
@@ -704,7 +817,9 @@
       <section id="persistence" class="doc-section">
         <div class="section-head">
           <h2 class="section-title">
-            <span class="section-icon">💾</span>
+            <span class="section-icon">
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            </span>
             <span class="doc-i18n" data-en="Session Persistence Across Page Refresh" data-km="ការរក្សាទុកទិន្នន័យពេល Refresh">Session Persistence Across Page Refresh</span>
           </h2>
           <a href="#persistence" class="section-anchor">#</a>
@@ -716,7 +831,9 @@
         </p>
 
         <div class="callout tip">
-          <div class="callout-icon">✓</div>
+          <div class="callout-icon">
+            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
           <div>
             <strong>What is Restored Automatically:</strong>
             <ul style="margin: 6px 0 0 18px; line-height: 1.7;">
@@ -755,7 +872,9 @@
       <section id="audio-engine" class="doc-section">
         <div class="section-head">
           <h2 class="section-title">
-            <span class="section-icon">🔊</span>
+            <span class="section-icon">
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            </span>
             <span class="doc-i18n" data-en="Web Audio Sound Synthesizer" data-km="ប្រព័ន្ធសំឡេង Web Audio">Web Audio Sound Synthesizer</span>
           </h2>
           <a href="#audio-engine" class="section-anchor">#</a>
@@ -800,7 +919,9 @@
       <section id="tech-reference" class="doc-section">
         <div class="section-head">
           <h2 class="section-title">
-            <span class="section-icon">⚙</span>
+            <span class="section-icon">
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33 1.65 1.65 0 0 0 1.51-1V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </span>
             <span class="doc-i18n" data-en="Technical Architecture &amp; Repository Map" data-km="រចនាសម្ព័ន្ធបច្ចេកទេស និងផែនទីកូដ">Technical Architecture &amp; Repository Map</span>
           </h2>
           <a href="#tech-reference" class="section-anchor">#</a>
@@ -823,7 +944,9 @@
 ├── Documents/                   # Official Documentation Endpoint (/Documents)
 │   ├── index.html               # Documentation portal markup
 │   ├── docs.css                 # Documentation stylesheet & design system
-│   └── docs.js                  # Search, scrollspy, and interactive docs logic
+│   ├── docs.js                  # Search, scrollspy, and interactive docs logic
+│   ├── three.min.js             # Local Three.js 3D WebGL engine
+│   └── keycap3d.js              # Interactive 3D mechanical keycap & switch model
 ├── css/
 │   ├── base.css                 # Design tokens, variables, typography & layout
 │   ├── keyboard.css             # Virtual keyboard styling & key illumination
@@ -862,7 +985,10 @@ node scripts/validate_curriculum.js
 node scripts/audit_spaced_review.js
 
 # Run refresh persistence test harness:
-node scratch/test_refresh_lesson_persistence.js</code></pre>
+node scratch/test_refresh_lesson_persistence.js
+
+# Run /Documents endpoint tests:
+node scratch/test_documents_endpoint.js</code></pre>
         </div>
       </section>
 
@@ -870,14 +996,18 @@ node scratch/test_refresh_lesson_persistence.js</code></pre>
       <section id="faq" class="doc-section">
         <div class="section-head">
           <h2 class="section-title">
-            <span class="section-icon">❓</span>
+            <span class="section-icon">
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </span>
             <span class="doc-i18n" data-en="Frequently Asked Questions (FAQ)" data-km="សំណួរដែលសួរញឹកញាប់ (FAQ)">Frequently Asked Questions (FAQ)</span>
           </h2>
           <a href="#faq" class="section-anchor">#</a>
         </div>
 
         <div class="callout note">
-          <div class="callout-icon">?</div>
+          <div class="callout-icon">
+            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          </div>
           <div>
             <strong>Q: Why do some Khmer vowels show a dotted circle (◌)?</strong><br>
             <span class="doc-i18n"
@@ -889,19 +1019,23 @@ node scratch/test_refresh_lesson_persistence.js</code></pre>
         </div>
 
         <div class="callout note">
-          <div class="callout-icon">?</div>
+          <div class="callout-icon">
+            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          </div>
           <div>
             <strong>Q: Can I use PK Khmer Type completely offline?</strong><br>
             <span class="doc-i18n"
-                  data-en="Yes! PK Khmer Type is a Progressive Web App (PWA). All layout definitions, audio synthesizers, and 218 lessons are completely bundled locally in vanilla JavaScript. You can save or bookmark the page and practice with zero internet connection."
-                  data-km="បានយ៉ាងពិតប្រាកដ! PK Khmer Type ជា Progressive Web App (PWA)។ រាល់ប្លង់ មេរៀនទាំង ២១៨ និងសំឡេង គឺមានស្រាប់ក្នុងកូដ local អាចដំណើរការដោយគ្មានអ៊ីនធឺណិត។">
-              Yes! PK Khmer Type is a Progressive Web App (PWA). All layout definitions, audio synthesizers, and 218 lessons are completely bundled locally in vanilla JavaScript. You can save or bookmark the page and practice with zero internet connection.
+                  data-en="Yes! PK Khmer Type is a Progressive Web App (PWA). All layout definitions, audio synthesizers, 3D models, and 218 lessons are completely bundled locally in vanilla JavaScript. You can save or bookmark the page and practice with zero internet connection."
+                  data-km="បានយ៉ាងពិតប្រាកដ! PK Khmer Type ជា Progressive Web App (PWA)។ រាល់ប្លង់ មេរៀនទាំង ២១៨ ម៉ូឌែល 3D និងសំឡេង គឺមានស្រាប់ក្នុងកូដ local អាចដំណើរការដោយគ្មានអ៊ីនធឺណិត។">
+              Yes! PK Khmer Type is a Progressive Web App (PWA). All layout definitions, audio synthesizers, 3D models, and 218 lessons are completely bundled locally in vanilla JavaScript. You can save or bookmark the page and practice with zero internet connection.
             </span>
           </div>
         </div>
 
         <div class="callout note">
-          <div class="callout-icon">?</div>
+          <div class="callout-icon">
+            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          </div>
           <div>
             <strong>Q: How do I export or backup my typing progress?</strong><br>
             <span class="doc-i18n"
@@ -928,6 +1062,9 @@ node scratch/test_refresh_lesson_persistence.js</code></pre>
     </main>
   </div>
 
+  <!-- Scripts -->
   <script src="docs.js"></script>
+  <script src="three.min.js"></script>
+  <script src="keycap3d.js"></script>
 </body>
 </html>

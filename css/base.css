@@ -742,14 +742,12 @@
     display:flex; align-items:center; gap:10px; flex-wrap:wrap;
     transform:none !important;
   }
-  .top-actions button,
-  .top-actions .top-action-btn{
+  .top-actions button{
     font-family:'JetBrains Mono', monospace;
     font-size:0.78rem;
     font-weight:600;
     letter-spacing:0.06em;
     text-transform:uppercase;
-    text-decoration:none;
     background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.22)), var(--stone-1);
     border:1px solid rgba(255,255,255,0.12);
     color:var(--ink);
@@ -772,29 +770,25 @@
   .top-actions #installAppBtn{
     display:none !important;
   }
-  .top-actions button .pk-icon,
-  .top-actions .top-action-btn .pk-icon{
+  .top-actions button .pk-icon{
     width:16px; height:16px;
     color:var(--gold-bright);
     flex-shrink:0;
     transition:color .2s ease;
     transform:none !important;
   }
-  .top-actions button:hover,
-  .top-actions .top-action-btn:hover{
+  .top-actions button:hover{
     color:var(--gold-bright);
     border-color:var(--gold-bright);
     background:linear-gradient(180deg, rgba(255,255,255,0.1), rgba(0,0,0,0.15)), var(--stone-2);
     box-shadow:0 4px 16px rgba(0,0,0,0.45), 0 0 16px rgba(255,209,102,0.28), inset 0 1px 0 rgba(255,255,255,0.2);
     transform:none !important;
   }
-  .top-actions button:hover .pk-icon,
-  .top-actions .top-action-btn:hover .pk-icon{
+  .top-actions button:hover .pk-icon{
     transform:none !important;
     color:#ffe394;
   }
-  .top-actions button:active,
-  .top-actions .top-action-btn:active{
+  .top-actions button:active{
     transform:none !important;
     box-shadow:0 2px 6px rgba(0,0,0,0.5), 0 0 8px rgba(255,209,102,0.2);
     background:var(--stone-2);

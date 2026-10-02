@@ -27,15 +27,15 @@ The curriculum is stored as layout-specific JSON, while learner settings and pro
 
 | Feature | Details |
 | :--- | :--- |
-| 🎹 **3 Keyboard Layouts** | Khmer Standard, Khmer NiDA, English US QWERTY |
-| 📚 **Structured Curriculum** | 218 lessons and 664 exercises across three keyboard layouts |
-| 🤲 **Animated Finger Guide** | Live hand overlay shows which finger to use for every key |
-| 🏁 **Temple Trial / Race Mode** | Speed drills and competitive typing race with bot pacers |
-| 🔁 **Adaptive Remedial Drills** | Auto-detects weak keys and builds targeted review exercises |
-| 🔇 **Focus Mode** | Hides sidebars and distractions for deep practice sessions |
-| 🔊 **Web Audio Sounds** | Mechanical key click and chime effects — no audio files needed |
-| 💾 **Progress Saving** | Auto-saves to `localStorage`; export/import JSON backup |
-| 📱 **Legacy Offline Mode** | Open the legacy experience directly from `index.html` without a dev server |
+| **3 Keyboard Layouts** | Khmer Standard, Khmer NiDA, English US QWERTY |
+| **Structured Curriculum** | 218 lessons and 664 exercises across three keyboard layouts |
+| **Animated Finger Guide** | Live hand overlay shows which finger to use for every key |
+| **Temple Trial / Race Mode** | Speed drills and competitive typing race with bot pacers |
+| **Adaptive Remedial Drills** | Auto-detects weak keys and builds targeted review exercises |
+| **Focus Mode** | Hides sidebars and distractions for deep practice sessions |
+| **Web Audio Sounds** | Mechanical key click and chime effects — no audio files needed |
+| **Progress Saving** | Auto-saves to `localStorage`; export/import JSON backup |
+| **Legacy Offline Mode** | Open the legacy experience directly from `index.html` without a dev server |
 
 ---
 
