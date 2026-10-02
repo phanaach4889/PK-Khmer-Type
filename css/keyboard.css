@@ -581,6 +581,11 @@
     position:relative;
     z-index:2;
   }
+  @media(min-width:1024px) and (max-width:1540px){
+    .board-chassis-bar{
+      padding-right:52px;
+    }
+  }
 
   .chassis-deck-id{
     display:inline-flex;
