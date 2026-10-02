@@ -92,13 +92,11 @@ server.listen(PORT, async () => {
       }
       console.log('Switch anatomy screenshot saved!');
 
-      // 2. Click Full Keyboard and toggle Hands Guide ON
+      // 2. Click Full Keyboard
       await call('Runtime.evaluate', {
         expression: `
           const btnKb = document.querySelector('[data-view="keyboard"]');
           if (btnKb) btnKb.click();
-          const btnHands = document.getElementById('btnToggleHands');
-          if (btnHands) btnHands.click();
         `
       });
       await new Promise(r => setTimeout(r, 900));

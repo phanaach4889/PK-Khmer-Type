@@ -5,10 +5,10 @@
  * Features:
  * - Full 61-Key ANSI Mechanical Keyboard with sculpted OEM keycaps.
  * - Dynamic Multi-Color Enthusiast Colorways (Angkor Gold, RGB Chroma, Cyber Neon, Matcha & Sakura).
- * - Differentiated Alpha, Modifier, and Accent color harmonies.
+ * - Differentiated Alpha, Modifier, and Accent color harmonies with color-matched keycap sides.
  * - High-DPI un-stretched canvas texturing with top-centered Shift badges and zero AltGr clutter.
- * - Museum-grade Mechanical Switch Anatomy (pyramid polycarbonate housing, chimney aperture, gold progressive spring, MX cross stem).
- * - Ergonomic stylized translucent touch-typing hand model (hidden by default).
+ * - Museum-grade Mechanical Switch Anatomy (pyramid polycarbonate housing, open chimney collar, gold progressive spring, MX cross stem).
+ * - Grounded desk setup with solid studio table surface and realistic contact shadows (no floating objects).
  * - Web Audio API synthesized mechanical soundboard with lubed switch acoustics.
  *
  * Author: Phanna Kurosaki
@@ -467,22 +467,12 @@
     underglowLight.position.set(0, -0.4, 0);
     scene.add(underglowLight);
 
-    // Subtle Ground Floor
-    const floorGeo = new THREE.PlaneGeometry(48, 48);
-    const floorMat = new THREE.ShadowMaterial({ opacity: 0.45 });
-    const floor = new THREE.Mesh(floorGeo, floorMat);
-    floor.rotation.x = -Math.PI / 2;
-    floor.position.y = -1.65;
-    floor.receiveShadow = true;
-    scene.add(floor);
-
     // C. Configuration State
     let currentLayout = 'standard';
     let currentThemeKey = 'angkor';
     let currentTheme = THEMES.angkor;
     let viewMode = 'keyboard'; // 'keyboard' | 'switch'
     let autoRotate = true;
-    let showHands = false; // Hidden by default
     let isWireframe = false;
     let isExploded = false;
 
@@ -539,6 +529,19 @@
     const boardWidth = TOTAL_COLS * PITCH + 0.85;
     const boardDepth = TOTAL_ROWS * PITCH + 0.85;
     const boardHeight = 0.95;
+
+    // Solid Studio Desk Floor (Grounds the entire setup so NOTHING floats in space)
+    const deskTableGeo = new THREE.PlaneGeometry(54, 54);
+    const deskTableMat = new THREE.MeshStandardMaterial({
+      color: 0x080c14,
+      roughness: 0.85,
+      metalness: 0.15
+    });
+    const deskTable = new THREE.Mesh(deskTableGeo, deskTableMat);
+    deskTable.rotation.x = -Math.PI / 2;
+    deskTable.position.y = -boardHeight - 0.05;
+    deskTable.receiveShadow = true;
+    keyboardRoot.add(deskTable);
 
     // 1. Sleek Desk Mat (Custom Dark Texture with Stitched Perimeter)
     const deskpadWidth = boardWidth + 3.2;
@@ -911,7 +914,6 @@
             this.topMat.emissiveIntensity = 0.95;
             this.keyLight.intensity = 2.0;
             playMechanicalSound(true, 1.0 + (Math.random() * 0.08 - 0.04));
-            strikeHolographicFinger(this.def);
             triggerRippleWave(this.group.position.x, this.group.position.z);
           },
           release() {
@@ -1160,7 +1162,6 @@
     macroSwitchGroup.add(macroCapGroup);
 
     const macroCapGeo = createSculptedKeycapGeometry(1.72, 1.72, 0.78, false);
-    let activeGlyphChar = 'ក';
     const macroTexture = generateKeyTexture(ROW3_DEFS[8], 'standard', currentTheme, currentThemeKey);
 
     const macroCapSideMat = new THREE.MeshStandardMaterial({
@@ -1266,168 +1267,7 @@
     }
 
     // ============================================================
-    // G. ERGONOMIC TRANSLUCENT TOUCH-TYPING HAND MODEL
-    // ============================================================
-    const handsGuideGroup = new THREE.Group();
-    handsGuideGroup.visible = false; // Hidden by default
-    keyboardRoot.add(handsGuideGroup);
-
-    const leftHandColor = 0x38bdf8;  // Ice Cyan (Left hand)
-    const rightHandColor = 0xf472b6; // Coral Rose (Right hand)
-
-    function createErgonomicHand(isLeft) {
-      const handRig = new THREE.Group();
-      const color = isLeft ? leftHandColor : rightHandColor;
-
-      // Rest position coordinates in front of keyboard
-      const palmX = isLeft ? -3.8 : 3.8;
-      const palmY = 0.58;
-      const palmZ = 3.35;
-
-      const handMat = new THREE.MeshStandardMaterial({
-        color: color,
-        transparent: true,
-        opacity: 0.28,
-        roughness: 0.20,
-        metalness: 0.12,
-        depthWrite: false
-      });
-
-      // 1. Ergonomic Curved Palm Dorsum
-      const palmShape = new THREE.Shape();
-      palmShape.moveTo(-1.0, -0.8);
-      palmShape.quadraticCurveTo(-1.1, 0.8, -0.8, 1.1);
-      palmShape.quadraticCurveTo(0, 1.25, 0.8, 1.1);
-      palmShape.quadraticCurveTo(1.1, 0.8, 1.0, -0.8);
-      palmShape.quadraticCurveTo(0, -1.0, -1.0, -0.8);
-
-      const palmGeo = new THREE.ExtrudeGeometry(palmShape, {
-        depth: 0.28,
-        bevelEnabled: true,
-        bevelSegments: 3,
-        bevelSize: 0.08,
-        bevelThickness: 0.08
-      });
-      palmGeo.rotateX(-Math.PI / 2);
-      const palmMesh = new THREE.Mesh(palmGeo, handMat);
-      palmMesh.position.set(palmX, palmY, palmZ);
-      palmMesh.rotation.y = isLeft ? 0.14 : -0.14;
-      handRig.add(palmMesh);
-
-      // Wrist Taper Base
-      const wristGeo = new THREE.CylinderGeometry(0.55, 0.65, 0.65, 20);
-      wristGeo.rotateX(Math.PI / 2.3);
-      const wristMesh = new THREE.Mesh(wristGeo, handMat);
-      wristMesh.position.set(palmX, palmY - 0.08, palmZ + 1.1);
-      handRig.add(wristMesh);
-
-      // 2. Five Articulated Curved Fingers in Relaxed Home-Row Posture
-      const homeKeys = isLeft
-        ? ['a', 's', 'd', 'f', 'space']
-        : ['j', 'k', 'l', 'semicolon', 'space'];
-
-      const knuckleOffsets = isLeft
-        ? [ [-0.85, 0.6], [-0.35, 0.85], [0.15, 0.95], [0.65, 0.85], [0.85, -0.1] ]
-        : [ [-0.65, 0.85], [-0.15, 0.95], [0.35, 0.85], [0.85, 0.6], [-0.85, -0.1] ];
-
-      const fingers = [];
-
-      homeKeys.forEach((keyId, idx) => {
-        const keyObj = keyMapById.get(keyId);
-        let targetX = 0;
-        let targetZ = 0;
-        if (keyId === 'space') {
-          targetX = isLeft ? -1.3 : 1.3;
-          targetZ = keyObj ? keyObj.group.position.z : 2.14;
-        } else if (keyObj) {
-          targetX = keyObj.group.position.x;
-          targetZ = keyObj.group.position.z;
-        }
-        const targetY = 0.38;
-
-        const kX = palmX + knuckleOffsets[idx][0];
-        const kY = palmY + 0.05;
-        const kZ = palmZ + knuckleOffsets[idx][1];
-
-        // Knuckle Joint Node
-        const knGeo = new THREE.SphereGeometry(0.11, 16, 16);
-        const knMesh = new THREE.Mesh(knGeo, handMat);
-        knMesh.position.set(kX, kY, kZ);
-        handRig.add(knMesh);
-
-        // Natural Anatomical Curved Finger Arch (Bezier Curve)
-        const archPeakY = Math.max(kY, targetY) + 0.35;
-        const midX = (kX + targetX) * 0.5;
-        const midZ = (kZ + targetZ) * 0.5;
-
-        const p1 = new THREE.Vector3(kX, kY, kZ);
-        const p2 = new THREE.Vector3(midX, archPeakY, midZ);
-        const p3 = new THREE.Vector3(targetX, targetY, targetZ);
-
-        const fingerCurve = new THREE.QuadraticBezierCurve3(p1, p2, p3);
-        const fingerGeo = new THREE.TubeGeometry(fingerCurve, 20, 0.075, 12, false);
-        const fingerMesh = new THREE.Mesh(fingerGeo, handMat);
-        handRig.add(fingerMesh);
-
-        // Soft Glowing Fingertip Pad
-        const tipGeo = new THREE.SphereGeometry(0.12, 16, 16);
-        const tipMat = new THREE.MeshStandardMaterial({
-          color: color,
-          roughness: 0.1,
-          metalness: 0.1,
-          emissive: color,
-          emissiveIntensity: 0.4
-        });
-        const tipMesh = new THREE.Mesh(tipGeo, tipMat);
-        tipMesh.position.set(targetX, targetY, targetZ);
-        handRig.add(tipMesh);
-
-        fingers.push({
-          keyId: keyId,
-          baseY: targetY,
-          tipMesh: tipMesh,
-          strikePhase: 0
-        });
-      });
-
-      return { rig: handRig, palmMesh: palmMesh, fingers: fingers };
-    }
-
-    const leftHand = createErgonomicHand(true);
-    const rightHand = createErgonomicHand(false);
-    handsGuideGroup.add(leftHand.rig);
-    handsGuideGroup.add(rightHand.rig);
-
-    // Strike Kinematic Finger on Keypress
-    function strikeHolographicFinger(keyDef) {
-      if (!showHands) return;
-      const fingerType = keyDef.finger || 'li';
-      const isLeft = fingerType.startsWith('l');
-      const hand = isLeft ? leftHand : rightHand;
-
-      let fingerIdx = 0;
-      if (isLeft) {
-        if (fingerType.endsWith('p')) fingerIdx = 0;
-        else if (fingerType.endsWith('r')) fingerIdx = 1;
-        else if (fingerType.endsWith('m')) fingerIdx = 2;
-        else if (fingerType.endsWith('i')) fingerIdx = 3;
-        else if (fingerType.endsWith('t')) fingerIdx = 4;
-      } else {
-        if (fingerType.endsWith('i')) fingerIdx = 0;
-        else if (fingerType.endsWith('m')) fingerIdx = 1;
-        else if (fingerType.endsWith('r')) fingerIdx = 2;
-        else if (fingerType.endsWith('p')) fingerIdx = 3;
-        else if (fingerType.endsWith('t')) fingerIdx = 4;
-      }
-
-      const f = hand.fingers[fingerIdx];
-      if (f) {
-        f.strikePhase = 1.0;
-      }
-    }
-
-    // ============================================================
-    // H. INTERACTION, ORBIT CONTROLS, & RAYCASTING
+    // G. INTERACTION, ORBIT CONTROLS, & RAYCASTING
     // ============================================================
     let isDragging = false;
     let prevMouseX = 0;
@@ -1565,7 +1405,7 @@
     });
 
     // ============================================================
-    // I. TOOLBAR CONTROLS & EVENT WIRING
+    // H. TOOLBAR CONTROLS & EVENT WIRING
     // ============================================================
     function setupControls() {
       // 1. Layout Switching
@@ -1659,15 +1499,6 @@
         btnRotate.addEventListener('click', () => {
           autoRotate = !autoRotate;
           btnRotate.classList.toggle('active', autoRotate);
-        });
-      }
-
-      const btnHands = document.getElementById('btnToggleHands');
-      if (btnHands) {
-        btnHands.addEventListener('click', () => {
-          showHands = !showHands;
-          handsGuideGroup.visible = showHands;
-          btnHands.classList.toggle('active', showHands);
         });
       }
 
@@ -1777,7 +1608,6 @@
           glyphButtons.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           const char = btn.dataset.glyph || 'ក';
-          activeGlyphChar = char;
           const sampleKey = keyMapById.get('k');
           if (sampleKey) {
             sampleKey.press();
@@ -1792,7 +1622,7 @@
     setupControls();
 
     // ============================================================
-    // J. ANIMATION & PHYSICS RENDER LOOP
+    // I. ANIMATION & PHYSICS RENDER LOOP
     // ============================================================
     const clock = new THREE.Clock();
 
@@ -1859,21 +1689,6 @@
         underglowMat.color.setHSL(underglowHue, 1.0, 0.5);
         underglowLight.color.setHSL(underglowHue, 1.0, 0.5);
         haloMat.color.setHSL(underglowHue, 1.0, 0.5);
-      }
-
-      // 6. Holographic Kinematic Hands Reticle Animation
-      if (showHands) {
-        [leftHand, rightHand].forEach(hand => {
-          hand.fingers.forEach(f => {
-            if (f.strikePhase > 0) {
-              f.strikePhase = Math.max(0, f.strikePhase - delta * 4.0);
-              const dip = Math.sin(f.strikePhase * Math.PI) * 0.24;
-              f.tipMesh.position.y = f.baseY - dip;
-            } else {
-              f.tipMesh.position.y = f.baseY;
-            }
-          });
-        });
       }
 
       renderer.render(scene, camera);
