@@ -1,330 +1,341 @@
-/* ============================================================
-   PK Khmer Type — Interactive 3D Mechanical Keyboard & Switch Engine
-   Built with Three.js (Zero-Dependency Offline Bundle)
-   Features:
-   - Full 61-Key ANSI Mechanical Keyboard with CNC Anodized Aluminum Chassis
-   - Sculpted OEM/Cherry Profile Keycaps with Dish Tops & Homing Bars
-   - Miniature Mechanical Switch Housings & Colored Stems on Switch Plate
-   - Heavy Brass Base Weight, Desk Mat & Coiled Braided Aviator Cable
-   - Dynamic Bilingual Canvas Legend Generator (Khmer Standard, NiDA, English)
-   - Real-Time Spring Physics & Hardware Typing Listener (Type on real keyboard!)
-   - Raycasting Mouse/Touch Interaction on any Key
-   - Jarvis / Cyber HUD Holographic Hands Guide with Reticles & Laser Beams
-   - Museum-Grade Dedicated Macro Mechanical Switch Anatomy Showcase:
-     * CNC Machined Testing Stage with LED Halo Channel
-     * PA66 Nylon Bottom Housing with Brass Contact Pins & Center Post
-     * High-Conductivity Copper Leaf Switch Contacts
-     * 62g Polished Gold Progressive Helical Spring
-     * High-Precision Ruby POM MX Cross Stem with Slider Rails
-     * Crystal-Clear Frosted Polycarbonate Upper Housing with Snap Latches
-     * Double-Shot Sculpted PBT Keycap with Underside Cross Socket
-     * Vertical Exploded Separation with Holographic Laser Callout Labels
-   - Reactive Mechanical Switch Web Audio Click Synthesizer (Lubed Thock & Clack)
-   - Dynamic Chroma RGB Wave & Expanding Keystroke Shockwaves
-   - Visual Themes: Angkor Gold, RGB Chroma Wave, Cyber Neon, Ivory Ceramic
-   ============================================================ */
+/**
+ * PK KHMER TYPE — Premium 3D Mechanical Keyboard & Switch Experience
+ * High-performance WebGL interactive keyboard built with Three.js.
+ *
+ * Features:
+ * - Full 61-Key ANSI Mechanical Keyboard with sculpted OEM keycaps.
+ * - Dynamic Multi-Color Enthusiast Colorways (Angkor Gold, RGB Chroma, Cyber Neon, Matcha & Sakura).
+ * - Differentiated Alpha, Modifier, and Accent color harmonies.
+ * - High-DPI un-stretched canvas texturing with top-centered Shift badges and zero AltGr clutter.
+ * - Museum-grade Mechanical Switch Anatomy (pyramid polycarbonate housing, chimney aperture, gold progressive spring, MX cross stem).
+ * - Ergonomic stylized translucent touch-typing hand model (hidden by default).
+ * - Web Audio API synthesized mechanical soundboard with lubed switch acoustics.
+ *
+ * Author: Phanna Kurosaki
+ */
 
 (function () {
   'use strict';
 
   // ------------------------------------------------------------
-  // 1. KEYBOARD MATRIX DATA & LAYOUT DEFINITIONS
+  // 1. KEYBOARD MATRIX DATA & LAYOUT DEFINITIONS (61-Key ANSI)
   // ------------------------------------------------------------
   const ROW1_DEFS = [
-    { id: 'grave', unit: 1.0, code: 'Backquote', finger: 'lp',
-      std: { base: '', shift: '', altgr: '◎' },
-      nida: { base: '«', shift: '»', altgr: '‍' },
+    { id: 'grave', unit: 1.0, code: 'Backquote', finger: 'lp', isAccent: true, label: 'Esc',
+      std: { base: '', shift: '' },
+      nida: { base: '«', shift: '»' },
       en: { base: '`', shift: '~' } },
-    { id: 'k1', unit: 1.0, code: 'Digit1', finger: 'lp',
-      std: { base: '១', shift: '!', altgr: '1' },
-      nida: { base: '១', shift: '!', altgr: '‌' },
+    { id: 'k1', unit: 1.0, code: 'Digit1', finger: 'lp', col: 1,
+      std: { base: '១', shift: '!' },
+      nida: { base: '១', shift: '!' },
       en: { base: '1', shift: '!' } },
-    { id: 'k2', unit: 1.0, code: 'Digit2', finger: 'lr',
-      std: { base: '២', shift: 'ៗ', altgr: '2' },
-      nida: { base: '២', shift: 'ៗ', altgr: '@' },
+    { id: 'k2', unit: 1.0, code: 'Digit2', finger: 'lr', col: 2,
+      std: { base: '២', shift: 'ៗ' },
+      nida: { base: '២', shift: 'ៗ' },
       en: { base: '2', shift: '@' } },
-    { id: 'k3', unit: 1.0, code: 'Digit3', finger: 'lm',
-      std: { base: '៣', shift: '"', altgr: '3' },
-      nida: { base: '៣', shift: '"', altgr: '៑' },
+    { id: 'k3', unit: 1.0, code: 'Digit3', finger: 'lm', col: 3,
+      std: { base: '៣', shift: '"' },
+      nida: { base: '៣', shift: '"' },
       en: { base: '3', shift: '#' } },
-    { id: 'k4', unit: 1.0, code: 'Digit4', finger: 'li',
-      std: { base: '៤', shift: '៛', altgr: '4' },
-      nida: { base: '៤', shift: '៛', altgr: '$' },
+    { id: 'k4', unit: 1.0, code: 'Digit4', finger: 'li', col: 4,
+      std: { base: '៤', shift: '៛' },
+      nida: { base: '៤', shift: '៛' },
       en: { base: '4', shift: '$' } },
-    { id: 'k5', unit: 1.0, code: 'Digit5', finger: 'li',
-      std: { base: '៥', shift: '%', altgr: '5' },
-      nida: { base: '៥', shift: '%', altgr: '€' },
+    { id: 'k5', unit: 1.0, code: 'Digit5', finger: 'li', col: 5,
+      std: { base: '៥', shift: '%' },
+      nida: { base: '៥', shift: '%' },
       en: { base: '5', shift: '%' } },
-    { id: 'k6', unit: 1.0, code: 'Digit6', finger: 'ri',
-      std: { base: '៦', shift: '៍', altgr: '6' },
-      nida: { base: '៦', shift: '៍', altgr: '៙' },
+    { id: 'k6', unit: 1.0, code: 'Digit6', finger: 'ri', col: 6,
+      std: { base: '៦', shift: '៍' },
+      nida: { base: '៦', shift: '៍' },
       en: { base: '6', shift: '^' } },
-    { id: 'k7', unit: 1.0, code: 'Digit7', finger: 'ri',
-      std: { base: '៧', shift: '័', altgr: '7' },
-      nida: { base: '៧', shift: '័', altgr: '៚' },
+    { id: 'k7', unit: 1.0, code: 'Digit7', finger: 'ri', col: 7,
+      std: { base: '៧', shift: '័' },
+      nida: { base: '៧', shift: '័' },
       en: { base: '7', shift: '&' } },
-    { id: 'k8', unit: 1.0, code: 'Digit8', finger: 'rm',
-      std: { base: '៨', shift: '៏', altgr: '8' },
-      nida: { base: '៨', shift: '៏', altgr: '*' },
+    { id: 'k8', unit: 1.0, code: 'Digit8', finger: 'rm', col: 8,
+      std: { base: '៨', shift: '៏' },
+      nida: { base: '៨', shift: '៏' },
       en: { base: '8', shift: '*' } },
-    { id: 'k9', unit: 1.0, code: 'Digit9', finger: 'rr',
-      std: { base: '៩', shift: '៎', altgr: '9' },
-      nida: { base: '៩', shift: '(', altgr: '{' },
+    { id: 'k9', unit: 1.0, code: 'Digit9', finger: 'rr', col: 9,
+      std: { base: '៩', shift: '៎' },
+      nida: { base: '៩', shift: '(' },
       en: { base: '9', shift: '(' } },
-    { id: 'k0', unit: 1.0, code: 'Digit0', finger: 'rp',
-      std: { base: '០', shift: '៌', altgr: '0' },
-      nida: { base: '០', shift: ')', altgr: '}' },
+    { id: 'k0', unit: 1.0, code: 'Digit0', finger: 'rp', col: 10,
+      std: { base: '០', shift: '៌' },
+      nida: { base: '០', shift: ')' },
       en: { base: '0', shift: ')' } },
-    { id: 'minus', unit: 1.0, code: 'Minus', finger: 'rp',
-      std: { base: '-', shift: '_', altgr: '{' },
-      nida: { base: 'ឥ', shift: '៌', altgr: '×' },
+    { id: 'minus', unit: 1.0, code: 'Minus', finger: 'rp', col: 11,
+      std: { base: '-', shift: '_' },
+      nida: { base: 'ឥ', shift: '៌' },
       en: { base: '-', shift: '_' } },
-    { id: 'equal', unit: 1.0, code: 'Equal', finger: 'rp',
-      std: { base: '=', shift: '+', altgr: '}' },
-      nida: { base: 'ឲ', shift: '=', altgr: '៎' },
+    { id: 'equal', unit: 1.0, code: 'Equal', finger: 'rp', col: 12,
+      std: { base: '=', shift: '+' },
+      nida: { base: 'ឲ', shift: '=' },
       en: { base: '=', shift: '+' } },
-    { id: 'backspace', unit: 2.0, code: 'Backspace', finger: 'rp', isMod: true, label: 'Backspace' }
+    { id: 'backspace', unit: 2.0, code: 'Backspace', finger: 'rp', col: 13, isMod: true, label: 'Backspace' }
   ];
 
   const ROW2_DEFS = [
-    { id: 'tab', unit: 1.5, code: 'Tab', finger: 'lp', isMod: true, label: 'Tab' },
-    { id: 'q', unit: 1.0, code: 'KeyQ', finger: 'lp',
-      std: { base: 'ឆ', shift: 'ឈ', altgr: '*' },
+    { id: 'tab', unit: 1.5, code: 'Tab', finger: 'lp', col: 0, isMod: true, label: 'Tab' },
+    { id: 'q', unit: 1.0, code: 'KeyQ', finger: 'lp', col: 1,
+      std: { base: 'ឆ', shift: 'ឈ' },
       nida: { base: 'ឆ', shift: 'ឈ' },
       en: { base: 'q', shift: 'Q' } },
-    { id: 'w', unit: 1.0, code: 'KeyW', finger: 'lr',
+    { id: 'w', unit: 1.0, code: 'KeyW', finger: 'lr', col: 2,
       std: { base: 'ឹ', shift: 'ឺ' },
       nida: { base: 'ឹ', shift: 'ឺ' },
       en: { base: 'w', shift: 'W' } },
-    { id: 'e', unit: 1.0, code: 'KeyE', finger: 'lm',
-      std: { base: 'េ', shift: 'ែ', altgr: 'ឯ' },
-      nida: { base: 'េ', shift: 'ែ', altgr: 'ឯ' },
+    { id: 'e', unit: 1.0, code: 'KeyE', finger: 'lm', col: 3,
+      std: { base: 'េ', shift: 'ែ' },
+      nida: { base: 'េ', shift: 'ែ' },
       en: { base: 'e', shift: 'E' } },
-    { id: 'r', unit: 1.0, code: 'KeyR', finger: 'li',
-      std: { base: 'រ', shift: 'ឬ', altgr: 'ឫ' },
-      nida: { base: 'រ', shift: 'ឬ', altgr: 'ឫ' },
+    { id: 'r', unit: 1.0, code: 'KeyR', finger: 'li', col: 4,
+      std: { base: 'រ', shift: 'ឬ' },
+      nida: { base: 'រ', shift: 'ឬ' },
       en: { base: 'r', shift: 'R' } },
-    { id: 't', unit: 1.0, code: 'KeyT', finger: 'li',
-      std: { base: 'ត', shift: 'ទ', altgr: 'ឦ' },
+    { id: 't', unit: 1.0, code: 'KeyT', finger: 'li', col: 5,
+      std: { base: 'ត', shift: 'ទ' },
       nida: { base: 'ត', shift: 'ទ' },
       en: { base: 't', shift: 'T' } },
-    { id: 'y', unit: 1.0, code: 'KeyY', finger: 'ri',
+    { id: 'y', unit: 1.0, code: 'KeyY', finger: 'ri', col: 6,
       std: { base: 'យ', shift: 'ួ' },
       nida: { base: 'យ', shift: 'ួ' },
       en: { base: 'y', shift: 'Y' } },
-    { id: 'u', unit: 1.0, code: 'KeyU', finger: 'ri',
-      std: { base: 'ុ', shift: 'ូ', altgr: 'ឧ' },
+    { id: 'u', unit: 1.0, code: 'KeyU', finger: 'ri', col: 7,
+      std: { base: 'ុ', shift: 'ូ' },
       nida: { base: 'ុ', shift: 'ូ' },
       en: { base: 'u', shift: 'U' } },
-    { id: 'i', unit: 1.0, code: 'KeyI', finger: 'rm',
-      std: { base: 'ិ', shift: 'ី', altgr: 'ឥ' },
-      nida: { base: 'ិ', shift: 'ី', altgr: 'ឦ' },
+    { id: 'i', unit: 1.0, code: 'KeyI', finger: 'rm', col: 8,
+      std: { base: 'ិ', shift: 'ី' },
+      nida: { base: 'ិ', shift: 'ី' },
       en: { base: 'i', shift: 'I' } },
-    { id: 'o', unit: 1.0, code: 'KeyO', finger: 'rr',
-      std: { base: 'ោ', shift: 'ៅ', altgr: 'ឱ' },
-      nida: { base: 'ោ', shift: 'ៅ', altgr: 'ឱ' },
+    { id: 'o', unit: 1.0, code: 'KeyO', finger: 'rr', col: 9,
+      std: { base: 'ោ', shift: 'ៅ' },
+      nida: { base: 'ោ', shift: 'ៅ' },
       en: { base: 'o', shift: 'O' } },
-    { id: 'p', unit: 1.0, code: 'KeyP', finger: 'rp',
-      std: { base: 'ផ', shift: 'ភ', altgr: 'ឳ' },
-      nida: { base: 'ផ', shift: 'ភ', altgr: 'ឰ' },
+    { id: 'p', unit: 1.0, code: 'KeyP', finger: 'rp', col: 10,
+      std: { base: 'ផ', shift: 'ភ' },
+      nida: { base: 'ផ', shift: 'ភ' },
       en: { base: 'p', shift: 'P' } },
-    { id: 'bracketL', unit: 1.0, code: 'BracketLeft', finger: 'rp',
-      std: { base: 'ើ', shift: 'ោះ', altgr: '[' },
-      nida: { base: 'ៀ', shift: 'ឿ', altgr: 'ឩ' },
+    { id: 'bracketL', unit: 1.0, code: 'BracketLeft', finger: 'rp', col: 11,
+      std: { base: 'ើ', shift: 'ោះ' },
+      nida: { base: 'ៀ', shift: 'ឿ' },
       en: { base: '[', shift: '{' } },
-    { id: 'bracketR', unit: 1.0, code: 'BracketRight', finger: 'rp',
-      std: { base: 'ឿ', shift: 'ៀ', altgr: ']' },
-      nida: { base: 'ឪ', shift: 'ឧ', altgr: 'ឳ' },
+    { id: 'bracketR', unit: 1.0, code: 'BracketRight', finger: 'rp', col: 12,
+      std: { base: 'ឿ', shift: 'ៀ' },
+      nida: { base: 'ឪ', shift: 'ឧ' },
       en: { base: ']', shift: '}' } },
-    { id: 'enter', unit: 1.5, code: 'Enter', finger: 'rp', isMod: true, isAccent: true, label: 'Enter' }
+    { id: 'backslash', unit: 1.5, code: 'Backslash', finger: 'rp', col: 13, isMod: true, label: '\\' }
   ];
 
   const ROW3_DEFS = [
-    { id: 'caps', unit: 1.75, code: 'CapsLock', finger: 'lp', isMod: true, label: 'Caps' },
-    { id: 'a', unit: 1.0, code: 'KeyA', finger: 'lp', isHome: true,
-      std: { base: 'ា', shift: 'ៃ', altgr: 'ឩ' },
+    { id: 'caps', unit: 1.75, code: 'CapsLock', finger: 'lp', col: 0, isMod: true, label: 'Caps' },
+    { id: 'a', unit: 1.0, code: 'KeyA', finger: 'lp', col: 1,
+      std: { base: 'ា', shift: 'ៃ' },
       nida: { base: 'ា', shift: 'ាំ' },
       en: { base: 'a', shift: 'A' } },
-    { id: 's', unit: 1.0, code: 'KeyS', finger: 'lr', isHome: true,
-      std: { base: 'ស', shift: 'ាំ', altgr: 'ឪ' },
+    { id: 's', unit: 1.0, code: 'KeyS', finger: 'lr', col: 2,
+      std: { base: 'ស', shift: 'ាំ' },
       nida: { base: 'ស', shift: 'ៃ' },
       en: { base: 's', shift: 'S' } },
-    { id: 'd', unit: 1.0, code: 'KeyD', finger: 'lm', isHome: true,
+    { id: 'd', unit: 1.0, code: 'KeyD', finger: 'lm', col: 3,
       std: { base: 'ដ', shift: 'ឌ' },
       nida: { base: 'ដ', shift: 'ឌ' },
       en: { base: 'd', shift: 'D' } },
-    { id: 'f', unit: 1.0, code: 'KeyF', finger: 'li', isHome: true, hasBump: true,
+    { id: 'f', unit: 1.0, code: 'KeyF', finger: 'li', col: 4, hasBump: true,
       std: { base: 'ថ', shift: 'ធ' },
       nida: { base: 'ថ', shift: 'ធ' },
       en: { base: 'f', shift: 'F' } },
-    { id: 'g', unit: 1.0, code: 'KeyG', finger: 'li',
-      std: { base: 'ង', shift: 'ុះ' },
+    { id: 'g', unit: 1.0, code: 'KeyG', finger: 'li', col: 5,
+      std: { base: 'ង', shift: 'អ' },
       nida: { base: 'ង', shift: 'អ' },
       en: { base: 'g', shift: 'G' } },
-    { id: 'h', unit: 1.0, code: 'KeyH', finger: 'ri',
-      std: { base: 'ហ', shift: '៏' },
+    { id: 'h', unit: 1.0, code: 'KeyH', finger: 'ri', col: 6,
+      std: { base: 'ហ', shift: 'ះ' },
       nida: { base: 'ហ', shift: 'ះ' },
       en: { base: 'h', shift: 'H' } },
-    { id: 'j', unit: 1.0, code: 'KeyJ', finger: 'ri', isHome: true, hasBump: true,
-      std: { base: 'ញ', shift: 'ុំ', altgr: 'ឮ' },
+    { id: 'j', unit: 1.0, code: 'KeyJ', finger: 'ri', col: 7, hasBump: true,
+      std: { base: '្', shift: 'ញ' },
       nida: { base: '្', shift: 'ញ' },
       en: { base: 'j', shift: 'J' } },
-    { id: 'k', unit: 1.0, code: 'KeyK', finger: 'rm', isHome: true,
-      std: { base: 'ក', shift: 'គ', altgr: 'ឭ' },
+    { id: 'k', unit: 1.0, code: 'KeyK', finger: 'rm', col: 8,
+      std: { base: 'ក', shift: 'គ' },
       nida: { base: 'ក', shift: 'គ' },
       en: { base: 'k', shift: 'K' } },
-    { id: 'l', unit: 1.0, code: 'KeyL', finger: 'rr', isHome: true,
-      std: { base: 'ល', shift: 'ឡ', altgr: 'ឰ' },
+    { id: 'l', unit: 1.0, code: 'KeyL', finger: 'rr', col: 9,
+      std: { base: 'ល', shift: 'ឡ' },
       nida: { base: 'ល', shift: 'ឡ' },
       en: { base: 'l', shift: 'L' } },
-    { id: 'semicolon', unit: 1.0, code: 'Semicolon', finger: 'rp', isHome: true,
-      std: { base: 'ះ', shift: '៖', altgr: ';' },
-      nida: { base: 'ើ', shift: 'ោះ', altgr: '៖' },
+    { id: 'semicolon', unit: 1.0, code: 'Semicolon', finger: 'rp', col: 10,
+      std: { base: 'ះ', shift: '៖' },
+      nida: { base: 'ើ', shift: 'ោះ' },
       en: { base: ';', shift: ':' } },
-    { id: 'quote', unit: 1.0, code: 'Quote', finger: 'rp',
-      std: { base: '់', shift: '៉', altgr: '៝' },
-      nida: { base: '់', shift: '៉', altgr: 'ៈ' },
-      en: { base: '\'', shift: '"' } },
-    { id: 'backslash', unit: 2.25, code: 'Backslash', finger: 'rp',
-      std: { base: '\\', shift: '/', altgr: '៚' },
-      nida: { base: 'ឮ', shift: 'ឭ', altgr: '\\' },
-      en: { base: '\\', shift: '|' } }
+    { id: 'quote', unit: 1.0, code: 'Quote', finger: 'rp', col: 11,
+      std: { base: '់', shift: '៉' },
+      nida: { base: '់', shift: '៉' },
+      en: { base: "'", shift: '"' } },
+    { id: 'enter', unit: 2.25, code: 'Enter', finger: 'rp', col: 12, isAccent: true, isMod: true, label: 'Enter' }
   ];
 
   const ROW4_DEFS = [
-    { id: 'shiftL', unit: 2.25, code: 'ShiftLeft', finger: 'lp', isMod: true, label: 'Shift' },
-    { id: 'z', unit: 1.0, code: 'KeyZ', finger: 'lp',
-      std: { base: 'ឋ', shift: 'ឍ', altgr: '#' },
+    { id: 'shiftL', unit: 2.25, code: 'ShiftLeft', finger: 'lp', col: 0, isMod: true, label: 'Shift' },
+    { id: 'z', unit: 1.0, code: 'KeyZ', finger: 'lp', col: 1,
+      std: { base: 'ឋ', shift: 'ឍ' },
       nida: { base: 'ឋ', shift: 'ឍ' },
       en: { base: 'z', shift: 'Z' } },
-    { id: 'x', unit: 1.0, code: 'KeyX', finger: 'lr',
-      std: { base: 'ខ', shift: 'ឃ', altgr: '@' },
+    { id: 'x', unit: 1.0, code: 'KeyX', finger: 'lr', col: 2,
+      std: { base: 'ខ', shift: 'ឃ' },
       nida: { base: 'ខ', shift: 'ឃ' },
       en: { base: 'x', shift: 'X' } },
-    { id: 'c', unit: 1.0, code: 'KeyC', finger: 'lm',
-      std: { base: 'ច', shift: 'ជ', altgr: '&' },
+    { id: 'c', unit: 1.0, code: 'KeyC', finger: 'lm', col: 3,
+      std: { base: 'ច', shift: 'ជ' },
       nida: { base: 'ច', shift: 'ជ' },
       en: { base: 'c', shift: 'C' } },
-    { id: 'v', unit: 1.0, code: 'KeyV', finger: 'li',
-      std: { base: 'វ', shift: 'េះ', altgr: '$' },
+    { id: 'v', unit: 1.0, code: 'KeyV', finger: 'li', col: 4,
+      std: { base: 'វ', shift: 'េះ' },
       nida: { base: 'វ', shift: 'េះ' },
       en: { base: 'v', shift: 'V' } },
-    { id: 'b', unit: 1.0, code: 'KeyB', finger: 'li',
-      std: { base: 'ប', shift: 'ព', altgr: '%' },
+    { id: 'b', unit: 1.0, code: 'KeyB', finger: 'li', col: 5,
+      std: { base: 'ប', shift: 'ព' },
       nida: { base: 'ប', shift: 'ព' },
       en: { base: 'b', shift: 'B' } },
-    { id: 'n', unit: 1.0, code: 'KeyN', finger: 'ri',
-      std: { base: 'ន', shift: 'ណ', altgr: '(' },
+    { id: 'n', unit: 1.0, code: 'KeyN', finger: 'ri', col: 6,
+      std: { base: 'ន', shift: 'ណ' },
       nida: { base: 'ន', shift: 'ណ' },
       en: { base: 'n', shift: 'N' } },
-    { id: 'm', unit: 1.0, code: 'KeyM', finger: 'ri',
-      std: { base: 'ម', shift: 'ំ', altgr: ')' },
+    { id: 'm', unit: 1.0, code: 'KeyM', finger: 'ri', col: 7,
+      std: { base: 'ម', shift: 'ំ' },
       nida: { base: 'ម', shift: 'ំ' },
       en: { base: 'm', shift: 'M' } },
-    { id: 'comma', unit: 1.0, code: 'Comma', finger: 'rm',
-      std: { base: 'អ', shift: ',', altgr: '‹' },
-      nida: { base: 'ុំ', shift: 'ុះ', altgr: ',' },
+    { id: 'comma', unit: 1.0, code: 'Comma', finger: 'rm', col: 8,
+      std: { base: 'អ', shift: ',' },
+      nida: { base: 'ុំ', shift: 'ុះ' },
       en: { base: ',', shift: '<' } },
-    { id: 'period', unit: 1.0, code: 'Period', finger: 'rr',
-      std: { base: '។', shift: '.', altgr: '›' },
-      nida: { base: '។', shift: '៕', altgr: '.' },
+    { id: 'period', unit: 1.0, code: 'Period', finger: 'rr', col: 9,
+      std: { base: '។', shift: '.' },
+      nida: { base: '។', shift: '៕' },
       en: { base: '.', shift: '>' } },
-    { id: 'slash', unit: 1.0, code: 'Slash', finger: 'rp',
-      std: { base: '”', shift: '?', altgr: '៕' },
-      nida: { base: '៊', shift: '?', altgr: '/' },
+    { id: 'slash', unit: 1.0, code: 'Slash', finger: 'rp', col: 10,
+      std: { base: '”', shift: '?' },
+      nida: { base: '៊', shift: '?' },
       en: { base: '/', shift: '?' } },
-    { id: 'shiftR', unit: 2.75, code: 'ShiftRight', finger: 'rp', isMod: true, label: 'Shift' }
+    { id: 'shiftR', unit: 2.75, code: 'ShiftRight', finger: 'rp', col: 11, isMod: true, label: 'Shift' }
   ];
 
   const ROW5_DEFS = [
-    { id: 'ctrlL', unit: 1.5, code: 'ControlLeft', finger: 'lp', isMod: true, label: 'Ctrl' },
-    { id: 'alt', unit: 1.25, code: 'AltLeft', finger: 'lt', isMod: true, label: 'Alt' },
-    { id: 'space', unit: 7.5, code: 'Space', finger: 'lt', isMod: true, label: '', isSpace: true },
-    { id: 'altgr', unit: 1.25, code: 'AltRight', finger: 'rt', isMod: true, label: 'AltGr' },
-    { id: 'ctrlR', unit: 1.5, code: 'ControlRight', finger: 'rp', isMod: true, label: 'Ctrl' }
+    { id: 'ctrlL', unit: 1.5, code: 'ControlLeft', finger: 'lp', col: 0, isMod: true, label: 'Ctrl' },
+    { id: 'alt', unit: 1.25, code: 'AltLeft', finger: 'lt', col: 1, isMod: true, label: 'Alt' },
+    { id: 'space', unit: 7.5, code: 'Space', finger: 'lt', col: 2, isMod: true, label: '', isSpace: true },
+    { id: 'altgr', unit: 1.25, code: 'AltRight', finger: 'rt', col: 3, isMod: true, label: 'Alt' },
+    { id: 'ctrlR', unit: 1.5, code: 'ControlRight', finger: 'rp', col: 4, isMod: true, label: 'Ctrl' }
   ];
 
   const ALL_ROWS = [ROW1_DEFS, ROW2_DEFS, ROW3_DEFS, ROW4_DEFS, ROW5_DEFS];
 
   // ------------------------------------------------------------
-  // 2. THEME COLOR PALETTES
+  // 2. ENTHUSIAST COLOR PALETTES (Vibrant & Richly Differentiated)
   // ------------------------------------------------------------
   const THEMES = {
     angkor: {
       name: 'Angkor Gold',
-      caseColor: 0x0a0e1a,
-      caseRim: 0xd4af37,
-      plateColor: 0x141a29,
-      accentColor: 0xd97706,
-      keycapBase: '#121727',
-      keycapGradient: '#1e263d',
-      legendBase: '#f8fafc',
-      legendShift: '#f59e0b',
-      legendAltgr: '#38bdf8',
-      legendMod: '#fbbf24',
-      underglow: 0xffa500,
-      underglowIntensity: 2.0,
-      lightAmbient: 0xffeedd,
-      lightMain: 0xfff3db,
-      stemColor: 0xbe123c,
-      deskpadColor: 0x090c15
+      caseColor: 0x0c1322,         // Anodized Royal Midnight Navy
+      caseRim: 0xf59e0b,           // Polished 24K Gold Bevel Rim
+      plateColor: 0xb45309,        // Sandblasted Brass Switch Plate
+      accentColor: 0xf59e0b,       // Radiant 24K Gold Accent
+      alphaBase: '#1e293b',        // Slate Indigo Alphas
+      alphaGrad: '#334155',
+      modBase: '#172033',          // Deep Midnight Navy Modifiers
+      modGrad: '#25334d',
+      accentBase: '#b45309',       // Golden Amber Accents (Enter/Esc)
+      accentGrad: '#f59e0b',
+      spaceBase: '#1e293b',
+      spaceGrad: '#334155',
+      legendBase: '#ffffff',       // Pure White High Contrast
+      legendShift: '#fbbf24',      // Radiant Amber Gold
+      legendMod: '#fde047',        // Bright Gold Mod Labels
+      underglow: 0xf59e0b,         // Warm Amber RGB Aura
+      underglowIntensity: 2.5,
+      lightAmbient: 0xffedd5,
+      lightMain: 0xfffbeb,
+      stemColor: 0xe11d48,         // Ruby Red POM Switch Stem
+      deskpadColor: 0x070b14,
+      deskpadStitch: 0xd97706
     },
     rgb: {
       name: 'RGB Chroma Wave',
-      caseColor: 0x060810,
-      caseRim: 0x06b6d4,
-      plateColor: 0x0f1522,
-      accentColor: 0xec4899,
-      keycapBase: '#101422',
-      keycapGradient: '#1a2034',
+      caseColor: 0x1e293b,         // Satin Space Grey Aluminum
+      caseRim: 0x38bdf8,           // Electric Azure Chamfer Rim
+      plateColor: 0x0f172a,        // Matte Carbon Plate
+      accentColor: 0x0284c7,       // Electric Azure Accent
+      alphaBase: '#0f172a',
+      alphaGrad: '#1e293b',
+      modBase: '#18181b',          // Deep Carbon Modifiers
+      modGrad: '#27272a',
+      accentBase: '#0284c7',       // Vivid Azure Accents
+      accentGrad: '#38bdf8',
+      spaceBase: '#0f172a',
+      spaceGrad: '#1e293b',
       legendBase: '#ffffff',
       legendShift: '#38bdf8',
-      legendAltgr: '#a855f7',
       legendMod: '#22d3ee',
-      underglow: 0x06b6d4,
-      underglowIntensity: 2.4,
-      lightAmbient: 0xedf2f7,
+      underglow: 0x06b6d4,         // Flowing Rainbow RGB Wave
+      underglowIntensity: 2.8,
+      lightAmbient: 0xf1f5f9,
       lightMain: 0xffffff,
-      stemColor: 0x10b981,
-      deskpadColor: 0x060811
+      stemColor: 0x06b6d4,         // Teal POM Stem
+      deskpadColor: 0x090d16,
+      deskpadStitch: 0x06b6d4
     },
     neon: {
       name: 'Cyber Neon',
-      caseColor: 0x0d0718,
-      caseRim: 0xec4899,
-      plateColor: 0x160c26,
-      accentColor: 0x8b5cf6,
-      keycapBase: '#170f2a',
-      keycapGradient: '#261944',
-      legendBase: '#fdf4ff',
-      legendShift: '#f43f5e',
-      legendAltgr: '#06b6d4',
-      legendMod: '#e879f9',
-      underglow: 0xd946ef,
-      underglowIntensity: 2.2,
+      caseColor: 0x160829,         // Deep Midnight Ultraviolet
+      caseRim: 0xf43f5e,           // Electric Neon Pink Rim
+      plateColor: 0x2e1065,        // Purple Anodized Plate
+      accentColor: 0xf43f5e,       // Hot Magenta Accent
+      alphaBase: '#2e1065',        // Ultraviolet Alphas
+      alphaGrad: '#4c1d95',
+      modBase: '#083344',          // Cyber Teal Modifiers
+      modGrad: '#0891b2',
+      accentBase: '#881337',       // Hot Magenta Accents
+      accentGrad: '#f43f5e',
+      spaceBase: '#2e1065',
+      spaceGrad: '#4c1d95',
+      legendBase: '#fdf4ff',       // Crisp Ice White
+      legendShift: '#22d3ee',      // Electric Cyan
+      legendMod: '#38bdf8',
+      underglow: 0xd946ef,         // Luminous Neon Magenta Underglow
+      underglowIntensity: 3.0,
       lightAmbient: 0xfdf2f8,
-      lightMain: 0xfce7f3,
-      stemColor: 0xd946ef,
-      deskpadColor: 0x0a0514
+      lightMain: 0xffe4e6,
+      stemColor: 0xf43f5e,         // Hot Pink POM Stem
+      deskpadColor: 0x0b0414,
+      deskpadStitch: 0xf43f5e
     },
     ceramic: {
-      name: 'Ivory Ceramic',
-      caseColor: 0x1c1917,
-      caseRim: 0xd97706,
-      plateColor: 0x292524,
-      accentColor: 0xb45309,
-      keycapBase: '#eae8e0',
-      keycapGradient: '#f7f6f2',
-      legendBase: '#1c1917',
-      legendShift: '#b45309',
-      legendAltgr: '#0369a1',
-      legendMod: '#78350f',
-      underglow: 0xf59e0b,
-      underglowIntensity: 1.2,
+      name: 'Matcha & Sakura',     // Fresh Colorful Pastel Candy
+      caseColor: 0xf8fafc,         // Crisp Pearl Arctic White
+      caseRim: 0xf472b6,           // Rose Gold Chamfer Rim
+      plateColor: 0xd1fae5,        // Sage Mint Plate
+      accentColor: 0xf43f5e,       // Strawberry Coral Accent
+      alphaBase: '#a7f3d0',        // Fresh Matcha Milk Alphas
+      alphaGrad: '#d1fae5',
+      modBase: '#fbcfe8',          // Soft Sakura Rose Modifiers
+      modGrad: '#fce7f3',
+      accentBase: '#fb7185',       // Strawberry Coral Accents
+      accentGrad: '#fda4af',
+      spaceBase: '#a7f3d0',
+      spaceGrad: '#d1fae5',
+      legendBase: '#064e3b',       // Deep Forest Pine
+      legendShift: '#831843',      // Berry Rose
+      legendMod: '#831843',
+      underglow: 0xf472b6,         // Soft Sakura Blossom Underglow
+      underglowIntensity: 2.0,
       lightAmbient: 0xffffff,
       lightMain: 0xfffaf0,
-      stemColor: 0xe0e7ff,
-      deskpadColor: 0x141210
+      stemColor: 0x10b981,         // Matcha Jade POM Stem
+      deskpadColor: 0xe2e8f0,
+      deskpadStitch: 0xf472b6
     }
   };
 
@@ -377,7 +388,7 @@
       clickGain.connect(audioCtx.destination);
       noiseSource.start(t);
 
-      // 2. Lubed Deep Bottom-Out Thock Resonance (Housing acoustic boom)
+      // 2. Lubed Deep Bottom-Out Thock Resonance
       if (isPress) {
         const thockOsc = audioCtx.createOscillator();
         const thockGain = audioCtx.createGain();
@@ -431,10 +442,10 @@
     }
 
     // B. Lighting Setup
-    const ambientLight = new THREE.AmbientLight(0xffeedd, 0.75);
+    const ambientLight = new THREE.AmbientLight(0xffedd5, 0.85);
     scene.add(ambientLight);
 
-    const mainLight = new THREE.DirectionalLight(0xfff5e4, 2.2);
+    const mainLight = new THREE.DirectionalLight(0xfffbeb, 2.4);
     mainLight.position.set(10, 18, 14);
     mainLight.castShadow = true;
     mainLight.shadow.mapSize.width = 2048;
@@ -448,11 +459,11 @@
     mainLight.shadow.bias = -0.0004;
     scene.add(mainLight);
 
-    const fillLight = new THREE.DirectionalLight(0x38bdf8, 1.1);
+    const fillLight = new THREE.DirectionalLight(0x38bdf8, 1.2);
     fillLight.position.set(-14, 9, -10);
     scene.add(fillLight);
 
-    const underglowLight = new THREE.PointLight(0xffa500, 2.4, 18);
+    const underglowLight = new THREE.PointLight(0xf59e0b, 2.6, 18);
     underglowLight.position.set(0, -0.4, 0);
     scene.add(underglowLight);
 
@@ -471,7 +482,7 @@
     let currentTheme = THEMES.angkor;
     let viewMode = 'keyboard'; // 'keyboard' | 'switch'
     let autoRotate = true;
-    let showHands = false;
+    let showHands = false; // Hidden by default
     let isWireframe = false;
     let isExploded = false;
 
@@ -496,14 +507,13 @@
     function createSculptedKeycapGeometry(w, d, h, isWide) {
       const geo = new THREE.BoxGeometry(w, h, d, 2, 2, 2);
       const pos = geo.attributes.position;
-      const topTaperW = isWide ? 0.92 : 0.78;
-      const topTaperD = 0.78;
+      const topTaperW = isWide ? 0.94 : 0.80;
+      const topTaperD = 0.80;
       for (let i = 0; i < pos.count; i++) {
         const y = pos.getY(i);
-        if (y > 0) { // Top half vertices
+        if (y > 0) {
           pos.setX(i, pos.getX(i) * topTaperW);
           pos.setZ(i, pos.getZ(i) * topTaperD);
-          // Subtle cylindrical dish indentation along Z axis
           const normX = pos.getX(i) / (w * topTaperW * 0.5);
           const dish = Math.cos(normX * Math.PI * 0.45) * 0.022;
           pos.setY(i, y - dish);
@@ -549,7 +559,7 @@
     // Glowing Desk Mat Stitched Border
     const deskpadBorder = new THREE.LineSegments(
       new THREE.EdgesGeometry(deskpadGeo),
-      new THREE.LineBasicMaterial({ color: currentTheme.underglow, transparent: true, opacity: 0.35 })
+      new THREE.LineBasicMaterial({ color: currentTheme.deskpadStitch, transparent: true, opacity: 0.55 })
     );
     deskpadBorder.position.copy(deskpadMesh.position);
     deskpadBorder.position.y += 0.002;
@@ -631,21 +641,21 @@
     const rimMesh = new THREE.Mesh(rimGeo, rimMat);
     keyboardRoot.add(rimMesh);
 
-    // Perimeter Underglow Diffuser Strip (Rectangular Frosted Diffuser)
+    // Perimeter Underglow Diffuser Strip
     const underglowShape = createRoundedRectShape(boardWidth + 0.16, boardDepth + 0.16, 0.48);
     const underglowGeo = new THREE.ShapeGeometry(underglowShape);
     underglowGeo.rotateX(-Math.PI / 2);
     const underglowMat = new THREE.MeshBasicMaterial({
       color: currentTheme.underglow,
       transparent: true,
-      opacity: 0.45,
+      opacity: 0.55,
       side: THREE.DoubleSide
     });
     const underglowMesh = new THREE.Mesh(underglowGeo, underglowMat);
     underglowMesh.position.y = -boardHeight * 0.94;
     keyboardRoot.add(underglowMesh);
 
-    // Brushed Aluminum Switch Plate (Tray with per-switch mounting recesses)
+    // Brushed Aluminum Switch Plate
     const plateShape = createRoundedRectShape(boardWidth - 0.42, boardDepth - 0.42, 0.25);
     const plateGeo = new THREE.ShapeGeometry(plateShape);
     plateGeo.rotateX(-Math.PI / 2);
@@ -659,10 +669,71 @@
     plateMesh.receiveShadow = true;
     keyboardRoot.add(plateMesh);
 
-    // 4. Dynamic High-DPI Keycap Texture Generator
-    function generateKeyTexture(keyDef, layoutKey, theme) {
-      const isWide = keyDef.unit >= 2.0;
-      const cvWidth = isWide ? 1024 : 512;
+    // Dynamic Color Resolver Helper
+    function resolveKeyStyle(keyDef, themeKey, theme) {
+      if (themeKey === 'rgb') {
+        const colIdx = keyDef.col !== undefined ? keyDef.col : 7;
+        const hue = (colIdx / 14);
+        if (keyDef.isAccent) {
+          return { base: '#0284c7', grad: '#38bdf8', sideHex: 0x0284c7, textShift: '#ffffff', textBase: '#ffffff' };
+        }
+        if (keyDef.isMod) {
+          return { base: '#18181b', grad: '#27272a', sideHex: 0x18181b, textShift: '#38bdf8', textBase: '#ffffff' };
+        }
+        const c1 = new THREE.Color().setHSL(hue, 0.72, 0.38).getHexString();
+        const c2 = new THREE.Color().setHSL(hue, 0.85, 0.52).getHexString();
+        return {
+          base: '#' + c1,
+          grad: '#' + c2,
+          sideHex: parseInt(c1, 16),
+          textShift: '#ffffff',
+          textBase: '#ffffff'
+        };
+      }
+
+      if (keyDef.isAccent) {
+        return {
+          base: theme.accentBase,
+          grad: theme.accentGrad,
+          sideHex: parseInt(theme.accentBase.replace('#', ''), 16),
+          textShift: '#ffffff',
+          textBase: '#ffffff'
+        };
+      }
+      if (keyDef.isSpace) {
+        return {
+          base: theme.spaceBase,
+          grad: theme.spaceGrad,
+          sideHex: parseInt(theme.spaceBase.replace('#', ''), 16),
+          textShift: theme.legendShift,
+          textBase: theme.legendBase
+        };
+      }
+      if (keyDef.isMod) {
+        return {
+          base: theme.modBase,
+          grad: theme.modGrad,
+          sideHex: parseInt(theme.modBase.replace('#', ''), 16),
+          textShift: theme.legendShift,
+          textBase: theme.legendMod
+        };
+      }
+      return {
+        base: theme.alphaBase,
+        grad: theme.alphaGrad,
+        sideHex: parseInt(theme.alphaBase.replace('#', ''), 16),
+        textShift: theme.legendShift,
+        textBase: theme.legendBase
+      };
+    }
+
+    // 4. Dynamic High-DPI Keycap Texture Generator (Strictly 1:1 Aspect Ratio to Prevent Distortion)
+    function generateKeyTexture(keyDef, layoutKey, theme, themeKey = currentThemeKey) {
+      const style = resolveKeyStyle(keyDef, themeKey, theme);
+
+      // Match canvas width directly to key aspect ratio (preventing any horizontal stretching)
+      const unit = keyDef.unit || 1.0;
+      const cvWidth = keyDef.isSpace ? 3840 : (unit >= 2.0 ? Math.round(512 * unit) : 512);
       const cvHeight = 512;
 
       const canvas = document.createElement('canvas');
@@ -672,63 +743,66 @@
 
       // Satin PBT Radial Texture Gradient
       const grad = ctx.createRadialGradient(cvWidth / 2, cvHeight * 0.35, 20, cvWidth / 2, cvHeight / 2, cvWidth * 0.75);
-      grad.addColorStop(0, theme.keycapGradient);
-      grad.addColorStop(1, theme.keycapBase);
+      grad.addColorStop(0, style.grad);
+      grad.addColorStop(1, style.base);
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, cvWidth, cvHeight);
 
       // Inset Edge Bevel
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.09)';
-      ctx.lineWidth = 12;
-      ctx.strokeRect(12, 12, cvWidth - 24, cvHeight - 24);
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+      ctx.lineWidth = 14;
+      ctx.strokeRect(10, 10, cvWidth - 20, cvHeight - 20);
 
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
       if (keyDef.isMod) {
         if (keyDef.label) {
-          ctx.font = 'bold 96px "Inter", "Segoe UI", sans-serif';
-          ctx.fillStyle = keyDef.isAccent ? '#ffffff' : theme.legendMod;
+          ctx.font = 'bold 94px "Inter", "Segoe UI", sans-serif';
+          ctx.fillStyle = keyDef.isAccent ? '#ffffff' : style.textBase;
           ctx.shadowColor = 'rgba(0,0,0,0.6)';
           ctx.shadowBlur = 12;
           ctx.fillText(keyDef.label, cvWidth / 2, cvHeight / 2 + 4);
         } else if (keyDef.isSpace) {
-          ctx.font = 'bold 56px "Inter", sans-serif';
-          ctx.fillStyle = 'rgba(255,255,255,0.28)';
+          // Subtle Gold/Accent Laser Line
+          ctx.fillStyle = theme.legendShift || '#f59e0b';
+          ctx.fillRect(cvWidth / 2 - 240, cvHeight / 2 - 42, 480, 5);
+
+          // Perfectly Proportioned Centered Logo Typography
+          ctx.font = 'bold 50px "Space Grotesk", "Inter", sans-serif';
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.78)';
           ctx.letterSpacing = '8px';
-          ctx.fillText('PK KHMER TYPE', cvWidth / 2, cvHeight / 2);
+          ctx.fillText('PK KHMER TYPE', cvWidth / 2, cvHeight / 2 + 18);
         }
       } else {
         const map = keyDef[layoutKey] || keyDef.std || {};
         const baseChar = map.base || '';
         const shiftChar = map.shift || '';
 
-        // Shifted Glyph (Top Center badge - clean and readable)
+        // Shifted Glyph (Cleanly Centered on Top)
         if (shiftChar) {
-          ctx.font = 'bold 104px "Khmer OS Siemreap", "Kantumruy Pro", "Segoe UI", sans-serif';
-          ctx.fillStyle = theme.legendShift;
+          ctx.font = 'bold 106px "Khmer OS Siemreap", "Kantumruy Pro", "Segoe UI", sans-serif';
+          ctx.fillStyle = style.textShift;
           ctx.shadowColor = 'rgba(245, 158, 11, 0.45)';
           ctx.shadowBlur = 8;
-          ctx.textAlign = 'center';
           ctx.fillText(shiftChar, cvWidth / 2, 114);
         }
 
-        // Base Glyph (Center Prominent)
+        // Base Glyph (Cleanly Centered in Middle)
         if (baseChar) {
-          ctx.font = 'bold 172px "Khmer OS Siemreap", "Kantumruy Pro", "Segoe UI", sans-serif';
-          ctx.fillStyle = theme.legendBase;
+          ctx.font = 'bold 176px "Khmer OS Siemreap", "Kantumruy Pro", "Segoe UI", sans-serif';
+          ctx.fillStyle = style.textBase;
           ctx.shadowColor = 'rgba(0,0,0,0.7)';
           ctx.shadowBlur = 14;
-          ctx.textAlign = 'center';
           const yPos = shiftChar ? cvHeight * 0.64 : cvHeight * 0.52;
           ctx.fillText(baseChar, cvWidth / 2, yPos);
         }
 
         // Homing nub on F and J
         if (keyDef.hasBump) {
-          ctx.fillStyle = theme.legendMod;
+          ctx.fillStyle = style.textShift;
           ctx.beginPath();
-          ctx.rect(cvWidth / 2 - 45, cvHeight - 48, 90, 12);
+          ctx.rect(cvWidth / 2 - 45, cvHeight - 46, 90, 12);
           ctx.fill();
         }
       }
@@ -777,17 +851,18 @@
 
         // B. Sculpted OEM Keycap Body
         const capGeo = createSculptedKeycapGeometry(keyW * 0.94, keyD * 0.94, keyH, keyDef.unit >= 2.0);
-        const texture = generateKeyTexture(keyDef, currentLayout, currentTheme);
+        const initialStyle = resolveKeyStyle(keyDef, currentThemeKey, currentTheme);
+        const texture = generateKeyTexture(keyDef, currentLayout, currentTheme, currentThemeKey);
 
         const sideMat = new THREE.MeshStandardMaterial({
-          color: keyDef.isAccent ? currentTheme.accentColor : currentTheme.caseColor,
-          roughness: 0.42,
-          metalness: 0.22
+          color: initialStyle.sideHex,
+          roughness: 0.40,
+          metalness: 0.18
         });
         const topMat = new THREE.MeshStandardMaterial({
           map: texture,
-          roughness: 0.38,
-          metalness: 0.16,
+          roughness: 0.36,
+          metalness: 0.14,
           emissive: 0x000000
         });
 
@@ -838,7 +913,6 @@
             playMechanicalSound(true, 1.0 + (Math.random() * 0.08 - 0.04));
             strikeHolographicFinger(this.def);
             triggerRippleWave(this.group.position.x, this.group.position.z);
-            updateTelemetry(this.def);
           },
           release() {
             this.isPressed = false;
@@ -850,7 +924,9 @@
           },
           updateTexture() {
             if (this.texture) this.texture.dispose();
-            this.texture = generateKeyTexture(this.def, currentLayout, currentTheme);
+            const s = resolveKeyStyle(this.def, currentThemeKey, currentTheme);
+            this.sideMat.color.setHex(s.sideHex);
+            this.texture = generateKeyTexture(this.def, currentLayout, currentTheme, currentThemeKey);
             this.topMat.map = this.texture;
             this.topMat.needsUpdate = true;
           }
@@ -883,23 +959,8 @@
       });
     }
 
-    // Telemetry Display Helper
-    function updateTelemetry(def) {
-      const keyNameEl = document.getElementById('telemetryKeyName');
-      const keySubEl = document.getElementById('telemetryKeyDetail');
-      if (!keyNameEl) return;
-      const map = def[currentLayout] || def.std || {};
-      const glyph = map.base || def.label || def.code || 'KEY';
-      keyNameEl.textContent = glyph;
-      if (keySubEl) {
-        const fingerMap = { lp: 'Left Pinky', lr: 'Left Ring', lm: 'Left Middle', li: 'Left Index', lt: 'Left Thumb',
-                             rp: 'Right Pinky', rr: 'Right Ring', rm: 'Right Middle', ri: 'Right Index', rt: 'Right Thumb' };
-        keySubEl.textContent = `${fingerMap[def.finger] || 'Index'} · 62g Mechanical Linear`;
-      }
-    }
-
     // ============================================================
-    // F. ASSEMBLE 2: MUSEUM-GRADE MACRO MECHANICAL SWITCH SHOWCASE
+    // F. ASSEMBLE 2: MUSEUM-GRADE MECHANICAL SWITCH SHOWCASE
     // ============================================================
     const macroSwitchGroup = new THREE.Group();
     macroSwitchGroup.position.set(0, 0, 0);
@@ -938,7 +999,7 @@
     stageRim.position.copy(stageMesh.position);
     macroSwitchGroup.add(stageRim);
 
-    // 2. PA66 Nylon Bottom Switch Housing
+    // 2. PA66 Nylon Bottom Switch Housing (Beveled Body with Guide Rails & Pins)
     const swBaseGroup = new THREE.Group();
     swBaseGroup.position.y = -0.15;
     macroSwitchGroup.add(swBaseGroup);
@@ -946,13 +1007,20 @@
     const baseBodyGeo = new THREE.BoxGeometry(1.56, 0.62, 1.56);
     const baseBodyMat = new THREE.MeshStandardMaterial({
       color: 0x18181b,
-      roughness: 0.65,
-      metalness: 0.2
+      roughness: 0.55,
+      metalness: 0.25
     });
     const baseBody = new THREE.Mesh(baseBodyGeo, baseBodyMat);
     baseBody.position.y = 0.31;
     baseBody.castShadow = true;
     swBaseGroup.add(baseBody);
+
+    // Center Spring Well Column Guide
+    const centerWellGeo = new THREE.CylinderGeometry(0.28, 0.28, 0.38, 24);
+    const centerWellMat = new THREE.MeshStandardMaterial({ color: 0x1f2430, roughness: 0.4 });
+    const centerWell = new THREE.Mesh(centerWellGeo, centerWellMat);
+    centerWell.position.y = 0.38;
+    swBaseGroup.add(centerWell);
 
     // Dual Bottom Brass PCB Pins
     const pinGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.42, 12);
@@ -978,10 +1046,10 @@
 
     // 3. 62g Polished Gold Progressive Helical Spring
     const springGroup = new THREE.Group();
-    springGroup.position.y = 0.20;
+    springGroup.position.y = 0.22;
     macroSwitchGroup.add(springGroup);
 
-    function buildHelicalSpringMesh(turns = 10, height = 0.72, radius = 0.22) {
+    function buildHelicalSpringMesh(turns = 11, height = 0.72, radius = 0.21) {
       const curve = new THREE.CatmullRomCurve3(
         Array.from({ length: 65 }, (_, i) => {
           const p = i / 64;
@@ -990,10 +1058,10 @@
           return new THREE.Vector3(Math.cos(theta) * radius, y, Math.sin(theta) * radius);
         })
       );
-      const geo = new THREE.TubeGeometry(curve, 65, 0.032, 8, false);
+      const geo = new THREE.TubeGeometry(curve, 65, 0.034, 8, false);
       const mat = new THREE.MeshStandardMaterial({
         color: 0xf59e0b,
-        metalness: 0.95,
+        metalness: 0.96,
         roughness: 0.12
       });
       return new THREE.Mesh(geo, mat);
@@ -1002,59 +1070,84 @@
     macroSpringMesh.castShadow = true;
     springGroup.add(macroSpringMesh);
 
-    // 4. High-Precision Ruby POM MX Cross Stem
+    // 4. High-Precision Lustrous POM MX Cross Stem
     const stemGroup = new THREE.Group();
-    stemGroup.position.y = 0.48;
+    stemGroup.position.y = 0.56;
     macroSwitchGroup.add(stemGroup);
 
     const stemMat = new THREE.MeshStandardMaterial({
       color: currentTheme.stemColor,
-      roughness: 0.28,
-      metalness: 0.08
+      roughness: 0.22,
+      metalness: 0.06
     });
 
-    // Cross mount '+' shape
-    const stemCrossV = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.95, 0.54), stemMat);
-    const stemCrossH = new THREE.Mesh(new THREE.BoxGeometry(0.54, 0.95, 0.16), stemMat);
-    stemCrossV.position.y = 0.47;
-    stemCrossH.position.y = 0.47;
+    // Stem Center Core Column
+    const stemCoreGeo = new THREE.CylinderGeometry(0.24, 0.24, 0.54, 16);
+    const stemCore = new THREE.Mesh(stemCoreGeo, stemMat);
+    stemCore.position.y = 0.27;
+    stemGroup.add(stemCore);
+
+    // Genuine Cherry MX Cross Mount '+' Shape
+    const stemCrossV = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.44, 0.48), stemMat);
+    const stemCrossH = new THREE.Mesh(new THREE.BoxGeometry(0.48, 0.44, 0.14), stemMat);
+    stemCrossV.position.y = 0.58;
+    stemCrossH.position.y = 0.58;
     stemGroup.add(stemCrossV, stemCrossH);
 
     // Stem Slider Rail Wings
-    const railL = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.72, 0.24), stemMat);
-    railL.position.set(-0.48, 0.36, 0);
-    const railR = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.72, 0.24), stemMat);
-    railR.position.set(0.48, 0.36, 0);
+    const railL = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.48, 0.26), stemMat);
+    railL.position.set(-0.46, 0.24, 0);
+    const railR = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.48, 0.26), stemMat);
+    railR.position.set(0.46, 0.24, 0);
     stemGroup.add(railL, railR);
 
     // Stem Actuator Legs (Tactile/Linear ramp contacting leaf)
-    const legMesh = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.28, 0.22), stemMat);
-    legMesh.position.set(0.32, 0.14, 0);
-    legMesh.rotation.z = 0.25;
+    const legMesh = new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.24, 0.22), stemMat);
+    legMesh.position.set(0.32, 0.12, 0);
+    legMesh.rotation.z = 0.22;
     stemGroup.add(legMesh);
 
-    // 5. Crystal-Clear Frosted Polycarbonate Upper Housing
+    // 5. Crystal-Clear Polycarbonate Upper Housing with Central Chimney Aperture
     const topHousingGroup = new THREE.Group();
-    topHousingGroup.position.y = 0.46;
+    topHousingGroup.position.y = 0.50;
     macroSwitchGroup.add(topHousingGroup);
 
-    const topShellGeo = new THREE.BoxGeometry(1.58, 0.56, 1.58);
     const topShellMat = new THREE.MeshStandardMaterial({
       color: 0xffffff,
       transparent: true,
-      opacity: 0.42,
-      roughness: 0.12,
-      metalness: 0.1
+      opacity: 0.38,
+      roughness: 0.08,
+      metalness: 0.12,
+      side: THREE.DoubleSide
     });
-    const topShell = new THREE.Mesh(topShellGeo, topShellMat);
-    topShell.position.y = 0.28;
-    topHousingGroup.add(topShell);
+
+    // Perimeter lower collar
+    const collarGeo = new THREE.BoxGeometry(1.58, 0.18, 1.58);
+    const collarMesh = new THREE.Mesh(collarGeo, topShellMat);
+    collarMesh.position.y = 0.09;
+    topHousingGroup.add(collarMesh);
+
+    // Chamfered Inward-Sloping Pyramid Roof with Center Hole
+    const chimneyCollarGeo = new THREE.BoxGeometry(0.82, 0.28, 0.82);
+    const chimneyMesh = new THREE.Mesh(chimneyCollarGeo, topShellMat);
+    chimneyMesh.position.y = 0.32;
+    topHousingGroup.add(chimneyMesh);
+
+    // 4 Corner Angled Slopes
+    [
+      [-0.58, 0.20, 0], [0.58, 0.20, 0],
+      [0, 0.20, -0.58], [0, 0.20, 0.58]
+    ].forEach(([sx, sy, sz]) => {
+      const slopeMesh = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.22, 0.42), topShellMat);
+      slopeMesh.position.set(sx, sy, sz);
+      topHousingGroup.add(slopeMesh);
+    });
 
     // Four Snap Latches extending down
-    const latchGeo = new THREE.BoxGeometry(0.12, 0.42, 0.22);
+    const latchGeo = new THREE.BoxGeometry(0.12, 0.40, 0.22);
     [
-      [-0.78, 0.08, 0], [0.78, 0.08, 0],
-      [0, 0.08, -0.78], [0, 0.08, 0.78]
+      [-0.78, -0.06, 0], [0.78, -0.06, 0],
+      [0, -0.06, -0.78], [0, -0.06, 0.78]
     ].forEach(([lx, ly, lz]) => {
       const latch = new THREE.Mesh(latchGeo, topShellMat);
       latch.position.set(lx, ly, lz);
@@ -1063,12 +1156,12 @@
 
     // 6. Showcase Double-Shot PBT Keycap with Underside Stem Socket
     const macroCapGroup = new THREE.Group();
-    macroCapGroup.position.y = 1.02;
+    macroCapGroup.position.y = 1.08;
     macroSwitchGroup.add(macroCapGroup);
 
     const macroCapGeo = createSculptedKeycapGeometry(1.72, 1.72, 0.78, false);
     let activeGlyphChar = 'ក';
-    const macroTexture = generateKeyTexture(ROW3_DEFS[8], 'standard', currentTheme);
+    const macroTexture = generateKeyTexture(ROW3_DEFS[8], 'standard', currentTheme, currentThemeKey);
 
     const macroCapSideMat = new THREE.MeshStandardMaterial({
       color: currentTheme.caseColor,
@@ -1100,16 +1193,14 @@
     macroSwitchGroup.add(explodedLabelsGroup);
 
     const CALLOUT_DATA = [
-      { name: 'PBT Double-Shot Keycap', y: 2.50, offset: 2.2 },
-      { name: 'Polycarbonate Upper Housing', y: 1.75, offset: 2.3 },
-      { name: 'High-Precision POM Stem', y: 1.10, offset: -2.3 },
-      { name: '62g Gold-Plated Helical Spring', y: 0.52, offset: 2.2 },
-      { name: 'High-Conductivity Copper Leaf', y: 0.08, offset: -2.3 },
-      { name: 'Nylon PA66 Lower Base', y: -0.28, offset: 2.3 }
+      { name: 'Double-Shot PBT Keycap', y: 2.85, offset: 1.8 },
+      { name: 'Polycarbonate Upper Housing', y: 2.05, offset: -1.8 },
+      { name: 'Ruby POM MX Cross Stem', y: 1.35, offset: 1.8 },
+      { name: '62g Gold Progressive Spring', y: 0.70, offset: -1.8 },
+      { name: 'PA66 Nylon Bottom Housing', y: 0.05, offset: 1.8 }
     ];
 
     CALLOUT_DATA.forEach(c => {
-      // Holographic laser line
       const linePoints = [
         new THREE.Vector3(c.offset > 0 ? 0.8 : -0.8, c.y, 0),
         new THREE.Vector3(c.offset * 0.9, c.y, 0),
@@ -1124,14 +1215,12 @@
       const lineMesh = new THREE.Line(lineGeo, lineMat);
       explodedLabelsGroup.add(lineMesh);
 
-      // Glowing HUD Target Node
       const nodeGeo = new THREE.CircleGeometry(0.08, 16);
       const nodeMat = new THREE.MeshBasicMaterial({ color: currentTheme.caseRim, side: THREE.DoubleSide });
       const nodeMesh = new THREE.Mesh(nodeGeo, nodeMat);
       nodeMesh.position.copy(linePoints[0]);
       explodedLabelsGroup.add(nodeMesh);
 
-      // 3D Text Badge Plane (Canvas Billboard)
       const badgeCv = document.createElement('canvas');
       badgeCv.width = 512;
       badgeCv.height = 128;
@@ -1157,7 +1246,7 @@
     });
 
     // Macro Switch Spring Physics State
-    let macroCurrentY = 1.02;
+    let macroCurrentY = 1.08;
     let macroVelocity = 0;
     let isMacroPressed = false;
 
@@ -1165,8 +1254,9 @@
       if (isMacroPressed) return;
       isMacroPressed = true;
       macroCapTopMat.emissive.setHex(currentTheme.underglow);
-      macroCapTopMat.emissiveIntensity = 0.9;
+      macroCapTopMat.emissiveIntensity = 0.95;
       playMechanicalSound(true, 0.95);
+
       setTimeout(() => {
         isMacroPressed = false;
         macroCapTopMat.emissive.setHex(0x000000);
@@ -1176,159 +1266,139 @@
     }
 
     // ============================================================
-    // G. JARVIS / CYBER HUD HOLOGRAPHIC HANDS GUIDE
+    // G. ERGONOMIC TRANSLUCENT TOUCH-TYPING HAND MODEL
     // ============================================================
     const handsGuideGroup = new THREE.Group();
-    handsGuideGroup.visible = false;
+    handsGuideGroup.visible = false; // Hidden by default
     keyboardRoot.add(handsGuideGroup);
 
-    const leftHandColor = 0x06b6d4;  // Electric Cyan (Left hand)
-    const rightHandColor = 0xd946ef; // Cyber Magenta (Right hand)
+    const leftHandColor = 0x38bdf8;  // Ice Cyan (Left hand)
+    const rightHandColor = 0xf472b6; // Coral Rose (Right hand)
 
-    function createCyberHandRig(isLeft) {
+    function createErgonomicHand(isLeft) {
       const handRig = new THREE.Group();
       const color = isLeft ? leftHandColor : rightHandColor;
-      const palmX = isLeft ? -4.1 : 2.5;
-      const palmY = 0.52;
-      const palmZ = 3.65;
 
-      // 1. Futuristic Concentric Targeting Reticle Palm
-      const reticleOuterGeo = new THREE.RingGeometry(0.85, 0.92, 32);
-      reticleOuterGeo.rotateX(-Math.PI / 2);
-      const reticleInnerGeo = new THREE.RingGeometry(0.38, 0.44, 32);
-      reticleInnerGeo.rotateX(-Math.PI / 2);
+      // Rest position coordinates in front of keyboard
+      const palmX = isLeft ? -3.8 : 3.8;
+      const palmY = 0.58;
+      const palmZ = 3.35;
 
-      const reticleMat = new THREE.MeshBasicMaterial({
+      const handMat = new THREE.MeshStandardMaterial({
         color: color,
         transparent: true,
-        opacity: 0.65,
-        side: THREE.DoubleSide,
-        depthWrite: false,
-        blending: THREE.AdditiveBlending
+        opacity: 0.28,
+        roughness: 0.20,
+        metalness: 0.12,
+        depthWrite: false
       });
-      const reticleOuter = new THREE.Mesh(reticleOuterGeo, reticleMat);
-      reticleOuter.position.set(palmX, palmY, palmZ);
-      const reticleInner = new THREE.Mesh(reticleInnerGeo, reticleMat);
-      reticleInner.position.set(palmX, palmY, palmZ);
-      handRig.add(reticleOuter, reticleInner);
 
-      // Core Glowing Node
-      const coreLight = new THREE.PointLight(color, 1.0, 5.0);
-      coreLight.position.set(palmX, palmY + 0.25, palmZ);
-      handRig.add(coreLight);
+      // 1. Ergonomic Curved Palm Dorsum
+      const palmShape = new THREE.Shape();
+      palmShape.moveTo(-1.0, -0.8);
+      palmShape.quadraticCurveTo(-1.1, 0.8, -0.8, 1.1);
+      palmShape.quadraticCurveTo(0, 1.25, 0.8, 1.1);
+      palmShape.quadraticCurveTo(1.1, 0.8, 1.0, -0.8);
+      palmShape.quadraticCurveTo(0, -1.0, -1.0, -0.8);
 
-      // Knuckle Arc Wireframe Nodes
-      const anchorKeyIds = isLeft
+      const palmGeo = new THREE.ExtrudeGeometry(palmShape, {
+        depth: 0.28,
+        bevelEnabled: true,
+        bevelSegments: 3,
+        bevelSize: 0.08,
+        bevelThickness: 0.08
+      });
+      palmGeo.rotateX(-Math.PI / 2);
+      const palmMesh = new THREE.Mesh(palmGeo, handMat);
+      palmMesh.position.set(palmX, palmY, palmZ);
+      palmMesh.rotation.y = isLeft ? 0.14 : -0.14;
+      handRig.add(palmMesh);
+
+      // Wrist Taper Base
+      const wristGeo = new THREE.CylinderGeometry(0.55, 0.65, 0.65, 20);
+      wristGeo.rotateX(Math.PI / 2.3);
+      const wristMesh = new THREE.Mesh(wristGeo, handMat);
+      wristMesh.position.set(palmX, palmY - 0.08, palmZ + 1.1);
+      handRig.add(wristMesh);
+
+      // 2. Five Articulated Curved Fingers in Relaxed Home-Row Posture
+      const homeKeys = isLeft
         ? ['a', 's', 'd', 'f', 'space']
         : ['j', 'k', 'l', 'semicolon', 'space'];
 
+      const knuckleOffsets = isLeft
+        ? [ [-0.85, 0.6], [-0.35, 0.85], [0.15, 0.95], [0.65, 0.85], [0.85, -0.1] ]
+        : [ [-0.65, 0.85], [-0.15, 0.95], [0.35, 0.85], [0.85, 0.6], [-0.85, -0.1] ];
+
       const fingers = [];
 
-      anchorKeyIds.forEach((keyId, idx) => {
+      homeKeys.forEach((keyId, idx) => {
         const keyObj = keyMapById.get(keyId);
-        let homeX = 0;
-        let homeZ = 0;
+        let targetX = 0;
+        let targetZ = 0;
         if (keyId === 'space') {
-          homeX = isLeft ? -1.4 : 1.4;
-          homeZ = keyObj ? keyObj.group.position.z : 2.14;
+          targetX = isLeft ? -1.3 : 1.3;
+          targetZ = keyObj ? keyObj.group.position.z : 2.14;
         } else if (keyObj) {
-          homeX = keyObj.group.position.x;
-          homeZ = keyObj.group.position.z;
+          targetX = keyObj.group.position.x;
+          targetZ = keyObj.group.position.z;
         }
-        const homeY = 0.50;
+        const targetY = 0.38;
 
-        // Floating HUD Reticle Ring above Keycap
-        const ringGeo = new THREE.RingGeometry(0.18, 0.28, 32);
-        ringGeo.rotateX(-Math.PI / 2);
-        const ringMat = new THREE.MeshBasicMaterial({
+        const kX = palmX + knuckleOffsets[idx][0];
+        const kY = palmY + 0.05;
+        const kZ = palmZ + knuckleOffsets[idx][1];
+
+        // Knuckle Joint Node
+        const knGeo = new THREE.SphereGeometry(0.11, 16, 16);
+        const knMesh = new THREE.Mesh(knGeo, handMat);
+        knMesh.position.set(kX, kY, kZ);
+        handRig.add(knMesh);
+
+        // Natural Anatomical Curved Finger Arch (Bezier Curve)
+        const archPeakY = Math.max(kY, targetY) + 0.35;
+        const midX = (kX + targetX) * 0.5;
+        const midZ = (kZ + targetZ) * 0.5;
+
+        const p1 = new THREE.Vector3(kX, kY, kZ);
+        const p2 = new THREE.Vector3(midX, archPeakY, midZ);
+        const p3 = new THREE.Vector3(targetX, targetY, targetZ);
+
+        const fingerCurve = new THREE.QuadraticBezierCurve3(p1, p2, p3);
+        const fingerGeo = new THREE.TubeGeometry(fingerCurve, 20, 0.075, 12, false);
+        const fingerMesh = new THREE.Mesh(fingerGeo, handMat);
+        handRig.add(fingerMesh);
+
+        // Soft Glowing Fingertip Pad
+        const tipGeo = new THREE.SphereGeometry(0.12, 16, 16);
+        const tipMat = new THREE.MeshStandardMaterial({
           color: color,
-          transparent: true,
-          opacity: 0.88,
-          side: THREE.DoubleSide,
-          depthWrite: false,
-          blending: THREE.AdditiveBlending
+          roughness: 0.1,
+          metalness: 0.1,
+          emissive: color,
+          emissiveIntensity: 0.4
         });
-        const ringMesh = new THREE.Mesh(ringGeo, ringMat);
-        ringMesh.position.set(homeX, homeY, homeZ);
-        handRig.add(ringMesh);
-
-        // Center Pulsing Pip
-        const pipGeo = new THREE.CircleGeometry(0.08, 16);
-        pipGeo.rotateX(-Math.PI / 2);
-        const pipMesh = new THREE.Mesh(pipGeo, ringMat);
-        pipMesh.position.set(homeX, homeY + 0.005, homeZ);
-        handRig.add(pipMesh);
-
-        // Knuckle Anchor Coordinates
-        let knuckleX, knuckleZ;
-        const knuckleY = palmY + 0.06;
-        if (isLeft) {
-          if (idx === 4) { // Thumb
-            knuckleX = -2.4;
-            knuckleZ = palmZ - 0.25;
-          } else {
-            const leftKnuckles = [-5.0, -4.25, -3.5, -2.75];
-            knuckleX = leftKnuckles[idx];
-            knuckleZ = palmZ - 0.95;
-          }
-        } else {
-          if (idx === 4) { // Thumb
-            knuckleX = 1.1;
-            knuckleZ = palmZ - 0.25;
-          } else {
-            const rightKnuckles = [1.2, 1.95, 2.7, 3.45];
-            knuckleX = rightKnuckles[idx];
-            knuckleZ = palmZ - 0.95;
-          }
-        }
-
-        // Knuckle Glowing Sphere Node
-        const knNodeGeo = new THREE.SphereGeometry(0.07, 12, 12);
-        const knNodeMat = new THREE.MeshBasicMaterial({ color: color, blending: THREE.AdditiveBlending });
-        const knNode = new THREE.Mesh(knNodeGeo, knNodeMat);
-        knNode.position.set(knuckleX, knuckleY, knuckleZ);
-        handRig.add(knNode);
-
-        // Sleek Holographic Laser Tracer Beam
-        const kPos = new THREE.Vector3(knuckleX, knuckleY, knuckleZ);
-        const tPos = new THREE.Vector3(homeX, homeY, homeZ);
-        const mPos = new THREE.Vector3((knuckleX + homeX) / 2, homeY + 0.36, (knuckleZ + homeZ) / 2);
-
-        const beamCurve = new THREE.QuadraticBezierCurve3(kPos, mPos, tPos);
-        const beamGeo = new THREE.TubeGeometry(beamCurve, 16, 0.024, 6, false);
-        const beamMat = new THREE.MeshBasicMaterial({
-          color: color,
-          transparent: true,
-          opacity: 0.65,
-          depthWrite: false,
-          blending: THREE.AdditiveBlending
-        });
-        const beamMesh = new THREE.Mesh(beamGeo, beamMat);
-        handRig.add(beamMesh);
+        const tipMesh = new THREE.Mesh(tipGeo, tipMat);
+        tipMesh.position.set(targetX, targetY, targetZ);
+        handRig.add(tipMesh);
 
         fingers.push({
           keyId: keyId,
-          homePos: new THREE.Vector3(homeX, homeY, homeZ),
-          currentPos: new THREE.Vector3(homeX, homeY, homeZ),
-          targetPos: new THREE.Vector3(homeX, homeY, homeZ),
-          knucklePos: kPos,
-          ringMesh: ringMesh,
-          pipMesh: pipMesh,
-          beamMesh: beamMesh,
-          beamMat: beamMat,
+          baseY: targetY,
+          tipMesh: tipMesh,
           strikePhase: 0
         });
       });
 
-      return { rig: handRig, fingers: fingers, reticleOuter: reticleOuter, reticleInner: reticleInner, coreLight: coreLight };
+      return { rig: handRig, palmMesh: palmMesh, fingers: fingers };
     }
 
-    const leftHand = createCyberHandRig(true);
-    const rightHand = createCyberHandRig(false);
+    const leftHand = createErgonomicHand(true);
+    const rightHand = createErgonomicHand(false);
     handsGuideGroup.add(leftHand.rig);
     handsGuideGroup.add(rightHand.rig);
 
-    // Strike Kinematic Holographic Finger
+    // Strike Kinematic Finger on Keypress
     function strikeHolographicFinger(keyDef) {
       if (!showHands) return;
       const fingerType = keyDef.finger || 'li';
@@ -1351,18 +1421,13 @@
       }
 
       const f = hand.fingers[fingerIdx];
-      if (!f) return;
-
-      const targetKey = keyMapById.get(keyDef.id);
-      if (targetKey) {
-        f.targetPos.set(targetKey.group.position.x, 0.32, targetKey.group.position.z);
+      if (f) {
         f.strikePhase = 1.0;
-        f.ringMesh.scale.set(1.5, 1.5, 1.5);
       }
     }
 
     // ============================================================
-    // H. CAMERA ORBIT CONTROLLER & INPUT INTERACTIONS
+    // H. INTERACTION, ORBIT CONTROLS, & RAYCASTING
     // ============================================================
     let isDragging = false;
     let prevMouseX = 0;
@@ -1373,49 +1438,34 @@
     let targetRadius = 18.5;
 
     function updateCameraFromAngles() {
-      const targetLook = viewMode === 'switch' ? new THREE.Vector3(0, 1.0, 0) : defaultCamLook;
-      camera.position.x = targetLook.x + targetRadius * Math.sin(sphericalPhi) * Math.sin(sphericalTheta);
-      camera.position.y = targetLook.y + targetRadius * Math.cos(sphericalPhi);
-      camera.position.z = targetLook.z + targetRadius * Math.sin(sphericalPhi) * Math.cos(sphericalTheta);
-      camera.lookAt(targetLook);
+      const x = sphericalRadius * Math.sin(sphericalPhi) * Math.sin(sphericalTheta);
+      const y = sphericalRadius * Math.cos(sphericalPhi);
+      const z = sphericalRadius * Math.sin(sphericalPhi) * Math.cos(sphericalTheta);
+      camera.position.set(x, y, z);
+      camera.lookAt(defaultCamLook);
     }
     updateCameraFromAngles();
 
-    // Mouse & Touch Orbit / Key Click
-    renderer.domElement.addEventListener('pointerdown', (e) => {
+    // Mouse Drag to Orbit
+    const cvElement = renderer.domElement;
+    cvElement.style.cursor = 'grab';
+
+    cvElement.addEventListener('mousedown', (e) => {
       isDragging = true;
       prevMouseX = e.clientX;
       prevMouseY = e.clientY;
+      cvElement.style.cursor = 'grabbing';
       initAudioEngine();
+    });
 
-      const rect = renderer.domElement.getBoundingClientRect();
-      const mouse = new THREE.Vector2(
-        ((e.clientX - rect.left) / rect.width) * 2 - 1,
-        -((e.clientY - rect.top) / rect.height) * 2 + 1
-      );
-      const raycaster = new THREE.Raycaster();
-      raycaster.setFromCamera(mouse, camera);
-
-      if (viewMode === 'switch') {
-        const switchHits = raycaster.intersectObjects([macroCapMesh, baseBody, macroSpringMesh]);
-        if (switchHits.length > 0) {
-          pressMacroSwitch();
-        }
-      } else {
-        const interactiveMeshes = keyObjects.map(k => k.capMesh);
-        const intersects = raycaster.intersectObjects(interactiveMeshes);
-        if (intersects.length > 0) {
-          const hitCap = intersects[0].object;
-          const hitKey = keyObjects.find(k => k.capMesh === hitCap);
-          if (hitKey) {
-            hitKey.press();
-            setTimeout(() => hitKey.release(), 140);
-          }
-        }
+    window.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        cvElement.style.cursor = 'grab';
       }
     });
 
-    window.addEventListener('pointermove', (e) => {
+    window.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
       const dx = e.clientX - prevMouseX;
       const dy = e.clientY - prevMouseY;
@@ -1423,45 +1473,99 @@
       prevMouseY = e.clientY;
 
       sphericalTheta -= dx * 0.007;
-      sphericalPhi = Math.max(0.18, Math.min(Math.PI / 2.05, sphericalPhi - dy * 0.007));
-      autoRotate = false;
-      const spinBtn = document.getElementById('btnAutoRotate');
-      if (spinBtn) spinBtn.classList.remove('active');
+      sphericalPhi -= dy * 0.007;
+      sphericalPhi = Math.max(0.15, Math.min(Math.PI / 2.05, sphericalPhi));
+      updateCameraFromAngles();
     });
 
-    window.addEventListener('pointerup', () => { isDragging = false; });
-    window.addEventListener('pointercancel', () => { isDragging = false; });
-
-    renderer.domElement.addEventListener('wheel', (e) => {
+    // Scroll to Zoom
+    cvElement.addEventListener('wheel', (e) => {
       e.preventDefault();
-      const minR = viewMode === 'switch' ? 4.5 : 8.0;
-      const maxR = viewMode === 'switch' ? 16.0 : 34.0;
-      targetRadius = Math.max(minR, Math.min(maxR, targetRadius + e.deltaY * 0.015));
+      targetRadius += e.deltaY * 0.012;
+      const minR = viewMode === 'switch' ? 4.5 : 9.0;
+      const maxR = viewMode === 'switch' ? 18.0 : 32.0;
+      targetRadius = Math.max(minR, Math.min(maxR, targetRadius));
     }, { passive: false });
 
-    // Physical Hardware Keyboard Typing Listener
+    // Touch Support for Mobile / Tablet
+    cvElement.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        prevMouseX = e.touches[0].clientX;
+        prevMouseY = e.touches[0].clientY;
+        initAudioEngine();
+      }
+    }, { passive: true });
+
+    cvElement.addEventListener('touchmove', (e) => {
+      if (!isDragging || e.touches.length !== 1) return;
+      const dx = e.touches[0].clientX - prevMouseX;
+      const dy = e.touches[0].clientY - prevMouseY;
+      prevMouseX = e.touches[0].clientX;
+      prevMouseY = e.touches[0].clientY;
+
+      sphericalTheta -= dx * 0.009;
+      sphericalPhi -= dy * 0.009;
+      sphericalPhi = Math.max(0.15, Math.min(Math.PI / 2.05, sphericalPhi));
+      updateCameraFromAngles();
+    }, { passive: true });
+
+    cvElement.addEventListener('touchend', () => {
+      isDragging = false;
+    });
+
+    // Raycaster Click Detection on 3D Keycaps
+    const raycaster = new THREE.Raycaster();
+    const mouseCoord = new THREE.Vector2();
+
+    cvElement.addEventListener('click', (e) => {
+      const rect = cvElement.getBoundingClientRect();
+      mouseCoord.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      mouseCoord.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+      raycaster.setFromCamera(mouseCoord, camera);
+
+      if (viewMode === 'switch') {
+        const hits = raycaster.intersectObjects(macroSwitchGroup.children, true);
+        if (hits.length > 0) {
+          pressMacroSwitch();
+        }
+      } else {
+        const capMeshes = keyObjects.map(k => k.capMesh);
+        const hits = raycaster.intersectObjects(capMeshes, false);
+        if (hits.length > 0) {
+          const hitMesh = hits[0].object;
+          const keyObj = keyObjects.find(k => k.capMesh === hitMesh);
+          if (keyObj) {
+            keyObj.press();
+            setTimeout(() => keyObj.release(), 160);
+          }
+        }
+      }
+    });
+
+    // Physical Hardware Keyboard Sync
     window.addEventListener('keydown', (e) => {
+      if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
+      const k = keyMapByCode.get(e.code);
+      if (k) {
+        k.press();
+      }
       if (viewMode === 'switch') {
         pressMacroSwitch();
-      } else {
-        const keyObj = keyMapByCode.get(e.code);
-        if (keyObj && !keyObj.isPressed) {
-          keyObj.press();
-        }
       }
     });
 
     window.addEventListener('keyup', (e) => {
-      if (viewMode !== 'switch') {
-        const keyObj = keyMapByCode.get(e.code);
-        if (keyObj) {
-          keyObj.release();
-        }
+      if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
+      const k = keyMapByCode.get(e.code);
+      if (k) {
+        k.release();
       }
     });
 
     // ============================================================
-    // I. UI CONTROLS TOOLBAR INTEGRATION
+    // I. TOOLBAR CONTROLS & EVENT WIRING
     // ============================================================
     function setupControls() {
       // 1. Layout Switching
@@ -1472,10 +1576,16 @@
           btn.classList.add('active');
           currentLayout = btn.dataset.layout || 'standard';
           keyObjects.forEach(k => k.updateTexture());
+          if (macroTexture) {
+            macroTexture.dispose();
+            const newTex = generateKeyTexture(ROW3_DEFS[8], currentLayout, currentTheme, currentThemeKey);
+            macroCapTopMat.map = newTex;
+            macroCapTopMat.needsUpdate = true;
+          }
         });
       });
 
-      // 2. Material Themes
+      // 2. Theme Switching
       const themeButtons = document.querySelectorAll('.key-theme-btn');
       themeButtons.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -1495,17 +1605,22 @@
           haloMat.color.setHex(currentTheme.underglow);
           stageRim.material.color.setHex(currentTheme.caseRim);
           deskpadMat.color.setHex(currentTheme.deskpadColor);
-          deskpadBorder.material.color.setHex(currentTheme.underglow);
+          deskpadBorder.material.color.setHex(currentTheme.deskpadStitch);
           cableMat.color.setHex(currentTheme.caseRim);
 
           keyObjects.forEach(k => {
             k.miniStemMat.color.setHex(currentTheme.stemColor);
-            k.sideMat.color.setHex(k.def.isAccent ? currentTheme.accentColor : currentTheme.caseColor);
             k.updateTexture();
           });
 
           stemMat.color.setHex(currentTheme.stemColor);
           macroCapSideMat.color.setHex(currentTheme.caseColor);
+          if (macroTexture) {
+            macroTexture.dispose();
+            const newTex = generateKeyTexture(ROW3_DEFS[8], currentLayout, currentTheme, currentThemeKey);
+            macroCapTopMat.map = newTex;
+            macroCapTopMat.needsUpdate = true;
+          }
         });
       });
 
@@ -1708,24 +1823,24 @@
 
       // 4. Macro Switch Smooth Physics & Exploded Separation
       if (viewMode === 'switch') {
-        const targetCapY = isExploded ? 2.50 : (isMacroPressed ? 0.78 : 1.02);
+        const targetCapY = isExploded ? 2.50 : (isMacroPressed ? 0.78 : 1.08);
         const diff = targetCapY - macroCurrentY;
         macroVelocity += diff * 0.45;
         macroVelocity *= 0.72;
         macroCurrentY += macroVelocity;
         macroCapGroup.position.y = macroCurrentY;
 
-        const targetTopY = isExploded ? 1.75 : 0.46;
+        const targetTopY = isExploded ? 1.75 : 0.50;
         topHousingGroup.position.y += (targetTopY - topHousingGroup.position.y) * 0.20;
 
-        const targetStemY = isExploded ? 1.10 : (0.48 + (macroCurrentY - 1.02) * 0.95);
+        const targetStemY = isExploded ? 1.10 : (0.56 + (macroCurrentY - 1.08) * 0.95);
         stemGroup.position.y += (targetStemY - stemGroup.position.y) * 0.24;
 
-        const targetSpringY = isExploded ? 0.52 : 0.20;
+        const targetSpringY = isExploded ? 0.52 : 0.22;
         springGroup.position.y += (targetSpringY - springGroup.position.y) * 0.20;
 
         if (!isExploded) {
-          macroSpringMesh.scale.y = Math.max(0.65, 1.0 + (macroCurrentY - 1.02) * 1.3);
+          macroSpringMesh.scale.y = Math.max(0.65, 1.0 + (macroCurrentY - 1.08) * 1.3);
         } else {
           macroSpringMesh.scale.y = 1.0;
         }
@@ -1737,7 +1852,7 @@
           const hue = (time * 0.28 + (k.group.position.x / boardWidth) + (k.group.position.z / boardDepth)) % 1.0;
           k.keyLight.color.setHSL(hue, 1.0, 0.5);
           if (!k.isPressed) {
-            k.topMat.emissive.setHSL(hue, 0.9, 0.15);
+            k.topMat.emissive.setHSL(hue, 0.9, 0.12);
           }
         });
         const underglowHue = (time * 0.28) % 1.0;
@@ -1748,30 +1863,15 @@
 
       // 6. Holographic Kinematic Hands Reticle Animation
       if (showHands) {
-        const hoverOffset = Math.sin(time * 2.2) * 0.035;
-        leftHand.reticleOuter.position.y = 0.52 + hoverOffset;
-        leftHand.reticleInner.position.y = 0.52 + hoverOffset;
-        leftHand.reticleOuter.rotation.z += delta * 0.5;
-        leftHand.reticleInner.rotation.z -= delta * 0.8;
-
-        rightHand.reticleOuter.position.y = 0.52 + hoverOffset;
-        rightHand.reticleInner.position.y = 0.52 + hoverOffset;
-        rightHand.reticleOuter.rotation.z -= delta * 0.5;
-        rightHand.reticleInner.rotation.z += delta * 0.8;
-
         [leftHand, rightHand].forEach(hand => {
           hand.fingers.forEach(f => {
             if (f.strikePhase > 0) {
-              f.strikePhase -= delta * 3.5;
-              if (f.strikePhase <= 0) {
-                f.strikePhase = 0;
-                f.targetPos.copy(f.homePos);
-                f.ringMesh.scale.set(1.0, 1.0, 1.0);
-              }
+              f.strikePhase = Math.max(0, f.strikePhase - delta * 4.0);
+              const dip = Math.sin(f.strikePhase * Math.PI) * 0.24;
+              f.tipMesh.position.y = f.baseY - dip;
+            } else {
+              f.tipMesh.position.y = f.baseY;
             }
-            f.currentPos.lerp(f.targetPos, 0.22);
-            f.ringMesh.position.copy(f.currentPos);
-            f.pipMesh.position.set(f.currentPos.x, f.currentPos.y + 0.005, f.currentPos.z);
           });
         });
       }
@@ -1780,18 +1880,19 @@
     }
     animate();
 
-    // Resize Handler
+    // Responsive Canvas Resize Listener
     window.addEventListener('resize', () => {
-      if (!container) return;
-      const w = container.clientWidth || 800;
-      const h = container.clientHeight || 520;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
+      const nw = container.clientWidth;
+      const nh = container.clientHeight;
+      if (nw && nh) {
+        camera.aspect = nw / nh;
+        camera.updateProjectionMatrix();
+        renderer.setSize(nw, nh);
+      }
     });
   }
 
-  // Auto-initialize when DOM is ready
+  // Auto-boot on DOM ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initKeyboard3D);
   } else {
