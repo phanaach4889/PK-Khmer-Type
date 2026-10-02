@@ -605,6 +605,7 @@ const FINGERS = [
   {id:'ri', hand:'R', home:'j', kind:'index',  baseW:15.0, tipW:9.0, kDist:58, restLen:56, restAng:-0.06},
   {id:'rm', hand:'R', home:'k', kind:'middle', baseW:15.5, tipW:9.5, kDist:54, restLen:60, restAng:0.0},
   {id:'rr', hand:'R', home:'l', kind:'ring',   baseW:14.5, tipW:9.0, kDist:60, restLen:56, restAng:0.04},
+  {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:12.5, tipW:7.5, kDist:68, restLen:52, restAng:0.10},
 ];
 window.FINGERS = FINGERS;
 

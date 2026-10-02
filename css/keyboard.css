@@ -740,18 +740,18 @@
     position: fixed;
     z-index: 10000;
     pointer-events: none;
-    width: 280px;
-    max-width: calc(100vw - 32px);
-    padding: 12px 14px;
-    background: rgba(10, 14, 28, 0.94);
+    width: 250px;
+    max-width: calc(100vw - 28px);
+    padding: 9px 12px;
+    background: rgba(10, 14, 26, 0.94);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(56, 189, 248, 0.38);
-    border-radius: 12px;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 10px;
     box-shadow:
-      0 16px 40px rgba(0, 0, 0, 0.7),
-      0 0 24px rgba(56, 189, 248, 0.18),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      0 14px 34px rgba(0, 0, 0, 0.75),
+      0 0 20px rgba(56, 189, 248, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
     color: #e2e8f0;
     font-family: 'Kantumruy Pro', 'Khmer OS Battambang', 'Space Grotesk', -apple-system, sans-serif;
     opacity: 0;
@@ -768,25 +768,26 @@
   .pk-chud-top {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
+    gap: 9px;
+    margin-bottom: 6px;
   }
 
   .pk-chud-glyph-box {
-    width: 44px;
-    height: 44px;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.15));
-    border: 1px solid rgba(56, 189, 248, 0.5);
-    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(129, 140, 248, 0.12));
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    border-radius: 8px;
     font-family: 'Kantumruy Pro', 'Khmer OS Battambang', sans-serif;
-    font-size: 1.6rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: #fff;
-    text-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
     flex-shrink: 0;
+    overflow: hidden;
   }
 
   .pk-chud-title-wrap {
@@ -795,86 +796,95 @@
   }
 
   .pk-chud-name {
-    font-size: 0.85rem;
-    font-weight: 700;
+    font-size: 0.8rem;
+    font-weight: 600;
     color: #f8fafc;
     line-height: 1.25;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    letter-spacing: -0.01em;
   }
 
   .pk-chud-category {
     display: inline-block;
-    font-size: 0.62rem;
+    font-size: 0.56rem;
     font-weight: 600;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: #38bdf8;
-    margin-top: 2px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-top: 3px;
+    line-height: 1.3;
   }
 
   .pk-chud-grid {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    margin-top: 8px;
-    padding-top: 8px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    gap: 4px;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
   }
 
   .pk-chud-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
-    font-size: 0.68rem;
+    gap: 6px;
+    font-size: 0.65rem;
   }
 
   .pk-chud-label {
-    color: #94a3b8;
-    font-size: 0.64rem;
+    color: #64748b;
+    font-size: 0.58rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
     flex-shrink: 0;
+    font-weight: 500;
   }
 
   .pk-chud-recipe {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    padding: 2px 7px;
-    border-radius: 5px;
-    color: #ffd166;
-    font-weight: 700;
-    font-size: 0.68rem;
+    gap: 3px;
+    background: rgba(255, 209, 102, 0.1);
+    border: 1px solid rgba(255, 209, 102, 0.28);
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: #fef08a;
+    font-weight: 600;
+    font-size: 0.64rem;
   }
 
   .pk-chud-recipe kbd {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.45);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 3px;
     padding: 0 4px;
     font-family: inherit;
     color: #fff;
+    font-size: 0.62rem;
   }
 
   .pk-chud-finger {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 0.65rem;
     color: #cbd5e1;
   }
 
   .pk-chud-finger-dot {
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     flex-shrink: 0;
-    box-shadow: 0 0 6px currentColor;
+    box-shadow: 0 0 5px currentColor;
   }
 
   .pk-chud-subscript-badge {
@@ -882,27 +892,28 @@
     align-items: center;
     justify-content: space-between;
     gap: 6px;
-    padding: 4px 8px;
-    margin-top: 6px;
-    background: rgba(147, 51, 234, 0.15);
-    border: 1px solid rgba(168, 85, 247, 0.35);
-    border-radius: 6px;
-    font-size: 0.65rem;
+    padding: 3px 6px;
+    margin-top: 5px;
+    background: rgba(147, 51, 234, 0.14);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: 5px;
+    font-size: 0.62rem;
     color: #e9d5ff;
   }
 
   .pk-chud-subscript-badge .sub-glyph {
-    font-family: 'Kantumruy Pro', sans-serif;
-    font-size: 1.1rem;
+    font-family: 'Kantumruy Pro', 'Khmer OS Battambang', sans-serif;
+    font-size: 0.95rem;
     color: #fff;
+    line-height: 1;
   }
 
   .pk-chud-desc {
-    font-size: 0.62rem;
+    font-size: 0.6rem;
     color: #94a3b8;
-    margin-top: 6px;
+    margin-top: 5px;
     line-height: 1.35;
-    font-style: italic;
+    font-style: normal;
   }
 
   /* Always-on Sleek Cyber Precision Reticle & Cursor Companion */

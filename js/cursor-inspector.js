@@ -36,7 +36,7 @@
     'ទ': { name: 'To', nameKm: 'ទោ', ipa: '[tɔː]', series: '2nd (អ៊-ពួក)', group: 'Dental', type: 'Consonant', sub: '្ទ' },
     'ធ': { name: 'Tho', nameKm: 'ធោ', ipa: '[tʰɔː]', series: '2nd (អ៊-ពួក)', group: 'Dental', type: 'Consonant', sub: '្ធ' },
     'ន': { name: 'No', nameKm: 'នោ', ipa: '[nɔː]', series: '2nd (អ៊-ពួក)', group: 'Dental', type: 'Consonant', sub: '្ន' },
-    'ប': { name: 'Ba', nameKm: 'បា', ipa: '[ɓɑː]', series: '1st (អ-ពួក)', group: 'Labial', type: 'Consonant', sub: '្order' },
+    'ប': { name: 'Ba', nameKm: 'បា', ipa: '[ɓɑː]', series: '1st (អ-ពួក)', group: 'Labial', type: 'Consonant', sub: '្ប' },
     'ផ': { name: 'Pha', nameKm: 'ផា', ipa: '[pʰɑː]', series: '1st (អ-ពួក)', group: 'Labial', type: 'Consonant', sub: '្ផ' },
     'ព': { name: 'Po', nameKm: 'ពោ', ipa: '[pɔː]', series: '2nd (អ៊-ពួក)', group: 'Labial', type: 'Consonant', sub: '្ព' },
     'ភ': { name: 'Pho', nameKm: 'ភោ', ipa: '[pʰɔː]', series: '2nd (អ៊-ពួក)', group: 'Labial', type: 'Consonant', sub: '្ភ' },
@@ -124,6 +124,133 @@
     rp: { nameEn: 'Right Pinky', nameKm: 'ដៃស្ដាំ · កូនដៃ', color: '#e879f9' }
   };
 
+  // Human-crafted Special Key Profiles (prevents overflow and robotic labels)
+  const SPECIAL_KEYS = {
+    space: {
+      symbol: '␣',
+      title: 'Spacebar · ដកឃ្លា',
+      category: 'Word Separator',
+      recipe: '<kbd>Space</kbd>',
+      fingerDesc: 'Left or Right Thumb',
+      note: 'Inserts zero-width space (ZWSP) in Khmer, standard space in English.'
+    },
+    backspace: {
+      symbol: '⌫',
+      title: 'Backspace · លុបថយក្រោយ',
+      category: 'Editing Key',
+      recipe: '<kbd>Backspace</kbd>',
+      fingerDesc: 'Right Pinky',
+      note: 'Deletes the previous character or subscript cluster.'
+    },
+    tab: {
+      symbol: '⇥',
+      title: 'Tab · ថេប',
+      category: 'Navigation Key',
+      recipe: '<kbd>Tab</kbd>',
+      fingerDesc: 'Left Pinky',
+      note: 'Navigates focus or advances indentation.'
+    },
+    enter: {
+      symbol: '↵',
+      title: 'Enter · ចុះបន្ទាត់',
+      category: 'Action Key',
+      recipe: '<kbd>Enter</kbd>',
+      fingerDesc: 'Right Pinky',
+      note: 'Advances line or submits practice drills.'
+    },
+    caps: {
+      symbol: '⇪',
+      title: 'Caps Lock',
+      category: 'Toggle Lock',
+      recipe: '<kbd>Caps Lock</kbd>',
+      fingerDesc: 'Left Pinky',
+      note: 'Toggles uppercase in English layout.'
+    },
+    shiftL: {
+      symbol: '⇧',
+      title: 'Left Shift · ស្រទាប់ប្តូរ',
+      category: 'Modifier Layer',
+      recipe: '<kbd>Hold Shift</kbd>',
+      fingerDesc: 'Left Pinky',
+      note: 'Hold to preview and type shifted voiced consonants.'
+    },
+    shiftR: {
+      symbol: '⇧',
+      title: 'Right Shift · ស្រទាប់ប្តូរ',
+      category: 'Modifier Layer',
+      recipe: '<kbd>Hold Shift</kbd>',
+      fingerDesc: 'Right Pinky',
+      note: 'Hold to preview and type shifted voiced consonants.'
+    },
+    ctrlL: {
+      symbol: '⌃',
+      title: 'Left Ctrl · ស្រទាប់ Ctrl',
+      category: 'Currency & Punctuation',
+      recipe: '<kbd>Hold Ctrl</kbd>',
+      fingerDesc: 'Left Thumb',
+      note: 'Hold to type Riel (៛), Baht (฿), Yen (¥), and special marks.'
+    },
+    ctrlR: {
+      symbol: '⌃',
+      title: 'Right Ctrl · ស្រទាប់ Ctrl',
+      category: 'Currency & Punctuation',
+      recipe: '<kbd>Hold Ctrl</kbd>',
+      fingerDesc: 'Right Pinky',
+      note: 'Hold to type currency symbols and punctuation.'
+    },
+    alt: {
+      symbol: '⌥',
+      title: 'Alt Key',
+      category: 'System Modifier',
+      recipe: '<kbd>Alt</kbd>',
+      fingerDesc: 'Left Thumb',
+      note: 'System modifier key.'
+    },
+    altgr: {
+      symbol: '⌥',
+      title: 'AltGr · ស្រទាប់ AltGr',
+      category: 'Independent Vowels',
+      recipe: '<kbd>Hold AltGr</kbd>',
+      fingerDesc: 'Right Thumb',
+      note: 'Hold to type independent vowels (ឫ, ឬ, ឯ) and secondary signs.'
+    }
+  };
+
+  const HUMAN_KEY_LABELS = {
+    grave: '`',
+    k1: '1', k2: '2', k3: '3', k4: '4', k5: '5',
+    k6: '6', k7: '7', k8: '8', k9: '9', k0: '0',
+    minus: '-', equal: '=', backspace: 'Backspace',
+    tab: 'Tab',
+    q: 'Q', w: 'W', e: 'E', r: 'R', t: 'T', y: 'Y', u: 'U', i: 'I', o: 'O', p: 'P',
+    bracketL: '[', bracketR: ']', backslash: '\\',
+    caps: 'Caps',
+    a: 'A', s: 'S', d: 'D', f: 'F', g: 'G', h: 'H', j: 'J', k: 'K', l: 'L',
+    semicolon: ';', quote: "'", enter: 'Enter',
+    shiftL: 'Shift',
+    z: 'Z', x: 'X', c: 'C', v: 'V', b: 'B', n: 'N', m: 'M',
+    comma: ',', period: '.', slash: '/', shiftR: 'Shift',
+    ctrlL: 'Ctrl', alt: 'Alt', space: 'Space', altgr: 'AltGr', ctrlR: 'Ctrl'
+  };
+
+  function getHumanKeyLabel(keyId){
+    if(!keyId) return '';
+    return HUMAN_KEY_LABELS[keyId] || (keyId.startsWith('k') && /^\d$/.test(keyId.slice(1)) ? keyId.slice(1) : keyId.toUpperCase());
+  }
+
+  const KHMER_DIGIT_DATA = {
+    '០': { nameKm: 'សូន្យ', en: 'Zero', sound: 'soun' },
+    '១': { nameKm: 'មួយ', en: 'One', sound: 'muoy' },
+    '២': { nameKm: 'ពីរ', en: 'Two', sound: 'pii' },
+    '៣': { nameKm: 'បី', en: 'Three', sound: 'bei' },
+    '៤': { nameKm: 'បួន', en: 'Four', sound: 'buon' },
+    '៥': { nameKm: 'ប្រាំ', en: 'Five', sound: 'pram' },
+    '៦': { nameKm: 'ប្រាំមួយ', en: 'Six', sound: 'pram-muoy' },
+    '៧': { nameKm: 'ប្រាំពីរ', en: 'Seven', sound: 'pram-pii' },
+    '៨': { nameKm: 'ប្រាំបី', en: 'Eight', sound: 'pram-bei' },
+    '៩': { nameKm: 'ប្រាំបួន', en: 'Nine', sound: 'pram-buon' }
+  };
+
   let inspectorEnabled = true;
   let hudEl = null;
   let reticleEl = null;
@@ -190,14 +317,14 @@
         };
       }
     }
-    // Khmer Digits
+    // Khmer Digits (Human-crafted)
     if(/[០-៩]/.test(char)){
-      const numMap = {'០':'0','១':'1','២':'2','៣':'3','៤':'4','៥':'5','៦':'6','៧':'7','៨':'8','៩':'9'};
+      const numInfo = KHMER_DIGIT_DATA[char] || { nameKm: char, en: '', sound: char };
       return {
         char,
-        name: `Khmer Numeral ${numMap[char] || ''}`,
+        name: `លេខ ${char} · ${numInfo.en} (${numInfo.nameKm})`,
         nameKm: `លេខ ${char}`,
-        ipa: `[${numMap[char] || ''}]`,
+        ipa: `Pronounced: ${numInfo.sound}`,
         type: 'Khmer Numeral'
       };
     }
@@ -206,9 +333,9 @@
       const isUpper = char === char.toUpperCase() && char !== char.toLowerCase();
       return {
         char,
-        name: `Letter ${char.toUpperCase()}`,
-        nameKm: `អក្សរអង់គ្លេស ${char.toUpperCase()}`,
-        ipa: isUpper ? 'Uppercase' : 'Lowercase',
+        name: `Letter ${char.toUpperCase()} · អក្សរ ${char.toUpperCase()}`,
+        nameKm: `អក្សរ ${char.toUpperCase()}`,
+        ipa: isUpper ? 'Shift / Uppercase letter' : 'Base / Lowercase letter',
         type: 'English Letter'
       };
     }
@@ -231,9 +358,9 @@
     }
     if(!hudEl || !hudEl.classList.contains('visible')) return;
 
-    const hudW = 290;
-    const hudH = 175;
-    const gap = 16;
+    const hudW = 250;
+    const hudH = 150;
+    const gap = 14;
     const winW = window.innerWidth;
     const winH = window.innerHeight;
 
@@ -241,11 +368,11 @@
     let posY = y + gap;
 
     // Flip horizontally if overflow right
-    if(posX + hudW > winW - 14){
+    if(posX + hudW > winW - 12){
       posX = x - hudW - gap;
     }
     // Flip vertically if overflow bottom
-    if(posY + hudH > winH - 14){
+    if(posY + hudH > winH - 12){
       posY = y - hudH - gap;
     }
 
@@ -273,96 +400,31 @@
     const fid = (global.KEY_FINGER && global.KEY_FINGER[keyId]) || null;
     const finfo = (fid && FINGER_INFO[fid]) || { nameEn: 'Touch Key', nameKm: 'ម្រាមដៃ', color: '#ffd166' };
 
-    // Dedicated Modifier Key Cards
-    if(keyId === 'shiftL' || keyId === 'shiftR'){
+    // 1. Dedicated Special / Modifier Key Profile
+    if(SPECIAL_KEYS[keyId]){
+      const sk = SPECIAL_KEYS[keyId];
       hudEl.innerHTML = `
         <div class="pk-chud-top">
-          <div class="pk-chud-glyph-box">⇧</div>
+          <div class="pk-chud-glyph-box">${sk.symbol}</div>
           <div class="pk-chud-title-wrap">
-            <div class="pk-chud-name">Shift Layer · ស្រទាប់ Shift</div>
-            <span class="pk-chud-category">Modifier Key · Voiced Consonants</span>
+            <div class="pk-chud-name">${sk.title}</div>
+            <span class="pk-chud-category">${sk.category}</span>
           </div>
         </div>
         <div class="pk-chud-grid">
           <div class="pk-chud-row">
-            <span class="pk-chud-label">Action:</span>
-            <span class="pk-chud-recipe"><kbd>Hold</kbd> to preview &amp; type</span>
+            <span class="pk-chud-label">Keystroke</span>
+            <span class="pk-chud-recipe">${sk.recipe}</span>
           </div>
           <div class="pk-chud-row">
-            <span class="pk-chud-label">Assigned Finger:</span>
+            <span class="pk-chud-label">Finger</span>
             <span class="pk-chud-finger">
               <span class="pk-chud-finger-dot" style="background:${finfo.color};color:${finfo.color};"></span>
-              <span>${finfo.nameEn}</span>
+              <span>${sk.fingerDesc || finfo.nameEn}</span>
             </span>
           </div>
         </div>
-        <div class="pk-chud-desc">Rest pointer to preview all shifted consonants &amp; vowel symbols. Click key or pill to pin layer.</div>
-      `;
-      hudEl.classList.add('visible');
-      if(reticleEl) reticleEl.classList.add('target-key');
-      if(typeof global.setActiveFinger === 'function') global.setActiveFinger(keyId, 'base');
-      highlightQuickGuideMiniKey(keyId, fid);
-      if(ev) updatePosition(ev.clientX, ev.clientY);
-      else if(keyEl){ const r = keyEl.getBoundingClientRect(); updatePosition(r.left + r.width/2, r.top + r.height/2); }
-      return;
-    }
-
-    if(keyId === 'ctrlL' || keyId === 'ctrlR'){
-      hudEl.innerHTML = `
-        <div class="pk-chud-top">
-          <div class="pk-chud-glyph-box">⌃</div>
-          <div class="pk-chud-title-wrap">
-            <div class="pk-chud-name">Ctrl Layer · ស្រទាប់ Ctrl</div>
-            <span class="pk-chud-category">Modifier Key · Currency &amp; Signs</span>
-          </div>
-        </div>
-        <div class="pk-chud-grid">
-          <div class="pk-chud-row">
-            <span class="pk-chud-label">Action:</span>
-            <span class="pk-chud-recipe"><kbd>Hold</kbd> for currency (៛, ฿, ¥)</span>
-          </div>
-          <div class="pk-chud-row">
-            <span class="pk-chud-label">Assigned Finger:</span>
-            <span class="pk-chud-finger">
-              <span class="pk-chud-finger-dot" style="background:${finfo.color};color:${finfo.color};"></span>
-              <span>${finfo.nameEn}</span>
-            </span>
-          </div>
-        </div>
-        <div class="pk-chud-desc">Hold or click to access currency and rare punctuation marks.</div>
-      `;
-      hudEl.classList.add('visible');
-      if(reticleEl) reticleEl.classList.add('target-key');
-      if(typeof global.setActiveFinger === 'function') global.setActiveFinger(keyId, 'base');
-      highlightQuickGuideMiniKey(keyId, fid);
-      if(ev) updatePosition(ev.clientX, ev.clientY);
-      else if(keyEl){ const r = keyEl.getBoundingClientRect(); updatePosition(r.left + r.width/2, r.top + r.height/2); }
-      return;
-    }
-
-    if(keyId === 'altgr'){
-      hudEl.innerHTML = `
-        <div class="pk-chud-top">
-          <div class="pk-chud-glyph-box">⌥</div>
-          <div class="pk-chud-title-wrap">
-            <div class="pk-chud-name">AltGr Layer · ស្រទាប់ AltGr</div>
-            <span class="pk-chud-category">Modifier Key · Independent Vowels</span>
-          </div>
-        </div>
-        <div class="pk-chud-grid">
-          <div class="pk-chud-row">
-            <span class="pk-chud-label">Action:</span>
-            <span class="pk-chud-recipe"><kbd>Hold</kbd> for vowels (ឫ, ឬ, ឯ)</span>
-          </div>
-          <div class="pk-chud-row">
-            <span class="pk-chud-label">Assigned Finger:</span>
-            <span class="pk-chud-finger">
-              <span class="pk-chud-finger-dot" style="background:${finfo.color};color:${finfo.color};"></span>
-              <span>${finfo.nameEn}</span>
-            </span>
-          </div>
-        </div>
-        <div class="pk-chud-desc">Hold or click to access Khmer independent vowels and secondary numbers.</div>
+        ${sk.note ? `<div class="pk-chud-desc">${sk.note}</div>` : ''}
       `;
       hudEl.classList.add('visible');
       if(reticleEl) reticleEl.classList.add('target-key');
@@ -381,46 +443,58 @@
       else if(keyEl.textContent) glyph = keyEl.textContent.trim();
     }
 
+    const keyLabel = getHumanKeyLabel(keyId);
     const info = getCharInfo(glyph, keyId, layer);
 
-    // Keystroke recipe
-    let recipeHtml = '';
+    // Keystroke recipe (clean, human-readable)
+    let recipeHtml = `<kbd>${keyLabel}</kbd>`;
     const coengKey = layoutId === 'nida' ? 'Shift + J' : 'J';
     if(layer === 'shift'){
-      recipeHtml = `<kbd>Shift</kbd> + <kbd>${keyId.toUpperCase()}</kbd>`;
+      recipeHtml = `<kbd>Shift</kbd> + <kbd>${keyLabel}</kbd>`;
     } else if(layer === 'altgr'){
-      recipeHtml = `<kbd>AltGr</kbd> + <kbd>${keyId.toUpperCase()}</kbd>`;
+      recipeHtml = `<kbd>AltGr</kbd> + <kbd>${keyLabel}</kbd>`;
     } else if(layer === 'ctrl'){
-      recipeHtml = `<kbd>Ctrl</kbd> + <kbd>${keyId.toUpperCase()}</kbd>`;
-    } else {
-      recipeHtml = `<kbd>${keyId.toUpperCase()}</kbd> (Direct key)`;
+      recipeHtml = `<kbd>Ctrl</kbd> + <kbd>${keyLabel}</kbd>`;
     }
 
     let subHtml = '';
     if(info && info.sub && layoutId !== 'english'){
       subHtml = `
         <div class="pk-chud-subscript-badge">
-          <span>Subscript (ជើង): <strong class="sub-glyph">${info.sub}</strong></span>
-          <span class="pk-chud-recipe"><kbd>${coengKey}</kbd> + <kbd>${keyId.toUpperCase()}</kbd></span>
+          <span>Subscript <strong class="sub-glyph">${info.sub}</strong></span>
+          <span class="pk-chud-recipe"><kbd>${coengKey}</kbd> + <kbd>${keyLabel}</kbd></span>
         </div>
       `;
     }
 
+    let displayGlyph = glyph || keyLabel;
+    if(displayGlyph.length > 2){
+      displayGlyph = displayGlyph.charAt(0);
+    }
+
+    let cardTitle = info ? (info.name + (info.nameKm && !info.name.includes(info.nameKm) ? (' · ' + info.nameKm) : '')) : `Key ${keyLabel}`;
+    let cardCat = info ? (info.type + (info.series ? (' · ' + info.series) : (info.group ? (' · ' + info.group) : ''))) : 'Typing Key';
+
+    let soundHtml = '';
+    if(info && info.ipa){
+      soundHtml = `<div class="pk-chud-desc">${info.ipa.startsWith('Pronounced') ? info.ipa : ('Sound: ' + info.ipa)}</div>`;
+    }
+
     hudEl.innerHTML = `
       <div class="pk-chud-top">
-        <div class="pk-chud-glyph-box">${glyph || keyId.toUpperCase()}</div>
+        <div class="pk-chud-glyph-box">${displayGlyph}</div>
         <div class="pk-chud-title-wrap">
-          <div class="pk-chud-name">${info ? (info.name + ' · ' + info.nameKm) : keyId.toUpperCase()}</div>
-          <span class="pk-chud-category">${info ? (info.type + (info.series ? (' · ' + info.series) : '')) : 'Interactive Key'}</span>
+          <div class="pk-chud-name">${cardTitle}</div>
+          <span class="pk-chud-category">${cardCat}</span>
         </div>
       </div>
       <div class="pk-chud-grid">
         <div class="pk-chud-row">
-          <span class="pk-chud-label">Keystroke:</span>
+          <span class="pk-chud-label">Keystroke</span>
           <span class="pk-chud-recipe">${recipeHtml}</span>
         </div>
         <div class="pk-chud-row">
-          <span class="pk-chud-label">Assigned Finger:</span>
+          <span class="pk-chud-label">Finger</span>
           <span class="pk-chud-finger">
             <span class="pk-chud-finger-dot" style="background:${finfo.color};color:${finfo.color};"></span>
             <span>${finfo.nameEn}</span>
@@ -428,7 +502,7 @@
         </div>
       </div>
       ${subHtml}
-      ${info && info.ipa ? `<div class="pk-chud-desc">Phonetic pronunciation: ${info.ipa}</div>` : ''}
+      ${soundHtml}
     `;
 
     hudEl.classList.add('visible');
@@ -561,38 +635,46 @@
     const fid = (foundKey && global.KEY_FINGER && global.KEY_FINGER[foundKey]) || null;
     const finfo = (fid && FINGER_INFO[fid]) || { nameEn: 'Touch Key', nameKm: 'ម្រាមដៃ', color: '#ffd166' };
 
-    let recipeText = foundKey ? foundKey.toUpperCase() : 'Special combo';
-    if(foundLayer === 'shift') recipeText = `Shift + ${foundKey.toUpperCase()}`;
-    else if(foundLayer === 'altgr') recipeText = `AltGr + ${foundKey.toUpperCase()}`;
+    const keyLabel = foundKey ? getHumanKeyLabel(foundKey) : '';
+    let recipeText = `<kbd>${keyLabel || 'Combo'}</kbd>`;
+    if(foundLayer === 'shift') recipeText = `<kbd>Shift</kbd> + <kbd>${keyLabel}</kbd>`;
+    else if(foundLayer === 'altgr') recipeText = `<kbd>AltGr</kbd> + <kbd>${keyLabel}</kbd>`;
 
     // Subscript character handling
     let isSubscript = char.startsWith('្') || (info && info.type === 'Coeng Key');
     if(isSubscript){
-      recipeText = `${coengKey} then ${foundKey ? foundKey.toUpperCase() : ''}`;
+      recipeText = `<kbd>${coengKey}</kbd> + <kbd>${keyLabel}</kbd>`;
+    }
+
+    let cardTitle = info ? (info.name + (info.nameKm && !info.name.includes(info.nameKm) ? (' · ' + info.nameKm) : '')) : char;
+    let cardCat = info ? (info.type + (info.series ? (' · ' + info.series) : (info.group ? (' · ' + info.group) : ''))) : 'Exercise Character';
+    let soundHtml = '';
+    if(info && info.ipa){
+      soundHtml = `<div class="pk-chud-desc">${info.ipa.startsWith('Pronounced') ? info.ipa : ('Sound: ' + info.ipa)}</div>`;
     }
 
     hudEl.innerHTML = `
       <div class="pk-chud-top">
         <div class="pk-chud-glyph-box">${char}</div>
         <div class="pk-chud-title-wrap">
-          <div class="pk-chud-name">${info ? (info.name + ' · ' + info.nameKm) : char}</div>
-          <span class="pk-chud-category">${info ? info.type : 'Exercise Character'}</span>
+          <div class="pk-chud-name">${cardTitle}</div>
+          <span class="pk-chud-category">${cardCat}</span>
         </div>
       </div>
       <div class="pk-chud-grid">
         <div class="pk-chud-row">
-          <span class="pk-chud-label">Type Sequence:</span>
-          <span class="pk-chud-recipe"><kbd>${recipeText}</kbd></span>
+          <span class="pk-chud-label">Keystroke</span>
+          <span class="pk-chud-recipe">${recipeText}</span>
         </div>
         <div class="pk-chud-row">
-          <span class="pk-chud-label">Finger:</span>
+          <span class="pk-chud-label">Finger</span>
           <span class="pk-chud-finger">
             <span class="pk-chud-finger-dot" style="background:${finfo.color};color:${finfo.color};"></span>
             <span>${finfo.nameEn}</span>
           </span>
         </div>
       </div>
-      ${info && info.ipa ? `<div class="pk-chud-desc">${info.ipa}</div>` : ''}
+      ${soundHtml}
     `;
 
     hudEl.classList.add('visible');
@@ -859,5 +941,6 @@
       if(btn) btn.classList.toggle('on', inspectorEnabled);
     }
   };
+  global.PKCursorInspector = global.PK_MOUSE_INSPECTOR;
 
 })(typeof window !== 'undefined' ? window : this);
