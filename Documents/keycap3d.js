@@ -21,9 +21,9 @@
   // 1. KEYBOARD MATRIX DATA & LAYOUT DEFINITIONS (61-Key ANSI)
   // ------------------------------------------------------------
   const ROW1_DEFS = [
-    { id: 'grave', unit: 1.0, code: 'Backquote', finger: 'lp', isAccent: true, label: 'Esc',
-      std: { base: '', shift: '' },
-      nida: { base: '«', shift: '»' },
+    { id: 'grave', unit: 1.0, code: 'Backquote', finger: 'lp', col: 0,
+      std: { base: '`', shift: '~' },
+      nida: { base: '`', shift: '~' },
       en: { base: '`', shift: '~' } },
     { id: 'k1', unit: 1.0, code: 'Digit1', finger: 'lp', col: 1,
       std: { base: '១', shift: '!' },
@@ -73,7 +73,7 @@
       std: { base: '=', shift: '+' },
       nida: { base: 'ឲ', shift: '=' },
       en: { base: '=', shift: '+' } },
-    { id: 'backspace', unit: 2.0, code: 'Backspace', finger: 'rp', col: 13, isMod: true, label: 'Backspace' }
+    { id: 'backspace', unit: 2.0, code: 'Backspace', finger: 'rp', col: 13, isMod: true, label: 'Backsp.' }
   ];
 
   const ROW2_DEFS = [
@@ -227,7 +227,7 @@
     { id: 'ctrlL', unit: 1.5, code: 'ControlLeft', finger: 'lp', col: 0, isMod: true, label: 'Ctrl' },
     { id: 'alt', unit: 1.25, code: 'AltLeft', finger: 'lt', col: 1, isMod: true, label: 'Alt' },
     { id: 'space', unit: 7.5, code: 'Space', finger: 'lt', col: 2, isMod: true, label: '', isSpace: true },
-    { id: 'altgr', unit: 1.25, code: 'AltRight', finger: 'rt', col: 3, isMod: true, label: 'Alt' },
+    { id: 'altgr', unit: 1.25, code: 'AltRight', finger: 'rt', col: 3, isMod: true, label: 'AltGr' },
     { id: 'ctrlR', unit: 1.5, code: 'ControlRight', finger: 'rp', col: 4, isMod: true, label: 'Ctrl' }
   ];
 
@@ -238,29 +238,29 @@
   // ------------------------------------------------------------
   const THEMES = {
     angkor: {
-      name: 'Angkor Gold',
-      caseColor: 0x0c1322,         // Anodized Royal Midnight Navy
-      caseRim: 0xf59e0b,           // Polished 24K Gold Bevel Rim
-      plateColor: 0xb45309,        // Sandblasted Brass Switch Plate
-      accentColor: 0xf59e0b,       // Radiant 24K Gold Accent
-      alphaBase: '#1e293b',        // Slate Indigo Alphas
-      alphaGrad: '#334155',
-      modBase: '#172033',          // Deep Midnight Navy Modifiers
-      modGrad: '#25334d',
-      accentBase: '#b45309',       // Golden Amber Accents (Enter/Esc)
-      accentGrad: '#f59e0b',
-      spaceBase: '#1e293b',
-      spaceGrad: '#334155',
-      legendBase: '#ffffff',       // Pure White High Contrast
-      legendShift: '#fbbf24',      // Radiant Amber Gold
-      legendMod: '#fde047',        // Bright Gold Mod Labels
-      underglow: 0xf59e0b,         // Warm Amber RGB Aura
-      underglowIntensity: 2.5,
-      lightAmbient: 0xffedd5,
-      lightMain: 0xfffbeb,
-      stemColor: 0xe11d48,         // Ruby Red POM Switch Stem
-      deskpadColor: 0x070b14,
-      deskpadStitch: 0xd97706
+      name: 'PK Obsidian (App Default)',
+      caseColor: 0x101422,         // Deep Midnight Slate Chassis
+      caseRim: 0x1a2133,           // Subtle Dark Slate Chamfer Bevel
+      plateColor: 0x0c0f18,        // Deep Matte Black Switch Plate
+      accentColor: 0x141826,       // Cohesive Dark Charcoal (with warm gold text)
+      alphaBase: '#161a2b',        // Stone-2 Dark Slate Navy Alphas
+      alphaGrad: '#222a3e',        // Stone-3 Radial Highlight
+      modBase: '#121524',          // Dark Obsidian Modifiers
+      modGrad: '#191e30',
+      accentBase: '#141826',       // Enter/Esc cohesive with dark board
+      accentGrad: '#1e2436',
+      spaceBase: '#151926',
+      spaceGrad: '#1e2538',
+      legendBase: '#fff6e8',       // Crisp Warm White Consonants / Letters
+      legendShift: '#ff9d2e',      // Warm Amber Gold Shift Legends
+      legendMod: '#ffd166',        // Warm Amber Gold Mod Labels (Enter, Backsp, Shift, Tab, Caps, Ctrl, Alt)
+      underglow: 0xffa726,         // Warm Amber Ambient Backlight (soft underglow around keys)
+      underglowIntensity: 2.0,
+      lightAmbient: 0x181e2e,
+      lightMain: 0xfff6e8,
+      stemColor: 0xffa726,         // Amber POM Switch Stem
+      deskpadColor: 0x080a12,
+      deskpadStitch: 0x1c2438
     },
     rgb: {
       name: 'RGB Chroma Wave',
@@ -434,19 +434,19 @@
       renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.35;
+      renderer.toneMappingExposure = 1.05;
       container.appendChild(renderer.domElement);
     } catch (err) {
       console.warn('WebGL initialization failed:', err);
       return;
     }
 
-    // B. Lighting Setup
-    const ambientLight = new THREE.AmbientLight(0xffedd5, 0.85);
+    // B. Lighting Setup (Soft Studio Contrast Matching App UI)
+    const ambientLight = new THREE.AmbientLight(0x1a2032, 0.80);
     scene.add(ambientLight);
 
-    const mainLight = new THREE.DirectionalLight(0xfffbeb, 2.4);
-    mainLight.position.set(10, 18, 14);
+    const mainLight = new THREE.DirectionalLight(0xfff6e8, 1.35);
+    mainLight.position.set(8, 16, 12);
     mainLight.castShadow = true;
     mainLight.shadow.mapSize.width = 2048;
     mainLight.shadow.mapSize.height = 2048;
@@ -459,12 +459,12 @@
     mainLight.shadow.bias = -0.0004;
     scene.add(mainLight);
 
-    const fillLight = new THREE.DirectionalLight(0x38bdf8, 1.2);
-    fillLight.position.set(-14, 9, -10);
+    const fillLight = new THREE.DirectionalLight(0x222a3e, 0.40);
+    fillLight.position.set(-14, 8, -10);
     scene.add(fillLight);
 
-    const underglowLight = new THREE.PointLight(0xf59e0b, 2.6, 18);
-    underglowLight.position.set(0, -0.4, 0);
+    const underglowLight = new THREE.PointLight(0xffa726, 2.2, 16);
+    underglowLight.position.set(0, 0.15, 0);
     scene.add(underglowLight);
 
     // C. Configuration State
@@ -533,9 +533,9 @@
     // Solid Studio Desk Floor (Grounds the entire setup so NOTHING floats in space)
     const deskTableGeo = new THREE.PlaneGeometry(54, 54);
     const deskTableMat = new THREE.MeshStandardMaterial({
-      color: 0x080c14,
-      roughness: 0.85,
-      metalness: 0.15
+      color: 0x05070d,
+      roughness: 0.92,
+      metalness: 0.04
     });
     const deskTable = new THREE.Mesh(deskTableGeo, deskTableMat);
     deskTable.rotation.x = -Math.PI / 2;
@@ -551,8 +551,8 @@
     deskpadGeo.rotateX(-Math.PI / 2);
     const deskpadMat = new THREE.MeshStandardMaterial({
       color: currentTheme.deskpadColor,
-      roughness: 0.88,
-      metalness: 0.1
+      roughness: 0.90,
+      metalness: 0.04
     });
     const deskpadMesh = new THREE.Mesh(deskpadGeo, deskpadMat);
     deskpadMesh.position.y = -boardHeight - 0.02;
@@ -562,7 +562,7 @@
     // Glowing Desk Mat Stitched Border
     const deskpadBorder = new THREE.LineSegments(
       new THREE.EdgesGeometry(deskpadGeo),
-      new THREE.LineBasicMaterial({ color: currentTheme.deskpadStitch, transparent: true, opacity: 0.55 })
+      new THREE.LineBasicMaterial({ color: currentTheme.deskpadStitch, transparent: true, opacity: 0.45 })
     );
     deskpadBorder.position.copy(deskpadMesh.position);
     deskpadBorder.position.y += 0.002;
@@ -585,8 +585,8 @@
     const cableGeo = new THREE.TubeGeometry(cableCurve, 65, 0.042, 8, false);
     const cableMat = new THREE.MeshStandardMaterial({
       color: currentTheme.caseRim,
-      roughness: 0.45,
-      metalness: 0.6
+      roughness: 0.70,
+      metalness: 0.15
     });
     const cableMesh = new THREE.Mesh(cableGeo, cableMat);
     cableGroup.add(cableMesh);
@@ -594,7 +594,7 @@
     // Aviator Quick-Disconnect Silver Cylinder
     const aviatorGeo = new THREE.CylinderGeometry(0.09, 0.09, 0.38, 16);
     aviatorGeo.rotateZ(Math.PI / 2);
-    const aviatorMat = new THREE.MeshStandardMaterial({ color: 0xe2e8f0, metalness: 0.95, roughness: 0.15 });
+    const aviatorMat = new THREE.MeshStandardMaterial({ color: 0x64748b, metalness: 0.8, roughness: 0.3 });
     const aviatorMesh = new THREE.Mesh(aviatorGeo, aviatorMat);
     aviatorMesh.position.set(1.6, 0.18, 0);
     cableGroup.add(aviatorMesh);
@@ -615,8 +615,8 @@
 
     const caseMat = new THREE.MeshStandardMaterial({
       color: currentTheme.caseColor,
-      roughness: 0.35,
-      metalness: 0.65
+      roughness: 0.60,
+      metalness: 0.15
     });
     const caseMesh = new THREE.Mesh(caseGeo, caseMat);
     caseMesh.castShadow = true;
@@ -638,8 +638,8 @@
 
     const rimMat = new THREE.MeshStandardMaterial({
       color: currentTheme.caseRim,
-      roughness: 0.2,
-      metalness: 0.92
+      roughness: 0.45,
+      metalness: 0.25
     });
     const rimMesh = new THREE.Mesh(rimGeo, rimMat);
     keyboardRoot.add(rimMesh);
@@ -664,8 +664,8 @@
     plateGeo.rotateX(-Math.PI / 2);
     const plateMat = new THREE.MeshStandardMaterial({
       color: currentTheme.plateColor,
-      roughness: 0.65,
-      metalness: 0.45
+      roughness: 0.80,
+      metalness: 0.10
     });
     const plateMesh = new THREE.Mesh(plateGeo, plateMat);
     plateMesh.position.y = 0.02;
@@ -745,58 +745,60 @@
       const ctx = canvas.getContext('2d');
 
       // Satin PBT Radial Texture Gradient
-      const grad = ctx.createRadialGradient(cvWidth / 2, cvHeight * 0.35, 20, cvWidth / 2, cvHeight / 2, cvWidth * 0.75);
+      const grad = ctx.createRadialGradient(cvWidth / 2, cvHeight * 0.38, 20, cvWidth / 2, cvHeight / 2, cvWidth * 0.72);
       grad.addColorStop(0, style.grad);
       grad.addColorStop(1, style.base);
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, cvWidth, cvHeight);
 
-      // Inset Edge Bevel
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
-      ctx.lineWidth = 14;
-      ctx.strokeRect(10, 10, cvWidth - 20, cvHeight - 20);
+      // Subtle Inset Edge Bevel
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.07)';
+      ctx.lineWidth = 10;
+      ctx.strokeRect(8, 8, cvWidth - 16, cvHeight - 16);
 
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
       if (keyDef.isMod) {
         if (keyDef.label) {
-          ctx.font = 'bold 94px "Inter", "Segoe UI", sans-serif';
-          ctx.fillStyle = keyDef.isAccent ? '#ffffff' : style.textBase;
-          ctx.shadowColor = 'rgba(0,0,0,0.6)';
-          ctx.shadowBlur = 12;
+          ctx.font = 'bold 88px "Inter", "Segoe UI", sans-serif';
+          ctx.fillStyle = style.textBase; // Warm gold #ffd166
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.85)';
+          ctx.shadowBlur = 10;
           ctx.fillText(keyDef.label, cvWidth / 2, cvHeight / 2 + 4);
         } else if (keyDef.isSpace) {
-          // Subtle Gold/Accent Laser Line
-          ctx.fillStyle = theme.legendShift || '#f59e0b';
-          ctx.fillRect(cvWidth / 2 - 240, cvHeight / 2 - 42, 480, 5);
+          // Subtle Amber Laser Accent Line
+          ctx.fillStyle = style.textShift || '#ff9d2e';
+          ctx.fillRect(cvWidth / 2 - 220, cvHeight / 2 - 38, 440, 4);
 
           // Perfectly Proportioned Centered Logo Typography
-          ctx.font = 'bold 50px "Space Grotesk", "Inter", sans-serif';
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.78)';
+          ctx.font = 'bold 44px "Space Grotesk", "Inter", sans-serif';
+          ctx.fillStyle = 'rgba(255, 246, 232, 0.82)';
           ctx.letterSpacing = '8px';
-          ctx.fillText('PK KHMER TYPE', cvWidth / 2, cvHeight / 2 + 18);
+          ctx.fillText('PK KHMER TYPE', cvWidth / 2, cvHeight / 2 + 16);
         }
       } else {
         const map = keyDef[layoutKey] || keyDef.std || {};
         const baseChar = map.base || '';
         const shiftChar = map.shift || '';
+        const isEn = layoutKey === 'en' || layoutKey === 'english';
+        const fontFamily = isEn ? '"Inter", "Segoe UI", sans-serif' : '"Khmer OS Siemreap", "Kantumruy Pro", "Segoe UI", sans-serif';
 
-        // Shifted Glyph (Cleanly Centered on Top)
+        // Shifted Glyph (Cleanly Centered on Top in Warm Amber)
         if (shiftChar) {
-          ctx.font = 'bold 106px "Khmer OS Siemreap", "Kantumruy Pro", "Segoe UI", sans-serif';
+          ctx.font = isEn ? 'bold 88px ' + fontFamily : 'bold 98px ' + fontFamily;
           ctx.fillStyle = style.textShift;
-          ctx.shadowColor = 'rgba(245, 158, 11, 0.45)';
-          ctx.shadowBlur = 8;
+          ctx.shadowColor = 'rgba(255, 157, 46, 0.35)';
+          ctx.shadowBlur = 6;
           ctx.fillText(shiftChar, cvWidth / 2, 114);
         }
 
-        // Base Glyph (Cleanly Centered in Middle)
+        // Base Glyph (Cleanly Centered in Middle in Crisp Warm White)
         if (baseChar) {
-          ctx.font = 'bold 176px "Khmer OS Siemreap", "Kantumruy Pro", "Segoe UI", sans-serif';
+          ctx.font = isEn ? 'bold 164px ' + fontFamily : 'bold 172px ' + fontFamily;
           ctx.fillStyle = style.textBase;
-          ctx.shadowColor = 'rgba(0,0,0,0.7)';
-          ctx.shadowBlur = 14;
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.88)';
+          ctx.shadowBlur = 12;
           const yPos = shiftChar ? cvHeight * 0.64 : cvHeight * 0.52;
           ctx.fillText(baseChar, cvWidth / 2, yPos);
         }
@@ -859,13 +861,13 @@
 
         const sideMat = new THREE.MeshStandardMaterial({
           color: initialStyle.sideHex,
-          roughness: 0.40,
-          metalness: 0.18
+          roughness: 0.68,
+          metalness: 0.04
         });
         const topMat = new THREE.MeshStandardMaterial({
           map: texture,
-          roughness: 0.36,
-          metalness: 0.14,
+          roughness: 0.62,
+          metalness: 0.04,
           emissive: 0x000000
         });
 
@@ -876,18 +878,23 @@
         capMesh.position.y = keyH / 2 + 0.04;
         keyGroup.add(capMesh);
 
-        // 3D Homing Bump nub on F and J
+        // 3D Homing Bump nub on F and J (Warm Amber Gold)
         if (keyDef.hasBump) {
           const bumpGeo = new THREE.BoxGeometry(0.22, 0.03, 0.04);
-          const bumpMat = new THREE.MeshStandardMaterial({ color: currentTheme.caseRim, metalness: 0.8 });
+          const bumpMat = new THREE.MeshStandardMaterial({ color: 0xff9d2e, roughness: 0.35, metalness: 0.4 });
           const bumpMesh = new THREE.Mesh(bumpGeo, bumpMat);
           bumpMesh.position.set(0, keyH + 0.045, keyD * 0.28);
           keyGroup.add(bumpMesh);
         }
 
-        // Per-Key Backlight / RGB Emissive Light
-        const keyLight = new THREE.PointLight(currentTheme.underglow, 0, 1.4);
-        keyLight.position.set(0, keyH + 0.15, 0);
+        // Per-Key Backlight / Soft Ambient Glow Filtering Underneath Keycaps
+        const isHomerowLeft = ['KeyA', 'KeyS', 'KeyD', 'KeyF'].includes(keyDef.code);
+        const isHomerowRight = ['KeyJ', 'KeyK', 'KeyL', 'Semicolon'].includes(keyDef.code);
+        const baseKeyColor = isHomerowRight && currentThemeKey === 'angkor' ? 0xd946ef : currentTheme.underglow;
+        const idleIntensity = (isHomerowLeft || isHomerowRight) ? 0.45 : 0.25;
+
+        const keyLight = new THREE.PointLight(baseKeyColor, idleIntensity, 1.4);
+        keyLight.position.set(0, -0.02, 0);
         keyGroup.add(keyLight);
 
         keyboardRoot.add(keyGroup);
@@ -906,13 +913,14 @@
           targetY: 0.22,
           velocity: 0,
           isPressed: false,
+          idleIntensity: idleIntensity,
           press() {
             if (this.isPressed) return;
             this.isPressed = true;
             this.targetY = 0.06;
             this.topMat.emissive.setHex(currentTheme.underglow);
             this.topMat.emissiveIntensity = 0.95;
-            this.keyLight.intensity = 2.0;
+            this.keyLight.intensity = 2.2;
             playMechanicalSound(true, 1.0 + (Math.random() * 0.08 - 0.04));
             triggerRippleWave(this.group.position.x, this.group.position.z);
           },
@@ -921,7 +929,7 @@
             this.targetY = isExploded ? 1.6 : this.baseY;
             this.topMat.emissive.setHex(0x000000);
             this.topMat.emissiveIntensity = 0;
-            this.keyLight.intensity = 0;
+            this.keyLight.intensity = this.idleIntensity;
             playMechanicalSound(false, 1.12 + (Math.random() * 0.08 - 0.04));
           },
           updateTexture() {
