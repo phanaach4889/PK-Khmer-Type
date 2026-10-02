@@ -1685,8 +1685,8 @@
       "id": "en-L10-03",
       "level": "en-L10",
       "order": 3,
-      "title": "Exclamation and Colon",
-      "description": "Exclamation and Colon",
+      "title": "Exclamation, Colon & Number Symbols",
+      "description": "Exclamation point, colon, and upper number symbols (@, #, $, %, ^, &, *)",
       "objective": "Master Exclamation and Colon",
       "type": "drill",
       "newKeys": [
@@ -1701,11 +1701,60 @@
           "layer": "shift",
           "char": ":",
           "finger": "rp"
+        },
+        {
+          "keyId": "k2",
+          "layer": "shift",
+          "char": "@",
+          "finger": "lr"
+        },
+        {
+          "keyId": "k3",
+          "layer": "shift",
+          "char": "#",
+          "finger": "lm"
+        },
+        {
+          "keyId": "k4",
+          "layer": "shift",
+          "char": "$",
+          "finger": "li"
+        },
+        {
+          "keyId": "k5",
+          "layer": "shift",
+          "char": "%",
+          "finger": "li"
+        },
+        {
+          "keyId": "k6",
+          "layer": "shift",
+          "char": "^",
+          "finger": "ri"
+        },
+        {
+          "keyId": "k7",
+          "layer": "shift",
+          "char": "&",
+          "finger": "ri"
+        },
+        {
+          "keyId": "k8",
+          "layer": "shift",
+          "char": "*",
+          "finger": "rm"
         }
       ],
       "requiredKeys": [
         "k1",
-        "semicolon"
+        "semicolon",
+        "k2",
+        "k3",
+        "k4",
+        "k5",
+        "k6",
+        "k7",
+        "k8"
       ],
       "fingerFocus": [],
       "difficulty": 9,
@@ -1725,8 +1774,8 @@
       "id": "en-L10-04",
       "level": "en-L10",
       "order": 4,
-      "title": "Parentheses and Brackets",
-      "description": "Parentheses and Brackets",
+      "title": "Parentheses, Brackets, Braces & Angle Brackets",
+      "description": "Parentheses (), square brackets [], curly braces {}, and comparison symbols < >",
       "objective": "Master Parentheses and Brackets",
       "type": "drill",
       "newKeys": [
@@ -1753,13 +1802,39 @@
           "layer": "base",
           "char": "]",
           "finger": "rp"
+        },
+        {
+          "keyId": "bracketL",
+          "layer": "shift",
+          "char": "{",
+          "finger": "rp"
+        },
+        {
+          "keyId": "bracketR",
+          "layer": "shift",
+          "char": "}",
+          "finger": "rp"
+        },
+        {
+          "keyId": "comma",
+          "layer": "shift",
+          "char": "<",
+          "finger": "rm"
+        },
+        {
+          "keyId": "period",
+          "layer": "shift",
+          "char": ">",
+          "finger": "rr"
         }
       ],
       "requiredKeys": [
         "k9",
         "k0",
         "bracketL",
-        "bracketR"
+        "bracketR",
+        "comma",
+        "period"
       ],
       "fingerFocus": [],
       "difficulty": 9,
@@ -1779,8 +1854,8 @@
       "id": "en-L10-05",
       "level": "en-L10",
       "order": 5,
-      "title": "Hyphen, Plus and Equals",
-      "description": "Hyphen, Plus and Equals",
+      "title": "Hyphen, Plus, Equals, Underscore, Pipes & Tilde",
+      "description": "Hyphen, equals, plus, underscore, backslash, vertical pipe, backquote, and tilde",
       "objective": "Master Hyphen, Plus and Equals",
       "type": "drill",
       "newKeys": [
@@ -1801,12 +1876,43 @@
           "layer": "shift",
           "char": "+",
           "finger": "rp"
+        },
+        {
+          "keyId": "minus",
+          "layer": "shift",
+          "char": "_",
+          "finger": "rp"
+        },
+        {
+          "keyId": "backslash",
+          "layer": "base",
+          "char": "\\",
+          "finger": "rp"
+        },
+        {
+          "keyId": "backslash",
+          "layer": "shift",
+          "char": "|",
+          "finger": "rp"
+        },
+        {
+          "keyId": "grave",
+          "layer": "base",
+          "char": "`",
+          "finger": "lp"
+        },
+        {
+          "keyId": "grave",
+          "layer": "shift",
+          "char": "~",
+          "finger": "lp"
         }
       ],
       "requiredKeys": [
         "minus",
         "equal",
-        "equal"
+        "backslash",
+        "grave"
       ],
       "fingerFocus": [],
       "difficulty": 9,

@@ -2027,6 +2027,12 @@
           "layer": "shift",
           "char": "៏",
           "finger": "rm"
+        },
+        {
+          "keyId": "k9",
+          "layer": "shift",
+          "char": "៎",
+          "finger": "rr"
         }
       ],
       "requiredKeys": [
@@ -2262,13 +2268,85 @@
       "id": "standard-L10-07",
       "level": "standard-L10",
       "order": 7,
-      "title": "Time and Numbers",
-      "titleKm": "ពេលវេលា",
-      "description": "Time and Numbers",
+      "title": "Time and All Khmer Numbers (០-៩)",
+      "titleKm": "ពេលវេលា និង លេខខ្មែរទាំងអស់ (០-៩)",
+      "description": "Learn to type all ten Khmer numerals (០, ១, ២, ៣, ៤, ៥, ៦, ៧, ៨, ៩) and time words",
       "objective": "Master Time and Numbers",
       "type": "drill",
-      "newKeys": [],
-      "requiredKeys": [],
+      "newKeys": [
+        {
+          "keyId": "k0",
+          "layer": "base",
+          "char": "០",
+          "finger": "rp"
+        },
+        {
+          "keyId": "k1",
+          "layer": "base",
+          "char": "១",
+          "finger": "lp"
+        },
+        {
+          "keyId": "k2",
+          "layer": "base",
+          "char": "២",
+          "finger": "lr"
+        },
+        {
+          "keyId": "k3",
+          "layer": "base",
+          "char": "៣",
+          "finger": "lm"
+        },
+        {
+          "keyId": "k4",
+          "layer": "base",
+          "char": "៤",
+          "finger": "li"
+        },
+        {
+          "keyId": "k5",
+          "layer": "base",
+          "char": "៥",
+          "finger": "li"
+        },
+        {
+          "keyId": "k6",
+          "layer": "base",
+          "char": "៦",
+          "finger": "ri"
+        },
+        {
+          "keyId": "k7",
+          "layer": "base",
+          "char": "៧",
+          "finger": "ri"
+        },
+        {
+          "keyId": "k8",
+          "layer": "base",
+          "char": "៨",
+          "finger": "rm"
+        },
+        {
+          "keyId": "k9",
+          "layer": "base",
+          "char": "៩",
+          "finger": "rr"
+        }
+      ],
+      "requiredKeys": [
+        "k0",
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5",
+        "k6",
+        "k7",
+        "k8",
+        "k9"
+      ],
       "fingerFocus": [],
       "difficulty": 10,
       "accuracyTarget": 90,
@@ -2535,29 +2613,65 @@
       "id": "standard-L12-04",
       "level": "standard-L12",
       "order": 4,
-      "title": "Independent Vowels Bonus",
-      "titleKm": "ស្រៈពេញតួ (AltGr)",
-      "description": "Independent Vowels Bonus",
+      "title": "All Independent Vowels (ស្រៈពេញតួ)",
+      "titleKm": "ស្រៈពេញតួទាំងអស់ (ឥ ឦ ឧ ឩ ឪ ឫ ឬ ឭ ឮ ឯ ឰ ឱ ឳ)",
+      "description": "Master all independent vowels in Khmer literature and formal script",
       "objective": "Master Independent Vowels Bonus",
       "type": "drill",
       "newKeys": [
         {
-          "keyId": "s",
+          "keyId": "i",
           "layer": "altgr",
-          "char": "ឪ",
-          "finger": "rp"
+          "char": "ឥ",
+          "finger": "rm"
+        },
+        {
+          "keyId": "t",
+          "layer": "altgr",
+          "char": "ឦ",
+          "finger": "li"
         },
         {
           "keyId": "u",
           "layer": "altgr",
           "char": "ឧ",
-          "finger": "rp"
+          "finger": "ri"
         },
         {
-          "keyId": "equal",
-          "layer": "base",
-          "char": "ឲ",
-          "finger": "rp"
+          "keyId": "a",
+          "layer": "altgr",
+          "char": "ឩ",
+          "finger": "lp"
+        },
+        {
+          "keyId": "s",
+          "layer": "altgr",
+          "char": "ឪ",
+          "finger": "lr"
+        },
+        {
+          "keyId": "r",
+          "layer": "altgr",
+          "char": "ឫ",
+          "finger": "li"
+        },
+        {
+          "keyId": "r",
+          "layer": "shift",
+          "char": "ឬ",
+          "finger": "li"
+        },
+        {
+          "keyId": "k",
+          "layer": "altgr",
+          "char": "ឭ",
+          "finger": "rm"
+        },
+        {
+          "keyId": "j",
+          "layer": "altgr",
+          "char": "ឮ",
+          "finger": "ri"
         },
         {
           "keyId": "e",
@@ -2566,18 +2680,44 @@
           "finger": "lm"
         },
         {
+          "keyId": "l",
+          "layer": "altgr",
+          "char": "ឰ",
+          "finger": "rr"
+        },
+        {
           "keyId": "o",
           "layer": "altgr",
           "char": "ឱ",
           "finger": "rr"
+        },
+        {
+          "keyId": "p",
+          "layer": "altgr",
+          "char": "ឳ",
+          "finger": "rp"
+        },
+        {
+          "keyId": "equal",
+          "layer": "base",
+          "char": "ឲ",
+          "finger": "rp"
         }
       ],
       "requiredKeys": [
-        "bracketR",
-        "bracketR",
-        "equal",
+        "i",
+        "t",
+        "u",
+        "a",
+        "s",
+        "r",
+        "k",
+        "j",
         "e",
-        "o"
+        "l",
+        "o",
+        "p",
+        "equal"
       ],
       "fingerFocus": [],
       "difficulty": 10,

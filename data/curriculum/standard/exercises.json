@@ -764,7 +764,7 @@
     },
     "standard-L05-05-E01": {
       "type": "single-char",
-      "content": "ុំុំុំ ់់់ ុំ់ុំ",
+      "content": "ុំុំុំ ៊៊៊ ុំ៊ុំ ុំុំ ៊៊ ុំ៊",
       "description": "Compound vowel ុំ and register sign ់"
     },
     "standard-L05-05-E02": {
@@ -773,6 +773,8 @@
         "កុំ",
         "សុំ",
         "រុំ",
+        "ហ៊ាន",
+        "ស៊ាំ",
         "ដុំ"
       ],
       "description": "Words with ុំ"
@@ -1319,17 +1321,12 @@
     },
     "standard-L09-03-E01": {
       "type": "single-char",
-      "content": "័័័ ៌៌៌ ៍៍៍ ៏៏៏",
+      "content": "ព័ត៌មាន ធម៌ ពេជ្រ ដ៏ ប៉ុក៎ នុ៎ះ អូ៎ ហា៎",
       "description": "Top diacritics"
     },
     "standard-L09-03-E02": {
       "type": "word",
-      "content": [
-        "ព័ត៌មាន",
-        "ទូរស័ព្ទ",
-        "អាទិត្យ",
-        "សព្វថ្ងៃ"
-      ],
+      "content": "័័័ ័ ័័ ៌៌៌ ៌ ៌៌ ៍៍៍ ៍ ៍៍ ៏៏៏ ៏ ៏៏ ៎៎៎ ៎ ៎៎",
       "description": "Words with diacritics"
     },
     "standard-L09-03-E03": {
@@ -1476,14 +1473,25 @@
         "ថ្ងៃ",
         "ខែ",
         "ឆ្នាំ",
+        "ម៉ោង",
         "ព្រឹក",
-        "យប់"
+        "យប់",
+        "០",
+        "១",
+        "២",
+        "៣",
+        "៤",
+        "៥",
+        "៦",
+        "៧",
+        "៨",
+        "៩"
       ],
       "description": "Time words"
     },
     "standard-L10-07-E02": {
       "type": "drill",
-      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក ឥឥឥ ឥ ឥឥ",
+      "content": "០១២ ៣៤៥ ៦៧៨ ៩ ឆ្នាំ ២០២៦ ម៉ោង ៧ ព្រឹក ថ្ងៃទី ១៥ ខែ មេសា ១០០ ភាគរយ ០១២ ៣៤៥ ៦៧៨",
       "description": "Rhythm and cadence reinforcement for Time and Numbers"
     },
     "standard-L10-08-E01": {
@@ -1579,12 +1587,12 @@
     },
     "standard-L12-04-E01": {
       "type": "drill",
-      "content": "ឪពុក ឱ្យ ឯកសារ ឱកាស ឧត្តម",
+      "content": "ឪពុក ឧត្តម ឱ្យ ឯកសារ ឱកាស ឥឡូវ ឦសាន ឩសាន ឫស្សី ឬកពា ឭកិក ឮសូរ ឰដ៏ ឳសថ",
       "description": "Independent vowels"
     },
     "standard-L12-04-E02": {
       "type": "drill",
-      "content": "ឪឪឪ ឪ ឪឪ ឧឧឧ ឧ ឧឧ ឱឱឱ ឱ ឱឱ ឯឯឯ ឯ ឯឯ ឱឱឱ ឱ ឱឱ ឪថ កឪ ឪក ឧថ កឧ ឧក ឱថ កឱ ឱក",
+      "content": "ឥឥ ឦឦ ឧឧ ឩឩ ឪឪ ឫឫ ឬឬ ឭឭ ឮឮ ឯឯ ឰឰ ឱឱ ឳឳ ឪពុក ឥឡូវ ឦសាន ឧត្តម ឫស្សី ឯកសារ ឱកាស",
       "description": "Rhythm and cadence reinforcement for Independent Vowels Bonus"
     },
     "standard-L12-05-E01": {

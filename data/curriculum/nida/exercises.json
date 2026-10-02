@@ -1064,17 +1064,12 @@
     },
     "nida-L09-03-E01": {
       "type": "single-char",
-      "content": "័័័ ៌៌៌ ៍៍៍ ៏៏៏",
+      "content": "ព័ត៌មាន ធម៌ ពេជ្រ ដ៏ ប៉ុក៎ នុ៎ះ អូ៎ ហា៎",
       "description": "Top diacritics"
     },
     "nida-L09-03-E02": {
       "type": "word",
-      "content": [
-        "ព័ត៌មាន",
-        "ទូរស័ព្ទ",
-        "អាទិត្យ",
-        "សព្វថ្ងៃ"
-      ],
+      "content": "័័័ ័ ័័ ៌៌៌ ៌ ៌៌ ៍៍៍ ៍ ៍៍ ៏៏៏ ៏ ៏៏ ៎៎៎ ៎ ៎៎",
       "description": "Words with diacritics"
     },
     "nida-L09-04-E01": {
@@ -1176,8 +1171,19 @@
         "ថ្ងៃ",
         "ខែ",
         "ឆ្នាំ",
+        "ម៉ោង",
         "ព្រឹក",
-        "យប់"
+        "យប់",
+        "០",
+        "១",
+        "២",
+        "៣",
+        "៤",
+        "៥",
+        "៦",
+        "៧",
+        "៨",
+        "៩"
       ],
       "description": "Time words"
     },
@@ -1249,7 +1255,7 @@
     },
     "nida-L12-04-E01": {
       "type": "drill",
-      "content": "ឪពុក ឲ្យ ឯកសារ ឱកាស ឧត្តម",
+      "content": "ឪពុក ឧត្តម ឱ្យ ឯកសារ ឱកាស ឥឡូវ ឦសាន ឩសាន ឫស្សី ឬកពា ឭកិក ឮសូរ ឰដ៏ ឳសថ",
       "description": "Independent vowels"
     },
     "nida-L12-05-E01": {
@@ -1559,7 +1565,7 @@
     },
     "nida-L10-07-E02": {
       "type": "drill",
-      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក ឥឥឥ ឥ ឥឥ",
+      "content": "០១២ ៣៤៥ ៦៧៨ ៩ ឆ្នាំ ២០២៦ ម៉ោង ៧ ព្រឹក ថ្ងៃទី ១៥ ខែ មេសា ១០០ ភាគរយ ០១២ ៣៤៥ ៦៧៨",
       "description": "Rhythm and cadence reinforcement for Time and Numbers"
     },
     "nida-L10-08-E02": {
@@ -1589,7 +1595,7 @@
     },
     "nida-L12-04-E02": {
       "type": "drill",
-      "content": "ឪឪឪ ឪ ឪឪ ឧឧឧ ឧ ឧឧ ឲឲឲ ឲ ឲឲ ឯឯឯ ឯ ឯឯ ឱឱឱ ឱ ឱឱ ឪថ កឪ ឪក ឧថ កឧ ឧក ឲថ កឲ ឲក",
+      "content": "ឥឥ ឦឦ ឧឧ ឩឩ ឪឪ ឫឫ ឬឬ ឭឭ ឮឮ ឯឯ ឰឰ ឱឱ ឳឳ ឪពុក ឥឡូវ ឦសាន ឧត្តម ឫស្សី ឯកសារ ឱកាស",
       "description": "Rhythm and cadence reinforcement for Independent Vowels Bonus"
     },
     "nida-L12-05-E02": {

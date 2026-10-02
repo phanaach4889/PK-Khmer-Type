@@ -782,7 +782,7 @@
     },
     "en-L08-02-E01": {
       "type": "drill",
-      "content": "Asia Boston Canada Denver Europe",
+      "content": "Asia Boston Canada Denver Europe Qatar Quebec Quick",
       "description": "Left hand capitals using Right Shift"
     },
     "en-L08-02-E02": {
@@ -806,7 +806,9 @@
         "Monday",
         "Tuesday",
         "Wednesday",
-        "Thursday"
+        "Thursday",
+        "Queen",
+        "Quiet"
       ],
       "description": "Days of the week"
     },
@@ -927,32 +929,32 @@
     },
     "en-L10-03-E01": {
       "type": "drill",
-      "content": "stop! look! listen! run! hurry!",
+      "content": "stop! look! note: email@domain.com #1 item $50 save 20% rate^2 Smith & Sons 5 * 5",
       "description": "Exclamation marks"
     },
     "en-L10-03-E02": {
       "type": "drill",
-      "content": "note: time: 10:30 score: 100!",
+      "content": "score: 100! #tag sale $99 15% discount fish & chips x^y 8 * 8 is 64 @user",
       "description": "Colons and exclamations"
     },
     "en-L10-04-E01": {
       "type": "drill",
-      "content": "(one) (two) (three) [four] [five]",
+      "content": "(one) (two) [three] [four] {alpha} {beta} <start> <end> 5 > 2 and 3 < 7",
       "description": "Parentheses and brackets"
     },
     "en-L10-04-E02": {
       "type": "drill",
-      "content": "item (1) and item [2] are selected.",
+      "content": "item (1) and item [2] in {block}; condition <limit> is true > false",
       "description": "Mixed brackets in sentence"
     },
     "en-L10-05-E01": {
       "type": "drill",
-      "content": "1 + 1 = 2 and 2 + 2 = 4",
+      "content": "1 + 1 = 2 and 5 - 3 = 2; file_name_test C:\\path | pipe `code` ~home/",
       "description": "Arithmetic with symbols"
     },
     "en-L10-05-E02": {
       "type": "drill",
-      "content": "up-to-date, high-speed, well-known",
+      "content": "first_name + last_name = full_name; cat file | grep text; `value` ~ /root\\dir",
       "description": "Hyphenated words"
     },
     "en-L11-01-E01": {
@@ -1232,17 +1234,17 @@
     },
     "en-L10-03-E03": {
       "type": "drill",
-      "content": "!!! ! !! ::: : :: !f j! !j :f j: :j",
+      "content": "!!! ! !! ::: : :: @@@ @ @@ ### # ## $$$ $ $$ %%% % %% ^^^ ^ ^^ &&& & && *** * **",
       "description": "Rhythm and fluency consolidation for Exclamation and Colon"
     },
     "en-L10-04-E03": {
       "type": "drill",
-      "content": "((( ( (( ))) ) )) [[[ [ [[",
+      "content": "((( ( (( ))) ) )) [[[ [ [[ ]]] ] ]] {{{ { {{ }}} } }} <<< < << >>> > >>",
       "description": "Rhythm and fluency consolidation for Parentheses and Brackets"
     },
     "en-L10-05-E03": {
       "type": "drill",
-      "content": "--- - -- === = == +++ + ++ -f j- -j =f j= =j",
+      "content": "--- - -- === = == +++ + ++ ___ _ __ \\\\\\ \\ \\\\ ||| | || ``` ` `` ~~~ ~ ~~",
       "description": "Rhythm and fluency consolidation for Hyphen, Plus and Equals"
     },
     "en-L11-01-E04": {
