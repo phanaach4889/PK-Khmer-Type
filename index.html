@@ -64,7 +64,6 @@
 <div class="toast-stack" id="toastStack"></div>
 
 <div class="top-actions">
-  <a href="Documents/index.html#keycap-3d" class="top-action-btn kb3d-nav-btn" aria-label="3D Keyboard" title="Interactive 3D Mechanical Keyboard Experience" style="display:inline-flex; align-items:center; gap:6px; text-decoration:none; background:linear-gradient(135deg, rgba(255, 157, 46, 0.22), rgba(217, 70, 239, 0.22)); border:1px solid rgba(255, 209, 102, 0.45); color:var(--gold-bright, #ffd166);"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/><line x1="10" y1="12" x2="14" y2="12"/></svg> <span class="i18n-t" data-en="3D Keyboard" data-km="ក្តារចុច 3D">3D Keyboard</span></a>
   <a href="Documents/index.html" class="top-action-btn docs-nav-btn" aria-label="Documentation" title="Official Documentation & Layout Guides" style="display:inline-flex; align-items:center; gap:6px; text-decoration:none;"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> <span class="i18n-t" data-en="Docs" data-km="ឯកសារ">Docs</span></a>
   <button id="focusModeBtn" class="focus-mode-btn" aria-label="Toggle Focus Mode" title="Focus Mode (Hide distractions, Alt+F)"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M3 12h3m12 0h3M12 3v3m0 12v3"/></svg> <span class="focus-btn-text i18n-t" data-en="Focus" data-km="ផ្ដោត">Focus</span></button>
   <button id="shortcutsOpenBtn" aria-haspopup="dialog" aria-label="Open keyboard shortcuts" title="Keyboard Shortcuts (?)"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/><line x1="10" y1="12" x2="14" y2="12"/></svg> <span class="i18n-t" data-en="Shortcuts" data-km="ផ្លូវកាត់">Shortcuts</span></button>
@@ -757,7 +756,6 @@
   <div class="layout-pill active i18n-t" data-layout="standard" data-en="Khmer Keyboard Layout" data-km="ប្លង់ក្តារចុចខ្មែរ" role="tab" tabindex="0" aria-selected="true">Khmer Keyboard Layout</div>
   <div class="layout-pill i18n-t" data-layout="nida" data-en="Khmer NiDA Keyboard" data-km="ក្តារចុច Khmer NiDA" role="tab" tabindex="0" aria-selected="false">Khmer NiDA Keyboard</div>
   <div class="layout-pill i18n-t" data-layout="english" data-en="English (US)" data-km="English (US)" role="tab" tabindex="0" aria-selected="false">English (US)</div>
-  <a href="Documents/index.html#keycap-3d" class="layout-pill i18n-t" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; border-color:rgba(255,157,46,0.5); color:var(--gold-bright, #ffd166);" data-en="3D Mechanical Mode" data-km="ម៉ូឌែល 3D"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg> 3D Mode</a>
 </div>
 
 <div class="session-bar" id="sessionBar">
@@ -1087,6 +1085,23 @@
 <div class="board-wrap notranslate" id="boardWrap" translate="no">
   <div class="torch left"><div class="glow"></div><div class="flame"></div><div class="stick"></div></div>
   <div class="torch right"><div class="glow"></div><div class="flame"></div><div class="stick"></div></div>
+  <div class="board-chassis-bar" id="boardChassisBar">
+    <div class="chassis-deck-id">
+      <span class="chassis-led-dot" id="chassisLedDot" aria-hidden="true"></span>
+      <span class="chassis-name">PK-KHMER</span>
+      <span class="chassis-slash">/</span>
+      <span class="chassis-layout-label" id="chassisLayoutLabel">STANDARD</span>
+    </div>
+    <a href="Documents/index.html#keycap-3d" class="chassis-3d-btn" title="Launch Interactive 3D Mechanical Keyboard Experience" aria-label="Open 3D Mechanical Studio">
+      <svg class="chassis-3d-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+        <line x1="12" y1="22.08" x2="12" y2="12"/>
+      </svg>
+      <span class="chassis-3d-text i18n-t" data-en="3D Mechanical Studio" data-km="ស្ទូឌីយោ 3D">3D Mechanical Studio</span>
+      <span class="chassis-badge">3D</span>
+    </a>
+  </div>
   <div class="keyboard notranslate" id="keyboard" translate="no"></div>
   <svg class="hands-overlay" id="handsOverlay"></svg>
 </div>
@@ -1101,27 +1116,7 @@
 
 <p class="hint i18n-t" data-en="Pick a layout above: the &lt;b&gt;Khmer Keyboard Layout&lt;/b&gt;, the official &lt;b&gt;Khmer NiDA Keyboard&lt;/b&gt;, or plain &lt;b&gt;English (US)&lt;/b&gt;. Blank keys carry no mapping on that layer — just like the real thing. Pick a &lt;b&gt;Lesson&lt;/b&gt; above to drill one layer at a time, or try &lt;b&gt;Temple Trial&lt;/b&gt; to type real Khmer words from memory." data-km="ជ្រើសរើសប្លង់ខាងលើ៖ &lt;b&gt;ប្លង់ក្តារចុចខ្មែរ&lt;/b&gt; ជាផ្លូវការ &lt;b&gt;ក្តារចុចខ្មែរ និដា&lt;/b&gt; ឬ &lt;b&gt;English (US)&lt;/b&gt; សុទ្ធ។ គ្រាប់ចុចទទេគ្មានតម្លៃលើស្រទាប់នោះទេ — ដូចក្តារចុចពិតដែរ។ ជ្រើសរើស &lt;b&gt;មេរៀន&lt;/b&gt; ខាងលើ ដើម្បីហ្វឹកហាត់ស្រទាប់មួយក្នុងមួយពេល ឬសាកល្បង &lt;b&gt;ការសាកល្បងប្រាសាទ&lt;/b&gt; ដើម្បីវាយពាក្យខ្មែរពិតៗពីការចងចាំ។">Pick a layout above: the <b>Khmer Keyboard Layout</b>, the official <b>Khmer NiDA Keyboard</b>, or plain <b>English (US)</b>. Blank keys carry no mapping on that layer — just like the real thing. Pick a <b>Lesson</b> above to drill one layer at a time, or try <b>Temple Trial</b> to type real Khmer words from memory.</p>
 
-</div>
-
-<!-- ============================================================
-     OPTIONAL: real cross-visitor leaderboard via Firebase.
-     Everything works fine without this (it falls back to a
-     per-device leaderboard automatically). To make the "Lessons
-     Leaderboard" shared across everyone who visits:
-       1. Go to https://console.firebase.google.com and create a
-          free project.
-       2. Build → Firestore Database → Create database (test mode
-          is fine to start).
-       3. Project settings (gear icon) → General → "Your apps" →
-          click the </> (web) icon → register an app → copy the
-          firebaseConfig object it shows you.
-       4. Paste that object into FIREBASE_CONFIG below, replacing
-          the placeholder values.
-       5. In Firestore → Rules, use something like:
-            rules_version = '2';
-            service cloud.firestore {
-              match /databases/{database}/documents {
-                match /lessons_leaderboard/{doc} {
+<!-- Optional Firebase Leaderboard Setup (unconfigured by default) -->
 <footer class="site-footer" id="siteFooter">
   <div class="site-footer-inner">
     <span class="site-footer-credit i18n-t" data-en="PK Khmer Type — built by Phanna Kurosaki" data-km="PK Khmer Type — សាងសង់ដោយ Phanna Kurosaki">PK Khmer Type — built by Phanna Kurosaki</span>

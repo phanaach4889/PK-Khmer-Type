@@ -205,3 +205,7 @@
     .profile-sidebar{ width:min(94vw, 440px); margin:0 0 20px; align-self:flex-start; }
     .profile-sidebar.collapsed{ width:auto; }
   }
+
+  @media (max-width:600px){
+    .board-chassis-bar{ flex-wrap:wrap; gap:8px; }
+  }

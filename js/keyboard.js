@@ -404,6 +404,11 @@ function syncLayoutUI(id){
       p.setAttribute('aria-selected', isActive ? 'true' : 'false');
     });
   }
+  const chassisLabel = document.getElementById('chassisLayoutLabel');
+  if(chassisLabel){
+    const nameMap = { standard:'STANDARD', nida:'NiDA', english:'ENGLISH' };
+    chassisLabel.textContent = nameMap[targetId] || (targetId ? targetId.toUpperCase() : 'STANDARD');
+  }
   const ll = LAYOUTS[targetId] && LAYOUTS[targetId].layerLabels;
   if(ll){
     document.querySelectorAll('.layer-pill').forEach(p=>{
@@ -553,9 +558,11 @@ function switchLayout(id, force = false){
     restoreLessonAfterLayoutSwitch(id);
   }
 }
-layoutStrip.querySelectorAll('.layout-pill').forEach(p=>{
-  p.addEventListener('click', ()=> switchLayout(p.dataset.layout));
-});
+if(layoutStrip){
+  layoutStrip.querySelectorAll('.layout-pill[data-layout]').forEach(p=>{
+    p.addEventListener('click', ()=> switchLayout(p.dataset.layout));
+  });
+}
 
 
 /* ---------- finger guide (illustrated translucent hands) ---------- */

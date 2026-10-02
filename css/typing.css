@@ -97,21 +97,22 @@
     content:"";
     position:absolute; inset:0;
     border-radius:22px;
-    background:linear-gradient(115deg, transparent 35%, rgba(255,209,102,0.14) 50%, transparent 65%);
-    background-size:260% 260%;
-    background-position:200% 200%;
+    background:radial-gradient(ellipse 90% 60% at 50% 0%, rgba(255,209,102,0.18), transparent 75%);
     opacity:0;
-    transition:opacity .35s ease;
+    transition:opacity .18s ease;
     pointer-events:none;
     z-index:1;
   }
   .board-wrap.layer-shift::before{
     opacity:1;
-    animation:sheen-sweep 2.3s ease-in-out infinite;
   }
-  @keyframes sheen-sweep{
-    0%{ background-position:220% 220%; }
-    100%{ background-position:-40% -40%; }
+  .board-wrap.layer-ctrl::before{
+    background:radial-gradient(ellipse 90% 60% at 50% 0%, rgba(45,212,167,0.18), transparent 75%);
+    opacity:1;
+  }
+  .board-wrap.layer-altgr::before{
+    background:radial-gradient(ellipse 90% 60% at 50% 0%, rgba(255,90,112,0.18), transparent 75%);
+    opacity:1;
   }
   .board-wrap.trial-active{
     animation:trial-pulse 2.2s ease-in-out infinite;
@@ -146,13 +147,13 @@
     background:radial-gradient(circle, rgba(255,110,170,0.4), transparent 70%);
   }
 
-  /* ---------- layer-switch wave ---------- */
-  @keyframes wave-flash{
-    0%{ box-shadow:none; filter:brightness(1); }
-    35%{ box-shadow:0 0 20px rgba(255,209,102,0.6); filter:brightness(1.4); }
-    100%{ box-shadow:none; filter:brightness(1); }
+  /* ---------- layer-switch flash ---------- */
+  @keyframes board-layer-flash{
+    0%{ filter:brightness(1); }
+    40%{ filter:brightness(1.12); }
+    100%{ filter:brightness(1); }
   }
-  .key.wave{ animation:wave-flash .55s ease; }
+  #keyboard.layer-flash{ animation:board-layer-flash .2s ease; }
 
   /* ---------- rune ring (trial correct keystroke) ---------- */
   .rune-ring{

@@ -505,10 +505,12 @@ function typeKey(id, ev){
 const heldModifiers = new Set();
 
 function recomputePhysicalLayer(){
-  if(heldModifiers.has('altgr')) physicalLayer = 'altgr';
-  else if(heldModifiers.has('shift')) physicalLayer = 'shift';
-  else if(heldModifiers.has('ctrl')) physicalLayer = 'ctrl';
-  else physicalLayer = null;
+  const next = heldModifiers.has('altgr') ? 'altgr'
+             : heldModifiers.has('shift') ? 'shift'
+             : heldModifiers.has('ctrl')  ? 'ctrl'
+             : null;
+  if(next === physicalLayer) return;
+  physicalLayer = next;
   render();
 }
 
@@ -520,45 +522,41 @@ window.addEventListener('keydown', (e)=>{
   const id = CODE_MAP[e.code];
 
   if(id === 'shiftL' || id === 'shiftR'){
+    if(e.repeat) return;
     heldModifiers.add('shift');
     recomputePhysicalLayer();
     if(keyEls[id]) keyEls[id].classList.add('pressed');
     triggerFingerPress(id);
-    if(!e.repeat){
-      playClick('down');
-      if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
-    }
+    playClick('down');
+    if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
     return;
   }
   if(id === 'ctrlL' || id === 'ctrlR'){
+    if(e.repeat) return;
     heldModifiers.add('ctrl');
     recomputePhysicalLayer();
     if(keyEls[id]) keyEls[id].classList.add('pressed');
     triggerFingerPress(id);
-    if(!e.repeat){
-      playClick('down');
-      if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
-    }
+    playClick('down');
+    if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
     return;
   }
   if(id === 'altgr'){
+    if(e.repeat) return;
     heldModifiers.add('altgr');
     recomputePhysicalLayer();
     if(keyEls[id]) keyEls[id].classList.add('pressed');
     triggerFingerPress(id);
-    if(!e.repeat){
-      playClick('down');
-      if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
-    }
+    playClick('down');
+    if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
     return;
   }
   if(id === 'alt'){
+    if(e.repeat) return;
     if(keyEls[id]) keyEls[id].classList.add('pressed');
     triggerFingerPress(id);
-    if(!e.repeat){
-      playClick('down');
-      if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
-    }
+    playClick('down');
+    if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
     return;
   }
 
@@ -661,11 +659,11 @@ window.addEventListener('keyup', (e)=>{
   if(!id) return;
   if(keyEls[id]) keyEls[id].classList.remove('pressed');
   if(id === 'shiftL' || id === 'shiftR'){
-    heldModifiers.delete('shift');
+    if(!e.shiftKey) heldModifiers.delete('shift');
     recomputePhysicalLayer();
     playClick('up');
   } else if(id === 'ctrlL' || id === 'ctrlR'){
-    heldModifiers.delete('ctrl');
+    if(!e.ctrlKey) heldModifiers.delete('ctrl');
     recomputePhysicalLayer();
     playClick('up');
   } else if(id === 'altgr'){

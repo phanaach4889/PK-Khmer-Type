@@ -64,7 +64,7 @@
     },
     "nida-L01-01-E01": {
       "type": "single-char",
-      "content": "ាាា ាាា ាាា",
+      "content": "កា កា កាកា សា សា សាសា ដា ដា ដាដា ថា ថា ថាថា",
       "description": "Left pinky vowel ា"
     },
     "nida-L01-01-E02": {
@@ -189,7 +189,7 @@
     },
     "nida-L02-01-E01": {
       "type": "single-char",
-      "content": "ើើើ ើើើ ើើើ",
+      "content": "កើ កើ កើកើ ដើ ដើ ដើដើ សើ សើ សើសើ ថើ ថើ ថើថើ",
       "description": "Right pinky on semicolon key"
     },
     "nida-L02-01-E02": {
@@ -213,7 +213,12 @@
     },
     "nida-L02-02-E01": {
       "type": "single-char",
-      "content": "់់់ ់់់ ់់់",
+      "content": [
+        "កាក់",
+        "ដាក់",
+        "សាក់",
+        "ថាក់"
+      ],
       "description": "Bantoc key on quote"
     },
     "nida-L02-02-E02": {
@@ -288,7 +293,7 @@
     },
     "nida-L03-01-E01": {
       "type": "single-char",
-      "content": "េេេ រររ េរេ",
+      "content": "កេកេ រររ គេរេ ដេដេ រររ សេរេ",
       "description": "Left hand top row keys"
     },
     "nida-L03-01-E02": {
@@ -337,7 +342,7 @@
     },
     "nida-L03-03-E01": {
       "type": "single-char",
-      "content": "យយយ ុុុ យុយ",
+      "content": "យយយ កុកុ យុយុ ដុដុ យយយ សុសុកុ",
       "description": "Right index top row"
     },
     "nida-L03-03-E02": {
@@ -362,7 +367,7 @@
     },
     "nida-L03-04-E01": {
       "type": "single-char",
-      "content": "ិិិ ោោោ ិោិ",
+      "content": "កិកិ កោកោ សិសិ សោសោ ដិដិ ដោដោ កិកោ សិសោ ដិដោ",
       "description": "Right hand top vowels"
     },
     "nida-L03-04-E02": {
@@ -620,7 +625,7 @@
     },
     "nida-L05-04-E01": {
       "type": "single-char",
-      "content": "ៀៀៀ ឹឹឹ ៀឹៀ",
+      "content": "កៀកៀ កឹកឹ សៀសៀ សឹសឹ ដៀដៀ ដឹដឹ",
       "description": "Vowels ៀ and ឹ"
     },
     "nida-L05-04-E02": {
@@ -644,7 +649,7 @@
     },
     "nida-L05-05-E01": {
       "type": "single-char",
-      "content": "ុំុំុំ ៊៊៊ ុំ៊ុំ",
+      "content": "កុំកុំ ហ៊ានហ៊ាន សុំសុំ ស៊ាំស៊ាំ ដុំដុំ កុំសុំ ហ៊ានស៊ាំ",
       "description": "Compound vowel ុំ and register sign ៊"
     },
     "nida-L05-05-E02": {
@@ -674,7 +679,7 @@
     },
     "nida-L05-06-E02": {
       "type": "drill",
-      "content": "្ ្ ្ ្ ្",
+      "content": "ក្ក ក្ម ស្ម ត្ម ក្ក ក្ម ស្ម ត្ម",
       "description": "Coeng marker key Shift+J"
     },
     "nida-L05-06-E03": {
@@ -854,7 +859,7 @@
     },
     "nida-L07-01-E01": {
       "type": "single-char",
-      "content": "ីីី ូូូ ីូី",
+      "content": "កីកី គូគូ ដីដី ពូពូ កីគូ ដីពូ",
       "description": "Long vowels ី and ូ"
     },
     "nida-L07-01-E02": {
@@ -869,7 +874,7 @@
     },
     "nida-L07-02-E01": {
       "type": "single-char",
-      "content": "ែែែ ៃៃៃ ែៃែ",
+      "content": "កែកែ ថែថែ ដៃដៃ ព្រៃព្រៃ កែថែ ដៃព្រៃ",
       "description": "Vowels ែ and ៃ"
     },
     "nida-L07-02-E02": {
@@ -884,7 +889,7 @@
     },
     "nida-L07-03-E01": {
       "type": "single-char",
-      "content": "ួួួ ៅៅៅ ួៅួ",
+      "content": "គួរបួន ដៅដៅ ទៅទៅ គួរបួន ដៅទៅ",
       "description": "Complex vowels ួ and ៅ"
     },
     "nida-L07-03-E02": {
@@ -899,7 +904,7 @@
     },
     "nida-L07-04-E01": {
       "type": "single-char",
-      "content": "ាំាំាំ ំំំ ាំំាំ",
+      "content": "ចាំចាំ នាំនាំ កំកំ ធំធំ ចាំនាំ កំធំ",
       "description": "Nasalized vowels ាំ and ំ"
     },
     "nida-L07-04-E02": {
@@ -914,7 +919,7 @@
     },
     "nida-L07-05-E01": {
       "type": "single-char",
-      "content": "ះះះ េះេះេះ ោះោះោះ ុះុះុះ",
+      "content": "ចេះចេះ ដោះដោះ ចុះចុះ ផ្ទះផ្ទះ ចេះដោះ ចុះផ្ទះ",
       "description": "Aspirated vowel endings"
     },
     "nida-L07-05-E02": {
@@ -929,7 +934,7 @@
     },
     "nida-L07-06-E01": {
       "type": "single-char",
-      "content": "ឺឺឺ ឿឿឿ ឺឿឺ",
+      "content": "ឈឺឈឺ រឿរឿ លឿនលឿន ឈឺរឿង លឿនលឿន",
       "description": "Remaining shift vowels"
     },
     "nida-L07-06-E02": {
@@ -1035,7 +1040,7 @@
     },
     "nida-L09-01-E01": {
       "type": "single-char",
-      "content": "៉ ៉ ៉ ៉ ៉",
+      "content": "ប៉ា ម៉ាក់ ហ៊ាន ប៉ា ម៉ាក់ ហ៊ាន",
       "description": "Musekkatoan sign"
     },
     "nida-L09-01-E02": {
@@ -1069,7 +1074,7 @@
     },
     "nida-L09-03-E02": {
       "type": "word",
-      "content": "័័័ ័ ័័ ៌៌៌ ៌ ៌៌ ៍៍៍ ៍ ៍៍ ៏៏៏ ៏ ៏៏ ៎៎៎ ៎ ៎៎",
+      "content": "ព័ត៌មាន ធម៌ ពេជ្រ ដ៏ ប៉ុក៎ នុ៎ះ អូ៎ ព័ត៌មាន ធម៌ ដ៏ ប៉ុក៎ នុ៎ះ",
       "description": "Words with diacritics"
     },
     "nida-L09-04-E01": {
@@ -1265,7 +1270,7 @@
     },
     "nida-L01-01-E04": {
       "type": "drill",
-      "content": "ាាា ា ាា ាថ កា ាក ាាា ា ាា ាថ កា ាក ាាា ា ាា ាថ កា ាក",
+      "content": "កា កា កាកា សា សា សាសា ដា ដា ដាដា ថា ថា ថាថា កា សា ដា ថា កាកា សាសា ដាដា ថាថា",
       "description": "Rhythm and cadence reinforcement for Vowel ា (A)"
     },
     "nida-L01-02-E04": {
@@ -1290,27 +1295,27 @@
     },
     "nida-L02-01-E04": {
       "type": "drill",
-      "content": "ើើើ ើ ើើ ើថ កើ ើក ើើើ ើ ើើ ើថ កើ ើក ើើើ ើ ើើ ើថ កើ ើក ើើើ ើ ើើ",
+      "content": "កើ កើ កើកើ ដើ ដើ ដើដើ សើ សើ សើសើ ថើ ថើ ថើថើ កើ ដើ សើ ថើ កើដើ សើថើ ដើកើ",
       "description": "Rhythm and cadence reinforcement for Right Pinky Vowel ើ (;)"
     },
     "nida-L02-02-E04": {
       "type": "drill",
-      "content": "់់់ ់ ់់ ់ថ ក់ ់ក ់់់ ់ ់់ ់ថ ក់ ់ក ់់់ ់ ់់ ់ថ ក់ ់ក",
+      "content": "កាក់ កាក់ កាក់កាក់ ដាក់ ដាក់ ដាក់ដាក់ សាក់ សាក់ សាក់សាក់ កាត់ ដាត់ សាត់ កាក់ ដាក់ សាក់",
       "description": "Rhythm and cadence reinforcement for Final Stop Mark ់ (' Bantoc)"
     },
     "nida-L02-03-E04": {
       "type": "drill",
-      "content": "ហហហ ហ ហហ លលល ល លល ើើើ ើ ើើ ់់់ ់ ់់",
+      "content": "ហហហ ហ ហហ លលល ល លល ហើ ហើ ហើហើ លើ លើ លើលើ កាក់ ដាក់ សាក់ ហើ លើ កាក់ ដាក់",
       "description": "Rhythm and cadence reinforcement for Bantoc Short Words"
     },
     "nida-L02-04-E04": {
       "type": "drill",
-      "content": "ហហហ ហ ហហ លលល ល លល ើើើ ើ ើើ ់់់ ់ ់់ ហថ កហ ហក",
+      "content": "ហហហ ហ ហហ លលល ល លល ហើ ហើ ហើហើ លើ លើ លើលើ កាក់ ដាក់ សាក់ ហថ កហ ហក លថ កល លក",
       "description": "Rhythm and cadence reinforcement for Home Row Complete Review"
     },
     "nida-L03-01-E04": {
       "type": "drill",
-      "content": "េេេ េ េេ រររ រ ររ េថ កេ េក រថ ករ រក េេេ េ េេ រររ រ ររ េថ កេ េក",
+      "content": "កេ កេ កេកេ រររ រ ររ ដេ ដេ ដេដេ សេ សេ សេសេ កេ ដេ សេ រេ រថ ករ រក កេ រេ ដេ សេ",
       "description": "Rhythm and cadence reinforcement for Top Row េ (E) and រ (R)"
     },
     "nida-L03-02-E04": {
@@ -1320,22 +1325,22 @@
     },
     "nida-L03-03-E04": {
       "type": "drill",
-      "content": "យយយ យ យយ ុុុ ុ ុុ យថ កយ យក ុថ កុ ុក យយយ យ យយ ុុុ ុ ុុ យថ កយ យក",
+      "content": "យយយ យ យយ កុ កុ កុកុ ដុ ដុ ដុដុ សុ សុ សុសុ យថ កយ យក កុ ដុ សុ យុ កុកុ ដុដុ សុសុកុ",
       "description": "Rhythm and cadence reinforcement for Right Index យ (Y) and ុ (U)"
     },
     "nida-L03-04-E04": {
       "type": "drill",
-      "content": "ិិិ ិ ិិ ោោោ ោ ោោ ិថ កិ ិក ោថ កោ ោក ិិិ ិ ិិ ោោោ ោ ោោ ិថ កិ ិក",
+      "content": "កិ កិ កិកិ កោ កោ កោកោ សិ សិ សិសិ សោ សោ សោសោ ដិ ដិ ដោ ដោ កិ កោ សិ សោ ដិ ដោ",
       "description": "Rhythm and cadence reinforcement for Right Hand Vowels ិ (I) and ោ (O)"
     },
     "nida-L03-05-E04": {
       "type": "drill",
-      "content": "យយយ យ យយ ុុុ ុ ុុ ិិិ ិ ិិ ោោោ ោ ោោ យថ កយ យក ុថ កុ ុក ិថ កិ ិក",
+      "content": "យយយ យ យយ កុ កុ កុកុ កិ កិ កិកិ កោ កោ កោកោ យថ កយ យក កុ កិ កោ យុ កុកុ កិកិ កោកោ",
       "description": "Rhythm and cadence reinforcement for Top + Home Row Words"
     },
     "nida-L03-06-E04": {
       "type": "drill",
-      "content": "យយយ យ យយ ុុុ ុ ុុ ិិិ ិ ិិ ោោោ ោ ោោ យថ កយ យក ុថ កុ ុក",
+      "content": "យយយ យ យយ កុ កុ កុកុ កិ កិ កិកិ កោ កោ កោកោ យថ កយ យក កុ កិ កោ យុ ដុក ដិក ដោក",
       "description": "Rhythm and cadence reinforcement for Top Row Review"
     },
     "nida-L04-01-E04": {
@@ -1380,27 +1385,27 @@
     },
     "nida-L05-04-E04": {
       "type": "drill",
-      "content": "ៀៀៀ ៀ ៀៀ ឹឹឹ ឹ ឹឹ ៀថ កៀ ៀក ឹថ កឹ ឹក ៀៀៀ ៀ ៀៀ ឹឹឹ ឹ ឹឹ",
+      "content": "កៀ កៀ កៀកៀ កឹ កឹ កឹកឹ ដៀ ដៀ ដៀដៀ ដឹ ដឹ ដឹដឹ សៀ សៀ សឹ សឹ កៀ ដៀ កឹ ដឹ កៀកៀ កឹកឹ",
       "description": "Rhythm and cadence reinforcement for ៀ ([) and ឹ (W)"
     },
     "nida-L05-05-E04": {
       "type": "drill",
-      "content": "ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ុំថ កុំ ុំក ៊ថ ក៊ ៊ក ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ុំថ កុំ ុំក",
+      "content": "កុំ កុំ កុំកុំ សុំ សុំ សុំសុំ ដុំ ដុំ ដុំដុំ ហ៊ាន ស៊ាំ កុំ សុំ ដុំ ហ៊ាន កុំកុំ សុំសុំ ដុំដុំ",
       "description": "Rhythm and cadence reinforcement for Compound ុំ (,) and ៊ (/)"
     },
     "nida-L05-06-E05": {
       "type": "drill",
-      "content": "ញញញ ញ ញញ ្្្ ្ ្្ ញថ កញ ញក ្ថ ក្ ្ក ញញញ ញ ញញ",
+      "content": "ញញញ ញ ញញ ក្ក ក្ម ស្ម ត្ម ញញ ញ ញញ ក្ដារ ក្មេង ច្បាប់ ខ្លា ញញញ ញ ញញ",
       "description": "Rhythm and cadence reinforcement for ញ (J) and Subscript ្ (Shift+J)"
     },
     "nida-L05-07-E03": {
       "type": "drill",
-      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ៊ថ ក៊ ៊ក",
+      "content": "ក្រ ក្រ ក្រក្រ ស្រ ស្រ ស្រស្រ ប្រ ប្រ ប្រប្រ ត្រ ត្រ ត្រត្រ ក្រចក ប្រាក់ ស្រុក ច្រក ត្រី ក្រៅ ស្រឡាញ់ ក្រ ស្រ ប្រ ត្រ",
       "description": "Rhythm and cadence reinforcement for Consonant Clusters (ក្រ, ស្រ, ប្រ)"
     },
     "nida-L05-08-E04": {
       "type": "drill",
-      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊",
+      "content": "រៀន ដឹង កុំ ប្រាក់ ក្មេង ក្ដារ ច្បាប់ ខ្លា រៀន ដឹង កុំ ប្រាក់ ក្រចក ស្រុក",
       "description": "Rhythm and cadence reinforcement for Base Layer Mastery Review"
     },
     "nida-L06-01-E03": {
@@ -1435,82 +1440,82 @@
     },
     "nida-L06-07-E03": {
       "type": "drill",
-      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក",
+      "content": "ក គ ខ ឃ ច ជ ដ ឌ ត ទ ប ផ ស ហ ក គ ខ ឃ ច ជ ដ ឌ ត ទ ប ផ",
       "description": "Rhythm and cadence reinforcement for Base vs Shift Pairs Drill"
     },
     "nida-L06-08-E03": {
       "type": "drill",
-      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក",
+      "content": "ធម៌ ភ្នំ ឃុំ ឈើ ឡាន គំនិត ធម៌ ភ្នំ ឃុំ ឈើ ឡាន គំនិត ធម៌ ភ្នំ ឃុំ ឈើ",
       "description": "Rhythm and cadence reinforcement for Shift Consonants Review"
     },
     "nida-L07-01-E03": {
       "type": "drill",
-      "content": "ីីី ី ីី ូូូ ូ ូូ ីថ កី ីក ូថ កូ ូក ីីី ី ីី ូូូ ូ ូូ ីថ កី ីក ូថ កូ ូក",
+      "content": "កី កី កីកី គូ គូ គូគូ ដី ដី ដីដី ពូ ពូ ពូពូ កី គូ ដី ពូ កីកី គូគូ ដីដី ពូពូ",
       "description": "Rhythm and cadence reinforcement for ី (Shift+I) and ូ (Shift+U)"
     },
     "nida-L07-02-E03": {
       "type": "drill",
-      "content": "ែែែ ែ ែែ ៃៃៃ ៃ ៃៃ ែថ កែ ែក ៃថ កៃ ៃក ែែែ ែ ែែ ៃៃៃ ៃ ៃៃ ែថ កែ ែក ៃថ កៃ ៃក",
+      "content": "កែ កែ កែកែ ថែ ថែ ថែថែ ដៃ ដៃ ដៃដៃ ព្រៃ ព្រៃ ព្រៃព្រៃ កែ ថែ ដៃ ព្រៃ កែកែ ថែថែ ដៃដៃ ព្រៃព្រៃ",
       "description": "Rhythm and cadence reinforcement for ែ (Shift+E) and ៃ (Shift+S)"
     },
     "nida-L07-03-E03": {
       "type": "drill",
-      "content": "ួួួ ួ ួួ ៅៅៅ ៅ ៅៅ ួថ កួ ួក ៅថ កៅ ៅក ួួួ ួ ួួ ៅៅៅ ៅ ៅៅ ួថ កួ ួក ៅថ កៅ ៅក",
+      "content": "គួរ គួរ គួរបួន ដៅ ដៅ ដៅដៅ ទៅ ទៅ ទៅទៅ គួរ ដៅ ទៅ បួន គួរបួន ដៅដៅ ទៅទៅ",
       "description": "Rhythm and cadence reinforcement for ួ (Shift+Y) and ៅ (Shift+O)"
     },
     "nida-L07-04-E03": {
       "type": "drill",
-      "content": "ាំាំាំ ាំ ាំាំ ំំំ ំ ំំ ាំថ កាំ ាំក ំថ កំ ំក ាំាំាំ ាំ ាំាំ ំំំ ំ ំំ ាំថ កាំ ាំក ំថ កំ ំក",
+      "content": "ចាំ ចាំ ចាំចាំ នាំ នាំ នាំនាំ កំ កំ កំកំ ធំ ធំ ធំធំ ចាំ នាំ កំ ធំ ចាំចាំ នាំនាំ កំកំ ធំធំ",
       "description": "Rhythm and cadence reinforcement for ាំ (Shift+A) and ំ (Shift+M)"
     },
     "nida-L07-05-E03": {
       "type": "drill",
-      "content": "ះះះ ះ ះះ េះេះេះ េះ េះេះ ោះោះោះ ោះ ោះោះ ុះុះុះ ុះ ុះុះ ះថ កះ ះក េះថ កេះ េះក ោះថ កោះ ោះក ុះថ កុះ ុះក",
+      "content": "ចេះ ចេះ ចេះចេះ ដោះ ដោះ ដោះដោះ ចុះ ចុះ ចុះចុះ ផ្ទះ ផ្ទះ ផ្ទះផ្ទះ ចេះ ដោះ ចុះ ផ្ទះ ចេះចេះ ដោះដោះ",
       "description": "Rhythm and cadence reinforcement for ះ េះ ោះ ុះ"
     },
     "nida-L07-06-E03": {
       "type": "drill",
-      "content": "ឺឺឺ ឺ ឺឺ ឿឿឿ ឿ ឿឿ ឺថ កឺ ឺក ឿថ កឿ ឿក ឺឺឺ ឺ ឺឺ ឿឿឿ ឿ ឿឿ ឺថ កឺ ឺក ឿថ កឿ ឿក",
+      "content": "ឈឺ ឈឺ ឈឺឈឺ រឿង រឿង រឿងរឿង លឿន លឿន លឿនលឿន ឈឺ រឿង លឿន ឈឺឈឺ រឿងរឿង លឿនលឿន",
       "description": "Rhythm and cadence reinforcement for ឺ (Shift+W) and ឿ (Shift+[)"
     },
     "nida-L07-07-E03": {
       "type": "drill",
-      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ៊ថ ក៊ ៊ក",
+      "content": "កា កិ កី កឹ កឺ កុ កូ កួ កើ កឿ កៀ កេ កែ កៃ កោ កៅ កុំ កំ កាំ កះ កា កិ កី កឹ",
       "description": "Rhythm and cadence reinforcement for All Vowels Review"
     },
     "nida-L08-01-E02": {
       "type": "drill",
-      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ៊ថ ក៊ ៊ក ញថ កញ ញក ឹឹឹ ឹ ឹឹ",
+      "content": "គ្រូ ប្រទេស ក្រុម ព្រៃ ស្រុក ក្រៅ គ្រូ ប្រទេស ក្រុម ព្រៃ ព្រះ ព្រឹក គ្រួសារ គ្រូ ប្រទេស",
       "description": "Rhythm and cadence reinforcement for ្រ (Subscript R) Clusters"
     },
     "nida-L08-02-E02": {
       "type": "drill",
-      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ៊ថ ក៊ ៊ក ញថ កញ ញក ឹឹឹ ឹ ឹឹ",
+      "content": "ខ្លា ផ្លូវ ឆ្លើយ ភ្លៀង ធ្លាក់ ស្លឹក ខ្លា ផ្លូវ ឆ្លើយ ភ្លៀង ខ្លាំង ផ្លែ ខ្លា ផ្លូវ ឆ្លើយ",
       "description": "Rhythm and cadence reinforcement for ្ល (Subscript L) Clusters"
     },
     "nida-L08-03-E02": {
       "type": "drill",
-      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ៊ថ ក៊ ៊ក ញថ កញ ញក",
+      "content": "កញ្ញា អំណាច ជំនួយ កម្ពុជា ធម្មជាតិ សម្បត្តិ កញ្ញា ជំនួយ កម្ពុជា ធម្មជាតិ",
       "description": "Rhythm and cadence reinforcement for Subscript ញ ណ ន ម"
     },
     "nida-L08-04-E03": {
       "type": "drill",
-      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក",
+      "content": "ក្ក ស្ស ត្ត ន្ន ចិត្ត សន្តិភាព សប្បាយ បញ្ញត្តិ ចិត្ត សប្បាយ ក្ក ស្ស ត្ត ន្ន",
       "description": "Rhythm and cadence reinforcement for Doubled Consonants"
     },
     "nida-L08-05-E02": {
       "type": "drill",
-      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ៊ថ ក៊ ៊ក",
+      "content": "ស្ងួត ម្ហូប ក្បាល ស្អាត ស្ងប់ស្ងាត់ ស្ដាប់ ស្ងួត ម្ហូប ក្បាល ស្អាត ស្ដាប់",
       "description": "Rhythm and cadence reinforcement for Complex Subscripts"
     },
     "nida-L08-06-E02": {
       "type": "drill",
-      "content": "ឹឹឹ ឹ ឹឹ ុំុំុំ ុំ ុំុំ ៊៊៊ ៊ ៊៊ ញញញ ញ ញញ ឹថ កឹ ឹក ុំថ កុំ ុំក ៊ថ ក៊ ៊ក",
+      "content": "កម្ពុជា ប្រទេស ភាសាខ្មែរ ប្រវត្តិសាស្ត្រ អរគុណ សប្បាយ កម្ពុជា ប្រទេស ភាសាខ្មែរ",
       "description": "Rhythm and cadence reinforcement for Coeng Mastery Review"
     },
     "nida-L09-01-E03": {
       "type": "drill",
-      "content": "៉៉៉ ៉ ៉៉ ៉ថ ក៉ ៉ក ៉៉៉ ៉ ៉៉ ៉ថ ក៉ ៉ក ៉៉៉ ៉ ៉៉ ៉ថ ក៉ ៉ក ៉៉៉ ៉ ៉៉ ៉ថ ក៉ ៉ក",
+      "content": "ប៉ា ប៉ា ប៉ាប៉ា ម៉ាក់ ម៉ាក់ ម៉ាក់ម៉ាក់ ហ៊ាន ហ៊ាន ហ៊ានហ៊ាន ប៉ា ម៉ាក់ ហ៊ាន ប៉ាប៉ា ម៉ាក់ម៉ាក់",
       "description": "Rhythm and cadence reinforcement for ៉ (Shift+') and ៊ (Shift+/)"
     },
     "nida-L09-02-E03": {
@@ -1520,7 +1525,7 @@
     },
     "nida-L09-03-E03": {
       "type": "drill",
-      "content": "័័័ ័ ័័ ៌៌៌ ៌ ៌៌ ៍៍៍ ៍ ៍៍ ៏៏៏ ៏ ៏៏ ័ថ ក័ ័ក ៌ថ ក៌ ៌ក",
+      "content": "ព័ត៌មាន ធម៌ ពេជ្រ ដ៏ ប៉ុក៎ នុ៎ះ ព័ត៌មាន ធម៌ ពេជ្រ ដ៏ ប៉ុក៎ នុ៎ះ",
       "description": "Rhythm and cadence reinforcement for Top Diacritics (័ ៌ ៍ ៏)"
     },
     "nida-L09-04-E03": {
@@ -1575,7 +1580,7 @@
     },
     "nida-L11-01-E03": {
       "type": "drill",
-      "content": "          ថ ក   ក           ថ ក   ក           ថ ក   ក",
+      "content": "ខ្ញុំ រៀន ភាសា ខ្មែរ។ កម្ពុជា ជា ប្រទេស ស្អាត។ ខ្ញុំ រៀន ភាសា ខ្មែរ។",
       "description": "Rhythm and cadence reinforcement for Short Sentences (Shift+Space)"
     },
     "nida-L11-05-E02": {

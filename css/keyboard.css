@@ -430,6 +430,17 @@
     transform:translateY(1px);
     box-shadow:0 0 22px rgba(45,212,167,0.5);
   }
+  .key.key-ctrl.pressed,
+  .board-wrap.layer-ctrl .key.key-ctrl{
+    background: linear-gradient(180deg, #2dd4a7, #13775a) !important;
+    color: #04211a !important;
+    border-color: #2dd4a7 !important;
+    box-shadow: 0 0 22px rgba(45,212,167,0.7), 0 0 8px rgba(45,212,167,0.35) inset !important;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.3) !important;
+    filter: brightness(1.15) !important;
+    transform: translateY(2px) scale(0.97) !important;
+  }
+
   .key.key-altgr:hover, .key.key-altgr.locked{
     background:linear-gradient(180deg, #c8474c, #7f2529);
     color:#fdeeee;
@@ -437,12 +448,66 @@
     transform:translateY(1px);
     box-shadow:0 0 22px rgba(255,59,86,0.5);
   }
+  .key.key-altgr.pressed,
+  .board-wrap.layer-altgr .key.key-altgr{
+    background: linear-gradient(180deg, #ff5a70, #9e1f2f) !important;
+    color: #ffffff !important;
+    border-color: #ff5a70 !important;
+    box-shadow: 0 0 22px rgba(255,90,112,0.7), 0 0 8px rgba(255,90,112,0.35) inset !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4) !important;
+    filter: brightness(1.15) !important;
+    transform: translateY(2px) scale(0.97) !important;
+  }
+
   .key.key-shift:hover, .key.key-shift.locked{
     background:linear-gradient(180deg, #ff9d2e, #96702a);
     color:#241a05;
     border-color:#6b4e1c;
     transform:translateY(1px);
     box-shadow:0 0 22px rgba(255,157,46,0.5);
+  }
+  .key.key-shift.pressed,
+  .board-wrap.layer-shift .key.key-shift{
+    background: linear-gradient(180deg, #ffd166, #b07d1e) !important;
+    color: #1a1202 !important;
+    border-color: #ffd166 !important;
+    box-shadow: 0 0 22px rgba(255,209,102,0.7), 0 0 8px rgba(255,209,102,0.35) inset !important;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.4) !important;
+    filter: brightness(1.15) !important;
+    transform: translateY(2px) scale(0.97) !important;
+  }
+
+  /* Held layer active glyph accents on available keys */
+  .board-wrap.layer-shift .key:not(.empty):not(.mod) {
+    border-color: rgba(255, 209, 102, 0.35);
+  }
+  .board-wrap.layer-shift .key:not(.empty):not(.mod) .glyph {
+    color: var(--gold-bright);
+    text-shadow: 0 0 8px rgba(255, 209, 102, 0.4);
+  }
+
+  .board-wrap.layer-ctrl .key:not(.empty):not(.mod) {
+    border-color: rgba(45, 212, 167, 0.35);
+  }
+  .board-wrap.layer-ctrl .key:not(.empty):not(.mod) .glyph {
+    color: #2dd4a7;
+    text-shadow: 0 0 8px rgba(45, 212, 167, 0.4);
+  }
+
+  .board-wrap.layer-altgr .key:not(.empty):not(.mod) {
+    border-color: rgba(255, 90, 112, 0.35);
+  }
+  .board-wrap.layer-altgr .key:not(.empty):not(.mod) .glyph {
+    color: #ff8595;
+    text-shadow: 0 0 8px rgba(255, 90, 112, 0.4);
+  }
+
+  /* Dim keys that have no character on the held layer */
+  .board-wrap.layer-shift .key.empty,
+  .board-wrap.layer-ctrl .key.empty,
+  .board-wrap.layer-altgr .key.empty {
+    opacity: 0.35;
+    transition: opacity .12s ease;
   }
 
   .key.lit{
@@ -498,3 +563,117 @@
     border:5px solid transparent;
     border-top-color:var(--tooltip-bg);
   }
+
+  /* ============================================================
+     3D Mechanical Studio — Chassis Bar, Toolbar & Floating HUD
+     ============================================================ */
+
+  /* ---------- 1. Virtual Keyboard Chassis Bar ---------- */
+  .board-chassis-bar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:0 4px 12px 4px;
+    margin-bottom:10px;
+    border-bottom:1px solid rgba(255,255,255,0.07);
+    position:relative;
+    z-index:2;
+  }
+
+  .chassis-deck-id{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Orbitron', 'JetBrains Mono', sans-serif;
+    font-size:0.68rem;
+    font-weight:700;
+    letter-spacing:0.12em;
+    color:var(--ink-dim);
+    user-select:none;
+  }
+
+  .chassis-led-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--temple-blue, #2dd4a7);
+    box-shadow:0 0 8px var(--temple-blue, #2dd4a7), 0 0 14px rgba(45,212,167,0.5);
+    animation:chassis-led-blink 2.2s ease-in-out infinite alternate;
+    flex-shrink:0;
+  }
+
+  @keyframes chassis-led-blink{
+    0%{ opacity:0.65; box-shadow:0 0 6px var(--temple-blue, #2dd4a7); }
+    100%{ opacity:1; box-shadow:0 0 12px var(--temple-blue, #2dd4a7), 0 0 20px rgba(45,212,167,0.7); }
+  }
+
+  .chassis-name{
+    color:var(--gold-bright, #ffd166);
+  }
+
+  .chassis-slash{
+    color:rgba(255,255,255,0.22);
+    font-weight:400;
+  }
+
+  .chassis-layout-label{
+    color:#4fe8ff;
+    letter-spacing:0.14em;
+    font-weight:800;
+  }
+
+  .chassis-3d-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    font-weight:700;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:6px 14px;
+    border-radius:999px;
+    color:var(--gold-bright, #ffd166);
+    background:
+      linear-gradient(135deg, rgba(255,157,46,0.2), rgba(217,70,239,0.18)),
+      rgba(14,18,36,0.88);
+    border:1px solid rgba(255,209,102,0.45);
+    box-shadow:0 3px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.12);
+    transition:all .22s cubic-bezier(.22,1,.36,1);
+    cursor:pointer;
+  }
+
+  .chassis-3d-btn:hover{
+    color:#fff5d6;
+    border-color:var(--gold-bright, #ffd166);
+    background:
+      linear-gradient(135deg, rgba(255,157,46,0.32), rgba(217,70,239,0.3)),
+      rgba(22,28,52,0.96);
+    box-shadow:0 6px 20px rgba(0,0,0,0.55), 0 0 22px rgba(255,209,102,0.4), inset 0 1px 0 rgba(255,255,255,0.22);
+    transform:translateY(-1.5px);
+  }
+
+  .chassis-3d-icon{
+    flex-shrink:0;
+    color:var(--gold-bright, #ffd166);
+    transition:transform .2s ease;
+  }
+
+  .chassis-3d-btn:hover .chassis-3d-icon{
+    transform:rotate(10deg) scale(1.12);
+  }
+
+  .chassis-badge{
+    font-size:0.58rem;
+    font-weight:800;
+    letter-spacing:0.06em;
+    padding:1px 6px;
+    border-radius:6px;
+    background:rgba(255,209,102,0.22);
+    border:1px solid rgba(255,209,102,0.5);
+    color:#fff;
+  }
+
+
