@@ -39,7 +39,9 @@
     <div class="header-center">
       <div class="search-wrap">
         <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" id="docsSearchInput" class="search-input" placeholder="Search documentation... (Press '/' to focus)" aria-label="Search documentation">
+        <input type="text" id="docsSearchInput" class="search-input" placeholder="Search documentation... (Press '/' to focus)" aria-label="Search documentation" autocomplete="off">
+        <button id="searchClearBtn" class="search-clear-btn" type="button" aria-label="Clear search" hidden>&times;</button>
+        <div id="searchResultsDropdown" class="search-dropdown" hidden></div>
       </div>
     </div>
 
@@ -118,7 +120,7 @@
       <section class="doc-hero">
         <div class="hero-meta">
           <span class="hero-tag">
-            <svg class="doc-icon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
             <span class="doc-i18n" data-en="Official Documentation" data-km="ឯកសារផ្លូវការ">Official Documentation</span>
           </span>
           <span class="hero-version">Endpoint: <code>/Documents</code> · Version 2.2</span>
@@ -151,6 +153,76 @@
           <div class="metric-card">
             <div class="metric-val">100%</div>
             <div class="metric-lbl doc-i18n" data-en="Zero Dependencies" data-km="ឥតពឹងផ្អែកបណ្ណាល័យក្រៅ">Zero Dependencies</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1. Overview & Vision -->
+      <section id="overview" class="doc-section">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span class="section-icon">
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </span>
+            <span class="doc-i18n" data-en="Overview &amp; Philosophy" data-km="ទិដ្ឋភាពទូទៅ និងទស្សនវិស័យ">Overview &amp; Philosophy</span>
+          </h2>
+          <a href="#overview" class="section-anchor">#</a>
+        </div>
+        <p class="doc-p doc-i18n"
+           data-en="Typing in Khmer is notoriously challenging for newcomers. Unlike simple alphabet systems, Khmer is an abugida script with 33 consonants, 23 dependent vowels, 14 independent vowels, and stacked subscript consonants (Coeng ្). Most available learning materials are static poster images that users have to squint at without any feedback."
+           data-km="ការរៀនវាយអក្សរខ្មែរតែងតែជាឧបសគ្គធំសម្រាប់អ្នកចាប់ផ្តើមដំបូង។ ខុសពីអក្ខរក្រមធម្មតា អក្សរខ្មែរជាភាសាអប៊ូហ្គីដា ដែលមានព្យញ្ជនៈ ៣៣ ស្រៈនិស្ស័យ ២៣ ស្រៈពេញតួ ១៤ និងជើងព្យញ្ជនៈត្រួតគ្នា (ជើង ្)។ ឯកសារភាគច្រើនកន្លងមក គឺជារូបភាពក្តារចុចស្ងៀមៗ ដែលពិបាកមើល និងគ្មានការឆ្លើយតបជាក់ស្តែង។">
+          Typing in Khmer is notoriously challenging for newcomers. Unlike simple alphabet systems, Khmer is an abugida script with 33 consonants, 23 dependent vowels, 14 independent vowels, and stacked subscript consonants (Coeng ្). Most available learning materials are static poster images that users have to squint at without any feedback.
+        </p>
+
+        <div class="callout tip">
+          <div class="callout-icon">
+            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"/></svg>
+          </div>
+          <div>
+            <strong class="doc-i18n" data-en="The Core Philosophy:" data-km="ទស្សនវិស័យស្នូល៖">The Core Philosophy:</strong>
+            <span class="doc-i18n"
+                  data-en=" Authentic muscle memory is built one honest keystroke at a time. Every lesson, every key mapping, and every line of code was crafted from scratch by hand to give learners clear visual guidance, instant auditory feedback, and targeted repetition without shortcuts."
+                  data-km=" ការចងចាំរបស់ម្រាមដៃពិតប្រាកដ គឺសាងសង់ឡើងម្តងមួយគ្រាប់ចុចដោយស្មោះត្រង់។ រាល់មេរៀន រាល់ការផ្គូផ្គង និងរាល់កូដត្រូវបានបង្កើតឡើងដោយដៃផ្ទាល់ ដើម្បីផ្តល់នូវការណែនាំច្បាស់លាស់ សំឡេងឆ្លើយតបភ្លាមៗ និងការហ្វឹកហាត់ចំគោលដៅ។">
+              Authentic muscle memory is built one honest keystroke at a time. Every lesson, every key mapping, and every line of code was crafted from scratch by hand to give learners clear visual guidance, instant auditory feedback, and targeted repetition without shortcuts.
+            </span>
+          </div>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-box">
+            <div class="feature-head">
+              <div class="feature-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/></svg>
+              </div>
+              <div class="feature-name doc-i18n" data-en="Live Virtual Keyboard" data-km="ក្តារចុចនិម្មិតផ្សាយបន្តផ្ទាល់">Live Virtual Keyboard</div>
+            </div>
+            <div class="feature-desc doc-i18n" data-en="Illuminates the exact target key, modifier state (Shift, AltGr, Coeng), and translucent finger indicator on every character." data-km="បំភ្លឺគ្រាប់ចុចគោលដៅ ស្រទាប់បន្ថែម (Shift, AltGr, ជើង) និងបង្ហាញម្រាមដៃដែលត្រូវចុចដោយស្វ័យប្រវត្តិ។">
+              Illuminates the exact target key, modifier state (Shift, AltGr, Coeng), and translucent finger indicator on every character.
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-head">
+              <div class="feature-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
+              </div>
+              <div class="feature-name doc-i18n" data-en="Dynamic Keybr-Style Engine" data-km="ប្រព័ន្ធអនុវត្តបត់បែន">Dynamic Keybr-Style Engine</div>
+            </div>
+            <div class="feature-desc doc-i18n" data-en="Tracks per-letter speed and accuracy in real-time. Mistake penalty is -3%, while correct strokes award speed-dependent gains up to +5%." data-km="តាមដានល្បឿន និងភាពសុក្រឹតតាមតួអក្សរ។ វាយខុសដក -3% ហើយវាយត្រូវបន្ថែមពិន្ទុរហូតដល់ +5% ផ្អែកលើល្បឿន។">
+              Tracks per-letter speed and accuracy in real-time. Mistake penalty is -3%, while correct strokes award speed-dependent gains up to +5%.
+            </div>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-head">
+              <div class="feature-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div class="feature-name doc-i18n" data-en="Strict 100% Gatekeeping" data-km="ការចាក់សោតាមកម្រិត ១០០%">Strict 100% Gatekeeping</div>
+            </div>
+            <div class="feature-desc doc-i18n" data-en="Next letters and lesson levels remain locked until all active units hit 100% completion, ensuring durable mastery before advancement." data-km="អក្សរនិងមេរៀនបន្ទាប់ត្រូវចាក់សោរហូតដល់អក្សរកំពុងរៀនទាំងអស់ឈានដល់ ១០០% ធានាការចងចាំមុនឈានទៅមុខ។">
+              Next letters and lesson levels remain locked until all active units hit 100% completion, ensuring durable mastery before advancement.
+            </div>
           </div>
         </div>
       </section>
@@ -229,76 +301,6 @@
         </div>
       </section>
 
-      <!-- 1. Overview & Vision -->
-      <section id="overview" class="doc-section">
-        <div class="section-head">
-          <h2 class="section-title">
-            <span class="section-icon">
-              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </span>
-            <span class="doc-i18n" data-en="Overview &amp; Philosophy" data-km="ទិដ្ឋភាពទូទៅ និងទស្សនវិស័យ">Overview &amp; Philosophy</span>
-          </h2>
-          <a href="#overview" class="section-anchor">#</a>
-        </div>
-        <p class="doc-p doc-i18n"
-           data-en="Typing in Khmer is notoriously challenging for newcomers. Unlike simple alphabet systems, Khmer is an abugida script with 33 consonants, 23 dependent vowels, 14 independent vowels, and stacked subscript consonants (Coeng ្). Most available learning materials are static poster images that users have to squint at without any feedback."
-           data-km="ការរៀនវាយអក្សរខ្មែរតែងតែជាឧបសគ្គធំសម្រាប់អ្នកចាប់ផ្តើមដំបូង។ ខុសពីអក្ខរក្រមធម្មតា អក្សរខ្មែរជាភាសាអប៊ូហ្គីដា ដែលមានព្យញ្ជនៈ ៣៣ ស្រៈនិស្ស័យ ២៣ ស្រៈពេញតួ ១៤ និងជើងព្យញ្ជនៈត្រួតគ្នា (ជើង ្)។ ឯកសារភាគច្រើនកន្លងមក គឺជារូបភាពក្តារចុចស្ងៀមៗ ដែលពិបាកមើល និងគ្មានការឆ្លើយតបជាក់ស្តែង។">
-          Typing in Khmer is notoriously challenging for newcomers. Unlike simple alphabet systems, Khmer is an abugida script with 33 consonants, 23 dependent vowels, 14 independent vowels, and stacked subscript consonants (Coeng ្). Most available learning materials are static poster images that users have to squint at without any feedback.
-        </p>
-
-        <div class="callout tip">
-          <div class="callout-icon">
-            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-          </div>
-          <div>
-            <strong class="doc-i18n" data-en="The Core Philosophy:" data-km="ទស្សនវិស័យស្នូល៖">The Core Philosophy:</strong>
-            <span class="doc-i18n"
-                  data-en=" Authentic muscle memory is built one honest keystroke at a time. Every lesson, every key mapping, and every line of code was crafted from scratch by hand to give learners clear visual guidance, instant auditory feedback, and targeted repetition without shortcuts."
-                  data-km=" ការចងចាំរបស់ម្រាមដៃពិតប្រាកដ គឺសាងសង់ឡើងម្តងមួយគ្រាប់ចុចដោយស្មោះត្រង់។ រាល់មេរៀន រាល់ការផ្គូផ្គង និងរាល់កូដត្រូវបានបង្កើតឡើងដោយដៃផ្ទាល់ ដើម្បីផ្តល់នូវការណែនាំច្បាស់លាស់ សំឡេងឆ្លើយតបភ្លាមៗ និងការហ្វឹកហាត់ចំគោលដៅ។">
-              Authentic muscle memory is built one honest keystroke at a time. Every lesson, every key mapping, and every line of code was crafted from scratch by hand to give learners clear visual guidance, instant auditory feedback, and targeted repetition without shortcuts.
-            </span>
-          </div>
-        </div>
-
-        <div class="feature-grid">
-          <div class="feature-box">
-            <div class="feature-head">
-              <div class="feature-icon-badge">
-                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/></svg>
-              </div>
-              <div class="feature-name doc-i18n" data-en="Live Virtual Keyboard" data-km="ក្តារចុចនិម្មិតផ្សាយបន្តផ្ទាល់">Live Virtual Keyboard</div>
-            </div>
-            <div class="feature-desc doc-i18n" data-en="Illuminates the exact target key, modifier state (Shift, AltGr, Coeng), and translucent finger indicator on every character." data-km="បំភ្លឺគ្រាប់ចុចគោលដៅ ស្រទាប់បន្ថែម (Shift, AltGr, ជើង) និងបង្ហាញម្រាមដៃដែលត្រូវចុចដោយស្វ័យប្រវត្តិ។">
-              Illuminates the exact target key, modifier state (Shift, AltGr, Coeng), and translucent finger indicator on every character.
-            </div>
-          </div>
-
-          <div class="feature-box">
-            <div class="feature-head">
-              <div class="feature-icon-badge">
-                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
-              </div>
-              <div class="feature-name doc-i18n" data-en="Dynamic Keybr-Style Engine" data-km="ប្រព័ន្ធអនុវត្តបត់បែន">Dynamic Keybr-Style Engine</div>
-            </div>
-            <div class="feature-desc doc-i18n" data-en="Tracks per-letter speed and accuracy in real-time. Mistake penalty is -3%, while correct strokes award speed-dependent gains up to +5%." data-km="តាមដានល្បឿន និងភាពសុក្រឹតតាមតួអក្សរ។ វាយខុសដក -3% ហើយវាយត្រូវបន្ថែមពិន្ទុរហូតដល់ +5% ផ្អែកលើល្បឿន។">
-              Tracks per-letter speed and accuracy in real-time. Mistake penalty is -3%, while correct strokes award speed-dependent gains up to +5%.
-            </div>
-          </div>
-
-          <div class="feature-box">
-            <div class="feature-head">
-              <div class="feature-icon-badge">
-                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              </div>
-              <div class="feature-name doc-i18n" data-en="Strict 100% Gatekeeping" data-km="ការចាក់សោតាមកម្រិត ១០០%">Strict 100% Gatekeeping</div>
-            </div>
-            <div class="feature-desc doc-i18n" data-en="Next letters and lesson levels remain locked until all active units hit 100% completion, ensuring durable mastery before advancement." data-km="អក្សរនិងមេរៀនបន្ទាប់ត្រូវចាក់សោរហូតដល់អក្សរកំពុងរៀនទាំងអស់ឈានដល់ ១០០% ធានាការចងចាំមុនឈានទៅមុខ។">
-              Next letters and lesson levels remain locked until all active units hit 100% completion, ensuring durable mastery before advancement.
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- 2. Quick Start Guide -->
       <section id="quickstart" class="doc-section">
         <div class="section-head">
@@ -356,7 +358,7 @@
         <div class="section-head">
           <h2 class="section-title">
             <span class="section-icon">
-              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="6" y1="16" x2="18" y2="16"/></svg>
             </span>
             <span class="doc-i18n" data-en="Keyboard Shortcuts &amp; Hotkeys" data-km="គ្រាប់ចុចកាត់ និងផ្លូវកាត់">Keyboard Shortcuts &amp; Hotkeys</span>
           </h2>
@@ -418,7 +420,7 @@
         <div class="section-head">
           <h2 class="section-title">
             <span class="section-icon">
-              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="M7 15h10M6 9h.01M10 9h.01M14 9h.01M18 9h.01"/></svg>
             </span>
             <span class="doc-i18n" data-en="Keyboard Layouts &amp; Mapping" data-km="ប្លង់ក្តារចុច និងការផ្គូផ្គង">Keyboard Layouts &amp; Mapping</span>
           </h2>
@@ -431,67 +433,132 @@
         </p>
 
         <!-- Interactive Layout Comparison Tabs -->
-        <div class="tab-row">
-          <button class="tab-btn active" data-tab="tab-standard">Khmer Standard (ក្បាច់)</button>
-          <button class="tab-btn" data-tab="tab-nida">Khmer NiDA (នីដា)</button>
-          <button class="tab-btn" data-tab="tab-english">English US QWERTY</button>
-        </div>
+        <div class="tabs-container">
+          <div class="tabs-bar">
+            <button class="tab-btn active" data-tab="tab-standard">Khmer Standard (មណ្ឌល)</button>
+            <button class="tab-btn" data-tab="tab-nida">Khmer NiDA (យូនីកូដ)</button>
+            <button class="tab-btn" data-tab="tab-english">English US QWERTY</button>
+          </div>
 
-        <div id="tab-standard" class="tab-pane active">
-          <div class="callout note">
-            <div class="callout-icon">
-              <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            </div>
-            <div>
-              <strong>Khmer Standard (Unicode Standard Layout):</strong>
-              <div class="doc-i18n"
-                   data-en="The official government and educational standard layout. Consonants and vowels are arranged phonetically across 5 rows. In Khmer Standard, pressing &lt;kbd&gt;Space&lt;/kbd&gt; inserts the Coeng marker (&lt;code&gt;្&lt;/code&gt; U+17D2) to produce subscript consonants. To insert an actual word space, press &lt;kbd&gt;Shift + Space&lt;/kbd&gt;."
-                   data-km="ប្លង់ស្តង់ដារផ្លូវការរបស់រដ្ឋាភិបាល និងស្ថាប័នអប់រំ។ ព្យញ្ជនៈ និងស្រៈត្រូវបានរៀបចំតាមសូរសព្ទលើ ៥ ជួរ។ ក្នុង Khmer Standard ការចុច &lt;kbd&gt;Space&lt;/kbd&gt; គឺសម្រាប់ដាក់ជើងព្យញ្ជនៈ (&lt;code&gt;្&lt;/code&gt;)។ ដើម្បីដកឃ្លាពាក្យធម្មតា សូមចុច &lt;kbd&gt;Shift + Space&lt;/kbd&gt;។">
-                The official government and educational standard layout. Consonants and vowels are arranged phonetically across 5 rows. In Khmer Standard, pressing <kbd>Space</kbd> inserts the Coeng marker (<code>្</code> U+17D2) to produce subscript consonants. To insert an actual word space, press <kbd>Shift + Space</kbd>.
+          <div class="tab-pane active" id="tab-standard">
+            <div class="spec-grid">
+              <div class="spec-col">
+                <h4 class="doc-i18n" data-en="Architectural Features" data-km="លក្ខណៈរចនាសម្ព័ន្ធ">Architectural Features</h4>
+                <ul class="spec-list">
+                  <li><strong>Standard Anchor:</strong> <kbd>ថ</kbd> (F Key) &amp; <kbd>ក</kbd> (K Key) tactile index anchors.</li>
+                  <li><strong>Coeng Mechanism:</strong> <kbd>J</kbd> or <kbd>Space</kbd> enters subscript stacking state.</li>
+                  <li><strong>Frequency Optimization:</strong> Base vowels and high-volume consonants on unshifted keys.</li>
+                  <li><strong>Layers:</strong> Base, Shift, AltGr (Right Alt), and Ctrl combinations.</li>
+                </ul>
+              </div>
+              <div class="spec-col">
+                <h4 class="doc-i18n" data-en="Home Row Alignment" data-km="ការតម្រឹមជួរដើម">Home Row Alignment</h4>
+                <div class="home-row-display">
+                  <div class="hand-side">
+                    <span class="hand-label">Left Hand</span>
+                    <div class="key-capsules">
+                      <div class="cap"><span>ថ</span><small>A</small></div>
+                      <div class="cap"><span>ង</span><small>S</small></div>
+                      <div class="cap"><span>ដ</span><small>D</small></div>
+                      <div class="cap"><span>ស</span><small>F</small></div>
+                    </div>
+                  </div>
+                  <div class="hand-side">
+                    <span class="hand-label">Right Hand</span>
+                    <div class="key-capsules">
+                      <div class="cap"><span>ហ</span><small>J</small></div>
+                      <div class="cap"><span>ញ</span><small>K</small></div>
+                      <div class="cap"><span>ក</span><small>L</small></div>
+                      <div class="cap"><span>ល</span><small>;</small></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div id="tab-nida" class="tab-pane">
-          <div class="callout note">
-            <div class="callout-icon">
-              <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            </div>
-            <div>
-              <strong>Khmer NiDA (National Information Development Authority):</strong>
-              <div class="doc-i18n"
-                   data-en="Designed for touch-typists transitioning from typewriter layouts. Focuses on the home row for the most frequent consonants. In NiDA, the Coeng subscript marker is typed with &lt;kbd&gt;Shift + J&lt;/kbd&gt;. Pressing &lt;kbd&gt;Shift + Space&lt;/kbd&gt; produces a visible word space."
-                   data-km="រៀបចំឡើងសម្រាប់អ្នកវាយអក្សរដែលចង់បានទីតាំងជួរដើមស្រដៀងនឹងម៉ាស៊ីនអង្គុលីលេខ។ ក្នុង NiDA ជើងព្យញ្ជនៈត្រូវបានវាយតាមរយៈ &lt;kbd&gt;Shift + J&lt;/kbd&gt;។ ចំណែកការដកឃ្លាពាក្យ គឺប្រើ &lt;kbd&gt;Shift + Space&lt;/kbd&gt;។">
-                Designed for touch-typists transitioning from typewriter layouts. Focuses on the home row for the most frequent consonants. In NiDA, the Coeng subscript marker is typed with <kbd>Shift + J</kbd>. Pressing <kbd>Shift + Space</kbd> produces a visible word space.
+          <div class="tab-pane" id="tab-nida">
+            <div class="spec-grid">
+              <div class="spec-col">
+                <h4 class="doc-i18n" data-en="Architectural Features" data-km="លក្ខណៈរចនាសម្ព័ន្ធ">Architectural Features</h4>
+                <ul class="spec-list">
+                  <li><strong>Typewriter Legacy:</strong> Faithful to the original mechanical typewriter keyboard standard.</li>
+                  <li><strong>Coeng Key:</strong> Explicitly triggered via <kbd>Shift</kbd> + <kbd>J</kbd> (Coeng ្).</li>
+                  <li><strong>Dedicated Vowels:</strong> Shifted keys house long independent vowels and compound markers.</li>
+                  <li><strong>Government &amp; Academia:</strong> Extensively utilized in public administration and official documents.</li>
+                </ul>
+              </div>
+              <div class="spec-col">
+                <h4 class="doc-i18n" data-en="Home Row Alignment" data-km="ការតម្រឹមជួរដើម">Home Row Alignment</h4>
+                <div class="home-row-display">
+                  <div class="hand-side">
+                    <span class="hand-label">Left Hand</span>
+                    <div class="key-capsules">
+                      <div class="cap"><span>ា</span><small>A</small></div>
+                      <div class="cap"><span>ស</span><small>S</small></div>
+                      <div class="cap"><span>ដ</span><small>D</small></div>
+                      <div class="cap"><span>ថ</span><small>F</small></div>
+                    </div>
+                  </div>
+                  <div class="hand-side">
+                    <span class="hand-label">Right Hand</span>
+                    <div class="key-capsules">
+                      <div class="cap"><span>ហ</span><small>J</small></div>
+                      <div class="cap"><span>ក</span><small>K</small></div>
+                      <div class="cap"><span>ល</span><small>L</small></div>
+                      <div class="cap"><span>ើ</span><small>;</small></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div id="tab-english" class="tab-pane">
-          <div class="callout note">
-            <div class="callout-icon">
-              <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            </div>
-            <div>
-              <strong>English US QWERTY:</strong>
-              <div class="doc-i18n"
-                   data-en="Standard international QWERTY layout. Follows the classical touch-typing curriculum starting with home row anchor keys (&lt;code&gt;f&lt;/code&gt;, &lt;code&gt;j&lt;/code&gt;), expanding outward through top and bottom rows, capital letters with Shift, and punctuation."
-                   data-km="ប្លង់ QWERTY ស្តង់ដារអន្តរជាតិ។ អនុវត្តតាមវិធីសាស្ត្ររៀនវាយអក្សរចាប់ពីជួរដើម (&lt;code&gt;f&lt;/code&gt;, &lt;code&gt;j&lt;/code&gt;) រហូតដល់ជួរលើ ជួរក្រោម អក្សរធំ និងសញ្ញាវណ្ណយុត្តិ។">
-                Standard international QWERTY layout. Follows the classical touch-typing curriculum starting with home row anchor keys (<code>f</code>, <code>j</code>), expanding outward through top and bottom rows, capital letters with Shift, and punctuation.
+          <div class="tab-pane" id="tab-english">
+            <div class="spec-grid">
+              <div class="spec-col">
+                <h4 class="doc-i18n" data-en="Architectural Features" data-km="លក្ខណៈរចនាសម្ព័ន្ធ">Architectural Features</h4>
+                <ul class="spec-list">
+                  <li><strong>Universal QWERTY:</strong> Standard ANSI 104-key physical mapping.</li>
+                  <li><strong>Tactile Bumps:</strong> Primary index fingers on <kbd>F</kbd> and <kbd>J</kbd>.</li>
+                  <li><strong>Dual Progression:</strong> 14 levels spanning alphabet, numbers, and coding symbols.</li>
+                  <li><strong>Speed Training:</strong> Calibrated for pure high-speed touch typing without looking down.</li>
+                </ul>
+              </div>
+              <div class="spec-col">
+                <h4 class="doc-i18n" data-en="Home Row Alignment" data-km="ការតម្រឹមជួរដើម">Home Row Alignment</h4>
+                <div class="home-row-display">
+                  <div class="hand-side">
+                    <span class="hand-label">Left Hand</span>
+                    <div class="key-capsules">
+                      <div class="cap"><span>A</span><small>Pinky</small></div>
+                      <div class="cap"><span>S</span><small>Ring</small></div>
+                      <div class="cap"><span>D</span><small>Mid</small></div>
+                      <div class="cap"><span>F</span><small>Index</small></div>
+                    </div>
+                  </div>
+                  <div class="hand-side">
+                    <span class="hand-label">Right Hand</span>
+                    <div class="key-capsules">
+                      <div class="cap"><span>J</span><small>Index</small></div>
+                      <div class="cap"><span>K</span><small>Mid</small></div>
+                      <div class="cap"><span>L</span><small>Ring</small></div>
+                      <div class="cap"><span>;</span><small>Pinky</small></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 5. Khmer Typing Rules & Mechanics -->
+      <!-- 5. Khmer Typing Rules -->
       <section id="khmer-mechanics" class="doc-section">
         <div class="section-head">
           <h2 class="section-title">
             <span class="section-icon">
-              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
             </span>
             <span class="doc-i18n" data-en="Khmer Typing Mechanics &amp; Rules" data-km="ក្បួន និងយន្តការវាយអក្សរខ្មែរ">Khmer Typing Mechanics &amp; Rules</span>
           </h2>
@@ -505,7 +572,7 @@
 
         <div class="callout rule">
           <div class="callout-icon">
-            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           </div>
           <div>
             <strong class="doc-i18n" data-en="Golden Rule 1: Base Consonant First" data-km="ក្បួនមាស ១៖ វាយព្យញ្ជនៈដើមមុនគេ">Golden Rule 1: Base Consonant First</strong><br>
@@ -522,7 +589,7 @@
 
         <div class="callout rule">
           <div class="callout-icon">
-            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </div>
           <div>
             <strong class="doc-i18n" data-en="Golden Rule 2: Subscripts (Coeng ្)" data-km="ក្បួនមាស ២៖ ការវាយជើងព្យញ្ជនៈ (ជើង ្)">Golden Rule 2: Subscripts (Coeng ្)</strong><br>
@@ -540,7 +607,7 @@
 
         <div class="callout rule">
           <div class="callout-icon">
-            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           </div>
           <div>
             <strong class="doc-i18n" data-en="Golden Rule 3: Word Spacing" data-km="ក្បួនមាស ៣៖ ការដកឃ្លាពាក្យ">Golden Rule 3: Word Spacing</strong><br>
@@ -652,7 +719,7 @@
           <div class="feature-box">
             <div class="feature-head">
               <div class="feature-icon-badge">
-                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M4 5h16M10 5v14M14 5v14"/></svg>
               </div>
               <div class="feature-name">English US Track</div>
             </div>
@@ -665,7 +732,7 @@
 
         <div class="callout tip">
           <div class="callout-icon">
-            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5"/></svg>
+            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"/></svg>
           </div>
           <div>
             <strong class="doc-i18n" data-en="Secret Master Unlock:" data-km="កូដដោះសោសម្ងាត់៖">Secret Master Unlock:</strong>
@@ -750,7 +817,7 @@
         <div class="section-head">
           <h2 class="section-title">
             <span class="section-icon">
-              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
             </span>
             <span class="doc-i18n" data-en="Interactive Practice Modes &amp; Race" data-km="ទម្រង់ហ្វឹកហាត់ និងការប្រណាំង">Interactive Practice Modes &amp; Race</span>
           </h2>
@@ -765,10 +832,10 @@
         <div class="feature-grid">
           <div class="feature-box">
             <div class="feature-head">
-              <div class="feature-icon-badge">
-                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              <div class="feature-name">
+                <svg class="doc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                Guided Curriculum
               </div>
-              <div class="feature-name">Guided Curriculum</div>
             </div>
             <div class="feature-desc">
               Step-by-step sequential courses. Unlocks one lesson at a time with live keyboard illumination, finger guide, and accuracy grading.
@@ -777,10 +844,10 @@
 
           <div class="feature-box">
             <div class="feature-head">
-              <div class="feature-icon-badge">
-                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+              <div class="feature-name">
+                <svg class="doc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                Adaptive Practice
               </div>
-              <div class="feature-name">Adaptive Practice</div>
             </div>
             <div class="feature-desc">
               Infinite intelligent drills with live mastery meters. Focuses heavily on weak keys and unlocks new letters progressively.
@@ -789,10 +856,10 @@
 
           <div class="feature-box">
             <div class="feature-head">
-              <div class="feature-icon-badge">
-                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+              <div class="feature-name">
+                <svg class="doc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                Temple Trial / Race Mode
               </div>
-              <div class="feature-name">Temple Trial Race Mode</div>
             </div>
             <div class="feature-desc">
               Competitive typing race against automated bot pacers (Novice, Adept, Master). Features real-time WPM gauges, split times, and celebration bursts.
@@ -801,10 +868,10 @@
 
           <div class="feature-box">
             <div class="feature-head">
-              <div class="feature-icon-badge">
-                <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              <div class="feature-name">
+                <svg class="doc-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                Remedial Drills
               </div>
-              <div class="feature-name">Remedial Drills</div>
             </div>
             <div class="feature-desc">
               Detects error-prone keys during standard practice and builds focused 15-word review drills to eliminate habitual mistakes.
@@ -832,7 +899,7 @@
 
         <div class="callout tip">
           <div class="callout-icon">
-            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <div>
             <strong>What is Restored Automatically:</strong>
@@ -1063,8 +1130,8 @@ node scratch/test_documents_endpoint.js</code></pre>
   </div>
 
   <!-- Scripts -->
-  <script src="docs.js"></script>
   <script src="three.min.js"></script>
   <script src="keycap3d.js"></script>
+  <script src="docs.js"></script>
 </body>
 </html>

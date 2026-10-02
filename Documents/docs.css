@@ -160,10 +160,10 @@ body {
 
 .search-input {
   width: 100%;
-  height: 40px;
-  padding: 0 16px 0 42px;
+  height: 42px;
+  padding: 0 40px 0 42px;
   border-radius: 10px;
-  background: rgba(20, 26, 46, 0.6);
+  background: rgba(20, 26, 46, 0.7);
   border: 1px solid var(--doc-border);
   color: var(--doc-ink);
   font-size: 0.88rem;
@@ -173,9 +173,9 @@ body {
 }
 
 .search-input:focus {
-  background: rgba(26, 34, 62, 0.85);
+  background: rgba(24, 32, 60, 0.95);
   border-color: var(--doc-gold);
-  box-shadow: 0 0 16px var(--doc-gold-glow);
+  box-shadow: 0 0 18px var(--doc-gold-glow);
 }
 
 .search-icon {
@@ -185,6 +185,128 @@ body {
   transform: translateY(-50%);
   color: var(--doc-ink-muted);
   pointer-events: none;
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--doc-ink-dim);
+  font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.search-clear-btn:hover {
+  background: rgba(255, 59, 86, 0.25);
+  border-color: var(--doc-red);
+  color: #fff;
+}
+
+.search-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  max-height: 460px;
+  overflow-y: auto;
+  border-radius: 14px;
+  background: rgba(12, 16, 32, 0.96);
+  border: 1px solid var(--doc-border-glow);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.85), 0 0 24px rgba(255, 157, 46, 0.25);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  z-index: 250;
+  padding: 8px;
+}
+
+.search-dropdown-header {
+  padding: 8px 12px 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--doc-gold-bright);
+  border-bottom: 1px solid rgba(255, 209, 102, 0.12);
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-result-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 14px;
+  border-radius: 9px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+.search-result-item:hover, .search-result-item.selected {
+  background: rgba(255, 157, 46, 0.16);
+  transform: translateX(3px);
+}
+
+.search-result-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-result-badge {
+  font-size: 0.68rem;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(255, 209, 102, 0.15);
+  color: var(--doc-gold-bright);
+  margin-left: auto;
+}
+
+.search-result-snippet {
+  font-size: 0.82rem;
+  color: var(--doc-ink-dim);
+  line-height: 1.45;
+}
+
+.search-highlight {
+  background: rgba(255, 209, 102, 0.38);
+  color: #fff;
+  border-radius: 3px;
+  padding: 0 3px;
+  font-weight: 700;
+}
+
+.search-empty-state {
+  padding: 24px 16px;
+  text-align: center;
+  color: var(--doc-ink-muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+@keyframes search-target-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 157, 46, 0.85); }
+  50% { box-shadow: 0 0 38px 10px rgba(255, 209, 102, 0.65); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 157, 46, 0); }
+}
+
+.search-pulse-glow {
+  animation: search-target-pulse 1.8s ease-out;
+  border-color: var(--doc-gold) !important;
 }
 
 .header-actions {
@@ -779,9 +901,46 @@ code {
 
 @media (max-width: 640px) {
   .docs-header {
-    padding: 0 16px;
+    padding: 0 12px;
+    gap: 8px;
+  }
+  .brand-sub {
+    display: none;
+  }
+  .brand-title {
+    font-size: 0.95rem;
   }
   .header-center {
+    display: flex;
+    flex: 1;
+    margin: 0 4px;
+    max-width: none;
+  }
+  .search-input {
+    height: 36px;
+    font-size: 0.8rem;
+    padding: 0 32px 0 32px;
+  }
+  .search-icon {
+    left: 10px;
+  }
+  .search-clear-btn {
+    right: 8px;
+  }
+  .search-dropdown {
+    position: fixed;
+    top: 64px;
+    left: 8px;
+    right: 8px;
+    max-height: 70vh;
+  }
+  .header-actions {
+    gap: 6px;
+  }
+  .btn-ghost .lang-label {
+    display: none;
+  }
+  .btn-primary-glow span {
     display: none;
   }
   .hero-title {
@@ -789,6 +948,13 @@ code {
   }
   .feature-grid {
     grid-template-columns: 1fr;
+  }
+  .keycap3d-viewport {
+    height: 360px;
+  }
+  .keycap3d-toolbar {
+    padding: 10px 12px;
+    gap: 8px;
   }
 }
 

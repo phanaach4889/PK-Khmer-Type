@@ -29,15 +29,26 @@
     camera.position.set(5.5, 4.8, 6.5);
     camera.lookAt(0, 0.2, 0);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.25;
-
-    container.appendChild(renderer.domElement);
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.25;
+      container.appendChild(renderer.domElement);
+    } catch (err) {
+      console.warn('WebGL is not available in this environment:', err);
+      container.innerHTML = `
+        <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; color:var(--doc-ink-dim); text-align:center; padding:24px;">
+          <div style="font-size:1.1rem; font-weight:700; color:var(--doc-gold-bright); margin-bottom:8px;">3D WebGL Acceleration Unavailable</div>
+          <div style="font-size:0.85rem; max-width:380px;">Your browser or graphics driver currently has WebGL acceleration disabled. Please enable hardware acceleration to interact with the 3D model.</div>
+        </div>
+      `;
+      return;
+    }
 
     // 2. Lighting Setup
     const ambientLight = new THREE.AmbientLight(0xffeedd, 0.65);
