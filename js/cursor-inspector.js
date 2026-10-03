@@ -402,7 +402,40 @@
 
     // 1. Dedicated Special / Modifier Key Profile
     if(SPECIAL_KEYS[keyId]){
-      const sk = SPECIAL_KEYS[keyId];
+      let sk = SPECIAL_KEYS[keyId];
+      if(keyId === 'space'){
+        if(layoutId === 'standard'){
+          if(layer === 'shift'){
+            sk = {
+              symbol: '␣',
+              title: 'Spacebar · ដកឃ្លា',
+              category: 'Word Separator',
+              recipe: '<kbd>Shift</kbd> + <kbd>Space</kbd>',
+              fingerDesc: 'Left or Right Thumb',
+              note: 'Inserts standard space in Khmer Keyboard Layout.'
+            };
+          } else {
+            sk = {
+              symbol: '្',
+              title: 'Coeng Sign · ជើង (្)',
+              category: 'Subscript Prefix',
+              recipe: '<kbd>Space</kbd>',
+              fingerDesc: 'Left or Right Thumb',
+              note: 'Press Spacebar before a consonant to form its subscript (ជើង), e.g. ក + Space + ក = ក្ក. Press Shift + Space for space.'
+            };
+          }
+        } else {
+          // Khmer NiDA Keyboard & English: Spacebar · ដកឃ្លា (like the user's reference image)
+          sk = {
+            symbol: '␣',
+            title: 'Spacebar · ដកឃ្លា',
+            category: 'Word Separator',
+            recipe: layer === 'shift' ? '<kbd>Shift</kbd> + <kbd>Space</kbd>' : '<kbd>Space</kbd>',
+            fingerDesc: 'Left or Right Thumb',
+            note: 'Inserts zero-width space (ZWSP) in Khmer, standard space in English.'
+          };
+        }
+      }
       hudEl.innerHTML = `
         <div class="pk-chud-top">
           <div class="pk-chud-glyph-box">${sk.symbol}</div>
@@ -428,7 +461,7 @@
       `;
       hudEl.classList.add('visible');
       if(reticleEl) reticleEl.classList.add('target-key');
-      if(typeof global.setActiveFinger === 'function') global.setActiveFinger(keyId, 'base');
+      if(typeof global.setActiveFinger === 'function') global.setActiveFinger(keyId, layer);
       highlightQuickGuideMiniKey(keyId, fid);
       if(ev) updatePosition(ev.clientX, ev.clientY);
       else if(keyEl){ const r = keyEl.getBoundingClientRect(); updatePosition(r.left + r.width/2, r.top + r.height/2); }
@@ -448,7 +481,7 @@
 
     // Keystroke recipe (clean, human-readable)
     let recipeHtml = `<kbd>${keyLabel}</kbd>`;
-    const coengKey = layoutId === 'nida' ? 'Shift + J' : 'J';
+    const coengKey = layoutId === 'standard' ? 'Space' : 'J';
     if(layer === 'shift'){
       recipeHtml = `<kbd>Shift</kbd> + <kbd>${keyLabel}</kbd>`;
     } else if(layer === 'altgr'){
@@ -614,7 +647,7 @@
 
     const info = getCharInfo(char);
     const layoutId = global.currentLayoutId || 'standard';
-    const coengKey = layoutId === 'nida' ? 'Shift + J' : 'J';
+    const coengKey = layoutId === 'standard' ? 'Space' : 'J';
 
     // Reverse lookup key & layer for this character
     let foundKey = null;
@@ -630,6 +663,11 @@
         }
         if(foundKey) break;
       }
+      if(!foundKey && global.LAYOUTS[layoutId].spaceMap){
+        const sm = global.LAYOUTS[layoutId].spaceMap;
+        if(sm.base === char){ foundKey = 'space'; foundLayer = 'base'; }
+        else if(sm.shift === char){ foundKey = 'space'; foundLayer = 'shift'; }
+      }
     }
 
     const fid = (foundKey && global.KEY_FINGER && global.KEY_FINGER[foundKey]) || null;
@@ -641,8 +679,9 @@
     else if(foundLayer === 'altgr') recipeText = `<kbd>AltGr</kbd> + <kbd>${keyLabel}</kbd>`;
 
     // Subscript character handling
-    let isSubscript = char.startsWith('្') || (info && info.type === 'Coeng Key');
-    if(isSubscript){
+    if(char === '្'){
+      recipeText = `<kbd>${coengKey}</kbd>`;
+    } else if(char.startsWith('្') && char.length > 1){
       recipeText = `<kbd>${coengKey}</kbd> + <kbd>${keyLabel}</kbd>`;
     }
 

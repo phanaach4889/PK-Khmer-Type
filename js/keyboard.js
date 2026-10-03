@@ -327,7 +327,16 @@ ALL_ROWS.forEach(rowDef=>{
     if(k.kind === 'mod'){
       el.classList.add('label-key','mod');
       el.textContent = k.label;
-      if(k.id === 'space') el.classList.add('space');
+      if(k.id === 'space'){
+        el.classList.add('space');
+        if(currentLayoutId === 'standard'){
+          el.innerHTML = '<span class="space-glyph">្</span><span class="space-label">ជើង (Coeng)</span><span class="shift-badge">Space</span>';
+        } else if(currentLayoutId === 'nida'){
+          el.innerHTML = '<span class="space-glyph">␣</span><span class="space-label">ដកឃ្លា · Spacebar</span>';
+        } else {
+          el.innerHTML = '<span class="space-label">Space</span>';
+        }
+      }
     } else {
       const g = document.createElement('span');
       g.className = 'glyph notranslate';
@@ -488,14 +497,14 @@ function updateQuickGuide() {
       <div class="guide-mini-key" title="Left Index"><span class="km-ch">ថ</span><span class="en-ch">F</span></div>
     `;
     rightHand.innerHTML = `
-      <div class="guide-mini-key" title="Right Index"><span class="km-ch">ម</span><span class="en-ch">J</span></div>
+      <div class="guide-mini-key" title="Right Index"><span class="km-ch">ញ</span><span class="en-ch">J</span></div>
       <div class="guide-mini-key" title="Right Middle"><span class="km-ch">ក</span><span class="en-ch">K</span></div>
       <div class="guide-mini-key" title="Right Ring"><span class="km-ch">ល</span><span class="en-ch">L</span></div>
-      <div class="guide-mini-key" title="Right Pinky"><span class="km-ch">ើ</span><span class="en-ch">;</span></div>
+      <div class="guide-mini-key" title="Right Pinky"><span class="km-ch">ះ</span><span class="en-ch">;</span></div>
     `;
     subscriptsSec.style.display = 'block';
-    typeSpaceKbd.textContent = 'Space';
-    coengKeyWrap.innerHTML = '<kbd class="guide-kbd">J</kbd> <span class="i18n-t" data-en="(Standard)" data-km="(ស្តង់ដារ)">(Standard)</span>';
+    typeSpaceKbd.textContent = 'Shift + Space';
+    coengKeyWrap.innerHTML = '<kbd class="guide-kbd">Space</kbd> <span class="i18n-t" data-en="(Standard)" data-km="(ស្តង់ដារ)">(Standard)</span>';
   } else if (currentLayoutId === 'nida') {
     leftHand.innerHTML = `
       <div class="guide-mini-key" title="Left Pinky"><span class="km-ch">ា</span><span class="en-ch">A</span></div>
@@ -504,14 +513,14 @@ function updateQuickGuide() {
       <div class="guide-mini-key" title="Left Index"><span class="km-ch">ថ</span><span class="en-ch">F</span></div>
     `;
     rightHand.innerHTML = `
-      <div class="guide-mini-key" title="Right Index"><span class="km-ch">ញ</span><span class="en-ch">J</span></div>
+      <div class="guide-mini-key" title="Right Index"><span class="km-ch">្</span><span class="en-ch">J</span></div>
       <div class="guide-mini-key" title="Right Middle"><span class="km-ch">ក</span><span class="en-ch">K</span></div>
       <div class="guide-mini-key" title="Right Ring"><span class="km-ch">ល</span><span class="en-ch">L</span></div>
       <div class="guide-mini-key" title="Right Pinky"><span class="km-ch">ើ</span><span class="en-ch">;</span></div>
     `;
     subscriptsSec.style.display = 'block';
-    typeSpaceKbd.textContent = 'Shift + Space';
-    coengKeyWrap.innerHTML = '<kbd class="guide-kbd">Shift</kbd> + <kbd class="guide-kbd">J</kbd> <span class="i18n-t" data-en="(NiDA)" data-km="(នីដា)">(NiDA)</span>';
+    typeSpaceKbd.textContent = 'Space';
+    coengKeyWrap.innerHTML = '<kbd class="guide-kbd">J</kbd> <span class="i18n-t" data-en="(NiDA)" data-km="(នីដា)">(NiDA)</span>';
   }
 }
 
@@ -1181,6 +1190,25 @@ function render(){
     g.textContent = val;
     g.parentElement.classList.toggle('empty', !val);
   });
+
+  const spaceEl = keyEls['space'];
+  if(spaceEl){
+    if(currentLayoutId === 'standard'){
+      if(layer === 'shift'){
+        spaceEl.innerHTML = '<span class="space-glyph">␣</span><span class="space-label">ដកឃ្លា · Space</span>';
+      } else {
+        spaceEl.innerHTML = '<span class="space-glyph">្</span><span class="space-label">ជើង (Coeng)</span><span class="shift-badge">Space</span>';
+      }
+    } else if(currentLayoutId === 'nida'){
+      if(layer === 'shift'){
+        spaceEl.innerHTML = '<span class="space-glyph">␣</span><span class="space-label">ដកឃ្លា · Space</span>';
+      } else {
+        spaceEl.innerHTML = '<span class="space-glyph">␣</span><span class="space-label">ដកឃ្លា · Spacebar</span>';
+      }
+    } else {
+      spaceEl.innerHTML = '<span class="space-label">Space</span>';
+    }
+  }
 
   boardWrap.classList.toggle('layer-ctrl', layer === 'ctrl');
   boardWrap.classList.toggle('layer-altgr', layer === 'altgr');

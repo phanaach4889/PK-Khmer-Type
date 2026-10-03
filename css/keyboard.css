@@ -410,7 +410,33 @@
     color:var(--ink-dim);
   }
 
-  .key.space{ flex-grow:8; cursor:pointer;}
+  .key.space{
+    flex-grow:8;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+  }
+  .key.space .space-glyph{
+    font-family:'Noto Sans Khmer','JetBrains Mono',sans-serif;
+    font-size:1.3rem;
+    font-weight:700;
+    color:var(--gold-bright);
+    line-height:1;
+    text-shadow:0 0 8px rgba(255,209,102,0.35);
+  }
+  .key.space .space-label{
+    font-family:'Noto Sans Khmer','JetBrains Mono',sans-serif;
+    font-size:0.74rem;
+    color:var(--ink-dim);
+    letter-spacing:0.03em;
+    opacity:0.88;
+  }
+  .key.space:hover .space-label{
+    color:var(--ink);
+    opacity:1;
+  }
   .key.empty{ opacity:0.35; }
 
   .key.mod{
