@@ -67,61 +67,22 @@ function ensureSettingsStylesheet() {
 function healBothHandsOverlay() {
   try {
     if (typeof FINGERS !== "undefined" && Array.isArray(FINGERS)) {
-      const hasRp = FINGERS.some((f) => f && f.id === "rp");
-      if (!hasRp) {
-        FINGERS.push({
-          id: "rp",
-          hand: "R",
-          name: "R-pinky",
-          home: ["KeyP", "Semicolon", "Quote", "BracketLeft", "BracketRight", "Backslash", "Minus", "Equal", "Backspace", "Enter", "ShiftRight"],
-          baseOffset: [64, 152],
-          len: 98
-        });
+      const rpDef = { id: "rp", hand: "R", home: "semicolon", kind: "pinky", baseW: 12.5, tipW: 7.5, kDist: 68, restLen: 52, restAng: 0.10 };
+      const existingIdx = FINGERS.findIndex((f) => f && f.id === "rp");
+      if (existingIdx === -1) {
+        FINGERS.push(rpDef);
+      } else if (!FINGERS[existingIdx].kind) {
+        FINGERS[existingIdx] = rpDef;
       }
-      if (typeof fingerEls !== "undefined" && typeof handsOverlay !== "undefined" && handsOverlay && !fingerEls["rp"]) {
-        const gR = handsOverlay.querySelector(".hand-group-R");
-        if (gR) {
-          let rpEl = gR.querySelector('[data-finger="rp"]');
-          if (!rpEl) {
-            const ns = "http://www.w3.org/2000/svg";
-            rpEl = document.createElementNS(ns, "g");
-            rpEl.setAttribute("class", "hand-finger");
-            rpEl.setAttribute("data-finger", "rp");
-            rpEl.innerHTML =
-              '<line class="tendon" x1="0" y1="0" x2="0" y2="0"/>' +
-              '<path class="finger-glow" d="M 0 0 L 0 0"/>' +
-              '<path class="finger-body" d="M 0 0 L 0 0"/>' +
-              '<path class="finger-ridge" d="M 0 0 L 0 0"/>' +
-              '<circle class="joint-prox" r="8" cx="0" cy="0"/>' +
-              '<circle class="joint-mid" r="7" cx="0" cy="0"/>' +
-              '<ellipse class="knuckle-crease" rx="4.5" ry="1.3" cx="0" cy="0"/>' +
-              '<ellipse class="knuckle-crease-mid" rx="3.6" ry="1.0" cx="0" cy="0"/>' +
-              '<circle class="tip-halo" r="15" cx="0" cy="0"/>' +
-              '<ellipse class="tip" rx="9" ry="10.5" cx="0" cy="0"/>' +
-              '<path class="nail" d="M 0 0"/>' +
-              '<path class="nail-moon" d="M 0 0"/>';
-            gR.appendChild(rpEl);
-          }
-          fingerEls["rp"] = {
-            g: rpEl,
-            glow: rpEl.querySelector(".finger-glow"),
-            body: rpEl.querySelector(".finger-body"),
-            ridge: rpEl.querySelector(".finger-ridge"),
-            tendon: rpEl.querySelector(".tendon"),
-            jProx: rpEl.querySelector(".joint-prox"),
-            jMid: rpEl.querySelector(".joint-mid"),
-            crease1: rpEl.querySelector(".knuckle-crease"),
-            crease2: rpEl.querySelector(".knuckle-crease-mid"),
-            halo: rpEl.querySelector(".tip-halo"),
-            tip: rpEl.querySelector(".tip"),
-            nail: rpEl.querySelector(".nail"),
-            moon: rpEl.querySelector(".nail-moon")
-          };
-        }
+      if (typeof fingerEls !== "undefined" && !fingerEls["rp"] && typeof createFingerElement === "function") {
+        createFingerElement(rpDef);
       }
       if (typeof updateHandsOverlay === "function") {
         updateHandsOverlay();
       }
+    }
+    if (typeof render === "function") {
+      render();
     }
   } catch (e) {}
 }
