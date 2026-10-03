@@ -3116,14 +3116,14 @@
   }
   .key {
     transition: background .08s ease !important;
-    font-family: var(--khmer-font-family, 'Kantumruy Pro', 'Khmer OS Battambang', 'Khmer OS Siemreap', 'Noto Sans Khmer', sans-serif) !important;
+    font-family: 'Kantumruy Pro', 'Khmer OS Battambang', 'Khmer OS Siemreap', 'Noto Sans Khmer', sans-serif !important;
   }
   .key.pressed {
     transform: none !important;
     filter: brightness(1.2) !important;
   }
   .manuscript-text, .race-text, .trial-word, .lesson-char-row {
-    font-family: var(--khmer-font-family, 'Kantumruy Pro', 'Khmer OS Battambang', 'Khmer OS Siemreap', 'Noto Sans Khmer', sans-serif) !important;
+    font-family: 'Kantumruy Pro', 'Khmer OS Battambang', 'Khmer OS Siemreap', 'Noto Sans Khmer', sans-serif !important;
   }
   .content {
     max-width: 1200px;

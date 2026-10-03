@@ -2461,19 +2461,6 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
   let feedbackSummary = null;
   if(typeof PK_FEEDBACK !== 'undefined' && typeof PK_TRACKER !== 'undefined'){
     const liveMetrics = PK_TRACKER.getLiveLessonMetrics();
-    const fallbackTotal = (lessonChars && lessonChars.length) ? lessonChars.length : ((def && typeof def.generate === 'function') ? (def.generate().chars || []).length : 35);
-    if(!liveMetrics.totalUnits && fallbackTotal > 0){
-      liveMetrics.totalUnits = fallbackTotal;
-      liveMetrics.correctCount = fallbackTotal;
-      liveMetrics.position = fallbackTotal;
-    }
-    if(typeof accuracy === 'number') liveMetrics.accuracy = accuracy;
-    if(typeof elapsed === 'number' && elapsed > 0 && !liveMetrics.activeTypingDurationSec){
-      liveMetrics.activeTypingDurationSec = Math.round(elapsed * 10) / 10;
-    }
-    if(!liveMetrics.wpm && typeof elapsed === 'number' && elapsed > 0 && liveMetrics.totalUnits > 0){
-      liveMetrics.wpm = Math.min(180, Math.round((liveMetrics.totalUnits / 5) / (elapsed / 60)));
-    }
     feedbackSummary = PK_FEEDBACK.analyzeLesson(liveMetrics, def, currentLayoutId);
   }
 
@@ -2591,18 +2578,9 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
   }
 
   keyHandler = (e)=>{
-    if(e.ctrlKey || e.altKey || e.metaKey) return;
     if(e.key === 'Escape'){
       e.preventDefault();
       dismissOverlay();
-    } else if(e.key === 'r' || e.key === 'R'){
-      e.preventDefault();
-      dismissOverlay();
-      startLesson(remedialActive ? def : def.id);
-    } else if(prevLesson && e.key === 'ArrowLeft'){
-      e.preventDefault();
-      dismissOverlay();
-      startLesson(prevLesson.id);
     } else if(nextLesson && (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowRight')){
       e.preventDefault();
       advanceToNext();

@@ -632,15 +632,8 @@
     const now = Date.now();
     if(state.liveLesson.active){
       state.liveLesson.active = false;
-      if(state.liveLesson.totalUnits > 0){
-        state.liveLesson.currentIndex = state.liveLesson.totalUnits;
-        state.liveLesson.correctCount = Math.max(state.liveLesson.correctCount || 0, state.liveLesson.totalUnits);
-      }
       if(data?.accuracy !== undefined) state.liveLesson.accuracy = data.accuracy;
       if(data?.wpm !== undefined) state.liveLesson.wpm = data.wpm;
-      if(typeof data?.time === 'number' && data.time > 0 && state.liveLesson.activeTypingTimeMs === 0){
-        state.liveLesson.activeTypingTimeMs = Math.round(data.time * 1000);
-      }
     }
     state.lastEvent = { type: 'lessonComplete', data, timestamp: now };
     saveToStorage(); // Immediate flush on lesson finish
@@ -755,7 +748,6 @@
         layoutId: l.layoutId,
         exerciseId: l.exerciseId,
         position: l.currentIndex,
-        correctCount: l.correctCount,
         totalUnits: l.totalUnits,
         remainingUnits: Math.max(0, l.totalUnits - l.currentIndex),
         progressPct,

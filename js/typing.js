@@ -389,19 +389,6 @@ function clearText(){
   placeholderEl.style.display = 'inline';
 }
 
-window.getManuscriptText = getManuscriptText;
-window.setManuscriptText = setManuscriptText;
-window.insertText = insertText;
-window.backspaceText = backspaceText;
-window.clearText = clearText;
-window.copyManuscriptToClipboard = copyManuscriptToClipboard;
-window.cutManuscriptToClipboard = cutManuscriptToClipboard;
-window.handlePasteText = handlePasteText;
-window.selectAllManuscript = selectAllManuscript;
-window.undoManuscript = undoManuscript;
-window.redoManuscript = redoManuscript;
-window.backspaceWord = backspaceWord;
-
 /* ---------- Key Stroke Resolution Pipeline ---------- */
 function resolveKeyStroke(id){
   if(!id) return null;
@@ -466,15 +453,13 @@ function typeKey(id, ev){
     if(currentLayoutId === 'english'){
       capsOn = !capsOn;
       if(el) el.classList.toggle('lit', capsOn);
-      playClick('down', id);
-      if(ev) setTimeout(()=> playClick('up', id), 68);
+      playClick('down');
     }
     return;
   }
 
   if(stroke.id === 'backspace'){
-    playClick('down', 'backspace');
-    if(ev) setTimeout(()=> playClick('up', 'backspace'), 65);
+    playClick('up');
     if(typeof adaptiveActive !== 'undefined' && adaptiveActive){
       if(typeof adaptiveHandleBackspace === 'function') adaptiveHandleBackspace();
     } else if(typeof lessonActive !== 'undefined' && lessonActive){
@@ -489,8 +474,7 @@ function typeKey(id, ev){
     return;
   }
 
-  playClick('down', id);
-  if(ev) setTimeout(()=> playClick('up', id), 68);
+  playClick('down');
 
   if(stroke.id === 'enter' || stroke.id === 'tab'){
     if(!trialActive && !lessonActive && !raceActive && (typeof adaptiveActive === 'undefined' || !adaptiveActive)){
@@ -535,14 +519,6 @@ window.addEventListener('keydown', (e)=>{
   if(t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
   if(e.isComposing || isComposing) return;
 
-  // Do not type into manuscript/lesson when any modal or completion overlay is open
-  if(document.querySelector('.modal-backdrop:not([hidden]), .lesson-complete-overlay, .race-result-overlay')){
-    return;
-  }
-
-  // Let shortcuts.js handle Escape and F1 without typing
-  if(e.key === 'Escape' || e.key === 'F1') return;
-
   const id = CODE_MAP[e.code];
 
   if(id === 'shiftL' || id === 'shiftR'){
@@ -551,7 +527,7 @@ window.addEventListener('keydown', (e)=>{
     recomputePhysicalLayer();
     if(keyEls[id]) keyEls[id].classList.add('pressed');
     triggerFingerPress(id);
-    playClick('down', id);
+    playClick('down');
     if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
     return;
   }
@@ -561,7 +537,7 @@ window.addEventListener('keydown', (e)=>{
     recomputePhysicalLayer();
     if(keyEls[id]) keyEls[id].classList.add('pressed');
     triggerFingerPress(id);
-    playClick('down', id);
+    playClick('down');
     if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
     return;
   }
@@ -571,7 +547,7 @@ window.addEventListener('keydown', (e)=>{
     recomputePhysicalLayer();
     if(keyEls[id]) keyEls[id].classList.add('pressed');
     triggerFingerPress(id);
-    playClick('down', id);
+    playClick('down');
     if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
     return;
   }
@@ -579,7 +555,7 @@ window.addEventListener('keydown', (e)=>{
     if(e.repeat) return;
     if(keyEls[id]) keyEls[id].classList.add('pressed');
     triggerFingerPress(id);
-    playClick('down', id);
+    playClick('down');
     if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
     return;
   }
@@ -601,11 +577,6 @@ window.addEventListener('keydown', (e)=>{
   // Handle Ctrl / Meta shortcuts (only when not typing an AltGr glyph)
   if(!isAltGraph && (e.ctrlKey || e.metaKey)){
     const keyLower = (e.key || '').toLowerCase();
-
-    // Application shortcuts handled in shortcuts.js (Ctrl+, for Settings, Ctrl+/ for Shortcuts, Ctrl+Enter for Restart)
-    if(e.key === ',' || e.code === 'Comma' || e.key === '/' || e.code === 'Slash' || e.key === 'Enter'){
-      return;
-    }
 
     // Browser navigation / dev tools passthrough (DO NOT block or prevent)
     if(keyLower === 'r' || keyLower === 'w' || keyLower === 't' || keyLower === 'p' || keyLower === 'f' || keyLower === 'l' || keyLower === 'n' || keyLower === 'j' || keyLower === 'u' || keyLower === 'g' || keyLower === 'q' || (e.shiftKey && (keyLower === 'i' || keyLower === 'c' || keyLower === 'j'))){
@@ -672,16 +643,6 @@ window.addEventListener('keydown', (e)=>{
     return;
   }
 
-  // Let '?' open Shortcuts Guide unless an active drill is specifically targeting the slash key
-  if(e.key === '?'){
-    const slashIsTarget =
-      (typeof lessonActive !== 'undefined' && lessonActive && typeof highlightedKeyId !== 'undefined' && highlightedKeyId === 'slash') ||
-      (typeof raceActive !== 'undefined' && raceActive && typeof highlightedKeyId !== 'undefined' && highlightedKeyId === 'slash') ||
-      (typeof trialActive !== 'undefined' && trialActive) ||
-      (typeof adaptiveActive !== 'undefined' && adaptiveActive);
-    if(!slashIsTarget) return;
-  }
-
   if(!id) return;
   if(id === 'caps'){ typeKey(id); return; }
 
@@ -700,20 +661,20 @@ window.addEventListener('keyup', (e)=>{
   if(id === 'shiftL' || id === 'shiftR'){
     if(!e.shiftKey) heldModifiers.delete('shift');
     recomputePhysicalLayer();
-    playClick('up', id);
+    playClick('up');
   } else if(id === 'ctrlL' || id === 'ctrlR'){
     if(!e.ctrlKey) heldModifiers.delete('ctrl');
     recomputePhysicalLayer();
-    playClick('up', id);
+    playClick('up');
   } else if(id === 'altgr'){
     heldModifiers.delete('altgr');
     if(!e.ctrlKey) heldModifiers.delete('ctrl');
     recomputePhysicalLayer();
-    playClick('up', id);
+    playClick('up');
   } else if(id === 'alt'){
-    playClick('up', id);
+    playClick('up');
   } else if(id !== 'caps'){
-    playClick('up', id);
+    playClick('up');
   }
 });
 

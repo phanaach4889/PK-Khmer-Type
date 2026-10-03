@@ -946,9 +946,6 @@
       } else if(reticleEl){
         reticleEl.classList.add('active');
       }
-      if(typeof global.syncSettingsMirrors === 'function'){
-        global.syncSettingsMirrors();
-      }
       if(typeof global.showToast === 'function'){
         global.showToast(
           '<svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>',
@@ -958,6 +955,15 @@
       }
     };
   }
+
+  // Keyboard shortcut (Alt+M) to toggle mouse inspector
+  window.addEventListener('keydown', (ev)=>{
+    if(ev.altKey && (ev.key === 'm' || ev.key === 'M')){
+      ev.preventDefault();
+      const btn = document.getElementById('cursorGuideToggle');
+      if(btn) btn.click();
+    }
+  });
 
   /* ---- Resilient Hand & Pinky Kinematics Guardian ---- */
   function ensureHandsKinematics(){
@@ -1000,17 +1006,10 @@
     getCharInfo,
     isEnabled: ()=> inspectorEnabled,
     toggle: (state)=>{
-      const next = typeof state === 'boolean' ? state : !inspectorEnabled;
-      if(next === inspectorEnabled) return;
+      inspectorEnabled = typeof state === 'boolean' ? state : !inspectorEnabled;
+      savePreference();
       const btn = document.getElementById('cursorGuideToggle');
-      if(btn && typeof btn.onclick === 'function'){
-        btn.onclick();
-      } else {
-        inspectorEnabled = next;
-        savePreference();
-        if(btn) btn.classList.toggle('on', inspectorEnabled);
-        if(typeof global.syncSettingsMirrors === 'function') global.syncSettingsMirrors();
-      }
+      if(btn) btn.classList.toggle('on', inspectorEnabled);
     }
   };
   global.PKCursorInspector = global.PK_MOUSE_INSPECTOR;

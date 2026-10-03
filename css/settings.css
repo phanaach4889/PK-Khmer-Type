@@ -305,14 +305,13 @@
 }
 
 .settings-row-info {
-  flex: 1 1 260px;
-  min-width: 240px;
+  flex: 1;
+  min-width: 0;
 }
 
 .settings-row-title-line {
   display: flex;
   align-items: baseline;
-  flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 3px;
 }
@@ -340,10 +339,8 @@
 .settings-row-control {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   gap: 10px;
-  flex: 0 1 auto;
-  max-width: 56%;
+  flex-shrink: 0;
 }
 
 /* Sliders */
@@ -399,7 +396,6 @@
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
-  justify-content: flex-end;
 }
 
 .settings-choice button {
@@ -622,86 +618,16 @@ html.hide-side-docks #quickGuide, html.hide-side-docks #lessonsDock { display: n
 html.wide-prompt-spacing .exercise-char, html.wide-prompt-spacing #lessonExercise { letter-spacing: 0.15em !important; }
 
 /* Dynamic Khmer Fonts */
-html,
-html[data-khmer-font="kantumruy"] {
-  --khmer-font-family: 'Kantumruy Pro', 'Noto Sans Khmer', sans-serif;
-}
-html[data-khmer-font="noto-sans"] {
-  --khmer-font-family: 'Noto Sans Khmer', sans-serif;
-}
-html[data-khmer-font="noto-serif"] {
-  --khmer-font-family: 'Noto Serif Khmer', Georgia, serif;
-}
-html[data-khmer-font="battambang"] {
-  --khmer-font-family: 'Battambang', 'Khmer OS Battambang', serif;
-}
-html[data-khmer-font="moul"] {
-  --khmer-font-family: 'Moul', 'Noto Serif Khmer', serif;
+html[data-khmer-font="noto-sans"] .key,
+html[data-khmer-font="noto-sans"] .pk-cursor-hud,
+html[data-khmer-font="noto-sans"] #lessonExercise {
+  font-family: 'Noto Sans Khmer', sans-serif !important;
 }
 
-html[data-khmer-font] .key:not(.mod),
-html[data-khmer-font] .key .glyph,
-html[data-khmer-font] .key .shift-badge,
-html[data-khmer-font] .key.space .space-glyph,
-html[data-khmer-font] .key.space .space-label,
-html[data-khmer-font] .lesson-char-row,
-html[data-khmer-font] .lc-char,
-html[data-khmer-font] .manuscript-text,
-html[data-khmer-font] .race-text,
-html[data-khmer-font] .trial-word,
-html[data-khmer-font] .pk-cursor-hud,
-html[data-khmer-font] .pk-chud-glyph-box,
-html[data-khmer-font] .pk-chud-name,
-html[data-khmer-font] .pk-chud-subscript-badge .sub-glyph,
-html[data-khmer-font] .guide-mini-key .km-ch,
-html[data-khmer-font] .lce-chip,
-html[data-khmer-font] .leb-chip,
-html[data-khmer-font] h1 .km,
-html[data-khmer-font] .settings-row-km,
-html[data-khmer-font] .km-sub,
-html[data-khmer-font] .khmer-font-preview-sample {
-  font-family: var(--khmer-font-family) !important;
-}
-
-#khmerFontChoice button[data-kfont="kantumruy"] { font-family: 'Kantumruy Pro', sans-serif; }
-#khmerFontChoice button[data-kfont="noto-sans"] { font-family: 'Noto Sans Khmer', sans-serif; }
-#khmerFontChoice button[data-kfont="noto-serif"] { font-family: 'Noto Serif Khmer', serif; }
-#khmerFontChoice button[data-kfont="battambang"] { font-family: 'Battambang', serif; }
-#khmerFontChoice button[data-kfont="moul"] { font-family: 'Moul', serif; font-weight: 400; }
-
-.khmer-font-preview-box,
-.settings-layout-live-status {
-  margin-top: 8px;
-  padding: 6px 12px;
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 209, 102, 0.22);
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.khmer-font-preview-tag,
-.settings-layout-live-badge {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--gold-bright);
-  background: rgba(255, 209, 102, 0.12);
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-.khmer-font-preview-sample {
-  font-size: 1.05rem;
-  color: #f8fafc;
-  line-height: 1.4;
-  letter-spacing: 0.02em;
-}
-.settings-layout-live-sample {
-  font-size: 0.78rem;
-  color: #cbd5e1;
-  line-height: 1.35;
+html[data-khmer-font="noto-serif"] .key,
+html[data-khmer-font="noto-serif"] .pk-cursor-hud,
+html[data-khmer-font="noto-serif"] #lessonExercise {
+  font-family: 'Noto Serif Khmer', serif !important;
 }
 
 @media (max-width: 640px) {
