@@ -322,38 +322,17 @@ let ambienceOn = false;
 let ambienceNodes = null;
 const ambienceToggle = document.getElementById("ambienceToggle");
 
-let soundMasterGain = null;
-let soundCompressor = null;
-
 function ensureAudio() {
   if (!audioCtx) {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const len = Math.floor(audioCtx.sampleRate * 0.35);
+    const len = audioCtx.sampleRate * 0.05;
     noiseBuffer = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
     const data = noiseBuffer.getChannelData(0);
     for (let i = 0; i < len; i++) {
-      data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 1.2);
+      data[i] = (Math.random() * 2 - 1) * (1 - i / len);
     }
-
-    // Dynamics limiter/compressor for loud, clear acoustics without clipping distortion
-    soundCompressor = audioCtx.createDynamicsCompressor();
-    soundCompressor.threshold.setValueAtTime(-10, audioCtx.currentTime);
-    soundCompressor.knee.setValueAtTime(6, audioCtx.currentTime);
-    soundCompressor.ratio.setValueAtTime(4, audioCtx.currentTime);
-    soundCompressor.attack.setValueAtTime(0.001, audioCtx.currentTime);
-    soundCompressor.release.setValueAtTime(0.04, audioCtx.currentTime);
-
-    soundMasterGain = audioCtx.createGain();
-    soundMasterGain.gain.setValueAtTime(1.4, audioCtx.currentTime); // Substantial loudness boost
-
-    soundCompressor.connect(soundMasterGain);
-    soundMasterGain.connect(audioCtx.destination);
-    window.audioCtx = audioCtx;
-    window.soundCompressor = soundCompressor;
-    window.soundMasterGain = soundMasterGain;
   }
   if (audioCtx.state === "suspended") audioCtx.resume();
-  window.playClick = playClick;
 }
 
 function startAmbience() {
@@ -440,7 +419,7 @@ function playChime() {
       osc.type = "sine";
       osc.frequency.setValueAtTime(freq, t + i * 0.07);
       gain.gain.setValueAtTime(0.0001, t + i * 0.07);
-      gain.gain.exponentialRampToValueAtTime(0.16 * volScale, t + i * 0.07 + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.12 * volScale, t + i * 0.07 + 0.02);
       gain.gain.exponentialRampToValueAtTime(0.0001, t + i * 0.07 + 0.5);
       osc.connect(gain).connect(audioCtx.destination);
       osc.start(t + i * 0.07);
@@ -454,65 +433,41 @@ function playClick(kind) {
   try {
     ensureAudio();
     const t = audioCtx.currentTime;
-    const vol = Math.max(0.15, soundVolumePct / 100);
+    const vol = Math.max(0.08, soundVolumePct / 100);
     const isDown = kind === "down";
 
-    // Switch acoustic profile parameters with rich mechanical tactile presence
+    // Switch acoustic profile parameters
     const profiles = {
-      brown:      { filterType: "bandpass", filterFreq: isDown ? 2400 : 3100, filterQ: 2.2, noiseAmp: isDown ? 0.76 : 0.40, noiseDecay: isDown ? 0.052 : 0.035, bodyType: "triangle", bodyFreq: isDown ? 210 : 275, bodyAmp: isDown ? 0.50 : 0.25, bodyDecay: isDown ? 0.075 : 0.045, thockFreq: 110, thockAmp: isDown ? 0.35 : 0.12 },
-      blue:       { filterType: "highpass", filterFreq: isDown ? 3200 : 4200, filterQ: 3.2, noiseAmp: isDown ? 0.95 : 0.48, noiseDecay: isDown ? 0.048 : 0.032, bodyType: "square",   bodyFreq: isDown ? 480 : 620, bodyAmp: isDown ? 0.55 : 0.28, bodyDecay: isDown ? 0.055 : 0.035, thockFreq: 160, thockAmp: isDown ? 0.25 : 0.10 },
-      red:        { filterType: "lowpass",  filterFreq: isDown ? 1400 : 1800, filterQ: 1.5, noiseAmp: isDown ? 0.62 : 0.34, noiseDecay: isDown ? 0.065 : 0.042, bodyType: "sine",     bodyFreq: isDown ? 135 : 175, bodyAmp: isDown ? 0.62 : 0.30, bodyDecay: isDown ? 0.095 : 0.055, thockFreq: 88,  thockAmp: isDown ? 0.45 : 0.18 },
-      typewriter: { filterType: "bandpass", filterFreq: isDown ? 2600 : 3400, filterQ: 2.6, noiseAmp: isDown ? 0.98 : 0.52, noiseDecay: isDown ? 0.075 : 0.045, bodyType: "sawtooth", bodyFreq: isDown ? 330 : 420, bodyAmp: isDown ? 0.58 : 0.30, bodyDecay: isDown ? 0.085 : 0.048, thockFreq: 130, thockAmp: isDown ? 0.40 : 0.15 },
-      silent:     { filterType: "lowpass",  filterFreq: isDown ? 850  : 1100, filterQ: 1.0, noiseAmp: isDown ? 0.32 : 0.18, noiseDecay: isDown ? 0.042 : 0.028, bodyType: "sine",     bodyFreq: isDown ? 120 : 150, bodyAmp: isDown ? 0.26 : 0.14, bodyDecay: isDown ? 0.055 : 0.035, thockFreq: 75,  thockAmp: isDown ? 0.18 : 0.08 }
+      brown:      { filterType: "highpass", filterFreq: isDown ? 1800 : 2600, noiseAmp: isDown ? 0.24 : 0.12, bodyFreq: isDown ? 190 : 255, bodyAmp: isDown ? 0.10 : 0.05, bodyType: "sine", decay: 0.075 },
+      blue:       { filterType: "bandpass", filterFreq: isDown ? 3400 : 4100, noiseAmp: isDown ? 0.35 : 0.18, bodyFreq: isDown ? 420 : 520, bodyAmp: isDown ? 0.11 : 0.06, bodyType: "triangle", decay: 0.055 },
+      red:        { filterType: "lowpass",  filterFreq: isDown ? 1100 : 1500, noiseAmp: isDown ? 0.18 : 0.09, bodyFreq: isDown ? 128 : 170, bodyAmp: isDown ? 0.15 : 0.08, bodyType: "sine", decay: 0.095 },
+      typewriter: { filterType: "bandpass", filterFreq: isDown ? 2400 : 3000, noiseAmp: isDown ? 0.42 : 0.20, bodyFreq: isDown ? 310 : 390, bodyAmp: isDown ? 0.14 : 0.07, bodyType: "sawtooth", decay: 0.065 },
+      silent:     { filterType: "lowpass",  filterFreq: isDown ? 750  : 950,  noiseAmp: isDown ? 0.08 : 0.04, bodyFreq: isDown ? 110 : 140, bodyAmp: isDown ? 0.05 : 0.025, bodyType: "sine", decay: 0.05 }
     };
     const p = profiles[switchProfile] || profiles.brown;
-    const outTarget = soundCompressor || audioCtx.destination;
 
-    // 1. Noise transient (keycap strike & tactile snap)
-    if (noiseBuffer) {
-      const noise = audioCtx.createBufferSource();
-      noise.buffer = noiseBuffer;
-      const noiseFilter = audioCtx.createBiquadFilter();
-      noiseFilter.type = p.filterType;
-      noiseFilter.frequency.setValueAtTime(p.filterFreq, t);
-      if (p.filterQ) noiseFilter.Q.setValueAtTime(p.filterQ, t);
+    const noise = audioCtx.createBufferSource();
+    noise.buffer = noiseBuffer;
+    const noiseFilter = audioCtx.createBiquadFilter();
+    noiseFilter.type = p.filterType;
+    noiseFilter.frequency.setValueAtTime(p.filterFreq, t);
+    const noiseGain = audioCtx.createGain();
+    noiseGain.gain.setValueAtTime(p.noiseAmp * vol, t);
+    noiseGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.038);
+    noise.connect(noiseFilter).connect(noiseGain).connect(audioCtx.destination);
+    noise.start(t);
+    noise.stop(t + 0.042);
 
-      const noiseGain = audioCtx.createGain();
-      noiseGain.gain.setValueAtTime(p.noiseAmp * vol, t);
-      noiseGain.gain.exponentialRampToValueAtTime(0.0001, t + p.noiseDecay);
-
-      noise.connect(noiseFilter).connect(noiseGain).connect(outTarget);
-      noise.start(t);
-      noise.stop(t + p.noiseDecay + 0.01);
-    }
-
-    // 2. Resonant switch body tone (tactile leaf & housing resonance)
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     osc.type = p.bodyType;
-    osc.frequency.setValueAtTime(p.bodyFreq + (Math.random() * 12 - 6), t);
-    osc.frequency.exponentialRampToValueAtTime(p.bodyFreq * 0.65, t + p.bodyDecay);
+    osc.frequency.setValueAtTime(p.bodyFreq + Math.random() * 16, t);
+    osc.frequency.exponentialRampToValueAtTime(p.bodyFreq * 0.58, t + p.decay);
     gain.gain.setValueAtTime(p.bodyAmp * vol, t);
-    gain.gain.exponentialRampToValueAtTime(0.0001, t + p.bodyDecay + 0.015);
-
-    osc.connect(gain).connect(outTarget);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + p.decay + 0.015);
+    osc.connect(gain).connect(audioCtx.destination);
     osc.start(t);
-    osc.stop(t + p.bodyDecay + 0.02);
-
-    // 3. Low-end chassis bottom-out thock
-    if (p.thockAmp && isDown) {
-      const thockOsc = audioCtx.createOscillator();
-      const thockGain = audioCtx.createGain();
-      thockOsc.type = "sine";
-      thockOsc.frequency.setValueAtTime(p.thockFreq, t);
-      thockOsc.frequency.exponentialRampToValueAtTime(p.thockFreq * 0.5, t + 0.045);
-      thockGain.gain.setValueAtTime(p.thockAmp * vol, t);
-      thockGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
-
-      thockOsc.connect(thockGain).connect(outTarget);
-      thockOsc.start(t);
-      thockOsc.stop(t + 0.055);
-    }
+    osc.stop(t + p.decay + 0.02);
   } catch (e) {}
 }
 
@@ -1207,6 +1162,9 @@ function initSettingsToggles() {
     if (e.key === "Escape" && document.documentElement.classList.contains("focus-mode")) {
       const anyModalOpen = document.querySelector(".modal-backdrop:not([hidden])");
       if (!anyModalOpen) applyFocusMode(false);
+    } else if (e.altKey && (e.key === "f" || e.key === "F")) {
+      e.preventDefault();
+      applyFocusMode(!document.documentElement.classList.contains("focus-mode"));
     }
   });
   applyFocusMode(safeGet(LS.focusMode, "0") === "1");

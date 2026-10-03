@@ -69,13 +69,13 @@
     },
     "en-L01-01-E02": {
       "type": "drill",
-      "content": "df jk fd kj",
-      "description": "Index and middle coordination"
+      "content": "dd kk ddk kkd dk kd dd kk",
+      "description": "Double taps and alternation"
     },
     "en-L01-01-E03": {
       "type": "drill",
-      "content": "dk fk dj jk d k",
-      "description": "Cross-hand middle drills"
+      "content": "dk kd dkd kdk ddk kkd d k dk kd",
+      "description": "Cross-hand middle finger coordination"
     },
     "en-L01-02-E01": {
       "type": "single-char",
@@ -84,13 +84,13 @@
     },
     "en-L01-02-E02": {
       "type": "drill",
-      "content": "sk ld sl ks",
-      "description": "Ring and middle coordination"
+      "content": "ss ll ssl lls sl ls ss ll",
+      "description": "Double taps and alternation"
     },
     "en-L01-02-E03": {
       "type": "drill",
-      "content": "sd kl fl js s l",
-      "description": "Three-finger transitions"
+      "content": "sl ls sls lsl ssl lls s l sl ls",
+      "description": "Cross-hand ring finger coordination"
     },
     "en-L01-03-E01": {
       "type": "drill",
@@ -129,13 +129,13 @@
     },
     "en-L02-01-E02": {
       "type": "drill",
-      "content": "as l; sa ;l",
-      "description": "Pinky and ring transitions"
+      "content": "aa ;; aa; ;;a a; ;a aa ;;",
+      "description": "Double taps and alternation"
     },
     "en-L02-01-E03": {
       "type": "drill",
-      "content": "a s d f j k l ;",
-      "description": "Full 8-key baseline"
+      "content": "a; ;a a;a ;a; aa; ;;a a ; a; ;a",
+      "description": "Cross-hand pinky finger coordination"
     },
     "en-L02-02-E01": {
       "type": "drill",
@@ -1054,12 +1054,12 @@
     },
     "en-L01-01-E04": {
       "type": "drill",
-      "content": "ddd d dd kkk k kk df jd dj kf jk kj ddd d dd kkk k kk",
+      "content": "ddd d dd kkk k kk dk kd dkd kdk ddd kkk",
       "description": "Rhythm and fluency consolidation for Middle Fingers: D and K"
     },
     "en-L01-02-E04": {
       "type": "drill",
-      "content": "sss s ss lll l ll sf js sj lf jl lj sss s ss lll l ll",
+      "content": "sss s ss lll l ll sl ls sls lsl sss lll",
       "description": "Rhythm and fluency consolidation for Ring Fingers: S and L"
     },
     "en-L01-03-E04": {
@@ -1074,7 +1074,7 @@
     },
     "en-L02-01-E04": {
       "type": "drill",
-      "content": "aaa a aa ;;; ; ;; af ja aj ;f j; ;j aaa a aa ;;; ; ;;",
+      "content": "aaa a aa ;;; ; ;; a; ;a a;a ;a; aaa ;;;",
       "description": "Rhythm and fluency consolidation for Pinky Fingers: A and Semicolon"
     },
     "en-L02-02-E04": {
