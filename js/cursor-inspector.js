@@ -702,7 +702,7 @@
       const el = getKeyEl(m.id);
       if(!el) return;
       el.addEventListener('mouseenter', ()=>{
-        if(!inspectorEnabled) return;
+        if(!inspectorEnabled || global.PKDisableLayerHover) return;
         if(!global.physicalLayer && !global.lockedLayer){
           global.hoverLayer = m.layer;
           if(typeof global.render === 'function') global.render();
@@ -727,7 +727,7 @@
     document.querySelectorAll('.layer-pill').forEach(pill=>{
       const pLayer = pill.dataset.pill;
       pill.addEventListener('mouseenter', ()=>{
-        if(!inspectorEnabled) return;
+        if(!inspectorEnabled || global.PKDisableLayerHover) return;
         if(!global.physicalLayer && !global.lockedLayer){
           global.hoverLayer = pLayer === 'base' ? null : pLayer;
           if(typeof global.render === 'function') global.render();

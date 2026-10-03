@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="css/typing.css">
   <link rel="stylesheet" href="css/lessons.css">
   <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/settings.css?v=2">
 </head>
 <body>
 
@@ -242,141 +243,756 @@
 </div>
 
 <div class="modal-backdrop" id="settingsModal" hidden role="dialog" aria-modal="true" aria-labelledby="settingsModalTitle">
-  <div class="modal-card">
-    <div class="modal-top">
-      <h2 id="settingsModalTitle" class="i18n-t" data-en="Settings" data-km="ការកំណត់">Settings</h2>
-      <button class="modal-close" id="settingsCloseBtn" aria-label="Close settings">&times;</button>
-    </div>
+  <div class="modal-card settings-modal-card">
+    <!-- Fixed Header & Search Toolbar -->
+    <div class="settings-header-wrap">
+      <div class="settings-header-top">
+        <div class="settings-title-group">
+          <div class="settings-icon-badge" aria-hidden="true">
+            <svg class="pk-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <h2 id="settingsModalTitle"><span class="i18n-t" data-en="Settings &amp; Studio" data-km="ការកំណត់ និងស្ទូឌីយោ">Settings &amp; Studio</span> <span class="km-sub">ការកំណត់</span></h2>
+          <span class="settings-count-pill" id="settingsActiveCatCount">32 Controls</span>
+        </div>
+        <button class="modal-close" id="settingsCloseBtn" aria-label="Close settings">&times;</button>
+      </div>
 
-    <div class="settings-group">
-      <h3 class="i18n-t" data-en="Appearance" data-km="រូបរាង">Appearance</h3>
-      <div class="settings-row">
-        <span class="i18n-t" data-en="Theme" data-km="រូបរាង/ស្បែក">Theme</span>
-        <div class="settings-choice" id="themeChoice">
-          <button data-theme="dark" class="active i18n-t" data-en="Dark" data-km="ងងឹត">Dark</button>
-          <button data-theme="temple" class="i18n-t" data-en="Temple" data-km="ប្រាសាទ">Temple</button>
-          <button data-theme="moonlight" class="i18n-t" data-en="Moonlight" data-km="ពន្លឺព្រះច័ន្ទ">Moonlight</button>
-          <button data-theme="jungle" class="i18n-t" data-en="Jungle" data-km="ព្រៃ">Jungle</button>
-          <button data-theme="sunset" class="i18n-t" data-en="Sunset" data-km="ថ្ងៃលិច">Sunset</button>
-          <button data-theme="sepia" class="i18n-t" data-en="Sepia" data-km="សេពៀ">Sepia</button>
-          <button data-theme="light" class="i18n-t" data-en="Light" data-km="ភ្លឺ">Light</button>
-          <button data-theme="system" class="i18n-t" data-en="System" data-km="ប្រព័ន្ធ">System</button>
+      <div class="settings-tools-row">
+        <div class="settings-search-box">
+          <svg class="pk-icon settings-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="settingsSearchInput" class="settings-search-input" placeholder="Search settings (e.g. sound, hands, theme, font, cursor, lessons)..." autocomplete="off" spellcheck="false">
+          <button type="button" id="settingsSearchClear" class="settings-search-clear" aria-label="Clear search" hidden>&times;</button>
         </div>
-      </div>
-      <div class="settings-row">
-        <span class="i18n-t" data-en="Accent color" data-km="ពណ៌សំខាន់">Accent color</span>
-        <div class="settings-choice accent-choice" id="accentChoice">
-          <button data-accent="gold" class="active" style="--sw:#ffd166" aria-label="Cyan accent"></button>
-          <button data-accent="jade" style="--sw:#5fd694" aria-label="Jade accent"></button>
-          <button data-accent="sapphire" style="--sw:#2dd4a7" aria-label="Sapphire accent"></button>
-          <button data-accent="ruby" style="--sw:#ff5a70" aria-label="Ruby accent"></button>
-        </div>
-      </div>
-      <div class="settings-row">
-        <span class="i18n-t" data-en="Larger text" data-km="អក្សរធំជាង">Larger text</span>
-        <div class="toggle-switch" id="largeTextToggle" role="switch" aria-checked="false" aria-label="Toggle larger text" tabindex="0"></div>
-      </div>
-      <div class="settings-row">
-        <span class="i18n-t" data-en="Compact keyboard" data-km="ក្តារចុចតូចបង្រួម">Compact keyboard</span>
-        <div class="toggle-switch" id="compactKeysToggle" role="switch" aria-checked="false" aria-label="Toggle a smaller, tighter keyboard" tabindex="0"></div>
-      </div>
-      <div class="settings-row wallpaper-settings-row">
-        <div>
-          <span class="i18n-t" data-en="Custom wallpaper" data-km="ផ្ទាំងរូបភាពផ្ទៃខាងក្រោយ">Custom wallpaper</span>
-          <div class="settings-subtext i18n-t" data-en="Set your own background image" data-km="ដាក់រូបភាពផ្ទៃខាងក្រោយតាមចិត្ត">Set your own background image</div>
-        </div>
-        <div class="wallpaper-actions">
-          <input type="file" id="wallpaperFileInput" accept="image/*" style="display:none;">
-          <button type="button" class="wallpaper-btn" id="uploadWallpaperBtn">
-            <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            <span class="i18n-t" data-en="Choose Image" data-km="ជ្រើសរើសរូបភាព">Choose Image</span>
-          </button>
-          <button type="button" class="wallpaper-btn" id="urlWallpaperBtn">
-            <span class="i18n-t" data-en="URL" data-km="តំណភ្ជាប់">URL</span>
-          </button>
-          <button type="button" class="wallpaper-btn danger" id="removeWallpaperBtn" style="display:none;">
-            <span class="i18n-t" data-en="Remove" data-km="ដករូបភាពចេញ">Remove</span>
-          </button>
-        </div>
-      </div>
-      <div class="settings-row wallpaper-dim-row" id="wallpaperDimControl" style="display:none;">
-        <span class="i18n-t" data-en="Wallpaper dimming" data-km="បន្ថយពន្លឺរូបភាព">Wallpaper dimming</span>
-        <div class="wallpaper-slider-container">
-          <input type="range" id="wallpaperDimSlider" min="15" max="90" value="65" aria-label="Wallpaper dimming level">
-          <span id="wallpaperDimValue">65%</span>
+        <div class="settings-presets-bar">
+          <span class="preset-chip-label">Presets:</span>
+          <button type="button" class="settings-preset-btn" data-preset="default">Default</button>
+          <button type="button" class="settings-preset-btn" data-preset="pro">Pro Typist</button>
+          <button type="button" class="settings-preset-btn" data-preset="immersion">Full Immersion</button>
+          <button type="button" class="settings-preset-btn" data-preset="performance">Battery Saver</button>
         </div>
       </div>
     </div>
 
-    <div class="settings-group">
-      <h3 class="i18n-t" data-en="Typing" data-km="ការ​វាយ​​អក្សរ">Typing</h3>
-      <div class="settings-row">
-        <span class="i18n-t" data-en="Finger guide" data-km="មគ្គុទ្ទេសក៍ម្រាមដៃ">Finger guide</span>
-        <div class="toggle-switch on" id="settingsHandsToggle" role="switch" aria-checked="true" aria-label="Toggle finger guide" tabindex="0"></div>
+    <!-- Category Navigation Bar -->
+    <div class="settings-tabs-scroll" id="settingsCategoryTabs" role="tablist">
+      <button type="button" class="settings-cat-tab active" data-cat="all" role="tab" aria-selected="true">All Settings</button>
+      <button type="button" class="settings-cat-tab" data-cat="general" role="tab" aria-selected="false">General &amp; Layout</button>
+      <button type="button" class="settings-cat-tab" data-cat="keyboard" role="tab" aria-selected="false">Hands &amp; Cursor</button>
+      <button type="button" class="settings-cat-tab" data-cat="audio" role="tab" aria-selected="false">Sound &amp; Audio</button>
+      <button type="button" class="settings-cat-tab" data-cat="typing" role="tab" aria-selected="false">Typing &amp; Lessons</button>
+      <button type="button" class="settings-cat-tab" data-cat="appearance" role="tab" aria-selected="false">Appearance &amp; Themes</button>
+      <button type="button" class="settings-cat-tab" data-cat="immersion" role="tab" aria-selected="false">Immersion &amp; FX</button>
+      <button type="button" class="settings-cat-tab" data-cat="a11y" role="tab" aria-selected="false">Accessibility</button>
+      <button type="button" class="settings-cat-tab" data-cat="data" role="tab" aria-selected="false">Data &amp; Backup</button>
+    </div>
+
+    <!-- Scrollable Settings Sections -->
+    <div class="settings-body-scroll" id="settingsBodyScroll">
+
+      <!-- 1. GENERAL & LAYOUT -->
+      <div class="settings-section" data-cat-section="general">
+        <div class="settings-section-header">
+          <h3 class="settings-section-title">General, Layout &amp; Language</h3>
+          <span class="settings-section-count">3 settings</span>
+        </div>
+
+        <div class="settings-row" data-search="keyboard layout khmer standard nida english qwerty unicode">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="Active Keyboard Layout" data-km="ប្លង់ក្តារចុចបច្ចុប្បន្ន">Active Keyboard Layout</span>
+              <span class="settings-row-km">ប្លង់ក្តារចុច</span>
+            </div>
+            <div class="settings-row-desc">Switch the active keyboard mapping and lesson curriculum immediately.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="settings-choice" id="settingsLayoutChoice">
+              <button type="button" data-layout-set="standard" class="active">Khmer Standard</button>
+              <button type="button" data-layout-set="nida">Khmer NiDA</button>
+              <button type="button" data-layout-set="english">English (US)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="language translate khmer english ui interface ភាសាខ្មែរ">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="Interface Language" data-km="ភាសាកម្មវិធី">Interface Language</span>
+              <span class="settings-row-km">ភាសា</span>
+            </div>
+            <div class="settings-row-desc">Translate menus, buttons, and lesson guides between English and Khmer (Alt+L).</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="settings-choice" id="settingsLangChoice">
+              <button type="button" data-lang-set="en" class="active">English</button>
+              <button type="button" data-lang-set="km">ភាសាខ្មែរ (Khmer)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="quick links documents 3d mechanical studio shortcuts statistics">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Studio &amp; Reference Tools</span>
+              <span class="settings-row-km">ឧបករណ៍ជំនួយ</span>
+            </div>
+            <div class="settings-row-desc">Jump directly to documentation, 3D mechanical viewer, shortcuts, or statistics.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="settings-quick-links">
+              <button type="button" class="settings-action-pill" id="settingsOpenShortcutsBtn">Shortcuts</button>
+              <button type="button" class="settings-action-pill" id="settingsOpenStatsBtn">Statistics</button>
+              <a href="Documents/index.html" class="settings-action-pill">PK Documents</a>
+              <a href="keyboard-3d.html" class="settings-action-pill">3D Studio</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="settings-row">
-        <span class="i18n-t" data-en="Sound effects" data-km="បែបផែនសំឡេង">Sound effects</span>
-        <div class="toggle-switch on" id="settingsSoundToggle" role="switch" aria-checked="true" aria-label="Toggle sound effects" tabindex="0"></div>
+
+      <!-- 2. HANDS, KEYBOARD & SMART CURSOR -->
+      <div class="settings-section" data-cat-section="keyboard">
+        <div class="settings-section-header">
+          <h3 class="settings-section-title">3D Hands, Keyboard &amp; Smart Cursor</h3>
+          <span class="settings-section-count">10 settings</span>
+        </div>
+
+        <div class="settings-row" data-search="finger guide 3d hands kinematic left right hand">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="3D Kinematic Finger Guide" data-km="មគ្គុទ្ទេសក៍ម្រាមដៃ 3D">3D Kinematic Finger Guide</span>
+              <span class="settings-row-km">មគ្គុទ្ទេសក៍ដៃ</span>
+            </div>
+            <div class="settings-row-desc">Display translucent left and right hands that reach to each target key.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch on" id="settingsHandsToggle" role="switch" aria-checked="true" aria-label="Toggle finger guide" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="hand opacity transparency alpha see through">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">3D Hand Opacity</span>
+              <span class="settings-row-km">កម្រិតថ្លានៃដៃ</span>
+            </div>
+            <div class="settings-row-desc">Control how solid or see-through the 3D hands appear over the keycaps.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="settings-slider-wrap">
+              <input type="range" id="handsOpacitySlider" min="15" max="100" value="85" aria-label="3D Hand Opacity">
+              <span class="settings-slider-badge" id="handsOpacityValue">85%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="mouse cursor inspector hud tooltip character hover pronunciation">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Smart Mouse Cursor Inspector</span>
+              <span class="settings-row-km">ឧបករណ៍ពិនិត្យម៉ៅ</span>
+            </div>
+            <div class="settings-row-desc">Show character details, keystroke recipes, and sound when hovering keys or text (Alt+M).</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch on" id="settingsMouseInspectorToggle" role="switch" aria-checked="true" aria-label="Toggle Smart Mouse Cursor Inspector" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="cursor reticle pointer target ring cyber">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Precision Cursor Reticle</span>
+              <span class="settings-row-km">រង្វង់ម៉ៅ</span>
+            </div>
+            <div class="settings-row-desc">Render the cyber targeting ring around your mouse pointer.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch on" id="settingsReticleToggle" role="switch" aria-checked="true" aria-label="Toggle precision cursor reticle" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="click shockwave ripple ring mouse">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Mouse Click Shockwaves</span>
+              <span class="settings-row-km">រលកពេលចុចម៉ៅ</span>
+            </div>
+            <div class="settings-row-desc">Emit expanding ripple shockwaves on mouse clicks.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch on" id="settingsShockwaveToggle" role="switch" aria-checked="true" aria-label="Toggle mouse click shockwaves" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="hover layer preview shift ctrl altgr pointer">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Hover Layer Auto-Preview</span>
+              <span class="settings-row-km">មើលស្រទាប់ពេលដាក់ម៉ៅ</span>
+            </div>
+            <div class="settings-row-desc">Rest your pointer on Shift, Ctrl, or AltGr to preview that layer on the board.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch on" id="settingsLayerHoverToggle" role="switch" aria-checked="true" aria-label="Toggle hover layer auto-preview" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="shift key preview corner badge symbol">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="Shift-key Corner Previews" data-km="មើលមុនគ្រាប់ចុច Shift">Shift-key Corner Previews</span>
+              <span class="settings-row-km">សញ្ញា Shift លើគ្រាប់ចុច</span>
+            </div>
+            <div class="settings-row-desc">Display secondary shifted characters in the top-right corner of every keycap.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch on" id="shiftPreviewToggle" role="switch" aria-checked="true" aria-label="Toggle shift-key corner previews" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="highlight next key target glow pulse lesson">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="Highlight Next Target Key" data-km="បន្លិចគ្រាប់ចុចបន្ទាប់">Highlight Next Target Key</span>
+              <span class="settings-row-km">បន្លិចគ្រាប់ចុច</span>
+            </div>
+            <div class="settings-row-desc">Glow and pulse the required target key and modifier during practice drills.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch on" id="keyHighlightToggle" role="switch" aria-checked="true" aria-label="Toggle the next-key glow during lessons" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="key press effects ripple spark burst animation">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="Key Press Spark Effects" data-km="បែបផែនពេលចុចគ្រាប់ចុច">Key Press Spark Effects</span>
+              <span class="settings-row-km">បែបផែនចុច</span>
+            </div>
+            <div class="settings-row-desc">Trigger impact ripples and spark bursts on every keystroke.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch on" id="keyFxToggle" role="switch" aria-checked="true" aria-label="Toggle ripple and ember effects on key press" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="compact keyboard small tight size">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="Compact Keyboard Proportions" data-km="ក្តារចុចតូចបង្រួម">Compact Keyboard Proportions</span>
+              <span class="settings-row-km">ក្តារចុចតូច</span>
+            </div>
+            <div class="settings-row-desc">Reduce keycap padding and gap for a tighter mechanical footprint.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch" id="compactKeysToggle" role="switch" aria-checked="false" aria-label="Toggle a smaller, tighter keyboard" tabindex="0"></div>
+          </div>
+        </div>
       </div>
-      <div class="settings-row">
-        <span class="i18n-t" data-en="Shift-key preview" data-km="មើលមុនគ្រាប់ចុច Shift">Shift-key preview</span>
-        <div class="toggle-switch on" id="shiftPreviewToggle" role="switch" aria-checked="true" aria-label="Toggle shift-key corner previews" tabindex="0"></div>
+
+      <!-- 3. SOUND & AUDIO ENGINE -->
+      <div class="settings-section" data-cat-section="audio">
+        <div class="settings-section-header">
+          <h3 class="settings-section-title">Sound &amp; Mechanical Audio Engine</h3>
+          <span class="settings-section-count">6 settings</span>
+        </div>
+
+        <div class="settings-row" data-search="sound effects audio click keystroke mute">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="Mechanical Key Sound" data-km="សំឡេងចុចគ្រាប់ចុច">Mechanical Key Sound</span>
+              <span class="settings-row-km">សំឡេងគ្រាប់ចុច</span>
+            </div>
+            <div class="settings-row-desc">Synthesize real-time mechanical switch acoustics when typing.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch on" id="settingsSoundToggle" role="switch" aria-checked="true" aria-label="Toggle sound effects" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="switch profile sound tactile brown clicky blue red thock typewriter silent">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Mechanical Switch Profile</span>
+              <span class="settings-row-km">ប្រភេទសំឡេងស្វ៊ីច</span>
+            </div>
+            <div class="settings-row-desc">Select your switch acoustic signature (click any switch to audition its sound).</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="settings-choice" id="switchProfileChoice">
+              <button type="button" data-switch="brown" class="active">Tactile Brown</button>
+              <button type="button" data-switch="blue">Clicky Blue</button>
+              <button type="button" data-switch="red">Thocky Red</button>
+              <button type="button" data-switch="typewriter">Typewriter</button>
+              <button type="button" data-switch="silent">Silent Soft</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="sound volume loudness key click level">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Key Sound Volume</span>
+              <span class="settings-row-km">កម្រិតសំឡេងគ្រាប់ចុច</span>
+            </div>
+            <div class="settings-row-desc">Adjust master volume for mechanical switch clicks and chimes.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="settings-slider-wrap">
+              <input type="range" id="soundVolumeSlider" min="10" max="100" value="80" aria-label="Key Sound Volume">
+              <span class="settings-slider-badge" id="soundVolumeValue">80%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="completion chime bell milestone lesson pass sound">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Completion &amp; Milestone Chimes</span>
+              <span class="settings-row-km">សំឡេងជោគជ័យ</span>
+            </div>
+            <div class="settings-row-desc">Play harmonic celebration chimes when completing a drill or mastering a lesson.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch on" id="settingsChimeToggle" role="switch" aria-checked="true" aria-label="Toggle completion chimes" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="temple ambience drone background music relax meditation">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Temple Ambience Drone</span>
+              <span class="settings-row-km">សំឡេងបរិយាកាសប្រាសាទ</span>
+            </div>
+            <div class="settings-row-desc">Play a warm, meditative harmonic temple drone in the background.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch" id="settingsAmbienceToggle" role="switch" aria-checked="false" aria-label="Toggle temple ambience drone" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="ambience volume drone loudness level">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Ambience Volume</span>
+              <span class="settings-row-km">កម្រិតសំឡេងបរិយាកាស</span>
+            </div>
+            <div class="settings-row-desc">Adjust the background temple ambience drone level.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="settings-slider-wrap">
+              <input type="range" id="ambienceVolumeSlider" min="10" max="100" value="50" aria-label="Ambience Volume">
+              <span class="settings-slider-badge" id="ambienceVolumeValue">50%</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="settings-row">
-        <span class="i18n-t" data-en="Highlight next key" data-km="បន្លិចគ្រាប់ចុចបន្ទាប់">Highlight next key</span>
-        <div class="toggle-switch on" id="keyHighlightToggle" role="switch" aria-checked="true" aria-label="Toggle the next-key glow during lessons" tabindex="0"></div>
+
+      <!-- 4. TYPING, LESSONS & PRACTICE -->
+      <div class="settings-section" data-cat-section="typing">
+        <div class="settings-section-header">
+          <h3 class="settings-section-title">Typing, Lessons &amp; Practice</h3>
+          <span class="settings-section-count">5 settings</span>
+        </div>
+
+        <div class="settings-row" data-search="unlock all lessons sandbox free practice 77 levels">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Unlock All Lessons (Sandbox Mode)</span>
+              <span class="settings-row-km">បើកមេរៀនទាំងអស់</span>
+            </div>
+            <div class="settings-row-desc">Unlock all 77 lessons across every curriculum so you can jump to any level freely.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch" id="unlockAllLessonsToggle" role="switch" aria-checked="false" aria-label="Toggle unlock all lessons" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="strict mistake mode stop on error accuracy">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Strict Mistake Mode (Stop on Error)</span>
+              <span class="settings-row-km">តម្រូវឱ្យវាយត្រូវមុនទៅមុខ</span>
+            </div>
+            <div class="settings-row-desc">Require typing the exact target character before the prompt cursor advances.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch on" id="strictModeToggle" role="switch" aria-checked="true" aria-label="Toggle strict mistake mode" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="auto advance next exercise drill lesson">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Auto-Advance Next Exercise</span>
+              <span class="settings-row-km">បន្តលំហាត់បន្ទាប់ស្វ័យប្រវត្តិ</span>
+            </div>
+            <div class="settings-row-desc">Automatically advance to the next drill step upon finishing an exercise.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch on" id="autoAdvanceToggle" role="switch" aria-checked="true" aria-label="Toggle auto-advance next exercise" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="live speed wpm accuracy counter hud stats">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Show Live Speed &amp; Accuracy Counters</span>
+              <span class="settings-row-km">បង្ហាញល្បឿន និងភាពត្រឹមត្រូវផ្ទាល់</span>
+            </div>
+            <div class="settings-row-desc">Display real-time WPM and accuracy telemetry while practicing (turn off for calm typing).</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch on" id="liveStatsHudToggle" role="switch" aria-checked="true" aria-label="Toggle live WPM and accuracy counters" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="target wpm goal speed benchmark">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Personal Target WPM Goal</span>
+              <span class="settings-row-km">គោលដៅល្បឿន WPM</span>
+            </div>
+            <div class="settings-row-desc">Set your personal words-per-minute speed goal for practice sessions.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="settings-slider-wrap">
+              <input type="range" id="targetWpmSlider" min="15" max="120" step="5" value="40" aria-label="Target WPM Goal">
+              <span class="settings-slider-badge" id="targetWpmValue">40 WPM</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="settings-row">
-        <span class="i18n-t" data-en="Key press effects" data-km="បែបផែនពេលចុចគ្រាប់ចុច">Key press effects</span>
-        <div class="toggle-switch on" id="keyFxToggle" role="switch" aria-checked="true" aria-label="Toggle ripple and ember effects on key press" tabindex="0"></div>
+
+      <!-- 5. APPEARANCE & THEMES -->
+      <div class="settings-section" data-cat-section="appearance">
+        <div class="settings-section-header">
+          <h3 class="settings-section-title">Appearance, Themes &amp; Wallpaper</h3>
+          <span class="settings-section-count">7 settings</span>
+        </div>
+
+        <div class="settings-row" data-search="theme dark temple moonlight jungle sunset sepia light system color">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="Studio Color Theme" data-km="រូបរាង/ស្បែក">Studio Color Theme</span>
+              <span class="settings-row-km">ស្បែកកម្មវិធី</span>
+            </div>
+            <div class="settings-row-desc">Select the overall atmosphere and lighting palette.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="settings-choice" id="themeChoice">
+              <button type="button" data-theme="dark" class="active"><span class="theme-dot dark"></span><span class="i18n-t" data-en="Dark" data-km="ងងឹត">Dark</span></button>
+              <button type="button" data-theme="temple"><span class="theme-dot temple"></span><span class="i18n-t" data-en="Temple" data-km="ប្រាសាទ">Temple</span></button>
+              <button type="button" data-theme="moonlight"><span class="theme-dot moonlight"></span><span class="i18n-t" data-en="Moonlight" data-km="ពន្លឺព្រះច័ន្ទ">Moonlight</span></button>
+              <button type="button" data-theme="jungle"><span class="theme-dot jungle"></span><span class="i18n-t" data-en="Jungle" data-km="ព្រៃ">Jungle</span></button>
+              <button type="button" data-theme="sunset"><span class="theme-dot sunset"></span><span class="i18n-t" data-en="Sunset" data-km="ថ្ងៃលិច">Sunset</span></button>
+              <button type="button" data-theme="sepia"><span class="theme-dot sepia"></span><span class="i18n-t" data-en="Sepia" data-km="សេពៀ">Sepia</span></button>
+              <button type="button" data-theme="light"><span class="theme-dot light"></span><span class="i18n-t" data-en="Light" data-km="ភ្លឺ">Light</span></button>
+              <button type="button" data-theme="system"><span class="theme-dot system"></span><span class="i18n-t" data-en="System" data-km="ប្រព័ន្ធ">System</span></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="accent color gold jade sapphire ruby cyan amethyst">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="Primary Accent Color" data-km="ពណ៌សំខាន់">Primary Accent Color</span>
+              <span class="settings-row-km">ពណ៌លេចធ្លោ</span>
+            </div>
+            <div class="settings-row-desc">Choose the highlight glow color for active keys, badges, and buttons.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="settings-choice accent-choice" id="accentChoice">
+              <button type="button" data-accent="gold" class="active" style="--sw:#ffd166" aria-label="Gold accent" title="Angkor Gold"></button>
+              <button type="button" data-accent="jade" style="--sw:#5fd694" aria-label="Jade accent" title="Emerald Jade"></button>
+              <button type="button" data-accent="sapphire" style="--sw:#2dd4a7" aria-label="Sapphire accent" title="Teal Sapphire"></button>
+              <button type="button" data-accent="ruby" style="--sw:#ff5a70" aria-label="Ruby accent" title="Crimson Ruby"></button>
+              <button type="button" data-accent="cyan" style="--sw:#38bdf8" aria-label="Cyber Cyan accent" title="Cyber Cyan"></button>
+              <button type="button" data-accent="amethyst" style="--sw:#c084fc" aria-label="Amethyst accent" title="Royal Amethyst"></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="khmer font family kantumruy noto sans serif typography">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Khmer Script Font Family</span>
+              <span class="settings-row-km">ពុម្ពអក្សរខ្មែរ</span>
+            </div>
+            <div class="settings-row-desc">Choose the Khmer typeface for keycaps, HUD cards, and typing prompts.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="settings-choice" id="khmerFontChoice">
+              <button type="button" data-kfont="kantumruy" class="active">Kantumruy Pro</button>
+              <button type="button" data-kfont="noto-sans">Noto Sans Khmer</button>
+              <button type="button" data-kfont="noto-serif">Noto Serif Khmer</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="larger text font size big scale zoom">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="Larger Text &amp; Key Glyphs" data-km="អក្សរធំជាង">Larger Text &amp; Key Glyphs</span>
+              <span class="settings-row-km">អក្សរធំ</span>
+            </div>
+            <div class="settings-row-desc">Increase font size across keycaps, reading prompts, and menus.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch" id="largeTextToggle" role="switch" aria-checked="false" aria-label="Toggle larger text" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row wallpaper-settings-row" data-search="custom wallpaper background image photo url upload">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="Custom Background Wallpaper" data-km="ផ្ទាំងរូបភាពផ្ទៃខាងក្រោយ">Custom Background Wallpaper</span>
+              <span class="settings-row-km">រូបភាពផ្ទៃក្រោយ</span>
+            </div>
+            <div class="settings-row-desc i18n-t" data-en="Upload an image or paste an image URL for your studio backdrop." data-km="ដាក់រូបភាពផ្ទៃខាងក្រោយតាមចិត្ត">Upload an image or paste an image URL for your studio backdrop.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="wallpaper-actions">
+              <input type="file" id="wallpaperFileInput" accept="image/*" style="display:none;">
+              <button type="button" class="wallpaper-btn" id="uploadWallpaperBtn">
+                <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                <span class="i18n-t" data-en="Choose Image" data-km="ជ្រើសរើសរូបភាព">Choose Image</span>
+              </button>
+              <button type="button" class="wallpaper-btn" id="urlWallpaperBtn">
+                <span class="i18n-t" data-en="URL" data-km="តំណភ្ជាប់">URL</span>
+              </button>
+              <button type="button" class="wallpaper-btn danger" id="removeWallpaperBtn" style="display:none;">
+                <span class="i18n-t" data-en="Remove" data-km="ដករូបភាពចេញ">Remove</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-row wallpaper-dim-row" id="wallpaperDimControl" style="display:none;" data-search="wallpaper dimming brightness dark">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="Wallpaper Dimming" data-km="បន្ថយពន្លឺរូបភាព">Wallpaper Dimming</span>
+            </div>
+            <div class="settings-row-desc">Darken the custom wallpaper so the keyboard stays crisp.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="settings-slider-wrap">
+              <input type="range" id="wallpaperDimSlider" min="15" max="90" value="65" aria-label="Wallpaper dimming level">
+              <span class="settings-slider-badge" id="wallpaperDimValue">65%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="wallpaper blur glass backdrop">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Backdrop Glass Blur</span>
+              <span class="settings-row-km">កម្រិតព្រាលផ្ទៃក្រោយ</span>
+            </div>
+            <div class="settings-row-desc">Apply soft optical depth-of-field blur to custom wallpapers.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="settings-slider-wrap">
+              <input type="range" id="wallpaperBlurSlider" min="0" max="24" value="0" aria-label="Wallpaper Glass Blur">
+              <span class="settings-slider-badge" id="wallpaperBlurValue">0px</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. IMMERSION & ATMOSPHERE -->
+      <div class="settings-section" data-cat-section="immersion">
+        <div class="settings-section-header">
+          <h3 class="settings-section-title">Immersion, Atmosphere &amp; Panels</h3>
+          <span class="settings-section-count">5 settings</span>
+        </div>
+
+        <div class="settings-row" data-search="focus mode zen distraction free hide panels">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="Focus Mode" data-km="របៀបផ្តោតអារម្មណ៍">Focus Mode</span>
+              <span class="settings-row-km">របៀបផ្តោត</span>
+            </div>
+            <div class="settings-row-desc">Dim headers and sidebars so only the keyboard and typing prompt remain (Alt+F).</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch" id="focusModeToggle" role="switch" aria-checked="false" aria-label="Toggle focus mode" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="side docks panels quick guide lessons sidebar">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Show Side Reference Docks</span>
+              <span class="settings-row-km">បង្ហាញផ្ទាំងសងខាង</span>
+            </div>
+            <div class="settings-row-desc">Display the Quick Guide (left) and Lessons Navigator (right) side panels.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch on" id="sideDocksToggle" role="switch" aria-checked="true" aria-label="Toggle side reference docks" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="ember particles ambient motes floating dust">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="Floating Ember Particles" data-km="ភ្លើងបាតុភូតអណ្តែត">Floating Ember Particles</span>
+              <span class="settings-row-km">ភាគល្អិតពន្លឺ</span>
+            </div>
+            <div class="settings-row-desc">Render drifting ambient light motes across the backdrop.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch on" id="motesToggle" role="switch" aria-checked="true" aria-label="Toggle drifting ember particles" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="torch flames fire temple light">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="Temple Torch Flames" data-km="អណ្តាតភ្លើងចង្កៀង">Temple Torch Flames</span>
+              <span class="settings-row-km">អណ្តាតភ្លើង</span>
+            </div>
+            <div class="settings-row-desc">Display warm flickering torchlight along the sides of the screen.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch on" id="torchesToggle" role="switch" aria-checked="true" aria-label="Toggle the side torch flames" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="scanline overlay crt holographic retro">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="Holographic Scanline Overlay" data-km="ស្រទាប់បន្ទាត់ស្កេន">Holographic Scanline Overlay</span>
+              <span class="settings-row-km">បន្ទាត់ស្កេន</span>
+            </div>
+            <div class="settings-row-desc">Add a subtle cybernetic CRT scanline texture across the viewport.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch" id="scanlinesToggle" role="switch" aria-checked="false" aria-label="Toggle a holographic scanline overlay" tabindex="0"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. ACCESSIBILITY -->
+      <div class="settings-section" data-cat-section="a11y">
+        <div class="settings-section-header">
+          <h3 class="settings-section-title">Accessibility &amp; Visual Comfort</h3>
+          <span class="settings-section-count">3 settings</span>
+        </div>
+
+        <div class="settings-row" data-search="reduced motion animations disable smooth">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="Reduced Motion" data-km="កាត់បន្ថយចលនា">Reduced Motion</span>
+              <span class="settings-row-km">កាត់បន្ថយចលនា</span>
+            </div>
+            <div class="settings-row-desc">Minimize animations, floating effects, and camera transitions.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch" id="reducedMotionToggle" role="switch" aria-checked="false" aria-label="Toggle reduced motion" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="high contrast borders visibility sharp">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="High Contrast Mode" data-km="កម្រិតពណ៌ខ្ពស់">High Contrast Mode</span>
+              <span class="settings-row-km">កម្រិតពណ៌ខ្ពស់</span>
+            </div>
+            <div class="settings-row-desc">Strengthen keycap borders, text contrast, and button outlines.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch" id="highContrastToggle" role="switch" aria-checked="false" aria-label="Toggle high contrast" tabindex="0"></div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="dyslexia wide letter spacing prompt readability">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Wide Prompt Character Spacing</span>
+              <span class="settings-row-km">គម្លាតអក្សរទូលាយ</span>
+            </div>
+            <div class="settings-row-desc">Add generous horizontal spacing between characters in lesson prompts for easier reading.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="toggle-switch" id="dyslexiaSpacingToggle" role="switch" aria-checked="false" aria-label="Toggle wide prompt character spacing" tabindex="0"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. DATA, BACKUP & RESET -->
+      <div class="settings-section" data-cat-section="data">
+        <div class="settings-section-header">
+          <h3 class="settings-section-title">Progress Data, Backup &amp; Reset</h3>
+          <span class="settings-section-count">Storage &amp; Backup</span>
+        </div>
+
+        <div class="settings-storage-card" data-search="storage progress stats keys typed lessons mastered">
+          <div class="settings-storage-grid">
+            <div class="settings-storage-stat">
+              <span class="settings-stat-label">Total Keys Typed</span>
+              <span class="settings-stat-val" id="settingsStatKeys">0</span>
+            </div>
+            <div class="settings-storage-stat">
+              <span class="settings-stat-label">Lessons Mastered</span>
+              <span class="settings-stat-val" id="settingsStatMastered">0 / 77</span>
+            </div>
+            <div class="settings-storage-stat">
+              <span class="settings-stat-label">Best Speed</span>
+              <span class="settings-stat-val" id="settingsStatBestWpm">0 WPM</span>
+            </div>
+            <div class="settings-storage-stat">
+              <span class="settings-stat-label">Local Storage</span>
+              <span class="settings-stat-val" id="settingsStatStorage">0 KB</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="export import backup json save restore file">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">Backup &amp; Restore Progress (.json)</span>
+              <span class="settings-row-km">បម្រុងទុក និងទាញយកទិន្នន័យ</span>
+            </div>
+            <div class="settings-row-desc">Download a portable JSON backup of your progress and settings, or restore from a file.</div>
+          </div>
+          <div class="settings-row-control">
+            <button type="button" class="secondary-btn" id="exportProgressBtn" style="padding:7px 12px;flex:none;"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span class="i18n-t" data-en="Export Backup" data-km="នាំចេញការបម្រុងទុក">Export Backup</span></button>
+            <button type="button" class="secondary-btn" id="importProgressBtn" style="padding:7px 12px;flex:none;"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> <span class="i18n-t" data-en="Import Backup" data-km="នាំចូលការបម្រុងទុក">Import Backup</span></button>
+            <input type="file" id="importProgressInput" accept="application/json" hidden>
+          </div>
+        </div>
+
+        <div class="settings-row" data-search="reset all progress delete clear lessons stats danger">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name" style="color:#f87171;">Reset All Typing Progress</span>
+              <span class="settings-row-km">លុបវឌ្ឍនភាពទាំងអស់</span>
+            </div>
+            <div class="settings-row-desc">Permanently erase all completed lessons, WPM records, and history.</div>
+          </div>
+          <div class="settings-row-control">
+            <button type="button" class="reset-btn i18n-t" style="width:auto;margin:0;padding:8px 14px;" data-en="Reset All Progress" data-km="កំណត់វឌ្ឍនភាពទាំងអស់ឡើងវិញ" id="resetProgressBtn">Reset All Progress</button>
+          </div>
+        </div>
+
+        <p class="settings-about-text i18n-t" style="margin-top:14px;" data-en="&lt;b&gt;PK Khmer Type — Layer Viewer &amp;amp; Typing Trainer.&lt;/b&gt; Founded &amp;amp; built by Phanna Kurosaki. All progress and settings are stored locally in this browser — nothing is sent anywhere." data-km="&lt;b&gt;PK Khmer Type — កម្មវិធីមើលស្រទាប់ និងហ្វឹកហាត់វាយអក្សរ។&lt;/b&gt; វឌ្ឍនភាព និងការកំណត់ទាំងអស់ត្រូវបានរក្សាទុកនៅក្នុងកម្មវិធីរុករកនេះប៉ុណ្ណោះ — គ្មានអ្វីត្រូវបានផ្ញើទៅកន្លែងណាឡើយ។"><b>PK Khmer Type — Layer Viewer &amp; Typing Trainer.</b> Founded &amp; built by Phanna Kurosaki. All progress and settings are stored locally in this browser — nothing is sent anywhere.</p>
+      </div>
+
+      <!-- Empty Search State -->
+      <div class="settings-empty-search" id="settingsEmptySearch" hidden>
+        No settings found matching "<strong id="settingsSearchTerm"></strong>". Try searching for <em>sound</em>, <em>hands</em>, <em>theme</em>, <em>cursor</em>, or <em>lessons</em>.
       </div>
     </div>
 
-    <div class="settings-group">
-      <h3 class="i18n-t" data-en="Immersion" data-km="បរិយាកាស">Immersion</h3>
-      <div class="settings-row">
-        <span class="i18n-t" data-en="Ember particles" data-km="ភ្លើងបាតុភូតអណ្តែត">Ember particles</span>
-        <div class="toggle-switch on" id="motesToggle" role="switch" aria-checked="true" aria-label="Toggle drifting ember particles" tabindex="0"></div>
+    <!-- Fixed Footer -->
+    <div class="settings-footer-wrap">
+      <div class="settings-footer-left">
+        All changes apply immediately and save automatically.
       </div>
-      <div class="settings-row">
-        <span class="i18n-t" data-en="Torch flames" data-km="អណ្តាតភ្លើងចង្កៀង">Torch flames</span>
-        <div class="toggle-switch on" id="torchesToggle" role="switch" aria-checked="true" aria-label="Toggle the side torch flames" tabindex="0"></div>
+      <div class="settings-footer-actions">
+        <button type="button" class="settings-btn-ghost" id="resetPreferencesBtn">Reset Default Settings</button>
+        <button type="button" class="settings-btn-primary" id="settingsDoneBtn">Done</button>
       </div>
-      <div class="settings-row">
-        <span class="i18n-t" data-en="Scanline overlay" data-km="ស្រទាប់បន្ទាត់ស្កេន">Scanline overlay</span>
-        <div class="toggle-switch" id="scanlinesToggle" role="switch" aria-checked="false" aria-label="Toggle a holographic scanline overlay" tabindex="0"></div>
-      </div>
-      <div class="settings-row">
-        <span class="i18n-t" data-en="Focus mode" data-km="របៀបផ្តោតអារម្មណ៍">Focus mode</span>
-        <div class="toggle-switch" id="focusModeToggle" role="switch" aria-checked="false" aria-label="Toggle focus mode, dimming everything but the keyboard" tabindex="0"></div>
-      </div>
-    </div>
-
-    <div class="settings-group">
-      <h3 class="i18n-t" data-en="Accessibility" data-km="ភាពងាយស្រួលប្រើ">Accessibility</h3>
-      <div class="settings-row">
-        <span class="i18n-t" data-en="Reduced motion" data-km="កាត់បន្ថយចលនា">Reduced motion</span>
-        <div class="toggle-switch" id="reducedMotionToggle" role="switch" aria-checked="false" aria-label="Toggle reduced motion" tabindex="0"></div>
-      </div>
-      <div class="settings-row">
-        <span class="i18n-t" data-en="High contrast" data-km="កម្រិតពណ៌ខ្ពស់">High contrast</span>
-        <div class="toggle-switch" id="highContrastToggle" role="switch" aria-checked="false" aria-label="Toggle high contrast" tabindex="0"></div>
-      </div>
-    </div>
-
-    <div class="settings-group">
-      <h3 class="i18n-t" data-en="Progress" data-km="វឌ្ឍនភាព">Progress</h3>
-      <div class="settings-btn-row">
-        <button class="secondary-btn" id="exportProgressBtn"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> <span class="i18n-t" data-en="Export Backup" data-km="នាំចេញការបម្រុងទុក">Export Backup</span></button>
-        <button class="secondary-btn" id="importProgressBtn"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> <span class="i18n-t" data-en="Import Backup" data-km="នាំចូលការបម្រុងទុក">Import Backup</span></button>
-        <input type="file" id="importProgressInput" accept="application/json" hidden>
-      </div>
-      <button class="reset-btn i18n-t" data-en="Reset All Progress" data-km="កំណត់វឌ្ឍនភាពទាំងអស់ឡើងវិញ" id="resetProgressBtn">Reset All Progress</button>
-    </div>
-
-    <div class="settings-group">
-      <h3 class="i18n-t" data-en="About" data-km="អំពី">About</h3>
-      <p class="settings-about-text i18n-t" data-en="&lt;b&gt;PK Khmer Type — Layer Viewer &amp;amp; Typing Trainer.&lt;/b&gt;&lt;br&gt;All progress and settings are stored locally in this browser only — nothing is sent anywhere." data-km="&lt;b&gt;PK Khmer Type — កម្មវិធីមើលស្រទាប់ និងហ្វឹកហាត់វាយអក្សរ។&lt;/b&gt;&lt;br&gt;វឌ្ឍនភាព និងការកំណត់ទាំងអស់ត្រូវបានរក្សាទុកនៅក្នុងកម្មវិធីរុករកនេះប៉ុណ្ណោះ — គ្មានអ្វីត្រូវបានផ្ញើទៅកន្លែងណាឡើយ។"><b>PK Khmer Type — Layer Viewer &amp; Typing Trainer.</b><br>All progress and settings are stored locally in this browser only — nothing is sent anywhere.</p>
     </div>
   </div>
 </div>
