@@ -766,151 +766,201 @@
     position: fixed;
     z-index: 10000;
     pointer-events: none;
-    width: 250px;
-    max-width: calc(100vw - 28px);
-    padding: 9px 12px;
-    background: rgba(10, 14, 26, 0.94);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(56, 189, 248, 0.35);
-    border-radius: 10px;
+    width: 272px;
+    max-width: calc(100vw - 24px);
+    padding: 12px 14px 11px;
+    background:
+      radial-gradient(130% 120% at 0% 0%, rgba(56, 189, 248, 0.14) 0%, transparent 60%),
+      radial-gradient(100% 100% at 100% 100%, rgba(168, 85, 247, 0.10) 0%, transparent 55%),
+      linear-gradient(180deg, rgba(20, 26, 43, 0.94) 0%, rgba(12, 16, 28, 0.97) 100%);
+    backdrop-filter: blur(24px) saturate(190%);
+    -webkit-backdrop-filter: blur(24px) saturate(190%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-top-color: rgba(255, 255, 255, 0.28);
+    border-radius: 14px;
     box-shadow:
-      0 14px 34px rgba(0, 0, 0, 0.75),
-      0 0 20px rgba(56, 189, 248, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    color: #e2e8f0;
+      0 24px 50px -10px rgba(0, 0, 0, 0.82),
+      0 10px 20px -5px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 0 24px rgba(56, 189, 248, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    color: #f1f5f9;
     font-family: 'Kantumruy Pro', 'Khmer OS Battambang', 'Space Grotesk', -apple-system, sans-serif;
     opacity: 0;
-    transform: scale(0.96);
-    transition: opacity 0.14s ease, transform 0.14s ease;
+    transform: translateY(6px) scale(0.95);
+    transition: opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1), transform 0.16s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform, opacity;
   }
 
   .pk-cursor-hud.visible {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0) scale(1);
   }
 
   .pk-chud-top {
     display: flex;
     align-items: center;
-    gap: 9px;
-    margin-bottom: 6px;
+    gap: 11px;
+    margin-bottom: 9px;
   }
 
+  /* Tactile 3D Keycap Icon Box */
   .pk-chud-glyph-box {
-    width: 36px;
-    height: 36px;
+    width: 42px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(129, 140, 248, 0.12));
-    border: 1px solid rgba(56, 189, 248, 0.45);
-    border-radius: 8px;
+    background: linear-gradient(180deg, #2a344d 0%, #161c2c 100%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-bottom: 2px solid #0a0d16;
+    border-radius: 10px;
     font-family: 'Kantumruy Pro', 'Khmer OS Battambang', sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 700;
-    color: #fff;
-    text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+    color: #ffffff;
+    box-shadow:
+      0 6px 14px rgba(0, 0, 0, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25),
+      0 0 14px rgba(56, 189, 248, 0.25);
     flex-shrink: 0;
     overflow: hidden;
+  }
+  .pk-chud-glyph-box svg {
+    width: 20px;
+    height: 20px;
+    stroke: #38bdf8;
+    filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.6));
   }
 
   .pk-chud-title-wrap {
     flex: 1;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .pk-chud-title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    flex-wrap: nowrap;
+    overflow: hidden;
   }
 
   .pk-chud-name {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #f8fafc;
-    line-height: 1.25;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
+  }
+
+  .pk-chud-km-tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: #94a3b8;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .pk-chud-category {
-    display: inline-block;
-    font-size: 0.56rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.58rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     color: #38bdf8;
-    background: rgba(56, 189, 248, 0.12);
+    background: rgba(56, 189, 248, 0.10);
     border: 1px solid rgba(56, 189, 248, 0.25);
-    padding: 1px 6px;
-    border-radius: 4px;
-    margin-top: 3px;
-    line-height: 1.3;
+    padding: 2px 7px;
+    border-radius: 9999px;
+    width: fit-content;
+    line-height: 1.25;
+  }
+  .pk-chud-cat-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #38bdf8;
+    box-shadow: 0 0 6px #38bdf8;
   }
 
+  /* Telemetry Specs Inset Card */
   .pk-chud-grid {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    margin-top: 6px;
-    padding-top: 6px;
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    gap: 5px;
+    margin-top: 8px;
+    padding: 8px 10px;
+    background: rgba(0, 0, 0, 0.24);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 9px;
   }
 
   .pk-chud-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 6px;
-    font-size: 0.65rem;
+    gap: 8px;
+    font-size: 0.68rem;
   }
 
   .pk-chud-label {
-    color: #64748b;
-    font-size: 0.58rem;
+    color: #94a3b8;
+    font-size: 0.62rem;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
     flex-shrink: 0;
-    font-weight: 500;
+    font-weight: 600;
   }
 
+  /* Miniature Double-Shot Mechanical Kbd */
   .pk-chud-recipe {
     display: inline-flex;
     align-items: center;
     gap: 3px;
-    background: rgba(255, 209, 102, 0.1);
-    border: 1px solid rgba(255, 209, 102, 0.28);
-    padding: 1px 6px;
-    border-radius: 4px;
-    color: #fef08a;
-    font-weight: 600;
-    font-size: 0.64rem;
   }
 
   .pk-chud-recipe kbd {
-    background: rgba(0, 0, 0, 0.45);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
-    padding: 0 4px;
-    font-family: inherit;
-    color: #fff;
-    font-size: 0.62rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    padding: 2px 7px;
+    background: linear-gradient(180deg, #2b344a 0%, #1a2030 100%);
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    border-bottom: 2px solid #0d121c;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.25;
   }
 
   .pk-chud-finger {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    font-weight: 500;
-    font-size: 0.65rem;
-    color: #cbd5e1;
+    gap: 6px;
+    font-weight: 600;
+    font-size: 0.68rem;
+    color: #e2e8f0;
   }
 
   .pk-chud-finger-dot {
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     flex-shrink: 0;
-    box-shadow: 0 0 5px currentColor;
+    box-shadow: 0 0 8px currentColor;
   }
 
   .pk-chud-subscript-badge {
@@ -918,28 +968,162 @@
     align-items: center;
     justify-content: space-between;
     gap: 6px;
-    padding: 3px 6px;
-    margin-top: 5px;
-    background: rgba(147, 51, 234, 0.14);
-    border: 1px solid rgba(168, 85, 247, 0.3);
-    border-radius: 5px;
-    font-size: 0.62rem;
+    padding: 5px 8px;
+    margin-top: 6px;
+    background: rgba(147, 51, 234, 0.12);
+    border: 1px solid rgba(168, 85, 247, 0.28);
+    border-radius: 7px;
+    font-size: 0.64rem;
     color: #e9d5ff;
   }
 
   .pk-chud-subscript-badge .sub-glyph {
     font-family: 'Kantumruy Pro', 'Khmer OS Battambang', sans-serif;
-    font-size: 0.95rem;
-    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f5d0fe;
     line-height: 1;
+    margin-left: 2px;
   }
 
+  /* Note Callout: Crafted Pro Tip */
   .pk-chud-desc {
-    font-size: 0.6rem;
-    color: #94a3b8;
-    margin-top: 5px;
-    line-height: 1.35;
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    font-size: 0.66rem;
+    color: #cbd5e1;
+    margin-top: 7px;
+    padding: 6px 9px;
+    line-height: 1.4;
+    background: rgba(255, 255, 255, 0.04);
+    border-left: 2px solid #38bdf8;
+    border-radius: 4px 7px 7px 4px;
     font-style: normal;
+  }
+  .pk-chud-desc-icon {
+    font-size: 0.72rem;
+    line-height: 1.2;
+    flex-shrink: 0;
+    opacity: 0.85;
+  }
+
+  /* Light Theme Variant */
+  html.theme-light .pk-cursor-hud {
+    background:
+      radial-gradient(130% 120% at 0% 0%, rgba(37, 99, 235, 0.08) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.98) 100%) !important;
+    border: 1px solid #cbd5e1 !important;
+    border-top-color: #ffffff !important;
+    box-shadow:
+      0 20px 45px -8px rgba(15, 23, 42, 0.16),
+      0 6px 16px -4px rgba(15, 23, 42, 0.08),
+      0 0 0 1px rgba(15, 23, 42, 0.04),
+      inset 0 1px 0 #ffffff !important;
+    color: #0f172a !important;
+  }
+  html.theme-light .pk-chud-glyph-box {
+    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%) !important;
+    border: 1px solid #cbd5e1 !important;
+    border-bottom: 2px solid #94a3b8 !important;
+    color: #0f172a !important;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08) !important;
+  }
+  html.theme-light .pk-chud-name {
+    color: #0f172a !important;
+  }
+  html.theme-light .pk-chud-km-tag {
+    color: #64748b !important;
+  }
+  html.theme-light .pk-chud-category {
+    background: rgba(37, 99, 235, 0.08) !important;
+    border-color: rgba(37, 99, 235, 0.22) !important;
+    color: #2563eb !important;
+  }
+  html.theme-light .pk-chud-cat-dot {
+    background: #2563eb !important;
+    box-shadow: 0 0 6px #2563eb !important;
+  }
+  html.theme-light .pk-chud-grid {
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+  }
+  html.theme-light .pk-chud-label {
+    color: #64748b !important;
+  }
+  html.theme-light .pk-chud-finger {
+    color: #1e293b !important;
+  }
+  html.theme-light .pk-chud-recipe kbd {
+    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%) !important;
+    border: 1px solid #cbd5e1 !important;
+    border-bottom: 2px solid #94a3b8 !important;
+    color: #0f172a !important;
+    box-shadow: 0 2px 4px rgba(15, 23, 42, 0.08) !important;
+  }
+  html.theme-light .pk-chud-desc {
+    background: #f1f5f9 !important;
+    border-left-color: #2563eb !important;
+    color: #334155 !important;
+  }
+
+  /* Sepia Theme Variant */
+  html.theme-sepia .pk-cursor-hud {
+    background:
+      radial-gradient(130% 120% at 0% 0%, rgba(180, 83, 9, 0.10) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(251, 247, 238, 0.97) 0%, rgba(244, 235, 217, 0.98) 100%) !important;
+    border: 1px solid #d4c3a3 !important;
+    border-top-color: #ffffff !important;
+    box-shadow:
+      0 20px 45px -8px rgba(44, 27, 12, 0.22),
+      0 6px 16px -4px rgba(44, 27, 12, 0.12),
+      0 0 0 1px rgba(44, 27, 12, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+    color: #2c1b0c !important;
+  }
+  html.theme-sepia .pk-chud-glyph-box {
+    background: linear-gradient(180deg, #faf5ec 0%, #e7dac1 100%) !important;
+    border: 1px solid #ccbc9e !important;
+    border-bottom: 2px solid #aa9674 !important;
+    color: #2c1b0c !important;
+    box-shadow: 0 4px 10px rgba(44, 27, 12, 0.12) !important;
+  }
+  html.theme-sepia .pk-chud-name {
+    color: #2c1b0c !important;
+  }
+  html.theme-sepia .pk-chud-km-tag {
+    color: #7a5c34 !important;
+  }
+  html.theme-sepia .pk-chud-category {
+    background: rgba(180, 83, 9, 0.10) !important;
+    border-color: rgba(180, 83, 9, 0.25) !important;
+    color: #b45309 !important;
+  }
+  html.theme-sepia .pk-chud-cat-dot {
+    background: #b45309 !important;
+    box-shadow: 0 0 6px #b45309 !important;
+  }
+  html.theme-sepia .pk-chud-grid {
+    background: #f4e9d5 !important;
+    border: 1px solid #ddcca8 !important;
+  }
+  html.theme-sepia .pk-chud-label {
+    color: #7a5c34 !important;
+  }
+  html.theme-sepia .pk-chud-finger {
+    color: #2c1b0c !important;
+  }
+  html.theme-sepia .pk-chud-recipe kbd {
+    background: linear-gradient(180deg, #faf5ec 0%, #ede0c8 100%) !important;
+    border: 1px solid #ccbc9e !important;
+    border-bottom: 2px solid #aa9674 !important;
+    color: #2c1b0c !important;
+    box-shadow: 0 2px 4px rgba(44, 27, 12, 0.10) !important;
+  }
+  html.theme-sepia .pk-chud-desc {
+    background: #ede0c8 !important;
+    border-left-color: #b45309 !important;
+    color: #4a3421 !important;
   }
 
   /* Always-on Sleek Cyber Precision Reticle & Cursor Companion */

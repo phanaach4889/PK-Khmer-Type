@@ -124,59 +124,66 @@
     rp: { nameEn: 'Right Pinky', nameKm: 'ដៃស្ដាំ · កូនដៃ', color: '#e879f9' }
   };
 
-  // Human-crafted Special Key Profiles (prevents overflow and robotic labels)
+  // Human-crafted Special Key Profiles (tactile icons, refined bilingual typography)
   const SPECIAL_KEYS = {
     space: {
-      symbol: '␣',
-      title: 'Spacebar · ដកឃ្លា',
+      symbol: '<svg class="pk-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>',
+      titleEn: 'Spacebar',
+      titleKm: 'ដកឃ្លា',
       category: 'Word Separator',
       recipe: '<kbd>Space</kbd>',
       fingerDesc: 'Left or Right Thumb',
       note: 'Inserts zero-width space (ZWSP) in Khmer, standard space in English.'
     },
     backspace: {
-      symbol: '⌫',
-      title: 'Backspace · លុបថយក្រោយ',
+      symbol: '<svg class="pk-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><line x1="18" y1="9" x2="12" y2="15"/><line x1="12" y1="9" x2="18" y2="15"/></svg>',
+      titleEn: 'Backspace',
+      titleKm: 'លុបថយក្រោយ',
       category: 'Editing Key',
       recipe: '<kbd>Backspace</kbd>',
       fingerDesc: 'Right Pinky',
       note: 'Deletes the previous character or subscript cluster.'
     },
     tab: {
-      symbol: '⇥',
-      title: 'Tab · ថេប',
+      symbol: '<svg class="pk-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="14 8 18 12 14 16"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="18" y1="6" x2="18" y2="18"/></svg>',
+      titleEn: 'Tab',
+      titleKm: 'ថេប',
       category: 'Navigation Key',
       recipe: '<kbd>Tab</kbd>',
       fingerDesc: 'Left Pinky',
       note: 'Navigates focus or advances indentation.'
     },
     enter: {
-      symbol: '↵',
-      title: 'Enter · ចុះបន្ទាត់',
+      symbol: '<svg class="pk-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 10 4 15 9 20"/><path d="M20 4v7a4 4 0 0 1-4 4H4"/></svg>',
+      titleEn: 'Enter',
+      titleKm: 'ចុះបន្ទាត់',
       category: 'Action Key',
       recipe: '<kbd>Enter</kbd>',
       fingerDesc: 'Right Pinky',
       note: 'Advances line or submits practice drills.'
     },
     caps: {
-      symbol: '⇪',
-      title: 'Caps Lock',
+      symbol: '<svg class="pk-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="8 12 12 8 16 12"/><line x1="12" y1="8" x2="12" y2="17"/><line x1="8" y1="17" x2="16" y2="17"/></svg>',
+      titleEn: 'Caps Lock',
+      titleKm: 'អក្សរធំ',
       category: 'Toggle Lock',
       recipe: '<kbd>Caps Lock</kbd>',
       fingerDesc: 'Left Pinky',
       note: 'Toggles uppercase in English layout.'
     },
     shiftL: {
-      symbol: '⇧',
-      title: 'Left Shift · ស្រទាប់ប្តូរ',
+      symbol: '<svg class="pk-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="8 14 12 10 16 14"/><line x1="12" y1="10" x2="12" y2="19"/></svg>',
+      titleEn: 'Left Shift',
+      titleKm: 'ស្រទាប់ប្តូរ',
       category: 'Modifier Layer',
       recipe: '<kbd>Hold Shift</kbd>',
       fingerDesc: 'Left Pinky',
       note: 'Hold to preview and type shifted voiced consonants.'
     },
     shiftR: {
-      symbol: '⇧',
-      title: 'Right Shift · ស្រទាប់ប្តូរ',
+      symbol: '<svg class="pk-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="8 14 12 10 16 14"/><line x1="12" y1="10" x2="12" y2="19"/></svg>',
+      titleEn: 'Right Shift',
+      titleKm: 'ស្រទាប់ប្តូរ',
       category: 'Modifier Layer',
       recipe: '<kbd>Hold Shift</kbd>',
       fingerDesc: 'Right Pinky',
@@ -184,7 +191,8 @@
     },
     ctrlL: {
       symbol: '⌃',
-      title: 'Left Ctrl · ស្រទាប់ Ctrl',
+      titleEn: 'Left Ctrl',
+      titleKm: 'ស្រទាប់ Ctrl',
       category: 'Currency & Punctuation',
       recipe: '<kbd>Hold Ctrl</kbd>',
       fingerDesc: 'Left Thumb',
@@ -192,7 +200,8 @@
     },
     ctrlR: {
       symbol: '⌃',
-      title: 'Right Ctrl · ស្រទាប់ Ctrl',
+      titleEn: 'Right Ctrl',
+      titleKm: 'ស្រទាប់ Ctrl',
       category: 'Currency & Punctuation',
       recipe: '<kbd>Hold Ctrl</kbd>',
       fingerDesc: 'Right Pinky',
@@ -200,7 +209,8 @@
     },
     alt: {
       symbol: '⌥',
-      title: 'Alt Key',
+      titleEn: 'Alt Key',
+      titleKm: 'ជំនួយ',
       category: 'System Modifier',
       recipe: '<kbd>Alt</kbd>',
       fingerDesc: 'Left Thumb',
@@ -208,7 +218,8 @@
     },
     altgr: {
       symbol: '⌥',
-      title: 'AltGr · ស្រទាប់ AltGr',
+      titleEn: 'AltGr',
+      titleKm: 'ស្រទាប់ AltGr',
       category: 'Independent Vowels',
       recipe: '<kbd>Hold AltGr</kbd>',
       fingerDesc: 'Right Thumb',
@@ -415,13 +426,14 @@
 
     // 1. Dedicated Special / Modifier Key Profile
     if(SPECIAL_KEYS[keyId]){
-      let sk = SPECIAL_KEYS[keyId];
+      let sk = Object.assign({}, SPECIAL_KEYS[keyId]);
       if(keyId === 'space'){
         if(layoutId === 'standard'){
           if(layer === 'shift'){
             sk = {
-              symbol: '␣',
-              title: 'Spacebar · ដកឃ្លា',
+              symbol: '<svg class="pk-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>',
+              titleEn: 'Spacebar',
+              titleKm: 'ដកឃ្លា',
               category: 'Word Separator',
               recipe: '<kbd>Shift</kbd> + <kbd>Space</kbd>',
               fingerDesc: 'Left or Right Thumb',
@@ -430,7 +442,8 @@
           } else {
             sk = {
               symbol: '្',
-              title: 'Coeng Sign · ជើង (្)',
+              titleEn: 'Coeng Sign',
+              titleKm: 'ជើង (្)',
               category: 'Subscript Prefix',
               recipe: '<kbd>Space</kbd>',
               fingerDesc: 'Left or Right Thumb',
@@ -440,8 +453,9 @@
         } else {
           // Khmer NiDA Keyboard & English: Spacebar · ដកឃ្លា (like the user's reference image)
           sk = {
-            symbol: '␣',
-            title: 'Spacebar · ដកឃ្លា',
+            symbol: '<svg class="pk-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>',
+            titleEn: 'Spacebar',
+            titleKm: 'ដកឃ្លា',
             category: 'Word Separator',
             recipe: layer === 'shift' ? '<kbd>Shift</kbd> + <kbd>Space</kbd>' : '<kbd>Space</kbd>',
             fingerDesc: 'Left or Right Thumb',
@@ -449,12 +463,22 @@
           };
         }
       }
+
+      const mainTitle = sk.titleEn || (sk.title ? sk.title.split('·')[0].trim() : 'Key');
+      const kmTitle = sk.titleKm || (sk.title && sk.title.includes('·') ? sk.title.split('·')[1].trim() : '');
+
       hudEl.innerHTML = `
         <div class="pk-chud-top">
           <div class="pk-chud-glyph-box">${sk.symbol}</div>
           <div class="pk-chud-title-wrap">
-            <div class="pk-chud-name">${sk.title}</div>
-            <span class="pk-chud-category">${sk.category}</span>
+            <div class="pk-chud-title-row">
+              <span class="pk-chud-name">${mainTitle}</span>
+              ${kmTitle ? `<span class="pk-chud-km-tag">${kmTitle}</span>` : ''}
+            </div>
+            <div class="pk-chud-category">
+              <span class="pk-chud-cat-dot"></span>
+              <span>${sk.category}</span>
+            </div>
           </div>
         </div>
         <div class="pk-chud-grid">
@@ -470,7 +494,7 @@
             </span>
           </div>
         </div>
-        ${sk.note ? `<div class="pk-chud-desc">${sk.note}</div>` : ''}
+        ${sk.note ? `<div class="pk-chud-desc"><span class="pk-chud-desc-icon">✦</span><span>${sk.note}</span></div>` : ''}
       `;
       hudEl.classList.add('visible');
       if(reticleEl) reticleEl.classList.add('target-key');
@@ -518,20 +542,31 @@
       displayGlyph = displayGlyph.charAt(0);
     }
 
-    let cardTitle = info ? (info.name + (info.nameKm && !info.name.includes(info.nameKm) ? (' · ' + info.nameKm) : '')) : `Key ${keyLabel}`;
+    let mainName = info ? (info.name || `Key ${keyLabel}`) : `Key ${keyLabel}`;
+    let kmTag = info ? (info.nameKm || '') : '';
+    if(kmTag && mainName.includes(kmTag)){
+      mainName = mainName.replace(kmTag, '').replace('·', '').trim();
+    }
     let cardCat = info ? (info.type + (info.series ? (' · ' + info.series) : (info.group ? (' · ' + info.group) : ''))) : 'Typing Key';
 
     let soundHtml = '';
     if(info && info.ipa){
-      soundHtml = `<div class="pk-chud-desc">${info.ipa.startsWith('Pronounced') ? info.ipa : ('Sound: ' + info.ipa)}</div>`;
+      const ipaText = info.ipa.startsWith('Pronounced') ? info.ipa : ('Sound: ' + info.ipa);
+      soundHtml = `<div class="pk-chud-desc"><span class="pk-chud-desc-icon">✦</span><span>${ipaText}</span></div>`;
     }
 
     hudEl.innerHTML = `
       <div class="pk-chud-top">
         <div class="pk-chud-glyph-box">${displayGlyph}</div>
         <div class="pk-chud-title-wrap">
-          <div class="pk-chud-name">${cardTitle}</div>
-          <span class="pk-chud-category">${cardCat}</span>
+          <div class="pk-chud-title-row">
+            <span class="pk-chud-name">${mainName}</span>
+            ${kmTag ? `<span class="pk-chud-km-tag">${kmTag}</span>` : ''}
+          </div>
+          <div class="pk-chud-category">
+            <span class="pk-chud-cat-dot"></span>
+            <span>${cardCat}</span>
+          </div>
         </div>
       </div>
       <div class="pk-chud-grid">
@@ -698,19 +733,30 @@
       recipeText = `<kbd>${coengKey}</kbd> + <kbd>${keyLabel}</kbd>`;
     }
 
-    let cardTitle = info ? (info.name + (info.nameKm && !info.name.includes(info.nameKm) ? (' · ' + info.nameKm) : '')) : char;
+    let mainName = info ? (info.name || char) : char;
+    let kmTag = info ? (info.nameKm || '') : '';
+    if(kmTag && mainName.includes(kmTag)){
+      mainName = mainName.replace(kmTag, '').replace('·', '').trim();
+    }
     let cardCat = info ? (info.type + (info.series ? (' · ' + info.series) : (info.group ? (' · ' + info.group) : ''))) : 'Exercise Character';
     let soundHtml = '';
     if(info && info.ipa){
-      soundHtml = `<div class="pk-chud-desc">${info.ipa.startsWith('Pronounced') ? info.ipa : ('Sound: ' + info.ipa)}</div>`;
+      const ipaText = info.ipa.startsWith('Pronounced') ? info.ipa : ('Sound: ' + info.ipa);
+      soundHtml = `<div class="pk-chud-desc"><span class="pk-chud-desc-icon">✦</span><span>${ipaText}</span></div>`;
     }
 
     hudEl.innerHTML = `
       <div class="pk-chud-top">
         <div class="pk-chud-glyph-box">${char}</div>
         <div class="pk-chud-title-wrap">
-          <div class="pk-chud-name">${cardTitle}</div>
-          <span class="pk-chud-category">${cardCat}</span>
+          <div class="pk-chud-title-row">
+            <span class="pk-chud-name">${mainName}</span>
+            ${kmTag ? `<span class="pk-chud-km-tag">${kmTag}</span>` : ''}
+          </div>
+          <div class="pk-chud-category">
+            <span class="pk-chud-cat-dot"></span>
+            <span>${cardCat}</span>
+          </div>
         </div>
       </div>
       <div class="pk-chud-grid">
