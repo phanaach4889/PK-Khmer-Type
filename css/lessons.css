@@ -188,13 +188,140 @@
     opacity:1 !important;
     overflow:hidden;
   }
-  .guide-dock[hidden],
-  html.focus-mode .lesson-strip,
-  html.focus-mode #lessonStrip{
+  .guide-dock[hidden]{
     display:none !important;
     opacity:0 !important;
     pointer-events:none !important;
     visibility:hidden !important;
+  }
+
+  /* Compact / Small Lessons Dock in Focus Mode */
+  html.focus-mode .lesson-strip,
+  html.focus-mode #lessonStrip{
+    display:flex !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+    opacity:0.9 !important;
+    width:min(90vw, 226px) !important;
+    min-height:0 !important;
+    max-height:min(410px, calc(100vh - 76px)) !important;
+    border-radius:10px !important;
+    background:rgba(10, 13, 26, 0.88) !important;
+    border:1px solid rgba(255, 209, 102, 0.22) !important;
+    box-shadow:0 10px 28px rgba(0,0,0,0.6) !important;
+    transition:opacity .2s ease, border-color .2s ease, box-shadow .2s ease !important;
+  }
+  html.focus-mode .lesson-strip:hover,
+  html.focus-mode #lessonStrip:hover{
+    opacity:1 !important;
+    border-color:rgba(255, 209, 102, 0.42) !important;
+  }
+  html.focus-mode .lesson-strip.expanded .lesson-level-list{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:3px !important;
+  }
+  html.focus-mode #lshExpandBtn,
+  html.focus-mode .lsh-badge-txt,
+  html.focus-mode .asc-sub,
+  html.focus-mode .lesson-card-sub,
+  html.focus-mode .lesson-card-examples,
+  html.focus-mode .lesson-card-type,
+  html.focus-mode #lessonExamplesBanner{
+    display:none !important;
+  }
+  html.focus-mode .lesson-strip-header{
+    padding:6px 9px !important;
+    gap:4px !important;
+  }
+  html.focus-mode .lsh-title{
+    font-size:0.65rem !important;
+    gap:4px !important;
+  }
+  html.focus-mode .lsh-title .pk-icon{
+    width:11px !important;
+    height:11px !important;
+  }
+  html.focus-mode .lsh-actions{
+    gap:4px !important;
+  }
+  html.focus-mode .lsh-adaptive-btn{
+    height:19px !important;
+    padding:0 6px !important;
+    font-size:0.56rem !important;
+    gap:3px !important;
+    border-radius:5px !important;
+  }
+  html.focus-mode .lsh-badge{
+    height:19px !important;
+    line-height:17px !important;
+    padding:0 5px !important;
+    font-size:0.56rem !important;
+    border-radius:5px !important;
+  }
+  html.focus-mode .lesson-strip-search{
+    padding:4px 8px !important;
+  }
+  html.focus-mode .lss-input-wrap .pk-icon{
+    left:7px !important;
+    width:11px !important;
+    height:11px !important;
+  }
+  html.focus-mode .lss-input-wrap input{
+    padding:4px 7px 4px 22px !important;
+    font-size:0.64rem !important;
+    border-radius:6px !important;
+  }
+  html.focus-mode .lesson-strip-body{
+    padding:4px 7px 7px !important;
+  }
+  html.focus-mode .adaptive-sidebar-card{
+    padding:4px 7px !important;
+    margin-bottom:4px !important;
+    border-radius:6px !important;
+  }
+  html.focus-mode .asc-title{
+    font-size:0.62rem !important;
+    gap:4px !important;
+  }
+  html.focus-mode .asc-btn{
+    padding:2px 7px !important;
+    font-size:0.58rem !important;
+    border-radius:4px !important;
+  }
+  html.focus-mode .lesson-level-header{
+    font-size:0.64rem !important;
+    padding:3px 6px !important;
+    margin:3px 0 2px !important;
+    gap:4px !important;
+    border-radius:5px !important;
+  }
+  html.focus-mode .lesson-level-list{
+    gap:3px !important;
+    margin:0 0 4px !important;
+  }
+  html.focus-mode .lesson-card{
+    min-height:0 !important;
+    padding:4px 7px !important;
+    gap:6px !important;
+    border-radius:5px !important;
+    align-items:center !important;
+  }
+  html.focus-mode .lesson-card-num{
+    font-size:0.64rem !important;
+    min-width:15px !important;
+    margin-top:0 !important;
+  }
+  html.focus-mode .lesson-card-title{
+    font-size:0.65rem !important;
+  }
+  html.focus-mode .lesson-card-best{
+    font-size:0.54rem !important;
+  }
+  html.focus-mode .lesson-panel{
+    margin:4px auto 10px !important;
+    padding:12px 18px 10px !important;
+    width:min(88vw, 760px) !important;
   }
 
   .lesson-strip.expanded{

@@ -1131,6 +1131,18 @@ function initSettingsToggles() {
         }
       }
     }
+    if (on) {
+      const ls = document.getElementById("lessonStrip");
+      if (ls) ls.classList.remove("expanded");
+    }
+    requestAnimationFrame(() => {
+      if (typeof window.updateHandsOverlay === "function") {
+        window.updateHandsOverlay();
+      } else if (typeof window.render === "function") {
+        window.render();
+      }
+      window.dispatchEvent(new Event("resize"));
+    });
     safeSet(LS.focusMode, on ? "1" : "0");
   }
   bindSwitch(focusModeToggle, applyFocusMode);

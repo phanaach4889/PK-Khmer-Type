@@ -76,11 +76,16 @@
         width:700px;
       }
     }
-    html.focus-mode .lesson-strip{
-      display:none !important;
-      opacity:0 !important;
-      pointer-events:none !important;
-      visibility:hidden !important;
+    html.focus-mode .lesson-strip,
+    html.focus-mode .lesson-strip.expanded{
+      display:flex !important;
+      visibility:visible !important;
+      pointer-events:auto !important;
+      right:14px !important;
+      top:54px !important;
+      bottom:auto !important;
+      width:226px !important;
+      max-height:min(410px, calc(100vh - 70px)) !important;
     }
     .lesson-strip::-webkit-scrollbar{
       width:6px;

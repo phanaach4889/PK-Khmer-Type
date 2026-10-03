@@ -839,38 +839,69 @@
   }
 
   /* ================= focus mode: ultra-clean distraction-free immersion ================= */
+  html.focus-mode .site-crest-icon,
+  html.focus-mode #siteLogo,
   html.focus-mode h1,
   html.focus-mode .subtitle,
   html.focus-mode .founder-byline,
-  html.focus-mode #lessonStrip,
+  html.focus-mode #guideDock,
+  html.focus-mode .guide-dock,
   html.focus-mode #profileSidebar,
   html.focus-mode #profileCredit,
+  html.focus-mode #sessionBar,
+  html.focus-mode .session-bar,
+  html.focus-mode .layer-strip,
+  html.focus-mode #boardChassisBar,
+  html.focus-mode .board-chassis-bar,
+  html.focus-mode .toolbar,
+  html.focus-mode .hint,
+  html.focus-mode #siteFooter,
+  html.focus-mode .site-footer,
+  html.focus-mode #horizon,
+  html.focus-mode .horizon,
   html.focus-mode .motes,
   html.focus-mode .torch,
   html.focus-mode .scanline-overlay,
-  html.focus-mode .toast-stack,
   html.focus-mode .developer-note-btn,
-  html.focus-mode .hint{
+  html.focus-mode #shortcutsOpenBtn,
+  html.focus-mode #topLangToggleBtn,
+  html.focus-mode #statsOpenBtn,
+  html.focus-mode #authOpenBtn,
+  html.focus-mode #authAccountChip{
     display: none !important;
   }
 
-  html.focus-mode .horizon-sky,
-  html.focus-mode .horizon-layer{
-    opacity: 0 !important;
-    transition: opacity .4s ease;
+  html.focus-mode body{
+    padding: 44px 20px 20px !important;
+    justify-content: center;
   }
 
   html.focus-mode .layout-strip{
-    opacity: 0.35;
-    transition: opacity .3s ease;
+    margin: 0 0 10px !important;
+    gap: 6px !important;
+    transform: scale(0.9);
+    opacity: 0.55;
+    transition: opacity .25s ease, transform .25s ease;
   }
   html.focus-mode .layout-strip:hover{
-    opacity: 0.95;
+    opacity: 1;
+    transform: scale(0.94);
   }
 
   html.focus-mode .top-actions{
+    top: 12px !important;
+    right: 14px !important;
+    gap: 6px !important;
     opacity: 1 !important;
     filter: none !important;
+  }
+  html.focus-mode #settingsOpenBtn{
+    opacity: 0.65;
+    padding: 6px 10px !important;
+    font-size: 0.7rem !important;
+  }
+  html.focus-mode #settingsOpenBtn:hover{
+    opacity: 1;
   }
 
   .focus-mode-btn.active{
