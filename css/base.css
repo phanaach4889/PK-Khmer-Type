@@ -851,8 +851,7 @@
   html.focus-mode #sessionBar,
   html.focus-mode .session-bar,
   html.focus-mode .layer-strip,
-  html.focus-mode #boardChassisBar,
-  html.focus-mode .board-chassis-bar,
+  html.focus-mode .chassis-actions,
   html.focus-mode .toolbar,
   html.focus-mode .hint,
   html.focus-mode #siteFooter,
@@ -877,15 +876,29 @@
   }
 
   html.focus-mode .layout-strip{
-    margin: 0 0 10px !important;
-    gap: 6px !important;
-    transform: scale(0.9);
-    opacity: 0.55;
-    transition: opacity .25s ease, transform .25s ease;
+    margin: 0 0 12px !important;
+    opacity: 0.75;
+    transition: opacity .25s ease;
   }
   html.focus-mode .layout-strip:hover{
     opacity: 1;
-    transform: scale(0.94);
+  }
+
+  /* Guarantee full normal keyboard & key proportions in Focus Mode */
+  html.focus-mode .board-wrap{
+    padding: 22px !important;
+  }
+  html.focus-mode .keyboard{
+    width: min(86vw, 780px) !important;
+    gap: 7px !important;
+  }
+  html.focus-mode .row{
+    gap: 7px !important;
+  }
+  html.focus-mode .key{
+    height: 52px !important;
+    font-size: 1.05rem !important;
+    border-radius: 9px !important;
   }
 
   html.focus-mode .top-actions{

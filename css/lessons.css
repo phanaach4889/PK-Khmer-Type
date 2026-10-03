@@ -319,9 +319,9 @@
     font-size:0.54rem !important;
   }
   html.focus-mode .lesson-panel{
-    margin:4px auto 10px !important;
-    padding:12px 18px 10px !important;
-    width:min(88vw, 760px) !important;
+    margin:4px auto 14px !important;
+    padding:16px 22px 14px !important;
+    width:min(90vw, 824px) !important;
   }
 
   .lesson-strip.expanded{
