@@ -319,9 +319,31 @@
     font-size:0.54rem !important;
   }
   html.focus-mode .lesson-panel{
-    margin:4px auto 14px !important;
-    padding:16px 22px 14px !important;
+    margin:2px auto 10px !important;
+    padding:10px 18px 10px !important;
     width:min(90vw, 824px) !important;
+  }
+  html.focus-mode .lesson-meta-row,
+  html.focus-mode .lesson-newkeys{
+    display:none !important;
+  }
+  html.focus-mode .lesson-top{
+    margin-bottom:6px !important;
+    padding-bottom:5px !important;
+  }
+  html.focus-mode .lesson-progress-bar{
+    margin-bottom:8px !important;
+    height:5px !important;
+  }
+  html.focus-mode .lesson-char-row{
+    min-height:2.5em !important;
+    height:2.5em !important;
+    padding:4px 16px !important;
+    margin-bottom:8px !important;
+    font-size:2.1rem !important;
+  }
+  html.focus-mode .lesson-stats{
+    padding-top:8px !important;
   }
 
   .lesson-strip.expanded{

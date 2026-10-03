@@ -6,7 +6,7 @@
 const KEY = (id, base, ctrl, altgr, shift) => ({id, base, ctrl, altgr, shift, kind:'glyph'});
 
 const ROW1 = [
-  KEY('grave','','฿','៙',''),
+  KEY('grave','','฿','◎',''),
   KEY('k1','១','₭','1','!'),
   KEY('k2','២','€','2','ៗ'),
   KEY('k3','៣','đ','3','៊'),
@@ -52,7 +52,7 @@ const ROW3 = [
   KEY('l','ល','','ឰ','ឡ'),
   KEY('semicolon','ៈ',':',';','៖'),
   KEY('quote','់','«','៝','៉'),
-  KEY('backslash','\\','/','៚','/'),
+  KEY('backslash','\u200B','/','៚','\u200C'),
 ];
 
 const ROW4 = [
@@ -66,7 +66,7 @@ const ROW4 = [
   KEY('m','ម','’',')','ំ'),
   KEY('comma','អ','<','‹',','),
   KEY('period','។','>','›','.'),
-  KEY('slash','\u200B','”','៕','?'),
+  KEY('slash','\u200D','”','៕','?'),
   KEY('extra','','','¶',''),
   {id:'shiftR', kind:'mod', label:'Shift', cls:'key-shift', wide:1.75},
 ];
@@ -307,11 +307,11 @@ let keyEls = {};
 let glyphData = {};
 
 function formatGlyphText(val){
-  if(val === '\u200B') return '<span class="glyph-tag">ZWSP</span>';
-  if(val === '\u200C') return '<span class="glyph-tag">ZWNJ</span>';
-  if(val === '\u200D') return '<span class="glyph-tag">ZWJ</span>';
-  if(val === '\u00A0') return '<span class="glyph-tag">NBSP</span>';
-  return val || '';
+  if(val === '\u200B') return '<span class="zw-badge" title="Zero-Width Space (U+200B)">ZWSP</span>';
+  if(val === '\u200C') return '<span class="zw-badge" title="Zero-Width Non-Joiner (U+200C)">ZWNJ</span>';
+  if(val === '\u200D') return '<span class="zw-badge" title="Zero-Width Joiner (U+200D)">ZWJ</span>';
+  if(val === '\u00A0') return '<span class="zw-badge" title="No-Break Space (U+00A0)">NBSP</span>';
+  return val;
 }
 
 function buildBoard(){

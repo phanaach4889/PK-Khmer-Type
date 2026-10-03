@@ -8,7 +8,7 @@
             "id": "grave",
             "base": "",
             "ctrl": "฿",
-            "altgr": "៙",
+            "altgr": "◎",
             "shift": "",
             "kind": "glyph"
           },
@@ -322,10 +322,10 @@
           },
           {
             "id": "backslash",
-            "base": "\\",
+            "base": "​",
             "ctrl": "/",
             "altgr": "៚",
-            "shift": "/",
+            "shift": "‌",
             "kind": "glyph"
           }
         ],
@@ -411,7 +411,7 @@
           },
           {
             "id": "slash",
-            "base": "​",
+            "base": "‍",
             "ctrl": "”",
             "altgr": "៕",
             "shift": "?",

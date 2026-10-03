@@ -1091,22 +1091,22 @@
     box-shadow: 0 0 16px rgba(255, 209, 102, 0.45) !important;
   }
 
-
-
-/* Zero-Width Character Tag Badge (ZWSP / ZWNJ / ZWJ / NBSP) */
-.glyph .glyph-tag,
-.shift-badge .glyph-tag {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono, monospace);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  padding: 1px 4px;
-  border-radius: 4px;
-  background: rgba(56, 189, 248, 0.16);
-  color: #38bdf8;
-  border: 1px solid rgba(56, 189, 248, 0.35);
-  line-height: 1.1;
-}
+  /* Zero-width / Invisible Control Character Keycap Badge */
+  .zw-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.52rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 2px 4px;
+    border-radius: 4px;
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px dashed rgba(56, 189, 248, 0.45);
+    color: #38bdf8;
+    line-height: 1;
+    display: inline-block;
+  }
+  .shift-badge .zw-badge {
+    font-size: 0.42rem;
+    padding: 1px 3px;
+    border-radius: 3px;
+  }

@@ -897,7 +897,7 @@ function initSettingsToggles() {
     setTimeout(healBothHandsOverlay, 50);
   }
   bindSwitch(compactKeysToggle, applyCompactKeys);
-  applyCompactKeys(safeGet(LS.compactKeys, "0") === "1");
+  applyCompactKeys(false);
 
   // Key Press Spark Effects
   const keyFxToggle = document.getElementById("keyFxToggle");
@@ -1235,7 +1235,7 @@ function initSettingsToggles() {
     } else if (presetName === "pro") {
       applyTheme("moonlight");
       applyAccent("cyan");
-      applyCompactKeys(true);
+      applyCompactKeys(false);
       applyHandsOpacity(40);
       applySwitchProfile("red", true);
       applyKeyFx(false);
