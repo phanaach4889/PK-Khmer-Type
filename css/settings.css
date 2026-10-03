@@ -618,16 +618,36 @@ html.hide-side-docks #quickGuide, html.hide-side-docks #lessonsDock { display: n
 html.wide-prompt-spacing .exercise-char, html.wide-prompt-spacing #lessonExercise { letter-spacing: 0.15em !important; }
 
 /* Dynamic Khmer Fonts */
-html[data-khmer-font="noto-sans"] .key,
-html[data-khmer-font="noto-sans"] .pk-cursor-hud,
-html[data-khmer-font="noto-sans"] #lessonExercise {
-  font-family: 'Noto Sans Khmer', sans-serif !important;
+:root {
+  --khmer-font: 'Kantumruy Pro', 'Khmer OS Battambang', 'Noto Sans Khmer', sans-serif;
+}
+html[data-khmer-font="noto-sans"] {
+  --khmer-font: 'Noto Sans Khmer', 'Khmer OS Battambang', sans-serif;
+}
+html[data-khmer-font="noto-serif"] {
+  --khmer-font: 'Noto Serif Khmer', 'Khmer OS Battambang', serif;
+}
+html[data-khmer-font="kantumruy"] {
+  --khmer-font: 'Kantumruy Pro', 'Khmer OS Battambang', 'Noto Sans Khmer', sans-serif;
 }
 
-html[data-khmer-font="noto-serif"] .key,
-html[data-khmer-font="noto-serif"] .pk-cursor-hud,
-html[data-khmer-font="noto-serif"] #lessonExercise {
-  font-family: 'Noto Serif Khmer', serif !important;
+html[data-khmer-font] .key,
+html[data-khmer-font] .key .glyph,
+html[data-khmer-font] .key .shift-badge,
+html[data-khmer-font] .key .space-glyph,
+html[data-khmer-font] .key .space-label,
+html[data-khmer-font] .lesson-char-row,
+html[data-khmer-font] .lc-char,
+html[data-khmer-font] .manuscript-text,
+html[data-khmer-font] .pk-cursor-hud,
+html[data-khmer-font] .pk-cursor-hud *,
+html[data-khmer-font] .lesson-card,
+html[data-khmer-font] .lesson-title,
+html[data-khmer-font] .level-title,
+html[data-khmer-font] .lesson-strip,
+html[data-khmer-font] .site-km-mode,
+html[data-khmer-font] .i18n-t {
+  font-family: var(--khmer-font) !important;
 }
 
 @media (max-width: 640px) {

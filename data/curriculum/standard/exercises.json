@@ -120,8 +120,8 @@
     },
     "standard-L01-02-E04": {
       "type": "drill",
-      "content": "សសស ស សស ដដដ ដ ដដ សថ កស សក ដថ កដ ដក សសស ស សស ដដដ ដ ដដ សថ កស សក",
-      "description": "Rhythm and cadence reinforcement for ស (S) and ដ (D)"
+      "content": "សស ដដ សសដ ដដស សដ ដស សស ដដ សា ដា សាក ដក កាសា ដាកា",
+      "description": "Structured consonant pairs and real words"
     },
     "standard-L01-03-E01": {
       "type": "single-char",
@@ -149,8 +149,8 @@
     },
     "standard-L01-03-E04": {
       "type": "drill",
-      "content": "ងងង ង ងង ងថ កង ងក ងងង ង ងង ងថ កង ងក ងងង ង ងង ងថ កង ងក ងងង ង ងង",
-      "description": "Rhythm and cadence reinforcement for Left Index Reach ង (G)"
+      "content": "ងង ងង ងងា ងាង ងា ងង ងង កង សង ដង កាង សាង ថាង ងង ងង",
+      "description": "Left index reach with authentic words"
     },
     "standard-L01-04-E01": {
       "type": "single-char",
@@ -178,8 +178,8 @@
     },
     "standard-L01-04-E04": {
       "type": "drill",
-      "content": "ហហហ ហ ហហ លលល ល លល ហថ កហ ហក លថ កល លក ហហហ ហ ហហ លលល ល លល ហថ កហ ហក",
-      "description": "Rhythm and cadence reinforcement for ហ (H) and ល (L)"
+      "content": "ហហ លល ហហល លលហ ហល លហ ហហ លល ហា លា ហាល សាលា កាល",
+      "description": "Structured consonant flow and real vocabulary"
     },
     "standard-L01-05-E01": {
       "type": "word",
@@ -209,8 +209,8 @@
     },
     "standard-L01-05-E04": {
       "type": "drill",
-      "content": "ដដដ ដ ដដ ងងង ង ងង ហហហ ហ ហហ លលល ល លល ដថ កដ ដក",
-      "description": "Rhythm and cadence reinforcement for Home Row Consonants Review"
+      "content": "កក ថថ សស ដដ ងង ហហ លល កាស សាលា ហាង ថាស កាល ដក",
+      "description": "Home row review and authentic words"
     },
     "standard-L02-01-E01": {
       "type": "single-char",
@@ -333,8 +333,8 @@
     },
     "standard-L02-04-E04": {
       "type": "drill",
-      "content": "ហហហ ហ ហហ លលល ល លល ហើ ហើ ហើហើ លើ លើ លើលើ កាក់ ដាក់ សាក់ ហថ កហ ហក លថ កល លក",
-      "description": "Rhythm and cadence reinforcement for Home Row Complete Review"
+      "content": "កើ ដើ សើ ថើ ហើ លើ កាក់ ដាក់ សាក់ កាស សាលា ហាង ថាស",
+      "description": "Home row complete review with real words"
     },
     "standard-L03-01-E01": {
       "type": "single-char",
@@ -363,8 +363,8 @@
     },
     "standard-L03-01-E04": {
       "type": "drill",
-      "content": "កេ កេ កេកេ រររ រ ររ ដេ ដេ ដេដេ សេ សេ សេសេ កេ ដេ សេ រេ រថ ករ រក កេ រេ ដេ សេ",
-      "description": "Rhythm and cadence reinforcement for Top Row េ (E) and រ (R)"
+      "content": "ររ ររ រេរេ កេកេ ដេដេ សេសេ កេ ដេ សេ រេ រក កេរ ដើរ",
+      "description": "Top row consonant and vowel drill"
     },
     "standard-L03-02-E01": {
       "type": "single-char",
@@ -392,8 +392,8 @@
     },
     "standard-L03-02-E04": {
       "type": "drill",
-      "content": "តតត ត តត តថ កត តក តតត ត តត តថ កត តក តតត ត តត តថ កត តក តតត ត តត",
-      "description": "Rhythm and cadence reinforcement for Left Index ត (T)"
+      "content": "តត តត តតា តាតា តា តារា កាត កាត់ ដាក់ សាក់ ហាត់",
+      "description": "Left index reach with authentic words"
     },
     "standard-L03-03-E01": {
       "type": "single-char",
@@ -422,8 +422,8 @@
     },
     "standard-L03-03-E04": {
       "type": "drill",
-      "content": "យយយ យ យយ កុ កុ កុកុ ដុ ដុ ដុដុ សុ សុ សុសុ យថ កយ យក កុ ដុ សុ យុ កុកុ ដុដុ សុសុកុ",
-      "description": "Rhythm and cadence reinforcement for Right Index យ (Y) and ុ (U)"
+      "content": "យយ យយ យុយុ កុកុ ដុដុ សុសុ យុ កុ ដុ សុ យក យាយ លុយ តុ ដុត",
+      "description": "Right index reach and real words"
     },
     "standard-L03-04-E01": {
       "type": "single-char",
@@ -486,8 +486,8 @@
     },
     "standard-L03-05-E04": {
       "type": "drill",
-      "content": "យយយ យ យយ កុ កុ កុកុ កិ កិ កិកិ កោ កោ កោកោ យថ កយ យក កុ កិ កោ យុ កុកុ កិកិ កោកោ",
-      "description": "Rhythm and cadence reinforcement for Top + Home Row Words"
+      "content": "កុកុ កិកិ កោកោ យុយុ ដុក ដិក ដោក តោ ដើរ រក កាត លុយ តុ",
+      "description": "Top and home row authentic vocabulary"
     },
     "standard-L03-06-E01": {
       "type": "word",
@@ -516,8 +516,8 @@
     },
     "standard-L03-06-E04": {
       "type": "drill",
-      "content": "យយយ យ យយ កុ កុ កុកុ កិ កិ កិកិ កោ កោ កោកោ យថ កយ យក កុ កិ កោ យុ ដុក ដិក ដោក",
-      "description": "Rhythm and cadence reinforcement for Top Row Review"
+      "content": "កុ កិ កោ យុ រេ តេ ដុក ដិក ដោក តោ ដើរ រក កាត លុយ តុ",
+      "description": "Top row review and words"
     },
     "standard-L04-01-E01": {
       "type": "single-char",
@@ -546,8 +546,8 @@
     },
     "standard-L04-01-E04": {
       "type": "drill",
-      "content": "ចចច ច ចច វវវ វ វវ ចថ កច ចក វថ កវ វក ចចច ច ចច វវវ វ វវ ចថ កច ចក",
-      "description": "Rhythm and cadence reinforcement for ច (C) and វ (V)"
+      "content": "ចច វវ ចចវ វវច ចវ វច ចច វវ ចា វា ចាក់ វាចា ចារ វាល",
+      "description": "Bottom row pair alternation and words"
     },
     "standard-L04-02-E01": {
       "type": "single-char",
@@ -576,8 +576,8 @@
     },
     "standard-L04-02-E04": {
       "type": "drill",
-      "content": "បបប ប បប បថ កប បក បបប ប បប បថ កប បក បបប ប បប បថ កប បក បបប ប បប",
-      "description": "Rhythm and cadence reinforcement for ប (B)"
+      "content": "បប បប បាបា បុបុ បេបេ បា បុ បេ បាយ បង បក បាក់ បាត",
+      "description": "Bottom row reach and real words"
     },
     "standard-L04-03-E01": {
       "type": "single-char",
@@ -606,8 +606,8 @@
     },
     "standard-L04-03-E04": {
       "type": "drill",
-      "content": "ននន ន នន មមម ម មម នថ កន នក មថ កម មក ននន ន នន មមម ម មម នថ កន នក",
-      "description": "Rhythm and cadence reinforcement for ន (N) and ម (M)"
+      "content": "នន មម ននម មមន នម មន នន មម នា មា នាម មាត់ មាន មក បាន",
+      "description": "Bottom row nasal consonants and real words"
     },
     "standard-L04-04-E01": {
       "type": "single-char",
@@ -626,8 +626,8 @@
     },
     "standard-L04-04-E04": {
       "type": "drill",
-      "content": "។។។ ។ ។។ ។ថ ក។ ។ក ។។។ ។ ។។ ។ថ ក។ ។ក",
-      "description": "Rhythm and cadence reinforcement for Khan Full Stop ។ (Period)"
+      "content": "មាន។ បាន។ មក។ វាចា។ តារា មក។ តោ ដេក។ តារា មាន ចាន។",
+      "description": "Khan full stop in short sentences"
     },
     "standard-L04-05-E01": {
       "type": "word",
@@ -656,8 +656,8 @@
     },
     "standard-L04-05-E04": {
       "type": "drill",
-      "content": "បបប ប បប ននន ន នន មមម ម មម ។។។ ។ ។។ បថ កប បក",
-      "description": "Rhythm and cadence reinforcement for Bottom Row Review"
+      "content": "ចច វវ បប នន មម បាន មាន ចារ វាចា ចាក់ នាម មាត់ មក។",
+      "description": "Bottom row review and words"
     },
     "standard-L05-01-E01": {
       "type": "single-char",
@@ -686,8 +686,8 @@
     },
     "standard-L05-01-E04": {
       "type": "drill",
-      "content": "ខខខ ខ ខខ ឆឆឆ ឆ ឆឆ ខថ កខ ខក ឆថ កឆ ឆក ខខខ ខ ខខ ឆឆឆ ឆ ឆឆ ខថ កខ ខក",
-      "description": "Rhythm and cadence reinforcement for ខ (X) and ឆ (Q)"
+      "content": "ខខ ឆឆ ខខឆ ឆឆខ ខឆ ឆខ ខខ ឆឆ ខា ឆា ខុស ខាត ខាន ឆា ឆាយ",
+      "description": "Aspirated consonants pairs and words"
     },
     "standard-L05-02-E01": {
       "type": "single-char",
@@ -716,8 +716,8 @@
     },
     "standard-L05-02-E04": {
       "type": "drill",
-      "content": "ផផផ ផ ផផ ផថ កផ ផក ផផផ ផ ផផ ផថ កផ ផក ផផផ ផ ផផ ផថ កផ ផក",
-      "description": "Rhythm and cadence reinforcement for ផ (P)"
+      "content": "ផផ ផផ ផាផា ផុផុ ផោផោ ផា ផុ ផោ ផាត់ ផុស ផាល",
+      "description": "Consonant drill and real words"
     },
     "standard-L05-03-E01": {
       "type": "single-char",
@@ -735,8 +735,8 @@
     },
     "standard-L05-03-E03": {
       "type": "drill",
-      "content": "ឋឋឋ ឋ ឋឋ ឋថ កឋ ឋក ឋឋឋ ឋ ឋឋ ឋថ កឋ ឋក ឋឋឋ ឋ ឋឋ ឋថ កឋ ឋក ឋឋឋ ឋ ឋឋ ឋថ កឋ ឋក",
-      "description": "Rhythm and cadence reinforcement for ឋ (Z)"
+      "content": "ឋឋ ឋឋ ឋាឋា ឋាន ឋិត ឋិតថេរ ឋឋ ឋឋ ឋាន ឋិត ឋិតថេរ ឋា ឋិ ឋាន ឋិតថេរ",
+      "description": "Retroflex consonant and authentic words"
     },
     "standard-L05-04-E01": {
       "type": "single-char",
@@ -896,8 +896,8 @@
     },
     "standard-L06-01-E03": {
       "type": "drill",
-      "content": "គគគ គ គគ ជជជ ជ ជជ គថ កគ គក ជថ កជ ជក គគគ គ គគ ជជជ ជ ជជ គថ កគ គក ជថ កជ ជក",
-      "description": "Rhythm and cadence reinforcement for គ (Shift+K) and ជ (Shift+C)"
+      "content": "គគ ជជ គគជ ជជគ គជ ជគ គគ ជជ គិត ជិត ជា ជាតិ គោក ជោគ គគ ជជ គិត ជិត ជា ជាតិ",
+      "description": "Shifted consonants pair drills and real words"
     },
     "standard-L06-02-E01": {
       "type": "single-char",
@@ -916,8 +916,8 @@
     },
     "standard-L06-02-E03": {
       "type": "drill",
-      "content": "ទទទ ទ ទទ ធធធ ធ ធធ ទថ កទ ទក ធថ កធ ធក ទទទ ទ ទទ ធធធ ធ ធធ ទថ កទ ទក ធថ កធ ធក",
-      "description": "Rhythm and cadence reinforcement for ទ (Shift+T) and ធ (Shift+F)"
+      "content": "ទទ ធធ ទទធ ធធទ ទធ ធទ ទទ ធធ ទា ទាន ធាត ទោស ទាក់ ធាក់ ទទ ធធ ទា ទាន ធាក់",
+      "description": "Shifted dental consonants and real words"
     },
     "standard-L06-03-E01": {
       "type": "single-char",
@@ -936,8 +936,8 @@
     },
     "standard-L06-03-E03": {
       "type": "drill",
-      "content": "ពពព ព ពព ភភភ ភ ភភ ពថ កព ពក ភថ កភ ភក ពពព ព ពព ភភភ ភ ភភ ពថ កព ពក ភថ កភ ភក",
-      "description": "Rhythm and cadence reinforcement for ព (Shift+B) and ភ (Shift+P)"
+      "content": "ពព ភភ ពពភ ភភព ពភ ភព ពព ភភ ពុក ពាក់ ពិត ភាព ភាគ ភោគ ពព ភភ ពុក ពាក់ ភាព",
+      "description": "Shifted labial consonants and real words"
     },
     "standard-L06-04-E01": {
       "type": "single-char",
@@ -956,8 +956,8 @@
     },
     "standard-L06-04-E03": {
       "type": "drill",
-      "content": "ឌឌឌ ឌ ឌឌ ណណណ ណ ណណ ឌថ កឌ ឌក ណថ កណ ណក ឌឌឌ ឌ ឌឌ ណណណ ណ ណណ ឌថ កឌ ឌក ណថ កណ ណក",
-      "description": "Rhythm and cadence reinforcement for ឌ (Shift+D) and ណ (Shift+N)"
+      "content": "ឌឌ ណណ ឌឌណ ណណឌ ឌណ ណឌ ឌឌ ណណ គណនា គុណ អាណា កាណូត ឌឌ ណណ ឌណ ណឌ គណនា គុណ",
+      "description": "Shifted retroflex consonants and real words"
     },
     "standard-L06-05-E01": {
       "type": "single-char",
@@ -976,8 +976,8 @@
     },
     "standard-L06-05-E03": {
       "type": "drill",
-      "content": "អអអ អ អអ អថ កអ អក អអអ អ អអ អថ កអ អក អអអ អ អអ អថ កអ អក អអអ អ អអ អថ កអ អក",
-      "description": "Rhythm and cadence reinforcement for អ (Shift+G)"
+      "content": "អអ អអ អាអា អាន អាហារ អាកាស អាសនៈ អអ អអ អាន អាហារ អាកាស អាសនៈ",
+      "description": "Vowel anchor / independent reach and authentic words"
     },
     "standard-L06-06-E01": {
       "type": "single-char",
@@ -996,8 +996,8 @@
     },
     "standard-L06-06-E03": {
       "type": "drill",
-      "content": "ឃឃឃ ឃ ឃឃ ឈឈឈ ឈ ឈឈ ឍឍឍ ឍ ឍឍ ឡឡឡ ឡ ឡឡ ឃថ កឃ ឃក ឈថ កឈ ឈក ឍថ កឍ ឍក ឡថ កឡ ឡក",
-      "description": "Rhythm and cadence reinforcement for ឃ ឈ ឍ ឡ"
+      "content": "ឃឃ ឈឈ ឍឍ ឡឡ ឈរ ឡាន ឃាត ឈាន ឡោឡា ឃឃ ឈឈ ឍឍ ឡឡ ឈរ ឡាន ឃាត",
+      "description": "Rare consonants and authentic vocabulary"
     },
     "standard-L06-07-E01": {
       "type": "drill",
@@ -1321,8 +1321,8 @@
     },
     "standard-L09-02-E03": {
       "type": "drill",
-      "content": "ៗៗៗ ៗ ៗៗ ៕៕៕ ៕ ៕៕ ៗថ កៗ ៗក ៕ថ ក៕ ៕ក ៗៗៗ ៗ ៗៗ ៕៕៕ ៕ ៕៕ ៗថ កៗ ៗក ៕ថ ក៕ ៕ក",
-      "description": "Rhythm and cadence reinforcement for ៗ (Shift+2) and ៕ (Shift+Period)"
+      "content": "ផ្សេងៗ ញឹកៗ តិចៗ ឆាប់ៗ ជារៀងរាល់ថ្ងៃ។ សិស្សទាំងអស់ខិតខំរៀនសូត្រ។ ខ្ញុំស្រឡាញ់ប្រទេសកម្ពុជា។",
+      "description": "Repeat symbol and phrase punctuation"
     },
     "standard-L09-03-E01": {
       "type": "single-char",
@@ -1355,8 +1355,8 @@
     },
     "standard-L09-04-E03": {
       "type": "drill",
-      "content": "៛៛៛ ៛ ៛៛ ៖៖៖ ៖ ៖៖ ៛ថ ក៛ ៛ក ៖ថ ក៖ ៖ក ៛៛៛ ៛ ៛៛ ៖៖៖ ៖ ៖៖ ៛ថ ក៛ ៛ក ៖ថ ក៖ ៖ក",
-      "description": "Rhythm and cadence reinforcement for ៛ (Shift+4) and ៖ (AltGr+;)"
+      "content": "តម្លៃ ៥០០០៛ ចាយ ៛ ដូចតទៅ៖ ទី១៖ ទី២៖ រាយនាមដូចខាងក្រោម៖",
+      "description": "Riel currency symbol and colon"
     },
     "standard-L09-05-E01": {
       "type": "word",
@@ -1371,8 +1371,8 @@
     },
     "standard-L09-05-E02": {
       "type": "drill",
-      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក",
-      "description": "Rhythm and cadence reinforcement for Diacritics Complete Review"
+      "content": "ព័ត៌មាន ទូរស័ព្ទ អាទិត្យ ចាយ៛ ផ្សេងៗ ព្រះធម៌ កិត្តិយស ប្រយោជន៍ សម្បត្តិ សំឡេង",
+      "description": "Diacritics in authentic vocabulary"
     },
     "standard-L10-01-E01": {
       "type": "word",
@@ -1387,8 +1387,8 @@
     },
     "standard-L10-01-E02": {
       "type": "drill",
-      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក",
-      "description": "Rhythm and cadence reinforcement for Family Words"
+      "content": "ជីដូន ជីតា មីង ពូ បងស្រី ប្អូនប្រុស គ្រួសារ រីករាយ ស្រឡាញ់ គ្នា",
+      "description": "Extended family vocabulary"
     },
     "standard-L10-02-E01": {
       "type": "word",
@@ -1403,8 +1403,8 @@
     },
     "standard-L10-02-E02": {
       "type": "drill",
-      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក",
-      "description": "Rhythm and cadence reinforcement for School Words"
+      "content": "បន្ទប់រៀន មិត្តភក្តិ ក្តារខៀន តុ កៅអី សាលារៀន ចំណេះដឹង បណ្ណាល័យ",
+      "description": "Extended school vocabulary"
     },
     "standard-L10-03-E01": {
       "type": "word",
@@ -1419,8 +1419,8 @@
     },
     "standard-L10-03-E02": {
       "type": "drill",
-      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក",
-      "description": "Rhythm and cadence reinforcement for Food Words"
+      "content": "សម្ល ម្ហូប ផ្លែឈើ បង្អែម អង្ករ នំបុ័ង ឆ្ងាញ់ ទឹកត្រី ម្ហូបខ្មែរ",
+      "description": "Extended food and culinary words"
     },
     "standard-L10-04-E01": {
       "type": "word",
@@ -1435,8 +1435,8 @@
     },
     "standard-L10-04-E02": {
       "type": "drill",
-      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក",
-      "description": "Rhythm and cadence reinforcement for Place Words"
+      "content": "ស្រុក ខេត្ត រាជធានី ភ្នំពេញ ផ្លូវ សួនច្បារ វត្តអារាម មន្ទីរពេទ្យ",
+      "description": "Geographic and place vocabulary"
     },
     "standard-L10-05-E01": {
       "type": "word",
@@ -1452,8 +1452,8 @@
     },
     "standard-L10-05-E02": {
       "type": "drill",
-      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក ឥឥឥ ឥ ឥឥ",
-      "description": "Rhythm and cadence reinforcement for Common Verbs"
+      "content": "អាន សរសេរ និយាយ ជួយ ស្តាប់ រត់ ឈរ អង្គុយ ធ្វើការ គិតគូរ អាន សរសេរ",
+      "description": "High-frequency action verbs"
     },
     "standard-L10-06-E01": {
       "type": "word",
@@ -1469,8 +1469,8 @@
     },
     "standard-L10-06-E02": {
       "type": "drill",
-      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក ៨ថ ក៨ ៨ក ៤ថ ក៤ ៤ក",
-      "description": "Rhythm and cadence reinforcement for Descriptive Adjectives"
+      "content": "ខ្ពស់ ទាប វែង ខ្លី ថ្មី ចាស់ ស្រួល ពិបាក រហ័ស ស្អាតបាត",
+      "description": "Descriptive adjectives pairs"
     },
     "standard-L10-07-E01": {
       "type": "word",
@@ -1512,8 +1512,8 @@
     },
     "standard-L10-08-E02": {
       "type": "drill",
-      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឥថ កឥ ឥក ៦ថ ក៦ ៦ក",
-      "description": "Rhythm and cadence reinforcement for High-Frequency Words Review"
+      "content": "វប្បធម៌ អរិយធម៌ ការអភិវឌ្ឍ សាមគ្គីភាព រីកចម្រើន ប្រទេសជាតិ មាតុភូមិ",
+      "description": "Advanced vocabulary review"
     },
     "standard-L11-01-E01": {
       "type": "sentence",
@@ -1557,8 +1557,8 @@
     },
     "standard-L11-05-E02": {
       "type": "drill",
-      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦",
-      "description": "Rhythm and cadence reinforcement for Culture Paragraph"
+      "content": "របាំព្រះរាជទ្រព្យ និងល្ខោនខោល ជាមរតកវប្បធម៌អរូបីដ៏មានតម្លៃមិនអាចកាត់ថ្លៃបាននៃប្រជាជាតិកម្ពុជា។",
+      "description": "Khmer cultural heritage paragraph"
     },
     "standard-L11-06-E01": {
       "type": "paragraph",
@@ -1567,8 +1567,8 @@
     },
     "standard-L11-06-E02": {
       "type": "drill",
-      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦ ៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤",
-      "description": "Rhythm and cadence reinforcement for Paragraph Challenge"
+      "content": "ការវាយអក្សរដោយប្រើម្រាមដៃទាំងដប់ជួយបង្កើនល្បឿន និងប្រសិទ្ធភាពក្នុងការងារប្រចាំថ្ងៃរបស់អ្នក។",
+      "description": "Touch typing benefits challenge paragraph"
     },
     "standard-L12-01-E01": {
       "type": "drill",
@@ -1582,8 +1582,8 @@
     },
     "standard-L12-02-E02": {
       "type": "drill",
-      "content": "ឥឥឥ ឥ ឥឥ ៦៦៦ ៦ ៦៦",
-      "description": "Rhythm and cadence reinforcement for 3-Minute Timed Drill"
+      "content": "ការតស៊ូព្យាយាមហ្វឹកហាត់ដោយយកចិត្តទុកដាក់ នឹងនាំមកនូវភាពជោគជ័យដ៏ត្រចះត្រចង់ក្នុងការងារ។",
+      "description": "Practice and persistence timed drill"
     },
     "standard-L12-03-E01": {
       "type": "drill",
@@ -1607,8 +1607,8 @@
     },
     "standard-L12-05-E02": {
       "type": "drill",
-      "content": "៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឪឪឪ ឪ ឪឪ",
-      "description": "Rhythm and cadence reinforcement for Standard Mastery Test"
+      "content": "ភាពស្ទាត់ជំនាញក្នុងការវាយអក្សរខ្មែរ គឺជាមូលដ្ឋានគ្រឹះដ៏សំខាន់សម្រាប់យុគសម័យឌីជីថលនាពេលបច្ចុប្បន្ន។",
+      "description": "Mastery assessment paragraph"
     }
   }
 }

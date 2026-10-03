@@ -590,21 +590,32 @@ function initSettingsToggles() {
 
   /* ---------- 2. General: Keyboard Layout & Interface Language ---------- */
   const layoutChoiceBtns = document.querySelectorAll("#settingsLayoutChoice button");
-  function syncLayoutChoiceUI() {
-    const cur = (typeof currentLayoutName !== "undefined" && currentLayoutName) ? currentLayoutName : safeGet("khmerKeyboardLayout", "standard");
+  function syncLayoutChoiceUI(layoutId) {
+    const cur = layoutId || (typeof currentLayoutId !== "undefined" && currentLayoutId)
+      ? currentLayoutId
+      : (window.currentLayoutId || localStorage.getItem("khmerActiveLayout") || localStorage.getItem("pk_active_layout") || "standard");
     layoutChoiceBtns.forEach((b) => b.classList.toggle("active", b.dataset.layoutSet === cur));
   }
+  window.syncSettingsLayoutChoiceUI = syncLayoutChoiceUI;
+
   layoutChoiceBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       const targetLayout = btn.dataset.layoutSet;
-      if (typeof setActiveLayout === "function") {
-        setActiveLayout(targetLayout);
+      if (!targetLayout) return;
+      if (typeof switchLayout === "function") {
+        switchLayout(targetLayout, true);
+      } else if (typeof window.switchLayout === "function") {
+        window.switchLayout(targetLayout, true);
+      } else if (typeof window.setActiveLayout === "function") {
+        window.setActiveLayout(targetLayout);
       } else {
-        const topBtn = document.querySelector(`#layoutTabs button[data-layout="${targetLayout}"]`);
+        const topBtn = document.querySelector(`.layout-strip .layout-pill[data-layout="${targetLayout}"]`);
         if (topBtn) topBtn.click();
       }
-      syncLayoutChoiceUI();
-      setTimeout(healBothHandsOverlay, 60);
+      syncLayoutChoiceUI(targetLayout);
+      if (typeof healBothHandsOverlay === "function") {
+        setTimeout(healBothHandsOverlay, 60);
+      }
     });
   });
   syncLayoutChoiceUI();
@@ -687,9 +698,16 @@ function initSettingsToggles() {
 
   // Khmer Script Font Family
   const khmerFontBtns = document.querySelectorAll("#khmerFontChoice button");
+  const KHMER_FONT_MAP = {
+    "kantumruy": "'Kantumruy Pro', 'Khmer OS Battambang', 'Noto Sans Khmer', sans-serif",
+    "noto-sans": "'Noto Sans Khmer', 'Khmer OS Battambang', sans-serif",
+    "noto-serif": "'Noto Serif Khmer', 'Khmer OS Battambang', serif"
+  };
   function applyKhmerFont(fontKey) {
     fontKey = fontKey || "kantumruy";
     document.documentElement.setAttribute("data-khmer-font", fontKey);
+    const fontVal = KHMER_FONT_MAP[fontKey] || KHMER_FONT_MAP.kantumruy;
+    document.documentElement.style.setProperty("--khmer-font", fontVal);
     khmerFontBtns.forEach((b) => b.classList.toggle("active", b.dataset.kfont === fontKey));
     safeSet(LS.khmerFont, fontKey);
   }

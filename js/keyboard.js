@@ -449,8 +449,13 @@ function syncLayoutUI(id){
   const lunEl = typeof lessonUnavailableNote !== 'undefined' ? lessonUnavailableNote : document.getElementById('lessonUnavailableNote');
   if(lunEl) lunEl.style.display = lessonsAvailable ? 'none' : '';
   if(typeof updateQuickGuide === 'function') updateQuickGuide();
+  if(typeof window.syncSettingsLayoutChoiceUI === 'function'){
+    window.syncSettingsLayoutChoiceUI(targetId);
+  }
 }
 window.syncLayoutUI = syncLayoutUI;
+window.switchLayout = switchLayout;
+window.setActiveLayout = function(id) { switchLayout(id, true); };
 
 // Self-booting fallback so keyboard is guaranteed to render reliably
 if(document.readyState !== 'loading'){

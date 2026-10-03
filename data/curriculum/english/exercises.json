@@ -33,34 +33,34 @@
       "description": "Double taps on J"
     },
     "en-L00-03-E01": {
-      "type": "drill",
-      "content": "fjf jfj fjf",
-      "description": "Alternating index fingers"
+      "type": "single-char",
+      "content": "fff jjj fjf jfj",
+      "description": "Index finger coordination"
     },
     "en-L00-03-E02": {
       "type": "drill",
-      "content": "ff jj ff jj",
-      "description": "Paired index taps"
+      "content": "ff jj ffj jjf fj jf ff jj",
+      "description": "Alternating index pairs"
     },
     "en-L00-03-E03": {
       "type": "drill",
-      "content": "f j f j fj jf",
-      "description": "Smooth hand-to-hand transition"
+      "content": "fj jf fjf jfj ffj jjf f j fj jf",
+      "description": "Rhythmic index drill"
     },
     "en-L00-04-E01": {
-      "type": "drill",
-      "content": "fff jjj ff jj",
-      "description": "Resting fingers on tactile bumps"
+      "type": "single-char",
+      "content": "f j f j ff jj",
+      "description": "Index and space coordination"
     },
     "en-L00-04-E02": {
       "type": "drill",
-      "content": "f j f j f j",
-      "description": "Even cadence without looking"
+      "content": "ff jj fj jf ff jj fj jf",
+      "description": "Pairs and alternating flow"
     },
     "en-L00-04-E03": {
       "type": "drill",
-      "content": "fjf jfj ff jj",
-      "description": "Orientation foundation check"
+      "content": "fjf jfj fj jf ffj jjf ff jj fj jf",
+      "description": "Continuous index flow"
     },
     "en-L01-01-E01": {
       "type": "single-char",
@@ -69,13 +69,13 @@
     },
     "en-L01-01-E02": {
       "type": "drill",
-      "content": "df jk fd kj",
-      "description": "Index and middle coordination"
+      "content": "dd kk ddk kkd dk kd dd kk",
+      "description": "Double taps and alternation"
     },
     "en-L01-01-E03": {
       "type": "drill",
-      "content": "dk fk dj jk d k",
-      "description": "Cross-hand middle drills"
+      "content": "dk kd dkd kdk ddk kkd d k dk kd",
+      "description": "Cross-hand middle finger coordination"
     },
     "en-L01-02-E01": {
       "type": "single-char",
@@ -84,43 +84,43 @@
     },
     "en-L01-02-E02": {
       "type": "drill",
-      "content": "sk ld sl ks",
-      "description": "Ring and middle coordination"
+      "content": "ss ll ssl lls sl ls ss ll",
+      "description": "Double taps and alternation"
     },
     "en-L01-02-E03": {
       "type": "drill",
-      "content": "sd kl fl js s l",
-      "description": "Three-finger transitions"
+      "content": "sl ls sls lsl ssl lls s l sl ls",
+      "description": "Cross-hand ring finger coordination"
     },
     "en-L01-03-E01": {
       "type": "drill",
-      "content": "fs jl sf lj",
-      "description": "Index to ring patterns"
+      "content": "ff jj dd kk ss ll",
+      "description": "Core pair repetitions"
     },
     "en-L01-03-E02": {
       "type": "drill",
-      "content": "dk sl fj kd ls jf",
-      "description": "Alternating core pairs"
+      "content": "fd jk sd lk fs jl",
+      "description": "Alternating reach pairs"
     },
     "en-L01-03-E03": {
       "type": "drill",
-      "content": "sldk fjsl dksl flsk",
-      "description": "Six-key coordination flow"
+      "content": "df kj ds kl sf lj",
+      "description": "Reversed hand pairs"
     },
     "en-L01-04-E01": {
       "type": "drill",
-      "content": "f d s j k l",
-      "description": "Hand outward rhythm"
+      "content": "ff dd ss jj kk ll",
+      "description": "Left and right finger cascades"
     },
     "en-L01-04-E02": {
       "type": "drill",
-      "content": "s d f j k l",
-      "description": "Left-to-right core wave"
+      "content": "sdf jkl lkj fds",
+      "description": "Home row three-finger rolls"
     },
     "en-L01-04-E03": {
       "type": "drill",
-      "content": "lsdk fjsl sl dk fj",
-      "description": "Six-key fluency test"
+      "content": "fds jkl sdf lkj fs jl sd lk",
+      "description": "Balanced hand alternation"
     },
     "en-L02-01-E01": {
       "type": "single-char",
@@ -129,28 +129,28 @@
     },
     "en-L02-01-E02": {
       "type": "drill",
-      "content": "as l; sa ;l",
-      "description": "Pinky and ring transitions"
+      "content": "aa ;; aa; ;;a a; ;a aa ;;",
+      "description": "Double taps and alternation"
     },
     "en-L02-01-E03": {
       "type": "drill",
-      "content": "a s d f j k l ;",
-      "description": "Full 8-key baseline"
+      "content": "a; ;a a;a ;a; aa; ;;a a ; a; ;a",
+      "description": "Cross-hand pinky finger coordination"
     },
     "en-L02-02-E01": {
       "type": "drill",
       "content": "asdf jkl; ;lkj fdsa",
-      "description": "Home-row 8-finger wave"
+      "description": "Full home row hand cascades"
     },
     "en-L02-02-E02": {
       "type": "drill",
       "content": "a; sl dk fj",
-      "description": "Symmetric outside-in pairs"
+      "description": "Symmetrical finger pairs"
     },
     "en-L02-02-E03": {
       "type": "drill",
       "content": "fj dk sl a; ;l kj fd sa",
-      "description": "Inside-out and outside-in flow"
+      "description": "Inside-out and outside-in coordination"
     },
     "en-L02-03-E01": {
       "type": "word",
@@ -1054,33 +1054,33 @@
     },
     "en-L01-01-E04": {
       "type": "drill",
-      "content": "ddd d dd kkk k kk df jd dj kf jk kj ddd d dd kkk k kk",
+      "content": "ddd d dd kkk k kk dk kd dkd kdk ddd kkk",
       "description": "Rhythm and fluency consolidation for Middle Fingers: D and K"
     },
     "en-L01-02-E04": {
       "type": "drill",
-      "content": "sss s ss lll l ll sf js sj lf jl lj sss s ss lll l ll",
+      "content": "sss s ss lll l ll sl ls sls lsl sss lll",
       "description": "Rhythm and fluency consolidation for Ring Fingers: S and L"
     },
     "en-L01-03-E04": {
       "type": "drill",
-      "content": "fjdk slkd fjsl dksl lsdk fksl jdsl ksfl",
-      "description": "Six-key core coordination flow"
+      "content": "sdf jkl fds lkj fs jl sd lk df kj sdf jkl",
+      "description": "Structured six-key rolls and pairs"
     },
     "en-L01-04-E04": {
       "type": "drill",
-      "content": "fjdk slkd fjsl dksl lsdk fksl jdsl ksfl fjsl dksl lsdk",
-      "description": "Core rhythm and fluency flow"
+      "content": "sdf jkl fds lkj ff dd ss jj kk ll sdf jkl lkj fds",
+      "description": "Core flow and rhythm mastery"
     },
     "en-L02-01-E04": {
       "type": "drill",
-      "content": "aaa a aa ;;; ; ;; af ja aj ;f j; ;j aaa a aa ;;; ; ;;",
+      "content": "aaa a aa ;;; ; ;; a; ;a a;a ;a; aaa ;;;",
       "description": "Rhythm and fluency consolidation for Pinky Fingers: A and Semicolon"
     },
     "en-L02-02-E04": {
       "type": "drill",
-      "content": "asdf jkl; a;sl dkfj fdsa ;lkj alsk djf;",
-      "description": "Full home row eight-finger flow"
+      "content": "asdf jkl; ;lkj fdsa a; sl dk fj fj dk sl a; asdf jkl; ;lkj fdsa",
+      "description": "Complete 8-key home row mastery"
     },
     "en-L02-03-E04": {
       "type": "word",
