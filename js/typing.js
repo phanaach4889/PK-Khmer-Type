@@ -17,11 +17,64 @@ function normalizeInput(text){
   return str.normalize('NFC');
 }
 
+/* Canonical Khmer equivalence normalization (Reference Sec 4.2, 5.2, 5.6, UTN #61):
+   - Zero-width space (U+200B) and NBSP (U+00A0) normalize to standard space (U+0020)
+   - Coeng Da (្ដ U+17D2 U+178A) normalizes to Coeng Ta (្ត U+17D2 U+178F)
+   - Independent vowel Qoo Type 2 (ឲ U+17B2) normalizes to Type 1 (ឱ U+17B1)
+   - Canonical ordering of Coeng + Register Shifter normalizes to Register Shifter + Coeng */
+function normalizeKhmerEquivalents(text){
+  const nfc = normalizeInput(text);
+  if(!nfc) return '';
+  return nfc
+    .replace(/[\u200B\u00A0]/g, ' ')
+    .replace(/\u17D2\u178A/g, '\u17D2\u178F')
+    .replace(/\u17B2/g, '\u17B1')
+    .replace(/(\u17D2[\u1780-\u17A2])([\u17C9\u17CA])/g, '$2$1');
+}
+
 function compareTypingSequence(produced, expected){
   if(produced === expected) return true;
-  const pNorm = normalizeInput(produced);
-  const eNorm = normalizeInput(expected);
+  const pNorm = normalizeKhmerEquivalents(produced);
+  const eNorm = normalizeKhmerEquivalents(expected);
   return pNorm === eNorm;
+}
+
+/* Official Khmer syllable structure regex (Reference Sec 5.8) */
+const KHMER_SYLLABLE_REGEX = /^[\u1780-\u17A2]([\u17C9\u17CA])?(?:\u17D2[\u1780-\u17A2]){0,2}[\u17B6-\u17C5]?[\u17C6-\u17C8]?([\u17CB-\u17D1\u17DD])?$/;
+
+/* Diagnose common Khmer orthographic typing mistakes (Reference Sec 5.7) */
+function diagnoseKhmerTypingMistake(expectedUnit, typedChar, prevUnit){
+  if(!expectedUnit || !typedChar) return null;
+  const PRE_BASE_VOWELS = ['េ', 'ែ', 'ៃ', 'ោ', 'ៅ'];
+  const expCode = expectedUnit.codePointAt(0);
+  const isExpectedConsonant = expCode >= 0x1780 && expCode <= 0x17A2;
+
+  // 1. Visual-order mistake: typing pre-base vowel (េ, ែ, ៃ, ោ, ៅ) before the base consonant
+  if(isExpectedConsonant && PRE_BASE_VOWELS.includes(typedChar)){
+    return 'Khmer Rule: Type the base consonant (' + expectedUnit + ') BEFORE the pre-base vowel (' + typedChar + ').';
+  }
+  // 2. Forgetting Coeng (្) before a subscript consonant
+  if(expectedUnit === '្' && typedChar.codePointAt(0) >= 0x1780 && typedChar.codePointAt(0) <= 0x17A2){
+    const coengKeyHint = (typeof currentLayoutId !== 'undefined' && currentLayoutId === 'standard') ? 'Space' : 'J';
+    return 'Subscript Rule: Press ' + coengKeyHint + ' (្ Coeng) first before typing the subscript consonant (' + typedChar + ').';
+  }
+  // 3. Typing vowel before subscript (Coeng)
+  if(expectedUnit === '្' && typedChar.codePointAt(0) >= 0x17B6 && typedChar.codePointAt(0) <= 0x17C5){
+    return 'Syllable Order: Type the subscript consonant (្ + Consonant) BEFORE the dependent vowel (' + typedChar + ').';
+  }
+  // 4. Typing េ + ា instead of ោ
+  if(expectedUnit === 'ោ' && typedChar === 'េ'){
+    return 'Do not build ោ from េ + ា — press O directly for ស្រៈ ោ (U+17C4).';
+  }
+  // 5. Confusing ុ (Sra O) with ៉ / ៊ (Register Shifters)
+  if((expectedUnit === '៉' || expectedUnit === '៊') && typedChar === 'ុ'){
+    return 'Register Shifter (' + expectedUnit + ') is a top mark, not the bottom vowel ុ.';
+  }
+  // 6. Typing ASCII colon ':' instead of Khmer Yuukaleapintu (ៈ) or Camnuc Pii Kuuh (៖)
+  if((expectedUnit === 'ៈ' || expectedUnit === '៖') && typedChar === ':'){
+    return 'Use the Khmer sign ' + expectedUnit + ' instead of the English ASCII colon (:).';
+  }
+  return null;
 }
 
 function splitIntoTypingUnits(text, layoutId){
@@ -29,8 +82,9 @@ function splitIntoTypingUnits(text, layoutId){
   const normalized = normalizeInput(text);
   const units = [];
   let i = 0;
+  const isKhmerLayout = (layoutId === 'nida' || layoutId === 'standard');
   while(i < normalized.length){
-    if(layoutId === 'nida' && i + 1 < normalized.length){
+    if(isKhmerLayout && i + 1 < normalized.length){
       const pair = normalized.slice(i, i + 2);
       if(KHMER_COMPOUND_VOWELS.includes(pair)){
         units.push(pair);
@@ -47,7 +101,10 @@ function splitIntoTypingUnits(text, layoutId){
 }
 
 window.normalizeInput = normalizeInput;
+window.normalizeKhmerEquivalents = normalizeKhmerEquivalents;
 window.compareTypingSequence = compareTypingSequence;
+window.KHMER_SYLLABLE_REGEX = KHMER_SYLLABLE_REGEX;
+window.diagnoseKhmerTypingMistake = diagnoseKhmerTypingMistake;
 window.splitIntoTypingUnits = splitIntoTypingUnits;
 
 /* ---------- Composition / IME Awareness ---------- */

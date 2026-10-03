@@ -6,17 +6,17 @@
 const KEY = (id, base, ctrl, altgr, shift) => ({id, base, ctrl, altgr, shift, kind:'glyph'});
 
 const ROW1 = [
-  KEY('grave','','฿','◎',''),
+  KEY('grave','','฿','៙',''),
   KEY('k1','១','₭','1','!'),
   KEY('k2','២','€','2','ៗ'),
-  KEY('k3','៣','đ','3','"'),
+  KEY('k3','៣','đ','3','៊'),
   KEY('k4','៤','₣','4','៛'),
-  KEY('k5','៥','¥','5','%'),
-  KEY('k6','៦','','6','៍'),
-  KEY('k7','៧','£','7','័'),
+  KEY('k5','៥','¥','5','័'),
+  KEY('k6','៦','','6','៌'),
+  KEY('k7','៧','£','7','៍'),
   KEY('k8','៨','','8','៏'),
   KEY('k9','៩','','9','៎'),
-  KEY('k0','០','—','0','៌'),
+  KEY('k0','០','—','0','៑'),
   KEY('minus','-','•','{','_'),
   KEY('equal','=','','}','+'),
   {id:'backspace', kind:'mod', label:'Backsp.', wide:2},
@@ -46,11 +46,11 @@ const ROW3 = [
   KEY('d','ដ','','','ឌ'),
   KEY('f','ថ','','','ធ'),
   KEY('g','ង','','','ុះ'),
-  KEY('h','ហ','','','៏'),
+  KEY('h','ហ','','','ះ'),
   KEY('j','ញ','','ឮ','ុំ'),
   KEY('k','ក','','ឭ','គ'),
   KEY('l','ល','','ឰ','ឡ'),
-  KEY('semicolon','ះ',':',';','៖'),
+  KEY('semicolon','ៈ',':',';','៖'),
   KEY('quote','់','«','៝','៉'),
   KEY('backslash','\\','/','៚','/'),
 ];
@@ -66,7 +66,7 @@ const ROW4 = [
   KEY('m','ម','’',')','ំ'),
   KEY('comma','អ','<','‹',','),
   KEY('period','។','>','›','.'),
-  KEY('slash','','”','៕','?'),
+  KEY('slash','\u200B','”','៕','?'),
   KEY('extra','','','¶',''),
   {id:'shiftR', kind:'mod', label:'Shift', cls:'key-shift', wide:1.75},
 ];
@@ -306,6 +306,14 @@ let capsOn = false;
 let keyEls = {};
 let glyphData = {};
 
+function formatGlyphText(val){
+  if(val === '\u200B') return '<span class="glyph-tag">ZWSP</span>';
+  if(val === '\u200C') return '<span class="glyph-tag">ZWNJ</span>';
+  if(val === '\u200D') return '<span class="glyph-tag">ZWJ</span>';
+  if(val === '\u00A0') return '<span class="glyph-tag">NBSP</span>';
+  return val || '';
+}
+
 function buildBoard(){
   board.innerHTML = '';
   keyEls = {};
@@ -345,7 +353,7 @@ ALL_ROWS.forEach(rowDef=>{
       g.dataset.ctrl = k.ctrl;
       g.dataset.altgr = k.altgr;
       g.dataset.shift = k.shift || '';
-      g.textContent = k.base;
+      if(k.base === '\u200B' || k.base === '\u200C' || k.base === '\u200D' || k.base === '\u00A0'){ g.innerHTML = formatGlyphText(k.base); } else { g.textContent = k.base; }
       el.appendChild(g);
       glyphData[k.id] = {base:k.base, ctrl:k.ctrl, altgr:k.altgr, shift:k.shift || ''};
       if(!k.base) el.classList.add('empty');
@@ -354,7 +362,7 @@ ALL_ROWS.forEach(rowDef=>{
         const hint = document.createElement('span');
         hint.className = 'shift-badge notranslate';
         hint.setAttribute('translate', 'no');
-        hint.textContent = k.shift;
+        if(k.shift === '\u200B' || k.shift === '\u200C' || k.shift === '\u200D' || k.shift === '\u00A0'){ hint.innerHTML = formatGlyphText(k.shift); } else { hint.textContent = k.shift; }
         el.appendChild(hint);
       }
     }
@@ -500,7 +508,7 @@ function updateQuickGuide() {
       <div class="guide-mini-key" title="Right Index"><span class="km-ch">ញ</span><span class="en-ch">J</span></div>
       <div class="guide-mini-key" title="Right Middle"><span class="km-ch">ក</span><span class="en-ch">K</span></div>
       <div class="guide-mini-key" title="Right Ring"><span class="km-ch">ល</span><span class="en-ch">L</span></div>
-      <div class="guide-mini-key" title="Right Pinky"><span class="km-ch">ះ</span><span class="en-ch">;</span></div>
+      <div class="guide-mini-key" title="Right Pinky"><span class="km-ch">ៈ</span><span class="en-ch">;</span></div>
     `;
     subscriptsSec.style.display = 'block';
     typeSpaceKbd.textContent = 'Shift + Space';
@@ -1187,7 +1195,7 @@ function render(){
 
   document.querySelectorAll('.glyph').forEach(g=>{
     const val = g.dataset[layer] !== undefined ? g.dataset[layer] : g.dataset.base;
-    g.textContent = val;
+    if(val === '\u200B' || val === '\u200C' || val === '\u200D' || val === '\u00A0'){ g.innerHTML = formatGlyphText(val); } else { g.textContent = val; }
     g.parentElement.classList.toggle('empty', !val);
   });
 

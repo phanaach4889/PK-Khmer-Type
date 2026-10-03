@@ -174,9 +174,9 @@
           <a href="#overview" class="section-anchor">#</a>
         </div>
         <p class="doc-p doc-i18n"
-           data-en="Typing in Khmer is notoriously challenging for newcomers. Unlike simple alphabet systems, Khmer is an abugida script with 33 consonants, 23 dependent vowels, 14 independent vowels, and stacked subscript consonants (Coeng ្). Most available learning materials are static poster images that users have to squint at without any feedback."
-           data-km="ការរៀនវាយអក្សរខ្មែរតែងតែជាឧបសគ្គធំសម្រាប់អ្នកចាប់ផ្តើមដំបូង។ ខុសពីអក្ខរក្រមធម្មតា អក្សរខ្មែរជាភាសាអប៊ូហ្គីដា ដែលមានព្យញ្ជនៈ ៣៣ ស្រៈនិស្ស័យ ២៣ ស្រៈពេញតួ ១៤ និងជើងព្យញ្ជនៈត្រួតគ្នា (ជើង ្)។ ឯកសារភាគច្រើនកន្លងមក គឺជារូបភាពក្តារចុចស្ងៀមៗ ដែលពិបាកមើល និងគ្មានការឆ្លើយតបជាក់ស្តែង។">
-          Typing in Khmer is notoriously challenging for newcomers. Unlike simple alphabet systems, Khmer is an abugida script with 33 consonants, 23 dependent vowels, 14 independent vowels, and stacked subscript consonants (Coeng ្). Most available learning materials are static poster images that users have to squint at without any feedback.
+           data-en="Typing in Khmer is notoriously challenging for newcomers. Unlike simple alphabet systems, Khmer is an abugida script with 33 modern consonants (35 encoded in Unicode), 16 Unicode dependent vowel signs (21–24 traditional vowel combinations), 15 independent vowels in normal use, and stacked subscript consonants (Coeng ្). Most available learning materials are static poster images that users have to squint at without any feedback."
+           data-km="ការរៀនវាយអក្សរខ្មែរតែងតែជាឧបសគ្គធំសម្រាប់អ្នកចាប់ផ្តើមដំបូង។ ខុសពីអក្ខរក្រមធម្មតា អក្សរខ្មែរជាភាសាអប៊ូហ្គីដា ដែលមានព្យញ្ជនៈទំនើប ៣៣ តួ (៣៥ ក្នុងយូនីកូដ) ស្រៈនិស្ស័យយូនីកូដ ១៦ តួ (២១–២៤ តាមក្បួនប្រពៃណី) ស្រៈពេញតួ ១៥ តួ និងជើងព្យញ្ជនៈត្រួតគ្នា (ជើង ្)។ ឯកសារភាគច្រើនកន្លងមក គឺជារូបភាពក្តារចុចស្ងៀមៗ ដែលពិបាកមើល និងគ្មានការឆ្លើយតបជាក់ស្តែង។">
+          Typing in Khmer is notoriously challenging for newcomers. Unlike simple alphabet systems, Khmer is an abugida script with 33 modern consonants (35 encoded in Unicode), 16 Unicode dependent vowel signs (21–24 traditional vowel combinations), 15 independent vowels in normal use, and stacked subscript consonants (Coeng ្). Most available learning materials are static poster images that users have to squint at without any feedback.
         </p>
 
         <div class="callout tip">
@@ -478,47 +478,10 @@
               <div class="spec-col">
                 <h4 class="doc-i18n" data-en="Architectural Features" data-km="លក្ខណៈរចនាសម្ព័ន្ធ">Architectural Features</h4>
                 <ul class="spec-list">
-                  <li><strong>Standard Anchor:</strong> <kbd>ថ</kbd> (F Key) &amp; <kbd>ក</kbd> (K Key) tactile index anchors.</li>
-                  <li><strong>Coeng Mechanism:</strong> <kbd>J</kbd> or <kbd>Space</kbd> enters subscript stacking state.</li>
-                  <li><strong>Frequency Optimization:</strong> Base vowels and high-volume consonants on unshifted keys.</li>
-                  <li><strong>Layers:</strong> Base, Shift, AltGr (Right Alt), and Ctrl combinations.</li>
-                </ul>
-              </div>
-              <div class="spec-col">
-                <h4 class="doc-i18n" data-en="Home Row Alignment" data-km="ការតម្រឹមជួរដើម">Home Row Alignment</h4>
-                <div class="home-row-display">
-                  <div class="hand-side">
-                    <span class="hand-label">Left Hand</span>
-                    <div class="key-capsules">
-                      <div class="cap"><span>ថ</span><small>A</small></div>
-                      <div class="cap"><span>ង</span><small>S</small></div>
-                      <div class="cap"><span>ដ</span><small>D</small></div>
-                      <div class="cap"><span>ស</span><small>F</small></div>
-                    </div>
-                  </div>
-                  <div class="hand-side">
-                    <span class="hand-label">Right Hand</span>
-                    <div class="key-capsules">
-                      <div class="cap"><span>ហ</span><small>J</small></div>
-                      <div class="cap"><span>ញ</span><small>K</small></div>
-                      <div class="cap"><span>ក</span><small>L</small></div>
-                      <div class="cap"><span>ល</span><small>;</small></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="tab-pane" id="tab-nida">
-            <div class="spec-grid">
-              <div class="spec-col">
-                <h4 class="doc-i18n" data-en="Architectural Features" data-km="លក្ខណៈរចនាសម្ព័ន្ធ">Architectural Features</h4>
-                <ul class="spec-list">
-                  <li><strong>Typewriter Legacy:</strong> Faithful to the original mechanical typewriter keyboard standard.</li>
-                  <li><strong>Coeng Key:</strong> Explicitly triggered via <kbd>Shift</kbd> + <kbd>J</kbd> (Coeng ្).</li>
-                  <li><strong>Dedicated Vowels:</strong> Shifted keys house long independent vowels and compound markers.</li>
-                  <li><strong>Government &amp; Academia:</strong> Extensively utilized in public administration and official documents.</li>
+                  <li><strong>Standard Anchor:</strong> <kbd>ថ</kbd> (F Key) &amp; <kbd>ញ</kbd> (J Key) tactile index anchors.</li>
+                  <li><strong>Coeng Mechanism:</strong> Unshifted <kbd>Space</kbd> triggers subscript stacking (Coeng ្); <kbd>Shift</kbd> + <kbd>Space</kbd> inserts visible space.</li>
+                  <li><strong>Frequency Optimization:</strong> Base vowels and high-volume consonants on unshifted keys; <kbd>/</kbd> inserts ZWSP.</li>
+                  <li><strong>Layers:</strong> Base, Shift, and AltGr (Right Alt) combinations (<kbd>KBDKHMR.DLL</kbd>).</li>
                 </ul>
               </div>
               <div class="spec-col">
@@ -536,7 +499,44 @@
                   <div class="hand-side">
                     <span class="hand-label">Right Hand</span>
                     <div class="key-capsules">
-                      <div class="cap"><span>ហ</span><small>J</small></div>
+                      <div class="cap"><span>ញ</span><small>J</small></div>
+                      <div class="cap"><span>ក</span><small>K</small></div>
+                      <div class="cap"><span>ល</span><small>L</small></div>
+                      <div class="cap"><span>ៈ</span><small>;</small></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="tab-nida">
+            <div class="spec-grid">
+              <div class="spec-col">
+                <h4 class="doc-i18n" data-en="Architectural Features" data-km="លក្ខណៈរចនាសម្ព័ន្ធ">Architectural Features</h4>
+                <ul class="spec-list">
+                  <li><strong>Unicode Ergonomic Standard:</strong> Designed by Cambodia's National ICT Development Authority (NiDA).</li>
+                  <li><strong>Coeng Key:</strong> Explicitly triggered via unshifted <kbd>J</kbd> (Coeng ្), while <kbd>Shift</kbd> + <kbd>J</kbd> types <kbd>ញ</kbd>.</li>
+                  <li><strong>Dedicated Vowels:</strong> Shifted keys house common compound vowels (<kbd>េះ</kbd>, <kbd>ុំ</kbd>, <kbd>ាំ</kbd>) and independent vowels.</li>
+                  <li><strong>Government &amp; Academia:</strong> Widely adopted across modern operating systems, education, and public administration.</li>
+                </ul>
+              </div>
+              <div class="spec-col">
+                <h4 class="doc-i18n" data-en="Home Row Alignment" data-km="ការតម្រឹមជួរដើម">Home Row Alignment</h4>
+                <div class="home-row-display">
+                  <div class="hand-side">
+                    <span class="hand-label">Left Hand</span>
+                    <div class="key-capsules">
+                      <div class="cap"><span>ា</span><small>A</small></div>
+                      <div class="cap"><span>ស</span><small>S</small></div>
+                      <div class="cap"><span>ដ</span><small>D</small></div>
+                      <div class="cap"><span>ថ</span><small>F</small></div>
+                    </div>
+                  </div>
+                  <div class="hand-side">
+                    <span class="hand-label">Right Hand</span>
+                    <div class="key-capsules">
+                      <div class="cap"><span>្</span><small>J</small></div>
                       <div class="cap"><span>ក</span><small>K</small></div>
                       <div class="cap"><span>ល</span><small>L</small></div>
                       <div class="cap"><span>ើ</span><small>;</small></div>
@@ -615,7 +615,7 @@
               Even if a vowel visually appears to the left of the consonant (e.g. ស្រៈ េ in គេ), you MUST ALWAYS type the base consonant first, followed by the vowel.
             </span>
             <div style="margin-top:6px;">
-              <code>ក (K) + ា (A) = កា</code> · <code>គ (K) + េ (E) = គេ</code>
+              <code>ក (K) + ា (A) = កា</code> · <code>គ (Shift+K) + េ (E) = គេ</code>
             </div>
           </div>
         </div>
@@ -633,7 +633,7 @@
             </span>
             <div style="margin-top:6px;">
               <code>Khmer Standard: ក + Space + ខ = ក្ខ</code><br>
-              <code>Khmer NiDA: ក + (Shift+J) + ខ = ក្ខ</code>
+              <code>Khmer NiDA: ក + J + ខ = ក្ខ</code>
             </div>
           </div>
         </div>

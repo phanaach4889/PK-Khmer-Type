@@ -332,10 +332,10 @@
       "id": "standard-L02-01",
       "level": "standard-L02",
       "order": 1,
-      "title": "Right Pinky Vowel ើ (;)",
-      "titleKm": "ស្រៈ ើ (;)",
-      "description": "Right Pinky Vowel ើ (;)",
-      "objective": "Master Right Pinky Vowel ើ (;)",
+      "title": "Right Pinky Vowel ើ ([)",
+      "titleKm": "ស្រៈ ើ ([)",
+      "description": "Right Pinky Vowel ើ ([)",
+      "objective": "Master Right Pinky Vowel ើ ([)",
       "type": "drill",
       "newKeys": [
         {
@@ -990,10 +990,10 @@
       "id": "standard-L05-04",
       "level": "standard-L05",
       "order": 4,
-      "title": "ៀ ([) and ឹ (W)",
-      "titleKm": "ស្រៈ ៀ និង ឹ",
-      "description": "ៀ ([) and ឹ (W)",
-      "objective": "Master ៀ ([) and ឹ (W)",
+      "title": "ៀ (Shift+]) and ឹ (W)",
+      "titleKm": "ស្រៈ ៀ (Shift+]) និង ឹ (W)",
+      "description": "ៀ (Shift+]) and ឹ (W)",
+      "objective": "Master ៀ (Shift+]) and ឹ (W)",
       "type": "drill",
       "newKeys": [
         {
@@ -1035,28 +1035,28 @@
       "id": "standard-L05-05",
       "level": "standard-L05",
       "order": 5,
-      "title": "Compound ុំ (,) and ៊ (/)",
-      "titleKm": "ស្រៈ ុំ និង ត្រីស័ព្ទ ៊",
-      "description": "Compound ុំ (,) and ៊ (/)",
-      "objective": "Master Compound ុំ (,) and ៊ (/)",
+      "title": "Compound ុំ (Shift+J) and ៊ (Shift+3)",
+      "titleKm": "ស្រៈផ្សំ ុំ (Shift+J) និង ៊ (Shift+3)",
+      "description": "Compound ុំ (Shift+J) and ៊ (Shift+3)",
+      "objective": "Master Compound ុំ (Shift+J) and ៊ (Shift+3)",
       "type": "drill",
       "newKeys": [
         {
           "keyId": "j",
           "layer": "shift",
           "char": "ុំ",
-          "finger": "rm"
+          "finger": "ri"
         },
         {
-          "keyId": "slash",
-          "layer": "base",
+          "keyId": "k3",
+          "layer": "shift",
           "char": "៊",
-          "finger": "rp"
+          "finger": "lm"
         }
       ],
       "requiredKeys": [
-        "comma",
-        "slash"
+        "j",
+        "k3"
       ],
       "fingerFocus": [
         "rm",
@@ -1080,10 +1080,10 @@
       "id": "standard-L05-06",
       "level": "standard-L05",
       "order": 6,
-      "title": "ញ (J) and Subscript ្ (Shift+J)",
-      "titleKm": "ញ (J) និង ជើង ្ (Shift+J)",
-      "description": "ញ (J) and Subscript ្ (Shift+J)",
-      "objective": "Master ញ (J) and Subscript ្ (Shift+J)",
+      "title": "ញ (J) and Subscript ្ (Space)",
+      "titleKm": "អក្សរ ញ (J) និង ជើង ្ (Space)",
+      "description": "ញ (J) and Subscript ្ (Space)",
+      "objective": "Master ញ (J) and Subscript ្ (Space)",
       "type": "drill",
       "newKeys": [
         {
@@ -1093,22 +1093,15 @@
           "finger": "ri"
         },
         {
-          "keyId": "shiftLeft",
-          "layer": "shift",
-          "char": "",
-          "finger": "lp"
-        },
-        {
-          "keyId": "j",
-          "layer": "shift",
+          "keyId": "space",
+          "layer": "base",
           "char": "្",
-          "finger": "ri"
+          "finger": "rt"
         }
       ],
       "requiredKeys": [
         "j",
-        "shiftLeft",
-        "j"
+        "space"
       ],
       "fingerFocus": [
         "ri"
@@ -1354,10 +1347,10 @@
       "id": "standard-L06-05",
       "level": "standard-L06",
       "order": 5,
-      "title": "អ (Shift+G)",
-      "titleKm": "អ (Shift+G)",
-      "description": "អ (Shift+G)",
-      "objective": "Master អ (Shift+G)",
+      "title": "អ (,)",
+      "titleKm": "អក្សរ អ (,)",
+      "description": "អ (,)",
+      "objective": "Master អ (,)",
       "type": "drill",
       "newKeys": [
         {
@@ -1534,10 +1527,10 @@
       "id": "standard-L07-02",
       "level": "standard-L07",
       "order": 2,
-      "title": "ែ (Shift+E) and ៃ (Shift+S)",
-      "titleKm": "ស្រៈ ែ និង ៃ",
-      "description": "ែ (Shift+E) and ៃ (Shift+S)",
-      "objective": "Master ែ (Shift+E) and ៃ (Shift+S)",
+      "title": "ែ (Shift+E) and ៃ (Shift+A)",
+      "titleKm": "ស្រៈ ែ (Shift+E) និង ៃ (Shift+A)",
+      "description": "ែ (Shift+E) and ៃ (Shift+A)",
+      "objective": "Master ែ (Shift+E) and ៃ (Shift+A)",
       "type": "drill",
       "newKeys": [
         {
@@ -1616,10 +1609,10 @@
       "id": "standard-L07-04",
       "level": "standard-L07",
       "order": 4,
-      "title": "ាំ (Shift+A) and ំ (Shift+M)",
-      "titleKm": "ស្រៈ ាំ និង ំ",
-      "description": "ាំ (Shift+A) and ំ (Shift+M)",
-      "objective": "Master ាំ (Shift+A) and ំ (Shift+M)",
+      "title": "ាំ (Shift+S) and ំ (Shift+M)",
+      "titleKm": "ស្រៈ ាំ (Shift+S) និង ំ (Shift+M)",
+      "description": "ាំ (Shift+S) and ំ (Shift+M)",
+      "objective": "Master ាំ (Shift+S) and ំ (Shift+M)",
       "type": "drill",
       "newKeys": [
         {
@@ -1664,8 +1657,8 @@
       "type": "drill",
       "newKeys": [
         {
-          "keyId": "semicolon",
-          "layer": "base",
+          "keyId": "h",
+          "layer": "shift",
           "char": "ះ",
           "finger": "ri"
         },
@@ -1685,14 +1678,14 @@
           "keyId": "g",
           "layer": "shift",
           "char": "ុះ",
-          "finger": "rm"
+          "finger": "li"
         }
       ],
       "requiredKeys": [
         "h",
         "v",
-        "semicolon",
-        "comma"
+        "bracketL",
+        "g"
       ],
       "fingerFocus": [],
       "difficulty": 7,
@@ -1712,10 +1705,10 @@
       "id": "standard-L07-06",
       "level": "standard-L07",
       "order": 6,
-      "title": "ឺ (Shift+W) and ឿ (Shift+[)",
-      "titleKm": "ស្រៈ ឺ និង ឿ",
-      "description": "ឺ (Shift+W) and ឿ (Shift+[)",
-      "objective": "Master ឺ (Shift+W) and ឿ (Shift+[)",
+      "title": "ឺ (Shift+W) and ឿ (])",
+      "titleKm": "ស្រៈ ឺ (Shift+W) និង ឿ (])",
+      "description": "ឺ (Shift+W) and ឿ (])",
+      "objective": "Master ឺ (Shift+W) and ឿ (])",
       "type": "drill",
       "newKeys": [
         {
@@ -1923,10 +1916,10 @@
       "id": "standard-L09-01",
       "level": "standard-L09",
       "order": 1,
-      "title": "៉ (Shift+') and ៊ (Shift+/)",
-      "titleKm": "មូសិកទន្ត ៉ និង ត្រីស័ព្ទ ៊",
-      "description": "៉ (Shift+') and ៊ (Shift+/)",
-      "objective": "Master ៉ (Shift+') and ៊ (Shift+/)",
+      "title": "៉ (Shift+') and ៊ (Shift+3)",
+      "titleKm": "សញ្ញា ៉ និង ៊ (Shift+3)",
+      "description": "៉ (Shift+') and ៊ (Shift+3)",
+      "objective": "Master ៉ (Shift+') and ៊ (Shift+3)",
       "type": "drill",
       "newKeys": [
         {
@@ -1934,10 +1927,17 @@
           "layer": "shift",
           "char": "៉",
           "finger": "rp"
+        },
+        {
+          "keyId": "k3",
+          "layer": "shift",
+          "char": "៊",
+          "finger": "lm"
         }
       ],
       "requiredKeys": [
-        "quote"
+        "quote",
+        "k3"
       ],
       "fingerFocus": [],
       "difficulty": 8,
@@ -1957,10 +1957,10 @@
       "id": "standard-L09-02",
       "level": "standard-L09",
       "order": 2,
-      "title": "ៗ (Shift+2) and ៕ (Shift+Period)",
-      "titleKm": "ៗ និង ៕",
-      "description": "ៗ (Shift+2) and ៕ (Shift+Period)",
-      "objective": "Master ៗ (Shift+2) and ៕ (Shift+Period)",
+      "title": "ៗ (Shift+2) and ៕ (AltGr+/)",
+      "titleKm": "លេខទោ ៗ និង បរិយោសាន ៕",
+      "description": "ៗ (Shift+2) and ៕ (AltGr+/)",
+      "objective": "Master ៗ (Shift+2) and ៕ (AltGr+/)",
       "type": "drill",
       "newKeys": [
         {
@@ -1998,26 +1998,26 @@
       "id": "standard-L09-03",
       "level": "standard-L09",
       "order": 3,
-      "title": "Top Diacritics (័ ៌ ៍ ៏)",
-      "titleKm": "័ ៌ ៍ ៏",
-      "description": "Top Diacritics (័ ៌ ៍ ៏)",
-      "objective": "Master Top Diacritics (័ ៌ ៍ ៏)",
+      "title": "Top Diacritics (័ ៌ ៍ ៏ ៎ ៑)",
+      "titleKm": "វណ្ណយុត្តិខាងលើ (័ ៌ ៍ ៏ ៎ ៑)",
+      "description": "Top Diacritics (័ ៌ ៍ ៏ ៎ ៑)",
+      "objective": "Master Top Diacritics (័ ៌ ៍ ៏ ៎ ៑)",
       "type": "drill",
       "newKeys": [
         {
-          "keyId": "k7",
+          "keyId": "k5",
           "layer": "shift",
           "char": "័",
-          "finger": "ri"
-        },
-        {
-          "keyId": "k0",
-          "layer": "shift",
-          "char": "៌",
-          "finger": "rp"
+          "finger": "li"
         },
         {
           "keyId": "k6",
+          "layer": "shift",
+          "char": "៌",
+          "finger": "ri"
+        },
+        {
+          "keyId": "k7",
           "layer": "shift",
           "char": "៍",
           "finger": "ri"
@@ -2033,13 +2033,21 @@
           "layer": "shift",
           "char": "៎",
           "finger": "rr"
+        },
+        {
+          "keyId": "k0",
+          "layer": "shift",
+          "char": "៑",
+          "finger": "rp"
         }
       ],
       "requiredKeys": [
-        "k7",
-        "minus",
+        "k5",
         "k6",
-        "k8"
+        "k7",
+        "k8",
+        "k9",
+        "k0"
       ],
       "fingerFocus": [],
       "difficulty": 8,
@@ -2059,10 +2067,10 @@
       "id": "standard-L09-04",
       "level": "standard-L09",
       "order": 4,
-      "title": "៛ (Shift+4) and ៖ (AltGr+;)",
-      "titleKm": "៛ និង ៖",
-      "description": "៛ (Shift+4) and ៖ (AltGr+;)",
-      "objective": "Master ៛ (Shift+4) and ៖ (AltGr+;)",
+      "title": "៛ (Shift+4), ៈ (;) and ៖ (Shift+;)",
+      "titleKm": "៛, ៈ និង ៖",
+      "description": "៛ (Shift+4), ៈ (;) and ៖ (Shift+;)",
+      "objective": "Master ៛ (Shift+4), ៈ (;) and ៖ (Shift+;)",
       "type": "drill",
       "newKeys": [
         {
@@ -2070,6 +2078,12 @@
           "layer": "shift",
           "char": "៛",
           "finger": "li"
+        },
+        {
+          "keyId": "semicolon",
+          "layer": "base",
+          "char": "ៈ",
+          "finger": "rp"
         },
         {
           "keyId": "semicolon",
@@ -2696,12 +2710,6 @@
           "layer": "altgr",
           "char": "ឳ",
           "finger": "rp"
-        },
-        {
-          "keyId": "equal",
-          "layer": "base",
-          "char": "ឲ",
-          "finger": "rp"
         }
       ],
       "requiredKeys": [
@@ -2716,8 +2724,7 @@
         "e",
         "l",
         "o",
-        "p",
-        "equal"
+        "p"
       ],
       "fingerFocus": [],
       "difficulty": 10,
@@ -2737,10 +2744,10 @@
       "id": "standard-L12-05",
       "level": "standard-L12",
       "order": 5,
-      "title": "NiDA Mastery Test",
-      "titleKm": "ការប្រឡងបញ្ចប់ NiDA",
-      "description": "NiDA Mastery Test",
-      "objective": "Master NiDA Mastery Test",
+      "title": "Standard Mastery Test",
+      "titleKm": "ការប្រឡងបញ្ចប់ស្តង់ដារ",
+      "description": "Standard Mastery Test",
+      "objective": "Master Standard Mastery Test",
       "type": "drill",
       "newKeys": [],
       "requiredKeys": [],

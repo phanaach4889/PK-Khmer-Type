@@ -1092,3 +1092,21 @@
   }
 
 
+
+/* Zero-Width Character Tag Badge (ZWSP / ZWNJ / ZWJ / NBSP) */
+.glyph .glyph-tag,
+.shift-badge .glyph-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono, monospace);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: rgba(56, 189, 248, 0.16);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  line-height: 1.1;
+}

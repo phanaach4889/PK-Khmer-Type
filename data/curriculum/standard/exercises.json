@@ -64,7 +64,7 @@
     },
     "standard-L01-01-E01": {
       "type": "single-char",
-      "content": "កា កា កាកា សា សា សាសា ដា ដា ដាដា ថា ថា ថាថា",
+      "content": "កា កា កាកា ថា ថា ថាថា កាកា ថាថា កា ថា កាថា ថាកា កា ថា",
       "description": "Left pinky vowel ា"
     },
     "standard-L01-01-E02": {
@@ -91,7 +91,7 @@
     },
     "standard-L01-01-E04": {
       "type": "drill",
-      "content": "កា កា កាកា សា សា សាសា ដា ដា ដាដា ថា ថា ថាថា កា សា ដា ថា កាកា សាសា ដាដា ថាថា",
+      "content": "កា កា កាកា ថា ថា ថាថា កាកា ថាថា កា ថា ថា កា កាថា ថាកា កាកា ថាថា កា ថា កា ថា",
       "description": "Rhythm and cadence reinforcement for Vowel ា (A)"
     },
     "standard-L01-02-E01": {
@@ -272,7 +272,7 @@
     },
     "standard-L02-02-E04": {
       "type": "drill",
-      "content": "កាក់ កាក់ កាក់កាក់ ដាក់ ដាក់ ដាក់ដាក់ សាក់ សាក់ សាក់សាក់ កាត់ ដាត់ សាត់ កាក់ ដាក់ សាក់",
+      "content": "កាក់ កាក់ កាក់កាក់ ដាក់ ដាក់ ដាក់ដាក់ សាក់ សាក់ សាក់សាក់ ហាក់ លាក់ ដក់ កាក់ ដាក់ សាក់",
       "description": "Rhythm and cadence reinforcement for Final Stop Mark ់ (' Bantoc)"
     },
     "standard-L02-03-E01": {
@@ -338,7 +338,7 @@
     },
     "standard-L03-01-E01": {
       "type": "single-char",
-      "content": "កេកេ រររ គេរេ ដេដេ រររ សេរេ",
+      "content": "កេកេ រររ កេរេ ដេដេ រររ សេរេ",
       "description": "Left hand top row keys"
     },
     "standard-L03-01-E02": {
@@ -769,7 +769,7 @@
     },
     "standard-L05-05-E01": {
       "type": "single-char",
-      "content": "កុំកុំ ហ៊ានហ៊ាន សុំសុំ ស៊ាំស៊ាំ ដុំដុំ កុំសុំ ហ៊ានស៊ាំ",
+      "content": "កុំកុំ ហ៊ានហ៊ាន សុំសុំ ស៊ុបស៊ុប ដុំដុំ កុំសុំ ហ៊ានស៊ុប",
       "description": "Compound vowel ុំ and register sign ់"
     },
     "standard-L05-05-E02": {
@@ -779,7 +779,7 @@
         "សុំ",
         "រុំ",
         "ហ៊ាន",
-        "ស៊ាំ",
+        "ស៊ុប",
         "ដុំ"
       ],
       "description": "Words with ុំ"
@@ -787,8 +787,8 @@
     "standard-L05-05-E03": {
       "type": "word",
       "content": [
-        "ស់ុប",
-        "ហ់ាន",
+        "ស៊ុប",
+        "ហ៊ាន",
         "កុំ",
         "សុំ"
       ],
@@ -796,7 +796,7 @@
     },
     "standard-L05-05-E04": {
       "type": "drill",
-      "content": "កុំ កុំ កុំកុំ សុំ សុំ សុំសុំ ដុំ ដុំ ដុំដុំ ហ៊ាន ស៊ាំ កុំ សុំ ដុំ ហ៊ាន កុំកុំ សុំសុំ ដុំដុំ",
+      "content": "កុំ កុំ កុំកុំ សុំ សុំ សុំសុំ ដុំ ដុំ ដុំដុំ ហ៊ាន ស៊ុប កុំ សុំ ដុំ ហ៊ាន កុំកុំ សុំសុំ ដុំដុំ",
       "description": "Rhythm and cadence reinforcement for Compound ុំ (,) and ់ (/)"
     },
     "standard-L05-06-E01": {
@@ -816,12 +816,12 @@
     },
     "standard-L05-06-E04": {
       "type": "drill",
-      "content": "ក្មេង ក្ដារ ច្បាប់ ខ្លា",
+      "content": "ក្មេង ក្តារ ច្បាប់ ខ្លា",
       "description": "Simple subscript clusters"
     },
     "standard-L05-06-E05": {
       "type": "drill",
-      "content": "ញញញ ញ ញញ ក្ក ក្ម ស្ម ត្ម ញញ ញ ញញ ក្ដារ ក្មេង ច្បាប់ ខ្លា ញញញ ញ ញញ",
+      "content": "ញញញ ញ ញញ ក្ក ក្ម ស្ម ត្ម ញញ ញ ញញ ក្តារ ក្មេង ច្បាប់ ខ្លា ញញញ ញ ញញ",
       "description": "Rhythm and cadence reinforcement for ញ (J) and Subscript ្ (Shift+J)"
     },
     "standard-L05-07-E01": {
@@ -876,7 +876,7 @@
     },
     "standard-L05-08-E04": {
       "type": "drill",
-      "content": "រៀន ដឹង កុំ ប្រាក់ ក្មេង ក្ដារ ច្បាប់ ខ្លា រៀន ដឹង កុំ ប្រាក់ ក្រចក ស្រុក",
+      "content": "រៀន ដឹង កុំ ប្រាក់ ក្មេង ក្តារ ច្បាប់ ខ្លា រៀន ដឹង កុំ ប្រាក់ ក្រចក ស្រុក",
       "description": "Rhythm and cadence reinforcement for Base Layer Mastery Review"
     },
     "standard-L06-01-E01": {
@@ -1036,7 +1036,7 @@
     },
     "standard-L06-08-E03": {
       "type": "drill",
-      "content": "ធម៌ ភ្នំ ឃុំ ឈើ ឡាន គំនិត ធម៌ ភ្នំ ឃុំ ឈើ ឡាន គំនិត ធម៌ ភ្នំ ឃុំ ឈើ",
+      "content": "ធំ ភ្នំ ឃុំ ឈើ ឡាន គំនិត ធំ ភ្នំ ឃុំ ឈើ ឡាន គំនិត ធំ ភ្នំ ឃុំ ឈើ",
       "description": "Rhythm and cadence reinforcement for Shift Consonants Review"
     },
     "standard-L07-01-E01": {
@@ -1267,7 +1267,7 @@
     },
     "standard-L08-05-E02": {
       "type": "drill",
-      "content": "ស្ងួត ម្ហូប ក្បាល ស្អាត ស្ងប់ស្ងាត់ ស្ដាប់ ស្ងួត ម្ហូប ក្បាល ស្អាត ស្ដាប់",
+      "content": "ស្ងួត ម្ហូប ក្បាល ស្អាត ស្ងប់ស្ងាត់ ស្តាប់ ស្ងួត ម្ហូប ក្បាល ស្អាត ស្តាប់",
       "description": "Rhythm and cadence reinforcement for Complex Subscripts"
     },
     "standard-L08-06-E01": {
@@ -1296,7 +1296,7 @@
         "ប៉ា",
         "ម៉ាក់",
         "ប៉ះ",
-        "ស់ុប"
+        "ស៊ុប"
       ],
       "description": "Words with ៉ and ់"
     },
@@ -1602,13 +1602,13 @@
     },
     "standard-L12-05-E01": {
       "type": "test",
-      "content": "អបអរសាទរ។ អ្នក បាន បញ្ចប់ វគ្គ សិក្សា វាយ អក្សរ ខ្មែរ នីដា ដោយ ជោគជ័យ បំផុត។",
-      "description": "NiDA final mastery test"
+      "content": "អបអរសាទរ។ អ្នក បាន បញ្ចប់ វគ្គ សិក្សា វាយ អក្សរ ខ្មែរ ស្តង់ដារ ដោយ ជោគជ័យ បំផុត។",
+      "description": "Standard final mastery test"
     },
     "standard-L12-05-E02": {
       "type": "drill",
       "content": "៨៨៨ ៨ ៨៨ ៤៤៤ ៤ ៤៤ ឪឪឪ ឪ ឪឪ",
-      "description": "Rhythm and cadence reinforcement for NiDA Mastery Test"
+      "description": "Rhythm and cadence reinforcement for Standard Mastery Test"
     }
   }
 }

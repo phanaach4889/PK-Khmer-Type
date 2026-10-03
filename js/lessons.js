@@ -22,7 +22,12 @@ const KEY_BY_ID_NIDA = buildKeyById([ROW1_NIDA, ROW2_NIDA, ROW3_NIDA, ROW4_NIDA,
 const KEY_BY_ID_EN = buildKeyById([ROW1_EN, ROW2_EN, ROW3_EN, ROW4_EN, ROW5_EN]);
 
 function charFor(id, layer){
-  if(id === 'space') return 'Space';
+  if(id === 'space'){
+    if(typeof currentLayoutId !== 'undefined' && currentLayoutId === 'standard'){
+      return (layer === 'shift') ? 'Space' : '្';
+    }
+    return 'Space';
+  }
   const table = (currentLayoutId==='nida') ? KEY_BY_ID_NIDA
     : (currentLayoutId==='english') ? KEY_BY_ID_EN
     : KEY_BY_ID;
@@ -63,10 +68,11 @@ function keyLabel(id){
   return id.toUpperCase();
 }
 
-/* Return required space layer: 'shift' on Khmer layouts, 'base' on English */
+/* Return required space layer: 'shift' on Khmer Standard (where unshifted Space is ្), 'base' on NiDA and English */
 function spaceLayerFor(table){
-  if(typeof currentLayoutId !== 'undefined' && currentLayoutId === 'english') return 'base';
-  if(table && table === KEY_BY_ID_EN) return 'base';
+  if(table === KEY_BY_ID_EN || table === KEY_BY_ID_NIDA) return 'base';
+  if(table === KEY_BY_ID) return 'shift';
+  if(typeof currentLayoutId !== 'undefined' && (currentLayoutId === 'english' || currentLayoutId === 'nida')) return 'base';
   return 'shift';
 }
 function spaceEntry(table){
@@ -79,7 +85,12 @@ function spaceEntry(table){
 function entriesFromIds(ids, layer, table){
   const src = table || KEY_BY_ID;
   return ids.map(id=> {
-    if(id === 'space') return spaceEntry(table);
+    if(id === 'space'){
+      if(src === KEY_BY_ID && (layer || 'base') === 'base'){
+        return { id: 'space', layer: 'base', ch: '្' };
+      }
+      return spaceEntry(src);
+    }
     const k = src[id];
     const v = k ? k[layer] : undefined;
     const ch = (v !== undefined && v !== '') ? v : '';
@@ -90,7 +101,8 @@ function resolveCharLocation(ch, table){
   const src = table || ((typeof currentLayoutId !== 'undefined' && currentLayoutId==='nida') ? KEY_BY_ID_NIDA
     : (typeof currentLayoutId !== 'undefined' && currentLayoutId==='english') ? KEY_BY_ID_EN
     : KEY_BY_ID);
-  if(ch === ' ') return spaceEntry(src);
+  if(ch === ' ' || ch === '\u200B') return spaceEntry(src);
+  if(ch === '្' && src === KEY_BY_ID) return { id: 'space', layer: 'base', ch: '្' };
   for(const id in src){
     const k = src[id];
     if(k.base===ch) return {id, layer:'base', ch};
@@ -2244,12 +2256,48 @@ function adaptiveExtend(){
 function lessonHandleChar(val, el, stroke){
   if(!lessonActive || !val) return;
   if(lessonIndex >= lessonChars.length) return;
-  const expected = lessonChars[lessonIndex];
+  let expected = lessonChars[lessonIndex];
   if(!expected) return;
 
-  const isMatch = (typeof compareTypingSequence === 'function')
+  // 1. Dynamic 2-key decomposition for compound vowels (ុំ, ុះ, ាំ, េះ, ោះ)
+  if(expected.length === 2 && val.length === 1 && expected.startsWith(val)){
+    const secondChar = expected.slice(1);
+    const secondLoc = resolveCharLocation(secondChar);
+    if(secondLoc){
+      lessonChars.splice(lessonIndex, 1, val, secondChar);
+      const firstLoc = resolveCharLocation(val) || { id: lessonKeyIds[lessonIndex], layer: lessonLayers[lessonIndex] };
+      lessonKeyIds.splice(lessonIndex, 1, firstLoc.id, secondLoc.id);
+      lessonLayers.splice(lessonIndex, 1, firstLoc.layer, secondLoc.layer);
+      lessonSections.forEach(s => {
+        if(s.endIndex >= lessonIndex) s.endIndex++;
+        if(s.startIndex > lessonIndex) s.startIndex++;
+      });
+      expected = val;
+    }
+  }
+  // 2. Dynamic 1-key merge if exercise has decomposed compound vowel (e.g. 'ុ' followed by 'ំ') and user presses 'ុំ'
+  else if(expected.length === 1 && val.length === 2 && lessonIndex + 1 < lessonChars.length && (expected + lessonChars[lessonIndex + 1]) === val){
+    lessonChars.splice(lessonIndex, 2, val);
+    lessonKeyIds.splice(lessonIndex, 2, stroke ? stroke.id : lessonKeyIds[lessonIndex]);
+    lessonLayers.splice(lessonIndex, 2, stroke ? stroke.layer : lessonLayers[lessonIndex]);
+    lessonSections.forEach(s => {
+      if(s.endIndex > lessonIndex) s.endIndex--;
+      if(s.startIndex > lessonIndex) s.startIndex--;
+    });
+    expected = val;
+  }
+
+  // 3. Coeng Ta (្ត) / Coeng Da (្ដ) equivalence when preceded by Coeng (្)
+  const prevExpected = lessonIndex > 0 ? lessonChars[lessonIndex - 1] : '';
+  const isCoengTaDaEquiv = (prevExpected === '្') && ((expected === 'ត' && val === 'ដ') || (expected === 'ដ' && val === 'ត'));
+  if(isCoengTaDaEquiv && typeof lessonLiveHintEl !== 'undefined' && lessonLiveHintEl){
+    lessonLiveHintEl.textContent = 'Note (UTN #61): ្ត (Coeng Ta) and ្ដ (Coeng Da) share identical visual form; Chuon Nath dictionary standardizes on ្ត.';
+    lessonLiveHintEl.hidden = false;
+  }
+
+  const isMatch = isCoengTaDaEquiv || ((typeof compareTypingSequence === 'function')
     ? compareTypingSequence(val, expected)
-    : (val === expected);
+    : (val === expected));
 
   const curSection = lessonSections.find(s => lessonIndex >= s.startIndex && lessonIndex <= s.endIndex);
   const curExId = curSection ? curSection.id : null;
@@ -2297,6 +2345,13 @@ function lessonHandleChar(val, el, stroke){
     recordKeystroke(false);
     adaptiveReinforce(expected);
     updateLessonProgress();
+    if(typeof diagnoseKhmerTypingMistake === 'function' && typeof lessonLiveHintEl !== 'undefined' && lessonLiveHintEl){
+      const khHint = diagnoseKhmerTypingMistake(expected, val, prevExpected);
+      if(khHint){
+        lessonLiveHintEl.textContent = khHint;
+        lessonLiveHintEl.hidden = false;
+      }
+    }
     saveActiveLessonSession();
     if(el){ el.classList.add('wrong'); setTimeout(()=> el.classList.remove('wrong'), 300); }
     const cur = lessonCharRowEl.querySelector('.lc-char.current');

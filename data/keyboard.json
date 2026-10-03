@@ -8,7 +8,7 @@
             "id": "grave",
             "base": "",
             "ctrl": "฿",
-            "altgr": "◎",
+            "altgr": "៙",
             "shift": "",
             "kind": "glyph"
           },
@@ -33,7 +33,7 @@
             "base": "៣",
             "ctrl": "đ",
             "altgr": "3",
-            "shift": "\"",
+            "shift": "៊",
             "kind": "glyph"
           },
           {
@@ -49,7 +49,7 @@
             "base": "៥",
             "ctrl": "¥",
             "altgr": "5",
-            "shift": "%",
+            "shift": "័",
             "kind": "glyph"
           },
           {
@@ -57,7 +57,7 @@
             "base": "៦",
             "ctrl": "",
             "altgr": "6",
-            "shift": "៍",
+            "shift": "៌",
             "kind": "glyph"
           },
           {
@@ -65,7 +65,7 @@
             "base": "៧",
             "ctrl": "£",
             "altgr": "7",
-            "shift": "័",
+            "shift": "៍",
             "kind": "glyph"
           },
           {
@@ -89,7 +89,7 @@
             "base": "០",
             "ctrl": "—",
             "altgr": "0",
-            "shift": "៌",
+            "shift": "៑",
             "kind": "glyph"
           },
           {
@@ -277,7 +277,7 @@
             "base": "ហ",
             "ctrl": "",
             "altgr": "",
-            "shift": "៏",
+            "shift": "ះ",
             "kind": "glyph"
           },
           {
@@ -306,7 +306,7 @@
           },
           {
             "id": "semicolon",
-            "base": "ះ",
+            "base": "ៈ",
             "ctrl": ":",
             "altgr": ";",
             "shift": "៖",
@@ -411,7 +411,7 @@
           },
           {
             "id": "slash",
-            "base": "",
+            "base": "​",
             "ctrl": "”",
             "altgr": "៕",
             "shift": "?",
