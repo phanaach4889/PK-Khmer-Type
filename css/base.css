@@ -116,11 +116,23 @@
     pointer-events: none;
     transition: opacity 0.4s ease, background 0.15s ease;
   }
+  html.theme-light .custom-wallpaper-dim {
+    background: rgba(248, 250, 252, var(--wallpaper-dim, 0.52)) !important;
+  }
+  html.theme-sepia .custom-wallpaper-dim {
+    background: rgba(247, 241, 227, var(--wallpaper-dim, 0.58)) !important;
+  }
   body.has-custom-wallpaper .custom-wallpaper-dim {
     opacity: 1;
   }
   body.has-custom-wallpaper {
     background: #05070d;
+  }
+  html.theme-light body.has-custom-wallpaper {
+    background: #f1f5f9 !important;
+  }
+  html.theme-sepia body.has-custom-wallpaper {
+    background: #f4ecd8 !important;
   }
   body.has-custom-wallpaper::before {
     opacity: 0;
@@ -866,6 +878,97 @@
     opacity: 0.7;
   }
 
+  /* Light Theme Session Stats Bar */
+  html.theme-light .session-bar {
+    background: rgba(255, 255, 255, 0.86) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(203, 213, 225, 0.9) !important;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06), inset 0 1px 0 #ffffff !important;
+  }
+  html.theme-light .session-stat {
+    border-right: 1px solid rgba(226, 232, 240, 0.9) !important;
+  }
+  html.theme-light .session-stat-label {
+    color: #64748b !important;
+    font-weight: 600;
+  }
+  html.theme-light .session-stat-val {
+    color: #0f172a !important;
+    font-weight: 700;
+  }
+
+  /* Light Theme — Custom Wallpaper Overhaul */
+  html.theme-light body.has-custom-wallpaper #horizon {
+    opacity: 0.22;
+  }
+  html.theme-light body.has-custom-wallpaper .subtitle,
+  html.theme-light body.has-custom-wallpaper .hero-desc {
+    color: #1e293b !important;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85);
+  }
+  html.theme-light body.has-custom-wallpaper .founder-tag {
+    background: rgba(255, 255, 255, 0.90) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-color: rgba(203, 213, 225, 0.95) !important;
+    color: #1e293b !important;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  }
+  html.theme-light body.has-custom-wallpaper .guide-dock,
+  html.theme-light body.has-custom-wallpaper .lesson-strip {
+    background: rgba(255, 255, 255, 0.86) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(203, 213, 225, 0.5) !important;
+  }
+  html.theme-light body.has-custom-wallpaper .guide-dock-header,
+  html.theme-light body.has-custom-wallpaper .lesson-strip-header,
+  html.theme-light body.has-custom-wallpaper .lesson-strip-search {
+    background: rgba(248, 250, 252, 0.78) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.85) !important;
+  }
+  html.theme-light body.has-custom-wallpaper .board-wrap {
+    background: rgba(248, 250, 252, 0.88) !important;
+    backdrop-filter: blur(24px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+    border: 2px solid rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0 24px 50px -12px rgba(15, 23, 42, 0.16), 0 0 0 1px rgba(203, 213, 225, 0.6) !important;
+  }
+  html.theme-light body.has-custom-wallpaper .manuscript,
+  html.theme-light body.has-custom-wallpaper .lesson-char-row,
+  html.theme-light body.has-custom-wallpaper .trial-card {
+    background: rgba(255, 255, 255, 0.90) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.12) !important;
+  }
+  html.theme-light body.has-custom-wallpaper .toolbar button,
+  html.theme-light body.has-custom-wallpaper .top-actions button {
+    background: rgba(255, 255, 255, 0.88) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-color: rgba(203, 213, 225, 0.9) !important;
+    color: #1e293b !important;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+  }
+  html.theme-light body.has-custom-wallpaper .toolbar button:hover,
+  html.theme-light body.has-custom-wallpaper .top-actions button:hover {
+    background: #ffffff !important;
+    border-color: #94a3b8 !important;
+  }
+  html.theme-light body.has-custom-wallpaper .toolbar button.on,
+  html.theme-light body.has-custom-wallpaper .toolbar button.active {
+    background: #0f172a !important;
+    color: #ffffff !important;
+    border-color: #0f172a !important;
+  }
+
   /* ================= new: temple theme — warm torchlit sandstone, not midnight stone ================= */
   html.theme-temple body{
     background:
@@ -1237,6 +1340,96 @@
   html.theme-sepia #horizon .near {
     fill: #a08c6b !important;
     opacity: 0.7;
+  }
+
+  /* Sepia Theme Session Stats Bar */
+  html.theme-sepia .session-bar {
+    background: rgba(253, 246, 227, 0.88) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(217, 119, 6, 0.35) !important;
+    box-shadow: 0 4px 16px rgba(120, 53, 15, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+  }
+  html.theme-sepia .session-stat {
+    border-right: 1px solid rgba(222, 209, 185, 0.9) !important;
+  }
+  html.theme-sepia .session-stat-label {
+    color: #92400e !important;
+    font-weight: 600;
+  }
+  html.theme-sepia .session-stat-val {
+    color: #451a03 !important;
+    font-weight: 700;
+  }
+
+  /* Sepia Theme — Custom Wallpaper Overhaul */
+  html.theme-sepia body.has-custom-wallpaper #horizon {
+    opacity: 0.22;
+  }
+  html.theme-sepia body.has-custom-wallpaper .subtitle,
+  html.theme-sepia body.has-custom-wallpaper .hero-desc {
+    color: #451a03 !important;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(254, 243, 199, 0.8);
+  }
+  html.theme-sepia body.has-custom-wallpaper .founder-tag {
+    background: rgba(253, 246, 227, 0.90) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-color: rgba(217, 119, 6, 0.4) !important;
+    color: #78350f !important;
+  }
+  html.theme-sepia body.has-custom-wallpaper .guide-dock,
+  html.theme-sepia body.has-custom-wallpaper .lesson-strip {
+    background: rgba(253, 246, 227, 0.88) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(217, 119, 6, 0.35) !important;
+    box-shadow: 0 16px 36px -8px rgba(120, 53, 15, 0.12) !important;
+  }
+  html.theme-sepia body.has-custom-wallpaper .guide-dock-header,
+  html.theme-sepia body.has-custom-wallpaper .lesson-strip-header,
+  html.theme-sepia body.has-custom-wallpaper .lesson-strip-search {
+    background: rgba(244, 233, 213, 0.80) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    border-bottom: 1px solid rgba(221, 204, 168, 0.85) !important;
+  }
+  html.theme-sepia body.has-custom-wallpaper .board-wrap {
+    background: rgba(253, 246, 227, 0.88) !important;
+    backdrop-filter: blur(24px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+    border: 2px solid rgba(217, 119, 6, 0.35) !important;
+    box-shadow: 0 24px 50px -12px rgba(120, 53, 15, 0.16) !important;
+  }
+  html.theme-sepia body.has-custom-wallpaper .manuscript,
+  html.theme-sepia body.has-custom-wallpaper .lesson-char-row,
+  html.theme-sepia body.has-custom-wallpaper .trial-card {
+    background: rgba(253, 246, 227, 0.90) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(217, 119, 6, 0.35) !important;
+    box-shadow: 0 16px 36px -8px rgba(120, 53, 15, 0.12) !important;
+  }
+  html.theme-sepia body.has-custom-wallpaper .toolbar button,
+  html.theme-sepia body.has-custom-wallpaper .top-actions button {
+    background: rgba(253, 246, 227, 0.88) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-color: rgba(204, 188, 158, 0.9) !important;
+    color: #2c1b0c !important;
+    box-shadow: 0 2px 6px rgba(44, 27, 12, 0.06);
+  }
+  html.theme-sepia body.has-custom-wallpaper .toolbar button:hover,
+  html.theme-sepia body.has-custom-wallpaper .top-actions button:hover {
+    background: #ffffff !important;
+    border-color: #a08c6b !important;
+  }
+  html.theme-sepia body.has-custom-wallpaper .toolbar button.on,
+  html.theme-sepia body.has-custom-wallpaper .toolbar button.active {
+    background: #362414 !important;
+    color: #f7ebd7 !important;
+    border-color: #362414 !important;
   }
 
   /* ================= new: top nav / utility bar ================= */
