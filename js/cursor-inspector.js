@@ -358,14 +358,27 @@
     }
     if(!hudEl || !hudEl.classList.contains('visible')) return;
 
-    const hudW = 250;
-    const hudH = 150;
-    const gap = 14;
+    const hudRect = hudEl.getBoundingClientRect();
+    const hudW = hudRect.width || 250;
+    const hudH = hudRect.height || 150;
+    const gap = 16;
     const winW = window.innerWidth;
     const winH = window.innerHeight;
 
     let posX = x + gap;
     let posY = y + gap;
+
+    // Smart hand-aware positioning when inspecting keys on the keyboard
+    if(currentInspectedKeyId){
+      const bottomRowOrHomeKeys = new Set([
+        'caps','a','s','d','f','g','h','j','k','l','semicolon','quote','enter',
+        'shiftL','z','x','c','v','b','n','m','comma','period','slash','extra','shiftR'
+      ]);
+      if(bottomRowOrHomeKeys.has(currentInspectedKeyId) && (y - hudH - gap >= 12)){
+        // Place HUD above home/bottom row keys so the 3D hands below remain unobstructed
+        posY = y - hudH - gap;
+      }
+    }
 
     // Flip horizontally if overflow right
     if(posX + hudW > winW - 12){
