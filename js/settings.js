@@ -322,14 +322,45 @@ let ambienceOn = false;
 let ambienceNodes = null;
 const ambienceToggle = document.getElementById("ambienceToggle");
 
+let audioMasterCompressor = null;
+let audioMasterGain = null;
+
 function ensureAudio() {
   if (!audioCtx) {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const len = audioCtx.sampleRate * 0.05;
+  }
+  if (!noiseBuffer && audioCtx) {
+    const len = Math.floor(audioCtx.sampleRate * 0.15);
     noiseBuffer = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
     const data = noiseBuffer.getChannelData(0);
+    let b0 = 0, b1 = 0, b2 = 0;
     for (let i = 0; i < len; i++) {
-      data[i] = (Math.random() * 2 - 1) * (1 - i / len);
+      const white = Math.random() * 2 - 1;
+      b0 = 0.99886 * b0 + white * 0.0555179;
+      b1 = 0.99332 * b1 + white * 0.0750759;
+      b2 = 0.96900 * b2 + white * 0.1538520;
+      const pink = b0 + b1 + b2 + white * 0.5362;
+      const decay = Math.pow(1 - (i / len), 1.4);
+      data[i] = pink * 0.32 * decay;
+    }
+  }
+  if (!audioMasterGain && audioCtx) {
+    try {
+      audioMasterGain = audioCtx.createGain();
+      audioMasterGain.gain.setValueAtTime(1.45, audioCtx.currentTime);
+
+      audioMasterCompressor = audioCtx.createDynamicsCompressor();
+      audioMasterCompressor.threshold.setValueAtTime(-14, audioCtx.currentTime);
+      audioMasterCompressor.knee.setValueAtTime(6, audioCtx.currentTime);
+      audioMasterCompressor.ratio.setValueAtTime(3.5, audioCtx.currentTime);
+      audioMasterCompressor.attack.setValueAtTime(0.001, audioCtx.currentTime);
+      audioMasterCompressor.release.setValueAtTime(0.05, audioCtx.currentTime);
+
+      audioMasterGain.connect(audioMasterCompressor);
+      audioMasterCompressor.connect(audioCtx.destination);
+    } catch (e) {
+      audioMasterGain = null;
+      audioMasterCompressor = null;
     }
   }
   if (audioCtx.state === "suspended") audioCtx.resume();
@@ -433,41 +464,103 @@ function playClick(kind) {
   try {
     ensureAudio();
     const t = audioCtx.currentTime;
-    const vol = Math.max(0.08, soundVolumePct / 100);
+    const vol = Math.max(0.15, (soundVolumePct / 100)) * 1.6;
     const isDown = kind === "down";
 
-    // Switch acoustic profile parameters
+    // Switch acoustic profile parameters — tuned for rich presence, loud tactile feedback, and authentic mechanical feel
     const profiles = {
-      brown:      { filterType: "highpass", filterFreq: isDown ? 1800 : 2600, noiseAmp: isDown ? 0.24 : 0.12, bodyFreq: isDown ? 190 : 255, bodyAmp: isDown ? 0.10 : 0.05, bodyType: "sine", decay: 0.075 },
-      blue:       { filterType: "bandpass", filterFreq: isDown ? 3400 : 4100, noiseAmp: isDown ? 0.35 : 0.18, bodyFreq: isDown ? 420 : 520, bodyAmp: isDown ? 0.11 : 0.06, bodyType: "triangle", decay: 0.055 },
-      red:        { filterType: "lowpass",  filterFreq: isDown ? 1100 : 1500, noiseAmp: isDown ? 0.18 : 0.09, bodyFreq: isDown ? 128 : 170, bodyAmp: isDown ? 0.15 : 0.08, bodyType: "sine", decay: 0.095 },
-      typewriter: { filterType: "bandpass", filterFreq: isDown ? 2400 : 3000, noiseAmp: isDown ? 0.42 : 0.20, bodyFreq: isDown ? 310 : 390, bodyAmp: isDown ? 0.14 : 0.07, bodyType: "sawtooth", decay: 0.065 },
-      silent:     { filterType: "lowpass",  filterFreq: isDown ? 750  : 950,  noiseAmp: isDown ? 0.08 : 0.04, bodyFreq: isDown ? 110 : 140, bodyAmp: isDown ? 0.05 : 0.025, bodyType: "sine", decay: 0.05 }
+      brown: {
+        filterType: "bandpass",
+        filterFreq: isDown ? 2200 : 2800,
+        filterQ: 2.2,
+        noiseAmp: isDown ? 0.78 : 0.46,
+        noiseDecay: 0.048,
+        bodyFreq: isDown ? 210 : 270,
+        bodyEndFreq: isDown ? 135 : 175,
+        bodyAmp: isDown ? 0.60 : 0.34,
+        bodyType: "triangle",
+        decay: 0.075
+      },
+      blue: {
+        filterType: "bandpass",
+        filterFreq: isDown ? 3400 : 4200,
+        filterQ: 3.6,
+        noiseAmp: isDown ? 0.98 : 0.62,
+        noiseDecay: 0.044,
+        bodyFreq: isDown ? 520 : 640,
+        bodyEndFreq: isDown ? 380 : 460,
+        bodyAmp: isDown ? 0.55 : 0.32,
+        bodyType: "sawtooth",
+        decay: 0.065
+      },
+      red: {
+        filterType: "lowpass",
+        filterFreq: isDown ? 1400 : 1800,
+        filterQ: 1.8,
+        noiseAmp: isDown ? 0.72 : 0.42,
+        noiseDecay: 0.062,
+        bodyFreq: isDown ? 165 : 205,
+        bodyEndFreq: isDown ? 85 : 110,
+        bodyAmp: isDown ? 0.82 : 0.48,
+        bodyType: "sine",
+        decay: 0.105
+      },
+      typewriter: {
+        filterType: "bandpass",
+        filterFreq: isDown ? 2600 : 3200,
+        filterQ: 2.4,
+        noiseAmp: isDown ? 1.08 : 0.68,
+        noiseDecay: 0.068,
+        bodyFreq: isDown ? 340 : 430,
+        bodyEndFreq: isDown ? 200 : 260,
+        bodyAmp: isDown ? 0.68 : 0.40,
+        bodyType: "sawtooth",
+        decay: 0.090
+      },
+      silent: {
+        filterType: "lowpass",
+        filterFreq: isDown ? 1150 : 1450,
+        filterQ: 1.2,
+        noiseAmp: isDown ? 0.52 : 0.30,
+        noiseDecay: 0.052,
+        bodyFreq: isDown ? 140 : 170,
+        bodyEndFreq: isDown ? 90 : 115,
+        bodyAmp: isDown ? 0.52 : 0.28,
+        bodyType: "sine",
+        decay: 0.068
+      }
     };
     const p = profiles[switchProfile] || profiles.brown;
+    const dest = audioMasterGain || audioCtx.destination;
 
+    // Transient mechanical impact noise
     const noise = audioCtx.createBufferSource();
     noise.buffer = noiseBuffer;
     const noiseFilter = audioCtx.createBiquadFilter();
     noiseFilter.type = p.filterType;
     noiseFilter.frequency.setValueAtTime(p.filterFreq, t);
+    if (p.filterQ) noiseFilter.Q.setValueAtTime(p.filterQ, t);
     const noiseGain = audioCtx.createGain();
-    noiseGain.gain.setValueAtTime(p.noiseAmp * vol, t);
-    noiseGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.038);
-    noise.connect(noiseFilter).connect(noiseGain).connect(audioCtx.destination);
+    const actualNoiseAmp = Math.min(1.6, p.noiseAmp * vol);
+    noiseGain.gain.setValueAtTime(actualNoiseAmp, t);
+    noiseGain.gain.exponentialRampToValueAtTime(0.0001, t + p.noiseDecay);
+    noise.connect(noiseFilter).connect(noiseGain).connect(dest);
     noise.start(t);
-    noise.stop(t + 0.042);
+    noise.stop(t + p.noiseDecay + 0.015);
 
+    // Resonant mechanical body tone
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     osc.type = p.bodyType;
-    osc.frequency.setValueAtTime(p.bodyFreq + Math.random() * 16, t);
-    osc.frequency.exponentialRampToValueAtTime(p.bodyFreq * 0.58, t + p.decay);
-    gain.gain.setValueAtTime(p.bodyAmp * vol, t);
-    gain.gain.exponentialRampToValueAtTime(0.0001, t + p.decay + 0.015);
-    osc.connect(gain).connect(audioCtx.destination);
+    const startFreq = p.bodyFreq + (Math.random() * 14 - 7);
+    osc.frequency.setValueAtTime(startFreq, t);
+    osc.frequency.exponentialRampToValueAtTime(Math.max(40, p.bodyEndFreq || (startFreq * 0.6)), t + p.decay);
+    const actualBodyAmp = Math.min(1.6, p.bodyAmp * vol);
+    gain.gain.setValueAtTime(actualBodyAmp, t);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + p.decay + 0.018);
+    osc.connect(gain).connect(dest);
     osc.start(t);
-    osc.stop(t + p.decay + 0.02);
+    osc.stop(t + p.decay + 0.025);
   } catch (e) {}
 }
 
@@ -948,7 +1041,18 @@ function initSettingsToggles() {
     switchProfile = profile || "brown";
     switchBtns.forEach((b) => b.classList.toggle("active", b.dataset.switch === switchProfile));
     safeSet(LS.switchProfile, switchProfile);
-    if (audition && soundOn) playClick("down");
+    if (audition) {
+      if (!soundOn) {
+        soundOn = true;
+        safeSet(LS.sound, "1");
+        if (typeof soundToggle !== "undefined" && soundToggle) {
+          soundToggle.classList.add("on");
+          soundToggle.innerHTML = pkIcon("volume", 15) + " Key sound";
+        }
+        if (typeof syncSettingsMirrors === "function") syncSettingsMirrors();
+      }
+      playClick("down");
+    }
   }
   switchBtns.forEach((b) => b.addEventListener("click", () => applySwitchProfile(b.dataset.switch, true)));
   applySwitchProfile(safeGet(LS.switchProfile, "brown"), false);
