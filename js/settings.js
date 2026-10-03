@@ -140,7 +140,7 @@ function ensureUpgradedSettingsModalDOM() {
       <div class="settings-section" data-cat-section="general">
         <div class="settings-section-header"><h3 class="settings-section-title">General, Layout &amp; Language</h3><span class="settings-section-count">3 settings</span></div>
         <div class="settings-row" data-search="keyboard layout khmer standard nida english qwerty unicode">
-          <div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Active Keyboard Layout</span><span class="settings-row-km">ប្លង់ក្តារចុច</span></div><div class="settings-row-desc">Switch the active keyboard mapping and lesson curriculum immediately.</div></div>
+          <div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Active Keyboard Layout</span><span class="settings-row-km">ប្លង់ក្តារចុច</span></div><div class="settings-row-desc">Switch the active keyboard mapping and lesson curriculum immediately.</div><div class="settings-layout-live-status" id="settingsLayoutLiveStatus"><span class="settings-layout-live-badge" id="settingsActiveLayoutBadge">Khmer Standard</span><span class="settings-layout-live-sample" id="settingsActiveLayoutPreview">Space = ្ (Coeng) • ក ខ គ ឃ ង</span></div></div>
           <div class="settings-row-control"><div class="settings-choice" id="settingsLayoutChoice"><button type="button" data-layout-set="standard" class="active">Khmer Standard</button><button type="button" data-layout-set="nida">Khmer NiDA</button><button type="button" data-layout-set="english">English (US)</button></div></div>
         </div>
         <div class="settings-row" data-search="language translate khmer english ui interface ភាសាខ្មែរ">
@@ -169,8 +169,8 @@ function ensureUpgradedSettingsModalDOM() {
 
       <div class="settings-section" data-cat-section="audio">
         <div class="settings-section-header"><h3 class="settings-section-title">Sound &amp; Mechanical Audio Engine</h3><span class="settings-section-count">6 settings</span></div>
-        <div class="settings-row" data-search="sound effects audio click keystroke mute"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Mechanical Key Sound</span><span class="settings-row-km">សំឡេងគ្រាប់ចុច</span></div><div class="settings-row-desc">Synthesize real-time mechanical switch acoustics when typing.</div></div><div class="settings-row-control"><div class="toggle-switch on" id="settingsSoundToggle" role="switch" aria-checked="true" tabindex="0"></div></div></div>
-        <div class="settings-row" data-search="switch profile sound tactile brown clicky blue red thock typewriter silent"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Mechanical Switch Profile</span><span class="settings-row-km">ប្រភេទសំឡេងស្វ៊ីច</span></div><div class="settings-row-desc">Select your switch acoustic signature (click any switch to audition its sound).</div></div><div class="settings-row-control"><div class="settings-choice" id="switchProfileChoice"><button type="button" data-switch="brown" class="active">Tactile Brown</button><button type="button" data-switch="blue">Clicky Blue</button><button type="button" data-switch="red">Thocky Red</button><button type="button" data-switch="typewriter">Typewriter</button><button type="button" data-switch="silent">Silent Soft</button></div></div></div>
+        <div class="settings-row" data-search="sound effects audio click keystroke mute soft"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Mechanical Key Sound</span><span class="settings-row-km">សំឡេងគ្រាប់ចុច</span></div><div class="settings-row-desc">Synthesize warm, real-time mechanical switch acoustics when typing (Alt+S).</div></div><div class="settings-row-control"><button type="button" class="settings-action-pill" id="settingsTestSoundBtn" title="Audition current switch sound">🔊 Test Sound</button><div class="toggle-switch on" id="settingsSoundToggle" role="switch" aria-checked="true" tabindex="0"></div></div></div>
+        <div class="settings-row" data-search="switch profile sound soft cream raindrop marble holy panda tactile brown clicky blue red thock typewriter silent pillow"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Mechanical Switch Profile</span><span class="settings-row-km">ប្រភេទសំឡេងស្វ៊ីច</span></div><div class="settings-row-desc">Select your switch acoustic signature (click any switch to hear a live key press &amp; release).</div><div class="settings-layout-live-status" id="switchProfileLiveStatus"><span class="settings-layout-live-badge" id="switchProfileActiveBadge">Soft Cream</span><span class="settings-layout-live-sample" id="switchProfileActiveDesc">Warm, velvety lubed POM linear — soft &amp; gentle on the ears</span></div></div><div class="settings-row-control"><div class="settings-choice" id="switchProfileChoice"><button type="button" data-switch="soft-cream" class="active">Soft Cream</button><button type="button" data-switch="raindrop">Raindrop Marble</button><button type="button" data-switch="silent">Silent Pillow</button><button type="button" data-switch="red">Thocky Red</button><button type="button" data-switch="brown">Tactile Brown</button><button type="button" data-switch="holy-panda">Holy Panda</button><button type="button" data-switch="blue">Clicky Blue</button><button type="button" data-switch="typewriter">Typewriter</button></div></div></div>
         <div class="settings-row" data-search="sound volume loudness key click level"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Key Sound Volume</span><span class="settings-row-km">កម្រិតសំឡេងគ្រាប់ចុច</span></div><div class="settings-row-desc">Adjust master volume for mechanical switch clicks and chimes.</div></div><div class="settings-row-control"><div class="settings-slider-wrap"><input type="range" id="soundVolumeSlider" min="10" max="100" value="80"><span class="settings-slider-badge" id="soundVolumeValue">80%</span></div></div></div>
         <div class="settings-row" data-search="completion chime bell milestone lesson pass sound"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Completion &amp; Milestone Chimes</span><span class="settings-row-km">សំឡេងជោគជ័យ</span></div><div class="settings-row-desc">Play harmonic celebration chimes when completing a drill or mastering a lesson.</div></div><div class="settings-row-control"><div class="toggle-switch on" id="settingsChimeToggle" role="switch" aria-checked="true" tabindex="0"></div></div></div>
         <div class="settings-row" data-search="temple ambience drone background music relax meditation"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Temple Ambience Drone</span><span class="settings-row-km">សំឡេងបរិយាកាសប្រាសាទ</span></div><div class="settings-row-desc">Play a warm, meditative harmonic temple drone in the background.</div></div><div class="settings-row-control"><div class="toggle-switch" id="settingsAmbienceToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
@@ -190,7 +190,7 @@ function ensureUpgradedSettingsModalDOM() {
         <div class="settings-section-header"><h3 class="settings-section-title">Appearance, Themes &amp; Wallpaper</h3><span class="settings-section-count">7 settings</span></div>
         <div class="settings-row" data-search="theme dark temple moonlight jungle sunset sepia light system color"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Studio Color Theme</span><span class="settings-row-km">ស្បែកកម្មវិធី</span></div><div class="settings-row-desc">Select the overall atmosphere and lighting palette.</div></div><div class="settings-row-control"><div class="settings-choice" id="themeChoice"><button type="button" data-theme="dark" class="active"><span class="theme-dot dark"></span>Dark</button><button type="button" data-theme="temple"><span class="theme-dot temple"></span>Temple</button><button type="button" data-theme="moonlight"><span class="theme-dot moonlight"></span>Moonlight</button><button type="button" data-theme="jungle"><span class="theme-dot jungle"></span>Jungle</button><button type="button" data-theme="sunset"><span class="theme-dot sunset"></span>Sunset</button><button type="button" data-theme="sepia"><span class="theme-dot sepia"></span>Sepia</button><button type="button" data-theme="light"><span class="theme-dot light"></span>Light</button><button type="button" data-theme="system"><span class="theme-dot system"></span>System</button></div></div></div>
         <div class="settings-row" data-search="accent color gold jade sapphire ruby cyan amethyst"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Primary Accent Color</span><span class="settings-row-km">ពណ៌លេចធ្លោ</span></div><div class="settings-row-desc">Choose the highlight glow color for active keys, badges, and buttons.</div></div><div class="settings-row-control"><div class="settings-choice accent-choice" id="accentChoice"><button type="button" data-accent="gold" class="active" style="--sw:#ffd166" aria-label="Gold accent"></button><button type="button" data-accent="jade" style="--sw:#5fd694" aria-label="Jade accent"></button><button type="button" data-accent="sapphire" style="--sw:#2dd4a7" aria-label="Sapphire accent"></button><button type="button" data-accent="ruby" style="--sw:#ff5a70" aria-label="Ruby accent"></button><button type="button" data-accent="cyan" style="--sw:#38bdf8" aria-label="Cyber Cyan accent"></button><button type="button" data-accent="amethyst" style="--sw:#c084fc" aria-label="Amethyst accent"></button></div></div></div>
-        <div class="settings-row" data-search="khmer font family kantumruy noto sans serif typography"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Khmer Script Font Family</span><span class="settings-row-km">ពុម្ពអក្សរខ្មែរ</span></div><div class="settings-row-desc">Choose the Khmer typeface for keycaps, HUD cards, and typing prompts.</div></div><div class="settings-row-control"><div class="settings-choice" id="khmerFontChoice"><button type="button" data-kfont="kantumruy" class="active">Kantumruy Pro</button><button type="button" data-kfont="noto-sans">Noto Sans Khmer</button><button type="button" data-kfont="noto-serif">Noto Serif Khmer</button></div></div></div>
+        <div class="settings-row" data-search="khmer font family kantumruy noto sans serif battambang moul typography"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Khmer Script Font Family</span><span class="settings-row-km">ពុម្ពអក្សរខ្មែរ</span></div><div class="settings-row-desc">Choose the Khmer typeface for keycaps, HUD cards, and typing prompts.</div><div class="khmer-font-preview-box" id="khmerFontPreviewBox"><span class="khmer-font-preview-tag" id="khmerFontActiveTag">Kantumruy Pro</span><span class="khmer-font-preview-sample" id="khmerFontPreviewSample">ភាសាខ្មែរ • ក ខ គ ឃ ង • កម្ពុជា ១២៣៤៥</span></div></div><div class="settings-row-control"><div class="settings-choice" id="khmerFontChoice"><button type="button" data-kfont="kantumruy" class="active">Kantumruy Pro</button><button type="button" data-kfont="noto-sans">Noto Sans Khmer</button><button type="button" data-kfont="noto-serif">Noto Serif Khmer</button><button type="button" data-kfont="battambang">Battambang</button><button type="button" data-kfont="moul">Moul (ឆ្លាក់)</button></div></div></div>
         <div class="settings-row" data-search="larger text font size big scale zoom"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Larger Text &amp; Key Glyphs</span><span class="settings-row-km">អក្សរធំ</span></div><div class="settings-row-desc">Increase font size across keycaps, reading prompts, and menus.</div></div><div class="settings-row-control"><div class="toggle-switch" id="largeTextToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
         <div class="settings-row wallpaper-settings-row" data-search="custom wallpaper background image photo url upload"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Custom Background Wallpaper</span><span class="settings-row-km">រូបភាពផ្ទៃក្រោយ</span></div><div class="settings-row-desc">Upload an image or paste an image URL for your studio backdrop.</div></div><div class="settings-row-control"><div class="wallpaper-actions"><input type="file" id="wallpaperFileInput" accept="image/*" style="display:none;"><button type="button" class="wallpaper-btn" id="uploadWallpaperBtn">Choose Image</button><button type="button" class="wallpaper-btn" id="urlWallpaperBtn">URL</button><button type="button" class="wallpaper-btn danger" id="removeWallpaperBtn" style="display:none;">Remove</button></div></div></div>
         <div class="settings-row wallpaper-dim-row" id="wallpaperDimControl" style="display:none;" data-search="wallpaper dimming brightness dark"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Wallpaper Dimming</span></div><div class="settings-row-desc">Darken the custom wallpaper so the keyboard stays crisp.</div></div><div class="settings-row-control"><div class="settings-slider-wrap"><input type="range" id="wallpaperDimSlider" min="15" max="90" value="65"><span class="settings-slider-badge" id="wallpaperDimValue">65%</span></div></div></div>
@@ -313,23 +313,217 @@ function templeConfirm(message, opts) {
 /* ---------- Audio Engine: Multi-Switch Profiles, Volume, Chimes & Ambience ---------- */
 let audioCtx = null;
 let noiseBuffer = null;
+let velvetNoiseBuffer = null;
 let soundOn = safeGet(LS.sound, "1") !== "0";
 let chimeOn = safeGet(LS.chime, "1") !== "0";
-let switchProfile = safeGet(LS.switchProfile, "brown");
+let switchProfile = safeGet(LS.switchProfile, "soft-cream");
 let soundVolumePct = parseInt(safeGet(LS.soundVolume, "80"), 10) || 80;
 let ambienceVolumePct = parseInt(safeGet(LS.ambienceVolume, "50"), 10) || 50;
 let ambienceOn = false;
 let ambienceNodes = null;
+const soundToggle = document.getElementById("soundToggle");
 const ambienceToggle = document.getElementById("ambienceToggle");
+
+const SWITCH_PROFILE_META = {
+  "soft-cream": {
+    label: "Soft Cream",
+    desc: "Warm, velvety lubed POM linear — soft & gentle on the ears",
+    useVelvet: true,
+    filterType: "lowpass",
+    downFilterFreq: 720,
+    upFilterFreq: 920,
+    filterQ: 0.9,
+    downNoiseAmp: 0.14,
+    upNoiseAmp: 0.065,
+    downBodyFreq: 138,
+    upBodyFreq: 176,
+    downBodyEnd: 68,
+    upBodyEnd: 98,
+    downBodyAmp: 0.19,
+    upBodyAmp: 0.085,
+    bodyType: "sine",
+    overtoneRatio: 2.0,
+    overtoneAmp: 0.045,
+    decay: 0.072
+  },
+  raindrop: {
+    label: "Raindrop Marble",
+    desc: "Deep, creamy marble pebble tap on a gasket-mounted plate",
+    useVelvet: true,
+    filterType: "bandpass",
+    downFilterFreq: 960,
+    upFilterFreq: 1180,
+    filterQ: 1.75,
+    downNoiseAmp: 0.16,
+    upNoiseAmp: 0.075,
+    downBodyFreq: 168,
+    upBodyFreq: 210,
+    downBodyEnd: 88,
+    upBodyEnd: 118,
+    downBodyAmp: 0.21,
+    upBodyAmp: 0.095,
+    bodyType: "sine",
+    overtoneRatio: 2.35,
+    overtoneAmp: 0.065,
+    decay: 0.068
+  },
+  silent: {
+    label: "Silent Pillow",
+    desc: "Whisper-soft silicone dampened switch for quiet late-night typing",
+    useVelvet: true,
+    filterType: "lowpass",
+    downFilterFreq: 490,
+    upFilterFreq: 620,
+    filterQ: 0.7,
+    downNoiseAmp: 0.075,
+    upNoiseAmp: 0.035,
+    downBodyFreq: 108,
+    upBodyFreq: 134,
+    downBodyEnd: 56,
+    upBodyEnd: 74,
+    downBodyAmp: 0.10,
+    upBodyAmp: 0.045,
+    bodyType: "sine",
+    overtoneRatio: 1.8,
+    overtoneAmp: 0.02,
+    decay: 0.052
+  },
+  red: {
+    label: "Thocky Red",
+    desc: "Deep, full-bodied PBT keycap bottom-out thock",
+    useVelvet: true,
+    filterType: "lowpass",
+    downFilterFreq: 860,
+    upFilterFreq: 1120,
+    filterQ: 1.05,
+    downNoiseAmp: 0.17,
+    upNoiseAmp: 0.08,
+    downBodyFreq: 126,
+    upBodyFreq: 164,
+    downBodyEnd: 62,
+    upBodyEnd: 86,
+    downBodyAmp: 0.22,
+    upBodyAmp: 0.10,
+    bodyType: "sine",
+    overtoneRatio: 1.95,
+    overtoneAmp: 0.05,
+    decay: 0.082
+  },
+  brown: {
+    label: "Tactile Brown",
+    desc: "Gentle, rounded tactile bump with warm mid-range body",
+    useVelvet: true,
+    filterType: "bandpass",
+    downFilterFreq: 1180,
+    upFilterFreq: 1480,
+    filterQ: 1.25,
+    downNoiseAmp: 0.19,
+    upNoiseAmp: 0.09,
+    downBodyFreq: 156,
+    upBodyFreq: 198,
+    downBodyEnd: 82,
+    upBodyEnd: 110,
+    downBodyAmp: 0.17,
+    upBodyAmp: 0.08,
+    bodyType: "sine",
+    overtoneRatio: 2.15,
+    overtoneAmp: 0.055,
+    decay: 0.068
+  },
+  "holy-panda": {
+    label: "Holy Panda",
+    desc: "Snappy, poppy tactile bump with rich resonant housing",
+    useVelvet: false,
+    filterType: "bandpass",
+    downFilterFreq: 1380,
+    upFilterFreq: 1720,
+    filterQ: 1.6,
+    downNoiseAmp: 0.22,
+    upNoiseAmp: 0.10,
+    downBodyFreq: 184,
+    upBodyFreq: 232,
+    downBodyEnd: 96,
+    upBodyEnd: 128,
+    downBodyAmp: 0.19,
+    upBodyAmp: 0.09,
+    bodyType: "triangle",
+    overtoneRatio: 2.4,
+    overtoneAmp: 0.06,
+    decay: 0.064
+  },
+  blue: {
+    label: "Clicky Blue",
+    desc: "Crisp, musical tactile click jacket with clean bottom-out",
+    useVelvet: false,
+    filterType: "bandpass",
+    downFilterFreq: 2450,
+    upFilterFreq: 2950,
+    filterQ: 2.1,
+    downNoiseAmp: 0.25,
+    upNoiseAmp: 0.12,
+    downBodyFreq: 340,
+    upBodyFreq: 420,
+    downBodyEnd: 165,
+    upBodyEnd: 210,
+    downBodyAmp: 0.14,
+    upBodyAmp: 0.065,
+    bodyType: "triangle",
+    overtoneRatio: 2.75,
+    overtoneAmp: 0.07,
+    decay: 0.055
+  },
+  typewriter: {
+    label: "Typewriter",
+    desc: "Classic vintage mechanical typebar strike on paper platen",
+    useVelvet: false,
+    filterType: "bandpass",
+    downFilterFreq: 1950,
+    upFilterFreq: 2400,
+    filterQ: 1.5,
+    downNoiseAmp: 0.28,
+    upNoiseAmp: 0.13,
+    downBodyFreq: 265,
+    upBodyFreq: 330,
+    downBodyEnd: 118,
+    upBodyEnd: 158,
+    downBodyAmp: 0.17,
+    upBodyAmp: 0.075,
+    bodyType: "triangle",
+    overtoneRatio: 3.1,
+    overtoneAmp: 0.065,
+    decay: 0.062
+  }
+};
 
 function ensureAudio() {
   if (!audioCtx) {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const len = audioCtx.sampleRate * 0.05;
-    noiseBuffer = audioCtx.createBuffer(1, len, audioCtx.sampleRate);
-    const data = noiseBuffer.getChannelData(0);
+    const sr = audioCtx.sampleRate;
+    const len = Math.floor(sr * 0.065);
+
+    // 1. Crisp shaped transient buffer with 1.5ms raised-cosine attack (prevents digital clicks)
+    noiseBuffer = audioCtx.createBuffer(1, len, sr);
+    const crispData = noiseBuffer.getChannelData(0);
+    const attackSamples = Math.max(12, Math.floor(sr * 0.0015));
     for (let i = 0; i < len; i++) {
-      data[i] = (Math.random() * 2 - 1) * (1 - i / len);
+      const attackEnv = i < attackSamples ? 0.5 * (1 - Math.cos((Math.PI * i) / attackSamples)) : 1.0;
+      const decayEnv = Math.pow(1 - i / len, 2.2);
+      crispData[i] = (Math.random() * 2 - 1) * attackEnv * decayEnv;
+    }
+
+    // 2. Warm pink/velvet filtered noise buffer for soft, creamy & thocky switches
+    velvetNoiseBuffer = audioCtx.createBuffer(1, len, sr);
+    const velvetData = velvetNoiseBuffer.getChannelData(0);
+    let b0 = 0, b1 = 0, b2 = 0;
+    for (let i = 0; i < len; i++) {
+      const white = Math.random() * 2 - 1;
+      b0 = 0.997 * b0 + white * 0.029;
+      b1 = 0.985 * b1 + white * 0.032;
+      b2 = 0.950 * b2 + white * 0.048;
+      const pink = (b0 + b1 + b2 + white * 0.18) * 1.65;
+      const attackEnv = i < attackSamples ? 0.5 * (1 - Math.cos((Math.PI * i) / attackSamples)) : 1.0;
+      const decayEnv = Math.pow(1 - i / len, 2.5);
+      velvetData[i] = Math.max(-1, Math.min(1, pink)) * attackEnv * decayEnv;
     }
   }
   if (audioCtx.state === "suspended") audioCtx.resume();
@@ -389,6 +583,7 @@ function stopAmbience() {
 function syncAmbienceUI() {
   if (ambienceToggle) {
     ambienceToggle.classList.toggle("on", ambienceOn);
+    ambienceToggle.setAttribute("aria-pressed", String(ambienceOn));
     ambienceToggle.innerHTML = pkIcon("castle", 15) + " " + (ambienceOn ? "Ambience on" : "Temple ambience");
   }
   const settingsAmbienceToggle = document.getElementById("settingsAmbienceToggle");
@@ -413,73 +608,145 @@ function playChime() {
     ensureAudio();
     const t = audioCtx.currentTime;
     const volScale = Math.max(0.1, soundVolumePct / 100);
-    [660, 880, 1320].forEach((freq, i) => {
+    [523.25, 659.25, 783.99, 1046.5].forEach((freq, i) => {
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
       osc.type = "sine";
-      osc.frequency.setValueAtTime(freq, t + i * 0.07);
-      gain.gain.setValueAtTime(0.0001, t + i * 0.07);
-      gain.gain.exponentialRampToValueAtTime(0.12 * volScale, t + i * 0.07 + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.0001, t + i * 0.07 + 0.5);
+      osc.frequency.setValueAtTime(freq, t + i * 0.065);
+      gain.gain.setValueAtTime(0.0001, t + i * 0.065);
+      gain.gain.exponentialRampToValueAtTime(0.11 * volScale, t + i * 0.065 + 0.018);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + i * 0.065 + 0.48);
       osc.connect(gain).connect(audioCtx.destination);
-      osc.start(t + i * 0.07);
-      osc.stop(t + i * 0.07 + 0.55);
+      osc.start(t + i * 0.065);
+      osc.stop(t + i * 0.065 + 0.52);
     });
   } catch (e) {}
 }
 
-function playClick(kind) {
-  if (!soundOn) return;
+function playClick(kind, keyId, forceAudition) {
+  if (!soundOn && !forceAudition) return;
   try {
     ensureAudio();
     const t = audioCtx.currentTime;
     const vol = Math.max(0.08, soundVolumePct / 100);
-    const isDown = kind === "down";
+    const isDown = kind !== "up";
+    const p = SWITCH_PROFILE_META[switchProfile] || SWITCH_PROFILE_META["soft-cream"];
 
-    // Switch acoustic profile parameters
-    const profiles = {
-      brown:      { filterType: "highpass", filterFreq: isDown ? 1800 : 2600, noiseAmp: isDown ? 0.24 : 0.12, bodyFreq: isDown ? 190 : 255, bodyAmp: isDown ? 0.10 : 0.05, bodyType: "sine", decay: 0.075 },
-      blue:       { filterType: "bandpass", filterFreq: isDown ? 3400 : 4100, noiseAmp: isDown ? 0.35 : 0.18, bodyFreq: isDown ? 420 : 520, bodyAmp: isDown ? 0.11 : 0.06, bodyType: "triangle", decay: 0.055 },
-      red:        { filterType: "lowpass",  filterFreq: isDown ? 1100 : 1500, noiseAmp: isDown ? 0.18 : 0.09, bodyFreq: isDown ? 128 : 170, bodyAmp: isDown ? 0.15 : 0.08, bodyType: "sine", decay: 0.095 },
-      typewriter: { filterType: "bandpass", filterFreq: isDown ? 2400 : 3000, noiseAmp: isDown ? 0.42 : 0.20, bodyFreq: isDown ? 310 : 390, bodyAmp: isDown ? 0.14 : 0.07, bodyType: "sawtooth", decay: 0.065 },
-      silent:     { filterType: "lowpass",  filterFreq: isDown ? 750  : 950,  noiseAmp: isDown ? 0.08 : 0.04, bodyFreq: isDown ? 110 : 140, bodyAmp: isDown ? 0.05 : 0.025, bodyType: "sine", decay: 0.05 }
-    };
-    const p = profiles[switchProfile] || profiles.brown;
+    // Key-specific acoustic weight (Spacebar = deeper stabilized thock, Enter/Backspace/Shift = medium-deep)
+    let pitchScale = 1.0;
+    let bodyBoost = 1.0;
+    if (keyId === "space") {
+      pitchScale = 0.78;
+      bodyBoost = 1.22;
+    } else if (keyId === "enter" || keyId === "backspace" || keyId === "shiftL" || keyId === "shiftR") {
+      pitchScale = 0.87;
+      bodyBoost = 1.12;
+    } else if (keyId) {
+      let hash = 0;
+      for (let i = 0; i < keyId.length; i++) hash = (hash * 31 + keyId.charCodeAt(i)) & 0xff;
+      pitchScale = 0.97 + (hash / 255) * 0.06;
+    }
+    const jitter = 0.985 + Math.random() * 0.03;
+    const finalScale = pitchScale * jitter;
 
+    // 1. Felt / Stem Cushion Filtered Noise Layer
     const noise = audioCtx.createBufferSource();
-    noise.buffer = noiseBuffer;
+    noise.buffer = p.useVelvet ? velvetNoiseBuffer : noiseBuffer;
     const noiseFilter = audioCtx.createBiquadFilter();
     noiseFilter.type = p.filterType;
-    noiseFilter.frequency.setValueAtTime(p.filterFreq, t);
+    noiseFilter.frequency.setValueAtTime((isDown ? p.downFilterFreq : p.upFilterFreq) * finalScale, t);
+    noiseFilter.Q.setValueAtTime(p.filterQ || 1.0, t);
+
+    const WarmShelf = audioCtx.createBiquadFilter();
+    WarmShelf.type = "lowpass";
+    WarmShelf.frequency.setValueAtTime(p.useVelvet ? 2600 : 4200, t);
+
     const noiseGain = audioCtx.createGain();
-    noiseGain.gain.setValueAtTime(p.noiseAmp * vol, t);
-    noiseGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.038);
-    noise.connect(noiseFilter).connect(noiseGain).connect(audioCtx.destination);
+    const peakNoise = (isDown ? p.downNoiseAmp : p.upNoiseAmp) * vol;
+    noiseGain.gain.setValueAtTime(0.0001, t);
+    noiseGain.gain.linearRampToValueAtTime(peakNoise, t + 0.0018);
+    noiseGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.036);
+    noise.connect(noiseFilter).connect(WarmShelf).connect(noiseGain).connect(audioCtx.destination);
     noise.start(t);
     noise.stop(t + 0.042);
 
+    // 2. Primary Keycap & Gasket Plate Body Resonance
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     osc.type = p.bodyType;
-    osc.frequency.setValueAtTime(p.bodyFreq + Math.random() * 16, t);
-    osc.frequency.exponentialRampToValueAtTime(p.bodyFreq * 0.58, t + p.decay);
-    gain.gain.setValueAtTime(p.bodyAmp * vol, t);
-    gain.gain.exponentialRampToValueAtTime(0.0001, t + p.decay + 0.015);
+    const startFreq = (isDown ? p.downBodyFreq : p.upBodyFreq) * finalScale;
+    const endFreq = (isDown ? p.downBodyEnd : p.upBodyEnd) * finalScale;
+    const bodyDecay = isDown ? p.decay : p.decay * 0.72;
+    const peakBody = (isDown ? p.downBodyAmp : p.upBodyAmp) * bodyBoost * vol;
+
+    osc.frequency.setValueAtTime(startFreq, t);
+    osc.frequency.exponentialRampToValueAtTime(Math.max(35, endFreq), t + bodyDecay);
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.linearRampToValueAtTime(peakBody, t + 0.0022);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + bodyDecay + 0.016);
     osc.connect(gain).connect(audioCtx.destination);
     osc.start(t);
-    osc.stop(t + p.decay + 0.02);
+    osc.stop(t + bodyDecay + 0.02);
+
+    // 3. Harmonic Wooden/PBT Overtone Layer (adds plush creamy/marble character)
+    if (p.overtoneAmp) {
+      const overOsc = audioCtx.createOscillator();
+      const overGain = audioCtx.createGain();
+      overOsc.type = "sine";
+      const overStart = startFreq * (p.overtoneRatio || 2.0);
+      overOsc.frequency.setValueAtTime(overStart, t);
+      overOsc.frequency.exponentialRampToValueAtTime(Math.max(60, overStart * 0.55), t + bodyDecay * 0.65);
+      const peakOver = (isDown ? p.overtoneAmp : p.overtoneAmp * 0.45) * vol;
+      overGain.gain.setValueAtTime(0.0001, t);
+      overGain.gain.linearRampToValueAtTime(peakOver, t + 0.0016);
+      overGain.gain.exponentialRampToValueAtTime(0.0001, t + bodyDecay * 0.68);
+      overOsc.connect(overGain).connect(audioCtx.destination);
+      overOsc.start(t);
+      overOsc.stop(t + bodyDecay * 0.72);
+    }
   } catch (e) {}
 }
 
-if (typeof soundToggle !== "undefined" && soundToggle) {
-  soundToggle.classList.toggle("on", soundOn);
-  soundToggle.innerHTML = (soundOn ? pkIcon("volume", 15) : pkIcon("volume-mute", 15)) + " Key sound";
-  soundToggle.addEventListener("click", () => {
-    soundOn = !soundOn;
-    safeSet(LS.sound, soundOn ? "1" : "0");
+function auditionSwitchSound() {
+  playClick("down", "k", true);
+  setTimeout(() => playClick("up", "k", true), 68);
+  setTimeout(() => playClick("down", "space", true), 165);
+  setTimeout(() => playClick("up", "space", true), 240);
+}
+
+function syncSoundToggleUI() {
+  const isKm = document.documentElement.classList.contains("site-km-mode");
+  if (soundToggle) {
     soundToggle.classList.toggle("on", soundOn);
-    soundToggle.innerHTML = (soundOn ? pkIcon("volume", 15) : pkIcon("volume-mute", 15)) + " Key sound";
-    if (soundOn) playClick("down");
+    soundToggle.setAttribute("aria-pressed", String(soundOn));
+    const label = isKm ? (soundToggle.getAttribute("data-km") || "សំឡេងគ្រាប់ចុច") : (soundToggle.getAttribute("data-en") || "Key sound");
+    soundToggle.innerHTML = (soundOn ? pkIcon("volume", 15) : pkIcon("volume-mute", 15)) + " " + label;
+  }
+  const settingsSoundToggle = document.getElementById("settingsSoundToggle");
+  if (settingsSoundToggle) {
+    settingsSoundToggle.classList.toggle("on", soundOn);
+    settingsSoundToggle.setAttribute("aria-checked", String(soundOn));
+  }
+}
+
+function setSoundEnabled(on, shouldAudition) {
+  soundOn = !!on;
+  safeSet(LS.sound, soundOn ? "1" : "0");
+  syncSoundToggleUI();
+  if (soundOn && shouldAudition) {
+    playClick("down", "k", true);
+    setTimeout(() => playClick("up", "k", true), 70);
+  }
+}
+
+window.playClick = playClick;
+window.setSoundEnabled = setSoundEnabled;
+window.auditionSwitchSound = auditionSwitchSound;
+
+if (soundToggle) {
+  syncSoundToggleUI();
+  soundToggle.addEventListener("click", () => {
+    setSoundEnabled(!soundOn, true);
   });
 }
 
@@ -590,23 +857,54 @@ function initSettingsToggles() {
 
   /* ---------- 2. General: Keyboard Layout & Interface Language ---------- */
   const layoutChoiceBtns = document.querySelectorAll("#settingsLayoutChoice button");
+  const LAYOUT_PREVIEWS = {
+    standard: { badge: "Khmer Standard", sample: "Home Row: ា ស ដ ថ · ញ ក ល ៈ (Space = ្ Coeng)" },
+    nida:     { badge: "Khmer NiDA",     sample: "Home Row: ា ស ដ ថ · ្ ក ល ើ (J = ្ Coeng)" },
+    english:  { badge: "English (US)",   sample: "Home Row: A S D F · J K L ; (Standard QWERTY)" }
+  };
   function syncLayoutChoiceUI() {
-    const cur = (typeof currentLayoutName !== "undefined" && currentLayoutName) ? currentLayoutName : safeGet("khmerKeyboardLayout", "standard");
-    layoutChoiceBtns.forEach((b) => b.classList.toggle("active", b.dataset.layoutSet === cur));
+    const cur = (typeof currentLayoutId !== "undefined" && currentLayoutId)
+      ? currentLayoutId
+      : safeGet("khmerActiveLayout", safeGet("khmerLayout", "standard"));
+    layoutChoiceBtns.forEach((b) => {
+      const isAct = b.dataset.layoutSet === cur;
+      b.classList.toggle("active", isAct);
+      b.setAttribute("aria-pressed", String(isAct));
+    });
+    const lp = LAYOUT_PREVIEWS[cur] || LAYOUT_PREVIEWS.standard;
+    const badgeEl = document.getElementById("settingsActiveLayoutBadge");
+    const prevEl = document.getElementById("settingsActiveLayoutPreview");
+    if (badgeEl) badgeEl.textContent = lp.badge;
+    if (prevEl) prevEl.textContent = lp.sample;
   }
   layoutChoiceBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       const targetLayout = btn.dataset.layoutSet;
-      if (typeof setActiveLayout === "function") {
-        setActiveLayout(targetLayout);
+      if (!targetLayout) return;
+      if (typeof switchLayout === "function") {
+        switchLayout(targetLayout, true);
       } else {
-        const topBtn = document.querySelector(`#layoutTabs button[data-layout="${targetLayout}"]`);
+        const topBtn = document.querySelector(`#layoutStrip .layout-pill[data-layout="${targetLayout}"]`);
         if (topBtn) topBtn.click();
       }
+      if (typeof syncLayoutUI === "function") {
+        syncLayoutUI(targetLayout);
+      }
       syncLayoutChoiceUI();
+      if (typeof playClick === "function" && soundOn) playClick("down");
+      if (typeof showToast === "function") {
+        const lp = LAYOUT_PREVIEWS[targetLayout] || LAYOUT_PREVIEWS.standard;
+        showToast(pkIcon("keyboard", 18), lp.badge + " Active", lp.sample);
+      }
       setTimeout(healBothHandsOverlay, 60);
     });
   });
+  const mainLayoutStrip = document.getElementById("layoutStrip");
+  if (mainLayoutStrip) {
+    mainLayoutStrip.addEventListener("click", () => {
+      setTimeout(syncLayoutChoiceUI, 20);
+    });
+  }
   syncLayoutChoiceUI();
 
   const langChoiceBtns = document.querySelectorAll("#settingsLangChoice button");
@@ -686,15 +984,36 @@ function initSettingsToggles() {
   applyAccent(safeGet(LS.accent, "gold"));
 
   // Khmer Script Font Family
+  const KHMER_FONTS = {
+    "kantumruy":  { label: "Kantumruy Pro",    css: "'Kantumruy Pro', 'Noto Sans Khmer', sans-serif" },
+    "noto-sans":  { label: "Noto Sans Khmer",  css: "'Noto Sans Khmer', sans-serif" },
+    "noto-serif": { label: "Noto Serif Khmer", css: "'Noto Serif Khmer', Georgia, serif" },
+    "battambang": { label: "Battambang",       css: "'Battambang', 'Khmer OS Battambang', serif" },
+    "moul":       { label: "Moul (Display)",   css: "'Moul', 'Noto Serif Khmer', serif" }
+  };
   const khmerFontBtns = document.querySelectorAll("#khmerFontChoice button");
-  function applyKhmerFont(fontKey) {
-    fontKey = fontKey || "kantumruy";
+  function applyKhmerFont(fontKey, notify) {
+    fontKey = KHMER_FONTS[fontKey] ? fontKey : "kantumruy";
+    const fDef = KHMER_FONTS[fontKey];
     document.documentElement.setAttribute("data-khmer-font", fontKey);
-    khmerFontBtns.forEach((b) => b.classList.toggle("active", b.dataset.kfont === fontKey));
+    document.documentElement.style.setProperty("--khmer-font-family", fDef.css);
+    khmerFontBtns.forEach((b) => {
+      const isAct = b.dataset.kfont === fontKey;
+      b.classList.toggle("active", isAct);
+      b.setAttribute("aria-pressed", String(isAct));
+    });
+    const tagEl = document.getElementById("khmerFontActiveTag");
+    if (tagEl) tagEl.textContent = fDef.label;
     safeSet(LS.khmerFont, fontKey);
+    if (notify) {
+      if (typeof playClick === "function" && soundOn) playClick("down");
+      if (typeof showToast === "function") {
+        showToast(pkIcon("sparkles", 18), "Khmer Font: " + fDef.label, "Applied to keycaps, lesson prompts & HUD.");
+      }
+    }
   }
-  khmerFontBtns.forEach((b) => b.addEventListener("click", () => applyKhmerFont(b.dataset.kfont)));
-  applyKhmerFont(safeGet(LS.khmerFont, "kantumruy"));
+  khmerFontBtns.forEach((b) => b.addEventListener("click", () => applyKhmerFont(b.dataset.kfont, true)));
+  applyKhmerFont(safeGet(LS.khmerFont, "kantumruy"), false);
 
   // Custom Wallpaper + Dimming + Glass Blur
   const customWallpaperLayer = document.getElementById("customWallpaperLayer");
@@ -897,7 +1216,7 @@ function initSettingsToggles() {
     setTimeout(healBothHandsOverlay, 50);
   }
   bindSwitch(compactKeysToggle, applyCompactKeys);
-  applyCompactKeys(false);
+  applyCompactKeys(safeGet(LS.compactKeys, "0") === "1");
 
   // Key Press Spark Effects
   const keyFxToggle = document.getElementById("keyFxToggle");
@@ -912,13 +1231,29 @@ function initSettingsToggles() {
   /* ---------- 5. Sound & Mechanical Audio Engine Controls ---------- */
   const switchBtns = document.querySelectorAll("#switchProfileChoice button");
   function applySwitchProfile(profile, audition) {
-    switchProfile = profile || "brown";
+    switchProfile = (profile && SWITCH_PROFILE_META[profile]) ? profile : "soft-cream";
     switchBtns.forEach((b) => b.classList.toggle("active", b.dataset.switch === switchProfile));
+    const meta = SWITCH_PROFILE_META[switchProfile] || SWITCH_PROFILE_META["soft-cream"];
+    const badgeEl = document.getElementById("switchProfileActiveBadge");
+    const descEl = document.getElementById("switchProfileActiveDesc");
+    if (badgeEl) badgeEl.textContent = meta.label;
+    if (descEl) descEl.textContent = meta.desc;
     safeSet(LS.switchProfile, switchProfile);
-    if (audition && soundOn) playClick("down");
+    if (audition) {
+      if (!soundOn) setSoundEnabled(true, false);
+      auditionSwitchSound();
+    }
   }
   switchBtns.forEach((b) => b.addEventListener("click", () => applySwitchProfile(b.dataset.switch, true)));
-  applySwitchProfile(safeGet(LS.switchProfile, "brown"), false);
+  applySwitchProfile(safeGet(LS.switchProfile, "soft-cream"), false);
+
+  const settingsTestSoundBtn = document.getElementById("settingsTestSoundBtn");
+  if (settingsTestSoundBtn) {
+    settingsTestSoundBtn.addEventListener("click", () => {
+      if (!soundOn) setSoundEnabled(true, false);
+      auditionSwitchSound();
+    });
+  }
 
   const soundVolumeSlider = document.getElementById("soundVolumeSlider");
   const soundVolumeValue = document.getElementById("soundVolumeValue");
@@ -930,7 +1265,10 @@ function initSettingsToggles() {
   }
   if (soundVolumeSlider) {
     soundVolumeSlider.addEventListener("input", () => applySoundVolume(soundVolumeSlider.value));
-    soundVolumeSlider.addEventListener("change", () => { if (soundOn) playClick("down"); });
+    soundVolumeSlider.addEventListener("change", () => {
+      playClick("down", "k", true);
+      setTimeout(() => playClick("up", "k", true), 68);
+    });
   }
   applySoundVolume(safeGet(LS.soundVolume, "80"));
 
@@ -1158,24 +1496,14 @@ function initSettingsToggles() {
     });
   }
 
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && document.documentElement.classList.contains("focus-mode")) {
-      const anyModalOpen = document.querySelector(".modal-backdrop:not([hidden])");
-      if (!anyModalOpen) applyFocusMode(false);
-    } else if (e.altKey && (e.key === "f" || e.key === "F")) {
-      e.preventDefault();
-      applyFocusMode(!document.documentElement.classList.contains("focus-mode"));
-    }
-  });
+  window.applyFocusMode = applyFocusMode;
   applyFocusMode(safeGet(LS.focusMode, "0") === "1");
 
   /* ---------- 9. Mirror Sound & Finger-Guide Toggles ---------- */
   const settingsSoundToggle = document.getElementById("settingsSoundToggle");
   const settingsHandsToggle = document.getElementById("settingsHandsToggle");
   function syncSettingsMirrors() {
-    if (settingsSoundToggle && typeof soundToggle !== "undefined" && soundToggle) {
-      setSwitchUI(settingsSoundToggle, soundToggle.classList.contains("on"));
-    }
+    syncSoundToggleUI();
     if (settingsHandsToggle && typeof handsToggle !== "undefined" && handsToggle) {
       setSwitchUI(settingsHandsToggle, handsToggle.classList.contains("on"));
     }
@@ -1186,11 +1514,12 @@ function initSettingsToggles() {
     syncLangChoiceUI();
     syncAmbienceUI();
   }
-  if (settingsSoundToggle && typeof soundToggle !== "undefined" && soundToggle) {
-    settingsSoundToggle.addEventListener("click", () => {
-      soundToggle.click();
-      syncSettingsMirrors();
-    });
+  window.syncSettingsMirrors = syncSettingsMirrors;
+  bindSwitch(settingsSoundToggle, (on) => {
+    setSoundEnabled(on, true);
+    syncSettingsMirrors();
+  });
+  if (soundToggle) {
     soundToggle.addEventListener("click", syncSettingsMirrors);
   }
   if (settingsHandsToggle && typeof handsToggle !== "undefined" && handsToggle) {
@@ -1214,8 +1543,8 @@ function initSettingsToggles() {
       applyCompactKeys(false);
       applyHandsOpacity(85);
       if (typeof handsToggle !== "undefined" && handsToggle && !handsToggle.classList.contains("on")) handsToggle.click();
-      if (typeof soundToggle !== "undefined" && soundToggle && !soundToggle.classList.contains("on")) soundToggle.click();
-      applySwitchProfile("brown", false);
+      setSoundEnabled(true, false);
+      applySwitchProfile("soft-cream", false);
       applySoundVolume(80);
       applyMouseInspector(true);
       applyReticle(true);
@@ -1237,7 +1566,8 @@ function initSettingsToggles() {
       applyAccent("cyan");
       applyCompactKeys(false);
       applyHandsOpacity(40);
-      applySwitchProfile("red", true);
+      setSoundEnabled(true, false);
+      applySwitchProfile("raindrop", true);
       applyKeyFx(false);
       applyMotes(false);
       applyTorches(false);
@@ -1251,8 +1581,8 @@ function initSettingsToggles() {
       applyCompactKeys(false);
       applyHandsOpacity(90);
       if (typeof handsToggle !== "undefined" && handsToggle && !handsToggle.classList.contains("on")) handsToggle.click();
-      if (typeof soundToggle !== "undefined" && soundToggle && !soundToggle.classList.contains("on")) soundToggle.click();
-      applySwitchProfile("brown", true);
+      setSoundEnabled(true, false);
+      applySwitchProfile("soft-cream", true);
       applyKeyFx(true);
       applyMotes(true);
       applyTorches(true);
@@ -1352,6 +1682,9 @@ function initSettingsToggles() {
     if (settingsModal) settingsModal.hidden = true;
   }
 
+  window.openSettingsModal = openSettingsModal;
+  window.closeSettingsModal = closeSettingsModal;
+
   if (settingsOpenBtn) settingsOpenBtn.addEventListener("click", openSettingsModal);
   if (settingsCloseBtn) settingsCloseBtn.addEventListener("click", closeSettingsModal);
   if (settingsDoneBtn) settingsDoneBtn.addEventListener("click", closeSettingsModal);
@@ -1360,13 +1693,6 @@ function initSettingsToggles() {
       if (e.target === settingsModal) closeSettingsModal();
     });
   }
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      if (typeof statsModal !== "undefined" && statsModal) statsModal.hidden = true;
-      closeSettingsModal();
-    }
-  });
 }
 
 if (document.readyState === "loading") {

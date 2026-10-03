@@ -871,13 +871,13 @@
   }
 
   html.focus-mode body{
-    padding: 36px 20px 20px !important;
+    padding: 44px 20px 20px !important;
     justify-content: center;
   }
 
   html.focus-mode .layout-strip{
     margin: 0 0 12px !important;
-    opacity: 0.85;
+    opacity: 0.75;
     transition: opacity .25s ease;
   }
   html.focus-mode .layout-strip:hover{
@@ -891,7 +891,6 @@
   html.focus-mode .keyboard{
     width: min(86vw, 780px) !important;
     gap: 7px !important;
-    padding-bottom: 14px !important;
   }
   html.focus-mode .row{
     gap: 7px !important;
@@ -900,10 +899,6 @@
     height: 52px !important;
     font-size: 1.05rem !important;
     border-radius: 9px !important;
-  }
-  html.focus-mode .key.mod,
-  html.focus-mode .key.label-key{
-    font-size: 0.72rem !important;
   }
 
   html.focus-mode .top-actions{
@@ -3121,14 +3116,14 @@
   }
   .key {
     transition: background .08s ease !important;
-    font-family: 'Kantumruy Pro', 'Khmer OS Battambang', 'Khmer OS Siemreap', 'Noto Sans Khmer', sans-serif !important;
+    font-family: var(--khmer-font-family, 'Kantumruy Pro', 'Khmer OS Battambang', 'Khmer OS Siemreap', 'Noto Sans Khmer', sans-serif) !important;
   }
   .key.pressed {
     transform: none !important;
     filter: brightness(1.2) !important;
   }
   .manuscript-text, .race-text, .trial-word, .lesson-char-row {
-    font-family: 'Kantumruy Pro', 'Khmer OS Battambang', 'Khmer OS Siemreap', 'Noto Sans Khmer', sans-serif !important;
+    font-family: var(--khmer-font-family, 'Kantumruy Pro', 'Khmer OS Battambang', 'Khmer OS Siemreap', 'Noto Sans Khmer', sans-serif) !important;
   }
   .content {
     max-width: 1200px;

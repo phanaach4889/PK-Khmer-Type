@@ -50,45 +50,9 @@
     english: {}
   };
 
-  const STANDARD_KEY_OVERRIDES = {
-    'ញ': { keyId: 'j', layer: 'base', finger: 'ri', hand: 'R' },
-    'អ': { keyId: 'comma', layer: 'base', finger: 'rm', hand: 'R' },
-    'ើ': { keyId: 'bracketL', layer: 'base', finger: 'rp', hand: 'R' },
-    'ឿ': { keyId: 'bracketR', layer: 'base', finger: 'rp', hand: 'R' },
-    'ៀ': { keyId: 'bracketR', layer: 'shift', finger: 'rp', hand: 'R' },
-    'ៃ': { keyId: 'a', layer: 'shift', finger: 'lp', hand: 'L' },
-    'ាំ': { keyId: 's', layer: 'shift', finger: 'lr', hand: 'L' },
-    'ុំ': { keyId: 'j', layer: 'shift', finger: 'ri', hand: 'R' },
-    'ុះ': { keyId: 'g', layer: 'shift', finger: 'li', hand: 'L' },
-    'ោះ': { keyId: 'bracketL', layer: 'shift', finger: 'rp', hand: 'R' },
-    'ះ': { keyId: 'h', layer: 'shift', finger: 'ri', hand: 'R' },
-    '្': { keyId: 'space', layer: 'base', finger: 'rt', hand: 'R' },
-    '៊': { keyId: 'k3', layer: 'shift', finger: 'lm', hand: 'L' },
-    '័': { keyId: 'k5', layer: 'shift', finger: 'li', hand: 'L' },
-    '៌': { keyId: 'k6', layer: 'shift', finger: 'ri', hand: 'R' },
-    '៍': { keyId: 'k7', layer: 'shift', finger: 'ri', hand: 'R' },
-    '៏': { keyId: 'k8', layer: 'shift', finger: 'rm', hand: 'R' },
-    '៎': { keyId: 'k9', layer: 'shift', finger: 'rr', hand: 'R' },
-    '៑': { keyId: 'k0', layer: 'shift', finger: 'rp', hand: 'R' },
-    '៕': { keyId: 'slash', layer: 'altgr', finger: 'rp', hand: 'R' },
-    '៖': { keyId: 'semicolon', layer: 'shift', finger: 'rp', hand: 'R' },
-    'ៈ': { keyId: 'semicolon', layer: 'base', finger: 'rp', hand: 'R' },
-    'ឥ': { keyId: 'i', layer: 'altgr', finger: 'rm', hand: 'R' },
-    'ឦ': { keyId: 't', layer: 'altgr', finger: 'li', hand: 'L' },
-    'ឧ': { keyId: 'u', layer: 'altgr', finger: 'ri', hand: 'R' },
-    'ឩ': { keyId: 'a', layer: 'altgr', finger: 'lp', hand: 'L' },
-    'ឪ': { keyId: 's', layer: 'altgr', finger: 'lr', hand: 'L' },
-    'ឭ': { keyId: 'k', layer: 'altgr', finger: 'rm', hand: 'R' },
-    'ឮ': { keyId: 'j', layer: 'altgr', finger: 'ri', hand: 'R' },
-    'ឰ': { keyId: 'l', layer: 'altgr', finger: 'rr', hand: 'R' },
-    'ឳ': { keyId: 'p', layer: 'altgr', finger: 'rp', hand: 'R' }
-  };
-
   KHMER_CATALOG.forEach(c => {
+    CATALOG_MAPS.standard[c.char] = c;
     CATALOG_MAPS.nida[c.char] = c;
-    CATALOG_MAPS.standard[c.char] = STANDARD_KEY_OVERRIDES[c.char]
-      ? Object.assign({}, c, STANDARD_KEY_OVERRIDES[c.char])
-      : c;
   });
   ENGLISH_CATALOG.forEach(c => {
     CATALOG_MAPS.english[c.char] = c;

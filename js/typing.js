@@ -17,64 +17,11 @@ function normalizeInput(text){
   return str.normalize('NFC');
 }
 
-/* Canonical Khmer equivalence normalization (Reference Sec 4.2, 5.2, 5.6, UTN #61):
-   - Zero-width space (U+200B) and NBSP (U+00A0) normalize to standard space (U+0020)
-   - Coeng Da (្ដ U+17D2 U+178A) normalizes to Coeng Ta (្ត U+17D2 U+178F)
-   - Independent vowel Qoo Type 2 (ឲ U+17B2) normalizes to Type 1 (ឱ U+17B1)
-   - Canonical ordering of Coeng + Register Shifter normalizes to Register Shifter + Coeng */
-function normalizeKhmerEquivalents(text){
-  const nfc = normalizeInput(text);
-  if(!nfc) return '';
-  return nfc
-    .replace(/[\u200B\u00A0]/g, ' ')
-    .replace(/\u17D2\u178A/g, '\u17D2\u178F')
-    .replace(/\u17B2/g, '\u17B1')
-    .replace(/(\u17D2[\u1780-\u17A2])([\u17C9\u17CA])/g, '$2$1');
-}
-
 function compareTypingSequence(produced, expected){
   if(produced === expected) return true;
-  const pNorm = normalizeKhmerEquivalents(produced);
-  const eNorm = normalizeKhmerEquivalents(expected);
+  const pNorm = normalizeInput(produced);
+  const eNorm = normalizeInput(expected);
   return pNorm === eNorm;
-}
-
-/* Official Khmer syllable structure regex (Reference Sec 5.8) */
-const KHMER_SYLLABLE_REGEX = /^[\u1780-\u17A2]([\u17C9\u17CA])?(?:\u17D2[\u1780-\u17A2]){0,2}[\u17B6-\u17C5]?[\u17C6-\u17C8]?([\u17CB-\u17D1\u17DD])?$/;
-
-/* Diagnose common Khmer orthographic typing mistakes (Reference Sec 5.7) */
-function diagnoseKhmerTypingMistake(expectedUnit, typedChar, prevUnit){
-  if(!expectedUnit || !typedChar) return null;
-  const PRE_BASE_VOWELS = ['េ', 'ែ', 'ៃ', 'ោ', 'ៅ'];
-  const expCode = expectedUnit.codePointAt(0);
-  const isExpectedConsonant = expCode >= 0x1780 && expCode <= 0x17A2;
-
-  // 1. Visual-order mistake: typing pre-base vowel (េ, ែ, ៃ, ោ, ៅ) before the base consonant
-  if(isExpectedConsonant && PRE_BASE_VOWELS.includes(typedChar)){
-    return 'Khmer Rule: Type the base consonant (' + expectedUnit + ') BEFORE the pre-base vowel (' + typedChar + ').';
-  }
-  // 2. Forgetting Coeng (្) before a subscript consonant
-  if(expectedUnit === '្' && typedChar.codePointAt(0) >= 0x1780 && typedChar.codePointAt(0) <= 0x17A2){
-    const coengKeyHint = (typeof currentLayoutId !== 'undefined' && currentLayoutId === 'standard') ? 'Space' : 'J';
-    return 'Subscript Rule: Press ' + coengKeyHint + ' (្ Coeng) first before typing the subscript consonant (' + typedChar + ').';
-  }
-  // 3. Typing vowel before subscript (Coeng)
-  if(expectedUnit === '្' && typedChar.codePointAt(0) >= 0x17B6 && typedChar.codePointAt(0) <= 0x17C5){
-    return 'Syllable Order: Type the subscript consonant (្ + Consonant) BEFORE the dependent vowel (' + typedChar + ').';
-  }
-  // 4. Typing េ + ា instead of ោ
-  if(expectedUnit === 'ោ' && typedChar === 'េ'){
-    return 'Do not build ោ from េ + ា — press O directly for ស្រៈ ោ (U+17C4).';
-  }
-  // 5. Confusing ុ (Sra O) with ៉ / ៊ (Register Shifters)
-  if((expectedUnit === '៉' || expectedUnit === '៊') && typedChar === 'ុ'){
-    return 'Register Shifter (' + expectedUnit + ') is a top mark, not the bottom vowel ុ.';
-  }
-  // 6. Typing ASCII colon ':' instead of Khmer Yuukaleapintu (ៈ) or Camnuc Pii Kuuh (៖)
-  if((expectedUnit === 'ៈ' || expectedUnit === '៖') && typedChar === ':'){
-    return 'Use the Khmer sign ' + expectedUnit + ' instead of the English ASCII colon (:).';
-  }
-  return null;
 }
 
 function splitIntoTypingUnits(text, layoutId){
@@ -82,9 +29,8 @@ function splitIntoTypingUnits(text, layoutId){
   const normalized = normalizeInput(text);
   const units = [];
   let i = 0;
-  const isKhmerLayout = (layoutId === 'nida' || layoutId === 'standard');
   while(i < normalized.length){
-    if(isKhmerLayout && i + 1 < normalized.length){
+    if(layoutId === 'nida' && i + 1 < normalized.length){
       const pair = normalized.slice(i, i + 2);
       if(KHMER_COMPOUND_VOWELS.includes(pair)){
         units.push(pair);
@@ -101,10 +47,7 @@ function splitIntoTypingUnits(text, layoutId){
 }
 
 window.normalizeInput = normalizeInput;
-window.normalizeKhmerEquivalents = normalizeKhmerEquivalents;
 window.compareTypingSequence = compareTypingSequence;
-window.KHMER_SYLLABLE_REGEX = KHMER_SYLLABLE_REGEX;
-window.diagnoseKhmerTypingMistake = diagnoseKhmerTypingMistake;
 window.splitIntoTypingUnits = splitIntoTypingUnits;
 
 /* ---------- Composition / IME Awareness ---------- */
@@ -446,6 +389,19 @@ function clearText(){
   placeholderEl.style.display = 'inline';
 }
 
+window.getManuscriptText = getManuscriptText;
+window.setManuscriptText = setManuscriptText;
+window.insertText = insertText;
+window.backspaceText = backspaceText;
+window.clearText = clearText;
+window.copyManuscriptToClipboard = copyManuscriptToClipboard;
+window.cutManuscriptToClipboard = cutManuscriptToClipboard;
+window.handlePasteText = handlePasteText;
+window.selectAllManuscript = selectAllManuscript;
+window.undoManuscript = undoManuscript;
+window.redoManuscript = redoManuscript;
+window.backspaceWord = backspaceWord;
+
 /* ---------- Key Stroke Resolution Pipeline ---------- */
 function resolveKeyStroke(id){
   if(!id) return null;
@@ -510,13 +466,15 @@ function typeKey(id, ev){
     if(currentLayoutId === 'english'){
       capsOn = !capsOn;
       if(el) el.classList.toggle('lit', capsOn);
-      playClick('down');
+      playClick('down', id);
+      if(ev) setTimeout(()=> playClick('up', id), 68);
     }
     return;
   }
 
   if(stroke.id === 'backspace'){
-    playClick('up');
+    playClick('down', 'backspace');
+    if(ev) setTimeout(()=> playClick('up', 'backspace'), 65);
     if(typeof adaptiveActive !== 'undefined' && adaptiveActive){
       if(typeof adaptiveHandleBackspace === 'function') adaptiveHandleBackspace();
     } else if(typeof lessonActive !== 'undefined' && lessonActive){
@@ -531,7 +489,8 @@ function typeKey(id, ev){
     return;
   }
 
-  playClick('down');
+  playClick('down', id);
+  if(ev) setTimeout(()=> playClick('up', id), 68);
 
   if(stroke.id === 'enter' || stroke.id === 'tab'){
     if(!trialActive && !lessonActive && !raceActive && (typeof adaptiveActive === 'undefined' || !adaptiveActive)){
@@ -576,6 +535,14 @@ window.addEventListener('keydown', (e)=>{
   if(t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
   if(e.isComposing || isComposing) return;
 
+  // Do not type into manuscript/lesson when any modal or completion overlay is open
+  if(document.querySelector('.modal-backdrop:not([hidden]), .lesson-complete-overlay, .race-result-overlay')){
+    return;
+  }
+
+  // Let shortcuts.js handle Escape and F1 without typing
+  if(e.key === 'Escape' || e.key === 'F1') return;
+
   const id = CODE_MAP[e.code];
 
   if(id === 'shiftL' || id === 'shiftR'){
@@ -584,7 +551,7 @@ window.addEventListener('keydown', (e)=>{
     recomputePhysicalLayer();
     if(keyEls[id]) keyEls[id].classList.add('pressed');
     triggerFingerPress(id);
-    playClick('down');
+    playClick('down', id);
     if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
     return;
   }
@@ -594,7 +561,7 @@ window.addEventListener('keydown', (e)=>{
     recomputePhysicalLayer();
     if(keyEls[id]) keyEls[id].classList.add('pressed');
     triggerFingerPress(id);
-    playClick('down');
+    playClick('down', id);
     if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
     return;
   }
@@ -604,7 +571,7 @@ window.addEventListener('keydown', (e)=>{
     recomputePhysicalLayer();
     if(keyEls[id]) keyEls[id].classList.add('pressed');
     triggerFingerPress(id);
-    playClick('down');
+    playClick('down', id);
     if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
     return;
   }
@@ -612,7 +579,7 @@ window.addEventListener('keydown', (e)=>{
     if(e.repeat) return;
     if(keyEls[id]) keyEls[id].classList.add('pressed');
     triggerFingerPress(id);
-    playClick('down');
+    playClick('down', id);
     if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
     return;
   }
@@ -634,6 +601,11 @@ window.addEventListener('keydown', (e)=>{
   // Handle Ctrl / Meta shortcuts (only when not typing an AltGr glyph)
   if(!isAltGraph && (e.ctrlKey || e.metaKey)){
     const keyLower = (e.key || '').toLowerCase();
+
+    // Application shortcuts handled in shortcuts.js (Ctrl+, for Settings, Ctrl+/ for Shortcuts, Ctrl+Enter for Restart)
+    if(e.key === ',' || e.code === 'Comma' || e.key === '/' || e.code === 'Slash' || e.key === 'Enter'){
+      return;
+    }
 
     // Browser navigation / dev tools passthrough (DO NOT block or prevent)
     if(keyLower === 'r' || keyLower === 'w' || keyLower === 't' || keyLower === 'p' || keyLower === 'f' || keyLower === 'l' || keyLower === 'n' || keyLower === 'j' || keyLower === 'u' || keyLower === 'g' || keyLower === 'q' || (e.shiftKey && (keyLower === 'i' || keyLower === 'c' || keyLower === 'j'))){
@@ -700,6 +672,16 @@ window.addEventListener('keydown', (e)=>{
     return;
   }
 
+  // Let '?' open Shortcuts Guide unless an active drill is specifically targeting the slash key
+  if(e.key === '?'){
+    const slashIsTarget =
+      (typeof lessonActive !== 'undefined' && lessonActive && typeof highlightedKeyId !== 'undefined' && highlightedKeyId === 'slash') ||
+      (typeof raceActive !== 'undefined' && raceActive && typeof highlightedKeyId !== 'undefined' && highlightedKeyId === 'slash') ||
+      (typeof trialActive !== 'undefined' && trialActive) ||
+      (typeof adaptiveActive !== 'undefined' && adaptiveActive);
+    if(!slashIsTarget) return;
+  }
+
   if(!id) return;
   if(id === 'caps'){ typeKey(id); return; }
 
@@ -718,20 +700,20 @@ window.addEventListener('keyup', (e)=>{
   if(id === 'shiftL' || id === 'shiftR'){
     if(!e.shiftKey) heldModifiers.delete('shift');
     recomputePhysicalLayer();
-    playClick('up');
+    playClick('up', id);
   } else if(id === 'ctrlL' || id === 'ctrlR'){
     if(!e.ctrlKey) heldModifiers.delete('ctrl');
     recomputePhysicalLayer();
-    playClick('up');
+    playClick('up', id);
   } else if(id === 'altgr'){
     heldModifiers.delete('altgr');
     if(!e.ctrlKey) heldModifiers.delete('ctrl');
     recomputePhysicalLayer();
-    playClick('up');
+    playClick('up', id);
   } else if(id === 'alt'){
-    playClick('up');
+    playClick('up', id);
   } else if(id !== 'caps'){
-    playClick('up');
+    playClick('up', id);
   }
 });
 

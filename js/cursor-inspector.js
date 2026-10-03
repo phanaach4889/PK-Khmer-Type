@@ -26,12 +26,12 @@
     'ជ': { name: 'Co', nameKm: 'ជោ', ipa: '[cɔː]', series: '2nd (អ៊-ពួក)', group: 'Palatal', type: 'Consonant', sub: '្ជ' },
     'ឈ': { name: 'Cho', nameKm: 'ឈោ', ipa: '[cʰɔː]', series: '2nd (អ៊-ពួក)', group: 'Palatal', type: 'Consonant', sub: '្ឈ' },
     'ញ': { name: 'Nyo', nameKm: 'ញោ', ipa: '[ɲɔː]', series: '2nd (អ៊-ពួក)', group: 'Palatal', type: 'Consonant', sub: '្ញ' },
-    'ដ': { name: 'Da', nameKm: 'ដា', ipa: '[ɗɑː]', series: '1st (អ-ពួក)', group: 'Retroflex', type: 'Consonant', sub: '្ដ (or ្ត per UTN #61)' },
+    'ដ': { name: 'Da', nameKm: 'ដា', ipa: '[ɗɑː]', series: '1st (អ-ពួក)', group: 'Retroflex', type: 'Consonant', sub: '្ដ' },
     'ឋ': { name: 'Tha', nameKm: 'ឋា', ipa: '[tʰɑː]', series: '1st (អ-ពួក)', group: 'Retroflex', type: 'Consonant', sub: '្ឋ' },
     'ឌ': { name: 'Do', nameKm: 'ឌោ', ipa: '[ɗɔː]', series: '2nd (អ៊-ពួក)', group: 'Retroflex', type: 'Consonant', sub: '្ឌ' },
     'ឍ': { name: 'Tho', nameKm: 'ឍោ', ipa: '[tʰɔː]', series: '2nd (អ៊-ពួក)', group: 'Retroflex', type: 'Consonant', sub: '្ឍ' },
-    'ណ': { name: 'Na', nameKm: 'ណា (អ-ពួក — តែមួយគត់ក្នុងចំណោម ង ញ ណ ន ម)', ipa: '[nɑː]', series: '1st (អ-ពួក)', group: 'Retroflex', type: 'Consonant', sub: '្ណ' },
-    'ត': { name: 'Ta', nameKm: 'តា', ipa: '[tɑː]', series: '1st (អ-ពួក)', group: 'Dental', type: 'Consonant', sub: '្ត (Chuon Nath standard)' },
+    'ណ': { name: 'Na', nameKm: 'ណា', ipa: '[nɑː]', series: '1st (អ-ពួក)', group: 'Retroflex', type: 'Consonant', sub: '្ណ' },
+    'ត': { name: 'Ta', nameKm: 'តា', ipa: '[tɑː]', series: '1st (អ-ពួក)', group: 'Dental', type: 'Consonant', sub: '្ត' },
     'ថ': { name: 'Tha', nameKm: 'ថា', ipa: '[tʰɑː]', series: '1st (អ-ពួក)', group: 'Dental', type: 'Consonant', sub: '្ថ' },
     'ទ': { name: 'To', nameKm: 'ទោ', ipa: '[tɔː]', series: '2nd (អ៊-ពួក)', group: 'Dental', type: 'Consonant', sub: '្ទ' },
     'ធ': { name: 'Tho', nameKm: 'ធោ', ipa: '[tʰɔː]', series: '2nd (អ៊-ពួក)', group: 'Dental', type: 'Consonant', sub: '្ធ' },
@@ -47,7 +47,7 @@
     'វ': { name: 'Vo', nameKm: 'វោ', ipa: '[ʋɔː]', series: '2nd (អ៊-ពួក)', group: 'Liquid', type: 'Consonant', sub: '្វ' },
     'ស': { name: 'Sa', nameKm: 'សា', ipa: '[sɑː]', series: '1st (អ-ពួក)', group: 'Sibilant', type: 'Consonant', sub: '្ស' },
     'ហ': { name: 'Ha', nameKm: 'ហា', ipa: '[hɑː]', series: '1st (អ-ពួក)', group: 'Aspirate', type: 'Consonant', sub: '្ហ' },
-    'ឡ': { name: 'La', nameKm: 'ឡា (គ្មានជើង — no subscript form in modern Khmer)', ipa: '[lɑː]', series: '1st (អ-ពួក)', group: 'Liquid', type: 'Consonant', sub: '' },
+    'ឡ': { name: 'La', nameKm: 'ឡា', ipa: '[lɑː]', series: '1st (អ-ពួក)', group: 'Liquid', type: 'Consonant', sub: '្ឡ' },
     'អ': { name: 'Qa', nameKm: 'អា', ipa: '[ʔɑː]', series: '1st (អ-ពួក)', group: 'Glottal', type: 'Consonant', sub: '្អ' },
 
     // Dependent Vowels (ស្រៈនិស្ស័យ)
@@ -68,58 +68,46 @@
     'ោ': { name: 'Sra Ao', nameKm: 'ស្រៈ អោ', ipa: '[ao / oː]', type: 'Dependent Vowel' },
     'ៅ': { name: 'Sra Aw', nameKm: 'ស្រៈ អៅ', ipa: '[aw / ɨw]', type: 'Dependent Vowel' },
     'ុំ': { name: 'Sra Om', nameKm: 'ស្រៈ អុំ', ipa: '[om / um]', type: 'Compound Vowel' },
-    'ំ': { name: 'Sra Am (Nikahit)', nameKm: 'ស្រៈ អំ / និគ្គហិត (ំ)', ipa: '[ɑm / um]', type: 'Compound Vowel' },
-    'ាំ': { name: 'Sra Aam', nameKm: 'ស្រៈ អាំ', ipa: '[am / oəm]', type: 'Compound Vowel' },
-    'ះ': { name: 'Sra Ah (Reahmuk)', nameKm: 'ស្រៈ អះ / រះមុខ (ះ)', ipa: '[ah / eəh]', type: 'Compound Vowel' },
+    'ំ': { name: 'Sra Am', nameKm: 'ស្រៈ អំ', ipa: '[ɑm / um]', type: 'Compound Vowel' },
+    'ាំ': { name: 'Sra Aam', nameKm: 'ស្រៈ អាំ', ipa: '[am / əm]', type: 'Compound Vowel' },
+    'ះ': { name: 'Sra Ah', nameKm: 'ស្រៈ អះ', ipa: '[ah / eəh]', type: 'Compound Vowel' },
     'ុះ': { name: 'Sra Oh', nameKm: 'ស្រៈ អុះ', ipa: '[oh / uh]', type: 'Compound Vowel' },
     'េះ': { name: 'Sra Eh', nameKm: 'ស្រៈ អេះ', ipa: '[eh / ih]', type: 'Compound Vowel' },
     'ោះ': { name: 'Sra Aoh', nameKm: 'ស្រៈ អោះ', ipa: '[ɑh / uəh]', type: 'Compound Vowel' },
 
     // Independent Vowels (ស្រៈពេញតួ)
-    'ឥ': { name: 'Qi', nameKm: 'ឥ (ស្រៈពេញតួ ឥ)', ipa: '[ʔe]', type: 'Independent Vowel' },
-    'ឦ': { name: 'Qii', nameKm: 'ឦ (ស្រៈពេញតួ ឦ)', ipa: '[ʔəj]', type: 'Independent Vowel' },
-    'ឧ': { name: 'Qu', nameKm: 'ឧ (ស្រៈពេញតួ ឧ)', ipa: '[ʔo]', type: 'Independent Vowel' },
-    'ឨ': { name: 'Quk (Deprecated)', nameKm: 'ឨ (មិនប្រើក្នុងខ្មែរទំនើប — ប្រើ ឧក ជំនួស)', ipa: 'Deprecated U+17A8', type: 'Deprecated Independent Vowel' },
-    'ឩ': { name: 'Quu', nameKm: 'ឩ (ស្រៈពេញតួ ឩ)', ipa: '[ʔou]', type: 'Independent Vowel' },
-    'ឪ': { name: 'Quv', nameKm: 'ឪ (ស្រៈពេញតួ ឪ)', ipa: '[ʔəw]', type: 'Independent Vowel' },
-    'ឫ': { name: 'Ry', nameKm: 'ឫ (ស្រៈពេញតួ ឫ)', ipa: '[rɨ]', type: 'Independent Vowel' },
-    'ឬ': { name: 'Ryy', nameKm: 'ឬ (ស្រៈពេញតួ ឬ)', ipa: '[rɨː]', type: 'Independent Vowel' },
-    'ឭ': { name: 'Ly', nameKm: 'ឭ (ស្រៈពេញតួ ឭ)', ipa: '[lɨ]', type: 'Independent Vowel' },
-    'ឮ': { name: 'Lyy', nameKm: 'ឮ (ស្រៈពេញតួ ឮ)', ipa: '[lɨː]', type: 'Independent Vowel' },
-    'ឯ': { name: 'Qe', nameKm: 'ឯ (ស្រៈពេញតួ ឯ)', ipa: '[ʔae / ʔeː]', type: 'Independent Vowel' },
-    'ឰ': { name: 'Qai', nameKm: 'ឰ (ស្រៈពេញតួ ឰ)', ipa: '[ʔaj]', type: 'Independent Vowel' },
-    'ឱ': { name: 'Qoo Type 1', nameKm: 'ឱ (ស្រៈពេញតួ ឱ)', ipa: '[ʔao]', type: 'Independent Vowel' },
-    'ឲ': { name: 'Qoo Type 2', nameKm: 'ឲ (ទម្រង់ឆ្លាស់នៃ ឱ — U+17B2)', ipa: '[ʔao]', type: 'Independent Vowel' },
-    'ឳ': { name: 'Qau', nameKm: 'ឳ (ស្រៈពេញតួ ឳ)', ipa: '[ʔaw]', type: 'Independent Vowel' },
+    'ឥ': { name: 'Qi', nameKm: 'ឥ (ស្រៈ ឥ)', ipa: '[ʔe]', type: 'Independent Vowel' },
+    'ឦ': { name: 'Qii', nameKm: 'ឦ (ស្រៈ ឦ)', ipa: '[ʔəj]', type: 'Independent Vowel' },
+    'ឧ': { name: 'Qu', nameKm: 'ឧ (ស្រៈ ឧ)', ipa: '[ʔo]', type: 'Independent Vowel' },
+    'ឩ': { name: 'Quu', nameKm: 'ឩ (ស្រៈ ឩ)', ipa: '[ʔou]', type: 'Independent Vowel' },
+    'ឪ': { name: 'Qov', nameKm: 'ឪ (ស្រៈ ឪ)', ipa: '[ʔəw]', type: 'Independent Vowel' },
+    'ឫ': { name: 'Ry', nameKm: 'ឫ (ស្រៈ ឫ)', ipa: '[rɨ]', type: 'Independent Vowel' },
+    'ឬ': { name: 'Ryy', nameKm: 'ឬ (ស្រៈ ឬ)', ipa: '[rɨː]', type: 'Independent Vowel' },
+    'ឭ': { name: 'Ly', nameKm: 'ឭ (ស្រៈ ឭ)', ipa: '[lɨ]', type: 'Independent Vowel' },
+    'ឮ': { name: 'Lyy', nameKm: 'ឮ (ស្រៈ ឮ)', ipa: '[lɨː]', type: 'Independent Vowel' },
+    'ឯ': { name: 'Qae', nameKm: 'ឯ (ស្រៈ ឯ)', ipa: '[ʔae]', type: 'Independent Vowel' },
+    'ឰ': { name: 'Qai', nameKm: 'ឰ (ស្រៈ ឰ)', ipa: '[ʔaj]', type: 'Independent Vowel' },
+    'ឱ': { name: 'Qao', nameKm: 'ឱ (ស្រៈ ឱ)', ipa: '[ʔao]', type: 'Independent Vowel' },
+    'ឲ': { name: 'Qao', nameKm: 'ឲ (ស្រៈ ឲ)', ipa: '[ʔao]', type: 'Independent Vowel' },
+    'ឳ': { name: 'Qaw', nameKm: 'ឳ (ស្រៈ ឳ)', ipa: '[ʔaw]', type: 'Independent Vowel' },
 
-    // Diacritics & Signs (វណ្ណយុត្តិ និងសញ្ញា)
-    '្': { name: 'Coeng Sign', nameKm: 'ជើងអក្សរ (្)', ipa: 'Subscript stacker (U+17D2)', type: 'Coeng Key' },
-    'ៈ': { name: 'Yuukaleapintu', nameKm: 'យុគលពិន្ទុ (ៈ)', ipa: 'Short [aʔ / eəʔ] glottal stop', type: 'Diacritic' },
-    '៉': { name: 'Muusikatoan', nameKm: 'មូសិកទន្ត (៉) — ធ្មេញកណ្ដុរ', ipa: 'Shifts o-series → a-series', type: 'Register Shifter' },
-    '៊': { name: 'Triisap', nameKm: 'ត្រីស័ព្ទ (៊)', ipa: 'Shifts a-series → o-series', type: 'Register Shifter' },
-    '់': { name: 'Bantoc', nameKm: 'បន្តក់ (់)', ipa: 'Shortens preceding vowel', type: 'Diacritic' },
-    '៌': { name: 'Robat', nameKm: 'របាទ (៌)', ipa: 'Pali/Sanskrit repha mark', type: 'Diacritic' },
-    '៍': { name: 'Toandakhiat', nameKm: 'ទណ្ឌឃាត (៍) — បដិសេធ', ipa: 'Silences letter/syllable', type: 'Diacritic' },
-    '៎': { name: 'Kakabat', nameKm: 'កាកបាទ (៎) — ជើងក្អែក', ipa: 'Rising/exclamatory intonation', type: 'Diacritic' },
-    '៏': { name: 'Ahsda', nameKm: 'អស្តា (៏) — លេខប្រាំបីតូច', ipa: 'Inherent vowel emphasis (ក៏, ដ៏)', type: 'Diacritic' },
-    '័': { name: 'Samyok Sannya', nameKm: 'សំយោគសញ្ញា (័)', ipa: 'Loanword vowel modifier', type: 'Diacritic' },
-    '៑': { name: 'Viriam', nameKm: 'វិរាម (៑)', ipa: 'Pali/Sanskrit virama killer', type: 'Diacritic' },
-    '៓': { name: 'Bathamasat (Deprecated)', nameKm: '៓ (មិនប្រើ — Deprecated U+17D3)', ipa: 'Lunar date corrosion', type: 'Deprecated Sign' },
-    '៝': { name: 'Atthacan', nameKm: 'អត្ថចន្ទ (៝)', ipa: 'Pali final consonant mark', type: 'Diacritic' },
-    '។': { name: 'Khan', nameKm: 'ខណ្ឌ (។)', ipa: 'Clause / sentence full stop', type: 'Punctuation' },
-    'ៗ': { name: 'Lek Too', nameKm: 'លេខទោ (ៗ)', ipa: 'Word/phrase repetition mark', type: 'Punctuation' },
-    '៖': { name: 'Camnuc Pii Kuuh', nameKm: 'ចំណុចពីរគូស (៖)', ipa: 'Khmer colon / heading divider', type: 'Punctuation' },
-    '៘': { name: 'Beyyal', nameKm: 'បេយ្យាលៈ (។ល។)', ipa: 'Et cetera — type ។ + ល + ។', type: 'Punctuation' },
-    '៙': { name: 'Phnaek Muan', nameKm: 'ភ្នែកមាន់ (៙)', ipa: 'Traditional opening sign', type: 'Punctuation' },
-    '៚': { name: 'Koomuut', nameKm: 'គោមូត្រ (៚)', ipa: 'Traditional end of text', type: 'Punctuation' },
-    '៛': { name: 'Riel Sign', nameKm: 'សញ្ញារៀល (៛)', ipa: 'Cambodian Riel Currency (KHR)', type: 'Currency' },
-    'ៜ': { name: 'Avakrahasannya', nameKm: 'អវក្រហសញ្ញា (ៜ)', ipa: 'Sanskrit elision mark', type: 'Diacritic' },
-    '៕': { name: 'Bariyoosan', nameKm: 'បរិយោសាន (៕)', ipa: 'Chapter / section conclusion', type: 'Punctuation' },
+    // Diacritics & Signs (វណ្ណយុត្តិ)
+    '្': { name: 'Coeng Sign', nameKm: 'ជើង (្)', ipa: 'Subscript Prefix', type: 'Coeng Key' },
+    '់': { name: 'Bantoc', nameKm: 'បន្តក់ (់)', ipa: 'Shortens vowel', type: 'Diacritic' },
+    '៉': { name: 'Musikatoan', nameKm: 'មូសិកទន្ត (៉)', ipa: 'Converts 2nd to 1st series', type: 'Diacritic' },
+    '៊': { name: 'Triisap', nameKm: 'ត្រីស័ព្ទ (៊)', ipa: 'Converts 1st to 2nd series', type: 'Diacritic' },
+    '៍': { name: 'Tandakhat', nameKm: 'ទណ្ឌឃាត (៍)', ipa: 'Silent letter mark', type: 'Diacritic' },
+    '៏': { name: 'Kakabat', nameKm: 'កាកបាទ (៏)', ipa: 'Tone/exclamation', type: 'Diacritic' },
+    '័': { name: 'Samyok Sanya', nameKm: 'សំយោគសញ្ញា (័)', ipa: 'Vowel modifier', type: 'Diacritic' },
+    '៌': { name: 'Robat', nameKm: 'របាទ (៌)', ipa: 'Sanskrit r-sound', type: 'Diacritic' },
+    '៎': { name: 'Khaekkhla', nameKm: 'ក្បៀស (៎)', ipa: 'Exclamation sign', type: 'Diacritic' },
+    'ៗ': { name: 'Lek To', nameKm: 'លេខទោ (ៗ)', ipa: 'Word repetition mark', type: 'Punctuation' },
+    '៛': { name: 'Riel', nameKm: 'សញ្ញារៀល (៛)', ipa: 'Cambodian Riel Currency', type: 'Currency' },
+    '។': { name: 'Khan', nameKm: 'ខណ្ឌ (។)', ipa: 'Full stop / period', type: 'Punctuation' },
+    '៕': { name: 'Bariyoosan', nameKm: 'បរិយោសាន (៕)', ipa: 'Chapter / story end', type: 'Punctuation' },
+    '៖': { name: 'Camnoc-puk', nameKm: 'ចំណុចពីរគូស (៖)', ipa: 'Colon sign', type: 'Punctuation' },
     '«': { name: 'Left Guillemet', nameKm: 'សញ្ញាសម្រង់បើក («)', ipa: 'Opening quote', type: 'Punctuation' },
-    '»': { name: 'Right Guillemet', nameKm: 'សញ្ញាសម្រង់បិទ (»)', ipa: 'Closing quote', type: 'Punctuation' },
-    '\u200B': { name: 'Zero-Width Space (ZWSP)', nameKm: 'ដកឃ្លាមើលមិនឃើញ (ZWSP · U+200B)', ipa: 'Invisible word boundary', type: 'Control Character' },
-    '\u200C': { name: 'Zero-Width Non-Joiner (ZWNJ)', nameKm: 'សញ្ញាបំបែកទម្រង់ (ZWNJ · U+200C)', ipa: 'Prevents ligature joining', type: 'Control Character' },
-    '\u200D': { name: 'Zero-Width Joiner (ZWJ)', nameKm: 'សញ្ញាភ្ជាប់ទម្រង់ (ZWJ · U+200D)', ipa: 'Requests ligature joining', type: 'Control Character' }
+    '»': { name: 'Right Guillemet', nameKm: 'សញ្ញាសម្រង់បិទ (»)', ipa: 'Closing quote', type: 'Punctuation' }
   };
 
   // Finger presentation names & accents
@@ -958,6 +946,9 @@
       } else if(reticleEl){
         reticleEl.classList.add('active');
       }
+      if(typeof global.syncSettingsMirrors === 'function'){
+        global.syncSettingsMirrors();
+      }
       if(typeof global.showToast === 'function'){
         global.showToast(
           '<svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>',
@@ -967,15 +958,6 @@
       }
     };
   }
-
-  // Keyboard shortcut (Alt+M) to toggle mouse inspector
-  window.addEventListener('keydown', (ev)=>{
-    if(ev.altKey && (ev.key === 'm' || ev.key === 'M')){
-      ev.preventDefault();
-      const btn = document.getElementById('cursorGuideToggle');
-      if(btn) btn.click();
-    }
-  });
 
   /* ---- Resilient Hand & Pinky Kinematics Guardian ---- */
   function ensureHandsKinematics(){
@@ -1018,10 +1000,17 @@
     getCharInfo,
     isEnabled: ()=> inspectorEnabled,
     toggle: (state)=>{
-      inspectorEnabled = typeof state === 'boolean' ? state : !inspectorEnabled;
-      savePreference();
+      const next = typeof state === 'boolean' ? state : !inspectorEnabled;
+      if(next === inspectorEnabled) return;
       const btn = document.getElementById('cursorGuideToggle');
-      if(btn) btn.classList.toggle('on', inspectorEnabled);
+      if(btn && typeof btn.onclick === 'function'){
+        btn.onclick();
+      } else {
+        inspectorEnabled = next;
+        savePreference();
+        if(btn) btn.classList.toggle('on', inspectorEnabled);
+        if(typeof global.syncSettingsMirrors === 'function') global.syncSettingsMirrors();
+      }
     }
   };
   global.PKCursorInspector = global.PK_MOUSE_INSPECTOR;
