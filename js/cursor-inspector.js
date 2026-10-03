@@ -913,12 +913,31 @@
     }
   });
 
+  /* ---- Resilient Hand & Pinky Kinematics Guardian ---- */
+  function ensureHandsKinematics(){
+    if(!global.FINGERS) return;
+    if(!global.FINGERS.some(f => f.id === 'rp')){
+      global.FINGERS.push({id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:12.5, tipW:7.5, kDist:68, restLen:52, restAng:0.10});
+    }
+    const handGroupR = document.querySelector('.hand-group.side-r');
+    if(handGroupR && !document.querySelector('.finger[data-finger="rp"]')){
+      if(typeof global.createFingerElement === 'function'){
+        const rpDef = global.FINGERS.find(f => f.id === 'rp');
+        if(rpDef) global.createFingerElement(rpDef);
+      }
+    }
+    if(typeof global.renderHands === 'function'){
+      global.renderHands();
+    }
+  }
+
   /* ---- Initialization ---- */
   function init(){
     loadPreference();
     ensureDOM();
     attachEventListeners();
     setupToolbarToggle();
+    ensureHandsKinematics();
   }
 
   if(document.readyState !== 'loading'){

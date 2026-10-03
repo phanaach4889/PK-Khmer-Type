@@ -613,6 +613,7 @@ const handsOverlay = document.getElementById('handsOverlay');
 const handsToggle = document.getElementById('handsToggle');
 let handsOn = true;
 const fingerEls = {}; // id -> {g, shape, shine, crease1, crease2, nail, tip}
+window.fingerEls = fingerEls;
 
 /* ---- svg geometry helpers ---- */
 const SVGNS = 'http://www.w3.org/2000/svg';
@@ -764,7 +765,8 @@ const palmCoreR = document.createElementNS(SVGNS,'circle'); palmCoreR.setAttribu
 handGroupL.appendChild(palmShapeL); handGroupL.appendChild(palmShadeL); handGroupL.appendChild(palmHiL); handGroupL.appendChild(palmCoreL);
 handGroupR.appendChild(palmShapeR); handGroupR.appendChild(palmShadeR); handGroupR.appendChild(palmHiR); handGroupR.appendChild(palmCoreR);
 
-FINGERS.forEach(f=>{
+function createFingerElement(f){
+  if(fingerEls[f.id]) return fingerEls[f.id];
   const g = document.createElementNS(SVGNS,'g');
   g.setAttribute('class','finger');
   g.dataset.finger = f.id;
@@ -790,7 +792,11 @@ FINGERS.forEach(f=>{
   g.appendChild(shine); g.appendChild(shine2); g.appendChild(energy); g.appendChild(nail); g.appendChild(impactRing); g.appendChild(impactRing2); g.appendChild(impactSparks); g.appendChild(reticle); g.appendChild(tip);
   (f.hand === 'L' ? handGroupL : handGroupR).appendChild(g);
   fingerEls[f.id] = {g, shape, crease1, crease2, joint1, joint2, shine, shine2, energy, nail, tip, impactRing, impactRing2, impactSparks, reticle};
-});
+  return fingerEls[f.id];
+}
+window.createFingerElement = createFingerElement;
+
+FINGERS.forEach(createFingerElement);
 
 let activeFinger = null;
 let activeTargetKey = null;
@@ -845,12 +851,27 @@ function buildHand(hand, fingers, wrapRect, activeF, targetKey){
   const inward = hand === 'L' ? 1 : -1;
   const outward = -inward;
 
+  // Defensive fallback: ensure right pinky is always anchored even if external buffer dropped it
+  if(hand === 'R' && !fingers.some(f=> f.kind === 'pinky')){
+    const rpDef = {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:12.5, tipW:7.5, kDist:68, restLen:52, restAng:0.10};
+    fingers.push(rpDef);
+    if(!FINGERS.some(f=> f.id === 'rp')) FINGERS.push(rpDef);
+  }
+
   const homes = {};
   fingers.forEach(f=>{
     if(f.kind === 'thumb') return;
     const c = keyCenter(f.home, wrapRect);
     if(c) homes[f.id] = c;
   });
+
+  // If semicolon key center failed to resolve for right pinky, approximate from ring finger
+  if(hand === 'R' && (!homes['rp'] || !fingers.some(f=> f.id === 'rp'))){
+    const ring = fingers.find(f=> f.kind === 'ring');
+    if(ring && homes[ring.id]){
+      homes['rp'] = { x: homes[ring.id].x + 58, y: homes[ring.id].y };
+    }
+  }
 
   const order = ['pinky','ring','middle','index'].map(k=>fingers.find(f=>f.kind===k));
   if(order.some(f=> !f || !homes[f.id])) return null;
@@ -935,6 +956,16 @@ function updateHandsOverlay(){
   handsOverlay.setAttribute('viewBox', `0 0 ${wrapRect.width} ${wrapRect.height}`);
   handsOverlay.setAttribute('width', wrapRect.width);
   handsOverlay.setAttribute('height', wrapRect.height);
+
+  // Resilient safeguards: guarantee right pinky is always present in FINGERS and DOM
+  if(!FINGERS.some(f => f.id === 'rp')){
+    const rpDef = {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:12.5, tipW:7.5, kDist:68, restLen:52, restAng:0.10};
+    FINGERS.push(rpDef);
+  }
+  if(!fingerEls['rp']){
+    const rpDef = FINGERS.find(f => f.id === 'rp') || {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:12.5, tipW:7.5, kDist:68, restLen:52, restAng:0.10};
+    createFingerElement(rpDef);
+  }
 
   const leftFingers = FINGERS.filter(f=>f.hand==='L');
   const rightFingers = FINGERS.filter(f=>f.hand==='R');
@@ -1171,3 +1202,4 @@ function applyKeyboardData(data){
   if(data.KEY_FINGER) Object.assign(KEY_FINGER, data.KEY_FINGER);
   if(data.CODE_MAP) Object.assign(CODE_MAP, data.CODE_MAP);
 }
+window.renderHands = renderHands;
