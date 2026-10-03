@@ -150,6 +150,7 @@
       // Alt+F: Toggle Focus Mode
       if(keyLower === 'f' || e.code === 'KeyF'){
         e.preventDefault();
+        closeShortcutsModal();
         const focusBtn = document.getElementById('focusModeBtn');
         if(focusBtn) focusBtn.click();
         return;
