@@ -1023,14 +1023,6 @@ function createLessonModel(rawLesson, exercisesMap, layoutId, levelObj){
           unitOffset++;
         }
 
-        if(idx < refs.length - 1 && units[units.length - 1] !== ' '){
-          const spLoc = (currentTable === KEY_BY_ID_EN)
-            ? { id: 'space', layer: 'base', ch: ' ' }
-            : { id: 'space', layer: 'shift', ch: ' ' };
-          entries.push(spLoc);
-          unitOffset++;
-        }
-
         const end = Math.max(start, unitOffset - 1);
         sections.push({
           id: eid,
@@ -1855,9 +1847,7 @@ function renderLessonMeta(def){
 
   if(def.newIds && def.newIds.length){
     lessonNewKeysEl.hidden = false;
-    const isKm = (document.documentElement.getAttribute('lang') === 'km');
-    const labelText = isKm ? 'គ្រាប់ចុចគោលដៅ' : 'Target Keys';
-    lessonNewKeysEl.innerHTML = `<span class="lesson-newkeys-label i18n-t" data-en="Target Keys" data-km="គ្រាប់ចុចគោលដៅ">${labelText}</span>` + def.newIds.map(id=>{
+    lessonNewKeysEl.innerHTML = '<span class="lesson-newkeys-label">Target Keys</span>' + def.newIds.map(id=>{
       const layer = def.newLayer || def.layer || 'base';
       let ch = (def.newChars && def.newChars[id]) || charFor(id, layer);
       if(!ch) ch = charFor(id, 'base') || charFor(id, 'shift') || '';

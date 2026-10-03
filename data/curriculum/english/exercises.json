@@ -69,13 +69,13 @@
     },
     "en-L01-01-E02": {
       "type": "drill",
-      "content": "dd kk ddk kkd dk kd dd kk",
-      "description": "Double taps and alternation"
+      "content": "df jk fd kj",
+      "description": "Index and middle coordination"
     },
     "en-L01-01-E03": {
       "type": "drill",
-      "content": "dk kd dkd kdk ddk kkd d k dk kd",
-      "description": "Cross-hand middle finger coordination"
+      "content": "dk fk dj jk d k",
+      "description": "Cross-hand middle drills"
     },
     "en-L01-02-E01": {
       "type": "single-char",
@@ -84,13 +84,13 @@
     },
     "en-L01-02-E02": {
       "type": "drill",
-      "content": "ss ll ssl lls sl ls ss ll",
-      "description": "Double taps and alternation"
+      "content": "sk ld sl ks",
+      "description": "Ring and middle coordination"
     },
     "en-L01-02-E03": {
       "type": "drill",
-      "content": "sl ls sls lsl ssl lls s l sl ls",
-      "description": "Cross-hand ring finger coordination"
+      "content": "sd kl fl js s l",
+      "description": "Three-finger transitions"
     },
     "en-L01-03-E01": {
       "type": "drill",
@@ -129,13 +129,13 @@
     },
     "en-L02-01-E02": {
       "type": "drill",
-      "content": "aa ;; aa; ;;a a; ;a aa ;;",
-      "description": "Double taps and alternation"
+      "content": "as l; sa ;l",
+      "description": "Pinky and ring transitions"
     },
     "en-L02-01-E03": {
       "type": "drill",
-      "content": "a; ;a a;a ;a; aa; ;;a a ; a; ;a",
-      "description": "Cross-hand pinky finger coordination"
+      "content": "a s d f j k l ;",
+      "description": "Full 8-key baseline"
     },
     "en-L02-02-E01": {
       "type": "drill",
@@ -1054,203 +1054,203 @@
     },
     "en-L01-01-E04": {
       "type": "drill",
-      "content": "ddd d dd kkk k kk dk kd dkd kdk ddd kkk",
+      "content": "ddd d dd kkk k kk df jd dj kf jk kj ddd d dd kkk k kk",
       "description": "Rhythm and fluency consolidation for Middle Fingers: D and K"
     },
     "en-L01-02-E04": {
       "type": "drill",
-      "content": "sss s ss lll l ll sl ls sls lsl sss lll",
+      "content": "sss s ss lll l ll sf js sj lf jl lj sss s ss lll l ll",
       "description": "Rhythm and fluency consolidation for Ring Fingers: S and L"
     },
     "en-L01-03-E04": {
       "type": "drill",
-      "content": "ddd d dd kkk k kk sss s ss lll l ll df jd dj kf jk kj",
-      "description": "Rhythm and fluency consolidation for Six-Key Core Drills"
+      "content": "fjdk slkd fjsl dksl lsdk fksl jdsl ksfl",
+      "description": "Six-key core coordination flow"
     },
     "en-L01-04-E04": {
       "type": "drill",
-      "content": "ddd d dd kkk k kk sss s ss lll l ll df jd dj kf jk kj sf js sj",
-      "description": "Rhythm and fluency consolidation for Core Flow & Rhythm"
+      "content": "fjdk slkd fjsl dksl lsdk fksl jdsl ksfl fjsl dksl lsdk",
+      "description": "Core rhythm and fluency flow"
     },
     "en-L02-01-E04": {
       "type": "drill",
-      "content": "aaa a aa ;;; ; ;; a; ;a a;a ;a; aaa ;;;",
+      "content": "aaa a aa ;;; ; ;; af ja aj ;f j; ;j aaa a aa ;;; ; ;;",
       "description": "Rhythm and fluency consolidation for Pinky Fingers: A and Semicolon"
     },
     "en-L02-02-E04": {
       "type": "drill",
-      "content": "sss s ss lll l ll aaa a aa ;;; ; ;; sf js sj",
-      "description": "Rhythm and fluency consolidation for All 8 Core Keys Combined"
+      "content": "asdf jkl; a;sl dkfj fdsa ;lkj alsk djf;",
+      "description": "Full home row eight-finger flow"
     },
     "en-L02-03-E04": {
-      "type": "drill",
-      "content": "sss s ss lll l ll aaa a aa ;;; ; ;; sf js sj",
-      "description": "Rhythm and fluency consolidation for Core Home Row Words"
+      "type": "word",
+      "content": "ask dad all fall sad lad flask salad alas lass",
+      "description": "Consolidation of core home row words"
     },
     "en-L02-04-E04": {
       "type": "drill",
-      "content": "sss s ss lll l ll aaa a aa ;;; ; ;;",
-      "description": "Rhythm and fluency consolidation for Core Home Row Phrases & Flow"
+      "content": "ask dad as all lads fall sad alas add a flask ask all",
+      "description": "Consolidation of home row phrases"
     },
     "en-L03-01-E04": {
       "type": "drill",
-      "content": "ggg g gg gf jg gj ggg g gg gf jg gj ggg g gg gf jg gj",
-      "description": "Rhythm and fluency consolidation for Left Index Reach: G"
+      "content": "fg gf fgf gfg gag gas gal glad flag slag gals glad flag",
+      "description": "Left index G reach fluency drill"
     },
     "en-L03-02-E04": {
       "type": "drill",
-      "content": "hhh h hh hf jh hj hhh h hh hf jh hj hhh h hh hf jh hj",
-      "description": "Rhythm and fluency consolidation for Right Index Reach: H"
+      "content": "jh hj jhj hjh hah has had ash half dash flash hash hall",
+      "description": "Right index H reach fluency drill"
     },
     "en-L03-03-E04": {
-      "type": "drill",
-      "content": "aaa a aa ;;; ; ;; ggg g gg hhh h hh",
-      "description": "Rhythm and fluency consolidation for Words with G and H"
+      "type": "word",
+      "content": "glad flag half hall dash flash shall glass had a flash",
+      "description": "Consolidation of G and H words"
     },
     "en-L04-01-E04": {
       "type": "drill",
-      "content": "eee e ee ef je ej eee e ee ef je ej eee e ee",
-      "description": "Rhythm and fluency consolidation for Top Row Left Middle: E"
+      "content": "ded ede dede fee see feed seed fled shed heel see feed",
+      "description": "Left middle E reach and word fluency"
     },
     "en-L04-02-E04": {
       "type": "drill",
-      "content": "iii i ii if ji ij iii i ii if ji ij iii i ii",
-      "description": "Rhythm and fluency consolidation for Top Row Right Middle: I"
+      "content": "kik iki kiki kid lid fill sill hide side file kid fill",
+      "description": "Right middle I reach and word fluency"
     },
     "en-L04-03-E04": {
       "type": "drill",
-      "content": "rrr r rr rf jr rj rrr r rr rf jr rj",
-      "description": "Rhythm and fluency consolidation for Top Row Left Index: R"
+      "content": "frf rfr frfr red ride fire free dear gear hear rare fire",
+      "description": "Left index R reach and word fluency"
     },
     "en-L04-04-E04": {
       "type": "drill",
-      "content": "uuu u uu uf ju uj uuu u uu uf ju uj",
-      "description": "Rhythm and fluency consolidation for Top Row Right Index: U"
+      "content": "juj uju juju rule sure full dull rush slug gull glue rule",
+      "description": "Right index U reach and word fluency"
     },
     "en-L04-05-E04": {
-      "type": "drill",
-      "content": "eee e ee iii i ii rrr r rr uuu u uu",
-      "description": "Rhythm and fluency consolidation for Top Row Vowels Review"
+      "type": "word",
+      "content": "red ride side rule fire sure dear hear glue file seed",
+      "description": "Consolidation of top row vowel words"
     },
     "en-L05-01-E04": {
       "type": "drill",
-      "content": "ttt t tt yyy y yy tf jt tj yf jy yj ttt t tt",
-      "description": "Rhythm and fluency consolidation for T and Y"
+      "content": "ftf jyj try dry they year stay gray gate hate true they",
+      "description": "T and Y index finger reach and word fluency"
     },
     "en-L05-02-E04": {
       "type": "drill",
-      "content": "www w ww ooo o oo wf jw wj of jo oj",
-      "description": "Rhythm and fluency consolidation for W and O"
+      "content": "sws lol wow owo word work world slow wood good look foot",
+      "description": "W and O ring finger reach and word fluency"
     },
     "en-L05-03-E04": {
       "type": "drill",
-      "content": "qqq q qq ppp p pp qf jq qj pf jp pj",
-      "description": "Rhythm and fluency consolidation for Q and P"
+      "content": "aqa ;p; quit quiet part play page rope hope drop post quit",
+      "description": "Q and P pinky finger reach and word fluency"
     },
     "en-L05-04-E04": {
-      "type": "drill",
-      "content": "www w ww ooo o oo qqq q qq",
-      "description": "Rhythm and fluency consolidation for Top Row Words"
+      "type": "word",
+      "content": "power water quote write poetry tower route quiet party",
+      "description": "Top row word fluency consolidation"
     },
     "en-L05-05-E04": {
       "type": "drill",
-      "content": "www w ww ooo o oo qqq q qq",
-      "description": "Rhythm and fluency consolidation for Top & Home Row Mastery"
+      "content": "write your words with pride as you type with speed today",
+      "description": "Top and home row fluency sentence"
     },
     "en-L06-01-E04": {
       "type": "drill",
-      "content": "ccc c cc vvv v vv cf jc cj vf jv vj",
-      "description": "Rhythm and fluency consolidation for C and V"
+      "content": "dcd fvf cvc vcv cave voice cover very clover civil active",
+      "description": "C and V reach and word fluency"
     },
     "en-L06-02-E04": {
       "type": "drill",
-      "content": "bbb b bb nnn n nn bf jb bj nf jn nj bbb b bb",
-      "description": "Rhythm and fluency consolidation for B and N"
+      "content": "fbf jnj bnb nbn been bent best bone born burn bank band",
+      "description": "B and N reach and word fluency"
     },
     "en-L06-03-E04": {
       "type": "drill",
-      "content": "mmm m mm mf jm mj mmm m mm mf jm mj mmm m mm mf jm mj",
-      "description": "Rhythm and fluency consolidation for M"
+      "content": "jmj mjm jmm mjj more make time home from come much move",
+      "description": "M reach and word fluency"
     },
     "en-L06-04-E04": {
       "type": "drill",
-      "content": "zzz z zz xxx x xx zf jz zj xf jx xj zzz z zz",
-      "description": "Rhythm and fluency consolidation for Z and X"
+      "content": "aza sxs zxz xzx zero zone size next taxi box six exact",
+      "description": "Z and X reach and word fluency"
     },
     "en-L06-05-E04": {
       "type": "drill",
-      "content": ",,, , ,, ... . .. ,f j, ,j",
-      "description": "Rhythm and fluency consolidation for Comma and Period"
+      "content": "red, green, blue. slow, steady, fast. ready, set, go.",
+      "description": "Comma and period cadence drill"
     },
     "en-L06-06-E04": {
-      "type": "drill",
-      "content": "zzz z zz xxx x xx ,,, , ,,",
-      "description": "Rhythm and fluency consolidation for Bottom Row Words"
+      "type": "word",
+      "content": "come move been next zinc calm climb active voice bronze",
+      "description": "Bottom row word fluency consolidation"
     },
     "en-L07-01-E04": {
       "type": "drill",
-      "content": "zzz z zz xxx x xx ,,, , ,, ... . ..",
-      "description": "Rhythm and fluency consolidation for All Letters Practice"
+      "content": "zyx wvu tsr qpo nml kji hgf edc ba abcdefghijklmnopqrstuvwxyz",
+      "description": "Reverse and forward alphabet flow"
     },
     "en-L07-04-E03": {
-      "type": "drill",
-      "content": "zzz z zz xxx x xx ,,, , ,,",
-      "description": "Rhythm and fluency consolidation for Full Alphabet Review"
+      "type": "sentence",
+      "content": "the quick brown fox jumps over the lazy dog.",
+      "description": "Classic pangram fluency review"
     },
     "en-L08-01-E04": {
       "type": "drill",
-      "content": "zzz z zz xxx x xx ,,, , ,, ... . .. zf jz zj xf jx xj",
-      "description": "Rhythm and fluency consolidation for Shift Basics"
+      "content": "Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz",
+      "description": "Alphabetical uppercase pairs drill"
     },
     "en-L08-02-E03": {
-      "type": "drill",
-      "content": "zzz z zz xxx x xx ,,, , ,, ... . ..",
-      "description": "Rhythm and fluency consolidation for Left-Hand Capitals"
+      "type": "words",
+      "content": "Seattle Dallas Atlanta Detroit Austin Baltimore Cleveland",
+      "description": "Left-hand capital cities drill"
     },
     "en-L08-03-E03": {
-      "type": "drill",
-      "content": "zzz z zz xxx x xx ,,, , ,, ... . ..",
-      "description": "Rhythm and fluency consolidation for Right-Hand Capitals"
+      "type": "words",
+      "content": "Tokyo Rome Paris Berlin Lisbon Oslo Dublin Ottawa Lima",
+      "description": "Right-hand capital cities drill"
     },
     "en-L09-01-E04": {
       "type": "drill",
-      "content": "111 1 11 222 2 22 333 3 33 444 4 44 555 5 55 1f j1 1j",
-      "description": "Rhythm and fluency consolidation for Numbers 1-5"
+      "content": "12345 54321 13524 42531 11 22 33 44 55 15 24 33 42 51",
+      "description": "Numbers 1 to 5 rhythm and cadence"
     },
     "en-L09-02-E04": {
       "type": "drill",
-      "content": "666 6 66 777 7 77 888 8 88 999 9 99 000 0 00 6f j6 6j",
-      "description": "Rhythm and fluency consolidation for Numbers 6-0"
+      "content": "67890 09876 68079 97086 66 77 88 99 00 60 79 88 97 06",
+      "description": "Numbers 6 to 0 rhythm and cadence"
     },
     "en-L10-01-E03": {
       "type": "drill",
-      "content": "??? ? ?? /// / // ?f j? ?j",
-      "description": "Rhythm and fluency consolidation for Question Mark & Slash"
+      "content": "yes/no true/false day/night input/output ready? now? ok?",
+      "description": "Question mark and slash practical words"
     },
     "en-L10-02-E03": {
       "type": "drill",
-      "content": "''' ' '' \"\"\" \" \"\" 'f j' 'j \"f j\" \"j",
-      "description": "Rhythm and fluency consolidation for Apostrophe and Quotes"
+      "content": "\"it's fine\" \"we can't wait\" \"she's here\" \"let's go\"",
+      "description": "Apostrophe and quotation marks in phrases"
     },
     "en-L10-03-E03": {
       "type": "drill",
-      "content": "!!! ! !! ::: : :: @@@ @ @@ ### # ## $$$ $ $$ %%% % %% ^^^ ^ ^^ &&& & && *** * **",
-      "description": "Rhythm and fluency consolidation for Exclamation and Colon"
+      "content": "price: $25! total: $100 (#1 deal) 50% off & save $10 now @home: 8 * 2 is 16",
+      "description": "Realistic symbol and math sentence"
     },
     "en-L10-04-E03": {
       "type": "drill",
-      "content": "((( ( (( ))) ) )) [[[ [ [[ ]]] ] ]] {{{ { {{ }}} } }} <<< < << >>> > >>",
-      "description": "Rhythm and fluency consolidation for Parentheses and Brackets"
+      "content": "func(x) [index] {value} <tag> (a and b) [0] {id: 1} <item> 10 > 5 and 2 < 8",
+      "description": "Brackets, braces and code symbols"
     },
     "en-L10-05-E03": {
       "type": "drill",
-      "content": "--- - -- === = == +++ + ++ ___ _ __ \\\\\\ \\ \\\\ ||| | || ``` ` `` ~~~ ~ ~~",
-      "description": "Rhythm and fluency consolidation for Hyphen, Plus and Equals"
+      "content": "user_name = \"test\" | cost = 10 + 5 - 2 | path = C:\\docs\\`file` ~home",
+      "description": "Math operators, hyphens and path symbols"
     },
     "en-L11-01-E04": {
-      "type": "drill",
-      "content": "[[[ [ [[ ]]] ] ]] --- - --",
-      "description": "Rhythm and fluency consolidation for Short Sentences"
+      "type": "sentence",
+      "content": "Trees grow tall and green under the bright sun.",
+      "description": "Short nature sentence"
     }
   }
 }
