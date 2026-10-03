@@ -599,19 +599,272 @@
   html.large-text{ font-size:18px; }
   html.large-text .subtitle, html.large-text .hint{ font-size:0.92rem; }
 
-  /* ================= new: light theme override ================= */
-  html.theme-light body{
+  /* ================= new: light theme override — Crisp Ceramic Studio ================= */
+  html.theme-light body {
     background:
-      radial-gradient(ellipse 60vw 40vh at 18% -6%, rgba(255,157,46,0.10), transparent 62%),
-      linear-gradient(180deg, #f3ece0 0%, #ece3d2 55%, #f3ece0 100%);
-    color:#2c2410;
+      radial-gradient(ellipse 70vw 45vh at 20% -5%, rgba(59, 130, 246, 0.08), transparent 60%),
+      radial-gradient(ellipse 60vw 40vh at 80% 5%, rgba(245, 158, 11, 0.08), transparent 60%),
+      linear-gradient(180deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%) !important;
+    color: #0f172a;
   }
-  html.theme-light{
-    --ink:#2c2410; --ink-dim:#6c6248;
-    --stone-1:#e9e0cd; --stone-2:#ded2b7; --stone-3:#cdbf9d; --stone-edge:#a5966e;
+  html.theme-light {
+    --ink: #0f172a;
+    --ink-dim: #475569;
+    --stone-1: #ffffff;
+    --stone-2: #f1f5f9;
+    --stone-3: #e2e8f0;
+    --stone-edge: #cbd5e1;
+    --gold: #d97706;
+    --gold-bright: #b45309;
+    --tooltip-bg: #0f172a;
+    --tooltip-border: #334155;
+    --tooltip-ink: #f8fafc;
   }
-  html.theme-light .manuscript{ background:radial-gradient(ellipse 120% 140% at 50% 0%, #fbf6e8, #f3ecd8 70%); border-color:#c8b482; }
-  html.theme-light .key{ color:#2c2410; }
+  html.theme-light .hero-title,
+  html.theme-light .hero-title span,
+  html.theme-light h1, html.theme-light h2, html.theme-light h3 {
+    color: #0f172a;
+  }
+  html.theme-light .subtitle,
+  html.theme-light .hero-desc,
+  html.theme-light .founder-tag {
+    color: #475569;
+  }
+  html.theme-light .founder-tag {
+    background: #e2e8f0;
+    border-color: #cbd5e1;
+  }
+  /* Chassis: Sleek space-silver aluminum */
+  html.theme-light .board-wrap {
+    background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%) !important;
+    border: 2px solid #cbd5e1 !important;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.06) !important;
+  }
+  html.theme-light .board-chassis-bar {
+    background: #e2e8f0;
+    border-bottom: 1px solid #cbd5e1;
+    color: #334155;
+  }
+  html.theme-light .chassis-action-btn {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: #1e293b;
+  }
+  html.theme-light .chassis-action-btn:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+  }
+  /* Keycaps: Double-shot ceramic chalk */
+  html.theme-light .key {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 60%, #f1f5f9 100%) !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    border-bottom: 3px solid #94a3b8 !important;
+    box-shadow: 0 2px 4px rgba(15, 23, 42, 0.05) !important;
+  }
+  html.theme-light .key:hover {
+    background: #ffffff !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3) !important;
+  }
+  html.theme-light .key.pressed,
+  html.theme-light .key:active {
+    background: #e2e8f0 !important;
+    border-bottom-width: 1px !important;
+    transform: translateY(2px) !important;
+    box-shadow: none !important;
+  }
+  html.theme-light .key.target,
+  html.theme-light .key.hint-next {
+    background: #dbeafe !important;
+    border-color: #2563eb !important;
+    color: #1d4ed8 !important;
+    box-shadow: 0 0 14px rgba(37, 99, 235, 0.4) !important;
+  }
+  html.theme-light .key .shift-badge {
+    color: #2563eb !important;
+    background: rgba(37, 99, 235, 0.08);
+    border: 1px solid rgba(37, 99, 235, 0.22);
+    border-radius: 4px;
+    padding: 1px 4px;
+    font-weight: 600;
+  }
+  html.theme-light .key.mod {
+    background: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 100%) !important;
+    color: #334155 !important;
+    border-bottom-color: #94a3b8 !important;
+  }
+  html.theme-light .key.mod.active,
+  html.theme-light .key.mod.pressed {
+    background: #cbd5e1 !important;
+    color: #0f172a !important;
+  }
+  /* Manuscript & Typing Prompt */
+  html.theme-light .manuscript,
+  html.theme-light .lesson-char-row,
+  html.theme-light .trial-card {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07) !important;
+    color: #0f172a !important;
+  }
+  html.theme-light .lc-char {
+    color: #64748b;
+  }
+  html.theme-light .lc-char.active {
+    color: #0f172a !important;
+    background: rgba(37, 99, 235, 0.12) !important;
+    border-bottom: 2px solid #2563eb !important;
+  }
+  html.theme-light .lc-char.correct {
+    color: #16a34a !important;
+  }
+  html.theme-light .lc-char.wrong {
+    color: #dc2626 !important;
+    background: rgba(220, 38, 38, 0.12) !important;
+  }
+  /* Cards, Sidebars & Drawers */
+  html.theme-light .quick-guide,
+  html.theme-light .drawer,
+  html.theme-light .hud-panel,
+  html.theme-light .card,
+  html.theme-light .stat-card,
+  html.theme-light .stats-hero-card {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #0f172a !important;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05) !important;
+  }
+  /* Docks: Quick Guide (Left) & Lessons Navigator (Right) */
+  html.theme-light .guide-dock,
+  html.theme-light .lesson-strip {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08) !important;
+  }
+  html.theme-light .guide-dock-header,
+  html.theme-light .lesson-strip-header,
+  html.theme-light .lesson-strip-search {
+    background: #f8fafc !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    color: #0f172a !important;
+  }
+  html.theme-light .lss-input-wrap input {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+  }
+  html.theme-light .lss-input-wrap .pk-icon {
+    color: #64748b !important;
+  }
+  html.theme-light .guide-sec-head,
+  html.theme-light .gdh-title {
+    color: #0f172a !important;
+  }
+  html.theme-light .gdh-badge {
+    background: #e2e8f0 !important;
+    color: #334155 !important;
+  }
+  html.theme-light .guide-section,
+  html.theme-light .guide-hand-block,
+  html.theme-light .guide-stat-box,
+  html.theme-light .guide-rule-item {
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #334155 !important;
+  }
+  html.theme-light .guide-mini-key {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05) !important;
+  }
+  html.theme-light .guide-mini-key .en-ch {
+    color: #2563eb !important;
+  }
+  html.theme-light .guide-kbd {
+    background: #e2e8f0 !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+  }
+  html.theme-light .guide-stat-num {
+    color: #0f172a !important;
+  }
+  html.theme-light .adaptive-sidebar-card {
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #0f172a !important;
+  }
+  html.theme-light .adaptive-btn {
+    background: #2563eb !important;
+    color: #ffffff !important;
+  }
+  html.theme-light .lesson-level-header {
+    background: #f1f5f9 !important;
+    color: #1e293b !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+  }
+  html.theme-light .lesson-card {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #0f172a !important;
+  }
+  html.theme-light .lesson-card:hover {
+    background: #f8fafc !important;
+    border-color: #cbd5e1 !important;
+  }
+  html.theme-light .lesson-card-title {
+    color: #0f172a !important;
+  }
+  html.theme-light .lesson-card-sub,
+  html.theme-light .lesson-card-meta {
+    color: #64748b !important;
+  }
+  html.theme-light .lesson-card.active,
+  html.theme-light .lesson-card.in-progress {
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 1px #2563eb !important;
+  }
+  html.theme-light .layout-strip .layout-pill {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #334155 !important;
+  }
+  html.theme-light .layout-strip .layout-pill.active {
+    background: #0f172a !important;
+    color: #ffffff !important;
+    border-color: #0f172a !important;
+  }
+  html.theme-light .toolbar button,
+  html.theme-light .top-actions button {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #1e293b !important;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+  }
+  html.theme-light .toolbar button:hover,
+  html.theme-light .top-actions button:hover {
+    background: #f1f5f9 !important;
+    border-color: #94a3b8 !important;
+  }
+  html.theme-light .toolbar button.active {
+    background: #0f172a !important;
+    color: #ffffff !important;
+    border-color: #0f172a !important;
+  }
+  /* Horizon */
+  html.theme-light #horizon rect {
+    display: none !important;
+  }
+  html.theme-light #horizon .far {
+    fill: #cbd5e1 !important;
+    opacity: 0.55;
+  }
+  html.theme-light #horizon .near {
+    fill: #94a3b8 !important;
+    opacity: 0.7;
+  }
 
   /* ================= new: temple theme — warm torchlit sandstone, not midnight stone ================= */
   html.theme-temple body{
@@ -718,23 +971,273 @@
     border-color:#4a2436;
   }
 
-  /* ================= new: sepia theme — an old palm-leaf manuscript
-     under lamp light, warmer and more saturated than the plain Light
-     theme instead of a second near-identical cream page ================= */
-  html.theme-sepia body{
+  /* ================= new: sepia theme override — Warm Parchment & Teakwood Library ================= */
+  html.theme-sepia body {
     background:
-      radial-gradient(ellipse 60vw 40vh at 18% -6%, rgba(196,132,58,0.14), transparent 62%),
-      linear-gradient(180deg, #ecd9b0 0%, #e2c896 55%, #ecd9b0 100%);
-    color:#3a2712;
+      radial-gradient(ellipse 70vw 45vh at 20% -5%, rgba(180, 83, 9, 0.10), transparent 60%),
+      radial-gradient(ellipse 60vw 40vh at 80% 5%, rgba(194, 65, 12, 0.08), transparent 60%),
+      linear-gradient(180deg, #ede3cf 0%, #e2d2b5 50%, #ede3cf 100%) !important;
+    color: #2c1b0c;
   }
-  html.theme-sepia{
-    --ink:#3a2712; --ink-dim:#7a5c34;
-    --stone-1:#e4cd9d; --stone-2:#d8bd85; --stone-3:#c8aa6c; --stone-edge:#8a6a38;
-    --tooltip-bg:#3a2712; --tooltip-border:#c47f2e; --tooltip-ink:#f3e6c8;
-    --ink-on-accent:#2a1a0a;
+  html.theme-sepia {
+    --ink: #2c1b0c;
+    --ink-dim: #6b4f2c;
+    --stone-1: #faf5ec;
+    --stone-2: #f0e6d2;
+    --stone-3: #e7dac1;
+    --stone-edge: #ccbc9e;
+    --gold: #b45309;
+    --gold-bright: #92400e;
+    --tooltip-bg: #2c1b0c;
+    --tooltip-border: #6b4f2c;
+    --tooltip-ink: #faf5ec;
+    --ink-on-accent: #ffffff;
   }
-  html.theme-sepia .manuscript{ background:radial-gradient(ellipse 120% 140% at 50% 0%, #f3e6c8, #e9d5a8 70%); border-color:#a8825a; }
-  html.theme-sepia .key{ color:#3a2712; }
+  html.theme-sepia .hero-title,
+  html.theme-sepia .hero-title span,
+  html.theme-sepia h1, html.theme-sepia h2, html.theme-sepia h3 {
+    color: #2c1b0c;
+  }
+  html.theme-sepia .subtitle,
+  html.theme-sepia .hero-desc,
+  html.theme-sepia .founder-tag {
+    color: #6b4f2c;
+  }
+  html.theme-sepia .founder-tag {
+    background: #e4d5bc;
+    border-color: #ccbc9e;
+  }
+  /* Chassis: Antique Deep Teakwood */
+  html.theme-sepia .board-wrap {
+    background: linear-gradient(180deg, #4a3421 0%, #362414 100%) !important;
+    border: 2px solid #825f38 !important;
+    box-shadow: 0 16px 42px rgba(44, 27, 12, 0.25), 0 2px 8px rgba(44, 27, 12, 0.12) !important;
+  }
+  html.theme-sepia .board-chassis-bar {
+    background: #362414;
+    border-bottom: 1px solid #5e4327;
+    color: #d8c3a5;
+  }
+  html.theme-sepia .chassis-action-btn {
+    background: #4a3421;
+    border-color: #705030;
+    color: #f7ebd7;
+  }
+  html.theme-sepia .chassis-action-btn:hover {
+    background: #5c4129;
+    border-color: #a0784a;
+  }
+  /* Keycaps: Antique Boxwood / Ivory */
+  html.theme-sepia .key {
+    background: linear-gradient(180deg, #faf5ec 0%, #f0e6d2 65%, #e7dac1 100%) !important;
+    color: #2c1b0c !important;
+    border: 1px solid #ccbc9e !important;
+    border-bottom: 3px solid #aa9674 !important;
+    box-shadow: 0 2px 4px rgba(44, 27, 12, 0.08) !important;
+  }
+  html.theme-sepia .key:hover {
+    background: #fffcf6 !important;
+    border-color: #b45309 !important;
+    box-shadow: 0 0 0 2px rgba(180, 83, 9, 0.35) !important;
+  }
+  html.theme-sepia .key.pressed,
+  html.theme-sepia .key:active {
+    background: #ded0b6 !important;
+    border-bottom-width: 1px !important;
+    transform: translateY(2px) !important;
+    box-shadow: none !important;
+  }
+  html.theme-sepia .key.target,
+  html.theme-sepia .key.hint-next {
+    background: #fed7aa !important;
+    border-color: #b45309 !important;
+    color: #7c2d12 !important;
+    box-shadow: 0 0 14px rgba(180, 83, 9, 0.45) !important;
+  }
+  html.theme-sepia .key .shift-badge {
+    color: #92400e !important;
+    background: rgba(180, 83, 9, 0.10);
+    border: 1px solid rgba(180, 83, 9, 0.25);
+    border-radius: 4px;
+    padding: 1px 4px;
+    font-weight: 600;
+  }
+  html.theme-sepia .key.mod {
+    background: linear-gradient(180deg, #ede3ce 0%, #dfd1b8 100%) !important;
+    color: #4a3421 !important;
+    border-bottom-color: #a08c6b !important;
+  }
+  html.theme-sepia .key.mod.active,
+  html.theme-sepia .key.mod.pressed {
+    background: #ccbc9e !important;
+    color: #2c1b0c !important;
+  }
+  /* Manuscript & Typing Prompt */
+  html.theme-sepia .manuscript,
+  html.theme-sepia .lesson-char-row,
+  html.theme-sepia .trial-card {
+    background: linear-gradient(180deg, #fbf7ee 0%, #f4ebd9 100%) !important;
+    border: 1px solid #ccbc9e !important;
+    box-shadow: 0 8px 24px rgba(44, 27, 12, 0.09) !important;
+    color: #2c1b0c !important;
+  }
+  html.theme-sepia .lc-char {
+    color: #7a5c34;
+  }
+  html.theme-sepia .lc-char.active {
+    color: #2c1b0c !important;
+    background: rgba(180, 83, 9, 0.16) !important;
+    border-bottom: 2px solid #b45309 !important;
+  }
+  html.theme-sepia .lc-char.correct {
+    color: #15803d !important;
+  }
+  html.theme-sepia .lc-char.wrong {
+    color: #b91c1c !important;
+    background: rgba(185, 28, 28, 0.12) !important;
+  }
+  /* Cards, Sidebars & Drawers */
+  html.theme-sepia .quick-guide,
+  html.theme-sepia .drawer,
+  html.theme-sepia .hud-panel,
+  html.theme-sepia .card,
+  html.theme-sepia .stat-card,
+  html.theme-sepia .stats-hero-card {
+    background: #fbf6ec !important;
+    border: 1px solid #d9cca8 !important;
+    color: #2c1b0c !important;
+    box-shadow: 0 4px 16px rgba(44, 27, 12, 0.06) !important;
+  }
+  /* Docks: Quick Guide (Left) & Lessons Navigator (Right) */
+  html.theme-sepia .guide-dock,
+  html.theme-sepia .lesson-strip {
+    background: #faf4e8 !important;
+    border: 1px solid #d4c3a3 !important;
+    color: #2c1b0c !important;
+    box-shadow: 0 10px 32px rgba(44, 27, 12, 0.12) !important;
+  }
+  html.theme-sepia .guide-dock-header,
+  html.theme-sepia .lesson-strip-header,
+  html.theme-sepia .lesson-strip-search {
+    background: #f2e6d0 !important;
+    border-bottom: 1px solid #ddcca8 !important;
+    color: #2c1b0c !important;
+  }
+  html.theme-sepia .lss-input-wrap input {
+    background: #faf4e8 !important;
+    border: 1px solid #ccbc9e !important;
+    color: #2c1b0c !important;
+  }
+  html.theme-sepia .lss-input-wrap .pk-icon {
+    color: #8c6b45 !important;
+  }
+  html.theme-sepia .guide-sec-head,
+  html.theme-sepia .gdh-title {
+    color: #2c1b0c !important;
+  }
+  html.theme-sepia .gdh-badge {
+    background: #e6d7bf !important;
+    color: #5c4125 !important;
+  }
+  html.theme-sepia .guide-section,
+  html.theme-sepia .guide-hand-block,
+  html.theme-sepia .guide-stat-box,
+  html.theme-sepia .guide-rule-item {
+    background: #f4e9d5 !important;
+    border: 1px solid #ddcca8 !important;
+    color: #5c4125 !important;
+  }
+  html.theme-sepia .guide-mini-key {
+    background: #faf4e8 !important;
+    border: 1px solid #ccbc9e !important;
+    color: #2c1b0c !important;
+    box-shadow: 0 1px 2px rgba(44, 27, 12, 0.08) !important;
+  }
+  html.theme-sepia .guide-mini-key .en-ch {
+    color: #b45309 !important;
+  }
+  html.theme-sepia .guide-kbd {
+    background: #e6d7bf !important;
+    border: 1px solid #ccbc9e !important;
+    color: #2c1b0c !important;
+  }
+  html.theme-sepia .guide-stat-num {
+    color: #2c1b0c !important;
+  }
+  html.theme-sepia .adaptive-sidebar-card {
+    background: #f4e9d5 !important;
+    border: 1px solid #ddcca8 !important;
+    color: #2c1b0c !important;
+  }
+  html.theme-sepia .adaptive-btn {
+    background: #b45309 !important;
+    color: #ffffff !important;
+  }
+  html.theme-sepia .lesson-level-header {
+    background: #ede0c8 !important;
+    color: #3b2814 !important;
+    border-bottom: 1px solid #ddcca8 !important;
+  }
+  html.theme-sepia .lesson-card {
+    background: #faf4e8 !important;
+    border: 1px solid #ddcca8 !important;
+    color: #2c1b0c !important;
+  }
+  html.theme-sepia .lesson-card:hover {
+    background: #f5ead6 !important;
+    border-color: #b45309 !important;
+  }
+  html.theme-sepia .lesson-card-title {
+    color: #2c1b0c !important;
+  }
+  html.theme-sepia .lesson-card-sub,
+  html.theme-sepia .lesson-card-meta {
+    color: #7a5c34 !important;
+  }
+  html.theme-sepia .lesson-card.active,
+  html.theme-sepia .lesson-card.in-progress {
+    border-color: #b45309 !important;
+    box-shadow: 0 0 0 1px #b45309 !important;
+  }
+  html.theme-sepia .layout-strip .layout-pill {
+    background: #faf4e8 !important;
+    border: 1px solid #ccbc9e !important;
+    color: #4a3421 !important;
+  }
+  html.theme-sepia .layout-strip .layout-pill.active {
+    background: #362414 !important;
+    color: #f7ebd7 !important;
+    border-color: #362414 !important;
+  }
+  html.theme-sepia .toolbar button,
+  html.theme-sepia .top-actions button {
+    background: #faf4e8 !important;
+    border: 1px solid #ccbc9e !important;
+    color: #2c1b0c !important;
+    box-shadow: 0 1px 3px rgba(44, 27, 12, 0.08);
+  }
+  html.theme-sepia .toolbar button:hover,
+  html.theme-sepia .top-actions button:hover {
+    background: #f0e4cf !important;
+    border-color: #a08c6b !important;
+  }
+  html.theme-sepia .toolbar button.active {
+    background: #362414 !important;
+    color: #f7ebd7 !important;
+    border-color: #362414 !important;
+  }
+  /* Horizon */
+  html.theme-sepia #horizon rect {
+    display: none !important;
+  }
+  html.theme-sepia #horizon .far {
+    fill: #ccbc9e !important;
+    opacity: 0.55;
+  }
+  html.theme-sepia #horizon .near {
+    fill: #a08c6b !important;
+    opacity: 0.7;
+  }
 
   /* ================= new: top nav / utility bar ================= */
   .top-actions{
@@ -3102,7 +3605,7 @@
     -webkit-tap-highlight-color: transparent;
   }
   body {
-    background: #0d1117 !important;
+    background: #0d1117;
   }
   body::before {
     display: none !important;
@@ -3116,14 +3619,14 @@
   }
   .key {
     transition: background .08s ease !important;
-    font-family: 'Kantumruy Pro', 'Khmer OS Battambang', 'Khmer OS Siemreap', 'Noto Sans Khmer', sans-serif !important;
+    font-family: var(--khmer-font, 'Kantumruy Pro', 'Khmer OS Battambang', 'Khmer OS Siemreap', 'Noto Sans Khmer', sans-serif);
   }
   .key.pressed {
     transform: none !important;
     filter: brightness(1.2) !important;
   }
   .manuscript-text, .race-text, .trial-word, .lesson-char-row {
-    font-family: 'Kantumruy Pro', 'Khmer OS Battambang', 'Khmer OS Siemreap', 'Noto Sans Khmer', sans-serif !important;
+    font-family: var(--khmer-font, 'Kantumruy Pro', 'Khmer OS Battambang', 'Khmer OS Siemreap', 'Noto Sans Khmer', sans-serif);
   }
   .content {
     max-width: 1200px;

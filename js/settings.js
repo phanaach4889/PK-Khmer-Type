@@ -590,17 +590,31 @@ function initSettingsToggles() {
 
   /* ---------- 2. General: Keyboard Layout & Interface Language ---------- */
   const layoutChoiceBtns = document.querySelectorAll("#settingsLayoutChoice button");
+  function getActiveLayoutId() {
+    if (typeof window !== "undefined" && window.currentLayoutId) return window.currentLayoutId;
+    if (typeof currentLayoutId !== "undefined" && currentLayoutId) return currentLayoutId;
+    try {
+      return localStorage.getItem("khmerActiveLayout") || localStorage.getItem("pk_active_layout") || "standard";
+    } catch (e) {
+      return "standard";
+    }
+  }
+
   function syncLayoutChoiceUI(layoutId) {
-    const cur = layoutId || (typeof currentLayoutId !== "undefined" && currentLayoutId)
-      ? currentLayoutId
-      : (window.currentLayoutId || localStorage.getItem("khmerActiveLayout") || localStorage.getItem("pk_active_layout") || "standard");
-    layoutChoiceBtns.forEach((b) => b.classList.toggle("active", b.dataset.layoutSet === cur));
+    const cur = layoutId || getActiveLayoutId();
+    const btns = document.querySelectorAll("#settingsLayoutChoice button");
+    btns.forEach((b) => {
+      const match = (b.dataset.layoutSet || b.getAttribute("data-layout-set")) === cur;
+      b.classList.toggle("active", match);
+      b.setAttribute("aria-selected", match ? "true" : "false");
+    });
   }
   window.syncSettingsLayoutChoiceUI = syncLayoutChoiceUI;
 
   layoutChoiceBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const targetLayout = btn.dataset.layoutSet;
+    btn.addEventListener("click", (e) => {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+      const targetLayout = btn.dataset.layoutSet || btn.getAttribute("data-layout-set");
       if (!targetLayout) return;
       if (typeof switchLayout === "function") {
         switchLayout(targetLayout, true);
@@ -608,9 +622,10 @@ function initSettingsToggles() {
         window.switchLayout(targetLayout, true);
       } else if (typeof window.setActiveLayout === "function") {
         window.setActiveLayout(targetLayout);
-      } else {
-        const topBtn = document.querySelector(`.layout-strip .layout-pill[data-layout="${targetLayout}"]`);
-        if (topBtn) topBtn.click();
+      }
+      const topBtn = document.querySelector(`.layout-strip .layout-pill[data-layout="${targetLayout}"]`);
+      if (topBtn && !topBtn.classList.contains("active")) {
+        topBtn.click();
       }
       syncLayoutChoiceUI(targetLayout);
       if (typeof healBothHandsOverlay === "function") {
