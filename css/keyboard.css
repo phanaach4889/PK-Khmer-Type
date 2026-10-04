@@ -193,16 +193,16 @@
   /* back of the hand — translucent anatomical silhouette with vibrant color */
   .hands-overlay .palm-shape{
     fill:url(#palmGrad);
-    stroke:rgba(56, 189, 248, 0.4);
+    stroke:var(--hand-l-stroke, rgba(56, 189, 248, 0.4));
     stroke-width:1.2;
     stroke-linejoin:round;
-    filter:drop-shadow(0 2px 8px rgba(2, 132, 199, 0.25));
+    filter:drop-shadow(0 2px 8px var(--hand-l-shadow, rgba(2, 132, 199, 0.25)));
     transition:d .28s cubic-bezier(.22,1,.36,1), opacity .25s ease;
   }
   .hands-overlay .hand-group.side-r .palm-shape{
     fill:url(#palmGradR);
-    stroke:rgba(244, 114, 182, 0.4);
-    filter:drop-shadow(0 2px 8px rgba(192, 38, 211, 0.25));
+    stroke:var(--hand-r-stroke, rgba(244, 114, 182, 0.4));
+    filter:drop-shadow(0 2px 8px var(--hand-r-shadow, rgba(192, 38, 211, 0.25)));
   }
 
   .hands-overlay .palm-shade{
@@ -226,26 +226,26 @@
   /* individual finger — vibrant, beautiful resting tone with distinctive colors */
   .hands-overlay .finger-shape{
     fill:url(#fingerGrad);
-    stroke:rgba(56, 189, 248, 0.5);
+    stroke:var(--hand-l-stroke, rgba(56, 189, 248, 0.5));
     stroke-width:1.1;
     stroke-linejoin:round;
-    filter:drop-shadow(0 2px 6px rgba(2, 132, 199, 0.3));
+    filter:drop-shadow(0 2px 6px var(--hand-l-shadow, rgba(2, 132, 199, 0.3)));
     transition:fill .25s ease, stroke .25s ease, opacity .25s ease, filter .25s ease, d .28s cubic-bezier(.22,1,.36,1);
   }
   .hands-overlay .hand-group.side-r .finger-shape{
     fill:url(#fingerGradR);
-    stroke:rgba(244, 114, 182, 0.5);
-    filter:drop-shadow(0 2px 6px rgba(192, 38, 211, 0.3));
+    stroke:var(--hand-r-stroke, rgba(244, 114, 182, 0.5));
+    filter:drop-shadow(0 2px 6px var(--hand-r-shadow, rgba(192, 38, 211, 0.3)));
   }
   .hands-overlay .finger-shine{
     fill:none;
-    stroke:rgba(186, 230, 253, 0.55);
+    stroke:var(--hand-l-shine, rgba(186, 230, 253, 0.55));
     stroke-width:1;
     stroke-linecap:round;
     transition:opacity .25s ease, d .28s cubic-bezier(.22,1,.36,1);
   }
   .hands-overlay .hand-group.side-r .finger-shine{
-    stroke:rgba(251, 207, 232, 0.55);
+    stroke:var(--hand-r-shine, rgba(251, 207, 232, 0.55));
   }
   .hands-overlay .finger-shine2{
     display:none;
@@ -254,48 +254,48 @@
   /* subtle natural creases */
   .hands-overlay .finger-crease{
     fill:none;
-    stroke:rgba(56, 189, 248, 0.55);
+    stroke:var(--hand-l-crease, rgba(56, 189, 248, 0.55));
     stroke-width:0.8;
     stroke-linecap:round;
     opacity:0.65;
     transition:opacity .25s ease, stroke .25s ease, d .28s cubic-bezier(.22,1,.36,1);
   }
   .hands-overlay .hand-group.side-r .finger-crease{
-    stroke:rgba(244, 114, 182, 0.55);
+    stroke:var(--hand-r-crease, rgba(244, 114, 182, 0.55));
   }
   .hands-overlay .finger-joint{
     fill:url(#jointGlow);
     opacity:0.65;
-    filter:drop-shadow(0 0 4px rgba(56, 189, 248, 0.7));
+    filter:drop-shadow(0 0 4px var(--hand-l-glow, rgba(56, 189, 248, 0.7)));
     transition:cx .28s cubic-bezier(.22,1,.36,1), cy .28s cubic-bezier(.22,1,.36,1);
   }
   .hands-overlay .hand-group.side-r .finger-joint{
     fill:url(#jointGlowR);
-    filter:drop-shadow(0 0 4px rgba(244, 114, 182, 0.7));
+    filter:drop-shadow(0 0 4px var(--hand-r-glow, rgba(244, 114, 182, 0.7)));
   }
   .hands-overlay .finger-nail{
-    fill:rgba(56, 189, 248, 0.35);
-    stroke:rgba(186, 230, 253, 0.65);
+    fill:var(--hand-l-nail-fill, rgba(56, 189, 248, 0.35));
+    stroke:var(--hand-l-nail-stroke, rgba(186, 230, 253, 0.65));
     stroke-width:0.6;
     opacity:0.75;
     transition:opacity .25s ease, transform .28s cubic-bezier(.22,1,.36,1);
   }
   .hands-overlay .hand-group.side-r .finger-nail{
-    fill:rgba(244, 114, 182, 0.35);
-    stroke:rgba(251, 207, 232, 0.65);
+    fill:var(--hand-r-nail-fill, rgba(244, 114, 182, 0.35));
+    stroke:var(--hand-r-nail-stroke, rgba(251, 207, 232, 0.65));
   }
   .hands-overlay .finger-tip{
-    fill:rgba(56, 189, 248, 0.6);
-    stroke:rgba(224, 242, 254, 0.85);
+    fill:var(--hand-l-tip-fill, rgba(56, 189, 248, 0.6));
+    stroke:var(--hand-l-tip-stroke, rgba(224, 242, 254, 0.85));
     stroke-width:1;
     r:4;
-    filter:drop-shadow(0 0 6px rgba(56, 189, 248, 0.8));
+    filter:drop-shadow(0 0 6px var(--hand-l-glow, rgba(56, 189, 248, 0.8)));
     transition:cx .28s cubic-bezier(.22,1,.36,1), cy .28s cubic-bezier(.22,1,.36,1), fill .25s ease, r .25s ease, opacity .25s ease;
   }
   .hands-overlay .hand-group.side-r .finger-tip{
-    fill:rgba(244, 114, 182, 0.6);
-    stroke:rgba(253, 242, 248, 0.85);
-    filter:drop-shadow(0 0 6px rgba(244, 114, 182, 0.8));
+    fill:var(--hand-r-tip-fill, rgba(244, 114, 182, 0.6));
+    stroke:var(--hand-r-tip-stroke, rgba(253, 242, 248, 0.85));
+    filter:drop-shadow(0 0 6px var(--hand-r-glow, rgba(244, 114, 182, 0.8)));
   }
 
   /* disabled sci-fi FX */
@@ -314,37 +314,61 @@
     fill:url(#fingerGradActive);
     stroke:#ffffff;
     stroke-width:1.5;
-    filter:drop-shadow(0 0 12px rgba(56, 189, 248, 0.95)) drop-shadow(0 0 24px rgba(255, 209, 102, 0.7));
+    filter:drop-shadow(0 0 12px var(--hand-l-glow, rgba(56, 189, 248, 0.95))) drop-shadow(0 0 24px rgba(255, 209, 102, 0.7));
   }
   .hands-overlay .hand-group.side-r .finger.active .finger-shape{
     fill:url(#fingerGradActiveR);
     stroke:#ffffff;
     stroke-width:1.5;
-    filter:drop-shadow(0 0 12px rgba(244, 114, 182, 0.95)) drop-shadow(0 0 24px rgba(255, 209, 102, 0.7));
+    filter:drop-shadow(0 0 12px var(--hand-r-glow, rgba(244, 114, 182, 0.95))) drop-shadow(0 0 24px rgba(255, 209, 102, 0.7));
   }
   .hands-overlay .finger.active .finger-shine{ stroke:#ffffff; opacity:0.8; }
   .hands-overlay .finger.active .finger-crease{ stroke:#ffffff; opacity:0.8; }
   .hands-overlay .finger.active .finger-joint{ opacity:1; filter:drop-shadow(0 0 6px #ffffff); }
   .hands-overlay .finger.active .finger-nail{ fill:#ffffff; opacity:0.95; }
-  .hands-overlay .finger.active .finger-tip{
-    fill:#ffd166;
-    stroke:#ffffff;
-    stroke-width:1.4;
-    r:6;
-    filter:drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 16px rgba(56, 189, 248, 0.95));
-    animation:none;
-  }
+  .hands-overlay .finger.active .finger-tip,
   .hands-overlay .hand-group.side-r .finger.active .finger-tip{
     fill:#ffd166;
     stroke:#ffffff;
     stroke-width:1.4;
     r:6;
-    filter:drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 16px rgba(244, 114, 182, 0.95));
+    filter:drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 16px var(--hand-l-glow, rgba(56, 189, 248, 0.95)));
     animation:none;
+  }
+  .hands-overlay .hand-group.side-r .finger.active .finger-tip{
+    filter:drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 16px var(--hand-r-glow, rgba(244, 114, 182, 0.95)));
   }
 
   .hands-overlay .finger.struck .finger-shape{
     filter:drop-shadow(0 0 14px #ffffff) drop-shadow(0 0 28px rgba(255,209,102,0.9));
+  }
+
+  /* Toolbar quick button for Hand Colors */
+  .toolbar .hands-color-quick-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 11px;
+    font-weight: 600;
+    transition: all .2s ease;
+  }
+  .toolbar .hands-color-quick-btn:hover {
+    transform: translateY(-1.5px);
+    border-color: var(--gold-bright, #ffd166);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  }
+  .toolbar .hands-color-quick-btn .hand-color-swatch-duo {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .toolbar .hands-color-quick-btn .hand-color-swatch-duo span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    display: inline-block;
   }
 
   .key.label-key{

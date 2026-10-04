@@ -702,73 +702,224 @@ function pointAtFrame(frame, s){
   return { x:(l.x+r.x)/2, y:(l.y+r.y)/2 };
 }
 
-/* ---- static defs: vibrant gradients + colored grounding shadow ---- */
-const defs = document.createElementNS(SVGNS,'defs');
-defs.innerHTML = `
+/* ---- Dynamic Hand Color Gradients Engine ---- */
+const HAND_COLOR_PRESETS = {
+  cyber: { name: "Cyber Cyan & Orchid", l: "#38bdf8", r: "#f472b6" },
+  emerald: { name: "Amber & Emerald", l: "#fbbf24", r: "#34d399" },
+  ruby: { name: "Ruby & Sapphire", l: "#fb7185", r: "#60a5fa" },
+  sunset: { name: "Sunset & Violet", l: "#fb923c", r: "#a78bfa" },
+  ghost: { name: "Frost Silver", l: "#94a3b8", r: "#e2e8f0" },
+  match: { name: "Match Theme", l: null, r: null },
+  custom: { name: "Custom Dual", l: "#38bdf8", r: "#f472b6" }
+};
+
+function hexToRgb(hex, fallback) {
+  if (!hex || typeof hex !== 'string') return fallback || { r: 56, g: 189, b: 248 };
+  hex = hex.replace(/^#/, '');
+  if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+  if (hex.length !== 6) return fallback || { r: 56, g: 189, b: 248 };
+  const num = parseInt(hex, 16);
+  if (isNaN(num)) return fallback || { r: 56, g: 189, b: 248 };
+  return { r: (num >> 16) & 255, g: (num >> 8) & 255, b: num & 255 };
+}
+
+function rgbToHex(r, g, b) {
+  const clamp = v => Math.max(0, Math.min(255, Math.round(v)));
+  return '#' + [clamp(r), clamp(g), clamp(b)].map(x => x.toString(16).padStart(2, '0')).join('');
+}
+
+function buildHandPalette(hex, fallbackHex) {
+  const rgb = hexToRgb(hex, hexToRgb(fallbackHex));
+  const r = rgb.r, g = rgb.g, b = rgb.b;
+  return {
+    hex: rgbToHex(r, g, b),
+    dark: rgbToHex(r * 0.14, g * 0.14, b * 0.14),
+    deep: rgbToHex(r * 0.38, g * 0.38, b * 0.38),
+    mid: rgbToHex(r * 0.68, g * 0.68, b * 0.68),
+    bright: rgbToHex(r, g, b),
+    light: rgbToHex(r + (255 - r) * 0.75, g + (255 - g) * 0.75, b + (255 - b) * 0.75),
+    glowRgba: `rgba(${r}, ${g}, ${b}, 0.85)`,
+    strokeRgba: `rgba(${r}, ${g}, ${b}, 0.5)`,
+    shadowRgba: `rgba(${r}, ${g}, ${b}, 0.32)`,
+    nailFillRgba: `rgba(${r}, ${g}, ${b}, 0.35)`,
+    tipFillRgba: `rgba(${r}, ${g}, ${b}, 0.65)`
+  };
+}
+
+function getThemeMatchedColors() {
+  const root = document.documentElement;
+  if (root.classList.contains('theme-jungle')) {
+    return { l: '#5fd694', r: '#8bf0b3' };
+  } else if (root.classList.contains('theme-temple')) {
+    return { l: '#ffd166', r: '#e0a838' };
+  } else if (root.classList.contains('theme-moonlight')) {
+    return { l: '#bfe0ff', r: '#7fb8ff' };
+  } else if (root.classList.contains('theme-sunset')) {
+    return { l: '#ff9a6c', r: '#ff6b6b' };
+  } else if (root.classList.contains('theme-light')) {
+    return { l: '#0284c7', r: '#7c3aed' };
+  } else if (root.classList.contains('theme-sepia')) {
+    return { l: '#b48342', r: '#c2593f' };
+  }
+  return { l: '#38bdf8', r: '#f472b6' };
+}
+
+const defs = document.createElementNS(SVGNS, 'defs');
+defs.id = 'handsDefs';
+
+function updateHandsGradients(leftHex, rightHex) {
+  const palL = buildHandPalette(leftHex, '#38bdf8');
+  const palR = buildHandPalette(rightHex, '#f472b6');
+
+  defs.innerHTML = `
   <linearGradient id="fingerGrad" x1="0" y1="1" x2="0.3" y2="0">
-    <stop offset="0%" stop-color="#0a1938" stop-opacity="0.75"/>
-    <stop offset="35%" stop-color="#1e3a8a" stop-opacity="0.8"/>
-    <stop offset="68%" stop-color="#0284c7" stop-opacity="0.85"/>
-    <stop offset="88%" stop-color="#38bdf8" stop-opacity="0.92"/>
-    <stop offset="100%" stop-color="#e0f2fe" stop-opacity="0.98"/>
+    <stop offset="0%" stop-color="${palL.dark}" stop-opacity="0.75"/>
+    <stop offset="35%" stop-color="${palL.deep}" stop-opacity="0.8"/>
+    <stop offset="68%" stop-color="${palL.mid}" stop-opacity="0.85"/>
+    <stop offset="88%" stop-color="${palL.bright}" stop-opacity="0.92"/>
+    <stop offset="100%" stop-color="${palL.light}" stop-opacity="0.98"/>
   </linearGradient>
   <linearGradient id="fingerGradR" x1="0" y1="1" x2="0.3" y2="0">
-    <stop offset="0%" stop-color="#240c2e" stop-opacity="0.75"/>
-    <stop offset="35%" stop-color="#6b21a8" stop-opacity="0.8"/>
-    <stop offset="68%" stop-color="#c026d3" stop-opacity="0.85"/>
-    <stop offset="88%" stop-color="#f472b6" stop-opacity="0.92"/>
-    <stop offset="100%" stop-color="#fdf2f8" stop-opacity="0.98"/>
+    <stop offset="0%" stop-color="${palR.dark}" stop-opacity="0.75"/>
+    <stop offset="35%" stop-color="${palR.deep}" stop-opacity="0.8"/>
+    <stop offset="68%" stop-color="${palR.mid}" stop-opacity="0.85"/>
+    <stop offset="88%" stop-color="${palR.bright}" stop-opacity="0.92"/>
+    <stop offset="100%" stop-color="${palR.light}" stop-opacity="0.98"/>
   </linearGradient>
   <linearGradient id="fingerGradActive" x1="0" y1="1" x2="0.3" y2="0">
-    <stop offset="0%" stop-color="#0369a1" stop-opacity="0.9"/>
-    <stop offset="45%" stop-color="#0284c7" stop-opacity="0.95"/>
+    <stop offset="0%" stop-color="${palL.deep}" stop-opacity="0.9"/>
+    <stop offset="45%" stop-color="${palL.bright}" stop-opacity="0.95"/>
     <stop offset="78%" stop-color="#ffd166" stop-opacity="0.98"/>
     <stop offset="100%" stop-color="#ffffff" stop-opacity="1"/>
   </linearGradient>
   <linearGradient id="fingerGradActiveR" x1="0" y1="1" x2="0.3" y2="0">
-    <stop offset="0%" stop-color="#a21caf" stop-opacity="0.9"/>
-    <stop offset="45%" stop-color="#c026d3" stop-opacity="0.95"/>
+    <stop offset="0%" stop-color="${palR.deep}" stop-opacity="0.9"/>
+    <stop offset="45%" stop-color="${palR.bright}" stop-opacity="0.95"/>
     <stop offset="78%" stop-color="#ffd166" stop-opacity="0.98"/>
     <stop offset="100%" stop-color="#ffffff" stop-opacity="1"/>
   </linearGradient>
   <linearGradient id="palmGrad" x1="0" y1="1" x2="0.25" y2="0">
-    <stop offset="0%" stop-color="#08132b" stop-opacity="0.7"/>
-    <stop offset="45%" stop-color="#1e3a8a" stop-opacity="0.75"/>
-    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.8"/>
+    <stop offset="0%" stop-color="${palL.dark}" stop-opacity="0.7"/>
+    <stop offset="45%" stop-color="${palL.deep}" stop-opacity="0.75"/>
+    <stop offset="100%" stop-color="${palL.mid}" stop-opacity="0.8"/>
   </linearGradient>
   <linearGradient id="palmGradR" x1="0" y1="1" x2="0.25" y2="0">
-    <stop offset="0%" stop-color="#1e0a26" stop-opacity="0.7"/>
-    <stop offset="45%" stop-color="#581c87" stop-opacity="0.75"/>
-    <stop offset="100%" stop-color="#c026d3" stop-opacity="0.8"/>
+    <stop offset="0%" stop-color="${palR.dark}" stop-opacity="0.7"/>
+    <stop offset="45%" stop-color="${palR.deep}" stop-opacity="0.75"/>
+    <stop offset="100%" stop-color="${palR.mid}" stop-opacity="0.8"/>
   </linearGradient>
   <radialGradient id="palmHighlight" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.6"/>
-    <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+    <stop offset="0%" stop-color="${palL.bright}" stop-opacity="0.6"/>
+    <stop offset="100%" stop-color="${palL.bright}" stop-opacity="0"/>
   </radialGradient>
   <radialGradient id="palmHighlightR" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#f472b6" stop-opacity="0.6"/>
-    <stop offset="100%" stop-color="#f472b6" stop-opacity="0"/>
+    <stop offset="0%" stop-color="${palR.bright}" stop-opacity="0.6"/>
+    <stop offset="100%" stop-color="${palR.bright}" stop-opacity="0"/>
   </radialGradient>
   <radialGradient id="jointGlow" cx="50%" cy="50%" r="50%">
     <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
-    <stop offset="45%" stop-color="#38bdf8" stop-opacity="0.8"/>
-    <stop offset="100%" stop-color="#0284c7" stop-opacity="0"/>
+    <stop offset="45%" stop-color="${palL.bright}" stop-opacity="0.8"/>
+    <stop offset="100%" stop-color="${palL.mid}" stop-opacity="0"/>
   </radialGradient>
   <radialGradient id="jointGlowR" cx="50%" cy="50%" r="50%">
     <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
-    <stop offset="45%" stop-color="#f472b6" stop-opacity="0.8"/>
-    <stop offset="100%" stop-color="#c026d3" stop-opacity="0"/>
+    <stop offset="45%" stop-color="${palR.bright}" stop-opacity="0.8"/>
+    <stop offset="100%" stop-color="${palR.mid}" stop-opacity="0"/>
   </radialGradient>
   <filter id="handShadow" x="-35%" y="-35%" width="170%" height="170%">
-    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0284c7" flood-opacity="0.32"/>
+    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="${palL.bright}" flood-opacity="0.32"/>
     <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.45"/>
   </filter>
   <filter id="handShadowR" x="-35%" y="-35%" width="170%" height="170%">
-    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#c026d3" flood-opacity="0.32"/>
+    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="${palR.bright}" flood-opacity="0.32"/>
     <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.45"/>
   </filter>
-`;
+  `;
+
+  const r = document.documentElement;
+  r.style.setProperty('--hand-l-hex', palL.hex);
+  r.style.setProperty('--hand-l-stroke', palL.strokeRgba);
+  r.style.setProperty('--hand-l-shadow', palL.shadowRgba);
+  r.style.setProperty('--hand-l-shine', palL.light);
+  r.style.setProperty('--hand-l-crease', palL.strokeRgba);
+  r.style.setProperty('--hand-l-nail-fill', palL.nailFillRgba);
+  r.style.setProperty('--hand-l-nail-stroke', palL.light);
+  r.style.setProperty('--hand-l-tip-fill', palL.tipFillRgba);
+  r.style.setProperty('--hand-l-tip-stroke', palL.light);
+  r.style.setProperty('--hand-l-glow', palL.glowRgba);
+
+  r.style.setProperty('--hand-r-hex', palR.hex);
+  r.style.setProperty('--hand-r-stroke', palR.strokeRgba);
+  r.style.setProperty('--hand-r-shadow', palR.shadowRgba);
+  r.style.setProperty('--hand-r-shine', palR.light);
+  r.style.setProperty('--hand-r-crease', palR.strokeRgba);
+  r.style.setProperty('--hand-r-nail-fill', palR.nailFillRgba);
+  r.style.setProperty('--hand-r-nail-stroke', palR.light);
+  r.style.setProperty('--hand-r-tip-fill', palR.tipFillRgba);
+  r.style.setProperty('--hand-r-tip-stroke', palR.light);
+  r.style.setProperty('--hand-r-glow', palR.glowRgba);
+}
+
+window.PKHandsColor = {
+  PRESETS: HAND_COLOR_PRESETS,
+  applyHandColors: function(presetKey, customL, customR) {
+    presetKey = presetKey || (function(){ try { return localStorage.getItem('khmerSettingHandColorPreset'); }catch(e){ return null; } })() || 'cyber';
+    let l, r;
+    if (presetKey === 'custom') {
+      try {
+        l = customL || localStorage.getItem('khmerSettingHandColorCustomL') || '#38bdf8';
+        r = customR || localStorage.getItem('khmerSettingHandColorCustomR') || '#f472b6';
+      } catch(e) {
+        l = '#38bdf8'; r = '#f472b6';
+      }
+    } else if (presetKey === 'match') {
+      const matched = getThemeMatchedColors();
+      l = matched.l;
+      r = matched.r;
+    } else if (HAND_COLOR_PRESETS[presetKey]) {
+      l = HAND_COLOR_PRESETS[presetKey].l;
+      r = HAND_COLOR_PRESETS[presetKey].r;
+    } else {
+      l = '#38bdf8';
+      r = '#f472b6';
+      presetKey = 'cyber';
+    }
+    updateHandsGradients(l, r);
+    try {
+      localStorage.setItem('khmerSettingHandColorPreset', presetKey);
+      if (customL) localStorage.setItem('khmerSettingHandColorCustomL', customL);
+      if (customR) localStorage.setItem('khmerSettingHandColorCustomR', customR);
+    } catch(e){}
+
+    document.dispatchEvent(new CustomEvent('pk-hand-colors-changed', {
+      detail: { preset: presetKey, l, r }
+    }));
+    return { preset: presetKey, l, r };
+  },
+  cycleNextPreset: function() {
+    const keys = ['cyber', 'emerald', 'ruby', 'sunset', 'ghost', 'match'];
+    let cur = 'cyber';
+    try { cur = localStorage.getItem('khmerSettingHandColorPreset') || 'cyber'; } catch(e){}
+    let idx = keys.indexOf(cur);
+    if (idx === -1) idx = 0;
+    const next = keys[(idx + 1) % keys.length];
+    return this.applyHandColors(next);
+  }
+};
+
 handsOverlay.appendChild(defs);
+window.PKHandsColor.applyHandColors();
+
+if (typeof MutationObserver !== 'undefined') {
+  const themeObserver = new MutationObserver(() => {
+    try {
+      if (localStorage.getItem('khmerSettingHandColorPreset') === 'match') {
+        window.PKHandsColor.applyHandColors('match');
+      }
+    } catch(e){}
+  });
+  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+}
 
 const handGroupL = document.createElementNS(SVGNS,'g');
 handGroupL.setAttribute('class','hand-group side-l');

@@ -11,6 +11,9 @@ const LS = Object.assign(window.LS || {}, {
   sound: "khmerSettingSound",
   hands: "khmerSettingHands",
   handsOpacity: "khmerSettingHandsOpacity",
+  handColorPreset: "khmerSettingHandColorPreset",
+  handColorCustomL: "khmerSettingHandColorCustomL",
+  handColorCustomR: "khmerSettingHandColorCustomR",
   accent: "khmerSettingAccent",
   khmerFont: "khmerSettingKhmerFont",
   shiftPreview: "khmerSettingShiftPreview",
@@ -59,7 +62,7 @@ function ensureSettingsStylesheet() {
   if (!document.querySelector('link[href*="css/settings.css"]')) {
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "css/settings.css?v=45";
+    link.href = "css/settings.css?v=46";
     document.head.appendChild(link);
   }
 }
@@ -154,9 +157,10 @@ function ensureUpgradedSettingsModalDOM() {
       </div>
 
       <div class="settings-section" data-cat-section="keyboard">
-        <div class="settings-section-header"><h3 class="settings-section-title">3D Hands, Keyboard &amp; Smart Cursor</h3><span class="settings-section-count">9 settings</span></div>
+        <div class="settings-section-header"><h3 class="settings-section-title">3D Hands, Keyboard &amp; Smart Cursor</h3><span class="settings-section-count">10 settings</span></div>
         <div class="settings-row" data-search="finger guide 3d hands kinematic left right hand"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">3D Kinematic Finger Guide</span><span class="settings-row-km">មគ្គុទ្ទេសក៍ដៃ</span></div><div class="settings-row-desc">Display translucent left and right hands that reach to each target key.</div></div><div class="settings-row-control"><div class="toggle-switch on" id="settingsHandsToggle" role="switch" aria-checked="true" tabindex="0"></div></div></div>
         <div class="settings-row" data-search="hand opacity transparency alpha see through"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">3D Hand Opacity</span><span class="settings-row-km">កម្រិតថ្លានៃដៃ</span></div><div class="settings-row-desc">Control how solid or see-through the 3D hands appear over the keycaps.</div></div><div class="settings-row-control"><div class="settings-slider-wrap"><input type="range" id="handsOpacitySlider" min="15" max="100" value="85"><span class="settings-slider-badge" id="handsOpacityValue">85%</span></div></div></div>
+        <div class="settings-row settings-row-stacked" data-search="hand color hand colors finger colors left hand right hand palette cyber cyan orchid emerald amber ruby sapphire sunset monochrome ghost theme match custom"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">3D Hand Color Scheme</span><span class="settings-row-km">ពណ៌នៃដៃ 3D</span></div><div class="settings-row-desc">Customize the left and right hand colors across curated palettes, match the active keyboard theme, or pick individual colors.</div></div><div class="settings-row-control"><div class="settings-choice settings-choice-hand-colors" id="handColorChoice"><button type="button" data-hand-color="cyber" class="active"><span class="hand-color-swatch-duo"><span style="background:#38bdf8"></span><span style="background:#f472b6"></span></span> Cyber Cyan &amp; Orchid</button><button type="button" data-hand-color="emerald"><span class="hand-color-swatch-duo"><span style="background:#fbbf24"></span><span style="background:#34d399"></span></span> Amber &amp; Emerald</button><button type="button" data-hand-color="ruby"><span class="hand-color-swatch-duo"><span style="background:#fb7185"></span><span style="background:#60a5fa"></span></span> Ruby &amp; Sapphire</button><button type="button" data-hand-color="sunset"><span class="hand-color-swatch-duo"><span style="background:#fb923c"></span><span style="background:#a78bfa"></span></span> Sunset &amp; Violet</button><button type="button" data-hand-color="ghost"><span class="hand-color-swatch-duo"><span style="background:#94a3b8"></span><span style="background:#e2e8f0"></span></span> Frost Silver</button><button type="button" data-hand-color="match"><span class="hand-color-swatch-duo"><span class="swatch-match-l"></span><span class="swatch-match-r"></span></span> Match Theme</button><button type="button" data-hand-color="custom"><span class="hand-color-swatch-duo"><span class="swatch-custom-l" id="handCustomSwatchL" style="background:#38bdf8"></span><span class="swatch-custom-r" id="handCustomSwatchR" style="background:#f472b6"></span></span> Custom Dual Colors</button></div><div class="hand-custom-color-pickers" id="handCustomPickers" hidden><div class="hand-color-picker-item"><label for="handColorPickerL"><span class="hand-picker-dot" id="handPickerDotL" style="background:#38bdf8"></span> Left Hand</label><div class="color-input-wrap"><input type="color" id="handColorPickerL" value="#38bdf8"><span class="color-hex-val" id="handColorHexL">#38bdf8</span></div></div><div class="hand-color-picker-item"><label for="handColorPickerR"><span class="hand-picker-dot" id="handPickerDotR" style="background:#f472b6"></span> Right Hand</label><div class="color-input-wrap"><input type="color" id="handColorPickerR" value="#f472b6"><span class="color-hex-val" id="handColorHexR">#f472b6</span></div></div></div></div></div>
         <div class="settings-row" data-search="mouse cursor inspector hud tooltip character hover pronunciation"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Smart Mouse Cursor Inspector</span><span class="settings-row-km">ឧបករណ៍ពិនិត្យម៉ៅ</span></div><div class="settings-row-desc">Show character details, keystroke recipes, and sound when hovering keys or text (Alt+M).</div></div><div class="settings-row-control"><div class="toggle-switch on" id="settingsMouseInspectorToggle" role="switch" aria-checked="true" tabindex="0"></div></div></div>
         <div class="settings-row" data-search="click shockwave ripple ring mouse"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Mouse Click Shockwaves</span><span class="settings-row-km">រលកពេលចុចម៉ៅ</span></div><div class="settings-row-desc">Emit expanding ripple shockwaves on mouse clicks.</div></div><div class="settings-row-control"><div class="toggle-switch on" id="settingsShockwaveToggle" role="switch" aria-checked="true" tabindex="0"></div></div></div>
         <div class="settings-row" data-search="hover layer preview shift ctrl altgr pointer"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Hover Layer Auto-Preview</span><span class="settings-row-km">មើលស្រទាប់ពេលដាក់ម៉ៅ</span></div><div class="settings-row-desc">Rest your pointer on Shift, Ctrl, or AltGr to preview that layer on the board.</div></div><div class="settings-row-control"><div class="toggle-switch on" id="settingsLayerHoverToggle" role="switch" aria-checked="true" tabindex="0"></div></div></div>
@@ -1030,6 +1034,116 @@ function initSettingsToggles() {
   }
   applyHandsOpacity(safeGet(LS.handsOpacity, "85"));
 
+  /* --- 3D Hand Color Scheme & Custom Pickers --- */
+  const handColorChoice = document.getElementById("handColorChoice");
+  const handCustomPickers = document.getElementById("handCustomPickers");
+  const handColorPickerL = document.getElementById("handColorPickerL");
+  const handColorPickerR = document.getElementById("handColorPickerR");
+  const handPickerDotL = document.getElementById("handPickerDotL");
+  const handPickerDotR = document.getElementById("handPickerDotR");
+  const handColorHexL = document.getElementById("handColorHexL");
+  const handColorHexR = document.getElementById("handColorHexR");
+  const handCustomSwatchL = document.getElementById("handCustomSwatchL");
+  const handCustomSwatchR = document.getElementById("handCustomSwatchR");
+  const quickSwatchL = document.getElementById("quickSwatchL");
+  const quickSwatchR = document.getElementById("quickSwatchR");
+  const handsColorQuickBtn = document.getElementById("handsColorQuickBtn");
+
+  function showHandColorToast(name) {
+    const stack = document.getElementById("toastStack");
+    if (!stack) return;
+    const t = document.createElement("div");
+    t.className = "toast";
+    t.innerHTML = `<span class="toast-icon">🎨</span><div><div class="toast-title">Hand Colors</div><div class="toast-sub">${name}</div></div>`;
+    stack.appendChild(t);
+    setTimeout(() => t.classList.add("visible"), 20);
+    setTimeout(() => {
+      t.classList.remove("visible");
+      setTimeout(() => t.remove(), 400);
+    }, 2200);
+  }
+
+  function syncHandColorUI(preset, customL, customR) {
+    preset = preset || safeGet(LS.handColorPreset, "cyber");
+    customL = customL || safeGet(LS.handColorCustomL, "#38bdf8");
+    customR = customR || safeGet(LS.handColorCustomR, "#f472b6");
+
+    if (handColorChoice) {
+      handColorChoice.querySelectorAll("button[data-hand-color]").forEach(b => {
+        b.classList.toggle("active", b.dataset.handColor === preset);
+      });
+    }
+    if (handCustomPickers) {
+      handCustomPickers.hidden = preset !== "custom";
+    }
+    if (handColorPickerL) handColorPickerL.value = customL;
+    if (handColorPickerR) handColorPickerR.value = customR;
+    if (handPickerDotL) handPickerDotL.style.background = customL;
+    if (handPickerDotR) handPickerDotR.style.background = customR;
+    if (handColorHexL) handColorHexL.textContent = customL;
+    if (handColorHexR) handColorHexR.textContent = customR;
+    if (handCustomSwatchL) handCustomSwatchL.style.background = customL;
+    if (handCustomSwatchR) handCustomSwatchR.style.background = customR;
+
+    const curHexL = getComputedStyle(document.documentElement).getPropertyValue("--hand-l-hex").trim() || customL;
+    const curHexR = getComputedStyle(document.documentElement).getPropertyValue("--hand-r-hex").trim() || customR;
+    if (quickSwatchL) quickSwatchL.style.background = curHexL;
+    if (quickSwatchR) quickSwatchR.style.background = curHexR;
+  }
+
+  if (handColorChoice) {
+    handColorChoice.addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-hand-color]");
+      if (!btn) return;
+      const preset = btn.dataset.handColor;
+      if (window.PKHandsColor) {
+        const valL = handColorPickerL ? handColorPickerL.value : null;
+        const valR = handColorPickerR ? handColorPickerR.value : null;
+        const res = window.PKHandsColor.applyHandColors(preset, valL, valR);
+        syncHandColorUI(res.preset, res.l, res.r);
+        const name = (window.PKHandsColor.PRESETS[res.preset] && window.PKHandsColor.PRESETS[res.preset].name) || res.preset;
+        showHandColorToast(name);
+      }
+    });
+  }
+
+  function handleCustomColorInput() {
+    const valL = handColorPickerL ? handColorPickerL.value : "#38bdf8";
+    const valR = handColorPickerR ? handColorPickerR.value : "#f472b6";
+    if (window.PKHandsColor) {
+      window.PKHandsColor.applyHandColors("custom", valL, valR);
+    }
+    syncHandColorUI("custom", valL, valR);
+  }
+
+  if (handColorPickerL) handColorPickerL.addEventListener("input", handleCustomColorInput);
+  if (handColorPickerR) handColorPickerR.addEventListener("input", handleCustomColorInput);
+
+  if (handsColorQuickBtn) {
+    handsColorQuickBtn.addEventListener("click", () => {
+      if (window.PKHandsColor) {
+        const res = window.PKHandsColor.cycleNextPreset();
+        syncHandColorUI(res.preset, res.l, res.r);
+        const name = (window.PKHandsColor.PRESETS[res.preset] && window.PKHandsColor.PRESETS[res.preset].name) || res.preset;
+        showHandColorToast(name);
+      }
+    });
+  }
+
+  document.addEventListener("pk-hand-colors-changed", (e) => {
+    const d = e.detail || {};
+    syncHandColorUI(d.preset, d.l, d.r);
+  });
+
+  setTimeout(() => {
+    if (window.PKHandsColor) {
+      const res = window.PKHandsColor.applyHandColors();
+      syncHandColorUI(res.preset, res.l, res.r);
+    } else {
+      syncHandColorUI();
+    }
+  }, 60);
+
   // Smart Mouse Cursor Inspector toggle
   const settingsMouseInspectorToggle = document.getElementById("settingsMouseInspectorToggle");
   function applyMouseInspector(on) {
@@ -1512,6 +1626,9 @@ function initSettingsToggles() {
       applyAutoAdvance(true);
       applyLiveStatsHud(true);
       applyTargetWpm(40);
+      if (window.PKHandsColor) {
+        window.PKHandsColor.applyHandColors("cyber", "#38bdf8", "#f472b6");
+      }
       applyStudioPreset("default");
     });
   }

@@ -38,12 +38,12 @@
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Noto+Serif+Khmer:wght@400;600;700&family=Noto+Sans+Khmer:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/base.css?v=45">
-  <link rel="stylesheet" href="css/keyboard.css?v=45">
-  <link rel="stylesheet" href="css/typing.css?v=45">
-  <link rel="stylesheet" href="css/lessons.css?v=45">
-  <link rel="stylesheet" href="css/responsive.css?v=45">
-  <link rel="stylesheet" href="css/settings.css?v=45">
+  <link rel="stylesheet" href="css/base.css?v=46">
+  <link rel="stylesheet" href="css/keyboard.css?v=46">
+  <link rel="stylesheet" href="css/typing.css?v=46">
+  <link rel="stylesheet" href="css/lessons.css?v=46">
+  <link rel="stylesheet" href="css/responsive.css?v=46">
+  <link rel="stylesheet" href="css/settings.css?v=46">
 
 </head>
 <body>
@@ -375,6 +375,43 @@
             <div class="settings-slider-wrap">
               <input type="range" id="handsOpacitySlider" min="15" max="100" value="85" aria-label="3D Hand Opacity">
               <span class="settings-slider-badge" id="handsOpacityValue">85%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-row settings-row-stacked" data-search="hand color hand colors finger colors left hand right hand palette cyber cyan orchid emerald amber ruby sapphire sunset monochrome ghost theme match custom">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name i18n-t" data-en="3D Hand Color Scheme" data-km="ពណ៌នៃដៃ 3D">3D Hand Color Scheme</span>
+              <span class="settings-row-km">ពណ៌នៃដៃ</span>
+            </div>
+            <div class="settings-row-desc">Customize the left and right hand colors across curated palettes, match the active keyboard theme, or pick individual colors.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="settings-choice settings-choice-hand-colors" id="handColorChoice">
+              <button type="button" data-hand-color="cyber" class="active"><span class="hand-color-swatch-duo"><span style="background:#38bdf8"></span><span style="background:#f472b6"></span></span> Cyber Cyan &amp; Orchid</button>
+              <button type="button" data-hand-color="emerald"><span class="hand-color-swatch-duo"><span style="background:#fbbf24"></span><span style="background:#34d399"></span></span> Amber &amp; Emerald</button>
+              <button type="button" data-hand-color="ruby"><span class="hand-color-swatch-duo"><span style="background:#fb7185"></span><span style="background:#60a5fa"></span></span> Ruby &amp; Sapphire</button>
+              <button type="button" data-hand-color="sunset"><span class="hand-color-swatch-duo"><span style="background:#fb923c"></span><span style="background:#a78bfa"></span></span> Sunset &amp; Violet</button>
+              <button type="button" data-hand-color="ghost"><span class="hand-color-swatch-duo"><span style="background:#94a3b8"></span><span style="background:#e2e8f0"></span></span> Frost Silver</button>
+              <button type="button" data-hand-color="match"><span class="hand-color-swatch-duo"><span class="swatch-match-l"></span><span class="swatch-match-r"></span></span> Match Theme</button>
+              <button type="button" data-hand-color="custom"><span class="hand-color-swatch-duo"><span class="swatch-custom-l" id="handCustomSwatchL" style="background:#38bdf8"></span><span class="swatch-custom-r" id="handCustomSwatchR" style="background:#f472b6"></span></span> Custom Dual Colors</button>
+            </div>
+            <div class="hand-custom-color-pickers" id="handCustomPickers" hidden>
+              <div class="hand-color-picker-item">
+                <label for="handColorPickerL"><span class="hand-picker-dot" id="handPickerDotL" style="background:#38bdf8"></span> Left Hand</label>
+                <div class="color-input-wrap">
+                  <input type="color" id="handColorPickerL" value="#38bdf8" aria-label="Left hand color">
+                  <span class="color-hex-val" id="handColorHexL">#38bdf8</span>
+                </div>
+              </div>
+              <div class="hand-color-picker-item">
+                <label for="handColorPickerR"><span class="hand-picker-dot" id="handPickerDotR" style="background:#f472b6"></span> Right Hand</label>
+                <div class="color-input-wrap">
+                  <input type="color" id="handColorPickerR" value="#f472b6" aria-label="Right hand color">
+                  <span class="color-hex-val" id="handColorHexR">#f472b6</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1717,6 +1754,7 @@
 <div class="toolbar">
   <button id="soundToggle" class="on i18n-t" data-en="Key sound" data-km="សំឡេងគ្រាប់ចុច" aria-pressed="true"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg> Key sound</button>
   <button id="handsToggle" class="on i18n-t" data-en="Finger guide" data-km="មគ្គុទ្ទេសក៍ម្រាមដៃ" aria-pressed="true"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/><line x1="10" y1="12" x2="14" y2="12"/></svg> Finger guide</button>
+  <button id="handsColorQuickBtn" class="hands-color-quick-btn" title="Change Hand Colors (Click to cycle, or customize in Settings)" aria-label="Change Hand Colors"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg> <span class="hand-color-swatch-duo"><span class="swatch-quick-l" id="quickSwatchL" style="background:#38bdf8"></span><span class="swatch-quick-r" id="quickSwatchR" style="background:#f472b6"></span></span></button>
   <button id="cursorGuideToggle" class="on i18n-t" data-en="Mouse inspector" data-km="ត្រួតពិនិត្យដោយកណ្ដុរ" aria-pressed="true" title="Smart Mouse Inspector &amp; Interactive Kinematic Guide (Alt+M)"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/></svg> Mouse inspector</button>
   <button id="ambienceToggle" class="i18n-t" data-en="Temple ambience" data-km="បរិយាកាសប្រាសាទ" aria-pressed="false"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20V8h3V5h2v3h4V5h2v3h3v12M5 20h14M8 11v2m8-2v2"/><path d="M11 20v-5h2v5M5 8h14"/></svg> Temple ambience</button>
   <button id="trialToggle" class="i18n-t" data-en="Temple Trial" data-km="ការសាកល្បងប្រាសាទ" aria-pressed="false"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="14.5 17.5 3 6 6 3 17.5 14.5"/><line x1="13" y1="19" x2="19" y2="13"/><line x1="16" y1="16" x2="20" y2="20"/><line x1="19" y1="21" x2="21" y2="19"/></svg> Temple Trial</button>
@@ -1781,23 +1819,23 @@
 
 
   <!-- Scripts -->
-  <script defer src="js/icons.js?v=45"></script>
-  <script defer src="js/storage.js?v=45"></script>
-  <script defer src="data/curriculum-data.js?v=45"></script>
-  <script defer src="data/adaptive-vocab.js?v=45"></script>
-  <script defer src="js/keyboard.js?v=45"></script>
-  <script defer src="js/tracker.js?v=45"></script>
-  <script defer src="js/progress.js?v=45"></script>
-  <script defer src="js/review.js?v=45"></script>
-  <script defer src="js/cursor-inspector.js?v=45"></script>
-  <script defer src="js/feedback.js?v=45"></script>
-  <script defer src="js/adaptive.js?v=45"></script>
-  <script defer src="js/lessons.js?v=45"></script>
-  <script defer src="js/race.js?v=45"></script>
-  <script defer src="js/typing.js?v=45"></script>
-  <script defer src="js/statistics.js?v=45"></script>
-  <script defer src="js/settings.js?v=45"></script>
-  <script defer src="js/shortcuts.js?v=45"></script>
-  <script defer src="js/app.js?v=45"></script>
+  <script defer src="js/icons.js?v=46"></script>
+  <script defer src="js/storage.js?v=46"></script>
+  <script defer src="data/curriculum-data.js?v=46"></script>
+  <script defer src="data/adaptive-vocab.js?v=46"></script>
+  <script defer src="js/keyboard.js?v=46"></script>
+  <script defer src="js/tracker.js?v=46"></script>
+  <script defer src="js/progress.js?v=46"></script>
+  <script defer src="js/review.js?v=46"></script>
+  <script defer src="js/cursor-inspector.js?v=46"></script>
+  <script defer src="js/feedback.js?v=46"></script>
+  <script defer src="js/adaptive.js?v=46"></script>
+  <script defer src="js/lessons.js?v=46"></script>
+  <script defer src="js/race.js?v=46"></script>
+  <script defer src="js/typing.js?v=46"></script>
+  <script defer src="js/statistics.js?v=46"></script>
+  <script defer src="js/settings.js?v=46"></script>
+  <script defer src="js/shortcuts.js?v=46"></script>
+  <script defer src="js/app.js?v=46"></script>
 </body>
 </html>

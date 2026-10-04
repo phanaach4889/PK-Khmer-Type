@@ -2673,3 +2673,109 @@ html.theme-sunset .modal-close:hover {
   border-color: #ff8a4c !important;
 }
 
+/* ============================================================
+   3D Hand Color Scheme Settings UI & Pickers
+   ============================================================ */
+.settings-choice-hand-colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.settings-choice-hand-colors button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 0.74rem;
+}
+.hand-color-swatch-duo {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+.hand-color-swatch-duo span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+  display: inline-block;
+}
+.hand-color-swatch-duo .swatch-match-l {
+  background: var(--gold-bright, #ffd166);
+}
+.hand-color-swatch-duo .swatch-match-r {
+  background: var(--fx-cyan, #38bdf8);
+}
+.hand-custom-color-pickers {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  flex-wrap: wrap;
+  animation: settingsFadeIn 0.2s ease;
+}
+.hand-custom-color-pickers[hidden] {
+  display: none !important;
+}
+.hand-color-picker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.hand-color-picker-item label {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--ink-dim, #cbd5e1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.hand-picker-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 6px currentColor;
+  display: inline-block;
+}
+.color-input-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  padding: 3px 8px;
+}
+.color-input-wrap input[type="color"] {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: transparent;
+  padding: 0;
+}
+.color-input-wrap input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.color-input-wrap input[type="color"]::-webkit-color-swatch {
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+}
+.color-hex-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ink, #ffffff);
+  font-weight: 600;
+}
+
