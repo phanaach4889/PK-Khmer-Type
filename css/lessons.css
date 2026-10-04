@@ -28,11 +28,11 @@
     z-index:2;
   }
   .gdh-title{
-    font-family:'Orbitron', sans-serif;
-    font-size:0.75rem;
+    font-family:'Space Grotesk', -apple-system, sans-serif;
+    font-size:0.78rem;
     font-weight:700;
     color:var(--gold-bright);
-    letter-spacing:0.06em;
+    letter-spacing:0.04em;
     display:flex;
     align-items:center;
     gap:6px;
@@ -393,11 +393,11 @@
     background:rgba(255,209,102,0.05);
   }
   .lsh-title{
-    font-family:'Orbitron', sans-serif;
-    font-size:0.78rem;
+    font-family:'Space Grotesk', -apple-system, sans-serif;
+    font-size:0.82rem;
     font-weight:700;
     color:var(--gold-bright);
-    letter-spacing:0.05em;
+    letter-spacing:0.04em;
     display:inline-flex;
     align-items:center;
     gap:6px;
@@ -501,11 +501,11 @@
     align-items:center;
     gap:7px;
     text-align:left;
-    font-family:'Orbitron', sans-serif;
+    font-family:'Space Grotesk', -apple-system, sans-serif;
     font-weight:700;
     color:var(--gold-bright);
-    font-size:0.8rem;
-    letter-spacing:0.03em;
+    font-size:0.84rem;
+    letter-spacing:0.02em;
     margin:7px 0 4px;
     padding:5px 8px;
     border-radius:6px;
@@ -572,9 +572,9 @@
     min-width:22px;
     margin-top:1px;
     text-align:center;
-    font-family:'Orbitron', sans-serif;
+    font-family:'JetBrains Mono', monospace;
     font-weight:700;
-    font-size:0.9rem;
+    font-size:0.86rem;
     line-height:1.1;
     color:var(--gold-bright);
   }
