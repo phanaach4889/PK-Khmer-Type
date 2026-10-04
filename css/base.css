@@ -1004,6 +1004,8 @@
   html.theme-temple{
     --stone-1:#241a0f; --stone-2:#2e2113; --stone-3:#3a2a17; --stone-edge:#100b05;
     --ink:#fff1dc; --ink-dim:#c9a876;
+    --gold:#ff9d2e; --gold-bright:#ffd166;
+    --ink-on-accent:#1a1106;
   }
   html.theme-temple .key{
     background:linear-gradient(180deg, var(--stone-3), var(--stone-2));
@@ -1025,6 +1027,7 @@
   html.theme-moonlight{
     --stone-1:#131b30; --stone-2:#1a2540; --stone-3:#24325c; --stone-edge:#060a16;
     --ink:#eaf2ff; --ink-dim:#a4b6dd;
+    --gold:#7fb8ff; --gold-bright:#bfe0ff;
     --tooltip-bg:#0a1226; --tooltip-border:#bfe0ff; --tooltip-ink:#eaf2ff;
     --ink-on-accent:#081226;
     --fx-cyan:#bfe0ff; --fx-violet:#7fb8ff; --fx-pink:#c9a8ff;
@@ -1054,6 +1057,8 @@
   html.theme-jungle{
     --stone-1:#0f1e15; --stone-2:#15291c; --stone-3:#1d3826; --stone-edge:#050a07;
     --ink:#eafff0; --ink-dim:#9ecdae;
+    --gold:#5fd694; --gold-bright:#8bf0b3;
+    --ink-on-accent:#07150c;
     --fx-cyan:#8bf0b3; --fx-violet:#5fd694; --fx-pink:#c9e07f;
     --fx-glow-cyan:rgba(139,240,179,0.5); --fx-glow-violet:rgba(95,214,148,0.45);
   }
@@ -1081,6 +1086,8 @@
   html.theme-sunset{
     --stone-1:#241019; --stone-2:#301622; --stone-3:#3e1c2c; --stone-edge:#0f070b;
     --ink:#fff0e6; --ink-dim:#e0a8a0;
+    --gold:#ff8a4c; --gold-bright:#ffb877;
+    --ink-on-accent:#1c0a12;
     --fx-cyan:#ffb877; --fx-violet:#ff8a4c; --fx-pink:#ff5a70;
     --fx-glow-cyan:rgba(255,184,119,0.5); --fx-glow-violet:rgba(255,138,76,0.45);
   }
