@@ -80,6 +80,9 @@
     z-index:3;
   }
   html.theme-temple .key:hover{ background:linear-gradient(180deg, #4a3620, #2e2113); }
+  html.theme-moonlight .key:hover{ background:linear-gradient(180deg, #2b3d6f, #1a2540); }
+  html.theme-jungle .key:hover{ background:linear-gradient(180deg, #254a32, #15291c); }
+  html.theme-sunset .key:hover{ background:linear-gradient(180deg, #4a2235, #301622); }
 
   .key.pressed, .key:active{
     transform:translateY(2px) scale(0.96);

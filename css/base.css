@@ -1071,6 +1071,7 @@
   html.theme-temple{
     --stone-1:#241a0f; --stone-2:#2e2113; --stone-3:#3a2a17; --stone-edge:#100b05;
     --ink:#fff1dc; --ink-dim:#c9a876;
+    --gold:#d4a046; --gold-bright:#ffd166;
   }
   html.theme-temple .key{
     background:linear-gradient(180deg, var(--stone-3), var(--stone-2));
@@ -1078,6 +1079,128 @@
   html.theme-temple .board-wrap{
     background:linear-gradient(180deg, #2e2113, #1c130a);
     border-color:#4a3620;
+  }
+  html.theme-temple .manuscript{
+    background:radial-gradient(ellipse 120% 140% at 50% 0%, #302012, #1c130a 70%);
+    border-color:#4a3620;
+  }
+  html.theme-temple .layout-strip {
+    background: rgba(30, 21, 13, 0.88) !important;
+    border: 1px solid rgba(255, 209, 102, 0.22) !important;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.5), 0 2px 10px rgba(0,0,0,0.3) !important;
+  }
+  html.theme-temple .layout-strip .layout-pill {
+    color: #c9a876 !important;
+  }
+  html.theme-temple .layout-strip .layout-pill:hover {
+    color: #fff1dc !important;
+  }
+  html.theme-temple .layout-strip .layout-pill.active {
+    background: #ffd166 !important;
+    color: #1a1106 !important;
+    border-color: #ffd166 !important;
+    box-shadow: 0 2px 12px rgba(255, 209, 102, 0.35) !important;
+  }
+  html.theme-temple .layer-strip {
+    background: rgba(28, 19, 11, 0.85) !important;
+    border: 1px solid rgba(255, 209, 102, 0.2) !important;
+  }
+  html.theme-temple .layer-strip .layer-pill {
+    color: #c9a876 !important;
+  }
+  html.theme-temple .layer-strip .layer-pill:hover {
+    color: #fff1dc !important;
+  }
+  html.theme-temple .layer-strip .layer-pill.active {
+    background: #ffd166 !important;
+    color: #1a1106 !important;
+    border-color: #ffd166 !important;
+    box-shadow: 0 2px 12px rgba(255, 209, 102, 0.35) !important;
+  }
+  html.theme-temple .session-bar {
+    background: rgba(30, 21, 13, 0.9) !important;
+    border: 1px solid rgba(255, 209, 102, 0.22) !important;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.4) !important;
+  }
+  html.theme-temple .session-stat {
+    border-right: 1px solid rgba(255, 209, 102, 0.14) !important;
+  }
+  html.theme-temple .session-stat-val {
+    color: #ffd166 !important;
+  }
+  html.theme-temple .session-stat-label {
+    color: #a88a5d !important;
+  }
+  html.theme-temple .top-actions button {
+    background: rgba(36, 25, 15, 0.8) !important;
+    border: 1px solid rgba(255, 209, 102, 0.24) !important;
+    color: #c9a876 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+  }
+  html.theme-temple .top-actions button:hover {
+    background: rgba(55, 38, 22, 0.92) !important;
+    border-color: #ffd166 !important;
+    color: #fff1dc !important;
+    box-shadow: 0 4px 14px rgba(255, 209, 102, 0.22) !important;
+  }
+  html.theme-temple .toolbar button {
+    background: rgba(36, 25, 15, 0.8) !important;
+    border: 1px solid rgba(255, 209, 102, 0.24) !important;
+    color: #c9a876 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+  }
+  html.theme-temple .toolbar button:hover {
+    background: rgba(55, 38, 22, 0.92) !important;
+    border-color: #ffd166 !important;
+    color: #fff1dc !important;
+    box-shadow: 0 4px 14px rgba(255, 209, 102, 0.22) !important;
+  }
+  html.theme-temple .toolbar button.on,
+  html.theme-temple .toolbar button.active {
+    background: #ffd166 !important;
+    border-color: #ffd166 !important;
+    color: #1a1106 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 2px 14px rgba(255, 209, 102, 0.45) !important;
+  }
+  html.theme-temple .board-chassis-bar {
+    border-bottom: 1px solid rgba(255, 209, 102, 0.2) !important;
+  }
+  html.theme-temple .chassis-deck-id {
+    color: #c9a876 !important;
+  }
+  html.theme-temple .chassis-led-dot {
+    background: #ffd166 !important;
+    box-shadow: 0 0 8px #ffd166 !important;
+  }
+  html.theme-temple .chassis-layout-label {
+    color: #ffd166 !important;
+  }
+  html.theme-temple .chassis-docs-btn,
+  html.theme-temple .chassis-3d-btn {
+    background: rgba(45, 32, 19, 0.75) !important;
+    border: 1px solid rgba(255, 209, 102, 0.24) !important;
+    color: #c9a876 !important;
+  }
+  html.theme-temple .chassis-docs-btn:hover,
+  html.theme-temple .chassis-3d-btn:hover {
+    background: rgba(65, 46, 28, 0.9) !important;
+    border-color: #ffd166 !important;
+    color: #fff1dc !important;
+    box-shadow: 0 3px 12px rgba(255, 209, 102, 0.25) !important;
+  }
+  html.theme-temple .chassis-docs-icon,
+  html.theme-temple .chassis-3d-icon {
+    color: #ffd166 !important;
+  }
+  html.theme-temple .modal-card:not(.settings-modal-card) {
+    background: linear-gradient(180deg, #241a0f 0%, #150f08 100%) !important;
+    border: 1px solid rgba(255, 209, 102, 0.3) !important;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.85), 0 0 35px rgba(255, 209, 102, 0.12) !important;
+  }
+  html.theme-temple .profile-sidebar {
+    background: rgba(30, 21, 13, 0.94) !important;
+    border-color: rgba(255, 209, 102, 0.28) !important;
   }
 
   /* ================= new: moonlight theme — a cool, silvered temple
@@ -1092,6 +1215,7 @@
   html.theme-moonlight{
     --stone-1:#131b30; --stone-2:#1a2540; --stone-3:#24325c; --stone-edge:#060a16;
     --ink:#eaf2ff; --ink-dim:#a4b6dd;
+    --gold:#7fb8ff; --gold-bright:#bfe0ff;
     --tooltip-bg:#0a1226; --tooltip-border:#bfe0ff; --tooltip-ink:#eaf2ff;
     --ink-on-accent:#081226;
     --fx-cyan:#bfe0ff; --fx-violet:#7fb8ff; --fx-pink:#c9a8ff;
@@ -1108,6 +1232,124 @@
     background:radial-gradient(ellipse 120% 140% at 50% 0%, #16213e, #0f1830 70%);
     border-color:#2a3a68;
   }
+  html.theme-moonlight .layout-strip {
+    background: rgba(16, 25, 48, 0.88) !important;
+    border: 1px solid rgba(191, 224, 255, 0.22) !important;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.5), 0 2px 10px rgba(0,0,0,0.3) !important;
+  }
+  html.theme-moonlight .layout-strip .layout-pill {
+    color: #8da4d4 !important;
+  }
+  html.theme-moonlight .layout-strip .layout-pill:hover {
+    color: #eaf2ff !important;
+  }
+  html.theme-moonlight .layout-strip .layout-pill.active {
+    background: #bfe0ff !important;
+    color: #081020 !important;
+    border-color: #bfe0ff !important;
+    box-shadow: 0 2px 12px rgba(191, 224, 255, 0.4) !important;
+  }
+  html.theme-moonlight .layer-strip {
+    background: rgba(14, 22, 42, 0.85) !important;
+    border: 1px solid rgba(191, 224, 255, 0.2) !important;
+  }
+  html.theme-moonlight .layer-strip .layer-pill {
+    color: #8da4d4 !important;
+  }
+  html.theme-moonlight .layer-strip .layer-pill:hover {
+    color: #eaf2ff !important;
+  }
+  html.theme-moonlight .layer-strip .layer-pill.active {
+    background: #bfe0ff !important;
+    color: #081020 !important;
+    border-color: #bfe0ff !important;
+    box-shadow: 0 2px 12px rgba(191, 224, 255, 0.4) !important;
+  }
+  html.theme-moonlight .session-bar {
+    background: rgba(16, 25, 48, 0.9) !important;
+    border: 1px solid rgba(191, 224, 255, 0.22) !important;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.4) !important;
+  }
+  html.theme-moonlight .session-stat {
+    border-right: 1px solid rgba(191, 224, 255, 0.14) !important;
+  }
+  html.theme-moonlight .session-stat-val {
+    color: #bfe0ff !important;
+  }
+  html.theme-moonlight .session-stat-label {
+    color: #8da4d4 !important;
+  }
+  html.theme-moonlight .top-actions button {
+    background: rgba(20, 32, 60, 0.8) !important;
+    border: 1px solid rgba(191, 224, 255, 0.24) !important;
+    color: #8da4d4 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+  }
+  html.theme-moonlight .top-actions button:hover {
+    background: rgba(30, 48, 88, 0.92) !important;
+    border-color: #bfe0ff !important;
+    color: #eaf2ff !important;
+    box-shadow: 0 4px 14px rgba(191, 224, 255, 0.25) !important;
+  }
+  html.theme-moonlight .toolbar button {
+    background: rgba(20, 32, 60, 0.8) !important;
+    border: 1px solid rgba(191, 224, 255, 0.24) !important;
+    color: #8da4d4 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+  }
+  html.theme-moonlight .toolbar button:hover {
+    background: rgba(30, 48, 88, 0.92) !important;
+    border-color: #bfe0ff !important;
+    color: #eaf2ff !important;
+    box-shadow: 0 4px 14px rgba(191, 224, 255, 0.25) !important;
+  }
+  html.theme-moonlight .toolbar button.on,
+  html.theme-moonlight .toolbar button.active {
+    background: #bfe0ff !important;
+    border-color: #bfe0ff !important;
+    color: #081020 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 2px 14px rgba(191, 224, 255, 0.45) !important;
+  }
+  html.theme-moonlight .board-chassis-bar {
+    border-bottom: 1px solid rgba(191, 224, 255, 0.2) !important;
+  }
+  html.theme-moonlight .chassis-deck-id {
+    color: #8da4d4 !important;
+  }
+  html.theme-moonlight .chassis-led-dot {
+    background: #bfe0ff !important;
+    box-shadow: 0 0 8px #bfe0ff !important;
+  }
+  html.theme-moonlight .chassis-layout-label {
+    color: #bfe0ff !important;
+  }
+  html.theme-moonlight .chassis-docs-btn,
+  html.theme-moonlight .chassis-3d-btn {
+    background: rgba(22, 34, 64, 0.75) !important;
+    border: 1px solid rgba(191, 224, 255, 0.24) !important;
+    color: #8da4d4 !important;
+  }
+  html.theme-moonlight .chassis-docs-btn:hover,
+  html.theme-moonlight .chassis-3d-btn:hover {
+    background: rgba(32, 50, 92, 0.9) !important;
+    border-color: #bfe0ff !important;
+    color: #eaf2ff !important;
+    box-shadow: 0 3px 12px rgba(191, 224, 255, 0.25) !important;
+  }
+  html.theme-moonlight .chassis-docs-icon,
+  html.theme-moonlight .chassis-3d-icon {
+    color: #bfe0ff !important;
+  }
+  html.theme-moonlight .modal-card:not(.settings-modal-card) {
+    background: linear-gradient(180deg, #131b30 0%, #090e1c 100%) !important;
+    border: 1px solid rgba(191, 224, 255, 0.3) !important;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.85), 0 0 35px rgba(191, 224, 255, 0.12) !important;
+  }
+  html.theme-moonlight .profile-sidebar {
+    background: rgba(16, 25, 48, 0.94) !important;
+    border-color: rgba(191, 224, 255, 0.28) !important;
+  }
 
   /* ================= new: jungle theme — overgrown temple ruins at
      dusk, deep moss and emerald instead of stone or midnight blue ================= */
@@ -1121,6 +1363,7 @@
   html.theme-jungle{
     --stone-1:#0f1e15; --stone-2:#15291c; --stone-3:#1d3826; --stone-edge:#050a07;
     --ink:#eafff0; --ink-dim:#9ecdae;
+    --gold:#3eb878; --gold-bright:#5fd694;
     --fx-cyan:#8bf0b3; --fx-violet:#5fd694; --fx-pink:#c9e07f;
     --fx-glow-cyan:rgba(139,240,179,0.5); --fx-glow-violet:rgba(95,214,148,0.45);
   }
@@ -1135,6 +1378,124 @@
     background:radial-gradient(ellipse 120% 140% at 50% 0%, #16291d, #0f1e15 70%);
     border-color:#25452e;
   }
+  html.theme-jungle .layout-strip {
+    background: rgba(13, 26, 18, 0.88) !important;
+    border: 1px solid rgba(95, 214, 148, 0.22) !important;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.5), 0 2px 10px rgba(0,0,0,0.3) !important;
+  }
+  html.theme-jungle .layout-strip .layout-pill {
+    color: #7ab894 !important;
+  }
+  html.theme-jungle .layout-strip .layout-pill:hover {
+    color: #e6f7ee !important;
+  }
+  html.theme-jungle .layout-strip .layout-pill.active {
+    background: #5fd694 !important;
+    color: #081a10 !important;
+    border-color: #5fd694 !important;
+    box-shadow: 0 2px 12px rgba(95, 214, 148, 0.4) !important;
+  }
+  html.theme-jungle .layer-strip {
+    background: rgba(11, 22, 15, 0.85) !important;
+    border: 1px solid rgba(95, 214, 148, 0.2) !important;
+  }
+  html.theme-jungle .layer-strip .layer-pill {
+    color: #7ab894 !important;
+  }
+  html.theme-jungle .layer-strip .layer-pill:hover {
+    color: #e6f7ee !important;
+  }
+  html.theme-jungle .layer-strip .layer-pill.active {
+    background: #5fd694 !important;
+    color: #081a10 !important;
+    border-color: #5fd694 !important;
+    box-shadow: 0 2px 12px rgba(95, 214, 148, 0.4) !important;
+  }
+  html.theme-jungle .session-bar {
+    background: rgba(13, 26, 18, 0.9) !important;
+    border: 1px solid rgba(95, 214, 148, 0.22) !important;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.4) !important;
+  }
+  html.theme-jungle .session-stat {
+    border-right: 1px solid rgba(95, 214, 148, 0.14) !important;
+  }
+  html.theme-jungle .session-stat-val {
+    color: #5fd694 !important;
+  }
+  html.theme-jungle .session-stat-label {
+    color: #7ab894 !important;
+  }
+  html.theme-jungle .top-actions button {
+    background: rgba(18, 38, 28, 0.8) !important;
+    border: 1px solid rgba(95, 214, 148, 0.24) !important;
+    color: #7ab894 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+  }
+  html.theme-jungle .top-actions button:hover {
+    background: rgba(28, 56, 42, 0.92) !important;
+    border-color: #5fd694 !important;
+    color: #e6f7ee !important;
+    box-shadow: 0 4px 14px rgba(95, 214, 148, 0.25) !important;
+  }
+  html.theme-jungle .toolbar button {
+    background: rgba(18, 38, 28, 0.8) !important;
+    border: 1px solid rgba(95, 214, 148, 0.24) !important;
+    color: #7ab894 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+  }
+  html.theme-jungle .toolbar button:hover {
+    background: rgba(28, 56, 42, 0.92) !important;
+    border-color: #5fd694 !important;
+    color: #e6f7ee !important;
+    box-shadow: 0 4px 14px rgba(95, 214, 148, 0.25) !important;
+  }
+  html.theme-jungle .toolbar button.on,
+  html.theme-jungle .toolbar button.active {
+    background: #5fd694 !important;
+    border-color: #5fd694 !important;
+    color: #081a10 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 2px 14px rgba(95, 214, 148, 0.45) !important;
+  }
+  html.theme-jungle .board-chassis-bar {
+    border-bottom: 1px solid rgba(95, 214, 148, 0.2) !important;
+  }
+  html.theme-jungle .chassis-deck-id {
+    color: #7ab894 !important;
+  }
+  html.theme-jungle .chassis-led-dot {
+    background: #5fd694 !important;
+    box-shadow: 0 0 8px #5fd694 !important;
+  }
+  html.theme-jungle .chassis-layout-label {
+    color: #5fd694 !important;
+  }
+  html.theme-jungle .chassis-docs-btn,
+  html.theme-jungle .chassis-3d-btn {
+    background: rgba(18, 38, 28, 0.75) !important;
+    border: 1px solid rgba(95, 214, 148, 0.24) !important;
+    color: #7ab894 !important;
+  }
+  html.theme-jungle .chassis-docs-btn:hover,
+  html.theme-jungle .chassis-3d-btn:hover {
+    background: rgba(28, 56, 42, 0.9) !important;
+    border-color: #5fd694 !important;
+    color: #e6f7ee !important;
+    box-shadow: 0 3px 12px rgba(95, 214, 148, 0.25) !important;
+  }
+  html.theme-jungle .chassis-docs-icon,
+  html.theme-jungle .chassis-3d-icon {
+    color: #5fd694 !important;
+  }
+  html.theme-jungle .modal-card:not(.settings-modal-card) {
+    background: linear-gradient(180deg, #102017 0%, #070e0a 100%) !important;
+    border: 1px solid rgba(95, 214, 148, 0.3) !important;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.85), 0 0 35px rgba(95, 214, 148, 0.12) !important;
+  }
+  html.theme-jungle .profile-sidebar {
+    background: rgba(13, 26, 18, 0.94) !important;
+    border-color: rgba(95, 214, 148, 0.28) !important;
+  }
 
   /* ================= new: sunset theme — dusk sky burning over the
      temple silhouette, warm ember oranges fading into deep plum ================= */
@@ -1148,6 +1509,7 @@
   html.theme-sunset{
     --stone-1:#241019; --stone-2:#301622; --stone-3:#3e1c2c; --stone-edge:#0f070b;
     --ink:#fff0e6; --ink-dim:#e0a8a0;
+    --gold:#ff7033; --gold-bright:#ff8a4c;
     --fx-cyan:#ffb877; --fx-violet:#ff8a4c; --fx-pink:#ff5a70;
     --fx-glow-cyan:rgba(255,184,119,0.5); --fx-glow-violet:rgba(255,138,76,0.45);
   }
@@ -1161,6 +1523,124 @@
   html.theme-sunset .manuscript{
     background:radial-gradient(ellipse 120% 140% at 50% 0%, #321a26, #24101a 70%);
     border-color:#4a2436;
+  }
+  html.theme-sunset .layout-strip {
+    background: rgba(34, 15, 26, 0.88) !important;
+    border: 1px solid rgba(255, 138, 76, 0.22) !important;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.5), 0 2px 10px rgba(0,0,0,0.3) !important;
+  }
+  html.theme-sunset .layout-strip .layout-pill {
+    color: #c98e9a !important;
+  }
+  html.theme-sunset .layout-strip .layout-pill:hover {
+    color: #fff0e6 !important;
+  }
+  html.theme-sunset .layout-strip .layout-pill.active {
+    background: #ff8a4c !important;
+    color: #1c0a12 !important;
+    border-color: #ff8a4c !important;
+    box-shadow: 0 2px 12px rgba(255, 138, 76, 0.4) !important;
+  }
+  html.theme-sunset .layer-strip {
+    background: rgba(28, 12, 22, 0.85) !important;
+    border: 1px solid rgba(255, 138, 76, 0.2) !important;
+  }
+  html.theme-sunset .layer-strip .layer-pill {
+    color: #c98e9a !important;
+  }
+  html.theme-sunset .layer-strip .layer-pill:hover {
+    color: #fff0e6 !important;
+  }
+  html.theme-sunset .layer-strip .layer-pill.active {
+    background: #ff8a4c !important;
+    color: #1c0a12 !important;
+    border-color: #ff8a4c !important;
+    box-shadow: 0 2px 12px rgba(255, 138, 76, 0.4) !important;
+  }
+  html.theme-sunset .session-bar {
+    background: rgba(34, 15, 26, 0.9) !important;
+    border: 1px solid rgba(255, 138, 76, 0.22) !important;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.4) !important;
+  }
+  html.theme-sunset .session-stat {
+    border-right: 1px solid rgba(255, 138, 76, 0.14) !important;
+  }
+  html.theme-sunset .session-stat-val {
+    color: #ff8a4c !important;
+  }
+  html.theme-sunset .session-stat-label {
+    color: #b57a8a !important;
+  }
+  html.theme-sunset .top-actions button {
+    background: rgba(42, 18, 32, 0.8) !important;
+    border: 1px solid rgba(255, 138, 76, 0.24) !important;
+    color: #c98e9a !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+  }
+  html.theme-sunset .top-actions button:hover {
+    background: rgba(64, 28, 48, 0.92) !important;
+    border-color: #ff8a4c !important;
+    color: #fff0e6 !important;
+    box-shadow: 0 4px 14px rgba(255, 138, 76, 0.25) !important;
+  }
+  html.theme-sunset .toolbar button {
+    background: rgba(42, 18, 32, 0.8) !important;
+    border: 1px solid rgba(255, 138, 76, 0.24) !important;
+    color: #c98e9a !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+  }
+  html.theme-sunset .toolbar button:hover {
+    background: rgba(64, 28, 48, 0.92) !important;
+    border-color: #ff8a4c !important;
+    color: #fff0e6 !important;
+    box-shadow: 0 4px 14px rgba(255, 138, 76, 0.25) !important;
+  }
+  html.theme-sunset .toolbar button.on,
+  html.theme-sunset .toolbar button.active {
+    background: #ff8a4c !important;
+    border-color: #ff8a4c !important;
+    color: #1c0a12 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 2px 14px rgba(255, 138, 76, 0.45) !important;
+  }
+  html.theme-sunset .board-chassis-bar {
+    border-bottom: 1px solid rgba(255, 138, 76, 0.2) !important;
+  }
+  html.theme-sunset .chassis-deck-id {
+    color: #c98e9a !important;
+  }
+  html.theme-sunset .chassis-led-dot {
+    background: #ff8a4c !important;
+    box-shadow: 0 0 8px #ff8a4c !important;
+  }
+  html.theme-sunset .chassis-layout-label {
+    color: #ff8a4c !important;
+  }
+  html.theme-sunset .chassis-docs-btn,
+  html.theme-sunset .chassis-3d-btn {
+    background: rgba(48, 20, 36, 0.75) !important;
+    border: 1px solid rgba(255, 138, 76, 0.24) !important;
+    color: #c98e9a !important;
+  }
+  html.theme-sunset .chassis-docs-btn:hover,
+  html.theme-sunset .chassis-3d-btn:hover {
+    background: rgba(72, 32, 54, 0.9) !important;
+    border-color: #ff8a4c !important;
+    color: #fff0e6 !important;
+    box-shadow: 0 3px 12px rgba(255, 138, 76, 0.25) !important;
+  }
+  html.theme-sunset .chassis-docs-icon,
+  html.theme-sunset .chassis-3d-icon {
+    color: #ff8a4c !important;
+  }
+  html.theme-sunset .modal-card:not(.settings-modal-card) {
+    background: linear-gradient(180deg, #2a1320 0%, #14070e 100%) !important;
+    border: 1px solid rgba(255, 138, 76, 0.3) !important;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.85), 0 0 35px rgba(255, 138, 76, 0.12) !important;
+  }
+  html.theme-sunset .profile-sidebar {
+    background: rgba(34, 15, 26, 0.94) !important;
+    border-color: rgba(255, 138, 76, 0.28) !important;
   }
 
   /* ================= new: sepia theme override — Warm Parchment & Teakwood Library ================= */
