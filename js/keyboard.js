@@ -1235,4 +1235,5 @@ function applyKeyboardData(data){
   if(data.KEY_FINGER) Object.assign(KEY_FINGER, data.KEY_FINGER);
   if(data.CODE_MAP) Object.assign(CODE_MAP, data.CODE_MAP);
 }
-window.renderHands = renderHands;
+window.renderHands = updateHandsOverlay;
+window.updateHandsOverlay = updateHandsOverlay;

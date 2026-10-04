@@ -36,6 +36,156 @@
     });
   }
 
+  /* ============================================================
+     Remade Alt + F Focus Mode Shortcut Engine (Audio + HUD + Key Flash)
+     ============================================================ */
+  let focusHudTimer = null;
+  let focusRippleTimer = null;
+
+  function playFocusModeSound(entering){
+    try {
+      if(typeof soundOn !== 'undefined' && !soundOn) return;
+      const ctx = (typeof getAudio === 'function') ? getAudio() : null;
+      if(!ctx) return;
+      const now = ctx.currentTime;
+      const vol = (typeof window.pkSoundVolume === 'number') ? Math.max(0.15, window.pkSoundVolume) : 0.85;
+
+      // Subtle tactile sub-thump
+      const subOsc = ctx.createOscillator();
+      const subGain = ctx.createGain();
+      subOsc.type = 'sine';
+      subOsc.frequency.setValueAtTime(entering ? 135 : 110, now);
+      subOsc.frequency.exponentialRampToValueAtTime(entering ? 48 : 42, now + 0.18);
+      subGain.gain.setValueAtTime(0.28 * vol, now);
+      subGain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+      subOsc.connect(subGain);
+      subGain.connect(ctx.destination);
+      subOsc.start(now);
+      subOsc.stop(now + 0.21);
+
+      // Harmonic crystal arpeggio (ascending when engaging Focus Mode, descending when exiting)
+      const notes = entering ? [528, 660, 792, 1056] : [792, 660, 528];
+      notes.forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        const t0 = now + idx * 0.045;
+        osc.type = entering ? 'triangle' : 'sine';
+        osc.frequency.setValueAtTime(freq, t0);
+        osc.frequency.exponentialRampToValueAtTime(freq * (entering ? 1.015 : 0.99), t0 + 0.28);
+        gain.gain.setValueAtTime(0.0001, t0);
+        gain.gain.linearRampToValueAtTime(0.16 * vol, t0 + 0.015);
+        gain.gain.exponentialRampToValueAtTime(0.0008, t0 + 0.32);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(t0);
+        osc.stop(t0 + 0.34);
+      });
+    } catch(_e){}
+  }
+
+  function flashFocusShortcutKeys(){
+    try {
+      if(typeof keyEls === 'undefined' || !keyEls) return;
+      const comboIds = ['alt', 'f'];
+      comboIds.forEach(id => {
+        const el = keyEls[id];
+        if(!el) return;
+        el.classList.remove('shortcut-combo-flash');
+        void el.offsetWidth; // trigger reflow
+        el.classList.add('shortcut-combo-flash');
+        if(typeof emberBurst === 'function'){
+          emberBurst(el, null, 7, null);
+        }
+        setTimeout(() => {
+          el.classList.remove('shortcut-combo-flash');
+          el.classList.remove('pressed');
+        }, 460);
+      });
+    } catch(_e){}
+  }
+
+  function showFocusShortcutHud(entering, source){
+    // 1. Viewport edge shockwave ring
+    let ripple = document.getElementById('focusScreenRipple');
+    if(!ripple){
+      ripple = document.createElement('div');
+      ripple.id = 'focusScreenRipple';
+      ripple.className = 'focus-screen-ripple';
+      ripple.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(ripple);
+    }
+    ripple.className = 'focus-screen-ripple ' + (entering ? 'is-enter' : 'is-exit');
+    void ripple.offsetWidth;
+    ripple.classList.add('active');
+    if(focusRippleTimer) clearTimeout(focusRippleTimer);
+    focusRippleTimer = setTimeout(() => {
+      ripple.classList.remove('active');
+    }, 900);
+
+    // 2. Floating transparent-glass Cyber HUD pill
+    let hud = document.getElementById('focusShortcutHud');
+    if(!hud){
+      hud = document.createElement('div');
+      hud.id = 'focusShortcutHud';
+      hud.className = 'focus-shortcut-hud';
+      hud.setAttribute('role', 'status');
+      hud.setAttribute('aria-live', 'polite');
+      document.body.appendChild(hud);
+    }
+
+    const isKm = document.documentElement.classList.contains('site-km-mode');
+    const titleText = entering
+      ? (isKm ? 'របៀបផ្ដោតត្រូវបានបើក' : 'FOCUS MODE ENGAGED')
+      : (isKm ? 'របៀបផ្ដោតត្រូវបានបិទ' : 'FOCUS MODE DISENGAGED');
+    const subText = entering
+      ? (isKm ? 'លាក់ការរំខាន · ចុច Alt+F ឬ Esc ដើម្បីចេញ' : 'Distractions hidden · Press Alt + F or Esc to exit')
+      : (isKm ? 'ផ្ទៃកម្មវិធីទាំងអស់ត្រូវបានបង្ហាញឡើងវិញ' : 'Full studio interface restored');
+
+    hud.innerHTML = `
+      <div class="fsh-icon-wrap ${entering ? 'on' : 'off'}">
+        <svg class="fsh-reticle-svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3.5"/>
+          <path d="M3 12h3.5m11 0H21M12 3v3.5m0 11V21"/>
+        </svg>
+      </div>
+      <div class="fsh-content">
+        <div class="fsh-top-row">
+          <span class="fsh-status-dot ${entering ? 'on' : 'off'}"></span>
+          <span class="fsh-title">${titleText}</span>
+          <span class="fsh-combo-badge"><kbd>Alt</kbd><span class="fsh-plus">+</span><kbd>F</kbd></span>
+        </div>
+        <div class="fsh-sub">${subText}</div>
+      </div>
+    `;
+
+    hud.classList.remove('show', 'entering', 'exiting');
+    void hud.offsetWidth;
+    hud.classList.add('show', entering ? 'entering' : 'exiting');
+
+    if(focusHudTimer) clearTimeout(focusHudTimer);
+    focusHudTimer = setTimeout(() => {
+      hud.classList.remove('show');
+    }, 1750);
+  }
+
+  function triggerFocusModeShortcut(source){
+    const currentlyOn = document.documentElement.classList.contains('focus-mode');
+    const willBeOn = !currentlyOn;
+
+    if(typeof window.applyFocusMode === 'function'){
+      window.applyFocusMode(willBeOn);
+    } else {
+      document.documentElement.classList.toggle('focus-mode', willBeOn);
+    }
+
+    playFocusModeSound(willBeOn);
+    flashFocusShortcutKeys();
+    showFocusShortcutHud(willBeOn, source || 'shortcut');
+    return willBeOn;
+  }
+
+  window.triggerFocusModeShortcut = triggerFocusModeShortcut;
+
   /* Restart current active practice */
   function restartActivePractice(){
     if(typeof lessonActive !== 'undefined' && lessonActive && typeof currentLesson !== 'undefined' && currentLesson){
@@ -66,7 +216,6 @@
       return true;
     }
 
-    // 2. Close lesson completion overlay if present
     // 2. Close lesson or adaptive completion overlay if present
     const lcOverlay = document.querySelector('.lesson-complete-overlay');
     if(lcOverlay){
@@ -104,24 +253,43 @@
       return true;
     }
 
-    // 6. Exit Focus Mode
+    // 6. Exit Focus Mode with cool HUD & sound feedback
     if(document.documentElement.classList.contains('focus-mode')){
-      if(typeof applyFocusMode === 'function') applyFocusMode(false);
+      triggerFocusModeShortcut('escape');
       return true;
     }
 
     return false;
   }
 
-  /* Global Keydown Listener for Application Shortcuts */
+  /* Capture-Phase Priority Listener for Alt + F Focus Mode & Global Shortcuts */
   window.addEventListener('keydown', (e)=>{
     const t = e.target;
     const isTextInput = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable);
 
-    // Escape always works, even if inside an input
+    // Check if physical AltGr is active
+    const isAltGraph = (e.getModifierState && e.getModifierState('AltGraph')) ||
+                       (typeof heldModifiers !== 'undefined' && heldModifiers.has('altgr')) ||
+                       (e.ctrlKey && e.altKey);
+
+    // Priority 1: Alt + F Focus Mode Shortcut (works anywhere, even if search input is focused)
+    if(e.altKey && !isAltGraph && !e.ctrlKey && !e.metaKey){
+      const keyLower = (e.key || '').toLowerCase();
+      if(e.code === 'KeyF' || keyLower === 'f'){
+        e.preventDefault();
+        e.stopPropagation();
+        if(e.repeat) return;
+        if(isTextInput && typeof t.blur === 'function') t.blur();
+        triggerFocusModeShortcut('shortcut');
+        return;
+      }
+    }
+
+    // Priority 2: Escape always works, even inside an input
     if(e.key === 'Escape'){
       if(handleUniversalEscape()){
         e.preventDefault();
+        e.stopPropagation();
         return;
       }
     }
@@ -143,18 +311,10 @@
       return;
     }
 
-    // Alt key application shortcuts (only when not AltGr typing)
-    const isAltGraph = (e.getModifierState && e.getModifierState('AltGraph')) || (typeof heldModifiers !== 'undefined' && heldModifiers.has('altgr')) || (e.ctrlKey && e.altKey);
+    // Other Alt key application shortcuts (only when not AltGr typing)
     if(e.altKey && !isAltGraph){
+      if(e.repeat) return;
       const keyLower = (e.key || '').toLowerCase();
-
-      // Alt+F: Toggle Focus Mode
-      if(keyLower === 'f' || e.code === 'KeyF'){
-        e.preventDefault();
-        const focusBtn = document.getElementById('focusModeBtn');
-        if(focusBtn) focusBtn.click();
-        return;
-      }
 
       // Alt+S: Toggle Key Sound
       if(keyLower === 's' || e.code === 'KeyS'){
@@ -247,13 +407,8 @@
         return;
       }
     }
-  });
+  }, { capture: true, passive: false });
 
-  // Expose helpers globally if needed
-  window.PKShortcuts = {
-    open: openShortcutsModal,
-    close: closeShortcutsModal,
-    toggle: toggleShortcutsModal,
-    restart: restartActivePractice
-  };
+  window.openShortcutsModal = openShortcutsModal;
+  window.closeShortcutsModal = closeShortcutsModal;
 })();

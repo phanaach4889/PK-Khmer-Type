@@ -1295,15 +1295,6 @@ function initSettingsToggles() {
     });
   }
 
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && document.documentElement.classList.contains("focus-mode")) {
-      const anyModalOpen = document.querySelector(".modal-backdrop:not([hidden])");
-      if (!anyModalOpen) applyFocusMode(false);
-    } else if (e.altKey && (e.key === "f" || e.key === "F")) {
-      e.preventDefault();
-      applyFocusMode(!document.documentElement.classList.contains("focus-mode"));
-    }
-  });
   applyFocusMode(safeGet(LS.focusMode, "0") === "1");
 
   /* ---------- 9. Mirror Sound & Finger-Guide Toggles ---------- */

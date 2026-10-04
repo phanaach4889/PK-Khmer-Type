@@ -3670,19 +3670,55 @@
     filter: none;
   }
 
-  /* Scrim when custom wallpaper is active */
+  /* Transparent glass footer when custom wallpaper is active */
+  body.has-custom-wallpaper .site-footer,
   html.theme-light body.has-custom-wallpaper .site-footer,
   html.theme-sepia body.has-custom-wallpaper .site-footer {
-    backdrop-filter: blur(14px) saturate(140%);
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
-    background: rgba(255, 255, 255, 0.78);
+    background: rgba(255, 255, 255, 0) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    border-radius: 16px !important;
+    padding: 14px 24px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35) !important;
   }
+  body.has-custom-wallpaper .site-footer-credit,
+  body.has-custom-wallpaper .site-footer-link,
   html.theme-light body.has-custom-wallpaper .site-footer-credit,
   html.theme-light body.has-custom-wallpaper .site-footer-link,
   html.theme-sepia body.has-custom-wallpaper .site-footer-credit,
   html.theme-sepia body.has-custom-wallpaper .site-footer-link {
-    color: #0f172a !important;
-    font-weight: 700;
+    color: #f8fafc !important;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85) !important;
+    font-weight: 600 !important;
+  }
+  body.has-custom-wallpaper .site-footer-link:hover,
+  html.theme-light body.has-custom-wallpaper .site-footer-link:hover,
+  html.theme-sepia body.has-custom-wallpaper .site-footer-link:hover {
+    color: var(--gold-bright) !important;
+  }
+  body.has-custom-wallpaper .site-lang-toggle,
+  html.theme-light body.has-custom-wallpaper .site-lang-toggle,
+  html.theme-sepia body.has-custom-wallpaper .site-lang-toggle {
+    background: rgba(255, 255, 255, 0) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25) !important;
+  }
+  body.has-custom-wallpaper .site-lang-toggle:hover,
+  html.theme-light body.has-custom-wallpaper .site-lang-toggle:hover,
+  html.theme-sepia body.has-custom-wallpaper .site-lang-toggle:hover {
+    border-color: var(--gold-bright) !important;
+    color: var(--gold-bright) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+  }
+  body.has-custom-wallpaper .site-lang-toggle-icon,
+  html.theme-light body.has-custom-wallpaper .site-lang-toggle-icon,
+  html.theme-sepia body.has-custom-wallpaper .site-lang-toggle-icon {
+    background: rgba(255, 209, 102, 0.18) !important;
+    color: var(--gold-bright) !important;
   }
 
   .dev-note-card{
@@ -4088,4 +4124,205 @@
     -webkit-backdrop-filter: blur(5px) !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.35) !important;
     color: #f1f5f9 !important;
+  }
+
+
+  /* ================= Remade Alt + F Focus Mode Shortcut HUD & Effects ================= */
+  .focus-kbd-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 6px;
+    background: rgba(255, 209, 102, 0.14);
+    border: 1px solid rgba(255, 209, 102, 0.35);
+    color: var(--gold-bright);
+    letter-spacing: 0.03em;
+    margin-left: 2px;
+    line-height: 1.2;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: all 0.2s ease;
+  }
+  .focus-mode-btn:hover .focus-kbd-badge,
+  .focus-mode-btn.active .focus-kbd-badge {
+    background: var(--gold-bright);
+    color: #241405;
+    border-color: var(--gold-bright);
+    box-shadow: 0 0 10px rgba(255, 209, 102, 0.5);
+  }
+  html.theme-light .focus-kbd-badge {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #0f172a;
+  }
+  html.theme-sepia .focus-kbd-badge {
+    background: #ede3d1;
+    border-color: #ccbc9e;
+    color: #2c1b0c;
+  }
+
+  /* Keycap Combo Flash on Alt + F */
+  .key.shortcut-combo-flash {
+    background: linear-gradient(180deg, #fff3c4 0%, var(--gold-bright) 55%, var(--gold) 100%) !important;
+    color: #241405 !important;
+    border-color: #ffffff !important;
+    box-shadow:
+      0 0 0 3px rgba(255, 209, 102, 0.45),
+      0 0 28px rgba(255, 209, 102, 0.85),
+      inset 0 1px 0 #ffffff !important;
+    transform: translateY(-3px) scale(1.08) !important;
+    z-index: 25 !important;
+    transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease !important;
+  }
+
+  /* Viewport Edge Shockwave Ripple */
+  .focus-screen-ripple {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1950;
+    opacity: 0;
+    border: 2px solid transparent;
+    border-radius: 0;
+  }
+  .focus-screen-ripple.active.is-enter {
+    animation: focus-ripple-enter 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .focus-screen-ripple.active.is-exit {
+    animation: focus-ripple-exit 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes focus-ripple-enter {
+    0% {
+      opacity: 0.95;
+      box-shadow: inset 0 0 0 2px var(--gold-bright), inset 0 0 65px rgba(255, 209, 102, 0.45);
+    }
+    100% {
+      opacity: 0;
+      box-shadow: inset 0 0 0 14px rgba(255, 209, 102, 0), inset 0 0 140px rgba(255, 209, 102, 0);
+    }
+  }
+  @keyframes focus-ripple-exit {
+    0% {
+      opacity: 0.8;
+      box-shadow: inset 0 0 0 2px #38bdf8, inset 0 0 50px rgba(56, 189, 248, 0.35);
+    }
+    100% {
+      opacity: 0;
+      box-shadow: inset 0 0 0 10px rgba(56, 189, 248, 0), inset 0 0 110px rgba(56, 189, 248, 0);
+    }
+  }
+
+  /* Floating Transparent Glass Focus Shortcut HUD */
+  .focus-shortcut-hud {
+    position: fixed;
+    top: 22px;
+    left: 50%;
+    transform: translate(-50%, -24px) scale(0.92);
+    z-index: 2100;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 22px;
+    border-radius: 18px;
+    background: rgba(15, 18, 32, 0.45);
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    box-shadow:
+      0 18px 45px -10px rgba(0, 0, 0, 0.65),
+      0 0 30px rgba(255, 209, 102, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    opacity: 0;
+    transition:
+      opacity 0.26s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.34s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .focus-shortcut-hud.show {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+  .focus-shortcut-hud.entering {
+    border-color: rgba(255, 209, 102, 0.65);
+    box-shadow:
+      0 20px 50px -10px rgba(0, 0, 0, 0.7),
+      0 0 36px rgba(255, 209, 102, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+  .fsh-icon-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 209, 102, 0.16);
+    border: 1px solid rgba(255, 209, 102, 0.45);
+    color: var(--gold-bright);
+    box-shadow: 0 0 18px rgba(255, 209, 102, 0.3);
+    flex-shrink: 0;
+  }
+  .fsh-icon-wrap.on .fsh-reticle-svg {
+    animation: fsh-spin-lock 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  @keyframes fsh-spin-lock {
+    0% { transform: rotate(-90deg) scale(0.6); opacity: 0.4; }
+    100% { transform: rotate(0deg) scale(1); opacity: 1; }
+  }
+  .fsh-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .fsh-top-row {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .fsh-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #94a3b8;
+  }
+  .fsh-status-dot.on {
+    background: #2dd4a7;
+    box-shadow: 0 0 10px #2dd4a7;
+  }
+  .fsh-title {
+    font-family: 'Orbitron', 'Kantumruy Pro', sans-serif;
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    color: #ffffff;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.75);
+  }
+  .fsh-combo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    margin-left: 4px;
+  }
+  .fsh-combo-badge kbd {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 5px;
+    background: rgba(255, 209, 102, 0.2);
+    border: 1px solid rgba(255, 209, 102, 0.55);
+    color: var(--gold-bright);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+  }
+  .fsh-plus {
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 700;
+  }
+  .fsh-sub {
+    font-family: 'JetBrains Mono', 'Kantumruy Pro', monospace;
+    font-size: 0.68rem;
+    color: #e2e8f0;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
   }
