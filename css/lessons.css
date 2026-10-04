@@ -2,13 +2,13 @@
   .guide-dock{
     display:none;
     flex-direction:column;
-    gap:10px;
+    gap:7px;
     width:min(92vw, 560px);
     margin:0 0 20px;
     background:linear-gradient(180deg, color-mix(in srgb, var(--stone-2) 96%, transparent) 0%, color-mix(in srgb, var(--stone-1) 96%, transparent) 100%);
     border:1px solid color-mix(in srgb, var(--gold-bright) 25%, var(--stone-3));
     border-radius:12px;
-    padding:12px 14px;
+    padding:9px 11px;
     box-sizing:border-box;
     box-shadow:0 12px 40px rgba(0,0,0,0.48), 0 0 0 1px color-mix(in srgb, var(--gold-bright) 14%, transparent);
     color:var(--ink);
@@ -20,7 +20,7 @@
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:4px 2px 10px;
+    padding:2px 2px 7px;
     border-bottom:1px solid color-mix(in srgb, var(--gold-bright) 18%, var(--stone-3));
     position:sticky;
     top:0;
@@ -29,7 +29,7 @@
   }
   .gdh-title{
     font-family:'Space Grotesk', -apple-system, sans-serif;
-    font-size:0.78rem;
+    font-size:0.75rem;
     font-weight:700;
     color:var(--gold-bright);
     letter-spacing:0.04em;
@@ -38,8 +38,8 @@
     gap:6px;
   }
   .gdh-badge{
-    font-size:0.6rem;
-    padding:2px 8px;
+    font-size:0.58rem;
+    padding:2px 7px;
     border-radius:999px;
     background:color-mix(in srgb, var(--gold-bright) 14%, var(--stone-3));
     border:1px solid color-mix(in srgb, var(--gold-bright) 38%, transparent);
@@ -51,18 +51,18 @@
     background:color-mix(in srgb, var(--stone-2) 65%, var(--stone-1));
     border:1px solid color-mix(in srgb, var(--gold-bright) 14%, var(--stone-3));
     border-radius:9px;
-    padding:10px;
+    padding:7px 9px;
   }
   .guide-sec-head{
     display:flex;
     align-items:center;
     gap:6px;
-    font-size:0.68rem;
+    font-size:0.66rem;
     font-weight:600;
     letter-spacing:0.04em;
     color:var(--gold-bright);
     text-transform:uppercase;
-    margin-bottom:8px;
+    margin-bottom:6px;
   }
   .guide-home-grid{
     display:grid;
@@ -171,6 +171,446 @@
     letter-spacing:0.03em;
     text-transform:uppercase;
     margin-top:2px;
+  }
+
+  /* ---------- Enhanced Quick Guide Dock Components ---------- */
+  .gdh-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .guide-live-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--ink-dim);
+  }
+  .guide-live-status-pill .gls-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #94a3b8;
+    box-shadow: 0 0 4px rgba(148, 163, 184, 0.5);
+  }
+  .guide-live-status-pill.status-active {
+    background: rgba(52, 211, 153, 0.12);
+    border-color: rgba(52, 211, 153, 0.35);
+    color: #34d399;
+  }
+  .guide-live-status-pill.status-active .gls-dot {
+    background: #34d399;
+    box-shadow: 0 0 6px rgba(52, 211, 153, 0.8);
+    animation: gls-pulse 1.8s ease-in-out infinite;
+  }
+  .guide-live-status-pill.status-ready {
+    background: rgba(56, 189, 248, 0.1);
+    border-color: rgba(56, 189, 248, 0.3);
+    color: #38bdf8;
+  }
+  .guide-live-status-pill.status-ready .gls-dot {
+    background: #38bdf8;
+    box-shadow: 0 0 6px rgba(56, 189, 248, 0.6);
+  }
+  @keyframes gls-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.85); }
+  }
+
+  .gdh-badge.badge-std {
+    background: rgba(255, 209, 102, 0.14);
+    border-color: rgba(255, 209, 102, 0.4);
+    color: var(--gold-bright);
+  }
+  .gdh-badge.badge-nida {
+    background: rgba(56, 189, 248, 0.14);
+    border-color: rgba(56, 189, 248, 0.4);
+    color: #38bdf8;
+  }
+  .gdh-badge.badge-eng {
+    background: rgba(244, 114, 182, 0.14);
+    border-color: rgba(244, 114, 182, 0.4);
+    color: #f472b6;
+  }
+
+  /* Section 1: Active Lesson Card */
+  .guide-active-card {
+    background: color-mix(in srgb, var(--stone-1) 85%, #000000);
+    border: 1px solid var(--stone-3);
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .gac-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+  }
+  .gac-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .gac-badge {
+    font-size: 0.58rem;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--gold-bright) 12%, var(--stone-2));
+    border: 1px solid color-mix(in srgb, var(--gold-bright) 28%, transparent);
+    color: var(--gold-bright);
+    white-space: nowrap;
+  }
+  .gac-progress-track {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .gac-progress-bar {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #38bdf8, var(--gold-bright));
+    box-shadow: 0 0 8px rgba(255, 209, 102, 0.4);
+    transition: width 0.22s ease-out;
+  }
+  .gac-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+  }
+  .gac-sub {
+    font-size: 0.6rem;
+    color: var(--ink-dim);
+  }
+  .gac-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: inherit;
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--gold-bright) 16%, var(--stone-3));
+    border: 1px solid color-mix(in srgb, var(--gold-bright) 36%, transparent);
+    color: var(--gold-bright);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .gac-action-btn:hover {
+    background: color-mix(in srgb, var(--gold-bright) 28%, var(--stone-3));
+    border-color: var(--gold-bright);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  .gac-action-btn:active {
+    transform: translateY(0);
+  }
+
+  /* Streak flame in stat box */
+  .streak-flame {
+    display: inline-block;
+    filter: drop-shadow(0 0 5px rgba(255, 120, 40, 0.7));
+  }
+
+  /* Section 2: Target Finger Callout */
+  .guide-target-callout {
+    background: color-mix(in srgb, var(--stone-1) 85%, #000000);
+    border: 1px solid color-mix(in srgb, var(--gold-bright) 20%, var(--stone-3));
+    border-radius: 8px;
+    padding: 7px 9px;
+    margin-bottom: 8px;
+  }
+  .gtc-label {
+    font-size: 0.58rem;
+    color: var(--ink-dim);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .gtc-content {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .gtc-key-badge {
+    min-width: 32px;
+    height: 32px;
+    padding: 0 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', 'Kantumruy Pro', monospace;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: linear-gradient(180deg, var(--stone-3), var(--stone-2));
+    border: 1.5px solid color-mix(in srgb, var(--gold-bright) 45%, var(--stone-3));
+    border-bottom: 3px solid var(--stone-edge);
+    border-radius: 6px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+    transition: all 0.15s ease;
+  }
+  .gtc-key-badge.resting {
+    color: var(--ink-dim);
+    border-color: var(--stone-3);
+    font-size: 0.72rem;
+  }
+  .gtc-key-badge.active-key {
+    border-color: var(--gold-bright);
+    box-shadow: 0 0 10px rgba(255, 209, 102, 0.4), 0 3px 8px rgba(0,0,0,0.5);
+  }
+  .gtc-mod {
+    font-size: 0.7rem;
+    opacity: 0.75;
+    margin-right: 2px;
+  }
+  .gtc-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    overflow: hidden;
+  }
+  .gtc-finger-name {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--gold-bright);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.15s ease;
+  }
+  .gtc-finger-hint {
+    font-size: 0.6rem;
+    color: var(--ink-dim);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Home Row mini-keys interactions */
+  .guide-mini-key {
+    cursor: pointer;
+    transition: transform 0.12s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    user-select: none;
+  }
+  .guide-mini-key:hover {
+    border-color: var(--gold-bright);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .guide-mini-key.mini-clicked,
+  .guide-mini-key.mini-pulsing {
+    background: linear-gradient(180deg, var(--gold-bright), #ea580c) !important;
+    border-color: #ffffff !important;
+    transform: scale(0.94);
+    box-shadow: 0 0 12px rgba(255, 209, 102, 0.8) !important;
+  }
+  .guide-mini-key.mini-pulsing .km-ch,
+  .guide-mini-key.mini-pulsing .en-ch,
+  .guide-mini-key.mini-clicked .km-ch,
+  .guide-mini-key.mini-clicked .en-ch {
+    color: #000000 !important;
+  }
+
+  /* Finger Color Legend */
+  .guide-finger-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1px solid color-mix(in srgb, var(--stone-3) 65%, transparent);
+  }
+  .gfl-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.58rem;
+    color: var(--ink-dim);
+    padding: 1px 5px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    cursor: default;
+  }
+  .gfl-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+  .gfl-pinky .gfl-dot { background: #ec4899; box-shadow: 0 0 4px #ec4899; }
+  .gfl-ring .gfl-dot { background: #8b5cf6; box-shadow: 0 0 4px #8b5cf6; }
+  .gfl-middle .gfl-dot { background: #3b82f6; box-shadow: 0 0 4px #3b82f6; }
+  .gfl-index .gfl-dot { background: #10b981; box-shadow: 0 0 4px #10b981; }
+  .gfl-thumb .gfl-dot { background: #f59e0b; box-shadow: 0 0 4px #f59e0b; }
+
+  /* Section 3: Weak Keys Radar */
+  .guide-weak-sec {
+    background: color-mix(in srgb, var(--stone-2) 65%, var(--stone-1));
+  }
+  .guide-weak-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 8px;
+    min-height: 28px;
+    align-items: center;
+  }
+  .guide-weak-empty {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.62rem;
+    color: var(--ink-dim);
+    font-style: italic;
+    padding: 3px 0;
+  }
+  .guide-weak-empty .pk-icon {
+    color: #10b981;
+  }
+  .guide-weak-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: inherit;
+    padding: 3px 7px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border: 1px solid transparent;
+  }
+  .guide-weak-chip.danger {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #fca5a5;
+  }
+  .guide-weak-chip.danger:hover {
+    background: rgba(239, 68, 68, 0.28);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.35);
+  }
+  .guide-weak-chip.warn {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.4);
+    color: #fcd34d;
+  }
+  .guide-weak-chip.warn:hover {
+    background: rgba(245, 158, 11, 0.28);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
+  }
+  .gwc-char {
+    font-family: 'Kantumruy Pro', 'JetBrains Mono', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+  .gwc-acc {
+    font-size: 0.58rem;
+    font-weight: 600;
+    opacity: 0.88;
+  }
+  .guide-drill-weak-btn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: inherit;
+    font-size: 0.66rem;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--gold-bright) 14%, var(--stone-3));
+    border: 1px solid color-mix(in srgb, var(--gold-bright) 34%, transparent);
+    color: var(--gold-bright);
+    cursor: pointer;
+    transition: all 0.18s ease;
+  }
+  .guide-drill-weak-btn:hover {
+    background: color-mix(in srgb, var(--gold-bright) 24%, var(--stone-3));
+    border-color: var(--gold-bright);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  }
+  .guide-drill-weak-btn.has-weak {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(239, 68, 68, 0.2));
+    border-color: rgba(245, 158, 11, 0.5);
+    color: #fde68a;
+  }
+
+  /* Section 5: Actionable Shortcuts */
+  .guide-actionable-shortcuts {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .gas-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 5px 8px;
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--stone-1) 85%, #000000);
+    border: 1px solid var(--stone-3);
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+    user-select: none;
+  }
+  .gas-btn:hover {
+    background: color-mix(in srgb, var(--stone-2) 90%, var(--stone-1));
+    border-color: color-mix(in srgb, var(--gold-bright) 35%, var(--stone-3));
+    transform: translateY(-1px);
+  }
+  .gas-btn:active {
+    transform: translateY(0) scale(0.99);
+  }
+  .gas-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    overflow: hidden;
+  }
+  .gas-title {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .gas-sub {
+    font-size: 0.56rem;
+    color: var(--ink-dim);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .gas-sub.status-on {
+    color: #34d399;
+    font-weight: 600;
+  }
+  .gas-sub.status-off {
+    color: var(--ink-dim);
   }
 
     /* ---------- lessons (compact right-side dock) ---------- */
@@ -2767,6 +3207,57 @@ html.theme-light .guide-kbd {
 }
 html.theme-light .guide-stat-num {
   color: #b45309 !important;
+}
+html.theme-light .guide-active-card,
+html.theme-light .guide-target-callout {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+html.theme-light .gtc-key-badge {
+  background: #ffffff !important;
+  border-color: #94a3b8 !important;
+  border-bottom: 2px solid #64748b !important;
+  color: #0f172a !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.1) !important;
+}
+html.theme-light .gtc-finger-name {
+  color: #0284c7 !important;
+}
+html.theme-light .gtc-finger-hint,
+html.theme-light .gtc-label {
+  color: #475569 !important;
+}
+html.theme-light .guide-drill-weak-btn {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+html.theme-light .guide-drill-weak-btn:hover {
+  background: #e2e8f0 !important;
+}
+html.theme-light .gas-btn {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+html.theme-light .gas-btn:hover {
+  background: #f1f5f9 !important;
+  border-color: #94a3b8 !important;
+}
+html.theme-light .gas-title {
+  color: #0f172a !important;
+}
+html.theme-light .gas-sub {
+  color: #475569 !important;
+}
+html.theme-light .gac-action-btn {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+html.theme-light .gac-badge {
+  background: #fef3c7 !important;
+  border-color: #fcd34d !important;
+  color: #92400e !important;
 }
 html.theme-light .lss-input-wrap input {
   background: #ffffff !important;

@@ -492,8 +492,8 @@ function updateQuickGuide() {
       <div class="guide-mini-key" title="Right Ring"><span class="km-ch" style="opacity:0">K</span><span class="en-ch">L</span></div>
       <div class="guide-mini-key" title="Right Pinky"><span class="km-ch" style="opacity:0">L</span><span class="en-ch">;</span></div>
     `;
-    subscriptsSec.style.display = 'none';
-    typeSpaceKbd.textContent = 'Space';
+    if(subscriptsSec) subscriptsSec.style.display = 'block';
+    if(typeSpaceKbd) typeSpaceKbd.textContent = 'Space';
   } else if (currentLayoutId === 'standard') {
     leftHand.innerHTML = `
       <div class="guide-mini-key" title="Left Pinky"><span class="km-ch">ា</span><span class="en-ch">A</span></div>
@@ -507,9 +507,9 @@ function updateQuickGuide() {
       <div class="guide-mini-key" title="Right Ring"><span class="km-ch">ល</span><span class="en-ch">L</span></div>
       <div class="guide-mini-key" title="Right Pinky"><span class="km-ch">ះ</span><span class="en-ch">;</span></div>
     `;
-    subscriptsSec.style.display = 'block';
-    typeSpaceKbd.textContent = 'Shift + Space';
-    coengKeyWrap.innerHTML = '<kbd class="guide-kbd">Space</kbd> <span class="i18n-t" data-en="(Standard)" data-km="(ស្តង់ដារ)">(Standard)</span>';
+    if(subscriptsSec) subscriptsSec.style.display = 'block';
+    if(typeSpaceKbd) typeSpaceKbd.textContent = 'Shift + Space';
+    if(coengKeyWrap) coengKeyWrap.innerHTML = '<kbd class="guide-kbd">Space</kbd> <span class="i18n-t" data-en="(Standard)" data-km="(ស្តង់ដារ)">(Standard)</span>';
   } else if (currentLayoutId === 'nida') {
     leftHand.innerHTML = `
       <div class="guide-mini-key" title="Left Pinky"><span class="km-ch">ា</span><span class="en-ch">A</span></div>
@@ -523,9 +523,13 @@ function updateQuickGuide() {
       <div class="guide-mini-key" title="Right Ring"><span class="km-ch">ល</span><span class="en-ch">L</span></div>
       <div class="guide-mini-key" title="Right Pinky"><span class="km-ch">ើ</span><span class="en-ch">;</span></div>
     `;
-    subscriptsSec.style.display = 'block';
-    typeSpaceKbd.textContent = 'Space';
-    coengKeyWrap.innerHTML = '<kbd class="guide-kbd">J</kbd> <span class="i18n-t" data-en="(NiDA)" data-km="(នីដា)">(NiDA)</span>';
+    if(subscriptsSec) subscriptsSec.style.display = 'block';
+    if(typeSpaceKbd) typeSpaceKbd.textContent = 'Space';
+    if(coengKeyWrap) coengKeyWrap.innerHTML = '<kbd class="guide-kbd">J</kbd> <span class="i18n-t" data-en="(NiDA)" data-km="(នីដា)">(NiDA)</span>';
+  }
+
+  if(window.PKQuickGuide && typeof window.PKQuickGuide.updateLayout === 'function'){
+    window.PKQuickGuide.updateLayout(currentLayoutId);
   }
 }
 
