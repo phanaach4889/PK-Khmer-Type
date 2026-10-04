@@ -5,12 +5,14 @@
     gap:10px;
     width:min(92vw, 560px);
     margin:0 0 20px;
-    background:rgba(14, 18, 36, 0.94);
-    border:1px solid var(--stone-3);
+    background:linear-gradient(180deg, color-mix(in srgb, var(--stone-2) 96%, transparent) 0%, color-mix(in srgb, var(--stone-1) 96%, transparent) 100%);
+    border:1px solid color-mix(in srgb, var(--gold-bright) 25%, var(--stone-3));
     border-radius:12px;
     padding:12px 14px;
     box-sizing:border-box;
-    box-shadow:0 8px 30px rgba(0,0,0,0.35);
+    box-shadow:0 12px 40px rgba(0,0,0,0.48), 0 0 0 1px color-mix(in srgb, var(--gold-bright) 14%, transparent);
+    color:var(--ink);
+    transition:background .25s ease, border-color .25s ease, box-shadow .25s ease, color .25s ease;
   }
 
 
@@ -19,10 +21,10 @@
     align-items:center;
     justify-content:space-between;
     padding:4px 2px 10px;
-    border-bottom:1px solid rgba(255,255,255,0.08);
+    border-bottom:1px solid color-mix(in srgb, var(--gold-bright) 18%, var(--stone-3));
     position:sticky;
     top:0;
-    background:rgba(14, 18, 36, 0.98);
+    background:var(--stone-2);
     z-index:2;
   }
   .gdh-title{
@@ -37,17 +39,17 @@
   }
   .gdh-badge{
     font-size:0.6rem;
-    padding:2px 7px;
+    padding:2px 8px;
     border-radius:999px;
-    background:rgba(45,212,167,0.12);
-    border:1px solid rgba(45,212,167,0.3);
-    color:var(--temple-blue);
+    background:color-mix(in srgb, var(--gold-bright) 14%, var(--stone-3));
+    border:1px solid color-mix(in srgb, var(--gold-bright) 38%, transparent);
+    color:var(--gold-bright);
     font-weight:600;
   }
 
   .guide-section{
-    background:rgba(255,255,255,0.025);
-    border:1px solid rgba(255,255,255,0.06);
+    background:color-mix(in srgb, var(--stone-2) 65%, var(--stone-1));
+    border:1px solid color-mix(in srgb, var(--gold-bright) 14%, var(--stone-3));
     border-radius:9px;
     padding:10px;
   }
@@ -68,10 +70,10 @@
     gap:8px;
   }
   .guide-hand-block{
-    background:rgba(0,0,0,0.25);
+    background:color-mix(in srgb, var(--stone-1) 85%, #000000);
     border-radius:7px;
     padding:6px 8px;
-    border:1px solid rgba(255,255,255,0.04);
+    border:1px solid var(--stone-3);
   }
   .guide-hand-label{
     font-size:0.6rem;
@@ -91,8 +93,9 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    background:var(--stone-3);
-    border:1px solid rgba(255,255,255,0.08);
+    background:linear-gradient(180deg, var(--stone-3), var(--stone-2));
+    border:1px solid color-mix(in srgb, var(--gold-bright) 22%, var(--stone-3));
+    border-bottom:2px solid var(--stone-edge);
     border-radius:5px;
     padding:3px 2px;
   }
@@ -105,8 +108,9 @@
   }
   .guide-mini-key .en-ch{
     font-size:0.5rem;
-    color:var(--ink-dim);
-    opacity:0.7;
+    color:var(--gold-bright);
+    opacity:0.88;
+    font-weight:600;
     margin-top:1px;
   }
 
@@ -123,7 +127,7 @@
     align-items:center;
     justify-content:space-between;
     padding:4px 0;
-    border-bottom:1px solid rgba(255,255,255,0.04);
+    border-bottom:1px solid color-mix(in srgb, var(--stone-3) 70%, transparent);
   }
   .guide-rule-row:last-child{ border-bottom:none; }
   .guide-kbd{
@@ -131,8 +135,8 @@
     padding:1px 6px;
     font-family:'JetBrains Mono', monospace;
     font-size:0.68rem;
-    background:rgba(255,209,102,0.12);
-    border:1px solid rgba(255,209,102,0.3);
+    background:color-mix(in srgb, var(--gold-bright) 14%, var(--stone-2));
+    border:1px solid color-mix(in srgb, var(--gold-bright) 38%, transparent);
     border-radius:4px;
     color:var(--gold-bright);
     font-weight:600;
@@ -150,8 +154,8 @@
     gap:6px;
   }
   .guide-stat-box{
-    background:rgba(0,0,0,0.22);
-    border:1px solid rgba(255,255,255,0.05);
+    background:color-mix(in srgb, var(--stone-1) 85%, #000000);
+    border:1px solid var(--stone-3);
     border-radius:7px;
     padding:7px 9px;
   }
@@ -2544,7 +2548,15 @@ html.focus-mode .lesson-card-best {
    (Light, Sepia, Temple, Moonlight, Jungle, Sunset, Dark, Glass)
    ============================================================ */
 
-/* ---------- 1. TEMPLE / MOONLIGHT / JUNGLE / SUNSET THEME PANELS ---------- */
+/* ---------- 1. TEMPLE / MOONLIGHT / JUNGLE / SUNSET THEME PANELS & DOCKS ---------- */
+html.theme-temple .guide-dock,
+html.theme-moonlight .guide-dock,
+html.theme-jungle .guide-dock,
+html.theme-sunset .guide-dock,
+html.theme-temple #guideDock,
+html.theme-moonlight #guideDock,
+html.theme-jungle #guideDock,
+html.theme-sunset #guideDock,
 html.theme-temple .lesson-strip,
 html.theme-moonlight .lesson-strip,
 html.theme-jungle .lesson-strip,
@@ -2563,8 +2575,109 @@ html.theme-jungle .adaptive-panel,
 html.theme-sunset .adaptive-panel {
   background: linear-gradient(180deg, var(--stone-2) 0%, var(--stone-1) 100%) !important;
   border-color: color-mix(in srgb, var(--gold-bright) 38%, var(--stone-3)) !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px color-mix(in srgb, var(--gold-bright) 18%, transparent) !important;
   color: var(--ink) !important;
 }
+
+html.theme-temple .guide-dock-header,
+html.theme-moonlight .guide-dock-header,
+html.theme-jungle .guide-dock-header,
+html.theme-sunset .guide-dock-header,
+html.theme-temple .lesson-strip-header,
+html.theme-moonlight .lesson-strip-header,
+html.theme-jungle .lesson-strip-header,
+html.theme-sunset .lesson-strip-header,
+html.theme-temple .lesson-strip-search,
+html.theme-moonlight .lesson-strip-search,
+html.theme-jungle .lesson-strip-search,
+html.theme-sunset .lesson-strip-search {
+  background: var(--stone-2) !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--gold-bright) 22%, var(--stone-3)) !important;
+  color: var(--ink) !important;
+}
+
+html.theme-temple .guide-section,
+html.theme-moonlight .guide-section,
+html.theme-jungle .guide-section,
+html.theme-sunset .guide-section {
+  background: color-mix(in srgb, var(--stone-3) 52%, var(--stone-1)) !important;
+  border: 1px solid color-mix(in srgb, var(--gold-bright) 22%, var(--stone-3)) !important;
+  color: var(--ink) !important;
+}
+
+html.theme-temple .guide-hand-block,
+html.theme-moonlight .guide-hand-block,
+html.theme-jungle .guide-hand-block,
+html.theme-sunset .guide-hand-block,
+html.theme-temple .guide-stat-box,
+html.theme-moonlight .guide-stat-box,
+html.theme-jungle .guide-stat-box,
+html.theme-sunset .guide-stat-box {
+  background: color-mix(in srgb, var(--stone-1) 82%, #000000) !important;
+  border: 1px solid var(--stone-3) !important;
+  color: var(--ink) !important;
+}
+
+html.theme-temple .guide-mini-key,
+html.theme-moonlight .guide-mini-key,
+html.theme-jungle .guide-mini-key,
+html.theme-sunset .guide-mini-key {
+  background: linear-gradient(180deg, var(--stone-3) 0%, var(--stone-2) 100%) !important;
+  border: 1px solid color-mix(in srgb, var(--gold-bright) 28%, var(--stone-3)) !important;
+  border-bottom: 2px solid var(--stone-edge) !important;
+  color: var(--ink) !important;
+}
+
+html.theme-temple .guide-mini-key .km-ch,
+html.theme-moonlight .guide-mini-key .km-ch,
+html.theme-jungle .guide-mini-key .km-ch,
+html.theme-sunset .guide-mini-key .km-ch,
+html.theme-temple .guide-sample,
+html.theme-moonlight .guide-sample,
+html.theme-jungle .guide-sample,
+html.theme-sunset .guide-sample {
+  color: var(--ink) !important;
+}
+
+html.theme-temple .guide-mini-key .en-ch,
+html.theme-moonlight .guide-mini-key .en-ch,
+html.theme-jungle .guide-mini-key .en-ch,
+html.theme-sunset .guide-mini-key .en-ch,
+html.theme-temple .gdh-title,
+html.theme-moonlight .gdh-title,
+html.theme-jungle .gdh-title,
+html.theme-sunset .gdh-title,
+html.theme-temple .guide-sec-head,
+html.theme-moonlight .guide-sec-head,
+html.theme-jungle .guide-sec-head,
+html.theme-sunset .guide-sec-head,
+html.theme-temple .guide-stat-num,
+html.theme-moonlight .guide-stat-num,
+html.theme-jungle .guide-stat-num,
+html.theme-sunset .guide-stat-num {
+  color: var(--gold-bright) !important;
+}
+
+html.theme-temple .gdh-badge,
+html.theme-moonlight .gdh-badge,
+html.theme-jungle .gdh-badge,
+html.theme-sunset .gdh-badge,
+html.theme-temple .guide-kbd,
+html.theme-moonlight .guide-kbd,
+html.theme-jungle .guide-kbd,
+html.theme-sunset .guide-kbd {
+  background: color-mix(in srgb, var(--gold-bright) 16%, var(--stone-2)) !important;
+  border: 1px solid color-mix(in srgb, var(--gold-bright) 42%, var(--stone-3)) !important;
+  color: var(--gold-bright) !important;
+}
+
+html.theme-temple .guide-rule-row,
+html.theme-moonlight .guide-rule-row,
+html.theme-jungle .guide-rule-row,
+html.theme-sunset .guide-rule-row {
+  border-bottom-color: color-mix(in srgb, var(--stone-3) 75%, transparent) !important;
+}
+
 html.theme-temple .lesson-complete-card,
 html.theme-moonlight .lesson-complete-card,
 html.theme-jungle .lesson-complete-card,
@@ -2584,18 +2697,76 @@ html.theme-sunset .adaptive-summary-card {
 }
 
 /* ---------- 2. LIGHT THEME (html.theme-light) — ALL DOCKS, PANELS & MODALS ---------- */
+html.theme-light .guide-dock,
+html.theme-light #guideDock,
 html.theme-light .lesson-strip,
 html.theme-light.focus-mode .lesson-strip {
-  background: rgba(255, 255, 255, 0.96) !important;
-  border: 1px solid #cbd5e1 !important;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+  border: 1.5px solid #cbd5e1 !important;
   box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12) !important;
   color: #0f172a !important;
 }
+html.theme-light .guide-dock-header,
 html.theme-light .lesson-strip-header,
 html.theme-light .lesson-strip-search {
-  background: #f8fafc !important;
-  border-bottom: 1px solid #e2e8f0 !important;
+  background: #f1f5f9 !important;
+  border-bottom: 1px solid #cbd5e1 !important;
   color: #0f172a !important;
+}
+html.theme-light .gdh-title,
+html.theme-light .guide-sec-head {
+  color: #0f172a !important;
+}
+html.theme-light .gdh-badge {
+  background: #e0f2fe !important;
+  border: 1px solid #7dd3fc !important;
+  color: #0369a1 !important;
+}
+html.theme-light .guide-section {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+}
+html.theme-light .guide-hand-block,
+html.theme-light .guide-stat-box {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+html.theme-light .guide-hand-label,
+html.theme-light .guide-stat-lbl {
+  color: #475569 !important;
+}
+html.theme-light .guide-mini-key {
+  background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%) !important;
+  border: 1px solid #cbd5e1 !important;
+  border-bottom: 2px solid #94a3b8 !important;
+  color: #0f172a !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06) !important;
+}
+html.theme-light .guide-mini-key .km-ch,
+html.theme-light .guide-sample {
+  color: #0f172a !important;
+}
+html.theme-light .guide-mini-key .en-ch {
+  color: #2563eb !important;
+  opacity: 1 !important;
+}
+html.theme-light .guide-rule-item {
+  background: transparent !important;
+  border: none !important;
+  color: #334155 !important;
+}
+html.theme-light .guide-rule-row {
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+html.theme-light .guide-kbd {
+  background: #e2e8f0 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+html.theme-light .guide-stat-num {
+  color: #b45309 !important;
 }
 html.theme-light .lss-input-wrap input {
   background: #ffffff !important;
@@ -2796,18 +2967,76 @@ html.theme-light .lc-ring::before {
 }
 
 /* ---------- 3. SEPIA THEME (html.theme-sepia) — ALL DOCKS, PANELS & MODALS ---------- */
+html.theme-sepia .guide-dock,
+html.theme-sepia #guideDock,
 html.theme-sepia .lesson-strip,
 html.theme-sepia.focus-mode .lesson-strip {
-  background: rgba(250, 244, 232, 0.96) !important;
-  border: 1px solid #d4c3a3 !important;
-  box-shadow: 0 16px 40px rgba(44, 27, 12, 0.14) !important;
+  background: linear-gradient(180deg, #faf5ec 0%, #f0e6d2 100%) !important;
+  border: 1.5px solid #bfa886 !important;
+  box-shadow: 0 16px 40px rgba(44, 27, 12, 0.16) !important;
   color: #2c1b0c !important;
 }
+html.theme-sepia .guide-dock-header,
 html.theme-sepia .lesson-strip-header,
 html.theme-sepia .lesson-strip-search {
-  background: #f2e6d0 !important;
-  border-bottom: 1px solid #ddcca8 !important;
+  background: #efe3cc !important;
+  border-bottom: 1px solid #d4c3a3 !important;
   color: #2c1b0c !important;
+}
+html.theme-sepia .gdh-title,
+html.theme-sepia .guide-sec-head {
+  color: #7c2d12 !important;
+}
+html.theme-sepia .gdh-badge {
+  background: #e6d7bf !important;
+  border: 1px solid #bfa886 !important;
+  color: #5c4125 !important;
+}
+html.theme-sepia .guide-section {
+  background: #f6ede0 !important;
+  border: 1px solid #ddcca8 !important;
+  color: #2c1b0c !important;
+}
+html.theme-sepia .guide-hand-block,
+html.theme-sepia .guide-stat-box {
+  background: #efe3cc !important;
+  border: 1px solid #d4c3a3 !important;
+  color: #2c1b0c !important;
+}
+html.theme-sepia .guide-hand-label,
+html.theme-sepia .guide-stat-lbl {
+  color: #6b4f2c !important;
+}
+html.theme-sepia .guide-mini-key {
+  background: linear-gradient(180deg, #faf5ec 0%, #f0e6d2 100%) !important;
+  border: 1px solid #bfa886 !important;
+  border-bottom: 2px solid #9c8462 !important;
+  color: #2c1b0c !important;
+  box-shadow: 0 1px 2px rgba(44, 27, 12, 0.08) !important;
+}
+html.theme-sepia .guide-mini-key .km-ch,
+html.theme-sepia .guide-sample {
+  color: #2c1b0c !important;
+}
+html.theme-sepia .guide-mini-key .en-ch {
+  color: #92400e !important;
+  opacity: 1 !important;
+}
+html.theme-sepia .guide-rule-item {
+  background: transparent !important;
+  border: none !important;
+  color: #4a3421 !important;
+}
+html.theme-sepia .guide-rule-row {
+  border-bottom: 1px solid #ddcca8 !important;
+}
+html.theme-sepia .guide-kbd {
+  background: #e6d7bf !important;
+  border: 1px solid #bfa886 !important;
+  color: #7c2d12 !important;
+}
+html.theme-sepia .guide-stat-num {
+  color: #92400e !important;
 }
 html.theme-sepia .lss-input-wrap input {
   background: #faf4e8 !important;
@@ -3062,11 +3291,11 @@ html.theme-glass .adaptive-sidebar-card,
 html.theme-glass .lesson-level-header,
 html.theme-glass .lesson-card,
 html.theme-glass .lesson-card-num,
+html.theme-glass .gdh-badge,
 html.theme-glass .guide-section,
 html.theme-glass .guide-hand-block,
 html.theme-glass .guide-stat-box,
 html.theme-glass .guide-mini-key,
-html.theme-glass .guide-rule-item,
 html.theme-glass .guide-kbd,
 html.theme-glass .lesson-newkeys,
 html.theme-glass .lesson-newkey-chip,
@@ -3100,13 +3329,30 @@ html.theme-glass .lesson-complete-actions button:not(.primary) {
   box-shadow: none !important;
 }
 
+html.theme-glass .guide-rule-item {
+  background: transparent !important;
+  border: none !important;
+  color: #ffffff !important;
+}
+
+html.theme-glass .guide-rule-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22) !important;
+}
+
 html.theme-glass .guide-sec-head,
 html.theme-glass .gdh-title,
 html.theme-glass .guide-stat-num,
 html.theme-glass .guide-rule-row,
+html.theme-glass .guide-sample,
+html.theme-glass .guide-mini-key .km-ch,
 html.theme-glass .lesson-card-title {
   color: #ffffff !important;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8) !important;
+}
+
+html.theme-glass .guide-mini-key .en-ch {
+  color: var(--gold-bright) !important;
+  opacity: 1 !important;
 }
 
 html.theme-glass .lesson-level-header {

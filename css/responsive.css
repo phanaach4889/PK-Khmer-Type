@@ -22,12 +22,12 @@
       display:flex;
       position:fixed;
       left:18px;
-      top:84px;
+      top:90px;
       bottom:20px;
       width:280px;
       margin:0;
       z-index:60;
-      max-height:calc(100vh - 104px);
+      max-height:calc(100vh - 110px);
       overflow-y:auto;
       overflow-x:hidden;
       /* scrollbar-width: thin (handled via ::-webkit-scrollbar) */
@@ -50,9 +50,9 @@
     .lesson-strip{
       position:fixed;
       right:18px;
-      top:80px;
+      top:90px;
       bottom:auto;
-      max-height:calc(100vh - 96px);
+      max-height:calc(100vh - 106px);
       width:360px;
       margin:0;
       z-index:60;
@@ -128,7 +128,25 @@
     }
   }
 
+  @media (max-width:1120px) and (min-width:641px){
+    html:not(.focus-mode) body{
+      padding-top:20px !important;
+    }
+    html:not(.focus-mode) .top-actions{
+      position:relative !important;
+      top:auto !important;
+      right:auto !important;
+      left:auto !important;
+      justify-content:center;
+      margin:0 auto 24px !important;
+      max-width:96vw;
+    }
+  }
+
   @media (max-width:640px){
+    html:not(.focus-mode) body{
+      padding-top:76px !important;
+    }
     .top-actions{
       position:absolute !important;
       top:10px !important;

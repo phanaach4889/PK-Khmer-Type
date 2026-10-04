@@ -83,7 +83,7 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    padding:52px 20px 70px;
+    padding:86px 20px 70px;
     position:relative;
   }
   body::before{
@@ -258,7 +258,8 @@
     50%{ transform:translateY(-5px) rotate(2deg);}
   }
   .site-crest-icon{
-    margin-bottom:12px;
+    margin-top:6px;
+    margin-bottom:14px;
     display:flex;
     align-items:center;
     justify-content:center;
