@@ -173,7 +173,7 @@
 
     // Base performance numbers
     const totalUnits = metrics?.totalUnits || 0;
-    const correctCount = metrics?.correctCount || 0;
+    const correctCount = (typeof metrics?.correctCount === 'number' && metrics.correctCount > 0) ? metrics.correctCount : (metrics?.position || totalUnits || 0);
     const mistakeCount = metrics?.mistakeCount || 0;
     const backspaceCount = metrics?.backspaceCount || 0;
     const correctedCount = metrics?.correctedCount || 0;

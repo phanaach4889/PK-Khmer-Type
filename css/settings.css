@@ -1093,3 +1093,23 @@ html.theme-sepia .settings-btn-primary:hover {
   background: #3f2712 !important;
   box-shadow: 0 6px 16px rgba(44, 27, 12, 0.3) !important;
 }
+
+
+/* ---------- Transparent Glass Theme Overrides (html.theme-glass) ---------- */
+html.theme-glass .modal-card.settings-modal-card,
+html.theme-glass .settings-header-wrap,
+html.theme-glass .settings-tabs-scroll,
+html.theme-glass .settings-row,
+html.theme-glass .settings-storage-card,
+html.theme-glass .settings-footer-wrap,
+html.theme-glass .settings-search-input,
+html.theme-glass .settings-preset-btn,
+html.theme-glass .settings-choice button:not(.active),
+html.theme-glass .settings-action-pill,
+html.theme-glass .settings-btn-ghost {
+  background: rgba(255, 255, 255, 0) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  color: #ffffff !important;
+}

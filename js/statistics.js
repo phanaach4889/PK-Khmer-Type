@@ -129,6 +129,7 @@ function updateLessonStatsUI(){
   const gk = document.getElementById('gStatKeys'); if(gk) gk.textContent = savedLessonStats.keys;
   const ga = document.getElementById('gStatAcc'); if(ga) ga.textContent = (savedLessonStats.accuracy || 100) + '%';
   const gw = document.getElementById('gStatWpm'); if(gw) gw.textContent = savedLessonStats.wpm || savedLessonStats.bestWpm || 0;
+  if(typeof window.updateSettingsStorageStats === 'function') window.updateSettingsStorageStats();
 }
 
 // Initial display on startup so saved values (e.g. 534) appear immediately
@@ -136,7 +137,8 @@ updateLessonStatsUI();
 
 function recordKeystroke(correct){
   // ONLY track and go up when learning lessons!
-  if(typeof lessonActive === 'undefined' || !lessonActive) return;
+  const isAdaptiveActive = (typeof PK_ADAPTIVE !== 'undefined' && typeof PK_ADAPTIVE.isActive === 'function' && PK_ADAPTIVE.isActive());
+  if((typeof lessonActive === 'undefined' || !lessonActive) && !isAdaptiveActive) return;
 
   savedLessonStats.keys++;
   if(correct) savedLessonStats.correct++;
@@ -170,7 +172,8 @@ function recordKeystroke(correct){
 }
 
 function recordLessonBackspace(){
-  if(typeof lessonActive === 'undefined' || !lessonActive) return;
+  const isAdaptiveActive = (typeof PK_ADAPTIVE !== 'undefined' && typeof PK_ADAPTIVE.isActive === 'function' && PK_ADAPTIVE.isActive());
+  if((typeof lessonActive === 'undefined' || !lessonActive) && !isAdaptiveActive) return;
   if(savedLessonStats.keys > 0) savedLessonStats.keys--;
   if(savedLessonStats.correct > 0) savedLessonStats.correct--;
 
@@ -190,6 +193,7 @@ function updateMasteryStat(){
   statMasteryEl.textContent = done + '/' + total;
   bump(statMasteryEl);
   const gm = document.getElementById('gStatMastery'); if(gm) gm.textContent = done + '/' + total;
+  if(typeof window.updateSettingsStorageStats === 'function') window.updateSettingsStorageStats();
   if(done === total) achievementOnce('all-lessons', pkIcon('crown', 20), 'Temple Master!', 'All ' + total + ' lessons mastered');
   else if(done === Math.ceil(total/2)) achievementOnce('half-lessons', pkIcon('castle', 20), 'Halfway there', done + ' of ' + total + ' lessons mastered');
 }
@@ -213,7 +217,8 @@ function initStatisticsDashboard(){
 
   const origRecordKeystroke = recordKeystroke;
   recordKeystroke = function(correct){
-    if(typeof lessonActive === 'undefined' || !lessonActive) return;
+    const isAdaptiveActive = (typeof PK_ADAPTIVE !== 'undefined' && typeof PK_ADAPTIVE.isActive === 'function' && PK_ADAPTIVE.isActive());
+  if((typeof lessonActive === 'undefined' || !lessonActive) && !isAdaptiveActive) return;
     origRecordKeystroke(correct);
     totals.keys = savedLessonStats.keys;
     totals.correct = savedLessonStats.correct;

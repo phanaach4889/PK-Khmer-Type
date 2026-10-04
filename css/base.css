@@ -3692,56 +3692,7 @@
     filter: none;
   }
 
-  /* Transparent glass footer when custom wallpaper is active */
-  body.has-custom-wallpaper .site-footer,
-  html.theme-light body.has-custom-wallpaper .site-footer,
-  html.theme-sepia body.has-custom-wallpaper .site-footer {
-    background: rgba(255, 255, 255, 0) !important;
-    backdrop-filter: blur(5px) !important;
-    -webkit-backdrop-filter: blur(5px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.35) !important;
-    border-radius: 16px !important;
-    padding: 14px 24px !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35) !important;
-  }
-  body.has-custom-wallpaper .site-footer-credit,
-  body.has-custom-wallpaper .site-footer-link,
-  html.theme-light body.has-custom-wallpaper .site-footer-credit,
-  html.theme-light body.has-custom-wallpaper .site-footer-link,
-  html.theme-sepia body.has-custom-wallpaper .site-footer-credit,
-  html.theme-sepia body.has-custom-wallpaper .site-footer-link {
-    color: #f8fafc !important;
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85) !important;
-    font-weight: 600 !important;
-  }
-  body.has-custom-wallpaper .site-footer-link:hover,
-  html.theme-light body.has-custom-wallpaper .site-footer-link:hover,
-  html.theme-sepia body.has-custom-wallpaper .site-footer-link:hover {
-    color: var(--gold-bright) !important;
-  }
-  body.has-custom-wallpaper .site-lang-toggle,
-  html.theme-light body.has-custom-wallpaper .site-lang-toggle,
-  html.theme-sepia body.has-custom-wallpaper .site-lang-toggle {
-    background: rgba(255, 255, 255, 0) !important;
-    backdrop-filter: blur(5px) !important;
-    -webkit-backdrop-filter: blur(5px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.35) !important;
-    color: #ffffff !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25) !important;
-  }
-  body.has-custom-wallpaper .site-lang-toggle:hover,
-  html.theme-light body.has-custom-wallpaper .site-lang-toggle:hover,
-  html.theme-sepia body.has-custom-wallpaper .site-lang-toggle:hover {
-    border-color: var(--gold-bright) !important;
-    color: var(--gold-bright) !important;
-    background: rgba(255, 255, 255, 0.08) !important;
-  }
-  body.has-custom-wallpaper .site-lang-toggle-icon,
-  html.theme-light body.has-custom-wallpaper .site-lang-toggle-icon,
-  html.theme-sepia body.has-custom-wallpaper .site-lang-toggle-icon {
-    background: rgba(255, 209, 102, 0.18) !important;
-    color: var(--gold-bright) !important;
-  }
+  /* Footer stays normal in normal themes; Transparent Glass theme styles it below */
 
   .dev-note-card{
     max-width:520px;
@@ -4013,7 +3964,10 @@
   }
 
 
-  /* ================= Transparent Glass on Wallpaper ================= */
+  /* ================= PK KHMER TYPE (h1) Transparent Glass ================= */
+  h1,
+  html.theme-light h1,
+  html.theme-sepia h1,
   body.has-custom-wallpaper h1,
   html.theme-light body.has-custom-wallpaper h1,
   html.theme-sepia body.has-custom-wallpaper h1 {
@@ -4021,131 +3975,16 @@
     backdrop-filter: blur(5px) !important;
     -webkit-backdrop-filter: blur(5px) !important;
     border: 1px solid rgba(255, 255, 255, 0.35) !important;
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    text-shadow: 0 0 20px rgba(255, 209, 102, 0.6), 0 2px 10px rgba(0, 0, 0, 0.9) !important;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
   }
-  body.has-custom-wallpaper h1 .km,
-  html.theme-light body.has-custom-wallpaper h1 .km,
-  html.theme-sepia body.has-custom-wallpaper h1 .km {
-    color: var(--gold-bright) !important;
-    -webkit-text-fill-color: var(--gold-bright) !important;
-    text-shadow: 0 0 18px rgba(255, 209, 102, 0.7) !important;
+  html.theme-light body:not(.has-custom-wallpaper) h1 {
+    border-color: rgba(15, 23, 42, 0.25) !important;
+    color: #0f172a !important;
+    text-shadow: none !important;
   }
-  body.has-custom-wallpaper .subtitle,
-  html.theme-light body.has-custom-wallpaper .subtitle,
-  html.theme-sepia body.has-custom-wallpaper .subtitle {
-    color: #f1f5f9 !important;
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9), 0 2px 16px rgba(0, 0, 0, 0.8) !important;
-  }
-  body.has-custom-wallpaper .subtitle kbd,
-  html.theme-light body.has-custom-wallpaper .subtitle kbd,
-  html.theme-sepia body.has-custom-wallpaper .subtitle kbd {
-    background: rgba(255, 255, 255, 0) !important;
-    backdrop-filter: blur(5px) !important;
-    -webkit-backdrop-filter: blur(5px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.35) !important;
-    color: var(--gold-bright) !important;
-  }
-  body.has-custom-wallpaper .founder-byline,
-  html.theme-light body.has-custom-wallpaper .founder-byline,
-  html.theme-sepia body.has-custom-wallpaper .founder-byline {
-    background: rgba(255, 255, 255, 0) !important;
-    backdrop-filter: blur(5px) !important;
-    -webkit-backdrop-filter: blur(5px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.35) !important;
-    color: #f1f5f9 !important;
-  }
-  body.has-custom-wallpaper .layout-strip .layout-pill,
-  html.theme-light body.has-custom-wallpaper .layout-strip .layout-pill,
-  html.theme-sepia body.has-custom-wallpaper .layout-strip .layout-pill {
-    background: rgba(255, 255, 255, 0) !important;
-    backdrop-filter: blur(5px) !important;
-    -webkit-backdrop-filter: blur(5px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.35) !important;
-    color: #f1f5f9 !important;
-  }
-  body.has-custom-wallpaper .layout-strip .layout-pill.active,
-  html.theme-light body.has-custom-wallpaper .layout-strip .layout-pill.active,
-  html.theme-sepia body.has-custom-wallpaper .layout-strip .layout-pill.active {
-    background: var(--gold-bright) !important;
-    border-color: var(--gold-bright) !important;
-    color: #241405 !important;
-    box-shadow: 0 0 20px rgba(255, 209, 102, 0.5) !important;
-  }
-  body.has-custom-wallpaper .session-bar,
-  html.theme-light body.has-custom-wallpaper .session-bar,
-  html.theme-sepia body.has-custom-wallpaper .session-bar {
-    background: rgba(255, 255, 255, 0) !important;
-    backdrop-filter: blur(5px) !important;
-    -webkit-backdrop-filter: blur(5px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.35) !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35) !important;
-  }
-  body.has-custom-wallpaper .session-stat,
-  html.theme-light body.has-custom-wallpaper .session-stat,
-  html.theme-sepia body.has-custom-wallpaper .session-stat {
-    border-right-color: rgba(255, 255, 255, 0.2) !important;
-  }
-  body.has-custom-wallpaper .session-stat-val,
-  html.theme-light body.has-custom-wallpaper .session-stat-val,
-  html.theme-sepia body.has-custom-wallpaper .session-stat-val {
-    color: var(--gold-bright) !important;
-    text-shadow: 0 0 10px rgba(255, 209, 102, 0.5) !important;
-  }
-  body.has-custom-wallpaper .session-stat-label,
-  html.theme-light body.has-custom-wallpaper .session-stat-label,
-  html.theme-sepia body.has-custom-wallpaper .session-stat-label {
-    color: #cbd5e1 !important;
-  }
-  body.has-custom-wallpaper .layer-strip .layer-pill,
-  html.theme-light body.has-custom-wallpaper .layer-strip .layer-pill,
-  html.theme-sepia body.has-custom-wallpaper .layer-strip .layer-pill {
-    background: rgba(255, 255, 255, 0) !important;
-    backdrop-filter: blur(5px) !important;
-    -webkit-backdrop-filter: blur(5px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.35) !important;
-    color: #f1f5f9 !important;
-  }
-  body.has-custom-wallpaper .layer-strip .layer-pill.active,
-  html.theme-light body.has-custom-wallpaper .layer-strip .layer-pill.active,
-  html.theme-sepia body.has-custom-wallpaper .layer-strip .layer-pill.active {
-    background: var(--gold-bright) !important;
-    border-color: var(--gold-bright) !important;
-    color: #241405 !important;
-  }
-  body.has-custom-wallpaper .top-actions button,
-  html.theme-light body.has-custom-wallpaper .top-actions button,
-  html.theme-sepia body.has-custom-wallpaper .top-actions button,
-  body.has-custom-wallpaper .toolbar button,
-  html.theme-light body.has-custom-wallpaper .toolbar button,
-  html.theme-sepia body.has-custom-wallpaper .toolbar button {
-    background: rgba(255, 255, 255, 0) !important;
-    backdrop-filter: blur(5px) !important;
-    -webkit-backdrop-filter: blur(5px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.35) !important;
-    color: #f1f5f9 !important;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
-  }
-  body.has-custom-wallpaper .top-actions button:hover,
-  html.theme-light body.has-custom-wallpaper .top-actions button:hover,
-  html.theme-sepia body.has-custom-wallpaper .top-actions button:hover,
-  body.has-custom-wallpaper .toolbar button:hover,
-  html.theme-light body.has-custom-wallpaper .toolbar button:hover,
-  html.theme-sepia body.has-custom-wallpaper .toolbar button:hover {
-    border-color: var(--gold-bright) !important;
-    color: var(--gold-bright) !important;
-    background: rgba(255, 255, 255, 0.08) !important;
-  }
-  body.has-custom-wallpaper .board-chassis-bar,
-  html.theme-light body.has-custom-wallpaper .board-chassis-bar,
-  html.theme-sepia body.has-custom-wallpaper .board-chassis-bar {
-    background: rgba(255, 255, 255, 0) !important;
-    backdrop-filter: blur(5px) !important;
-    -webkit-backdrop-filter: blur(5px) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.35) !important;
-    color: #f1f5f9 !important;
+  html.theme-sepia body:not(.has-custom-wallpaper) h1 {
+    border-color: rgba(44, 27, 12, 0.3) !important;
+    color: #2c1b0c !important;
+    text-shadow: none !important;
   }
 
 
@@ -4535,7 +4374,7 @@
 
 
 /* ============================================================
-   FULL TRANSPARENT GLASS THEME (html.theme-glass)
+   FULL TRANSPARENT GLASS THEME (html.theme-glass ONLY)
    background: rgba(255,255,255,0);
    backdrop-filter: blur(5px);
    border: 1px solid rgba(255,255,255,.35);
@@ -4564,16 +4403,25 @@ html.theme-glass .manuscript,
 html.theme-glass .lesson-panel,
 html.theme-glass .lesson-char-row,
 html.theme-glass .trial-card,
+html.theme-glass .trial-panel,
 html.theme-glass .race-panel,
 html.theme-glass .site-footer,
-body.has-custom-wallpaper .board-wrap,
-body.has-custom-wallpaper .manuscript,
-body.has-custom-wallpaper .lesson-panel {
+html.theme-glass .site-lang-toggle,
+html.theme-glass .modal-card,
+html.theme-glass .shortcut-item,
+html.theme-glass .stat-tile,
+html.theme-glass .race-record-card,
+html.theme-glass .secondary-btn {
   background: rgba(255, 255, 255, 0) !important;
   backdrop-filter: blur(5px) !important;
   -webkit-backdrop-filter: blur(5px) !important;
   border: 1px solid rgba(255, 255, 255, 0.35) !important;
   color: #ffffff !important;
+}
+
+html.theme-glass .site-footer {
+  border-radius: 16px !important;
+  padding: 14px 24px !important;
 }
 
 html.theme-glass .key {
@@ -4585,9 +4433,7 @@ html.theme-glass .key:hover {
   box-shadow: 0 0 16px color-mix(in srgb, var(--gold-bright) 45%, transparent) !important;
 }
 html.theme-glass .layout-strip .layout-pill.active,
-html.theme-glass body.has-custom-wallpaper .layout-strip .layout-pill.active,
 html.theme-glass .layer-strip .layer-pill.active,
-html.theme-glass body.has-custom-wallpaper .layer-strip .layer-pill.active,
 html.theme-glass .toolbar button.active,
 html.theme-glass .top-actions button.active {
   background: rgba(255, 255, 255, 0) !important;

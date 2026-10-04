@@ -59,7 +59,7 @@ function ensureSettingsStylesheet() {
   if (!document.querySelector('link[href*="css/settings.css"]')) {
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "css/settings.css?v=2";
+    link.href = "css/settings.css?v=33";
     document.head.appendChild(link);
   }
 }
@@ -1111,12 +1111,13 @@ function initSettingsToggles() {
   const unlockAllLessonsToggle = document.getElementById("unlockAllLessonsToggle");
   function applyUnlockAllLessons(on) {
     setSwitchUI(unlockAllLessonsToggle, on);
-    if (window.PKProgress && typeof window.PKProgress.setUnlockAll === "function") {
-      window.PKProgress.setUnlockAll(!!on);
-      if (typeof renderLessonAccordion === "function") renderLessonAccordion();
-    } else {
-      safeSet("pk_unlock_all_lessons", on ? "1" : "0");
+    safeSet("pk_unlock_all_lessons", on ? "1" : "0");
+    safeSet("khmerUnlockAll", on ? "1" : "0");
+    if (typeof allLessonsUnlocked !== "undefined") {
+      allLessonsUnlocked = !!on;
     }
+    window.allLessonsUnlocked = !!on;
+    if (typeof renderLessonStrip === "function") renderLessonStrip();
   }
   bindSwitch(unlockAllLessonsToggle, (on) => {
     applyUnlockAllLessons(on);
@@ -1124,9 +1125,7 @@ function initSettingsToggles() {
       showToast(pkIcon("trophy", 18), on ? "All 77 Lessons Unlocked" : "Standard Progression Restored", on ? "Sandbox Mode active — jump to any lesson freely." : "Lessons unlock sequentially as you master them.");
     }
   });
-  const initialUnlockAll = (window.PKProgress && typeof window.PKProgress.isUnlockAll === "function")
-    ? window.PKProgress.isUnlockAll()
-    : safeGet("pk_unlock_all_lessons", "0") === "1";
+  const initialUnlockAll = safeGet("khmerUnlockAll", safeGet("pk_unlock_all_lessons", "0")) === "1";
   setSwitchUI(unlockAllLessonsToggle, initialUnlockAll);
 
   const strictModeToggle = document.getElementById("strictModeToggle");
@@ -1448,18 +1447,86 @@ function initSettingsToggles() {
       const storageEl = document.getElementById("settingsStatStorage");
 
       const statsRaw = JSON.parse(safeGet(LS.totals, "{}") || "{}");
-      if (keysEl) keysEl.textContent = Number(statsRaw.totalKeys || 0).toLocaleString();
-      if (bestWpmEl) bestWpmEl.textContent = Math.round(Number(statsRaw.bestWpm || 0)) + " WPM";
+      const lessonStatsRaw = JSON.parse(safeGet("khmerLessonStats", "{}") || "{}");
+      const memLessonStats = (typeof window.savedLessonStats === "object" && window.savedLessonStats) ? window.savedLessonStats : {};
 
-      let masteredCount = 0;
-      if (window.PKProgress && typeof window.PKProgress.load === "function") {
-        const p = window.PKProgress.load();
-        const lessonsMap = (p && p.lessons) || {};
-        Object.values(lessonsMap).forEach((entry) => {
-          if (entry && (entry.completed || entry.stars > 0)) masteredCount++;
+      let progressUnits = 0;
+      let progressBestWpm = 0;
+      const masteredSet = new Set();
+
+      if (window.PK_PROGRESS && typeof window.PK_PROGRESS.exportData === "function") {
+        const exp = window.PK_PROGRESS.exportData();
+        const courses = (exp && exp.courses) || {};
+        Object.values(courses).forEach((course) => {
+          if (!course) return;
+          progressUnits += Number(course.totalTypingUnits || 0);
+          const lessonsObj = course.lessons || {};
+          Object.entries(lessonsObj).forEach(([lid, rec]) => {
+            if (!rec) return;
+            if (Number(rec.bestWpm || 0) > progressBestWpm) {
+              progressBestWpm = Number(rec.bestWpm || 0);
+            }
+            if (rec.masteryState === "mastered" || (rec.completed && Number(rec.bestAccuracy || 0) >= 85)) {
+              masteredSet.add(String(lid));
+            }
+          });
         });
       }
-      if (masteredEl) masteredEl.textContent = masteredCount + " / 77";
+
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i) || "";
+        if (k.startsWith("khmerLessonBest_")) {
+          const lid = k.replace("khmerLessonBest_", "");
+          try {
+            const b = JSON.parse(localStorage.getItem(k) || "null");
+            if (b && (b.mastered || Number(b.accuracy || 0) >= 85)) {
+              masteredSet.add(String(lid));
+            }
+          } catch (_) {}
+        }
+      }
+
+      if (typeof LESSONS !== "undefined" && Array.isArray(LESSONS) && typeof getLessonBest === "function") {
+        LESSONS.forEach((l) => {
+          if (!l || !l.id) return;
+          const b = getLessonBest(l.id);
+          if (b && (b.mastered || Number(b.accuracy || 0) >= 85)) {
+            masteredSet.add(String(l.id));
+          }
+        });
+      }
+
+      const totalKeys = Math.max(
+        Number(statsRaw.keys || 0),
+        Number(statsRaw.totalKeys || 0),
+        Number(lessonStatsRaw.keys || 0),
+        Number(memLessonStats.keys || 0),
+        progressUnits
+      );
+
+      const bestWpm = Math.round(Math.max(
+        Number(statsRaw.bestWpm || 0),
+        Number(lessonStatsRaw.bestWpm || 0),
+        Number(lessonStatsRaw.wpm || 0),
+        Number(memLessonStats.bestWpm || 0),
+        Number(memLessonStats.wpm || 0),
+        progressBestWpm
+      ));
+
+      let totalLessonsCount = 77;
+      if (typeof CURRICULUM_BUNDLE === "object" && CURRICULUM_BUNDLE) {
+        let sum = 0;
+        ["standard", "nida", "english"].forEach((cid) => {
+          if (CURRICULUM_BUNDLE[cid] && Array.isArray(CURRICULUM_BUNDLE[cid].lessons)) {
+            sum += CURRICULUM_BUNDLE[cid].lessons.length;
+          }
+        });
+        if (sum > 0) totalLessonsCount = sum;
+      }
+
+      if (keysEl) keysEl.textContent = totalKeys.toLocaleString();
+      if (bestWpmEl) bestWpmEl.textContent = bestWpm + " WPM";
+      if (masteredEl) masteredEl.textContent = masteredSet.size + " / " + totalLessonsCount;
 
       let bytes = 0;
       for (let i = 0; i < localStorage.length; i++) {
@@ -1470,6 +1537,8 @@ function initSettingsToggles() {
       if (storageEl) storageEl.textContent = Math.max(1, Math.round(bytes / 1024)) + " KB";
     } catch (e) {}
   }
+  window.updateSettingsStorageStats = updateSettingsStorageStats;
+  updateSettingsStorageStats();
 
   /* ---------- 12. Settings Modal Open / Close ---------- */
   const settingsModal = document.getElementById("settingsModal");

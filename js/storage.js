@@ -858,7 +858,7 @@ function initStorageActions(){
   document.getElementById('exportProgressBtn').addEventListener('click', ()=>{
     try{
       const data = {};
-      Object.keys(localStorage).forEach(k=>{ if(k.startsWith('khmer')) data[k] = localStorage.getItem(k); });
+      Object.keys(localStorage).forEach(k=>{ if(k.startsWith('khmer') || k.startsWith('pk_') || k.startsWith('kk_')) data[k] = localStorage.getItem(k); });
       const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -884,7 +884,7 @@ function initStorageActions(){
           { title:'Restore backup?', confirmLabel:'Restore', icon: pkIcon('scroll', 24) }
         );
         if(!ok) return;
-        Object.keys(data).forEach(k=>{ if(k.startsWith('khmer')) localStorage.setItem(k, data[k]); });
+        Object.keys(data).forEach(k=>{ if(k.startsWith('khmer') || k.startsWith('pk_') || k.startsWith('kk_')) localStorage.setItem(k, data[k]); });
         location.reload();
       }catch(e){
         alert('That file could not be read as a valid backup.');

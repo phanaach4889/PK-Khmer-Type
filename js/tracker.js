@@ -755,6 +755,7 @@
         wpm: l.wpm,
         currentStreak: l.currentStreak,
         bestStreak: l.bestStreak,
+        correctCount: l.correctCount,
         mistakeCount: l.mistakeCount,
         backspaceCount: l.backspaceCount,
         correctedCount: l.correctedCount,
