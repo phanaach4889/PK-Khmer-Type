@@ -188,7 +188,7 @@ function ensureUpgradedSettingsModalDOM() {
 
       <div class="settings-section" data-cat-section="appearance">
         <div class="settings-section-header"><h3 class="settings-section-title">Appearance, Themes &amp; Wallpaper</h3><span class="settings-section-count">7 settings</span></div>
-        <div class="settings-row" data-search="theme dark temple moonlight jungle sunset sepia light system color"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Studio Color Theme</span><span class="settings-row-km">ស្បែកកម្មវិធី</span></div><div class="settings-row-desc">Select the overall atmosphere and lighting palette.</div></div><div class="settings-row-control"><div class="settings-choice" id="themeChoice"><button type="button" data-theme="dark" class="active"><span class="theme-dot dark"></span>Dark</button><button type="button" data-theme="temple"><span class="theme-dot temple"></span>Temple</button><button type="button" data-theme="moonlight"><span class="theme-dot moonlight"></span>Moonlight</button><button type="button" data-theme="jungle"><span class="theme-dot jungle"></span>Jungle</button><button type="button" data-theme="sunset"><span class="theme-dot sunset"></span>Sunset</button><button type="button" data-theme="sepia"><span class="theme-dot sepia"></span>Sepia</button><button type="button" data-theme="light"><span class="theme-dot light"></span>Light</button><button type="button" data-theme="system"><span class="theme-dot system"></span>System</button></div></div></div>
+        <div class="settings-row" data-search="theme dark temple moonlight jungle sunset sepia light system color"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Studio Color Theme</span><span class="settings-row-km">ស្បែកកម្មវិធី</span></div><div class="settings-row-desc">Select the overall atmosphere and lighting palette.</div></div><div class="settings-row-control"><div class="settings-choice" id="themeChoice"><button type="button" data-theme="glass"><span class="theme-dot glass"></span>Transparent Glass</button><button type="button" data-theme="dark" class="active"><span class="theme-dot dark"></span>Dark</button><button type="button" data-theme="temple"><span class="theme-dot temple"></span>Temple</button><button type="button" data-theme="moonlight"><span class="theme-dot moonlight"></span>Moonlight</button><button type="button" data-theme="jungle"><span class="theme-dot jungle"></span>Jungle</button><button type="button" data-theme="sunset"><span class="theme-dot sunset"></span>Sunset</button><button type="button" data-theme="sepia"><span class="theme-dot sepia"></span>Sepia</button><button type="button" data-theme="light"><span class="theme-dot light"></span>Light</button><button type="button" data-theme="system"><span class="theme-dot system"></span>System</button></div></div></div>
         <div class="settings-row" data-search="accent color gold jade sapphire ruby cyan amethyst"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Primary Accent Color</span><span class="settings-row-km">ពណ៌លេចធ្លោ</span></div><div class="settings-row-desc">Choose the highlight glow color for active keys, badges, and buttons.</div></div><div class="settings-row-control"><div class="settings-choice accent-choice" id="accentChoice"><button type="button" data-accent="gold" class="active" style="--sw:#ffd166" aria-label="Gold accent"></button><button type="button" data-accent="jade" style="--sw:#5fd694" aria-label="Jade accent"></button><button type="button" data-accent="sapphire" style="--sw:#2dd4a7" aria-label="Sapphire accent"></button><button type="button" data-accent="ruby" style="--sw:#ff5a70" aria-label="Ruby accent"></button><button type="button" data-accent="cyan" style="--sw:#38bdf8" aria-label="Cyber Cyan accent"></button><button type="button" data-accent="amethyst" style="--sw:#c084fc" aria-label="Amethyst accent"></button></div></div></div>
         <div class="settings-row" data-search="khmer font family kantumruy noto sans serif typography"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Khmer Script Font Family</span><span class="settings-row-km">ពុម្ពអក្សរខ្មែរ</span></div><div class="settings-row-desc">Choose the Khmer typeface for keycaps, HUD cards, and typing prompts.</div></div><div class="settings-row-control"><div class="settings-choice" id="khmerFontChoice"><button type="button" data-kfont="kantumruy" class="active">Kantumruy Pro</button><button type="button" data-kfont="noto-sans">Noto Sans Khmer</button><button type="button" data-kfont="noto-serif">Noto Serif Khmer</button></div></div></div>
         <div class="settings-row" data-search="larger text font size big scale zoom"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Larger Text &amp; Key Glyphs</span><span class="settings-row-km">អក្សរធំ</span></div><div class="settings-row-desc">Increase font size across keycaps, reading prompts, and menus.</div></div><div class="settings-row-control"><div class="toggle-switch" id="largeTextToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
@@ -779,6 +779,7 @@ function initSettingsToggles() {
     document.documentElement.classList.toggle("theme-jungle", effective === "jungle");
     document.documentElement.classList.toggle("theme-sunset", effective === "sunset");
     document.documentElement.classList.toggle("theme-sepia", effective === "sepia");
+    document.documentElement.classList.toggle("theme-glass", effective === "glass");
     themeButtons.forEach((b) => b.classList.toggle("active", b.dataset.theme === mode));
     safeSet(LS.theme, mode);
   }
@@ -1246,40 +1247,16 @@ function initSettingsToggles() {
   /* ---------- 8. Focus Mode ---------- */
   const focusModeToggle = document.getElementById("focusModeToggle");
   const focusModeBtn = document.getElementById("focusModeBtn");
-  let focusGrowCleanupTimer = null;
 
   window.applyFocusMode = applyFocusMode;
-  function applyFocusMode(on, isInitial) {
-    const htmlEl = document.documentElement;
-    const wasOn = htmlEl.classList.contains("focus-mode");
-
-    if (!isInitial && on !== wasOn) {
-      htmlEl.classList.remove("focus-mode-growing", "focus-mode-shrinking");
-      void htmlEl.offsetWidth;
-      htmlEl.classList.add(on ? "focus-mode-growing" : "focus-mode-shrinking");
-      if (focusGrowCleanupTimer) clearTimeout(focusGrowCleanupTimer);
-      focusGrowCleanupTimer = setTimeout(() => {
-        htmlEl.classList.remove("focus-mode-growing", "focus-mode-shrinking");
-      }, 720);
-      if (typeof window.spawnFocusGrowBloom === "function") {
-        window.spawnFocusGrowBloom(on);
-      }
-    }
-
-    htmlEl.classList.toggle("focus-mode", on);
+  function applyFocusMode(on) {
+    document.documentElement.classList.toggle("focus-mode", on);
     setSwitchUI(focusModeToggle, on);
     if (focusModeBtn) {
       focusModeBtn.classList.toggle("active", on);
-      if (!isInitial && on) {
-        focusModeBtn.classList.remove("focus-btn-grow-anim");
-        void focusModeBtn.offsetWidth;
-        focusModeBtn.classList.add("focus-btn-grow-anim");
-      } else if (!on) {
-        focusModeBtn.classList.remove("focus-btn-grow-anim");
-      }
       focusModeBtn.setAttribute("aria-pressed", String(on));
       const textSpan = focusModeBtn.querySelector(".focus-btn-text");
-      const isKm = htmlEl.classList.contains("site-km-mode");
+      const isKm = document.documentElement.classList.contains("site-km-mode");
       if (textSpan) {
         if (on) {
           textSpan.setAttribute("data-en", "Exit Focus");
@@ -1296,41 +1273,39 @@ function initSettingsToggles() {
       const ls = document.getElementById("lessonStrip");
       if (ls) ls.classList.remove("expanded");
     }
-    const syncHands = () => {
+    requestAnimationFrame(() => {
       if (typeof window.updateHandsOverlay === "function") {
         window.updateHandsOverlay();
       } else if (typeof window.render === "function") {
         window.render();
       }
       window.dispatchEvent(new Event("resize"));
-    };
-    requestAnimationFrame(syncHands);
-    setTimeout(syncHands, 150);
-    setTimeout(syncHands, 620);
+    });
     safeSet(LS.focusMode, on ? "1" : "0");
   }
-  bindSwitch(focusModeToggle, (on) => {
-    applyFocusMode(on, false);
-    if (typeof window.showFocusShortcutHud === "function") {
-      window.showFocusShortcutHud(on, "toggle");
-    }
-    if (typeof window.playFocusModeSound === "function") {
-      window.playFocusModeSound(on);
-    }
-  });
+  bindSwitch(focusModeToggle, applyFocusMode);
 
   if (focusModeBtn) {
     focusModeBtn.addEventListener("click", () => {
-      if (typeof window.triggerFocusModeShortcut === "function") {
-        window.triggerFocusModeShortcut("button");
-      } else {
-        const willBeOn = !document.documentElement.classList.contains("focus-mode");
-        applyFocusMode(willBeOn, false);
+      const willBeOn = !document.documentElement.classList.contains("focus-mode");
+      applyFocusMode(willBeOn);
+      if (typeof showToast === "function") {
+        if (willBeOn) showToast(pkIcon("zap", 18), "Focus Mode Active", "Distractions hidden. Press Esc or Alt+F anytime to exit.");
+        else showToast(pkIcon("eye", 18), "Focus Mode Off", "Interface restored.");
       }
     });
   }
 
-  applyFocusMode(safeGet(LS.focusMode, "0") === "1", true);
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && document.documentElement.classList.contains("focus-mode")) {
+      const anyModalOpen = document.querySelector(".modal-backdrop:not([hidden])");
+      if (!anyModalOpen) applyFocusMode(false);
+    } else if (e.altKey && (e.key === "f" || e.key === "F")) {
+      e.preventDefault();
+      applyFocusMode(!document.documentElement.classList.contains("focus-mode"));
+    }
+  });
+  applyFocusMode(safeGet(LS.focusMode, "0") === "1");
 
   /* ---------- 9. Mirror Sound & Finger-Guide Toggles ---------- */
   const settingsSoundToggle = document.getElementById("settingsSoundToggle");

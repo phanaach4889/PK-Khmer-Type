@@ -4510,3 +4510,63 @@
   }
 
 ::-webkit-scrollbar-button { display: none !important; width: 0 !important; height: 0 !important; }
+
+
+/* ============================================================
+   FULL TRANSPARENT GLASS THEME (html.theme-glass)
+   background: rgba(255,255,255,0);
+   backdrop-filter: blur(5px);
+   border: 1px solid rgba(255,255,255,.35);
+   ============================================================ */
+html.theme-glass body:not(.has-custom-wallpaper) {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(56, 189, 248, 0.25) 0%, transparent 45%),
+    radial-gradient(circle at 82% 22%, rgba(168, 85, 247, 0.28) 0%, transparent 48%),
+    radial-gradient(circle at 50% 80%, rgba(255, 157, 46, 0.2) 0%, transparent 50%),
+    linear-gradient(135deg, #090d1a 0%, #131b36 50%, #070a14 100%) !important;
+}
+
+html.theme-glass h1,
+html.theme-glass .founder-byline,
+html.theme-glass .subtitle kbd,
+html.theme-glass .layout-strip .layout-pill,
+html.theme-glass .session-bar,
+html.theme-glass .layer-strip .layer-pill,
+html.theme-glass .top-actions button,
+html.theme-glass .toolbar button,
+html.theme-glass .board-wrap,
+html.theme-glass .board-chassis-bar,
+html.theme-glass .chassis-action-btn,
+html.theme-glass .key,
+html.theme-glass .manuscript,
+html.theme-glass .lesson-panel,
+html.theme-glass .lesson-char-row,
+html.theme-glass .trial-card,
+html.theme-glass .race-panel,
+html.theme-glass .site-footer,
+body.has-custom-wallpaper .board-wrap,
+body.has-custom-wallpaper .manuscript,
+body.has-custom-wallpaper .lesson-panel {
+  background: rgba(255, 255, 255, 0) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  color: #ffffff !important;
+}
+
+html.theme-glass .key {
+  border-bottom: 3px solid rgba(255, 255, 255, 0.48) !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+html.theme-glass .key:hover {
+  border-color: var(--gold-bright) !important;
+  box-shadow: 0 0 16px color-mix(in srgb, var(--gold-bright) 45%, transparent) !important;
+}
+html.theme-glass .layout-strip .layout-pill.active,
+html.theme-glass .layer-strip .layer-pill.active,
+html.theme-glass .toolbar button.active,
+html.theme-glass .top-actions button.active {
+  border-color: var(--gold-bright) !important;
+  color: var(--gold-bright) !important;
+  box-shadow: 0 0 18px color-mix(in srgb, var(--gold-bright) 45%, transparent), inset 0 0 12px color-mix(in srgb, var(--gold-bright) 22%, transparent) !important;
+}

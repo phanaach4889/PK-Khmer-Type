@@ -2680,3 +2680,98 @@ html.theme-sepia body:not(.has-custom-wallpaper) .lesson-card-best {
   border-color: #16a34a !important;
   color: #15803d !important;
 }
+
+
+/* ============================================================
+   PURE TRANSPARENT GLASS THEME (html.theme-glass & Wallpaper)
+   Exact user spec:
+   background: rgba(255,255,255,0);
+   backdrop-filter: blur(5px);
+   border: 1px solid rgba(255,255,255,.35);
+   ============================================================ */
+html.theme-glass .lesson-strip,
+html.theme-glass #lessonStrip,
+html.theme-glass.focus-mode .lesson-strip,
+html.theme-glass.focus-mode #lessonStrip,
+body.has-custom-wallpaper .lesson-strip,
+body.has-custom-wallpaper #lessonStrip,
+html.focus-mode body.has-custom-wallpaper .lesson-strip,
+html.focus-mode body.has-custom-wallpaper #lessonStrip,
+html.theme-light body.has-custom-wallpaper .lesson-strip,
+html.theme-sepia body.has-custom-wallpaper .lesson-strip,
+html.theme-glass .guide-dock,
+html.theme-glass #guideDock,
+body.has-custom-wallpaper .guide-dock,
+body.has-custom-wallpaper #guideDock {
+  background: rgba(255, 255, 255, 0) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35) !important;
+  color: #ffffff !important;
+}
+
+html.theme-glass .lesson-strip-header,
+html.theme-glass .lesson-strip-search,
+html.theme-glass .guide-dock-header,
+body.has-custom-wallpaper .lesson-strip-header,
+body.has-custom-wallpaper .lesson-strip-search,
+body.has-custom-wallpaper .guide-dock-header {
+  background: rgba(255, 255, 255, 0) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35) !important;
+  color: #ffffff !important;
+}
+
+html.theme-glass .lss-input-wrap input,
+body.has-custom-wallpaper .lss-input-wrap input,
+html.theme-glass .lsh-adaptive-btn,
+html.theme-glass .lsh-badge,
+html.theme-glass .lsh-expand-btn,
+body.has-custom-wallpaper .lsh-adaptive-btn,
+body.has-custom-wallpaper .lsh-badge,
+body.has-custom-wallpaper .lsh-expand-btn {
+  background: rgba(255, 255, 255, 0) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+html.theme-glass .adaptive-sidebar-card,
+body.has-custom-wallpaper .adaptive-sidebar-card,
+html.theme-glass .lesson-level-header,
+body.has-custom-wallpaper .lesson-level-header,
+html.theme-glass .lesson-card,
+body.has-custom-wallpaper .lesson-card,
+html.theme-glass .lesson-card-num,
+body.has-custom-wallpaper .lesson-card-num,
+html.theme-glass .guide-section,
+html.theme-glass .guide-hand-block,
+html.theme-glass .guide-stat-box,
+html.theme-glass .guide-mini-key,
+body.has-custom-wallpaper .guide-section,
+body.has-custom-wallpaper .guide-hand-block,
+body.has-custom-wallpaper .guide-stat-box,
+body.has-custom-wallpaper .guide-mini-key {
+  background: rgba(255, 255, 255, 0) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  color: #ffffff !important;
+}
+
+html.theme-glass .lesson-level-header,
+body.has-custom-wallpaper .lesson-level-header {
+  border-left: 3px solid var(--gold-bright) !important;
+}
+
+html.theme-glass .lesson-card:hover,
+body.has-custom-wallpaper .lesson-card:hover,
+html.theme-glass .lesson-card.active,
+body.has-custom-wallpaper .lesson-card.active {
+  border-color: var(--gold-bright) !important;
+  box-shadow: 0 0 16px color-mix(in srgb, var(--gold-bright) 35%, transparent) !important;
+}

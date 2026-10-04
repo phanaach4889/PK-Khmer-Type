@@ -436,6 +436,7 @@
   display: inline-block;
   flex-shrink: 0;
 }
+.theme-dot.glass { background: linear-gradient(135deg, rgba(255,255,255,0.75), rgba(56,189,248,0.25)); border: 1px solid rgba(255,255,255,0.9); box-shadow: 0 0 6px rgba(255,255,255,0.6); }
 .theme-dot.dark { background: #0c0e18; border: 1px solid #38bdf8; }
 .theme-dot.temple { background: #1a0f0a; border: 1px solid #ff9d2e; }
 .theme-dot.moonlight { background: #091224; border: 1px solid #60a5fa; }
