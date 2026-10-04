@@ -59,7 +59,7 @@ function ensureSettingsStylesheet() {
   if (!document.querySelector('link[href*="css/settings.css"]')) {
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "css/settings.css?v=42";
+    link.href = "css/settings.css?v=43";
     document.head.appendChild(link);
   }
 }
