@@ -116,26 +116,64 @@
     pointer-events: none;
     transition: opacity 0.4s ease, background 0.15s ease;
   }
-  html.theme-light .custom-wallpaper-dim {
-    background: rgba(248, 250, 252, var(--wallpaper-dim, 0.52)) !important;
-  }
-  html.theme-sepia .custom-wallpaper-dim {
-    background: rgba(247, 241, 227, var(--wallpaper-dim, 0.58)) !important;
-  }
   body.has-custom-wallpaper .custom-wallpaper-dim {
     opacity: 1;
   }
   body.has-custom-wallpaper {
     background: #05070d;
   }
-  html.theme-light body.has-custom-wallpaper {
-    background: #f1f5f9 !important;
-  }
-  html.theme-sepia body.has-custom-wallpaper {
-    background: #f4ecd8 !important;
-  }
   body.has-custom-wallpaper::before {
     opacity: 0;
+  }
+
+  /* High contrast readable typography over ANY custom wallpaper */
+  body.has-custom-wallpaper > h1,
+  body.has-custom-wallpaper .hero-title {
+    color: #ffffff !important;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9), 0 0 28px rgba(0, 0, 0, 0.8) !important;
+  }
+  body.has-custom-wallpaper > h1 .km,
+  body.has-custom-wallpaper .hero-title span {
+    color: var(--gold-bright, #ffd166) !important;
+    text-shadow: 0 0 16px rgba(255, 209, 102, 0.6), 0 2px 8px rgba(0, 0, 0, 0.9) !important;
+  }
+  body.has-custom-wallpaper .subtitle,
+  body.has-custom-wallpaper .hero-desc {
+    color: #f1f5f9 !important;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.95), 0 2px 18px rgba(0, 0, 0, 0.85) !important;
+  }
+  body.has-custom-wallpaper .subtitle kbd {
+    background: rgba(15, 23, 42, 0.8) !important;
+    color: #f8fafc !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6) !important;
+  }
+  body.has-custom-wallpaper .founder-tag {
+    color: #f8fafc !important;
+    background: rgba(15, 23, 42, 0.75) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+  }
+  body.has-custom-wallpaper .founder-byline {
+    color: #cbd5e1 !important;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9) !important;
+  }
+  body.has-custom-wallpaper .session-bar {
+    background: rgba(15, 23, 42, 0.75) !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
+  }
+  body.has-custom-wallpaper .session-stat {
+    border-right-color: rgba(255, 255, 255, 0.12) !important;
+  }
+  body.has-custom-wallpaper .session-stat-label {
+    color: #cbd5e1 !important;
+  }
+  body.has-custom-wallpaper .session-stat-val {
+    color: var(--gold-bright, #ffd166) !important;
+    text-shadow: 0 0 10px rgba(255, 209, 102, 0.35);
   }
 
   /* Content elements elevated above background wallpaper */
@@ -171,9 +209,9 @@
   }
   .settings-subtext {
     font-size: 0.72rem;
-    color: var(--ink-dim);
+    color: #94a3b8 !important;
     margin-top: 3px;
-    opacity: 0.75;
+    opacity: 0.9;
   }
   .wallpaper-actions {
     display: flex;
@@ -185,32 +223,33 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 12px;
+    padding: 6px 14px;
     font-size: 0.78rem;
     font-family: inherit;
-    font-weight: 500;
-    color: var(--ink);
-    background: var(--fx-glass-2);
-    border: 1px solid var(--fx-border);
+    font-weight: 600;
+    color: #f8fafc !important;
+    background: rgba(255, 255, 255, 0.09) !important;
+    border: 1px solid rgba(255, 255, 255, 0.20) !important;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
   }
   .wallpaper-btn:hover {
-    background: rgba(255, 209, 102, 0.15);
-    border-color: var(--gold-bright);
-    color: var(--gold-bright);
-    box-shadow: 0 0 10px rgba(255, 209, 102, 0.2);
+    background: rgba(255, 209, 102, 0.22) !important;
+    border-color: var(--gold-bright, #ffd166) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 12px rgba(255, 209, 102, 0.3) !important;
   }
   .wallpaper-btn.danger {
-    color: #ff7085;
-    border-color: rgba(255, 90, 112, 0.35);
+    color: #ff7085 !important;
+    background: rgba(255, 90, 112, 0.12) !important;
+    border-color: rgba(255, 90, 112, 0.35) !important;
   }
   .wallpaper-btn.danger:hover {
-    background: rgba(255, 90, 112, 0.2);
-    border-color: #ff5a70;
-    color: #ff5a70;
-    box-shadow: 0 0 10px rgba(255, 90, 112, 0.2);
+    background: rgba(255, 90, 112, 0.25) !important;
+    border-color: #ff5a70 !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 12px rgba(255, 90, 112, 0.3) !important;
   }
   .wallpaper-dim-row {
     display: flex;
@@ -632,17 +671,18 @@
     --tooltip-border: #334155;
     --tooltip-ink: #f8fafc;
   }
-  html.theme-light .hero-title,
-  html.theme-light .hero-title span,
-  html.theme-light h1, html.theme-light h2, html.theme-light h3 {
+  /* Light mode page titles (scoped to page body when no custom wallpaper is active) */
+  html.theme-light body:not(.has-custom-wallpaper) > h1,
+  html.theme-light body:not(.has-custom-wallpaper) .hero-title,
+  html.theme-light body:not(.has-custom-wallpaper) .hero-title span {
     color: #0f172a;
   }
-  html.theme-light .subtitle,
-  html.theme-light .hero-desc,
-  html.theme-light .founder-tag {
+  html.theme-light body:not(.has-custom-wallpaper) .subtitle,
+  html.theme-light body:not(.has-custom-wallpaper) .hero-desc {
     color: #475569;
   }
-  html.theme-light .founder-tag {
+  html.theme-light body:not(.has-custom-wallpaper) .founder-tag {
+    color: #475569;
     background: #e2e8f0;
     border-color: #cbd5e1;
   }
@@ -878,97 +918,6 @@
     opacity: 0.7;
   }
 
-  /* Light Theme Session Stats Bar */
-  html.theme-light .session-bar {
-    background: rgba(255, 255, 255, 0.86) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    border: 1px solid rgba(203, 213, 225, 0.9) !important;
-    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06), inset 0 1px 0 #ffffff !important;
-  }
-  html.theme-light .session-stat {
-    border-right: 1px solid rgba(226, 232, 240, 0.9) !important;
-  }
-  html.theme-light .session-stat-label {
-    color: #64748b !important;
-    font-weight: 600;
-  }
-  html.theme-light .session-stat-val {
-    color: #0f172a !important;
-    font-weight: 700;
-  }
-
-  /* Light Theme — Custom Wallpaper Overhaul */
-  html.theme-light body.has-custom-wallpaper #horizon {
-    opacity: 0.22;
-  }
-  html.theme-light body.has-custom-wallpaper .subtitle,
-  html.theme-light body.has-custom-wallpaper .hero-desc {
-    color: #1e293b !important;
-    font-weight: 500;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85);
-  }
-  html.theme-light body.has-custom-wallpaper .founder-tag {
-    background: rgba(255, 255, 255, 0.90) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border-color: rgba(203, 213, 225, 0.95) !important;
-    color: #1e293b !important;
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
-  }
-  html.theme-light body.has-custom-wallpaper .guide-dock,
-  html.theme-light body.has-custom-wallpaper .lesson-strip {
-    background: rgba(255, 255, 255, 0.86) !important;
-    backdrop-filter: blur(20px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.8) !important;
-    box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(203, 213, 225, 0.5) !important;
-  }
-  html.theme-light body.has-custom-wallpaper .guide-dock-header,
-  html.theme-light body.has-custom-wallpaper .lesson-strip-header,
-  html.theme-light body.has-custom-wallpaper .lesson-strip-search {
-    background: rgba(248, 250, 252, 0.78) !important;
-    backdrop-filter: blur(14px) !important;
-    -webkit-backdrop-filter: blur(14px) !important;
-    border-bottom: 1px solid rgba(226, 232, 240, 0.85) !important;
-  }
-  html.theme-light body.has-custom-wallpaper .board-wrap {
-    background: rgba(248, 250, 252, 0.88) !important;
-    backdrop-filter: blur(24px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-    border: 2px solid rgba(255, 255, 255, 0.95) !important;
-    box-shadow: 0 24px 50px -12px rgba(15, 23, 42, 0.16), 0 0 0 1px rgba(203, 213, 225, 0.6) !important;
-  }
-  html.theme-light body.has-custom-wallpaper .manuscript,
-  html.theme-light body.has-custom-wallpaper .lesson-char-row,
-  html.theme-light body.has-custom-wallpaper .trial-card {
-    background: rgba(255, 255, 255, 0.90) !important;
-    backdrop-filter: blur(20px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.9) !important;
-    box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.12) !important;
-  }
-  html.theme-light body.has-custom-wallpaper .toolbar button,
-  html.theme-light body.has-custom-wallpaper .top-actions button {
-    background: rgba(255, 255, 255, 0.88) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border-color: rgba(203, 213, 225, 0.9) !important;
-    color: #1e293b !important;
-    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
-  }
-  html.theme-light body.has-custom-wallpaper .toolbar button:hover,
-  html.theme-light body.has-custom-wallpaper .top-actions button:hover {
-    background: #ffffff !important;
-    border-color: #94a3b8 !important;
-  }
-  html.theme-light body.has-custom-wallpaper .toolbar button.on,
-  html.theme-light body.has-custom-wallpaper .toolbar button.active {
-    background: #0f172a !important;
-    color: #ffffff !important;
-    border-color: #0f172a !important;
-  }
-
   /* ================= new: temple theme — warm torchlit sandstone, not midnight stone ================= */
   html.theme-temple body{
     background:
@@ -1096,17 +1045,18 @@
     --tooltip-ink: #faf5ec;
     --ink-on-accent: #ffffff;
   }
-  html.theme-sepia .hero-title,
-  html.theme-sepia .hero-title span,
-  html.theme-sepia h1, html.theme-sepia h2, html.theme-sepia h3 {
+  /* Sepia mode page titles (scoped to page body when no custom wallpaper is active) */
+  html.theme-sepia body:not(.has-custom-wallpaper) > h1,
+  html.theme-sepia body:not(.has-custom-wallpaper) .hero-title,
+  html.theme-sepia body:not(.has-custom-wallpaper) .hero-title span {
     color: #2c1b0c;
   }
-  html.theme-sepia .subtitle,
-  html.theme-sepia .hero-desc,
-  html.theme-sepia .founder-tag {
+  html.theme-sepia body:not(.has-custom-wallpaper) .subtitle,
+  html.theme-sepia body:not(.has-custom-wallpaper) .hero-desc {
     color: #6b4f2c;
   }
-  html.theme-sepia .founder-tag {
+  html.theme-sepia body:not(.has-custom-wallpaper) .founder-tag {
+    color: #6b4f2c;
     background: #e4d5bc;
     border-color: #ccbc9e;
   }
@@ -1340,96 +1290,6 @@
   html.theme-sepia #horizon .near {
     fill: #a08c6b !important;
     opacity: 0.7;
-  }
-
-  /* Sepia Theme Session Stats Bar */
-  html.theme-sepia .session-bar {
-    background: rgba(253, 246, 227, 0.88) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    border: 1px solid rgba(217, 119, 6, 0.35) !important;
-    box-shadow: 0 4px 16px rgba(120, 53, 15, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
-  }
-  html.theme-sepia .session-stat {
-    border-right: 1px solid rgba(222, 209, 185, 0.9) !important;
-  }
-  html.theme-sepia .session-stat-label {
-    color: #92400e !important;
-    font-weight: 600;
-  }
-  html.theme-sepia .session-stat-val {
-    color: #451a03 !important;
-    font-weight: 700;
-  }
-
-  /* Sepia Theme — Custom Wallpaper Overhaul */
-  html.theme-sepia body.has-custom-wallpaper #horizon {
-    opacity: 0.22;
-  }
-  html.theme-sepia body.has-custom-wallpaper .subtitle,
-  html.theme-sepia body.has-custom-wallpaper .hero-desc {
-    color: #451a03 !important;
-    font-weight: 500;
-    text-shadow: 0 1px 2px rgba(254, 243, 199, 0.8);
-  }
-  html.theme-sepia body.has-custom-wallpaper .founder-tag {
-    background: rgba(253, 246, 227, 0.90) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border-color: rgba(217, 119, 6, 0.4) !important;
-    color: #78350f !important;
-  }
-  html.theme-sepia body.has-custom-wallpaper .guide-dock,
-  html.theme-sepia body.has-custom-wallpaper .lesson-strip {
-    background: rgba(253, 246, 227, 0.88) !important;
-    backdrop-filter: blur(20px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-    border: 1px solid rgba(217, 119, 6, 0.35) !important;
-    box-shadow: 0 16px 36px -8px rgba(120, 53, 15, 0.12) !important;
-  }
-  html.theme-sepia body.has-custom-wallpaper .guide-dock-header,
-  html.theme-sepia body.has-custom-wallpaper .lesson-strip-header,
-  html.theme-sepia body.has-custom-wallpaper .lesson-strip-search {
-    background: rgba(244, 233, 213, 0.80) !important;
-    backdrop-filter: blur(14px) !important;
-    -webkit-backdrop-filter: blur(14px) !important;
-    border-bottom: 1px solid rgba(221, 204, 168, 0.85) !important;
-  }
-  html.theme-sepia body.has-custom-wallpaper .board-wrap {
-    background: rgba(253, 246, 227, 0.88) !important;
-    backdrop-filter: blur(24px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-    border: 2px solid rgba(217, 119, 6, 0.35) !important;
-    box-shadow: 0 24px 50px -12px rgba(120, 53, 15, 0.16) !important;
-  }
-  html.theme-sepia body.has-custom-wallpaper .manuscript,
-  html.theme-sepia body.has-custom-wallpaper .lesson-char-row,
-  html.theme-sepia body.has-custom-wallpaper .trial-card {
-    background: rgba(253, 246, 227, 0.90) !important;
-    backdrop-filter: blur(20px) saturate(180%) !important;
-    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-    border: 1px solid rgba(217, 119, 6, 0.35) !important;
-    box-shadow: 0 16px 36px -8px rgba(120, 53, 15, 0.12) !important;
-  }
-  html.theme-sepia body.has-custom-wallpaper .toolbar button,
-  html.theme-sepia body.has-custom-wallpaper .top-actions button {
-    background: rgba(253, 246, 227, 0.88) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border-color: rgba(204, 188, 158, 0.9) !important;
-    color: #2c1b0c !important;
-    box-shadow: 0 2px 6px rgba(44, 27, 12, 0.06);
-  }
-  html.theme-sepia body.has-custom-wallpaper .toolbar button:hover,
-  html.theme-sepia body.has-custom-wallpaper .top-actions button:hover {
-    background: #ffffff !important;
-    border-color: #a08c6b !important;
-  }
-  html.theme-sepia body.has-custom-wallpaper .toolbar button.on,
-  html.theme-sepia body.has-custom-wallpaper .toolbar button.active {
-    background: #362414 !important;
-    color: #f7ebd7 !important;
-    border-color: #362414 !important;
   }
 
   /* ================= new: top nav / utility bar ================= */

@@ -193,7 +193,7 @@ function ensureUpgradedSettingsModalDOM() {
         <div class="settings-row" data-search="khmer font family kantumruy noto sans serif typography"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Khmer Script Font Family</span><span class="settings-row-km">ពុម្ពអក្សរខ្មែរ</span></div><div class="settings-row-desc">Choose the Khmer typeface for keycaps, HUD cards, and typing prompts.</div></div><div class="settings-row-control"><div class="settings-choice" id="khmerFontChoice"><button type="button" data-kfont="kantumruy" class="active">Kantumruy Pro</button><button type="button" data-kfont="noto-sans">Noto Sans Khmer</button><button type="button" data-kfont="noto-serif">Noto Serif Khmer</button></div></div></div>
         <div class="settings-row" data-search="larger text font size big scale zoom"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Larger Text &amp; Key Glyphs</span><span class="settings-row-km">អក្សរធំ</span></div><div class="settings-row-desc">Increase font size across keycaps, reading prompts, and menus.</div></div><div class="settings-row-control"><div class="toggle-switch" id="largeTextToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
         <div class="settings-row wallpaper-settings-row" data-search="custom wallpaper background image photo url upload"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Custom Background Wallpaper</span><span class="settings-row-km">រូបភាពផ្ទៃក្រោយ</span></div><div class="settings-row-desc">Upload an image or paste an image URL for your studio backdrop.</div></div><div class="settings-row-control"><div class="wallpaper-actions"><input type="file" id="wallpaperFileInput" accept="image/*" style="display:none;"><button type="button" class="wallpaper-btn" id="uploadWallpaperBtn">Choose Image</button><button type="button" class="wallpaper-btn" id="urlWallpaperBtn">URL</button><button type="button" class="wallpaper-btn danger" id="removeWallpaperBtn" style="display:none;">Remove</button></div></div></div>
-        <div class="settings-row wallpaper-dim-row" id="wallpaperDimControl" style="display:none;" data-search="wallpaper dimming brightness dark"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name" id="wallpaperDimTitle">Wallpaper Dimming</span></div><div class="settings-row-desc" id="wallpaperDimDesc">Darken the custom wallpaper so the keyboard stays crisp.</div></div><div class="settings-row-control"><div class="settings-slider-wrap"><input type="range" id="wallpaperDimSlider" min="15" max="90" value="65"><span class="settings-slider-badge" id="wallpaperDimValue">65%</span></div></div></div>
+        <div class="settings-row wallpaper-dim-row" id="wallpaperDimControl" style="display:none;" data-search="wallpaper dimming brightness dark"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Wallpaper Dimming</span></div><div class="settings-row-desc">Darken the custom wallpaper so the keyboard stays crisp.</div></div><div class="settings-row-control"><div class="settings-slider-wrap"><input type="range" id="wallpaperDimSlider" min="15" max="90" value="65"><span class="settings-slider-badge" id="wallpaperDimValue">65%</span></div></div></div>
         <div class="settings-row" data-search="wallpaper blur glass backdrop"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Backdrop Glass Blur</span><span class="settings-row-km">កម្រិតព្រាលផ្ទៃក្រោយ</span></div><div class="settings-row-desc">Apply soft optical depth-of-field blur to custom wallpapers.</div></div><div class="settings-row-control"><div class="settings-slider-wrap"><input type="range" id="wallpaperBlurSlider" min="0" max="24" value="0"><span class="settings-slider-badge" id="wallpaperBlurValue">0px</span></div></div></div>
       </div>
 
@@ -780,23 +780,6 @@ function initSettingsToggles() {
     document.documentElement.classList.toggle("theme-sunset", effective === "sunset");
     document.documentElement.classList.toggle("theme-sepia", effective === "sepia");
     themeButtons.forEach((b) => b.classList.toggle("active", b.dataset.theme === mode));
-
-    // Dynamic adaptation of wallpaper scrim label based on active theme
-    const dimTitle = document.getElementById("wallpaperDimTitle");
-    const dimDesc = document.getElementById("wallpaperDimDesc");
-    if (dimTitle && dimDesc) {
-      if (effective === "light") {
-        dimTitle.textContent = "Wallpaper Frost & Scrim";
-        dimDesc.textContent = "Adjust frosted light scrim so keys and text stay crisp.";
-      } else if (effective === "sepia") {
-        dimTitle.textContent = "Wallpaper Parchment Scrim";
-        dimDesc.textContent = "Adjust warm parchment scrim so keys and text stay crisp.";
-      } else {
-        dimTitle.textContent = "Wallpaper Dimming";
-        dimDesc.textContent = "Darken the custom wallpaper so the keyboard stays crisp.";
-      }
-    }
-
     safeSet(LS.theme, mode);
   }
   themeButtons.forEach((b) => b.addEventListener("click", () => applyTheme(b.dataset.theme)));
