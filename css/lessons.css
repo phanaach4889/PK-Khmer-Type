@@ -3129,3 +3129,8 @@ html.theme-glass .lc-char.current {
   border: 2px solid var(--gold-bright) !important;
   box-shadow: 0 0 18px color-mix(in srgb, var(--gold-bright) 50%, transparent) !important;
 }
+
+html.theme-glass .lesson-complete-overlay {
+  background: rgba(0, 0, 0, 0.22) !important;
+  backdrop-filter: blur(3px) !important;
+}
