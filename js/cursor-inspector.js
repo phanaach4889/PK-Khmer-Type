@@ -282,7 +282,7 @@
     } catch(e){}
   }
 
-  /* ---- DOM Construction for HUD & Reticle ---- */
+  /* ---- DOM Construction for HUD ---- */
   function ensureDOM(){
     if(!hudEl){
       hudEl = document.createElement('div');
@@ -291,16 +291,11 @@
       hudEl.setAttribute('aria-hidden', 'true');
       document.body.appendChild(hudEl);
     }
-    if(!reticleEl){
-      reticleEl = document.createElement('div');
-      reticleEl.className = 'pk-cursor-reticle';
-      reticleEl.id = 'pkCursorReticle';
-      reticleEl.setAttribute('aria-hidden', 'true');
-      const dot = document.createElement('div');
-      dot.className = 'pk-cursor-reticle-dot';
-      reticleEl.appendChild(dot);
-      document.body.appendChild(reticleEl);
+    const oldReticle = document.getElementById('pkCursorReticle');
+    if(oldReticle){
+      oldReticle.remove();
     }
+    reticleEl = null;
   }
 
   /* ---- Character Resolution ---- */
@@ -363,10 +358,6 @@
   function updatePosition(x, y){
     lastMouseX = x;
     lastMouseY = y;
-    if(reticleEl && inspectorEnabled){
-      reticleEl.style.left = x + 'px';
-      reticleEl.style.top = y + 'px';
-    }
     if(!hudEl || !hudEl.classList.contains('visible')) return;
 
     const hudRect = hudEl.getBoundingClientRect();
@@ -497,7 +488,6 @@
         ${sk.note ? `<div class="pk-chud-desc"><span class="pk-chud-desc-icon">✦</span><span>${sk.note}</span></div>` : ''}
       `;
       hudEl.classList.add('visible');
-      if(reticleEl) reticleEl.classList.add('target-key');
       if(typeof global.setActiveFinger === 'function') global.setActiveFinger(keyId, layer);
       highlightQuickGuideMiniKey(keyId, fid);
       if(ev) updatePosition(ev.clientX, ev.clientY);
@@ -587,7 +577,6 @@
     `;
 
     hudEl.classList.add('visible');
-    if(reticleEl) reticleEl.classList.add('target-key');
 
     // 1. Kinematic Hand Guide Sync
     if(typeof global.setActiveFinger === 'function'){
@@ -608,7 +597,6 @@
   function uninspectKey(){
     currentInspectedKeyId = null;
     if(hudEl) hudEl.classList.remove('visible');
-    if(reticleEl) reticleEl.classList.remove('target-key');
 
     // Restore active finger for ongoing lesson / race / adaptive session
     if(typeof global.lessonActive !== 'undefined' && global.lessonActive && typeof global.highlightLessonTarget === 'function'){
@@ -850,18 +838,12 @@
   function attachEventListeners(){
     ensureDOM();
 
-    // Global mouse tracking for precision reticle and HUD
+    // Global mouse tracking for HUD position
     window.addEventListener('mousemove', (ev)=>{
       updatePosition(ev.clientX, ev.clientY);
-      if(reticleEl && inspectorEnabled){
-        reticleEl.classList.add('active');
-        const interactive = ev.target && ev.target.closest('button, a, .layer-pill, .layout-btn, .lesson-card, .level-header, input, select, .action-btn, .mini-btn');
-        reticleEl.classList.toggle('interactive', !!interactive);
-      }
     }, { passive: true });
 
     window.addEventListener('mouseleave', ()=>{
-      if(reticleEl) reticleEl.classList.remove('active');
       uninspectKey();
     });
 
@@ -988,9 +970,6 @@
       renderBtn();
       if(!inspectorEnabled){
         uninspectKey();
-        if(reticleEl) reticleEl.classList.remove('active', 'target-key', 'interactive');
-      } else if(reticleEl){
-        reticleEl.classList.add('active');
       }
       if(typeof global.showToast === 'function'){
         global.showToast(

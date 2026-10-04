@@ -1126,69 +1126,14 @@
     color: #4a3421 !important;
   }
 
-  /* Always-on Sleek Cyber Precision Reticle & Cursor Companion */
-  .pk-cursor-reticle {
-    position: fixed;
-    z-index: 99998;
-    pointer-events: none;
-    width: 22px;
-    height: 22px;
-    margin-left: -11px;
-    margin-top: -11px;
-    border-radius: 50%;
-    border: 1.5px solid rgba(56, 189, 248, 0.7);
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.4), inset 0 0 4px rgba(56, 189, 248, 0.25);
-    opacity: 0;
-    transform: scale(0.65);
-    transition: opacity 0.15s ease, transform 0.16s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.18s ease, width 0.18s ease, height 0.18s ease, margin 0.18s ease, box-shadow 0.18s ease;
-    will-change: transform, left, top;
-  }
-
-  .pk-cursor-reticle.active {
-    opacity: 0.95;
-    transform: scale(1);
-  }
-
-  /* Interactive hover on buttons, links, pills, cards */
-  .pk-cursor-reticle.interactive {
-    width: 30px;
-    height: 30px;
-    margin-left: -15px;
-    margin-top: -15px;
-    border-color: #38bdf8;
-    box-shadow: 0 0 16px rgba(56, 189, 248, 0.65), inset 0 0 8px rgba(56, 189, 248, 0.35);
-    transform: scale(1.1);
-  }
-
-  /* Focused target on keyboard keys */
-  .pk-cursor-reticle.target-key {
-    width: 36px;
-    height: 36px;
-    margin-left: -18px;
-    margin-top: -18px;
-    border-radius: 8px;
-    border-color: #ffd166;
-    box-shadow: 0 0 20px rgba(255, 209, 102, 0.8), inset 0 0 8px rgba(255, 209, 102, 0.4);
-    transform: scale(1.12);
-  }
-
-  .pk-cursor-reticle-dot {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 4px;
-    height: 4px;
-    margin-left: -2px;
-    margin-top: -2px;
-    border-radius: 50%;
-    background: #38bdf8;
-    box-shadow: 0 0 6px #38bdf8;
-    transition: background 0.18s ease, box-shadow 0.18s ease;
-  }
-
-  .pk-cursor-reticle.target-key .pk-cursor-reticle-dot {
-    background: #ffd166;
-    box-shadow: 0 0 10px #ffd166;
+  /* Cursor Reticle disabled per user preference */
+  .pk-cursor-reticle,
+  .pk-cursor-reticle-dot,
+  #pkCursorReticle {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 
   /* Click shockwave ripple */
