@@ -136,7 +136,7 @@
       right:8px !important;
       justify-content:center;
       gap:6px;
-      z-index:90 !important;
+      z-index: 40 !important;
       margin-bottom:0 !important;
       overflow-x:auto;
       scrollbar-width:none;
