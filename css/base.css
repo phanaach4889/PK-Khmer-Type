@@ -281,16 +281,29 @@
     font-weight:700;
     font-style:normal;
     text-transform:uppercase;
-    font-size:2.5rem;
+    font-size:clamp(1.5rem, 3.8vw, 2.35rem);
     letter-spacing:0.06em;
-    margin:0 0 8px;
+    margin:0 0 12px;
     text-align:center;
-    background:linear-gradient(100deg, var(--ink) 30%, var(--gold-bright) 45%, var(--ink) 60%);
-    background-size:250% auto;
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    animation:shimmer 7s ease-in-out infinite, title-flicker 3.4s ease-in-out infinite;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    padding:8px 24px;
+    border-radius:16px;
+    background:rgba(255,255,255,0);
+    backdrop-filter:blur(5px);
+    -webkit-backdrop-filter:blur(5px);
+    border:1px solid rgba(255,255,255,.35);
+    box-shadow:0 8px 28px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.15);
+    color:var(--ink);
+    text-shadow:0 0 16px rgba(255,209,102,0.35), 0 2px 8px rgba(0,0,0,0.7);
+    transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  h1:hover{
+    border-color:rgba(255,209,102,0.55);
+    box-shadow:0 10px 30px rgba(0,0,0,0.35), 0 0 20px rgba(255,209,102,0.25);
+    transform:translateY(-1px);
   }
   @keyframes shimmer{
     0%{ background-position:200% center;}
@@ -627,7 +640,7 @@
   }
   html.theme-light .hero-title,
   html.theme-light .hero-title span,
-  html.theme-light h1, html.theme-light h2, html.theme-light h3 {
+  html.theme-light h2, html.theme-light h3 {
     color: #0f172a;
   }
   html.theme-light .subtitle,
@@ -639,6 +652,20 @@
     background: #e2e8f0;
     border-color: #cbd5e1;
   }
+  
+  html.theme-light h1 {
+    color: #0f172a;
+    border-color: rgba(15, 23, 42, 0.2);
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+    text-shadow: none;
+  }
+  html.theme-sepia h1 {
+    color: #2c1b0c;
+    border-color: rgba(44, 27, 12, 0.25);
+    box-shadow: 0 4px 14px rgba(44, 27, 12, 0.06);
+    text-shadow: none;
+  }
+
   /* Chassis: Sleek space-silver aluminum */
   html.theme-light .board-wrap {
     background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%) !important;
@@ -3925,4 +3952,140 @@
   .lesson-card-lock .pk-icon,
   .lesson-card-best .pk-icon {
     margin-right: 2px;
+  }
+
+
+  /* ================= Transparent Glass on Wallpaper ================= */
+  body.has-custom-wallpaper h1,
+  html.theme-light body.has-custom-wallpaper h1,
+  html.theme-sepia body.has-custom-wallpaper h1 {
+    background: rgba(255, 255, 255, 0) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    text-shadow: 0 0 20px rgba(255, 209, 102, 0.6), 0 2px 10px rgba(0, 0, 0, 0.9) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+  }
+  body.has-custom-wallpaper h1 .km,
+  html.theme-light body.has-custom-wallpaper h1 .km,
+  html.theme-sepia body.has-custom-wallpaper h1 .km {
+    color: var(--gold-bright) !important;
+    -webkit-text-fill-color: var(--gold-bright) !important;
+    text-shadow: 0 0 18px rgba(255, 209, 102, 0.7) !important;
+  }
+  body.has-custom-wallpaper .subtitle,
+  html.theme-light body.has-custom-wallpaper .subtitle,
+  html.theme-sepia body.has-custom-wallpaper .subtitle {
+    color: #f1f5f9 !important;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9), 0 2px 16px rgba(0, 0, 0, 0.8) !important;
+  }
+  body.has-custom-wallpaper .subtitle kbd,
+  html.theme-light body.has-custom-wallpaper .subtitle kbd,
+  html.theme-sepia body.has-custom-wallpaper .subtitle kbd {
+    background: rgba(255, 255, 255, 0) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    color: var(--gold-bright) !important;
+  }
+  body.has-custom-wallpaper .founder-byline,
+  html.theme-light body.has-custom-wallpaper .founder-byline,
+  html.theme-sepia body.has-custom-wallpaper .founder-byline {
+    background: rgba(255, 255, 255, 0) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    color: #f1f5f9 !important;
+  }
+  body.has-custom-wallpaper .layout-strip .layout-pill,
+  html.theme-light body.has-custom-wallpaper .layout-strip .layout-pill,
+  html.theme-sepia body.has-custom-wallpaper .layout-strip .layout-pill {
+    background: rgba(255, 255, 255, 0) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    color: #f1f5f9 !important;
+  }
+  body.has-custom-wallpaper .layout-strip .layout-pill.active,
+  html.theme-light body.has-custom-wallpaper .layout-strip .layout-pill.active,
+  html.theme-sepia body.has-custom-wallpaper .layout-strip .layout-pill.active {
+    background: var(--gold-bright) !important;
+    border-color: var(--gold-bright) !important;
+    color: #241405 !important;
+    box-shadow: 0 0 20px rgba(255, 209, 102, 0.5) !important;
+  }
+  body.has-custom-wallpaper .session-bar,
+  html.theme-light body.has-custom-wallpaper .session-bar,
+  html.theme-sepia body.has-custom-wallpaper .session-bar {
+    background: rgba(255, 255, 255, 0) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35) !important;
+  }
+  body.has-custom-wallpaper .session-stat,
+  html.theme-light body.has-custom-wallpaper .session-stat,
+  html.theme-sepia body.has-custom-wallpaper .session-stat {
+    border-right-color: rgba(255, 255, 255, 0.2) !important;
+  }
+  body.has-custom-wallpaper .session-stat-val,
+  html.theme-light body.has-custom-wallpaper .session-stat-val,
+  html.theme-sepia body.has-custom-wallpaper .session-stat-val {
+    color: var(--gold-bright) !important;
+    text-shadow: 0 0 10px rgba(255, 209, 102, 0.5) !important;
+  }
+  body.has-custom-wallpaper .session-stat-label,
+  html.theme-light body.has-custom-wallpaper .session-stat-label,
+  html.theme-sepia body.has-custom-wallpaper .session-stat-label {
+    color: #cbd5e1 !important;
+  }
+  body.has-custom-wallpaper .layer-strip .layer-pill,
+  html.theme-light body.has-custom-wallpaper .layer-strip .layer-pill,
+  html.theme-sepia body.has-custom-wallpaper .layer-strip .layer-pill {
+    background: rgba(255, 255, 255, 0) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    color: #f1f5f9 !important;
+  }
+  body.has-custom-wallpaper .layer-strip .layer-pill.active,
+  html.theme-light body.has-custom-wallpaper .layer-strip .layer-pill.active,
+  html.theme-sepia body.has-custom-wallpaper .layer-strip .layer-pill.active {
+    background: var(--gold-bright) !important;
+    border-color: var(--gold-bright) !important;
+    color: #241405 !important;
+  }
+  body.has-custom-wallpaper .top-actions button,
+  html.theme-light body.has-custom-wallpaper .top-actions button,
+  html.theme-sepia body.has-custom-wallpaper .top-actions button,
+  body.has-custom-wallpaper .toolbar button,
+  html.theme-light body.has-custom-wallpaper .toolbar button,
+  html.theme-sepia body.has-custom-wallpaper .toolbar button {
+    background: rgba(255, 255, 255, 0) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    color: #f1f5f9 !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
+  }
+  body.has-custom-wallpaper .top-actions button:hover,
+  html.theme-light body.has-custom-wallpaper .top-actions button:hover,
+  html.theme-sepia body.has-custom-wallpaper .top-actions button:hover,
+  body.has-custom-wallpaper .toolbar button:hover,
+  html.theme-light body.has-custom-wallpaper .toolbar button:hover,
+  html.theme-sepia body.has-custom-wallpaper .toolbar button:hover {
+    border-color: var(--gold-bright) !important;
+    color: var(--gold-bright) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+  }
+  body.has-custom-wallpaper .board-chassis-bar,
+  html.theme-light body.has-custom-wallpaper .board-chassis-bar,
+  html.theme-sepia body.has-custom-wallpaper .board-chassis-bar {
+    background: rgba(255, 255, 255, 0) !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35) !important;
+    color: #f1f5f9 !important;
   }
