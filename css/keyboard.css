@@ -186,54 +186,67 @@
     filter:url(#handShadow);
     transition:transform .28s cubic-bezier(.22,1,.36,1);
   }
+  .hands-overlay .hand-group.side-r{
+    filter:url(#handShadowR);
+  }
 
-  /* back of the hand — subtle translucent anatomical silhouette */
+  /* back of the hand — translucent anatomical silhouette with vibrant color */
   .hands-overlay .palm-shape{
     fill:url(#palmGrad);
-    stroke:rgba(255,255,255,0.1);
-    stroke-width:1;
+    stroke:rgba(56, 189, 248, 0.4);
+    stroke-width:1.2;
     stroke-linejoin:round;
+    filter:drop-shadow(0 2px 8px rgba(2, 132, 199, 0.25));
     transition:d .28s cubic-bezier(.22,1,.36,1), opacity .25s ease;
   }
-  .hands-overlay .hand-group.side-r .palm-shape{ fill:url(#palmGradR); stroke:rgba(255,255,255,0.1); }
+  .hands-overlay .hand-group.side-r .palm-shape{
+    fill:url(#palmGradR);
+    stroke:rgba(244, 114, 182, 0.4);
+    filter:drop-shadow(0 2px 8px rgba(192, 38, 211, 0.25));
+  }
 
   .hands-overlay .palm-shade{
-    fill:rgba(0,0,0,0.25);
+    fill:rgba(0,0,0,0.22);
     transition:d .28s cubic-bezier(.22,1,.36,1);
     mix-blend-mode:multiply;
   }
   .hands-overlay .palm-highlight{
     fill:url(#palmHighlight);
-    opacity:0.4;
+    opacity:0.6;
     mix-blend-mode:screen;
     transition:cx .28s cubic-bezier(.22,1,.36,1), cy .28s cubic-bezier(.22,1,.36,1);
+  }
+  .hands-overlay .hand-group.side-r .palm-highlight{
+    fill:url(#palmHighlightR);
   }
   .hands-overlay .palm-core{
     display:none !important;
   }
 
-  /* individual finger — clean, understated resting tone with subtle joint hints */
+  /* individual finger — vibrant, beautiful resting tone with distinctive colors */
   .hands-overlay .finger-shape{
     fill:url(#fingerGrad);
-    stroke:rgba(255,255,255,0.12);
-    stroke-width:1;
+    stroke:rgba(56, 189, 248, 0.5);
+    stroke-width:1.1;
     stroke-linejoin:round;
-    filter:none;
+    filter:drop-shadow(0 2px 6px rgba(2, 132, 199, 0.3));
     transition:fill .25s ease, stroke .25s ease, opacity .25s ease, filter .25s ease, d .28s cubic-bezier(.22,1,.36,1);
   }
   .hands-overlay .hand-group.side-r .finger-shape{
     fill:url(#fingerGradR);
-    stroke:rgba(255,255,255,0.12);
-    filter:none;
+    stroke:rgba(244, 114, 182, 0.5);
+    filter:drop-shadow(0 2px 6px rgba(192, 38, 211, 0.3));
   }
   .hands-overlay .finger-shine{
     fill:none;
-    stroke:rgba(255,255,255,0.12);
-    stroke-width:0.8;
+    stroke:rgba(186, 230, 253, 0.55);
+    stroke-width:1;
     stroke-linecap:round;
     transition:opacity .25s ease, d .28s cubic-bezier(.22,1,.36,1);
   }
-  .hands-overlay .hand-group.side-r .finger-shine{ stroke:rgba(255,255,255,0.12); }
+  .hands-overlay .hand-group.side-r .finger-shine{
+    stroke:rgba(251, 207, 232, 0.55);
+  }
   .hands-overlay .finger-shine2{
     display:none;
   }
@@ -241,36 +254,49 @@
   /* subtle natural creases */
   .hands-overlay .finger-crease{
     fill:none;
-    stroke:rgba(255,255,255,0.12);
-    stroke-width:0.7;
+    stroke:rgba(56, 189, 248, 0.55);
+    stroke-width:0.8;
     stroke-linecap:round;
-    opacity:0.4;
+    opacity:0.65;
     transition:opacity .25s ease, stroke .25s ease, d .28s cubic-bezier(.22,1,.36,1);
   }
-  .hands-overlay .hand-group.side-r .finger-crease{ stroke:rgba(255,255,255,0.12); }
+  .hands-overlay .hand-group.side-r .finger-crease{
+    stroke:rgba(244, 114, 182, 0.55);
+  }
   .hands-overlay .finger-joint{
     fill:url(#jointGlow);
-    opacity:0.25;
+    opacity:0.65;
+    filter:drop-shadow(0 0 4px rgba(56, 189, 248, 0.7));
     transition:cx .28s cubic-bezier(.22,1,.36,1), cy .28s cubic-bezier(.22,1,.36,1);
   }
-  .hands-overlay .hand-group.side-r .finger-joint{ fill:url(#jointGlowR); }
+  .hands-overlay .hand-group.side-r .finger-joint{
+    fill:url(#jointGlowR);
+    filter:drop-shadow(0 0 4px rgba(244, 114, 182, 0.7));
+  }
   .hands-overlay .finger-nail{
-    fill:rgba(255,255,255,0.06);
-    stroke:rgba(255,255,255,0.14);
-    stroke-width:0.5;
-    opacity:0.5;
+    fill:rgba(56, 189, 248, 0.35);
+    stroke:rgba(186, 230, 253, 0.65);
+    stroke-width:0.6;
+    opacity:0.75;
     transition:opacity .25s ease, transform .28s cubic-bezier(.22,1,.36,1);
   }
-  .hands-overlay .hand-group.side-r .finger-nail{ stroke:rgba(255,255,255,0.14); }
+  .hands-overlay .hand-group.side-r .finger-nail{
+    fill:rgba(244, 114, 182, 0.35);
+    stroke:rgba(251, 207, 232, 0.65);
+  }
   .hands-overlay .finger-tip{
-    fill:rgba(255,255,255,0.15);
-    stroke:rgba(255,255,255,0.25);
-    stroke-width:0.8;
-    r:3.5;
-    filter:none;
+    fill:rgba(56, 189, 248, 0.6);
+    stroke:rgba(224, 242, 254, 0.85);
+    stroke-width:1;
+    r:4;
+    filter:drop-shadow(0 0 6px rgba(56, 189, 248, 0.8));
     transition:cx .28s cubic-bezier(.22,1,.36,1), cy .28s cubic-bezier(.22,1,.36,1), fill .25s ease, r .25s ease, opacity .25s ease;
   }
-  .hands-overlay .hand-group.side-r .finger-tip{ fill:rgba(255,255,255,0.15); stroke:rgba(255,255,255,0.25); filter:none; }
+  .hands-overlay .hand-group.side-r .finger-tip{
+    fill:rgba(244, 114, 182, 0.6);
+    stroke:rgba(253, 242, 248, 0.85);
+    filter:drop-shadow(0 0 6px rgba(244, 114, 182, 0.8));
+  }
 
   /* disabled sci-fi FX */
   .hands-overlay .finger-energy,
@@ -286,32 +312,39 @@
   /* active reaching finger — crisp human-engineered tactile focus */
   .hands-overlay .finger.active .finger-shape{
     fill:url(#fingerGradActive);
-    stroke:var(--gold-bright, #ffd166);
-    stroke-width:1.4;
-    filter:drop-shadow(0 4px 12px rgba(255,209,102,0.32));
+    stroke:#ffffff;
+    stroke-width:1.5;
+    filter:drop-shadow(0 0 12px rgba(56, 189, 248, 0.95)) drop-shadow(0 0 24px rgba(255, 209, 102, 0.7));
   }
   .hands-overlay .hand-group.side-r .finger.active .finger-shape{
     fill:url(#fingerGradActiveR);
-    stroke:var(--gold-bright, #ffd166);
-    stroke-width:1.4;
-    filter:drop-shadow(0 4px 12px rgba(255,209,102,0.32));
-  }
-  .hands-overlay .finger.active .finger-shine{ stroke:#ffffff; opacity:0.5; }
-  .hands-overlay .finger.active .finger-crease{ stroke:rgba(255,255,255,0.4); opacity:0.6; }
-  .hands-overlay .finger.active .finger-joint{ opacity:0.5; }
-  .hands-overlay .finger.active .finger-nail{ fill:rgba(255,255,255,0.3); opacity:0.75; }
-  .hands-overlay .finger.active .finger-tip,
-  .hands-overlay .hand-group.side-r .finger.active .finger-tip{
-    fill:var(--gold-bright, #ffd166);
     stroke:#ffffff;
-    stroke-width:1.2;
-    r:5.5;
-    filter:drop-shadow(0 2px 8px rgba(255,209,102,0.5));
+    stroke-width:1.5;
+    filter:drop-shadow(0 0 12px rgba(244, 114, 182, 0.95)) drop-shadow(0 0 24px rgba(255, 209, 102, 0.7));
+  }
+  .hands-overlay .finger.active .finger-shine{ stroke:#ffffff; opacity:0.8; }
+  .hands-overlay .finger.active .finger-crease{ stroke:#ffffff; opacity:0.8; }
+  .hands-overlay .finger.active .finger-joint{ opacity:1; filter:drop-shadow(0 0 6px #ffffff); }
+  .hands-overlay .finger.active .finger-nail{ fill:#ffffff; opacity:0.95; }
+  .hands-overlay .finger.active .finger-tip{
+    fill:#ffd166;
+    stroke:#ffffff;
+    stroke-width:1.4;
+    r:6;
+    filter:drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 16px rgba(56, 189, 248, 0.95));
+    animation:none;
+  }
+  .hands-overlay .hand-group.side-r .finger.active .finger-tip{
+    fill:#ffd166;
+    stroke:#ffffff;
+    stroke-width:1.4;
+    r:6;
+    filter:drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 16px rgba(244, 114, 182, 0.95));
     animation:none;
   }
 
   .hands-overlay .finger.struck .finger-shape{
-    filter:drop-shadow(0 2px 10px rgba(255,255,255,0.5));
+    filter:drop-shadow(0 0 14px #ffffff) drop-shadow(0 0 28px rgba(255,209,102,0.9));
   }
 
   .key.label-key{

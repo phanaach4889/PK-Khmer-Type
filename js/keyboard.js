@@ -702,55 +702,70 @@ function pointAtFrame(frame, s){
   return { x:(l.x+r.x)/2, y:(l.y+r.y)/2 };
 }
 
-/* ---- static defs: gradients + soft grounding shadow ---- */
+/* ---- static defs: vibrant gradients + colored grounding shadow ---- */
 const defs = document.createElementNS(SVGNS,'defs');
 defs.innerHTML = `
   <linearGradient id="fingerGrad" x1="0" y1="1" x2="0.3" y2="0">
-    <stop offset="0%" stop-color="#121524" stop-opacity="0.5"/>
-    <stop offset="50%" stop-color="#1b2034" stop-opacity="0.55"/>
-    <stop offset="85%" stop-color="#283250" stop-opacity="0.6"/>
-    <stop offset="100%" stop-color="#3c4a70" stop-opacity="0.65"/>
+    <stop offset="0%" stop-color="#0a1938" stop-opacity="0.75"/>
+    <stop offset="35%" stop-color="#1e3a8a" stop-opacity="0.8"/>
+    <stop offset="68%" stop-color="#0284c7" stop-opacity="0.85"/>
+    <stop offset="88%" stop-color="#38bdf8" stop-opacity="0.92"/>
+    <stop offset="100%" stop-color="#e0f2fe" stop-opacity="0.98"/>
   </linearGradient>
   <linearGradient id="fingerGradR" x1="0" y1="1" x2="0.3" y2="0">
-    <stop offset="0%" stop-color="#121524" stop-opacity="0.5"/>
-    <stop offset="50%" stop-color="#1b2034" stop-opacity="0.55"/>
-    <stop offset="85%" stop-color="#283250" stop-opacity="0.6"/>
-    <stop offset="100%" stop-color="#3c4a70" stop-opacity="0.65"/>
+    <stop offset="0%" stop-color="#240c2e" stop-opacity="0.75"/>
+    <stop offset="35%" stop-color="#6b21a8" stop-opacity="0.8"/>
+    <stop offset="68%" stop-color="#c026d3" stop-opacity="0.85"/>
+    <stop offset="88%" stop-color="#f472b6" stop-opacity="0.92"/>
+    <stop offset="100%" stop-color="#fdf2f8" stop-opacity="0.98"/>
   </linearGradient>
   <linearGradient id="fingerGradActive" x1="0" y1="1" x2="0.3" y2="0">
-    <stop offset="0%" stop-color="#6e4d1b" stop-opacity="0.7"/>
-    <stop offset="55%" stop-color="#c48a2c" stop-opacity="0.85"/>
-    <stop offset="100%" stop-color="#ffd166" stop-opacity="0.95"/>
+    <stop offset="0%" stop-color="#0369a1" stop-opacity="0.9"/>
+    <stop offset="45%" stop-color="#0284c7" stop-opacity="0.95"/>
+    <stop offset="78%" stop-color="#ffd166" stop-opacity="0.98"/>
+    <stop offset="100%" stop-color="#ffffff" stop-opacity="1"/>
   </linearGradient>
   <linearGradient id="fingerGradActiveR" x1="0" y1="1" x2="0.3" y2="0">
-    <stop offset="0%" stop-color="#6e4d1b" stop-opacity="0.7"/>
-    <stop offset="55%" stop-color="#c48a2c" stop-opacity="0.85"/>
-    <stop offset="100%" stop-color="#ffd166" stop-opacity="0.95"/>
+    <stop offset="0%" stop-color="#a21caf" stop-opacity="0.9"/>
+    <stop offset="45%" stop-color="#c026d3" stop-opacity="0.95"/>
+    <stop offset="78%" stop-color="#ffd166" stop-opacity="0.98"/>
+    <stop offset="100%" stop-color="#ffffff" stop-opacity="1"/>
   </linearGradient>
   <linearGradient id="palmGrad" x1="0" y1="1" x2="0.25" y2="0">
-    <stop offset="0%" stop-color="#0a0c16" stop-opacity="0.45"/>
-    <stop offset="60%" stop-color="#141828" stop-opacity="0.5"/>
-    <stop offset="100%" stop-color="#20273d" stop-opacity="0.55"/>
+    <stop offset="0%" stop-color="#08132b" stop-opacity="0.7"/>
+    <stop offset="45%" stop-color="#1e3a8a" stop-opacity="0.75"/>
+    <stop offset="100%" stop-color="#0284c7" stop-opacity="0.8"/>
   </linearGradient>
   <linearGradient id="palmGradR" x1="0" y1="1" x2="0.25" y2="0">
-    <stop offset="0%" stop-color="#0a0c16" stop-opacity="0.45"/>
-    <stop offset="60%" stop-color="#141828" stop-opacity="0.5"/>
-    <stop offset="100%" stop-color="#20273d" stop-opacity="0.55"/>
+    <stop offset="0%" stop-color="#1e0a26" stop-opacity="0.7"/>
+    <stop offset="45%" stop-color="#581c87" stop-opacity="0.75"/>
+    <stop offset="100%" stop-color="#c026d3" stop-opacity="0.8"/>
   </linearGradient>
   <radialGradient id="palmHighlight" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#d4e2f5" stop-opacity="0.18"/>
-    <stop offset="100%" stop-color="#d4e2f5" stop-opacity="0"/>
+    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.6"/>
+    <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="palmHighlightR" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#f472b6" stop-opacity="0.6"/>
+    <stop offset="100%" stop-color="#f472b6" stop-opacity="0"/>
   </radialGradient>
   <radialGradient id="jointGlow" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#ffd166" stop-opacity="0.7"/>
-    <stop offset="100%" stop-color="#ffd166" stop-opacity="0"/>
+    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+    <stop offset="45%" stop-color="#38bdf8" stop-opacity="0.8"/>
+    <stop offset="100%" stop-color="#0284c7" stop-opacity="0"/>
   </radialGradient>
   <radialGradient id="jointGlowR" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#ffd166" stop-opacity="0.7"/>
-    <stop offset="100%" stop-color="#ffd166" stop-opacity="0"/>
+    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+    <stop offset="45%" stop-color="#f472b6" stop-opacity="0.8"/>
+    <stop offset="100%" stop-color="#c026d3" stop-opacity="0"/>
   </radialGradient>
-  <filter id="handShadow" x="-30%" y="-30%" width="160%" height="160%">
-    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.38"/>
+  <filter id="handShadow" x="-35%" y="-35%" width="170%" height="170%">
+    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0284c7" flood-opacity="0.32"/>
+    <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.45"/>
+  </filter>
+  <filter id="handShadowR" x="-35%" y="-35%" width="170%" height="170%">
+    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#c026d3" flood-opacity="0.32"/>
+    <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.45"/>
   </filter>
 `;
 handsOverlay.appendChild(defs);
