@@ -1008,6 +1008,465 @@
     opacity: 0.85;
   }
 
+  /* Jungle Theme Variant */
+  html.theme-jungle .pk-cursor-hud {
+    background:
+      radial-gradient(130% 120% at 0% 0%, rgba(95, 214, 148, 0.22) 0%, transparent 60%),
+      radial-gradient(100% 100% at 100% 100%, rgba(139, 240, 179, 0.12) 0%, transparent 55%),
+      linear-gradient(180deg, rgba(21, 41, 28, 0.96) 0%, rgba(12, 23, 16, 0.98) 100%) !important;
+    border: 1px solid rgba(95, 214, 148, 0.35) !important;
+    border-top-color: rgba(139, 240, 179, 0.55) !important;
+    box-shadow:
+      0 24px 50px -10px rgba(0, 0, 0, 0.85),
+      0 10px 20px -5px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(95, 214, 148, 0.12),
+      0 0 24px rgba(95, 214, 148, 0.20),
+      inset 0 1px 0 rgba(139, 240, 179, 0.35) !important;
+    color: #eafff0 !important;
+  }
+  html.theme-jungle .pk-chud-glyph-box {
+    background: linear-gradient(180deg, #264b33 0%, #15291c 100%) !important;
+    border: 1px solid rgba(139, 240, 179, 0.38) !important;
+    border-bottom: 2px solid #08110b !important;
+    color: #ffffff !important;
+    box-shadow:
+      0 6px 14px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25),
+      0 0 14px rgba(95, 214, 148, 0.30) !important;
+  }
+  html.theme-jungle .pk-chud-glyph-box svg {
+    stroke: #8bf0b3 !important;
+    filter: drop-shadow(0 0 6px rgba(139, 240, 179, 0.6)) !important;
+  }
+  html.theme-jungle .pk-chud-name {
+    color: #ffffff !important;
+  }
+  html.theme-jungle .pk-chud-km-tag {
+    color: #9ecdae !important;
+  }
+  html.theme-jungle .pk-chud-category {
+    background: rgba(95, 214, 148, 0.16) !important;
+    border-color: rgba(139, 240, 179, 0.38) !important;
+    color: #8bf0b3 !important;
+  }
+  html.theme-jungle .pk-chud-cat-dot {
+    background: #8bf0b3 !important;
+    box-shadow: 0 0 6px #8bf0b3 !important;
+  }
+  html.theme-jungle .pk-chud-grid {
+    background: rgba(8, 17, 12, 0.65) !important;
+    border: 1px solid rgba(95, 214, 148, 0.18) !important;
+  }
+  html.theme-jungle .pk-chud-label {
+    color: #9ecdae !important;
+  }
+  html.theme-jungle .pk-chud-finger {
+    color: #eafff0 !important;
+  }
+  html.theme-jungle .pk-chud-recipe kbd {
+    background: linear-gradient(180deg, #2b5439 0%, #193122 100%) !important;
+    border: 1px solid rgba(139, 240, 179, 0.32) !important;
+    border-bottom: 2px solid #0a140e !important;
+    color: #eafff0 !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  }
+  html.theme-jungle .pk-chud-subscript-badge {
+    background: rgba(95, 214, 148, 0.15) !important;
+    border-color: rgba(139, 240, 179, 0.38) !important;
+    color: #8bf0b3 !important;
+  }
+  html.theme-jungle .pk-chud-subscript-badge .sub-glyph {
+    color: #c9e07f !important;
+  }
+  html.theme-jungle .pk-chud-desc {
+    background: rgba(15, 30, 21, 0.75) !important;
+    border-left-color: #5fd694 !important;
+    color: #c9ebd5 !important;
+  }
+
+  /* Temple Theme Variant */
+  html.theme-temple .pk-cursor-hud {
+    background:
+      radial-gradient(130% 120% at 0% 0%, rgba(255, 157, 46, 0.22) 0%, transparent 60%),
+      radial-gradient(100% 100% at 100% 100%, rgba(255, 209, 102, 0.14) 0%, transparent 55%),
+      linear-gradient(180deg, rgba(46, 33, 19, 0.96) 0%, rgba(26, 18, 10, 0.98) 100%) !important;
+    border: 1px solid rgba(255, 209, 102, 0.35) !important;
+    border-top-color: rgba(255, 230, 150, 0.55) !important;
+    box-shadow:
+      0 24px 50px -10px rgba(0, 0, 0, 0.85),
+      0 10px 20px -5px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(255, 209, 102, 0.12),
+      0 0 24px rgba(255, 157, 46, 0.20),
+      inset 0 1px 0 rgba(255, 209, 102, 0.35) !important;
+    color: #fff1dc !important;
+  }
+  html.theme-temple .pk-chud-glyph-box {
+    background: linear-gradient(180deg, #533a1f 0%, #2e2113 100%) !important;
+    border: 1px solid rgba(255, 209, 102, 0.40) !important;
+    border-bottom: 2px solid #100b05 !important;
+    color: #ffd166 !important;
+    box-shadow:
+      0 6px 14px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25),
+      0 0 14px rgba(255, 157, 46, 0.32) !important;
+  }
+  html.theme-temple .pk-chud-glyph-box svg {
+    stroke: #ffd166 !important;
+    filter: drop-shadow(0 0 6px rgba(255, 209, 102, 0.6)) !important;
+  }
+  html.theme-temple .pk-chud-name {
+    color: #ffffff !important;
+  }
+  html.theme-temple .pk-chud-km-tag {
+    color: #c9a876 !important;
+  }
+  html.theme-temple .pk-chud-category {
+    background: rgba(255, 157, 46, 0.18) !important;
+    border-color: rgba(255, 209, 102, 0.38) !important;
+    color: #ffd166 !important;
+  }
+  html.theme-temple .pk-chud-cat-dot {
+    background: #ffd166 !important;
+    box-shadow: 0 0 6px #ffd166 !important;
+  }
+  html.theme-temple .pk-chud-grid {
+    background: rgba(20, 13, 7, 0.65) !important;
+    border: 1px solid rgba(255, 209, 102, 0.18) !important;
+  }
+  html.theme-temple .pk-chud-label {
+    color: #c9a876 !important;
+  }
+  html.theme-temple .pk-chud-finger {
+    color: #fff1dc !important;
+  }
+  html.theme-temple .pk-chud-recipe kbd {
+    background: linear-gradient(180deg, #50371e 0%, #302112 100%) !important;
+    border: 1px solid rgba(255, 209, 102, 0.32) !important;
+    border-bottom: 2px solid #0f0a04 !important;
+    color: #fff1dc !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  }
+  html.theme-temple .pk-chud-subscript-badge {
+    background: rgba(255, 157, 46, 0.16) !important;
+    border-color: rgba(255, 209, 102, 0.38) !important;
+    color: #ffd166 !important;
+  }
+  html.theme-temple .pk-chud-subscript-badge .sub-glyph {
+    color: #ff9d2e !important;
+  }
+  html.theme-temple .pk-chud-desc {
+    background: rgba(38, 27, 16, 0.75) !important;
+    border-left-color: #ff9d2e !important;
+    color: #f7e2c5 !important;
+  }
+
+  /* Moonlight Theme Variant */
+  html.theme-moonlight .pk-cursor-hud {
+    background:
+      radial-gradient(130% 120% at 0% 0%, rgba(191, 224, 255, 0.22) 0%, transparent 60%),
+      radial-gradient(100% 100% at 100% 100%, rgba(127, 184, 255, 0.14) 0%, transparent 55%),
+      linear-gradient(180deg, rgba(26, 37, 64, 0.96) 0%, rgba(14, 21, 40, 0.98) 100%) !important;
+    border: 1px solid rgba(191, 224, 255, 0.32) !important;
+    border-top-color: rgba(225, 240, 255, 0.55) !important;
+    box-shadow:
+      0 24px 50px -10px rgba(0, 0, 0, 0.85),
+      0 10px 20px -5px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(191, 224, 255, 0.12),
+      0 0 24px rgba(127, 184, 255, 0.20),
+      inset 0 1px 0 rgba(191, 224, 255, 0.35) !important;
+    color: #eaf2ff !important;
+  }
+  html.theme-moonlight .pk-chud-glyph-box {
+    background: linear-gradient(180deg, #304473 0%, #1a2540 100%) !important;
+    border: 1px solid rgba(191, 224, 255, 0.38) !important;
+    border-bottom: 2px solid #060a16 !important;
+    color: #ffffff !important;
+    box-shadow:
+      0 6px 14px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25),
+      0 0 14px rgba(127, 184, 255, 0.32) !important;
+  }
+  html.theme-moonlight .pk-chud-glyph-box svg {
+    stroke: #bfe0ff !important;
+    filter: drop-shadow(0 0 6px rgba(191, 224, 255, 0.6)) !important;
+  }
+  html.theme-moonlight .pk-chud-name {
+    color: #ffffff !important;
+  }
+  html.theme-moonlight .pk-chud-km-tag {
+    color: #a4b6dd !important;
+  }
+  html.theme-moonlight .pk-chud-category {
+    background: rgba(127, 184, 255, 0.18) !important;
+    border-color: rgba(191, 224, 255, 0.38) !important;
+    color: #bfe0ff !important;
+  }
+  html.theme-moonlight .pk-chud-cat-dot {
+    background: #bfe0ff !important;
+    box-shadow: 0 0 6px #bfe0ff !important;
+  }
+  html.theme-moonlight .pk-chud-grid {
+    background: rgba(10, 15, 32, 0.65) !important;
+    border: 1px solid rgba(191, 224, 255, 0.18) !important;
+  }
+  html.theme-moonlight .pk-chud-label {
+    color: #a4b6dd !important;
+  }
+  html.theme-moonlight .pk-chud-finger {
+    color: #eaf2ff !important;
+  }
+  html.theme-moonlight .pk-chud-recipe kbd {
+    background: linear-gradient(180deg, #2c3f6e 0%, #18233f 100%) !important;
+    border: 1px solid rgba(191, 224, 255, 0.32) !important;
+    border-bottom: 2px solid #080d1a !important;
+    color: #eaf2ff !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  }
+  html.theme-moonlight .pk-chud-subscript-badge {
+    background: rgba(127, 184, 255, 0.16) !important;
+    border-color: rgba(191, 224, 255, 0.38) !important;
+    color: #d0e4ff !important;
+  }
+  html.theme-moonlight .pk-chud-subscript-badge .sub-glyph {
+    color: #c9a8ff !important;
+  }
+  html.theme-moonlight .pk-chud-desc {
+    background: rgba(22, 33, 58, 0.75) !important;
+    border-left-color: #7fb8ff !important;
+    color: #d8e5ff !important;
+  }
+
+  /* Sunset Theme Variant */
+  html.theme-sunset .pk-cursor-hud {
+    background:
+      radial-gradient(130% 120% at 0% 0%, rgba(255, 138, 76, 0.24) 0%, transparent 60%),
+      radial-gradient(100% 100% at 100% 100%, rgba(255, 90, 112, 0.16) 0%, transparent 55%),
+      linear-gradient(180deg, rgba(48, 22, 34, 0.96) 0%, rgba(28, 14, 20, 0.98) 100%) !important;
+    border: 1px solid rgba(255, 138, 76, 0.35) !important;
+    border-top-color: rgba(255, 184, 119, 0.55) !important;
+    box-shadow:
+      0 24px 50px -10px rgba(0, 0, 0, 0.85),
+      0 10px 20px -5px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(255, 138, 76, 0.12),
+      0 0 24px rgba(255, 90, 112, 0.20),
+      inset 0 1px 0 rgba(255, 184, 119, 0.35) !important;
+    color: #fff0e6 !important;
+  }
+  html.theme-sunset .pk-chud-glyph-box {
+    background: linear-gradient(180deg, #59263e 0%, #301622 100%) !important;
+    border: 1px solid rgba(255, 138, 76, 0.40) !important;
+    border-bottom: 2px solid #0f070b !important;
+    color: #ffffff !important;
+    box-shadow:
+      0 6px 14px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25),
+      0 0 14px rgba(255, 138, 76, 0.32) !important;
+  }
+  html.theme-sunset .pk-chud-glyph-box svg {
+    stroke: #ffb877 !important;
+    filter: drop-shadow(0 0 6px rgba(255, 184, 119, 0.6)) !important;
+  }
+  html.theme-sunset .pk-chud-name {
+    color: #ffffff !important;
+  }
+  html.theme-sunset .pk-chud-km-tag {
+    color: #e0a8a0 !important;
+  }
+  html.theme-sunset .pk-chud-category {
+    background: rgba(255, 138, 76, 0.18) !important;
+    border-color: rgba(255, 184, 119, 0.38) !important;
+    color: #ffb877 !important;
+  }
+  html.theme-sunset .pk-chud-cat-dot {
+    background: #ffb877 !important;
+    box-shadow: 0 0 6px #ffb877 !important;
+  }
+  html.theme-sunset .pk-chud-grid {
+    background: rgba(22, 10, 16, 0.65) !important;
+    border: 1px solid rgba(255, 138, 76, 0.18) !important;
+  }
+  html.theme-sunset .pk-chud-label {
+    color: #e0a8a0 !important;
+  }
+  html.theme-sunset .pk-chud-finger {
+    color: #fff0e6 !important;
+  }
+  html.theme-sunset .pk-chud-recipe kbd {
+    background: linear-gradient(180deg, #53233a 0%, #311523 100%) !important;
+    border: 1px solid rgba(255, 138, 76, 0.32) !important;
+    border-bottom: 2px solid #0d060a !important;
+    color: #fff0e6 !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  }
+  html.theme-sunset .pk-chud-subscript-badge {
+    background: rgba(255, 90, 112, 0.16) !important;
+    border-color: rgba(255, 90, 112, 0.38) !important;
+    color: #ffccd5 !important;
+  }
+  html.theme-sunset .pk-chud-subscript-badge .sub-glyph {
+    color: #ff5a70 !important;
+  }
+  html.theme-sunset .pk-chud-desc {
+    background: rgba(40, 18, 29, 0.75) !important;
+    border-left-color: #ff8a4c !important;
+    color: #ffd8d0 !important;
+  }
+
+  /* Glass Theme Variant */
+  html.theme-glass .pk-cursor-hud {
+    background: rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(28px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.55) !important;
+    box-shadow:
+      0 24px 50px -10px rgba(0, 0, 0, 0.65),
+      0 10px 20px -5px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.15),
+      0 0 28px rgba(255, 255, 255, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+    color: #ffffff !important;
+  }
+  html.theme-glass .pk-chud-glyph-box {
+    background: rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.45) !important;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.35) !important;
+    color: #ffffff !important;
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+  }
+  html.theme-glass .pk-chud-glyph-box svg {
+    stroke: #ffffff !important;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.7)) !important;
+  }
+  html.theme-glass .pk-chud-name {
+    color: #ffffff !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7) !important;
+  }
+  html.theme-glass .pk-chud-km-tag {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+  html.theme-glass .pk-chud-category {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.45) !important;
+    color: #ffffff !important;
+  }
+  html.theme-glass .pk-chud-cat-dot {
+    background: #ffffff !important;
+    box-shadow: 0 0 8px #ffffff !important;
+  }
+  html.theme-glass .pk-chud-grid {
+    background: rgba(0, 0, 0, 0.28) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  }
+  html.theme-glass .pk-chud-label {
+    color: rgba(255, 255, 255, 0.75) !important;
+  }
+  html.theme-glass .pk-chud-finger {
+    color: #ffffff !important;
+  }
+  html.theme-glass .pk-chud-recipe kbd {
+    background: rgba(255, 255, 255, 0.16) !important;
+    border: 1px solid rgba(255, 255, 255, 0.40) !important;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.40) !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  }
+  html.theme-glass .pk-chud-subscript-badge {
+    background: rgba(255, 255, 255, 0.14) !important;
+    border-color: rgba(255, 255, 255, 0.38) !important;
+    color: #ffffff !important;
+  }
+  html.theme-glass .pk-chud-subscript-badge .sub-glyph {
+    color: #ffd166 !important;
+  }
+  html.theme-glass .pk-chud-desc {
+    background: rgba(255, 255, 255, 0.10) !important;
+    border-left-color: rgba(255, 255, 255, 0.8) !important;
+    color: #ffffff !important;
+  }
+
+  /* Dark Theme Variant */
+  html.theme-dark .pk-cursor-hud {
+    background:
+      radial-gradient(130% 120% at 0% 0%, rgba(56, 189, 248, 0.16) 0%, transparent 60%),
+      radial-gradient(100% 100% at 100% 100%, rgba(168, 85, 247, 0.12) 0%, transparent 55%),
+      linear-gradient(180deg, rgba(20, 26, 43, 0.96) 0%, rgba(12, 16, 28, 0.98) 100%) !important;
+    border: 1px solid rgba(56, 189, 248, 0.28) !important;
+    border-top-color: rgba(147, 197, 253, 0.45) !important;
+    box-shadow:
+      0 24px 50px -10px rgba(0, 0, 0, 0.85),
+      0 10px 20px -5px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 0 24px rgba(56, 189, 248, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22) !important;
+    color: #f1f5f9 !important;
+  }
+  html.theme-dark .pk-chud-glyph-box {
+    background: linear-gradient(180deg, #2a344d 0%, #161c2c 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-bottom: 2px solid #0a0d16 !important;
+    color: #ffffff !important;
+    box-shadow:
+      0 6px 14px rgba(0, 0, 0, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25),
+      0 0 14px rgba(56, 189, 248, 0.25) !important;
+  }
+  html.theme-dark .pk-chud-glyph-box svg {
+    stroke: #38bdf8 !important;
+    filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.6)) !important;
+  }
+  html.theme-dark .pk-chud-name {
+    color: #ffffff !important;
+  }
+  html.theme-dark .pk-chud-km-tag {
+    color: #94a3b8 !important;
+  }
+  html.theme-dark .pk-chud-category {
+    background: rgba(56, 189, 248, 0.12) !important;
+    border-color: rgba(56, 189, 248, 0.30) !important;
+    color: #38bdf8 !important;
+  }
+  html.theme-dark .pk-chud-cat-dot {
+    background: #38bdf8 !important;
+    box-shadow: 0 0 6px #38bdf8 !important;
+  }
+  html.theme-dark .pk-chud-grid {
+    background: rgba(0, 0, 0, 0.45) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+  html.theme-dark .pk-chud-label {
+    color: #94a3b8 !important;
+  }
+  html.theme-dark .pk-chud-finger {
+    color: #e2e8f0 !important;
+  }
+  html.theme-dark .pk-chud-recipe kbd {
+    background: linear-gradient(180deg, #2b344a 0%, #1a2030 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.20) !important;
+    border-bottom: 2px solid #0d121c !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  }
+  html.theme-dark .pk-chud-subscript-badge {
+    background: rgba(147, 51, 234, 0.14) !important;
+    border-color: rgba(168, 85, 247, 0.32) !important;
+    color: #e9d5ff !important;
+  }
+  html.theme-dark .pk-chud-subscript-badge .sub-glyph {
+    color: #f5d0fe !important;
+  }
+  html.theme-dark .pk-chud-desc {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-left-color: #38bdf8 !important;
+    color: #cbd5e1 !important;
+  }
+
   /* Light Theme Variant */
   html.theme-light .pk-cursor-hud {
     background:
@@ -1060,6 +1519,14 @@
     border-bottom: 2px solid #94a3b8 !important;
     color: #0f172a !important;
     box-shadow: 0 2px 4px rgba(15, 23, 42, 0.08) !important;
+  }
+  html.theme-light .pk-chud-subscript-badge {
+    background: rgba(37, 99, 235, 0.08) !important;
+    border-color: rgba(37, 99, 235, 0.25) !important;
+    color: #1d4ed8 !important;
+  }
+  html.theme-light .pk-chud-subscript-badge .sub-glyph {
+    color: #1e40af !important;
   }
   html.theme-light .pk-chud-desc {
     background: #f1f5f9 !important;
@@ -1119,6 +1586,14 @@
     border-bottom: 2px solid #aa9674 !important;
     color: #2c1b0c !important;
     box-shadow: 0 2px 4px rgba(44, 27, 12, 0.10) !important;
+  }
+  html.theme-sepia .pk-chud-subscript-badge {
+    background: rgba(180, 83, 9, 0.10) !important;
+    border-color: rgba(180, 83, 9, 0.28) !important;
+    color: #92400e !important;
+  }
+  html.theme-sepia .pk-chud-subscript-badge .sub-glyph {
+    color: #78350f !important;
   }
   html.theme-sepia .pk-chud-desc {
     background: #ede0c8 !important;
