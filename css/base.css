@@ -4044,130 +4044,293 @@
 
 
   /* ---- site footer / language toggle ---- */
+  /* ---- site footer / elevated telemetry dock ---- */
   .site-footer{
     margin-top:48px;
-    padding:22px 18px 28px;
-    border-top:1px solid var(--stone-3, rgba(255,255,255,0.08));
-    background:linear-gradient(180deg, transparent, rgba(0,0,0,0.18));
+    padding:20px 18px 36px;
+    border-top:none;
+    background:transparent;
     position:relative;
   }
+  /* subtle luxury top divider line that smoothly fades out to sides */
+  .site-footer::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:min(90vw, 1020px);
+    height:1px;
+    background:linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 25%, rgba(255,255,255,0.12) 75%, transparent 100%);
+    pointer-events:none;
+  }
+
+  /* Floating Frosted Glass Status Dock */
   .site-footer-inner{
-    max-width:900px;
+    max-width:980px;
     margin:0 auto;
-    display:flex; align-items:center; justify-content:center;
-    gap:18px; flex-wrap:wrap;
-    text-align:center;
+    padding:8px 14px 8px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    background:rgba(10, 14, 26, 0.72);
+    backdrop-filter:blur(20px) saturate(140%);
+    -webkit-backdrop-filter:blur(20px) saturate(140%);
+    border:1px solid rgba(255, 255, 255, 0.15);
+    border-radius:999px;
+    box-shadow:0 16px 40px -10px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    transition:all .25s ease;
+  }
+  .site-footer-inner:hover{
+    border-color:rgba(255, 255, 255, 0.24);
+    box-shadow:0 20px 48px -10px rgba(0,0,0,0.75), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+
+  /* Left: Creator Credit Badge */
+  .site-footer-credit-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    user-select:none;
+  }
+  .site-footer-live-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--gold-bright, #ffd166);
+    box-shadow:0 0 8px var(--gold-bright, #ffd166);
+    flex-shrink:0;
+    position:relative;
+  }
+  .site-footer-live-dot::after{
+    content:"";
+    position:absolute;
+    inset:-3px;
+    border-radius:50%;
+    background:radial-gradient(circle, color-mix(in srgb, var(--gold-bright, #ffd166) 40%, transparent), transparent 70%);
   }
   .site-footer-credit{
+    font-family:'Space Grotesk', -apple-system, sans-serif;
     font-size:0.75rem;
-    letter-spacing:0.04em;
-    color:var(--ink-dim);
-    font-weight:500;
-  }
-  .site-lang-toggle{
-    display:inline-flex; align-items:center; gap:8px;
-    padding:8px 16px;
-    font-family:'JetBrains Mono', monospace;
-    font-size:0.72rem; letter-spacing:0.04em;
+    letter-spacing:0.03em;
+    color:var(--ink-dim, #cbd5e1);
     font-weight:600;
-    color:var(--ink);
-    background:var(--stone-2, rgba(255,255,255,0.04));
-    border:1px solid var(--stone-edge, rgba(255,255,255,0.14));
-    border-radius:999px;
-    cursor:pointer;
-    box-shadow:0 2px 6px rgba(0,0,0,0.06);
-    transition:border-color .2s ease, background .2s ease, transform .15s ease, color .2s ease, box-shadow .2s ease;
   }
-  .site-lang-toggle:hover{
-    border-color:var(--gold-bright);
-    color:var(--gold-bright);
-    transform:translateY(-1px);
-    box-shadow:0 4px 12px rgba(0,0,0,0.12);
+
+  /* Right: Action Pills Group */
+  .site-footer-actions{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
   }
-  .site-lang-toggle[aria-pressed="true"]{
-    border-color:var(--gold);
-    color:var(--gold);
-    background:rgba(255,209,102,0.12);
-  }
-  .site-lang-toggle-icon{
-    display:inline-flex; align-items:center; justify-content:center;
-    width:20px; height:20px; border-radius:50%;
-    font-family:'Noto Sans Khmer','Noto Serif Khmer', sans-serif;
-    font-size:0.72rem;
-    font-weight:700;
-    background:var(--stone-3, rgba(255,255,255,0.08));
-    color:var(--gold-bright);
-  }
+
+  /* Tactile Interactive Capsule Link / Button */
   .site-footer-link{
-    display:inline-flex; align-items:center; gap:7px;
-    font-family:'JetBrains Mono', monospace;
-    font-size:0.75rem; letter-spacing:0.03em;
-    font-weight:500;
-    color:var(--ink-dim);
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:6px 14px;
+    border-radius:999px;
+    font-family:'Space Grotesk', -apple-system, sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.02em;
+    font-weight:600;
+    color:var(--ink-dim, #cbd5e1);
+    background:rgba(255, 255, 255, 0.05);
+    border:1px solid rgba(255, 255, 255, 0.12);
     text-decoration:none;
-    background:none; border:none; padding:4px 4px;
     cursor:pointer;
-    transition:color .2s ease, transform .15s ease;
+    box-shadow:0 2px 6px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.06);
+    transition:all .18s cubic-bezier(.22,1,.36,1);
   }
   .site-footer-link:hover{
-    color:var(--gold-bright);
+    background:rgba(255, 255, 255, 0.12);
+    border-color:rgba(255, 255, 255, 0.28);
+    color:#ffffff;
     transform:translateY(-1px);
+    box-shadow:0 4px 14px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.12);
   }
-  .site-footer-link-icon{ width:16px; height:16px; display:inline-flex; }
-  .site-footer-link-icon svg{ width:16px; height:16px; }
+  .site-footer-link#siteFacebookLink:hover{
+    background:rgba(24, 119, 242, 0.15);
+    border-color:rgba(24, 119, 242, 0.5);
+    color:#ffffff;
+    box-shadow:0 4px 14px rgba(24, 119, 242, 0.25);
+  }
+  .site-footer-link#siteFacebookLink:hover .site-footer-link-icon{
+    color:#1877f2;
+    filter:drop-shadow(0 0 6px rgba(24, 119, 242, 0.6));
+  }
+  .site-footer-link#siteDevNoteBtn:hover{
+    background:rgba(255, 209, 102, 0.12);
+    border-color:rgba(255, 209, 102, 0.45);
+    color:var(--gold-bright, #ffd166);
+    box-shadow:0 4px 14px rgba(255, 209, 102, 0.25);
+  }
+  .site-footer-link#siteDevNoteBtn:hover .site-footer-link-icon{
+    color:var(--gold-bright, #ffd166);
+    filter:drop-shadow(0 0 6px rgba(255, 209, 102, 0.6));
+  }
+  .site-footer-link-icon{
+    width:15px;
+    height:15px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    transition:transform .18s ease, color .18s ease, filter .18s ease;
+  }
+  .site-footer-link:hover .site-footer-link-icon{
+    transform:scale(1.1);
+  }
+
+  /* Bi-lingual Language Switcher Capsule */
+  .site-lang-toggle{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:5px 14px 5px 6px;
+    font-family:'Space Grotesk', 'Kantumruy Pro', -apple-system, sans-serif;
+    font-size:0.73rem;
+    letter-spacing:0.02em;
+    font-weight:700;
+    color:#ffffff;
+    background:rgba(255, 255, 255, 0.08);
+    border:1px solid rgba(255, 255, 255, 0.18);
+    border-radius:999px;
+    cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition:all .18s cubic-bezier(.22,1,.36,1);
+  }
+  .site-lang-toggle:hover{
+    border-color:var(--gold-bright, #ffd166);
+    background:rgba(255, 255, 255, 0.14);
+    color:var(--gold-bright, #ffd166);
+    transform:translateY(-1.5px);
+    box-shadow:0 6px 18px rgba(0,0,0,0.35), 0 0 12px rgba(255, 209, 102, 0.25);
+  }
+  .site-lang-toggle[aria-pressed="true"]{
+    background:rgba(56, 189, 248, 0.12);
+    border-color:rgba(56, 189, 248, 0.4);
+    color:#ffffff;
+  }
+  .site-lang-toggle[aria-pressed="true"]:hover{
+    border-color:#38bdf8;
+    color:#38bdf8;
+    box-shadow:0 6px 18px rgba(0,0,0,0.35), 0 0 12px rgba(56, 189, 248, 0.35);
+  }
+  .site-lang-toggle-icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    font-family:'Noto Sans Khmer', 'Space Grotesk', sans-serif;
+    font-size:0.75rem;
+    font-weight:700;
+    background:var(--gold-bright, #ffd166);
+    color:#1a1005;
+    box-shadow:0 0 10px rgba(255, 209, 102, 0.55);
+    flex-shrink:0;
+    transition:transform .18s ease, background .2s ease, color .2s ease;
+  }
+  .site-lang-toggle:hover .site-lang-toggle-icon{
+    transform:scale(1.08) rotate(4deg);
+  }
+  .site-lang-toggle[aria-pressed="true"] .site-lang-toggle-icon{
+    background:#38bdf8;
+    color:#04101c;
+    box-shadow:0 0 10px rgba(56, 189, 248, 0.55);
+  }
 
   /* High contrast theme rules for light & sepia footers */
-  html.theme-light .site-footer {
-    border-top-color: #cbd5e1;
-    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(226,232,240,0.65) 100%);
+  html.theme-light .site-footer::before {
+    background: linear-gradient(90deg, transparent 0%, rgba(15, 23, 42, 0.12) 25%, rgba(15, 23, 42, 0.12) 75%, transparent 100%);
   }
-  html.theme-light .site-footer-credit,
+  html.theme-light .site-footer-inner {
+    background: rgba(255, 255, 255, 0.88) !important;
+    border: 1px solid rgba(15, 23, 42, 0.12) !important;
+    box-shadow: 0 10px 30px -6px rgba(15, 23, 42, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+  }
+  html.theme-light .site-footer-credit {
+    color: #1e293b !important;
+  }
   html.theme-light .site-footer-link {
+    background: rgba(15, 23, 42, 0.04) !important;
+    border-color: rgba(15, 23, 42, 0.1) !important;
     color: #334155 !important;
-    font-weight: 600;
   }
   html.theme-light .site-footer-link:hover {
+    background: rgba(15, 23, 42, 0.08) !important;
+    border-color: rgba(15, 23, 42, 0.22) !important;
     color: #0f172a !important;
   }
   html.theme-light .site-lang-toggle {
+    background: rgba(15, 23, 42, 0.06) !important;
+    border-color: rgba(15, 23, 42, 0.15) !important;
     color: #0f172a !important;
-    background: #ffffff !important;
-    border-color: #cbd5e1 !important;
-    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.1);
   }
   html.theme-light .site-lang-toggle:hover {
     border-color: #0f172a !important;
-    color: #0f172a !important;
-    background: #f8fafc !important;
+    background: rgba(15, 23, 42, 0.1) !important;
   }
   html.theme-light .site-lang-toggle-icon {
-    background: #e2e8f0;
-    color: #0f172a;
-    filter: none;
+    background: #0f172a !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
   }
 
-  html.theme-sepia .site-footer {
-    border-top-color: #ccbc9e;
-    background: linear-gradient(180deg, rgba(250,245,236,0) 0%, rgba(231,218,193,0.65) 100%);
+  html.theme-sepia .site-footer::before {
+    background: linear-gradient(90deg, transparent 0%, rgba(74, 52, 33, 0.15) 25%, rgba(74, 52, 33, 0.15) 75%, transparent 100%);
   }
-  html.theme-sepia .site-footer-credit,
-  html.theme-sepia .site-footer-link {
+  html.theme-sepia .site-footer-inner {
+    background: rgba(250, 245, 236, 0.9) !important;
+    border: 1px solid rgba(204, 188, 158, 0.8) !important;
+    box-shadow: 0 10px 30px -6px rgba(44, 27, 12, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
+  }
+  html.theme-sepia .site-footer-credit {
     color: #4a3421 !important;
-    font-weight: 600;
+  }
+  html.theme-sepia .site-footer-link {
+    background: rgba(74, 52, 33, 0.05) !important;
+    border-color: rgba(74, 52, 33, 0.15) !important;
+    color: #4a3421 !important;
   }
   html.theme-sepia .site-footer-link:hover {
+    background: rgba(74, 52, 33, 0.1) !important;
+    border-color: rgba(74, 52, 33, 0.3) !important;
     color: #2c1b0c !important;
   }
   html.theme-sepia .site-lang-toggle {
+    background: rgba(74, 52, 33, 0.06) !important;
+    border-color: rgba(74, 52, 33, 0.2) !important;
     color: #2c1b0c !important;
-    background: #faf5ec !important;
-    border-color: #ccbc9e !important;
-    box-shadow: 0 1px 4px rgba(44, 27, 12, 0.08);
   }
   html.theme-sepia .site-lang-toggle:hover {
     border-color: #2c1b0c !important;
-    color: #2c1b0c !important;
-    background: #f0e6d2 !important;
+    background: rgba(74, 52, 33, 0.12) !important;
+  }
+  html.theme-sepia .site-lang-toggle-icon {
+    background: #4a3421 !important;
+    color: #faf5ec !important;
+    box-shadow: none !important;
+  }
+
+  @media (max-width: 768px) {
+    .site-footer-inner {
+      border-radius: 20px;
+      flex-direction: column;
+      text-align: center;
+      gap: 12px;
+      padding: 14px 16px;
+    }
+    .site-footer-actions {
+      justify-content: center;
+      width: 100%;
+    }
   }
   html.theme-sepia .site-lang-toggle-icon {
     background: #e7dac1;
