@@ -4563,9 +4563,14 @@ html.theme-glass .key:hover {
   box-shadow: 0 0 16px color-mix(in srgb, var(--gold-bright) 45%, transparent) !important;
 }
 html.theme-glass .layout-strip .layout-pill.active,
+html.theme-glass body.has-custom-wallpaper .layout-strip .layout-pill.active,
 html.theme-glass .layer-strip .layer-pill.active,
+html.theme-glass body.has-custom-wallpaper .layer-strip .layer-pill.active,
 html.theme-glass .toolbar button.active,
 html.theme-glass .top-actions button.active {
+  background: rgba(255, 255, 255, 0) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
   border-color: var(--gold-bright) !important;
   color: var(--gold-bright) !important;
   box-shadow: 0 0 18px color-mix(in srgb, var(--gold-bright) 45%, transparent), inset 0 0 12px color-mix(in srgb, var(--gold-bright) 22%, transparent) !important;
