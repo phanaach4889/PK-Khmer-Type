@@ -59,7 +59,7 @@ function ensureSettingsStylesheet() {
   if (!document.querySelector('link[href*="css/settings.css"]')) {
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "css/settings.css?v=33";
+    link.href = "css/settings.css?v=34";
     document.head.appendChild(link);
   }
 }
@@ -170,7 +170,7 @@ function ensureUpgradedSettingsModalDOM() {
       <div class="settings-section" data-cat-section="audio">
         <div class="settings-section-header"><h3 class="settings-section-title">Sound &amp; Mechanical Audio Engine</h3><span class="settings-section-count">6 settings</span></div>
         <div class="settings-row" data-search="sound effects audio click keystroke mute"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Mechanical Key Sound</span><span class="settings-row-km">សំឡេងគ្រាប់ចុច</span></div><div class="settings-row-desc">Synthesize real-time mechanical switch acoustics when typing.</div></div><div class="settings-row-control"><div class="toggle-switch on" id="settingsSoundToggle" role="switch" aria-checked="true" tabindex="0"></div></div></div>
-        <div class="settings-row" data-search="switch profile sound tactile brown clicky blue red thock typewriter silent"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Mechanical Switch Profile</span><span class="settings-row-km">ប្រភេទសំឡេងស្វ៊ីច</span></div><div class="settings-row-desc">Select your switch acoustic signature (click any switch to audition its sound).</div></div><div class="settings-row-control"><div class="settings-choice" id="switchProfileChoice"><button type="button" data-switch="brown" class="active">Tactile Brown</button><button type="button" data-switch="blue">Clicky Blue</button><button type="button" data-switch="red">Thocky Red</button><button type="button" data-switch="typewriter">Typewriter</button><button type="button" data-switch="silent">Silent Soft</button></div></div></div>
+        <div class="settings-row settings-row-stacked settings-row-switches" data-search="switch profile sound tactile brown clicky blue red thock typewriter silent"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Mechanical Switch Profile</span><span class="settings-row-km">ប្រភេទសំឡេងស្វ៊ីច</span></div><div class="settings-row-desc">Select your switch acoustic signature (click any switch to audition its sound).</div></div><div class="settings-row-control"><div class="settings-choice" id="switchProfileChoice"><button type="button" data-switch="brown" class="active">Tactile Brown</button><button type="button" data-switch="blue">Clicky Blue</button><button type="button" data-switch="red">Thocky Red</button><button type="button" data-switch="typewriter">Typewriter</button><button type="button" data-switch="silent">Silent Soft</button></div></div></div>
         <div class="settings-row" data-search="sound volume loudness key click level"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Key Sound Volume</span><span class="settings-row-km">កម្រិតសំឡេងគ្រាប់ចុច</span></div><div class="settings-row-desc">Adjust master volume for mechanical switch clicks and chimes.</div></div><div class="settings-row-control"><div class="settings-slider-wrap"><input type="range" id="soundVolumeSlider" min="10" max="100" value="80"><span class="settings-slider-badge" id="soundVolumeValue">80%</span></div></div></div>
         <div class="settings-row" data-search="completion chime bell milestone lesson pass sound"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Completion &amp; Milestone Chimes</span><span class="settings-row-km">សំឡេងជោគជ័យ</span></div><div class="settings-row-desc">Play harmonic celebration chimes when completing a drill or mastering a lesson.</div></div><div class="settings-row-control"><div class="toggle-switch on" id="settingsChimeToggle" role="switch" aria-checked="true" tabindex="0"></div></div></div>
         <div class="settings-row" data-search="temple ambience drone background music relax meditation"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Temple Ambience Drone</span><span class="settings-row-km">សំឡេងបរិយាកាសប្រាសាទ</span></div><div class="settings-row-desc">Play a warm, meditative harmonic temple drone in the background.</div></div><div class="settings-row-control"><div class="toggle-switch" id="settingsAmbienceToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
@@ -188,7 +188,7 @@ function ensureUpgradedSettingsModalDOM() {
 
       <div class="settings-section" data-cat-section="appearance">
         <div class="settings-section-header"><h3 class="settings-section-title">Appearance, Themes &amp; Wallpaper</h3><span class="settings-section-count">7 settings</span></div>
-        <div class="settings-row" data-search="theme dark temple moonlight jungle sunset sepia light system color"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Studio Color Theme</span><span class="settings-row-km">ស្បែកកម្មវិធី</span></div><div class="settings-row-desc">Select the overall atmosphere and lighting palette.</div></div><div class="settings-row-control"><div class="settings-choice" id="themeChoice"><button type="button" data-theme="glass"><span class="theme-dot glass"></span>Transparent Glass</button><button type="button" data-theme="dark" class="active"><span class="theme-dot dark"></span>Dark</button><button type="button" data-theme="temple"><span class="theme-dot temple"></span>Temple</button><button type="button" data-theme="moonlight"><span class="theme-dot moonlight"></span>Moonlight</button><button type="button" data-theme="jungle"><span class="theme-dot jungle"></span>Jungle</button><button type="button" data-theme="sunset"><span class="theme-dot sunset"></span>Sunset</button><button type="button" data-theme="sepia"><span class="theme-dot sepia"></span>Sepia</button><button type="button" data-theme="light"><span class="theme-dot light"></span>Light</button><button type="button" data-theme="system"><span class="theme-dot system"></span>System</button></div></div></div>
+        <div class="settings-row settings-row-stacked settings-row-theme" data-search="theme glass transparent dark temple moonlight jungle sunset sepia light system color"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Studio Color Theme</span><span class="settings-row-km">ស្បែកកម្មវិធី</span></div><div class="settings-row-desc">Select the overall atmosphere and lighting palette.</div></div><div class="settings-row-control"><div class="settings-choice" id="themeChoice"><button type="button" data-theme="glass"><span class="theme-dot glass"></span>Transparent Glass</button><button type="button" data-theme="dark" class="active"><span class="theme-dot dark"></span>Dark</button><button type="button" data-theme="temple"><span class="theme-dot temple"></span>Temple</button><button type="button" data-theme="moonlight"><span class="theme-dot moonlight"></span>Moonlight</button><button type="button" data-theme="jungle"><span class="theme-dot jungle"></span>Jungle</button><button type="button" data-theme="sunset"><span class="theme-dot sunset"></span>Sunset</button><button type="button" data-theme="sepia"><span class="theme-dot sepia"></span>Sepia</button><button type="button" data-theme="light"><span class="theme-dot light"></span>Light</button><button type="button" data-theme="system"><span class="theme-dot system"></span>System</button></div></div></div>
         <div class="settings-row" data-search="accent color gold jade sapphire ruby cyan amethyst"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Primary Accent Color</span><span class="settings-row-km">ពណ៌លេចធ្លោ</span></div><div class="settings-row-desc">Choose the highlight glow color for active keys, badges, and buttons.</div></div><div class="settings-row-control"><div class="settings-choice accent-choice" id="accentChoice"><button type="button" data-accent="gold" class="active" style="--sw:#ffd166" aria-label="Gold accent"></button><button type="button" data-accent="jade" style="--sw:#5fd694" aria-label="Jade accent"></button><button type="button" data-accent="sapphire" style="--sw:#2dd4a7" aria-label="Sapphire accent"></button><button type="button" data-accent="ruby" style="--sw:#ff5a70" aria-label="Ruby accent"></button><button type="button" data-accent="cyan" style="--sw:#38bdf8" aria-label="Cyber Cyan accent"></button><button type="button" data-accent="amethyst" style="--sw:#c084fc" aria-label="Amethyst accent"></button></div></div></div>
         <div class="settings-row" data-search="khmer font family kantumruy noto sans serif typography"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Khmer Script Font Family</span><span class="settings-row-km">ពុម្ពអក្សរខ្មែរ</span></div><div class="settings-row-desc">Choose the Khmer typeface for keycaps, HUD cards, and typing prompts.</div></div><div class="settings-row-control"><div class="settings-choice" id="khmerFontChoice"><button type="button" data-kfont="kantumruy" class="active">Kantumruy Pro</button><button type="button" data-kfont="noto-sans">Noto Sans Khmer</button><button type="button" data-kfont="noto-serif">Noto Serif Khmer</button></div></div></div>
         <div class="settings-row" data-search="larger text font size big scale zoom"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Larger Text &amp; Key Glyphs</span><span class="settings-row-km">អក្សរធំ</span></div><div class="settings-row-desc">Increase font size across keycaps, reading prompts, and menus.</div></div><div class="settings-row-control"><div class="toggle-switch" id="largeTextToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
@@ -769,6 +769,79 @@ function initSettingsToggles() {
   }
 
   /* ---------- 3. Appearance: Theme, Accent, Font, Text Scale & Wallpaper ---------- */
+  const THEME_WAVE_PALETTES = {
+    glass:     { color: "#67e8f9", glow: "rgba(103, 232, 249, 0.45)" },
+    dark:      { color: "#38bdf8", glow: "rgba(56, 189, 248, 0.40)" },
+    temple:    { color: "#ff9d2e", glow: "rgba(255, 157, 46, 0.45)" },
+    moonlight: { color: "#60a5fa", glow: "rgba(96, 165, 250, 0.48)" },
+    jungle:    { color: "#34d399", glow: "rgba(52, 211, 153, 0.44)" },
+    sunset:    { color: "#f472b6", glow: "rgba(244, 114, 182, 0.45)" },
+    sepia:     { color: "#e6b88a", glow: "rgba(212, 163, 115, 0.44)" },
+    light:     { color: "#38bdf8", glow: "rgba(148, 163, 184, 0.40)" },
+    system:    { color: "#a78bfa", glow: "rgba(167, 139, 250, 0.44)" }
+  };
+
+  function spawnChoiceButtonRipple(btn, evt) {
+    if (!btn || document.documentElement.classList.contains("reduced-motion")) return;
+    try {
+      const rect = btn.getBoundingClientRect();
+      const x = (evt && evt.clientX) ? (evt.clientX - rect.left) : (rect.width / 2);
+      const y = (evt && evt.clientY) ? (evt.clientY - rect.top) : (rect.height / 2);
+      const ripple = document.createElement("span");
+      ripple.className = "theme-click-ripple";
+      ripple.style.left = x + "px";
+      ripple.style.top = y + "px";
+      btn.appendChild(ripple);
+      setTimeout(() => { if (ripple.parentNode) ripple.parentNode.removeChild(ripple); }, 620);
+
+      btn.classList.remove("theme-btn-pop");
+      void btn.offsetWidth;
+      btn.classList.add("theme-btn-pop");
+      setTimeout(() => btn.classList.remove("theme-btn-pop"), 520);
+    } catch (err) {}
+  }
+
+  function triggerThemeTransitionFX(btn, mode, evt) {
+    spawnChoiceButtonRipple(btn, evt);
+    if (document.documentElement.classList.contains("reduced-motion")) return;
+    try {
+      const pal = THEME_WAVE_PALETTES[mode] || THEME_WAVE_PALETTES.dark;
+      const parentRow = btn ? btn.closest(".settings-row") : null;
+      if (parentRow) {
+        parentRow.style.setProperty("--row-flash-color", pal.color);
+        parentRow.style.setProperty("--row-flash-glow", pal.glow);
+        parentRow.classList.remove("theme-row-flash");
+        void parentRow.offsetWidth;
+        parentRow.classList.add("theme-row-flash");
+        setTimeout(() => parentRow.classList.remove("theme-row-flash"), 650);
+      }
+
+      let overlay = document.getElementById("pkThemeWaveOverlay");
+      if (!overlay) {
+        overlay = document.createElement("div");
+        overlay.id = "pkThemeWaveOverlay";
+        overlay.className = "pk-theme-wave-overlay";
+        document.body.appendChild(overlay);
+      }
+      const rect = btn ? btn.getBoundingClientRect() : null;
+      const cx = (evt && evt.clientX) ? evt.clientX : (rect ? (rect.left + rect.width / 2) : (window.innerWidth / 2));
+      const cy = (evt && evt.clientY) ? evt.clientY : (rect ? (rect.top + rect.height / 2) : (window.innerHeight / 2));
+      const ring = document.createElement("div");
+      ring.className = "pk-theme-wave-ring";
+      ring.style.setProperty("--wave-x", cx + "px");
+      ring.style.setProperty("--wave-y", cy + "px");
+      ring.style.setProperty("--wave-color", pal.glow);
+      overlay.appendChild(ring);
+      setTimeout(() => { if (ring.parentNode) ring.parentNode.removeChild(ring); }, 720);
+    } catch (err) {}
+  }
+
+  document.querySelectorAll("#settingsBodyScroll .settings-choice button").forEach((choiceBtn) => {
+    if (!choiceBtn.closest("#themeChoice")) {
+      choiceBtn.addEventListener("click", (e) => spawnChoiceButtonRipple(choiceBtn, e));
+    }
+  });
+
   const themeButtons = document.querySelectorAll("#themeChoice button");
   function applyTheme(mode) {
     const sysDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -783,7 +856,13 @@ function initSettingsToggles() {
     themeButtons.forEach((b) => b.classList.toggle("active", b.dataset.theme === mode));
     safeSet(LS.theme, mode);
   }
-  themeButtons.forEach((b) => b.addEventListener("click", () => applyTheme(b.dataset.theme)));
+  themeButtons.forEach((b) => {
+    b.addEventListener("click", (e) => {
+      applyTheme(b.dataset.theme);
+      triggerThemeTransitionFX(b, b.dataset.theme, e);
+      if (soundOn) playClick("down");
+    });
+  });
   applyTheme(safeGet(LS.theme, "dark"));
 
   const ACCENTS = {
