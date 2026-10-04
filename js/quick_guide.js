@@ -395,13 +395,55 @@
         }
       }
 
-      // 3. Streak flame counter
+      // 3. Streak flame counter & live telemetry bumps
       let liveStreak = 0;
+      let liveWpm = null;
+      let liveAcc = null;
+      let liveKeys = null;
       if(typeof PK_TRACKER !== 'undefined' && typeof PK_TRACKER.getLiveLessonMetrics === 'function'){
         const metrics = PK_TRACKER.getLiveLessonMetrics();
-        if(metrics && typeof metrics.currentStreak === 'number') liveStreak = metrics.currentStreak;
+        if(metrics && metrics.active){
+          if(typeof metrics.currentStreak === 'number') liveStreak = metrics.currentStreak;
+          if(typeof metrics.wpm === 'number') liveWpm = metrics.wpm;
+          if(typeof metrics.accuracy === 'number') liveAcc = `${metrics.accuracy}%`;
+          if(typeof metrics.correctCount === 'number') liveKeys = metrics.correctCount;
+        }
       }
-      if(this.streakVal) this.streakVal.textContent = liveStreak;
+      const triggerBump = (el, text) => {
+        if(!el || text === null || text === undefined) return;
+        const old = el.textContent.trim();
+        const next = String(text).trim();
+        if(old !== next && old !== '' && old !== '-'){
+          el.textContent = next;
+          el.classList.remove('telemetry-bump');
+          void el.offsetWidth;
+          el.classList.add('telemetry-bump');
+          setTimeout(() => el && el.classList.remove('telemetry-bump'), 260);
+        } else {
+          el.textContent = next;
+        }
+      };
+
+      if(liveWpm !== null) triggerBump(this.statWpm, liveWpm);
+      if(liveAcc !== null) triggerBump(this.statAcc, liveAcc);
+      if(liveKeys !== null) triggerBump(this.statKeys, liveKeys);
+
+      if(this.streakVal) {
+        triggerBump(this.streakVal, liveStreak);
+        const streakBox = this.streakVal.closest('.guide-stat-box');
+        if(streakBox){
+          streakBox.classList.toggle('has-streak', liveStreak >= 3);
+          streakBox.classList.toggle('super-streak', liveStreak >= 15);
+        }
+        if(liveStreak < 10) {
+          this._lastCelebratedStreak = 0;
+        } else if([10, 25, 50, 100].includes(liveStreak) && this._lastCelebratedStreak !== liveStreak){
+          this._lastCelebratedStreak = liveStreak;
+          if(typeof showToast === 'function'){
+            showToast('🔥', `${liveStreak} Keystroke Streak!`, isKm ? 'ការវាយជាប់គ្នាគ្មានកំហុស!' : 'Unstoppable rhythm & precision.');
+          }
+        }
+      }
 
       // 4. Update tool buttons descriptions
       this.updateToolStatuses();

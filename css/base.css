@@ -126,6 +126,52 @@
     opacity: 0;
   }
 
+  /* ================= Ambient Atmospheric Cosmic Aurora ================= */
+  .ambient-aurora-glow {
+    position: fixed;
+    inset: -15%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.38;
+    background:
+      radial-gradient(ellipse 45vw 45vh at 18% 22%, color-mix(in srgb, var(--gold-bright) 18%, transparent), transparent 68%),
+      radial-gradient(ellipse 52vw 48vh at 82% 28%, color-mix(in srgb, #38bdf8 15%, transparent), transparent 70%),
+      radial-gradient(ellipse 55vw 55vh at 50% 88%, color-mix(in srgb, #a855f7 12%, transparent), transparent 72%);
+    filter: blur(55px);
+    animation: aurora-drift 24s ease-in-out infinite alternate;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+  }
+  @keyframes aurora-drift {
+    0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+    50% { transform: translate3d(-2.5%, 1.8%, 0) scale(1.04) rotate(1.2deg); }
+    100% { transform: translate3d(2.5%, -1.8%, 0) scale(0.98) rotate(-1.2deg); }
+  }
+  body.has-custom-wallpaper .ambient-aurora-glow {
+    opacity: 0.12;
+  }
+  html.focus-mode .ambient-aurora-glow {
+    opacity: 0.1;
+  }
+  html.theme-light .ambient-aurora-glow {
+    opacity: 0.18;
+    background:
+      radial-gradient(ellipse 45vw 45vh at 18% 22%, rgba(245, 158, 11, 0.12), transparent 68%),
+      radial-gradient(ellipse 52vw 48vh at 82% 28%, rgba(56, 189, 248, 0.14), transparent 70%),
+      radial-gradient(ellipse 55vw 55vh at 50% 88%, rgba(168, 85, 247, 0.08), transparent 72%);
+  }
+  html.theme-sepia .ambient-aurora-glow {
+    opacity: 0.22;
+    background:
+      radial-gradient(ellipse 45vw 45vh at 18% 22%, rgba(180, 83, 9, 0.15), transparent 68%),
+      radial-gradient(ellipse 52vw 48vh at 82% 28%, rgba(217, 119, 6, 0.12), transparent 70%),
+      radial-gradient(ellipse 55vw 55vh at 50% 88%, rgba(146, 64, 14, 0.1), transparent 72%);
+  }
+  html.reduced-motion .ambient-aurora-glow,
+  [data-reduced-motion="true"] .ambient-aurora-glow {
+    animation: none !important;
+  }
+
   /* Content elements elevated above background wallpaper */
   h1,
   .site-crest-icon,
@@ -2247,11 +2293,13 @@
   /* ================= new: modal panel (Settings / Statistics) ================= */
   .modal-backdrop{
     position:fixed; inset:0; z-index:2000;
-    background:rgba(10,9,11,0.72);
+    background:rgba(10,9,11,0.78);
     display:flex; align-items:center; justify-content:center;
     padding:20px;
     overflow:hidden;
-    animation:panel-in .2s ease;
+    backdrop-filter:blur(14px) saturate(160%);
+    -webkit-backdrop-filter:blur(14px) saturate(160%);
+    animation:modal-backdrop-in .28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
   .modal-backdrop[hidden]{ display:none; }
   .modal-card{
@@ -2264,6 +2312,24 @@
     border-radius:16px;
     padding:22px 24px 26px;
     box-shadow:0 30px 60px -20px rgba(0,0,0,0.7);
+    animation:modal-card-spring-in .38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes modal-backdrop-in{
+    from{ opacity:0; backdrop-filter:blur(0px); -webkit-backdrop-filter:blur(0px); }
+    to{ opacity:1; backdrop-filter:blur(14px) saturate(160%); -webkit-backdrop-filter:blur(14px) saturate(160%); }
+  }
+  @keyframes modal-card-spring-in{
+    0%{
+      opacity:0;
+      transform:perspective(1000px) translateY(24px) scale(0.92) rotateX(4deg);
+    }
+    70%{
+      transform:perspective(1000px) translateY(-2px) scale(1.008) rotateX(-0.5deg);
+    }
+    100%{
+      opacity:1;
+      transform:perspective(1000px) translateY(0) scale(1) rotateX(0deg);
+    }
   }
 
   /* auth-card never needs scrollbar — content is sized to fit */
@@ -2445,15 +2511,28 @@
 
   .toggle-switch{
     width:38px; height:22px; border-radius:999px; background:var(--stone-3);
-    border:1px solid var(--stone-edge); position:relative; cursor:pointer; transition:background .2s ease;
+    border:1px solid var(--stone-edge); position:relative; cursor:pointer;
+    transition:background .25s ease, border-color .25s ease, box-shadow .25s ease;
     flex:0 0 auto;
+  }
+  .toggle-switch:hover{
+    box-shadow:0 0 10px rgba(255,209,102,0.25);
   }
   .toggle-switch::after{
     content:""; position:absolute; top:2px; left:2px; width:16px; height:16px;
-    border-radius:50%; background:var(--ink-dim); transition:transform .2s ease, background .2s ease;
+    border-radius:50%; background:var(--ink-dim);
+    transition:transform .28s cubic-bezier(.34,1.56,.64,1), background .2s ease, box-shadow .2s ease;
   }
-  .toggle-switch.on{ background:var(--gold); border-color:var(--gold-bright); }
-  .toggle-switch.on::after{ transform:translateX(16px); background:#241405; }
+  .toggle-switch.on{
+    background:linear-gradient(135deg, var(--gold-bright), var(--gold));
+    border-color:var(--gold-bright);
+    box-shadow:0 0 14px rgba(255,209,102,0.5);
+  }
+  .toggle-switch.on::after{
+    transform:translateX(16px);
+    background:#241405;
+    box-shadow:0 1px 4px rgba(0,0,0,0.4);
+  }
 
   .settings-btn-row{ display:flex; gap:8px; margin-bottom:10px; }
   .secondary-btn{
