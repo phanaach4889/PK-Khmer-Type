@@ -1246,16 +1246,40 @@ function initSettingsToggles() {
   /* ---------- 8. Focus Mode ---------- */
   const focusModeToggle = document.getElementById("focusModeToggle");
   const focusModeBtn = document.getElementById("focusModeBtn");
+  let focusGrowCleanupTimer = null;
 
   window.applyFocusMode = applyFocusMode;
-  function applyFocusMode(on) {
-    document.documentElement.classList.toggle("focus-mode", on);
+  function applyFocusMode(on, isInitial) {
+    const htmlEl = document.documentElement;
+    const wasOn = htmlEl.classList.contains("focus-mode");
+
+    if (!isInitial && on !== wasOn) {
+      htmlEl.classList.remove("focus-mode-growing", "focus-mode-shrinking");
+      void htmlEl.offsetWidth;
+      htmlEl.classList.add(on ? "focus-mode-growing" : "focus-mode-shrinking");
+      if (focusGrowCleanupTimer) clearTimeout(focusGrowCleanupTimer);
+      focusGrowCleanupTimer = setTimeout(() => {
+        htmlEl.classList.remove("focus-mode-growing", "focus-mode-shrinking");
+      }, 720);
+      if (typeof window.spawnFocusGrowBloom === "function") {
+        window.spawnFocusGrowBloom(on);
+      }
+    }
+
+    htmlEl.classList.toggle("focus-mode", on);
     setSwitchUI(focusModeToggle, on);
     if (focusModeBtn) {
       focusModeBtn.classList.toggle("active", on);
+      if (!isInitial && on) {
+        focusModeBtn.classList.remove("focus-btn-grow-anim");
+        void focusModeBtn.offsetWidth;
+        focusModeBtn.classList.add("focus-btn-grow-anim");
+      } else if (!on) {
+        focusModeBtn.classList.remove("focus-btn-grow-anim");
+      }
       focusModeBtn.setAttribute("aria-pressed", String(on));
       const textSpan = focusModeBtn.querySelector(".focus-btn-text");
-      const isKm = document.documentElement.classList.contains("site-km-mode");
+      const isKm = htmlEl.classList.contains("site-km-mode");
       if (textSpan) {
         if (on) {
           textSpan.setAttribute("data-en", "Exit Focus");
@@ -1272,30 +1296,41 @@ function initSettingsToggles() {
       const ls = document.getElementById("lessonStrip");
       if (ls) ls.classList.remove("expanded");
     }
-    requestAnimationFrame(() => {
+    const syncHands = () => {
       if (typeof window.updateHandsOverlay === "function") {
         window.updateHandsOverlay();
       } else if (typeof window.render === "function") {
         window.render();
       }
       window.dispatchEvent(new Event("resize"));
-    });
+    };
+    requestAnimationFrame(syncHands);
+    setTimeout(syncHands, 150);
+    setTimeout(syncHands, 620);
     safeSet(LS.focusMode, on ? "1" : "0");
   }
-  bindSwitch(focusModeToggle, applyFocusMode);
+  bindSwitch(focusModeToggle, (on) => {
+    applyFocusMode(on, false);
+    if (typeof window.showFocusShortcutHud === "function") {
+      window.showFocusShortcutHud(on, "toggle");
+    }
+    if (typeof window.playFocusModeSound === "function") {
+      window.playFocusModeSound(on);
+    }
+  });
 
   if (focusModeBtn) {
     focusModeBtn.addEventListener("click", () => {
-      const willBeOn = !document.documentElement.classList.contains("focus-mode");
-      applyFocusMode(willBeOn);
-      if (typeof showToast === "function") {
-        if (willBeOn) showToast(pkIcon("zap", 18), "Focus Mode Active", "Distractions hidden. Press Esc or Alt+F anytime to exit.");
-        else showToast(pkIcon("eye", 18), "Focus Mode Off", "Interface restored.");
+      if (typeof window.triggerFocusModeShortcut === "function") {
+        window.triggerFocusModeShortcut("button");
+      } else {
+        const willBeOn = !document.documentElement.classList.contains("focus-mode");
+        applyFocusMode(willBeOn, false);
       }
     });
   }
 
-  applyFocusMode(safeGet(LS.focusMode, "0") === "1");
+  applyFocusMode(safeGet(LS.focusMode, "0") === "1", true);
 
   /* ---------- 9. Mirror Sound & Finger-Guide Toggles ---------- */
   const settingsSoundToggle = document.getElementById("settingsSoundToggle");

@@ -1029,7 +1029,7 @@ function updateHandsOverlay(){
           if(spaceEl){
             const r = spaceEl.getBoundingClientRect();
             const frac = f.hand === 'L' ? 0.38 : 0.62;
-            tip = { x: r.left + r.width*frac - wrapRect.left, y: tip.y };
+            tip = { x: (r.left + r.width*frac - wrapRect.left) / scaleX, y: tip.y };
           }
         }
       } else {

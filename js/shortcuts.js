@@ -104,6 +104,40 @@
     } catch(_e){}
   }
 
+  let focusBloomTimer = null;
+  function spawnFocusGrowBloom(entering){
+    try {
+      let bloom = document.getElementById('focusGrowBloom');
+      if(!bloom){
+        bloom = document.createElement('div');
+        bloom.id = 'focusGrowBloom';
+        bloom.className = 'focus-grow-bloom';
+        bloom.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(bloom);
+      }
+      const bw = document.getElementById('boardWrap') || document.querySelector('.board-wrap');
+      if(bw){
+        const r = bw.getBoundingClientRect();
+        bloom.style.left = (r.left + r.width / 2) + 'px';
+        bloom.style.top = (r.top + r.height / 2) + 'px';
+        bloom.style.width = Math.max(460, r.width * 0.92) + 'px';
+        bloom.style.height = Math.max(260, r.height * 0.92) + 'px';
+      } else {
+        bloom.style.left = '50%';
+        bloom.style.top = '55%';
+        bloom.style.width = '760px';
+        bloom.style.height = '340px';
+      }
+      bloom.className = 'focus-grow-bloom ' + (entering ? 'is-enter' : 'is-exit');
+      void bloom.offsetWidth;
+      bloom.classList.add('active');
+      if(focusBloomTimer) clearTimeout(focusBloomTimer);
+      focusBloomTimer = setTimeout(() => {
+        bloom.classList.remove('active');
+      }, 880);
+    } catch(_e){}
+  }
+
   function showFocusShortcutHud(entering, source){
     // 1. Viewport edge shockwave ring
     let ripple = document.getElementById('focusScreenRipple');
@@ -173,7 +207,7 @@
     const willBeOn = !currentlyOn;
 
     if(typeof window.applyFocusMode === 'function'){
-      window.applyFocusMode(willBeOn);
+      window.applyFocusMode(willBeOn, false);
     } else {
       document.documentElement.classList.toggle('focus-mode', willBeOn);
     }
@@ -185,6 +219,9 @@
   }
 
   window.triggerFocusModeShortcut = triggerFocusModeShortcut;
+  window.spawnFocusGrowBloom = spawnFocusGrowBloom;
+  window.showFocusShortcutHud = showFocusShortcutHud;
+  window.playFocusModeSound = playFocusModeSound;
 
   /* Restart current active practice */
   function restartActivePractice(){
