@@ -59,7 +59,7 @@ function ensureSettingsStylesheet() {
   if (!document.querySelector('link[href*="css/settings.css"]')) {
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "css/settings.css?v=41";
+    link.href = "css/settings.css?v=42";
     document.head.appendChild(link);
   }
 }
@@ -200,8 +200,8 @@ function ensureUpgradedSettingsModalDOM() {
         <div class="settings-section-header"><h3 class="settings-section-title">Immersion, Atmosphere &amp; Panels</h3><span class="settings-section-count">5 settings</span></div>
         <div class="settings-row" data-search="focus mode zen distraction free hide panels"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Focus Mode</span><span class="settings-row-km">របៀបផ្តោត</span></div><div class="settings-row-desc">Dim headers and sidebars so only the keyboard and typing prompt remain (Alt+F).</div></div><div class="settings-row-control"><div class="toggle-switch" id="focusModeToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
         <div class="settings-row" data-search="side docks panels quick guide lessons sidebar"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Show Side Reference Docks</span><span class="settings-row-km">បង្ហាញផ្ទាំងសងខាង</span></div><div class="settings-row-desc">Display the Quick Guide (left) and Lessons Navigator (right) side panels.</div></div><div class="settings-row-control"><div class="toggle-switch on" id="sideDocksToggle" role="switch" aria-checked="true" tabindex="0"></div></div></div>
-        <div class="settings-row" data-search="ember particles ambient motes floating dust"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Floating Ember Particles</span><span class="settings-row-km">ភាគល្អិតពន្លឺ</span></div><div class="settings-row-desc">Render drifting ambient light motes across the backdrop.</div></div><div class="settings-row-control"><div class="toggle-switch on" id="motesToggle" role="switch" aria-checked="true" tabindex="0"></div></div></div>
-        <div class="settings-row" data-search="torch flames fire temple light"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Temple Torch Flames</span><span class="settings-row-km">អណ្តាតភ្លើង</span></div><div class="settings-row-desc">Display warm flickering torchlight along the sides of the screen.</div></div><div class="settings-row-control"><div class="toggle-switch on" id="torchesToggle" role="switch" aria-checked="true" tabindex="0"></div></div></div>
+        <div class="settings-row" data-search="ember particles ambient motes floating dust"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Floating Ember Particles</span><span class="settings-row-km">ភាគល្អិតពន្លឺ</span></div><div class="settings-row-desc">Render drifting ambient light motes across the backdrop.</div></div><div class="settings-row-control"><div class="toggle-switch" id="motesToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
+        <div class="settings-row" data-search="torch flames fire temple light"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Temple Torch Flames</span><span class="settings-row-km">អណ្តាតភ្លើង</span></div><div class="settings-row-desc">Display warm flickering torchlight along the sides of the screen.</div></div><div class="settings-row-control"><div class="toggle-switch" id="torchesToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
         <div class="settings-row" data-search="scanline overlay crt holographic retro"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Holographic Scanline Overlay</span><span class="settings-row-km">បន្ទាត់ស្កេន</span></div><div class="settings-row-desc">Add a subtle cybernetic CRT scanline texture across the viewport.</div></div><div class="settings-row-control"><div class="toggle-switch" id="scanlinesToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
       </div>
 
@@ -1264,7 +1264,7 @@ function initSettingsToggles() {
     safeSet(LS.motes, on ? "1" : "0");
   }
   bindSwitch(motesToggle, applyMotes);
-  applyMotes(safeGet(LS.motes, "1") === "1");
+  applyMotes(safeGet(LS.motes, "0") === "1");
 
   const torchesToggle = document.getElementById("torchesToggle");
   function applyTorches(on) {
@@ -1273,7 +1273,7 @@ function initSettingsToggles() {
     safeSet(LS.torches, on ? "1" : "0");
   }
   bindSwitch(torchesToggle, applyTorches);
-  applyTorches(safeGet(LS.torches, "1") === "1");
+  applyTorches(safeGet(LS.torches, "0") === "1");
 
   const scanlinesToggle = document.getElementById("scanlinesToggle");
   function applyScanlines(on) {
