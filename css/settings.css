@@ -56,13 +56,12 @@
   box-shadow: 0 0 15px rgba(255, 209, 102, 0.15);
 }
 
-.settings-title-group h2,
-#settingsModalTitle {
+.settings-title-group h2 {
   font-family: 'Orbitron', sans-serif;
   font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: #ffffff !important;
+  color: #fff;
   margin: 0;
   display: flex;
   align-items: baseline;
@@ -73,8 +72,8 @@
   font-family: 'Kantumruy Pro', sans-serif;
   font-size: 0.88rem;
   font-weight: 500;
-  color: var(--gold-bright, #ffd166) !important;
-  opacity: 0.95;
+  color: var(--gold-bright);
+  opacity: 0.9;
 }
 
 .settings-count-pill {
@@ -269,7 +268,7 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--gold-bright, #ffd166) !important;
+  color: var(--gold-bright);
   display: flex;
   align-items: center;
   gap: 8px;

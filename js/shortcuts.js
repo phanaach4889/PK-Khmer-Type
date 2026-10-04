@@ -143,8 +143,9 @@
       return;
     }
 
-    // Alt key application shortcuts
-    if(e.altKey){
+    // Alt key application shortcuts (only when not AltGr typing)
+    const isAltGraph = (e.getModifierState && e.getModifierState('AltGraph')) || (typeof heldModifiers !== 'undefined' && heldModifiers.has('altgr')) || (e.ctrlKey && e.altKey);
+    if(e.altKey && !isAltGraph){
       const keyLower = (e.key || '').toLowerCase();
 
       // Alt+F: Toggle Focus Mode

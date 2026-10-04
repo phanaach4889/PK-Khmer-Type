@@ -503,6 +503,29 @@ function typeKey(id, ev){
 
 /* ---------- Physical Keyboard Support ---------- */
 const heldModifiers = new Set();
+let pendingCtrlTimer = null;
+let pendingCtrlId = null;
+
+function applyPendingCtrl(){
+  if(!pendingCtrlId) return;
+  const id = pendingCtrlId;
+  pendingCtrlId = null;
+  pendingCtrlTimer = null;
+  heldModifiers.add('ctrl');
+  recomputePhysicalLayer();
+  if(keyEls[id]) keyEls[id].classList.add('pressed');
+  triggerFingerPress(id);
+  playClick('down');
+  if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
+}
+
+function cancelPendingCtrl(){
+  if(pendingCtrlTimer){
+    clearTimeout(pendingCtrlTimer);
+    pendingCtrlTimer = null;
+  }
+  pendingCtrlId = null;
+}
 
 function recomputePhysicalLayer(){
   const next = heldModifiers.has('altgr') ? 'altgr'
@@ -521,6 +544,11 @@ window.addEventListener('keydown', (e)=>{
 
   const id = CODE_MAP[e.code];
 
+  // If a non-AltGr key arrives while Ctrl is pending (e.g. fast Ctrl+C), flush Ctrl immediately
+  if(pendingCtrlTimer && e.code !== 'AltRight' && e.key !== 'AltGraph'){
+    applyPendingCtrl();
+  }
+
   if(id === 'shiftL' || id === 'shiftR'){
     if(e.repeat) return;
     heldModifiers.add('shift');
@@ -531,8 +559,22 @@ window.addEventListener('keydown', (e)=>{
     if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
     return;
   }
-  if(id === 'ctrlL' || id === 'ctrlR'){
+  if(id === 'ctrlL'){
     if(e.repeat) return;
+    // On Windows, pressing AltGr emits ControlLeft followed immediately by AltRight.
+    // If AltGraph state is already reported by the browser, suppress synthetic ControlLeft completely!
+    if(e.getModifierState && e.getModifierState('AltGraph')){
+      return;
+    }
+    // Delay activating ctrlL for 35ms to allow AltRight to cancel it if AltGr was struck
+    cancelPendingCtrl();
+    pendingCtrlId = id;
+    pendingCtrlTimer = setTimeout(applyPendingCtrl, 35);
+    return;
+  }
+  if(id === 'ctrlR'){
+    if(e.repeat) return;
+    cancelPendingCtrl();
     heldModifiers.add('ctrl');
     recomputePhysicalLayer();
     if(keyEls[id]) keyEls[id].classList.add('pressed');
@@ -543,6 +585,13 @@ window.addEventListener('keydown', (e)=>{
   }
   if(id === 'altgr'){
     if(e.repeat) return;
+    // Cancel any synthetic ControlLeft dispatched by Windows keyboard driver
+    cancelPendingCtrl();
+    heldModifiers.delete('ctrl');
+    if(keyEls['ctrlL']) keyEls['ctrlL'].classList.remove('pressed');
+    if(keyEls['ctrlR']) keyEls['ctrlR'].classList.remove('pressed');
+    if(typeof triggerFingerRelease === 'function') triggerFingerRelease('ctrlL');
+
     heldModifiers.add('altgr');
     recomputePhysicalLayer();
     if(keyEls[id]) keyEls[id].classList.add('pressed');
@@ -663,12 +712,22 @@ window.addEventListener('keyup', (e)=>{
     recomputePhysicalLayer();
     playClick('up');
   } else if(id === 'ctrlL' || id === 'ctrlR'){
+    // If AltGr is held, ignore synthetic Windows ControlLeft keyup
+    if(heldModifiers.has('altgr') || (e.getModifierState && e.getModifierState('AltGraph'))){
+      cancelPendingCtrl();
+      return;
+    }
+    cancelPendingCtrl();
     if(!e.ctrlKey) heldModifiers.delete('ctrl');
     recomputePhysicalLayer();
     playClick('up');
   } else if(id === 'altgr'){
+    cancelPendingCtrl();
     heldModifiers.delete('altgr');
     if(!e.ctrlKey) heldModifiers.delete('ctrl');
+    if(keyEls['ctrlL']) keyEls['ctrlL'].classList.remove('pressed');
+    if(keyEls['ctrlR']) keyEls['ctrlR'].classList.remove('pressed');
+    if(typeof triggerFingerRelease === 'function') triggerFingerRelease('ctrlL');
     recomputePhysicalLayer();
     playClick('up');
   } else if(id === 'alt'){
@@ -679,6 +738,7 @@ window.addEventListener('keyup', (e)=>{
 });
 
 window.addEventListener('blur', ()=>{
+  cancelPendingCtrl();
   heldModifiers.clear();
   physicalLayer = null;
   ['shiftL','shiftR','ctrlL','ctrlR','alt','altgr'].forEach(k => {

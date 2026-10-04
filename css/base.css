@@ -126,56 +126,6 @@
     opacity: 0;
   }
 
-  /* High contrast readable typography over ANY custom wallpaper */
-  body.has-custom-wallpaper > h1,
-  body.has-custom-wallpaper .hero-title {
-    color: #ffffff !important;
-    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.9), 0 0 28px rgba(0, 0, 0, 0.8) !important;
-  }
-  body.has-custom-wallpaper > h1 .km,
-  body.has-custom-wallpaper .hero-title span {
-    color: var(--gold-bright, #ffd166) !important;
-    text-shadow: 0 0 16px rgba(255, 209, 102, 0.6), 0 2px 8px rgba(0, 0, 0, 0.9) !important;
-  }
-  body.has-custom-wallpaper .subtitle,
-  body.has-custom-wallpaper .hero-desc {
-    color: #f1f5f9 !important;
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.95), 0 2px 18px rgba(0, 0, 0, 0.85) !important;
-  }
-  body.has-custom-wallpaper .subtitle kbd {
-    background: rgba(15, 23, 42, 0.8) !important;
-    color: #f8fafc !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6) !important;
-  }
-  body.has-custom-wallpaper .founder-tag {
-    color: #f8fafc !important;
-    background: rgba(15, 23, 42, 0.75) !important;
-    border: 1px solid rgba(255, 255, 255, 0.22) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
-  }
-  body.has-custom-wallpaper .founder-byline {
-    color: #cbd5e1 !important;
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9) !important;
-  }
-  body.has-custom-wallpaper .session-bar {
-    background: rgba(15, 23, 42, 0.75) !important;
-    border-color: rgba(255, 255, 255, 0.18) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45) !important;
-  }
-  body.has-custom-wallpaper .session-stat {
-    border-right-color: rgba(255, 255, 255, 0.12) !important;
-  }
-  body.has-custom-wallpaper .session-stat-label {
-    color: #cbd5e1 !important;
-  }
-  body.has-custom-wallpaper .session-stat-val {
-    color: var(--gold-bright, #ffd166) !important;
-    text-shadow: 0 0 10px rgba(255, 209, 102, 0.35);
-  }
-
   /* Content elements elevated above background wallpaper */
   h1,
   .site-crest-icon,
@@ -209,9 +159,9 @@
   }
   .settings-subtext {
     font-size: 0.72rem;
-    color: #94a3b8 !important;
+    color: var(--ink-dim);
     margin-top: 3px;
-    opacity: 0.9;
+    opacity: 0.75;
   }
   .wallpaper-actions {
     display: flex;
@@ -223,33 +173,32 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 14px;
+    padding: 6px 12px;
     font-size: 0.78rem;
     font-family: inherit;
-    font-weight: 600;
-    color: #f8fafc !important;
-    background: rgba(255, 255, 255, 0.09) !important;
-    border: 1px solid rgba(255, 255, 255, 0.20) !important;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--fx-glass-2);
+    border: 1px solid var(--fx-border);
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
   }
   .wallpaper-btn:hover {
-    background: rgba(255, 209, 102, 0.22) !important;
-    border-color: var(--gold-bright, #ffd166) !important;
-    color: #ffffff !important;
-    box-shadow: 0 0 12px rgba(255, 209, 102, 0.3) !important;
+    background: rgba(255, 209, 102, 0.15);
+    border-color: var(--gold-bright);
+    color: var(--gold-bright);
+    box-shadow: 0 0 10px rgba(255, 209, 102, 0.2);
   }
   .wallpaper-btn.danger {
-    color: #ff7085 !important;
-    background: rgba(255, 90, 112, 0.12) !important;
-    border-color: rgba(255, 90, 112, 0.35) !important;
+    color: #ff7085;
+    border-color: rgba(255, 90, 112, 0.35);
   }
   .wallpaper-btn.danger:hover {
-    background: rgba(255, 90, 112, 0.25) !important;
-    border-color: #ff5a70 !important;
-    color: #ffffff !important;
-    box-shadow: 0 0 12px rgba(255, 90, 112, 0.3) !important;
+    background: rgba(255, 90, 112, 0.2);
+    border-color: #ff5a70;
+    color: #ff5a70;
+    box-shadow: 0 0 10px rgba(255, 90, 112, 0.2);
   }
   .wallpaper-dim-row {
     display: flex;
@@ -671,18 +620,17 @@
     --tooltip-border: #334155;
     --tooltip-ink: #f8fafc;
   }
-  /* Light mode page titles (scoped to page body when no custom wallpaper is active) */
-  html.theme-light body:not(.has-custom-wallpaper) > h1,
-  html.theme-light body:not(.has-custom-wallpaper) .hero-title,
-  html.theme-light body:not(.has-custom-wallpaper) .hero-title span {
+  html.theme-light .hero-title,
+  html.theme-light .hero-title span,
+  html.theme-light h1, html.theme-light h2, html.theme-light h3 {
     color: #0f172a;
   }
-  html.theme-light body:not(.has-custom-wallpaper) .subtitle,
-  html.theme-light body:not(.has-custom-wallpaper) .hero-desc {
+  html.theme-light .subtitle,
+  html.theme-light .hero-desc,
+  html.theme-light .founder-tag {
     color: #475569;
   }
-  html.theme-light body:not(.has-custom-wallpaper) .founder-tag {
-    color: #475569;
+  html.theme-light .founder-tag {
     background: #e2e8f0;
     border-color: #cbd5e1;
   }
@@ -1045,18 +993,17 @@
     --tooltip-ink: #faf5ec;
     --ink-on-accent: #ffffff;
   }
-  /* Sepia mode page titles (scoped to page body when no custom wallpaper is active) */
-  html.theme-sepia body:not(.has-custom-wallpaper) > h1,
-  html.theme-sepia body:not(.has-custom-wallpaper) .hero-title,
-  html.theme-sepia body:not(.has-custom-wallpaper) .hero-title span {
+  html.theme-sepia .hero-title,
+  html.theme-sepia .hero-title span,
+  html.theme-sepia h1, html.theme-sepia h2, html.theme-sepia h3 {
     color: #2c1b0c;
   }
-  html.theme-sepia body:not(.has-custom-wallpaper) .subtitle,
-  html.theme-sepia body:not(.has-custom-wallpaper) .hero-desc {
+  html.theme-sepia .subtitle,
+  html.theme-sepia .hero-desc,
+  html.theme-sepia .founder-tag {
     color: #6b4f2c;
   }
-  html.theme-sepia body:not(.has-custom-wallpaper) .founder-tag {
-    color: #6b4f2c;
+  html.theme-sepia .founder-tag {
     background: #e4d5bc;
     border-color: #ccbc9e;
   }
