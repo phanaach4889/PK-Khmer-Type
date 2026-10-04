@@ -29,8 +29,8 @@
   /* custom scrollbars — a slim gold rod glowing in a carved dark channel,
      with a soft breathing shimmer instead of a flat static bar */
   *{
-    scrollbar-width:thin;
-    scrollbar-color:var(--gold-bright) rgba(0,0,0,0.25);
+    /* scrollbar-width: thin (handled via ::-webkit-scrollbar) */
+    /* scrollbar-color handled via ::-webkit-scrollbar */
   }
   ::-webkit-scrollbar{ width:11px; height:11px; }
   ::-webkit-scrollbar-track{
@@ -3835,7 +3835,7 @@
     font-size:0.85rem; line-height:1.7;
     color:var(--ink-dim);
   }
-  .dev-note-card{ scrollbar-width:thin; }
+  .dev-note-card{ /* scrollbar-width: thin (handled via ::-webkit-scrollbar) */ }
   .dev-note-card::-webkit-scrollbar{ display:block; width:8px; }
   .dev-note-card::-webkit-scrollbar-thumb{
     background:linear-gradient(180deg, #fff0c2 0%, var(--gold-bright) 38%, var(--gold) 100%);
@@ -4508,3 +4508,5 @@
       box-shadow: 0 0 20px rgba(56, 189, 248, 0);
     }
   }
+
+::-webkit-scrollbar-button { display: none !important; width: 0 !important; height: 0 !important; }

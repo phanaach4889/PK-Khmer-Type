@@ -30,8 +30,8 @@
       max-height:calc(100vh - 104px);
       overflow-y:auto;
       overflow-x:hidden;
-      scrollbar-width:thin;
-      scrollbar-color:rgba(255,209,102,0.3) transparent;
+      /* scrollbar-width: thin (handled via ::-webkit-scrollbar) */
+      /* scrollbar-color handled via ::-webkit-scrollbar */
       backdrop-filter:blur(8px);
     }
     .guide-dock::-webkit-scrollbar{
@@ -84,8 +84,8 @@
       right:14px !important;
       top:54px !important;
       bottom:auto !important;
-      width:226px !important;
-      max-height:min(410px, calc(100vh - 70px)) !important;
+      width:258px !important;
+      max-height:min(465px, calc(100vh - 70px)) !important;
     }
     .lesson-strip::-webkit-scrollbar{
       width:6px;
