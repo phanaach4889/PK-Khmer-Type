@@ -825,73 +825,104 @@
     box-shadow:0 0 12px rgba(255,209,102,0.6);
     transition:width .25s ease;
   }
-  .lesson-char-row{
+    .lesson-char-row{
     display:flex;
-    gap:14px;
+    gap:10px;
     justify-content:center;
     align-items:center;
     flex-wrap:nowrap;
     white-space:nowrap;
     overflow:hidden;
-    min-height:3.4em;
-    height:3.4em;
-    padding:6px 18px;
+    min-height:3.6em;
+    height:3.6em;
+    padding:8px 20px;
     font-family:'Kantumruy Pro', 'Khmer OS Battambang', 'Khmer OS Siemreap', 'Noto Sans Khmer', sans-serif;
-    font-size:2.5rem;
+    font-size:2.45rem;
     line-height:1;
     margin-bottom:16px;
-    background:rgba(0,0,0,0.32);
-    border:1px solid rgba(255,255,255,0.07);
-    border-radius:12px;
+    background:rgba(7, 10, 20, 0.62);
+    border:1.5px solid rgba(255, 255, 255, 0.14);
+    border-radius:14px;
+    box-shadow:inset 0 3px 12px rgba(0, 0, 0, 0.55), 0 1px 0 rgba(255, 255, 255, 0.06);
     box-sizing:border-box;
   }
   .lc-char{
-    color:#8c9cb6;
-    text-shadow:0 2px 6px rgba(0,0,0,0.85);
-    transition:color .12s ease, text-shadow .12s ease;
+    color:#e2e8f0;
+    font-weight:600;
+    text-shadow:none;
+    transition:color .12s ease, background .12s ease, border-color .12s ease, box-shadow .12s ease;
     position:relative;
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    height:1.5em;
+    min-width:1.18em;
+    height:1.54em;
     line-height:1;
-    padding:0 5px;
+    padding:0 9px;
+    border-radius:10px;
+    border:2px solid rgba(255, 255, 255, 0.1);
+    background:rgba(255, 255, 255, 0.04);
     flex-shrink:0;
     box-sizing:border-box;
     transform:none !important;
   }
   .lc-char.done{
-    color:var(--gold-bright);
-    text-shadow:0 0 14px rgba(255,209,102,0.55);
+    color:#34d399 !important;
+    background:rgba(16, 185, 129, 0.14) !important;
+    border-color:rgba(52, 211, 153, 0.35) !important;
+    text-shadow:none !important;
     transform:none !important;
   }
   .lc-char.current{
-    color:#ffffff;
-    font-weight:700;
-    text-shadow:0 0 16px rgba(255,255,255,0.8);
+    color:#ffffff !important;
+    font-weight:800 !important;
+    background:linear-gradient(180deg, color-mix(in srgb, var(--gold-bright) 32%, rgba(255, 255, 255, 0.16)), color-mix(in srgb, var(--gold-bright) 18%, rgba(0, 0, 0, 0.42))) !important;
+    border:2px solid var(--gold-bright) !important;
+    box-shadow:0 0 22px color-mix(in srgb, var(--gold-bright) 45%, transparent), inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+    text-shadow:0 1px 3px rgba(0, 0, 0, 0.55) !important;
     transform:none !important;
   }
   .lc-char.current::after{
     content:"";
-    position:absolute; left:2px; right:2px; bottom:2px;
-    height:3px;
-    border-radius:2px;
+    position:absolute; left:6px; right:6px; bottom:3px;
+    height:3.5px;
+    border-radius:999px;
     background:var(--gold-bright);
-    box-shadow:0 0 8px var(--gold-bright);
+    box-shadow:0 0 10px var(--gold-bright);
     animation:blink 1s step-end infinite;
   }
   .lc-space{
-    min-width:24px;
-    color:rgba(140,156,182,0.45);
-    font-size:2.2rem;
-    height:1.5em;
+    min-width:1.25em;
+    color:#94a3b8;
+    font-size:2.1rem;
+    font-weight:700;
+    height:1.54em;
     display:inline-flex;
     align-items:center;
     justify-content:center;
     line-height:1;
     box-sizing:border-box;
+    border:2px dashed rgba(148, 163, 184, 0.28);
+    background:rgba(255, 255, 255, 0.03);
   }
-  .lc-char.shake{ animation:key-shake .3s ease; color:var(--temple-red); }
+  .lc-space.done{
+    color:#34d399 !important;
+    border-style:solid !important;
+    border-color:rgba(52, 211, 153, 0.35) !important;
+  }
+  .lc-space.current{
+    color:var(--gold-bright) !important;
+    border-style:solid !important;
+    border-color:var(--gold-bright) !important;
+  }
+  .lc-char.shake{
+    animation:key-shake .3s ease;
+    color:#ffffff !important;
+    background:rgba(239, 68, 68, 0.85) !important;
+    border-color:#ef4444 !important;
+    box-shadow:0 0 18px rgba(239, 68, 68, 0.55) !important;
+    text-shadow:none !important;
+  }
   .lesson-stats{
     display:flex;
     gap:20px;
@@ -2774,4 +2805,184 @@ html.theme-glass .lesson-card.active,
 body.has-custom-wallpaper .lesson-card.active {
   border-color: var(--gold-bright) !important;
   box-shadow: 0 0 16px color-mix(in srgb, var(--gold-bright) 35%, transparent) !important;
+}
+
+
+/* ============================================================
+   HIGH-CONTRAST LESSON PANEL & TYPING CHARACTERS ACROSS THEMES
+   ============================================================ */
+html.theme-light body:not(.has-custom-wallpaper) .lesson-panel,
+html.theme-light body:not(.has-custom-wallpaper) .adaptive-panel {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.1) !important;
+  color: #0f172a !important;
+}
+html.theme-light body:not(.has-custom-wallpaper) .lesson-top {
+  border-bottom-color: #e2e8f0 !important;
+}
+html.theme-light body:not(.has-custom-wallpaper) .lesson-top b {
+  color: #0f172a !important;
+  text-shadow: none !important;
+}
+html.theme-light body:not(.has-custom-wallpaper) .lesson-newkeys {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+html.theme-light body:not(.has-custom-wallpaper) .lesson-newkey-chip {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 2px 5px rgba(15, 23, 42, 0.05) !important;
+}
+html.theme-light body:not(.has-custom-wallpaper) .lesson-newkey-chip .nk-char {
+  text-shadow: none !important;
+}
+html.theme-light body:not(.has-custom-wallpaper) .lesson-examples-banner {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+html.theme-light body:not(.has-custom-wallpaper) .lesson-progress-bar {
+  background: #e2e8f0 !important;
+  border-color: #cbd5e1 !important;
+}
+html.theme-light body:not(.has-custom-wallpaper) .lesson-stats {
+  border-top-color: #e2e8f0 !important;
+  color: #475569 !important;
+}
+html.theme-light body:not(.has-custom-wallpaper) .lesson-char-row {
+  background: #f1f5f9 !important;
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: inset 0 2px 6px rgba(15, 23, 42, 0.06) !important;
+}
+html.theme-light body:not(.has-custom-wallpaper) .lc-char {
+  color: #0f172a !important;
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05) !important;
+  text-shadow: none !important;
+}
+html.theme-light body:not(.has-custom-wallpaper) .lc-space {
+  color: #475569 !important;
+  background: #f8fafc !important;
+  border: 1.5px dashed #94a3b8 !important;
+}
+html.theme-light body:not(.has-custom-wallpaper) .lc-char.done {
+  color: #047857 !important;
+  background: #d1fae5 !important;
+  border: 1.5px solid #10b981 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+html.theme-light body:not(.has-custom-wallpaper) .lc-char.current {
+  color: #0f172a !important;
+  background: linear-gradient(180deg, #ffffff 0%, color-mix(in srgb, var(--gold-bright) 22%, #f0f9ff) 100%) !important;
+  border: 2.5px solid var(--gold-bright) !important;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--gold-bright) 32%, rgba(15, 23, 42, 0.12)), 0 0 0 3px color-mix(in srgb, var(--gold-bright) 20%, transparent) !important;
+  text-shadow: none !important;
+}
+
+html.theme-sepia body:not(.has-custom-wallpaper) .lesson-panel,
+html.theme-sepia body:not(.has-custom-wallpaper) .adaptive-panel {
+  background: rgba(250, 244, 232, 0.96) !important;
+  border: 1px solid #ccbc9e !important;
+  box-shadow: 0 16px 40px rgba(44, 27, 12, 0.12) !important;
+  color: #2c1b0c !important;
+}
+html.theme-sepia body:not(.has-custom-wallpaper) .lesson-top {
+  border-bottom-color: #ddcca8 !important;
+}
+html.theme-sepia body:not(.has-custom-wallpaper) .lesson-top b {
+  color: #2c1b0c !important;
+  text-shadow: none !important;
+}
+html.theme-sepia body:not(.has-custom-wallpaper) .lesson-newkeys,
+html.theme-sepia body:not(.has-custom-wallpaper) .lesson-examples-banner {
+  background: #f4e9d5 !important;
+  border-color: #ccbc9e !important;
+}
+html.theme-sepia body:not(.has-custom-wallpaper) .lesson-newkey-chip {
+  background: #faf4e8 !important;
+  border-color: #ccbc9e !important;
+}
+html.theme-sepia body:not(.has-custom-wallpaper) .lesson-newkey-chip .nk-char {
+  text-shadow: none !important;
+}
+html.theme-sepia body:not(.has-custom-wallpaper) .lesson-progress-bar {
+  background: #e7dac1 !important;
+  border-color: #ccbc9e !important;
+}
+html.theme-sepia body:not(.has-custom-wallpaper) .lesson-stats {
+  border-top-color: #ddcca8 !important;
+  color: #6b4f2c !important;
+}
+html.theme-sepia body:not(.has-custom-wallpaper) .lesson-char-row {
+  background: #efe3cc !important;
+  border: 1.5px solid #ccbc9e !important;
+  box-shadow: inset 0 2px 6px rgba(44, 27, 12, 0.07) !important;
+}
+html.theme-sepia body:not(.has-custom-wallpaper) .lc-char {
+  color: #2c1b0c !important;
+  background: #faf5ec !important;
+  border: 1.5px solid #d4c3a3 !important;
+  box-shadow: 0 1px 2px rgba(44, 27, 12, 0.06) !important;
+  text-shadow: none !important;
+}
+html.theme-sepia body:not(.has-custom-wallpaper) .lc-space {
+  color: #7c5e3f !important;
+  background: #f4ebd9 !important;
+  border: 1.5px dashed #bfa886 !important;
+}
+html.theme-sepia body:not(.has-custom-wallpaper) .lc-char.done {
+  color: #15803d !important;
+  background: #dcfce7 !important;
+  border: 1.5px solid #22c55e !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+html.theme-sepia body:not(.has-custom-wallpaper) .lc-char.current {
+  color: #2c1b0c !important;
+  background: linear-gradient(180deg, #fffbeb 0%, #fde68a 100%) !important;
+  border: 2.5px solid #b45309 !important;
+  box-shadow: 0 4px 14px rgba(180, 83, 9, 0.25), 0 0 0 3px rgba(180, 83, 9, 0.16) !important;
+  text-shadow: none !important;
+}
+
+/* Transparent Glass & Custom Wallpaper Character Row Legibility */
+html.theme-glass .lesson-char-row,
+body.has-custom-wallpaper .lesson-char-row,
+html.theme-light body.has-custom-wallpaper .lesson-char-row,
+html.theme-sepia body.has-custom-wallpaper .lesson-char-row {
+  background: rgba(8, 12, 24, 0.42) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.45) !important;
+}
+html.theme-glass .lc-char,
+body.has-custom-wallpaper .lc-char,
+html.theme-light body.has-custom-wallpaper .lc-char,
+html.theme-sepia body.has-custom-wallpaper .lc-char {
+  color: #f8fafc !important;
+  background: rgba(15, 23, 42, 0.48) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.28) !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85) !important;
+}
+html.theme-glass .lc-char.done,
+body.has-custom-wallpaper .lc-char.done,
+html.theme-light body.has-custom-wallpaper .lc-char.done,
+html.theme-sepia body.has-custom-wallpaper .lc-char.done {
+  color: #6ee7b7 !important;
+  background: rgba(16, 185, 129, 0.24) !important;
+  border: 1.5px solid rgba(52, 211, 153, 0.55) !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85) !important;
+}
+html.theme-glass .lc-char.current,
+body.has-custom-wallpaper .lc-char.current,
+html.theme-light body.has-custom-wallpaper .lc-char.current,
+html.theme-sepia body.has-custom-wallpaper .lc-char.current {
+  color: #ffffff !important;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--gold-bright) 38%, rgba(15, 23, 42, 0.7)), color-mix(in srgb, var(--gold-bright) 22%, rgba(15, 23, 42, 0.85))) !important;
+  border: 2px solid var(--gold-bright) !important;
+  box-shadow: 0 0 22px color-mix(in srgb, var(--gold-bright) 50%, transparent), inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.95) !important;
 }

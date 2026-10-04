@@ -741,19 +741,30 @@
     color: #0f172a !important;
   }
   html.theme-light .lc-char {
-    color: #64748b;
+    color: #1e293b !important;
+    text-shadow: none !important;
   }
+  html.theme-light .lc-char.done,
+  html.theme-light .lc-char.correct {
+    color: #047857 !important;
+    background: #d1fae5 !important;
+    border-color: #34d399 !important;
+    text-shadow: none !important;
+  }
+  html.theme-light .lc-char.current,
   html.theme-light .lc-char.active {
     color: #0f172a !important;
-    background: rgba(37, 99, 235, 0.12) !important;
-    border-bottom: 2px solid #2563eb !important;
+    background: linear-gradient(180deg, #ffffff 0%, color-mix(in srgb, var(--gold-bright) 22%, #f0f9ff) 100%) !important;
+    border: 2px solid var(--gold-bright) !important;
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--gold-bright) 30%, rgba(15, 23, 42, 0.1)), 0 0 0 3px color-mix(in srgb, var(--gold-bright) 18%, transparent) !important;
+    text-shadow: none !important;
   }
-  html.theme-light .lc-char.correct {
-    color: #16a34a !important;
-  }
+  html.theme-light .lc-char.shake,
   html.theme-light .lc-char.wrong {
-    color: #dc2626 !important;
-    background: rgba(220, 38, 38, 0.12) !important;
+    color: #ffffff !important;
+    background: #ef4444 !important;
+    border-color: #dc2626 !important;
+    text-shadow: none !important;
   }
   /* Cards, Sidebars & Drawers */
   html.theme-light .quick-guide,
@@ -1200,19 +1211,30 @@
     color: #2c1b0c !important;
   }
   html.theme-sepia .lc-char {
-    color: #7a5c34;
-  }
-  html.theme-sepia .lc-char.active {
     color: #2c1b0c !important;
-    background: rgba(180, 83, 9, 0.16) !important;
-    border-bottom: 2px solid #b45309 !important;
+    text-shadow: none !important;
   }
+  html.theme-sepia .lc-char.done,
   html.theme-sepia .lc-char.correct {
     color: #15803d !important;
+    background: #dcfce7 !important;
+    border-color: #4ade80 !important;
+    text-shadow: none !important;
   }
+  html.theme-sepia .lc-char.current,
+  html.theme-sepia .lc-char.active {
+    color: #2c1b0c !important;
+    background: linear-gradient(180deg, #fffbeb 0%, #fde68a 100%) !important;
+    border: 2px solid #b45309 !important;
+    box-shadow: 0 4px 14px rgba(180, 83, 9, 0.25), 0 0 0 3px rgba(180, 83, 9, 0.16) !important;
+    text-shadow: none !important;
+  }
+  html.theme-sepia .lc-char.shake,
   html.theme-sepia .lc-char.wrong {
-    color: #b91c1c !important;
-    background: rgba(185, 28, 28, 0.12) !important;
+    color: #ffffff !important;
+    background: #dc2626 !important;
+    border-color: #b91c1c !important;
+    text-shadow: none !important;
   }
   /* Cards, Sidebars & Drawers */
   html.theme-sepia .quick-guide,
