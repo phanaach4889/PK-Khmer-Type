@@ -19,9 +19,9 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  animation: modal-card-spring-in 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: modal-card-spring-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
   transform-origin: center center;
-  will-change: transform, opacity, box-shadow;
+  will-change: transform, opacity;
 }
 
 /* Fixed Header */
@@ -57,18 +57,11 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 15px rgba(255, 209, 102, 0.15);
-  animation: settings-badge-spin 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: transform 0.25s ease;
 }
 
-.modal-backdrop.is-opening .settings-icon-badge,
-.modal-card.is-entering .settings-icon-badge {
-  animation: settings-badge-spin 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes settings-badge-spin {
-  0% { transform: rotate(-140deg) scale(0.35); opacity: 0; filter: blur(3px); }
-  65% { transform: rotate(18deg) scale(1.18); filter: blur(0px); }
-  100% { transform: rotate(0deg) scale(1); opacity: 1; }
+.settings-icon-badge:hover {
+  transform: rotate(20deg) scale(1.08);
 }
 
 .settings-title-group h2 {
@@ -190,20 +183,6 @@
   cursor: pointer;
   transition: all 0.18s cubic-bezier(0.2, 0.9, 0.3, 1.2);
 }
-.modal-backdrop.is-opening .settings-preset-btn,
-.settings-modal-card.is-entering .settings-preset-btn {
-  animation: settings-pill-glide 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-.modal-backdrop.is-opening .settings-preset-btn:nth-child(1), .settings-modal-card.is-entering .settings-preset-btn:nth-child(1) { animation-delay: 0.08s; }
-.modal-backdrop.is-opening .settings-preset-btn:nth-child(2), .settings-modal-card.is-entering .settings-preset-btn:nth-child(2) { animation-delay: 0.12s; }
-.modal-backdrop.is-opening .settings-preset-btn:nth-child(3), .settings-modal-card.is-entering .settings-preset-btn:nth-child(3) { animation-delay: 0.16s; }
-.modal-backdrop.is-opening .settings-preset-btn:nth-child(4), .settings-modal-card.is-entering .settings-preset-btn:nth-child(4) { animation-delay: 0.20s; }
-.modal-backdrop.is-opening .settings-preset-btn:nth-child(5), .settings-modal-card.is-entering .settings-preset-btn:nth-child(5) { animation-delay: 0.24s; }
-
-@keyframes settings-pill-glide {
-  from { opacity: 0; transform: translateY(-8px) scale(0.92); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
 
 .settings-preset-btn:hover {
   background: rgba(255, 209, 102, 0.18);
@@ -247,24 +226,6 @@
   cursor: pointer;
   transition: all 0.15s ease;
 }
-.modal-backdrop.is-opening .settings-cat-tab,
-.settings-modal-card.is-entering .settings-cat-tab {
-  animation: settings-tab-wave 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-.modal-backdrop.is-opening .settings-cat-tab:nth-child(1), .settings-modal-card.is-entering .settings-cat-tab:nth-child(1) { animation-delay: 0.05s; }
-.modal-backdrop.is-opening .settings-cat-tab:nth-child(2), .settings-modal-card.is-entering .settings-cat-tab:nth-child(2) { animation-delay: 0.08s; }
-.modal-backdrop.is-opening .settings-cat-tab:nth-child(3), .settings-modal-card.is-entering .settings-cat-tab:nth-child(3) { animation-delay: 0.11s; }
-.modal-backdrop.is-opening .settings-cat-tab:nth-child(4), .settings-modal-card.is-entering .settings-cat-tab:nth-child(4) { animation-delay: 0.14s; }
-.modal-backdrop.is-opening .settings-cat-tab:nth-child(5), .settings-modal-card.is-entering .settings-cat-tab:nth-child(5) { animation-delay: 0.17s; }
-.modal-backdrop.is-opening .settings-cat-tab:nth-child(6), .settings-modal-card.is-entering .settings-cat-tab:nth-child(6) { animation-delay: 0.20s; }
-.modal-backdrop.is-opening .settings-cat-tab:nth-child(7), .settings-modal-card.is-entering .settings-cat-tab:nth-child(7) { animation-delay: 0.23s; }
-.modal-backdrop.is-opening .settings-cat-tab:nth-child(8), .settings-modal-card.is-entering .settings-cat-tab:nth-child(8) { animation-delay: 0.26s; }
-.modal-backdrop.is-opening .settings-cat-tab:nth-child(9), .settings-modal-card.is-entering .settings-cat-tab:nth-child(9) { animation-delay: 0.29s; }
-
-@keyframes settings-tab-wave {
-  from { opacity: 0; transform: translateY(10px) scale(0.92); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
 
 .settings-cat-tab:hover {
   color: #f1f5f9;
@@ -296,14 +257,6 @@
   animation: settingsFadeIn 0.2s ease;
 }
 
-.modal-backdrop.is-opening .settings-section:not([hidden]),
-.settings-modal-card.is-entering .settings-section:not([hidden]) {
-  animation: settingsSectionPop 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-.modal-backdrop.is-opening .settings-section:nth-of-type(1), .settings-modal-card.is-entering .settings-section:nth-of-type(1) { animation-delay: 0.12s; }
-.modal-backdrop.is-opening .settings-section:nth-of-type(2), .settings-modal-card.is-entering .settings-section:nth-of-type(2) { animation-delay: 0.18s; }
-.modal-backdrop.is-opening .settings-section:nth-of-type(3), .settings-modal-card.is-entering .settings-section:nth-of-type(3) { animation-delay: 0.24s; }
-
 .settings-section[hidden] {
   display: none !important;
 }
@@ -311,11 +264,6 @@
 @keyframes settingsFadeIn {
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes settingsSectionPop {
-  from { opacity: 0; transform: translateY(14px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .settings-section-header {

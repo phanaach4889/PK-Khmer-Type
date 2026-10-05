@@ -314,11 +314,7 @@ function templeConfirm(message, opts) {
     cancelBtn.addEventListener("click", onCancel);
     backdrop.addEventListener("click", onBackdrop);
     document.addEventListener("keydown", onKey);
-    if (typeof window.openModalAnimated === "function") {
-      window.openModalAnimated(backdrop);
-    } else {
-      backdrop.hidden = false;
-    }
+    backdrop.hidden = false;
     requestAnimationFrame(() => cancelBtn.focus());
   });
 }
@@ -1799,11 +1795,7 @@ function initSettingsToggles() {
     updateSettingsStorageStats();
     filterSettingsView();
     if (settingsModal) {
-      if (typeof window.openModalAnimated === "function") {
-        window.openModalAnimated(settingsModal);
-      } else {
-        settingsModal.hidden = false;
-      }
+      settingsModal.hidden = false;
       if (settingsCloseBtn) settingsCloseBtn.focus();
     }
   }
@@ -1917,11 +1909,7 @@ if (document.readyState === "loading") {
   var devNoteCloseBtn2 = document.getElementById("devNoteCloseBtn2");
   function openDevNote() {
     if (!devNoteModal) return;
-    if (typeof window.openModalAnimated === "function") {
-      window.openModalAnimated(devNoteModal);
-    } else {
-      devNoteModal.hidden = false;
-    }
+    devNoteModal.hidden = false;
     if (devNoteCloseBtn) devNoteCloseBtn.focus();
   }
   function closeDevNote() {

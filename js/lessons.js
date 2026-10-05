@@ -1688,7 +1688,7 @@ function renderLessonStrip(){
         const header = document.createElement('div');
         header.className = 'lesson-level-header' + (collapsed ? ' collapsed' : '');
         header.dataset.level = String(def.level);
-        header.innerHTML = `<span class="llh-chevron">${pkIcon(collapsed ? 'arrow-right' : 'arrow-down', 11)}</span><span>${lv ? lv.title : `Level ${def.level}`}</span>`;
+        header.innerHTML = `<span class="llh-chevron">${pkIcon('arrow-down', 11)}</span><span>${lv ? lv.title : `Level ${def.level}`}</span>`;
         bodyEl.appendChild(header);
         listEl = document.createElement('div');
         listEl.className = 'lesson-level-list' + (collapsed ? ' collapsed' : '');
@@ -1810,11 +1810,20 @@ lessonStrip.addEventListener('click', (e)=>{
   const expandBtn = e.target.closest('#lshExpandBtn');
   if(expandBtn){
     isStripExpanded = !isStripExpanded;
+    lessonStrip.classList.toggle('expanded', isStripExpanded);
+    expandBtn.innerHTML = isStripExpanded ? pkIcon('minimize', 13) : pkIcon('maximize', 13);
+    expandBtn.title = isStripExpanded ? 'Collapse into single column' : 'Expand full lesson catalog (2 columns)';
     // If expanding to 2 columns and all levels are collapsed, open the first level
     if(isStripExpanded && collapsedLevels.size === LEVELS.length){
-      collapsedLevels.delete(String(LEVELS[0].id));
+      const firstLvl = String(LEVELS[0].id);
+      collapsedLevels.delete(firstLvl);
+      const h0 = lessonStrip.querySelector(`.lesson-level-header[data-level="${firstLvl}"]`);
+      if(h0){
+        h0.classList.remove('collapsed');
+        const l0 = h0.nextElementSibling;
+        if(l0 && l0.classList.contains('lesson-level-list')) l0.classList.remove('collapsed');
+      }
     }
-    renderLessonStrip();
     return;
   }
 
@@ -1822,16 +1831,25 @@ lessonStrip.addEventListener('click', (e)=>{
   const header = e.target.closest('.lesson-level-header');
   if(header){
     const level = String(header.dataset.level);
-    if(collapsedLevels.has(level)){
-      collapsedLevels.delete(level);
-      const openLevelsCount = LEVELS.filter(l => !collapsedLevels.has(String(l.id))).length;
-      if(openLevelsCount > 1){
-        isStripExpanded = true;
-      }
-    } else {
+    const isNowCollapsed = !collapsedLevels.has(level);
+    if(isNowCollapsed){
       collapsedLevels.add(level);
+    } else {
+      collapsedLevels.delete(level);
     }
-    renderLessonStrip();
+    header.classList.toggle('collapsed', isNowCollapsed);
+    const listEl = header.nextElementSibling;
+    if(listEl && listEl.classList.contains('lesson-level-list')){
+      listEl.classList.toggle('collapsed', isNowCollapsed);
+    }
+    const openLevelsCount = LEVELS.filter(l => !collapsedLevels.has(String(l.id))).length;
+    isStripExpanded = openLevelsCount > 1;
+    lessonStrip.classList.toggle('expanded', isStripExpanded);
+    const expandBtnEl = document.getElementById('lshExpandBtn');
+    if(expandBtnEl){
+      expandBtnEl.innerHTML = isStripExpanded ? pkIcon('minimize', 13) : pkIcon('maximize', 13);
+      expandBtnEl.title = isStripExpanded ? 'Collapse into single column' : 'Expand full lesson catalog (2 columns)';
+    }
     return;
   }
 
@@ -1843,6 +1861,12 @@ lessonStrip.addEventListener('click', (e)=>{
   if(lessonActive && currentLesson && String(currentLesson.id) === String(id)) return;
 
   isStripExpanded = false; // Make it small when clicking on lessons
+  lessonStrip.classList.remove('expanded');
+  const expandBtnOnLesson = document.getElementById('lshExpandBtn');
+  if(expandBtnOnLesson){
+    expandBtnOnLesson.innerHTML = pkIcon('maximize', 13);
+    expandBtnOnLesson.title = 'Expand full lesson catalog (2 columns)';
+  }
   startLesson(id);
 });
 
@@ -1856,11 +1880,26 @@ document.addEventListener('click', (e)=>{
   if(!isStripExpanded && openCount <= 1) return;
 
   isStripExpanded = false;
+  lessonStrip.classList.remove('expanded');
+  const expandBtnOutside = document.getElementById('lshExpandBtn');
+  if(expandBtnOutside){
+    expandBtnOutside.innerHTML = pkIcon('maximize', 13);
+    expandBtnOutside.title = 'Expand full lesson catalog (2 columns)';
+  }
   if(collapsedLevels){
     const keepLv = currentLesson ? String(currentLesson.level) : (LEVELS.length ? String(LEVELS[0].id) : '1');
     collapsedLevels = new Set(LEVELS.map(l => String(l.id)));
     collapsedLevels.delete(keepLv);
-    renderLessonStrip();
+    const headers = lessonStrip.querySelectorAll('.lesson-level-header');
+    headers.forEach(h => {
+      const lvl = String(h.dataset.level);
+      const shouldCollapse = lvl !== keepLv;
+      h.classList.toggle('collapsed', shouldCollapse);
+      const list = h.nextElementSibling;
+      if(list && list.classList.contains('lesson-level-list')){
+        list.classList.toggle('collapsed', shouldCollapse);
+      }
+    });
   }
 });
 

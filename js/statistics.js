@@ -509,11 +509,7 @@ function initStatisticsDashboard(){
   const statsCloseBtn = document.getElementById('statsCloseBtn');
   statsOpenBtn.addEventListener('click', ()=>{
     try { renderStats(); } catch(err){ console.error('renderStats error:', err); }
-    if(typeof window.openModalAnimated === 'function'){
-      window.openModalAnimated(statsModal);
-    } else {
-      statsModal.hidden = false;
-    }
+    statsModal.hidden = false;
     if(statsCloseBtn) statsCloseBtn.focus();
   });
   function closeStatsModal(){

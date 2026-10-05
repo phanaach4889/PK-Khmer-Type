@@ -2593,29 +2593,22 @@
     transition: box-shadow .4s ease;
   }
 
-  /* ================= new: modal panel (Settings / Statistics) ================= */
-  /* ================= new: modal panel (Settings / Statistics) ================= */
+  /* ================= modal panel (Settings / Statistics / Shortcuts / Auth) ================= */
   .modal-backdrop{
     position:fixed; inset:0; z-index:2000;
-    background:
-      radial-gradient(ellipse 70vw 60vh at 50% 45%, rgba(255,209,102,0.14), transparent 75%),
-      rgba(9, 10, 16, 0.82);
+    background:rgba(9, 10, 16, 0.78);
     display:flex; align-items:center; justify-content:center;
     padding:20px;
     overflow:hidden;
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    will-change: opacity, backdrop-filter;
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    animation: modal-backdrop-spring-in 0.20s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    will-change: opacity;
   }
   .modal-backdrop[hidden]{ display:none; }
 
-  .modal-backdrop.is-opening,
-  .modal-backdrop:not([hidden]):not(.is-closing){
-    animation: modal-backdrop-spring-in 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-
   .modal-backdrop.is-closing{
-    animation: modal-backdrop-spring-out 0.22s cubic-bezier(0.4, 0, 1, 1) forwards !important;
+    animation: modal-backdrop-spring-out 0.16s cubic-bezier(0.4, 0, 1, 1) forwards !important;
     pointer-events: none;
   }
 
@@ -2627,17 +2620,17 @@
   .modal-backdrop.is-closing .terms-card,
   .modal-backdrop.is-closing .temple-confirm-card,
   .modal-backdrop.is-closing .dev-note-card{
-    animation: modal-card-spring-out 0.22s cubic-bezier(0.4, 0, 1, 1) forwards !important;
+    animation: modal-card-spring-out 0.16s cubic-bezier(0.4, 0, 1, 1) forwards !important;
   }
 
   @keyframes modal-backdrop-spring-in{
-    0%{ opacity: 0; backdrop-filter: blur(0px) saturate(100%); -webkit-backdrop-filter: blur(0px) saturate(100%); }
-    100%{ opacity: 1; backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); }
+    0%{ opacity: 0; }
+    100%{ opacity: 1; }
   }
 
   @keyframes modal-backdrop-spring-out{
-    0%{ opacity: 1; backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); }
-    100%{ opacity: 0; backdrop-filter: blur(0px) saturate(100%); -webkit-backdrop-filter: blur(0px) saturate(100%); }
+    0%{ opacity: 1; }
+    100%{ opacity: 0; }
   }
 
   .modal-card{
@@ -2650,70 +2643,33 @@
     border-radius:18px;
     padding:22px 24px 26px;
     box-shadow:
-      0 35px 80px -15px rgba(0,0,0,0.85),
-      0 0 45px rgba(255,209,102,0.12),
+      0 32px 75px -15px rgba(0,0,0,0.85),
+      0 0 35px rgba(255,209,102,0.12),
       inset 0 1px 0 rgba(255,255,255,0.12);
+    animation: modal-card-spring-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
     transform-origin: center center;
-    will-change: transform, opacity, box-shadow;
-  }
-
-  .modal-backdrop.is-opening .modal-card,
-  .modal-backdrop.is-opening .settings-modal-card,
-  .modal-backdrop.is-opening .shortcuts-card,
-  .modal-backdrop.is-opening .stats-card,
-  .modal-backdrop.is-opening .auth-card,
-  .modal-backdrop.is-opening .terms-card,
-  .modal-backdrop.is-opening .temple-confirm-card,
-  .modal-backdrop.is-opening .dev-note-card,
-  .modal-card.is-entering,
-  .settings-modal-card.is-entering,
-  .shortcuts-card.is-entering,
-  .stats-card.is-entering,
-  .auth-card.is-entering,
-  .terms-card.is-entering,
-  .temple-confirm-card.is-entering,
-  .dev-note-card.is-entering,
-  .modal-backdrop:not([hidden]):not(.is-closing) .modal-card{
-    animation: modal-card-spring-in 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
+    will-change: transform, opacity;
   }
 
   @keyframes modal-card-spring-in{
     0%{
       opacity: 0;
-      transform: perspective(1400px) translateY(55px) scale(0.82) rotateX(12deg);
-      filter: blur(10px) brightness(1.25);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 0 rgba(255,209,102,0);
-    }
-    55%{
-      opacity: 1;
-      transform: perspective(1400px) translateY(-8px) scale(1.025) rotateX(-1.5deg);
-      filter: blur(0px) brightness(1.08);
-      box-shadow: 0 50px 110px -15px rgba(0,0,0,0.95), 0 0 60px rgba(255,209,102,0.4);
-    }
-    78%{
-      transform: perspective(1400px) translateY(3px) scale(0.992) rotateX(0.5deg);
+      transform: translateY(14px) scale(0.95);
     }
     100%{
       opacity: 1;
-      transform: perspective(1400px) translateY(0) scale(1) rotateX(0deg);
-      filter: none;
-      box-shadow:
-        0 35px 80px -15px rgba(0,0,0,0.85),
-        0 0 45px rgba(255,209,102,0.12),
-        inset 0 1px 0 rgba(255,255,255,0.12);
+      transform: translateY(0) scale(1);
     }
   }
 
   @keyframes modal-card-spring-out{
     0%{
       opacity: 1;
-      transform: perspective(1400px) translateY(0) scale(1) rotateX(0deg);
-      filter: none;
+      transform: translateY(0) scale(1);
     }
     100%{
       opacity: 0;
-      transform: perspective(1400px) translateY(36px) scale(0.86) rotateX(8deg);
-      filter: blur(8px);
+      transform: translateY(8px) scale(0.96);
     }
   }
 
@@ -2747,14 +2703,6 @@
                 box-shadow 0.3s ease,
                 color 0.2s ease;
   }
-  .modal-backdrop.is-opening .modal-close,
-  .modal-card.is-entering .modal-close{
-    animation: modal-close-spin-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
-  }
-  @keyframes modal-close-spin-in{
-    from{ opacity:0; transform:rotate(-120deg) scale(0.6); }
-    to{ opacity:1; transform:rotate(0deg) scale(1); }
-  }
   .modal-close:hover{
     color:var(--gold-bright);
     border-color:var(--gold-bright);
@@ -2773,18 +2721,6 @@
   }
   .shortcuts-section{
     margin-bottom:20px;
-  }
-  .modal-backdrop.is-opening .shortcuts-section,
-  .shortcuts-card.is-entering .shortcuts-section{
-    animation: shortcuts-section-slide 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-  .modal-backdrop.is-opening .shortcuts-section:nth-child(1), .shortcuts-card.is-entering .shortcuts-section:nth-child(1){ animation-delay: 0.08s; }
-  .modal-backdrop.is-opening .shortcuts-section:nth-child(2), .shortcuts-card.is-entering .shortcuts-section:nth-child(2){ animation-delay: 0.14s; }
-  .modal-backdrop.is-opening .shortcuts-section:nth-child(3), .shortcuts-card.is-entering .shortcuts-section:nth-child(3){ animation-delay: 0.20s; }
-  .modal-backdrop.is-opening .shortcuts-section:nth-child(4), .shortcuts-card.is-entering .shortcuts-section:nth-child(4){ animation-delay: 0.26s; }
-  @keyframes shortcuts-section-slide{
-    from{ opacity:0; transform:translateY(12px) scale(0.97); }
-    to{ opacity:1; transform:translateY(0) scale(1); }
   }
   .shortcuts-section:last-child{
     margin-bottom:4px;
@@ -2814,18 +2750,11 @@
     border-radius:8px;
     padding:8px 12px;
     gap:10px;
-    transition:transform .18s cubic-bezier(.34,1.56,.64,1), background .15s ease, border-color .15s ease, box-shadow .18s ease;
+    transition:background .15s ease, border-color .15s ease;
   }
   .shortcut-item:hover{
-    transform:translateY(-2px) scale(1.015);
-    background:rgba(255,209,102,0.06);
-    border-color:rgba(255,209,102,0.38);
-    box-shadow:0 6px 16px rgba(0,0,0,0.35), 0 0 12px rgba(255,209,102,0.18);
-  }
-  .shortcut-item:hover .shortcut-keys kbd{
-    transform:translateY(-1px) scale(1.06);
-    border-color:var(--gold-bright);
-    box-shadow:0 3px 0 rgba(0,0,0,0.6), 0 0 10px rgba(255,209,102,0.35);
+    background:rgba(255,209,102,0.04);
+    border-color:rgba(255,209,102,0.25);
   }
   .shortcut-label{
     font-size:0.82rem;
@@ -2872,15 +2801,11 @@
   @keyframes temple-confirm-in{
     0%{
       opacity: 0;
-      transform: perspective(1000px) translateY(32px) scale(0.88) rotateX(4deg);
-    }
-    65%{
-      opacity: 1;
-      transform: perspective(1000px) translateY(-3px) scale(1.02) rotateX(-0.5deg);
+      transform: translateY(14px) scale(0.95);
     }
     100%{
       opacity: 1;
-      transform: perspective(1000px) translateY(0) scale(1) rotateX(0deg);
+      transform: translateY(0) scale(1);
     }
   }
   html.reduced-motion .temple-confirm-card, [data-reduced-motion="true"] .temple-confirm-card{ animation:none; }
@@ -2954,32 +2879,16 @@
   }
 
   .toggle-switch{
-    width:42px; height:24px; border-radius:999px; background:var(--stone-3);
-    border:1px solid var(--stone-edge); position:relative; cursor:pointer;
-    transition:background .25s ease, border-color .25s ease, box-shadow .25s ease, transform .15s ease;
+    width:38px; height:22px; border-radius:999px; background:var(--stone-3);
+    border:1px solid var(--stone-edge); position:relative; cursor:pointer; transition:background .2s ease;
     flex:0 0 auto;
   }
-  .toggle-switch:hover{
-    transform: scale(1.05);
-    border-color: rgba(255,209,102,0.4);
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  }
   .toggle-switch::after{
-    content:""; position:absolute; top:2px; left:2px; width:18px; height:18px;
-    border-radius:50%; background:var(--ink-dim);
-    transition:transform .28s cubic-bezier(0.34, 1.56, 0.64, 1), background .2s ease, box-shadow .2s ease;
-    box-shadow:0 1px 3px rgba(0,0,0,0.4);
+    content:""; position:absolute; top:2px; left:2px; width:16px; height:16px;
+    border-radius:50%; background:var(--ink-dim); transition:transform .2s ease, background .2s ease;
   }
-  .toggle-switch.on{
-    background:linear-gradient(135deg, var(--gold-bright), #f59e0b);
-    border-color:var(--gold-bright);
-    box-shadow:0 0 14px rgba(255,209,102,0.45);
-  }
-  .toggle-switch.on::after{
-    transform:translateX(18px);
-    background:#1c1303;
-    box-shadow:0 2px 6px rgba(0,0,0,0.5), 0 0 6px rgba(255,209,102,0.6);
-  }
+  .toggle-switch.on{ background:var(--gold); border-color:var(--gold-bright); }
+  .toggle-switch.on::after{ transform:translateX(16px); background:#241405; }
 
   .settings-btn-row{ display:flex; gap:8px; margin-bottom:10px; }
   .secondary-btn{
@@ -3141,15 +3050,11 @@
   @keyframes auth-card-in{
     0%{
       opacity: 0;
-      transform: perspective(1000px) translateY(36px) scale(0.88) rotateX(5deg);
-    }
-    64%{
-      opacity: 1;
-      transform: perspective(1000px) translateY(-3px) scale(1.02) rotateX(-0.6deg);
+      transform: translateY(14px) scale(0.95);
     }
     100%{
       opacity: 1;
-      transform: perspective(1000px) translateY(0) scale(1) rotateX(0deg);
+      transform: translateY(0) scale(1);
     }
   }
   html.reduced-motion .auth-card, [data-reduced-motion="true"] .auth-card{ animation:none; }
@@ -3962,20 +3867,6 @@
     animation:stat-tile-in .45s ease forwards;
     animation-delay:var(--tile-delay, 0s);
     transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
-  }
-  .modal-backdrop.is-opening .stat-tile,
-  .stats-card.is-entering .stat-tile{
-    animation: stat-tile-spring-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-  }
-  .modal-backdrop.is-opening .stat-tile:nth-child(1), .stats-card.is-entering .stat-tile:nth-child(1){ animation-delay:0.08s; }
-  .modal-backdrop.is-opening .stat-tile:nth-child(2), .stats-card.is-entering .stat-tile:nth-child(2){ animation-delay:0.12s; }
-  .modal-backdrop.is-opening .stat-tile:nth-child(3), .stats-card.is-entering .stat-tile:nth-child(3){ animation-delay:0.16s; }
-  .modal-backdrop.is-opening .stat-tile:nth-child(4), .stats-card.is-entering .stat-tile:nth-child(4){ animation-delay:0.20s; }
-  .modal-backdrop.is-opening .stat-tile:nth-child(5), .stats-card.is-entering .stat-tile:nth-child(5){ animation-delay:0.24s; }
-  .modal-backdrop.is-opening .stat-tile:nth-child(6), .stats-card.is-entering .stat-tile:nth-child(6){ animation-delay:0.28s; }
-  @keyframes stat-tile-spring-pop{
-    from{ opacity:0; transform:scale(0.82) translateY(18px); }
-    to{ opacity:1; transform:scale(1) translateY(0); }
   }
   .stat-tile:hover{
     border-color:var(--tile-accent); border-top-color:var(--tile-accent);

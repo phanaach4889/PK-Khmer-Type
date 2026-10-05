@@ -667,8 +667,8 @@
     padding:0;
     box-sizing:border-box;
     box-shadow:0 8px 30px rgba(0,0,0,0.35);
-    transition:width .35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .25s ease, border-color .25s ease, transform .25s ease;
-    animation:lesson-strip-spring-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+    transition:width .32s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .2s ease, border-color .2s ease, transform .2s ease;
+    animation:lesson-strip-spring-in 0.24s cubic-bezier(0.16, 1, 0.3, 1) both;
     visibility:visible !important;
     opacity:1 !important;
     overflow:hidden;
@@ -676,15 +676,11 @@
   @keyframes lesson-strip-spring-in{
     0%{
       opacity:0;
-      transform:perspective(800px) translateX(24px) scale(0.96);
-    }
-    65%{
-      opacity:1;
-      transform:perspective(800px) translateX(-3px) scale(1.01);
+      transform:translateX(18px) scale(0.98);
     }
     100%{
       opacity:1;
-      transform:perspective(800px) translateX(0) scale(1);
+      transform:translateX(0) scale(1);
     }
   }
   .guide-dock[hidden]{
@@ -1025,10 +1021,16 @@
     width:14px;
     height:14px;
     color:var(--gold-bright);
-    transition:transform .28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition:transform .25s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .lesson-level-header:hover .llh-chevron{
-    transform:scale(1.28);
+    transform:scale(1.22);
+  }
+  .lesson-level-header.collapsed .llh-chevron{
+    transform:rotate(-90deg);
+  }
+  .lesson-level-header.collapsed:hover .llh-chevron{
+    transform:rotate(-90deg) scale(1.22);
   }
 
   .lesson-level-list{
@@ -1037,9 +1039,9 @@
     gap:4px;
     margin:0 0 7px;
     overflow:hidden;
-    max-height:3000px;
+    max-height:2400px;
     flex-shrink:0;
-    transition:max-height .25s ease, opacity .2s ease;
+    transition:max-height .28s cubic-bezier(0.16, 1, 0.3, 1), opacity .22s ease, margin .25s ease;
   }
   .lesson-level-list.collapsed{
     max-height:0;
@@ -1195,23 +1197,16 @@
     -webkit-backdrop-filter:blur(16px);
     border:1px solid rgba(255, 209, 102, 0.35);
     box-shadow:0 18px 48px rgba(0,0,0,0.82), 0 0 24px rgba(255,209,102,0.12), inset 0 1px 0 rgba(255,255,255,0.08);
-    animation:panel-in .38s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation:panel-in .24s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   @keyframes panel-in{
     0%{
       opacity:0;
-      transform:perspective(800px) translateY(-26px) scale(0.95);
-      filter:brightness(1.25);
-    }
-    65%{
-      opacity:1;
-      transform:perspective(800px) translateY(3px) scale(1.012);
-      filter:brightness(1.08);
+      transform:translateY(-14px) scale(0.98);
     }
     100%{
       opacity:1;
-      transform:perspective(800px) translateY(0) scale(1);
-      filter:brightness(1);
+      transform:translateY(0) scale(1);
     }
   }
   .lesson-panel[hidden]{ display:none; }
@@ -1582,36 +1577,25 @@
     text-align:center;
     overflow:hidden;
     isolation:isolate;
-    animation:lesson-card-victory-pop .52s cubic-bezier(0.17, 0.89, 0.32, 1.25) both, lc-card-glow 3.2s ease-in-out infinite 0.6s;
+    animation:lesson-card-victory-pop .26s cubic-bezier(0.16, 1, 0.3, 1) both, lc-card-glow 3.2s ease-in-out infinite 0.4s;
     transform-origin:center center;
-    will-change:transform, opacity, filter;
+    will-change:transform, opacity;
   }
 
   @keyframes lesson-card-victory-pop{
     0%{
       opacity: 0;
-      transform: perspective(1000px) translateY(45px) scale(0.74);
-      filter: brightness(1.7) drop-shadow(0 0 45px rgba(255,209,102,0.85));
-    }
-    60%{
-      opacity: 1;
-      transform: perspective(1000px) translateY(-6px) scale(1.035);
-      filter: brightness(1.15) drop-shadow(0 25px 60px rgba(255,209,102,0.4));
-    }
-    82%{
-      transform: perspective(1000px) translateY(2px) scale(0.99);
-      filter: brightness(1.04);
+      transform: translateY(18px) scale(0.92);
     }
     100%{
       opacity: 1;
-      transform: perspective(1000px) translateY(0) scale(1);
-      filter: brightness(1) drop-shadow(0 20px 50px rgba(0,0,0,0.7));
+      transform: translateY(0) scale(1);
     }
   }
 
   @keyframes lesson-card-victory-out{
-    0%{ opacity: 1; transform: perspective(1000px) translateY(0) scale(1); }
-    100%{ opacity: 0; transform: perspective(1000px) translateY(25px) scale(0.9); }
+    0%{ opacity: 1; transform: translateY(0) scale(1); }
+    100%{ opacity: 0; transform: translateY(12px) scale(0.96); }
   }
   @keyframes lc-card-glow{
     0%,100%{ box-shadow:0 40px 90px -24px rgba(0,0,0,0.8), 0 0 32px rgba(255,209,102,0.22); }
@@ -2058,15 +2042,11 @@
   @keyframes fb-box-pop{
     0%{
       opacity:0;
-      transform:perspective(600px) translateY(18px) scale(0.85) rotateX(15deg);
-    }
-    65%{
-      opacity:1;
-      transform:perspective(600px) translateY(-3px) scale(1.04) rotateX(-3deg);
+      transform:translateY(8px) scale(0.96);
     }
     100%{
       opacity:1;
-      transform:perspective(600px) translateY(0) scale(1) rotateX(0deg);
+      transform:translateY(0) scale(1);
     }
   }
   .pk-fb-stat-box:hover{

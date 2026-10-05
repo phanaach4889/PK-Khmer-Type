@@ -9,11 +9,7 @@
 
   function openShortcutsModal(){
     if(!shortcutsModal) return;
-    if(typeof window.openModalAnimated === 'function'){
-      window.openModalAnimated(shortcutsModal);
-    } else {
-      shortcutsModal.hidden = false;
-    }
+    shortcutsModal.hidden = false;
     if(shortcutsCloseBtn) shortcutsCloseBtn.focus();
   }
 
