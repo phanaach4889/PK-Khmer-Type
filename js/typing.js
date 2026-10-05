@@ -920,7 +920,6 @@ function applyPendingCtrl(){
   if(keyEls[id]) keyEls[id].classList.add('pressed');
   triggerFingerPress(id);
   playClick('down');
-  if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
 }
 
 function cancelPendingCtrl(){
@@ -960,7 +959,6 @@ window.addEventListener('keydown', (e)=>{
     if(keyEls[id]) keyEls[id].classList.add('pressed');
     triggerFingerPress(id);
     playClick('down');
-    if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
     return;
   }
   if(id === 'ctrlL'){
@@ -984,7 +982,6 @@ window.addEventListener('keydown', (e)=>{
     if(keyEls[id]) keyEls[id].classList.add('pressed');
     triggerFingerPress(id);
     playClick('down');
-    if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
     return;
   }
   if(id === 'altgr'){
@@ -1001,7 +998,6 @@ window.addEventListener('keydown', (e)=>{
     if(keyEls[id]) keyEls[id].classList.add('pressed');
     triggerFingerPress(id);
     playClick('down');
-    if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
     return;
   }
   if(id === 'alt'){
@@ -1009,7 +1005,6 @@ window.addEventListener('keydown', (e)=>{
     if(keyEls[id]) keyEls[id].classList.add('pressed');
     triggerFingerPress(id);
     playClick('down');
-    if(typeof emberBurst === 'function') emberBurst(keyEls[id], null, 4, null);
     return;
   }
 

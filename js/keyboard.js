@@ -1338,26 +1338,14 @@ function currentLayer(){
 }
 
 let lastLayer;
-function triggerWave(){
-  const keys = document.querySelectorAll('#keyboard .key');
-  keys.forEach((el, i)=>{
-    setTimeout(()=>{
-      el.classList.add('wave');
-      setTimeout(()=> el.classList.remove('wave'), 560);
-    }, i*8);
-  });
-}
 
 function render(){
   const layer = currentLayer();
-  if(layer !== lastLayer){
-    triggerWave();
-    lastLayer = layer;
-  }
+  lastLayer = layer;
 
   document.querySelectorAll('.glyph').forEach(g=>{
     const val = g.dataset[layer] !== undefined ? g.dataset[layer] : g.dataset.base;
-    g.textContent = val;
+    if(g.textContent !== val) g.textContent = val;
     g.parentElement.classList.toggle('empty', !val);
   });
 

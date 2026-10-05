@@ -933,6 +933,32 @@
       "frequency": "rare"
     },
     {
+      "char": "៎",
+      "unicode": "U+17CE",
+      "codepoint": 6094,
+      "name": "Kakabat",
+      "nameKm": "កាកបាទ",
+      "type": "diacritic",
+      "keyId": "k9",
+      "layer": "shift",
+      "finger": "rr",
+      "hand": "R",
+      "frequency": "rare"
+    },
+    {
+      "char": "៑",
+      "unicode": "U+17D1",
+      "codepoint": 6097,
+      "name": "Viriam",
+      "nameKm": "វិរាម",
+      "type": "diacritic",
+      "keyId": "semicolon",
+      "layer": "altgr",
+      "finger": "rp",
+      "hand": "R",
+      "frequency": "rare"
+    },
+    {
       "char": "ៗ",
       "unicode": "U+17D7",
       "codepoint": 6103,
@@ -1018,6 +1044,58 @@
       "layer": "shift",
       "finger": "lp",
       "hand": "L",
+      "frequency": "rare"
+    },
+    {
+      "char": "៚",
+      "unicode": "U+17DA",
+      "codepoint": 6106,
+      "name": "Koomoot",
+      "nameKm": "គោមូត្រ",
+      "type": "special-mark",
+      "keyId": "backslash",
+      "layer": "altgr",
+      "finger": "rp",
+      "hand": "R",
+      "frequency": "rare"
+    },
+    {
+      "char": "៝",
+      "unicode": "U+17DD",
+      "codepoint": 6109,
+      "name": "Atthacan",
+      "nameKm": "អដ្ឋច័ន្ទ",
+      "type": "special-mark",
+      "keyId": "quote",
+      "layer": "altgr",
+      "finger": "rp",
+      "hand": "R",
+      "frequency": "rare"
+    },
+    {
+      "char": "៘",
+      "unicode": "U+17D8",
+      "codepoint": 6104,
+      "name": "Peyyal",
+      "nameKm": "បេយ្យាល",
+      "type": "special-mark",
+      "keyId": "slash",
+      "layer": "altgr",
+      "finger": "rp",
+      "hand": "R",
+      "frequency": "rare"
+    },
+    {
+      "char": "៙",
+      "unicode": "U+17D9",
+      "codepoint": 6105,
+      "name": "Phnaek Kwan",
+      "nameKm": "ភ្នែកមាន់",
+      "type": "special-mark",
+      "keyId": "backslash",
+      "layer": "shift",
+      "finger": "rp",
+      "hand": "R",
       "frequency": "rare"
     },
     {
