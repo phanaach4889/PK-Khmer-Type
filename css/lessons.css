@@ -3422,19 +3422,111 @@ html.theme-sunset .adaptive-summary-card {
 /* ---------- 2. LIGHT THEME (html.theme-light) — ALL DOCKS, PANELS & MODALS ---------- */
 html.theme-light .guide-dock,
 html.theme-light #guideDock,
+html.theme-light.focus-mode .guide-dock,
+html.theme-light.focus-mode #guideDock,
 html.theme-light .lesson-strip,
-html.theme-light.focus-mode .lesson-strip {
+html.theme-light #lessonStrip,
+html.theme-light.focus-mode .lesson-strip,
+html.theme-light.focus-mode #lessonStrip,
+html.theme-light .lesson-strip:hover,
+html.theme-light #lessonStrip:hover,
+html.theme-light.focus-mode .lesson-strip:hover,
+html.theme-light.focus-mode #lessonStrip:hover {
   background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
   border: 1.5px solid #cbd5e1 !important;
   box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12) !important;
   color: #0f172a !important;
+  opacity: 1 !important;
 }
+
+html.theme-light .lesson-strip::before,
+html.theme-light #lessonStrip::before,
+html.theme-light.focus-mode .lesson-strip::before,
+html.theme-light.focus-mode #lessonStrip::before,
+html.theme-light .guide-dock::before,
+html.theme-light #guideDock::before {
+  display: none !important;
+}
+
 html.theme-light .guide-dock-header,
+html.theme-light #guideDock .guide-dock-header,
+html.theme-light.focus-mode .guide-dock-header,
+html.theme-light.focus-mode #guideDock .guide-dock-header,
 html.theme-light .lesson-strip-header,
-html.theme-light .lesson-strip-search {
+html.theme-light #lessonStrip .lesson-strip-header,
+html.theme-light.focus-mode .lesson-strip-header,
+html.theme-light.focus-mode #lessonStrip .lesson-strip-header,
+html.theme-light .lesson-strip-search,
+html.theme-light #lessonStrip .lesson-strip-search,
+html.theme-light.focus-mode .lesson-strip-search,
+html.theme-light.focus-mode #lessonStrip .lesson-strip-search {
   background: #f1f5f9 !important;
   border-bottom: 1px solid #cbd5e1 !important;
   color: #0f172a !important;
+}
+
+html.theme-light .lsh-title,
+html.theme-light #lessonStrip .lsh-title,
+html.theme-light.focus-mode .lsh-title,
+html.theme-light.focus-mode #lessonStrip .lsh-title {
+  color: #0f172a !important;
+  text-shadow: none !important;
+}
+
+html.theme-light .lsh-adaptive-btn,
+html.theme-light #lessonStrip .lsh-adaptive-btn,
+html.theme-light.focus-mode .lsh-adaptive-btn,
+html.theme-light.focus-mode #lessonStrip .lsh-adaptive-btn {
+  background: #e0f2fe !important;
+  border: 1px solid #7dd3fc !important;
+  color: #0369a1 !important;
+  box-shadow: none !important;
+}
+html.theme-light .lsh-adaptive-btn:hover,
+html.theme-light #lessonStrip .lsh-adaptive-btn:hover,
+html.theme-light.focus-mode .lsh-adaptive-btn:hover,
+html.theme-light.focus-mode #lessonStrip .lsh-adaptive-btn:hover {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+}
+
+html.theme-light .lsh-badge,
+html.theme-light #lessonStrip .lsh-badge,
+html.theme-light.focus-mode .lsh-badge,
+html.theme-light.focus-mode #lessonStrip .lsh-badge,
+html.theme-light .lsh-expand-btn,
+html.theme-light #lessonStrip .lsh-expand-btn,
+html.theme-light.focus-mode .lsh-expand-btn,
+html.theme-light.focus-mode #lessonStrip .lsh-expand-btn {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+  box-shadow: none !important;
+}
+
+html.theme-light .lesson-strip-body,
+html.theme-light #lessonStripBody,
+html.theme-light #lessonStrip .lesson-strip-body,
+html.theme-light.focus-mode #lessonStrip .lesson-strip-body {
+  background: transparent !important;
+}
+
+html.theme-light .lesson-strip-body::-webkit-scrollbar-track,
+html.theme-light #lessonStripBody::-webkit-scrollbar-track,
+html.theme-light #lessonStrip .lesson-strip-body::-webkit-scrollbar-track {
+  background: #f1f5f9 !important;
+}
+html.theme-light .lesson-strip-body::-webkit-scrollbar-thumb,
+html.theme-light #lessonStripBody::-webkit-scrollbar-thumb,
+html.theme-light #lessonStrip .lesson-strip-body::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important;
+  box-shadow: none !important;
+}
+html.theme-light .lesson-strip-body::-webkit-scrollbar-thumb:hover,
+html.theme-light #lessonStripBody::-webkit-scrollbar-thumb:hover,
+html.theme-light #lessonStrip .lesson-strip-body::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8 !important;
 }
 html.theme-light .gdh-title,
 html.theme-light .guide-sec-head {
@@ -3566,20 +3658,56 @@ html.theme-light .lesson-level-header {
   border-left: 3px solid var(--gold-bright) !important;
   color: #0f172a !important;
 }
-html.theme-light .lesson-card {
+html.theme-light .lesson-card,
+html.theme-light #lessonStrip .lesson-card {
   background: #ffffff !important;
   border: 1px solid #e2e8f0 !important;
   color: #0f172a !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05) !important;
 }
-html.theme-light .lesson-card-title {
+html.theme-light .lesson-card:hover,
+html.theme-light #lessonStrip .lesson-card:hover {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+html.theme-light .lesson-card.active,
+html.theme-light #lessonStrip .lesson-card.active {
+  background: #fffbeb !important;
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 0 1px #f59e0b, 0 4px 12px rgba(245, 158, 11, 0.15) !important;
+}
+html.theme-light .lesson-card-title,
+html.theme-light #lessonStrip .lesson-card-title {
   color: #0f172a !important;
 }
-html.theme-light .lesson-card-num {
-  background: color-mix(in srgb, var(--gold-bright) 14%, #f1f5f9) !important;
-  color: var(--gold-bright) !important;
+html.theme-light .lesson-card-sub,
+html.theme-light #lessonStrip .lesson-card-sub {
+  color: #64748b !important;
+}
+html.theme-light .lesson-card-num,
+html.theme-light #lessonStrip .lesson-card-num {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+html.theme-light .lesson-card.active .lesson-card-num,
+html.theme-light #lessonStrip .lesson-card.active .lesson-card-num {
+  background: #fef3c7 !important;
+  border-color: #fcd34d !important;
+  color: #b45309 !important;
+}
+html.theme-light .lesson-card.locked,
+html.theme-light #lessonStrip .lesson-card.locked {
+  background: #f8fafc !important;
+  opacity: 0.65 !important;
+  border-color: #e2e8f0 !important;
 }
 html.theme-light .lesson-card-best,
-html.theme-light .lesson-card-best.mastered {
+html.theme-light .lesson-card-best.mastered,
+html.theme-light #lessonStrip .lesson-card-best,
+html.theme-light #lessonStrip .lesson-card-best.mastered {
   background: #d1fae5 !important;
   border-color: #10b981 !important;
   color: #047857 !important;
@@ -3743,8 +3871,12 @@ html.theme-light .lc-ring::before {
 /* ---------- 3. SEPIA THEME (html.theme-sepia) — ALL DOCKS, PANELS & MODALS ---------- */
 html.theme-sepia .guide-dock,
 html.theme-sepia #guideDock,
+html.theme-sepia.focus-mode .guide-dock,
+html.theme-sepia.focus-mode #guideDock,
 html.theme-sepia .lesson-strip,
-html.theme-sepia.focus-mode .lesson-strip {
+html.theme-sepia #lessonStrip,
+html.theme-sepia.focus-mode .lesson-strip,
+html.theme-sepia.focus-mode #lessonStrip {
   background: linear-gradient(180deg, #faf5ec 0%, #f0e6d2 100%) !important;
   border: 1.5px solid #bfa886 !important;
   box-shadow: 0 16px 40px rgba(44, 27, 12, 0.16) !important;
