@@ -7,12 +7,6 @@ function closeModalAnimated(modalEl, onClosed){
     if(typeof onClosed === 'function') onClosed();
     return;
   }
-  if(document.documentElement.classList.contains('performance-mode') || document.documentElement.classList.contains('reduce-motion') || document.documentElement.classList.contains('anim-mode-off')){
-    modalEl.classList.remove('is-closing');
-    modalEl.hidden = true;
-    if(typeof onClosed === 'function') onClosed();
-    return;
-  }
   if(modalEl.classList.contains('is-closing')) return;
   modalEl.classList.add('is-closing');
   let settled = false;

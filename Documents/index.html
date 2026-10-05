@@ -22,17 +22,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
 
-  <link rel="stylesheet" href="docs.css?v=4.4.1">
-  <script>
-    try {
-      var p = localStorage.getItem('khmerSettingPerformanceMode');
-      var a = localStorage.getItem('khmerSettingAnimationMode');
-      var r = localStorage.getItem('khmerSettingReducedMotion');
-      if (p === '1' || a === 'off' || r === '1') {
-        document.documentElement.classList.add('performance-mode', 'anim-mode-off', 'reduce-motion', 'reduced-motion');
-      }
-    } catch(e){}
-  </script>
+  <link rel="stylesheet" href="docs.css?v=4.4.0">
 </head>
 <body>
 
@@ -269,6 +259,43 @@
               </span>
               <span class="keycap3d-title">PK Khmer Type Mechanical ANSI 61-Key</span>
               <span class="keycap3d-hint">Type on physical keyboard or click keys · Drag to orbit · Scroll to zoom</span>
+            </div>
+
+            <!-- Work In Progress Placeholder -->
+            <div class="wip-placeholder">
+              <div class="wip-particles" aria-hidden="true">
+                <span class="wip-particle"></span><span class="wip-particle"></span>
+                <span class="wip-particle"></span><span class="wip-particle"></span>
+                <span class="wip-particle"></span><span class="wip-particle"></span>
+                <span class="wip-particle"></span><span class="wip-particle"></span>
+                <span class="wip-particle"></span><span class="wip-particle"></span>
+                <span class="wip-particle"></span><span class="wip-particle"></span>
+              </div>
+              <div class="wip-glow-ring" aria-hidden="true"></div>
+              <div class="wip-content">
+                <div class="wip-icon" aria-hidden="true">
+                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2.5"/>
+                    <line x1="6" y1="8" x2="6.01" y2="8"/>
+                    <line x1="10" y1="8" x2="10.01" y2="8"/>
+                    <line x1="14" y1="8" x2="14.01" y2="8"/>
+                    <line x1="18" y1="8" x2="18.01" y2="8"/>
+                    <line x1="6" y1="12" x2="6.01" y2="12"/>
+                    <line x1="18" y1="12" x2="18.01" y2="12"/>
+                    <line x1="7" y1="16" x2="17" y2="16"/>
+                    <line x1="10" y1="12" x2="14" y2="12"/>
+                  </svg>
+                </div>
+                <h3 class="wip-title">Still Working On It</h3>
+                <p class="wip-subtitle doc-i18n" data-en="The interactive 3D keyboard experience is being crafted with care." data-km="បទពិសោធន៍ក្តារចុច 3D កំពុងត្រូវបានបង្កើតដោយប្រុងប្រយ័ត្ន។">The interactive 3D keyboard experience is being crafted with care.</p>
+                <div class="wip-progress-track">
+                  <div class="wip-progress-bar"></div>
+                </div>
+                <span class="wip-status">
+                  <span class="wip-pulse"></span>
+                  In Development
+                </span>
+              </div>
             </div>
           </div>
 

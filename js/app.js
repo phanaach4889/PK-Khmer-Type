@@ -30,20 +30,17 @@ async function loadExternalData(){
 }
 
 function initApp(){
-  // Synchronize performance / reduced motion mode immediately on startup
+  // Ensure animations are active and vibrant by default unless explicitly disabled by user
   try {
-    const savedPerf = localStorage.getItem("khmerSettingPerformanceMode");
     const savedAnim = localStorage.getItem("khmerSettingAnimationMode");
-    const savedReduced = localStorage.getItem("khmerSettingReducedMotion");
-    const isPerf = (savedPerf === "1") || (savedAnim === "off") || (savedReduced === "1");
-    if (isPerf) {
-      document.documentElement.classList.add("performance-mode", "anim-mode-off", "reduce-motion", "reduced-motion", "hide-key-fx", "hide-motes", "hide-cursor-shockwave");
-      document.documentElement.classList.remove("anim-mode-full", "anim-mode-minimal");
+    if (savedAnim === "off") {
+      document.documentElement.classList.add("anim-mode-off", "reduce-motion", "reduced-motion", "hide-key-fx", "hide-motes");
     } else if (savedAnim === "minimal") {
       document.documentElement.classList.add("anim-mode-minimal", "reduce-motion", "reduced-motion", "hide-key-fx", "hide-motes");
-      document.documentElement.classList.remove("performance-mode", "anim-mode-off", "anim-mode-full");
+    } else if (localStorage.getItem("khmerSettingReducedMotion") === "1") {
+      document.documentElement.classList.add("anim-mode-off", "reduce-motion", "reduced-motion", "hide-key-fx", "hide-motes");
     } else {
-      document.documentElement.classList.remove("performance-mode", "anim-mode-off", "anim-mode-minimal", "reduce-motion", "reduced-motion");
+      document.documentElement.classList.remove("anim-mode-off", "anim-mode-minimal", "reduce-motion", "reduced-motion");
     }
   } catch(e){}
 

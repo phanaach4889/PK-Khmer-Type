@@ -38,22 +38,13 @@
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Noto+Serif+Khmer:wght@400;600;700&family=Noto+Sans+Khmer:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/base.css?v=53">
-  <link rel="stylesheet" href="css/keyboard.css?v=53">
-  <link rel="stylesheet" href="css/typing.css?v=53">
-  <link rel="stylesheet" href="css/lessons.css?v=53">
-  <link rel="stylesheet" href="css/responsive.css?v=53">
-  <link rel="stylesheet" href="css/settings.css?v=53">
-  <script>
-    try {
-      var p = localStorage.getItem('khmerSettingPerformanceMode');
-      var a = localStorage.getItem('khmerSettingAnimationMode');
-      var r = localStorage.getItem('khmerSettingReducedMotion');
-      if (p === '1' || a === 'off' || r === '1') {
-        document.documentElement.classList.add('performance-mode', 'anim-mode-off', 'reduce-motion', 'reduced-motion', 'hide-key-fx', 'hide-motes', 'hide-cursor-shockwave');
-      }
-    } catch(e){}
-  </script>
+  <link rel="stylesheet" href="css/base.css?v=52">
+  <link rel="stylesheet" href="css/keyboard.css?v=52">
+  <link rel="stylesheet" href="css/typing.css?v=52">
+  <link rel="stylesheet" href="css/lessons.css?v=52">
+  <link rel="stylesheet" href="css/responsive.css?v=52">
+  <link rel="stylesheet" href="css/settings.css?v=52">
+
 </head>
 <body>
 
@@ -1032,41 +1023,11 @@
       <!-- 7. ACCESSIBILITY -->
       <div class="settings-section" data-cat-section="a11y">
         <div class="settings-section-header">
-          <h3 class="settings-section-title">Performance &amp; Reduced Motion</h3>
-          <span class="settings-section-count">4 settings</span>
+          <h3 class="settings-section-title">Accessibility &amp; Visual Comfort</h3>
+          <span class="settings-section-count">3 settings</span>
         </div>
 
-        <div class="settings-row" data-search="performance mode reduced motion speed fast zero lag lightweight disable animations effects">
-          <div class="settings-row-info">
-            <div class="settings-row-title-line">
-              <span class="settings-row-name i18n-t" data-en="Performance / Reduced Motion" data-km="ដំណើរការខ្ពស់ / កាត់បន្ថយចលនា">Performance / Reduced Motion</span>
-              <span class="settings-row-km">ដំណើរការខ្ពស់</span>
-            </div>
-            <div class="settings-row-desc">Prioritize maximum speed and responsiveness. Disables all non-essential animations, transitions, glowing effects, and background particles for instant responsiveness.</div>
-          </div>
-          <div class="settings-row-control">
-            <div class="toggle-switch" id="performanceModeToggle" role="switch" aria-checked="false" aria-label="Toggle performance and reduced motion mode" tabindex="0"></div>
-          </div>
-        </div>
-
-        <div class="settings-row" data-search="animation animations motion lag speed control effects fast performance zero lag">
-          <div class="settings-row-info">
-            <div class="settings-row-title-line">
-              <span class="settings-row-name i18n-t" data-en="Animation &amp; Motion Control" data-km="គ្រប់គ្រងចលនា">Animation &amp; Motion Control</span>
-              <span class="settings-row-km">គ្រប់គ្រងចលនា</span>
-            </div>
-            <div class="settings-row-desc">Fine-tune motion density across Full, Minimal, or Off (Zero Lag).</div>
-          </div>
-          <div class="settings-row-control">
-            <div class="settings-choice" id="animationModeChoice">
-              <button type="button" data-anim-mode="full" class="active">Full</button>
-              <button type="button" data-anim-mode="minimal">Minimal</button>
-              <button type="button" data-anim-mode="off">Off (Zero Lag)</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="settings-row" data-search="reduced motion animations disable smooth" style="display:none;">
+        <div class="settings-row" data-search="reduced motion animations disable smooth">
           <div class="settings-row-info">
             <div class="settings-row-title-line">
               <span class="settings-row-name i18n-t" data-en="Reduced Motion" data-km="កាត់បន្ថយចលនា">Reduced Motion</span>
@@ -1986,24 +1947,24 @@
 
 
   <!-- Scripts -->
-  <script defer src="js/icons.js?v=53"></script>
-  <script defer src="js/storage.js?v=53"></script>
-  <script defer src="data/curriculum-data.js?v=53"></script>
-  <script defer src="data/adaptive-vocab.js?v=53"></script>
-  <script defer src="js/keyboard.js?v=53"></script>
-  <script defer src="js/tracker.js?v=53"></script>
-  <script defer src="js/progress.js?v=53"></script>
-  <script defer src="js/review.js?v=53"></script>
-  <script defer src="js/cursor-inspector.js?v=53"></script>
-  <script defer src="js/feedback.js?v=53"></script>
-  <script defer src="js/adaptive.js?v=53"></script>
-  <script defer src="js/lessons.js?v=53"></script>
-  <script defer src="js/race.js?v=53"></script>
-  <script defer src="js/typing.js?v=53"></script>
-  <script defer src="js/statistics.js?v=53"></script>
-  <script defer src="js/settings.js?v=53"></script>
-  <script defer src="js/shortcuts.js?v=53"></script>
-  <script defer src="js/quick_guide.js?v=53"></script>
-  <script defer src="js/app.js?v=53"></script>
+  <script defer src="js/icons.js?v=52"></script>
+  <script defer src="js/storage.js?v=52"></script>
+  <script defer src="data/curriculum-data.js?v=52"></script>
+  <script defer src="data/adaptive-vocab.js?v=52"></script>
+  <script defer src="js/keyboard.js?v=52"></script>
+  <script defer src="js/tracker.js?v=52"></script>
+  <script defer src="js/progress.js?v=52"></script>
+  <script defer src="js/review.js?v=52"></script>
+  <script defer src="js/cursor-inspector.js?v=52"></script>
+  <script defer src="js/feedback.js?v=52"></script>
+  <script defer src="js/adaptive.js?v=52"></script>
+  <script defer src="js/lessons.js?v=52"></script>
+  <script defer src="js/race.js?v=52"></script>
+  <script defer src="js/typing.js?v=52"></script>
+  <script defer src="js/statistics.js?v=52"></script>
+  <script defer src="js/settings.js?v=52"></script>
+  <script defer src="js/shortcuts.js?v=52"></script>
+  <script defer src="js/quick_guide.js?v=52"></script>
+  <script defer src="js/app.js?v=52"></script>
 </body>
 </html>

@@ -721,107 +721,11 @@
     outline-offset:2px;
     box-shadow:0 0 0 4px rgba(255,209,102,0.25);
   }
-  /* ================= Centralized Performance & Reduced Motion Engine ================= */
-  html.performance-mode *,
-  html.performance-mode *::before,
-  html.performance-mode *::after,
-  html.reduce-motion *,
-  html.reduce-motion *::before,
-  html.reduce-motion *::after,
-  html.reduced-motion *,
-  html.reduced-motion *::before,
-  html.reduced-motion *::after,
-  html.anim-mode-off *,
-  html.anim-mode-off *::before,
-  html.anim-mode-off *::after {
-    animation: none !important;
-    animation-duration: 0.001ms !important;
-    animation-delay: 0s !important;
-    animation-iteration-count: 1 !important;
-    transition: none !important;
-    transition-duration: 0.001ms !important;
-    transition-delay: 0s !important;
-    scroll-behavior: auto !important;
-  }
-
-  /* Eliminate heavy continuous GPU blur & glow filters in performance mode */
-  html.performance-mode *,
-  html.anim-mode-off * {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    text-shadow: none !important;
-    filter: none !important;
-  }
-
-  /* Disable decorative hover lifts, tilts, and transforms across UI */
-  html.performance-mode button:hover,
-  html.performance-mode button:active,
-  html.performance-mode a:hover,
-  html.performance-mode .key:hover,
-  html.performance-mode .key:active,
-  html.performance-mode .site-crest-icon:hover,
-  html.performance-mode .lesson-card:hover,
-  html.performance-mode .guide-stat-box:hover,
-  html.performance-mode .profile-card:hover,
-  html.performance-mode .layout-pill:hover,
-  html.performance-mode .layer-pill:hover,
-  html.performance-mode .gas-btn:hover,
-  html.performance-mode .modal-card,
-  html.performance-mode .modal-card.is-closing,
-  html.performance-mode .modal-backdrop,
-  html.performance-mode .modal-backdrop.is-closing,
-  html.anim-mode-off button:hover,
-  html.anim-mode-off button:active,
-  html.anim-mode-off .key:hover,
-  html.anim-mode-off .key:active,
-  html.anim-mode-off .lesson-card:hover {
-    transform: none !important;
-    animation: none !important;
-    transition: none !important;
-  }
-
-  /* Solid non-blur modal backdrop in performance mode */
-  html.performance-mode .modal-backdrop,
-  html.anim-mode-off .modal-backdrop {
-    background: rgba(4, 7, 15, 0.88) !important;
-  }
-
-  /* Completely remove decorative particles, flame animations, lasers, and overlays */
-  html.performance-mode #motes,
-  html.performance-mode .motes,
-  html.performance-mode .torch,
-  html.performance-mode #scanlineOverlay,
-  html.performance-mode .scanline-overlay,
-  html.performance-mode #fxCanvas,
-  html.performance-mode .fx-canvas,
-  html.performance-mode .profile-fx-particles,
-  html.performance-mode .fx-laser,
-  html.performance-mode .banner-sheen,
-  html.performance-mode .dev-note-glow,
-  html.performance-mode .dev-note-sparkle,
-  html.performance-mode .dev-note-scanline,
-  html.performance-mode .focus-screen-ripple,
-  html.performance-mode .pk-cursor-shockwave,
-  html.performance-mode .theme-click-ripple,
-  html.performance-mode .streak-flame,
-  html.performance-mode .ripple,
-  html.performance-mode .ember,
-  html.anim-mode-off #motes,
-  html.anim-mode-off .motes,
-  html.anim-mode-off .torch,
-  html.anim-mode-off #scanlineOverlay,
-  html.anim-mode-off .scanline-overlay,
-  html.anim-mode-off #fxCanvas,
-  html.anim-mode-off .fx-canvas,
-  html.anim-mode-off .profile-fx-particles,
-  html.anim-mode-off .dev-note-glow,
-  html.anim-mode-off .dev-note-sparkle,
-  html.anim-mode-off .dev-note-scanline,
-  html.anim-mode-off .focus-screen-ripple,
-  html.anim-mode-off .pk-cursor-shockwave,
-  html.anim-mode-off .theme-click-ripple,
-  html.anim-mode-off .streak-flame {
-    display: none !important;
+  html.reduce-motion *, html.reduce-motion *::before, html.reduce-motion *::after{
+    animation-duration:0.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.001ms !important;
+    scroll-behavior:auto !important;
   }
   html.large-text{ font-size:18px; }
   html.large-text .subtitle, html.large-text .hint{ font-size:0.92rem; }
