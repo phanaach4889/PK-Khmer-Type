@@ -1478,7 +1478,8 @@
     color:#34d399 !important;
     border-style:solid !important;
     border-color:rgba(52, 211, 153, 0.35) !important;
-    animation:lc-char-pop-done .26s cubic-bezier(.34,1.56,.64,1);
+    animation:none !important;
+    transition:color .12s ease, border-color .12s ease;
   }
   .lc-space.current{
     color:var(--gold-bright) !important;

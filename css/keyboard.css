@@ -541,11 +541,22 @@
     transform: translateY(1.5px) !important;
   }
 
-  /* Disable heavy shockwave burst on modifier keys when held */
+  /* Disable heavy shockwave burst on modifier keys when held and on space bar */
   .key.key-shift.pressed::before,
   .key.key-ctrl.pressed::before,
-  .key.key-altgr.pressed::before{
+  .key.key-altgr.pressed::before,
+  .key.space.pressed::before,
+  .key[data-key="space"].pressed::before{
     display: none !important;
+    animation: none !important;
+  }
+
+  /* Smooth lightweight press state for space bar without layout-heavy scaling */
+  .key.space.pressed,
+  .key[data-key="space"].pressed{
+    transform: translateY(2px) !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5), inset 0 2px 4px rgba(0,0,0,0.4) !important;
+    filter: brightness(1.15) !important;
   }
 
   /* Held layer active glyph accents on available keys */

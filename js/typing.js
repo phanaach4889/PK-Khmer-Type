@@ -587,6 +587,9 @@ function emberBurst(el, ev, count, color) {
       document.documentElement.classList.contains('reduced-motion')) {
     return;
   }
+  const isSpace = el && (el.classList.contains('space') || (el.dataset && el.dataset.key === 'space'));
+  if (isSpace) return;
+
   initFxCanvas();
   const coord = getFxCoord(el, ev);
   const n = count || 3;
@@ -620,6 +623,9 @@ function runeRing(el, color) {
       document.documentElement.classList.contains('reduced-motion')) {
     return;
   }
+  const isSpace = el && (el.classList.contains('space') || (el.dataset && el.dataset.key === 'space'));
+  if (isSpace) return;
+
   initFxCanvas();
   const coord = getFxCoord(el, null);
   const col = color || heatColor();
@@ -630,7 +636,7 @@ function runeRing(el, color) {
   p.x = coord.x;
   p.y = coord.y;
   p.radius = 8;
-  p.maxRadius = el ? Math.max(el.offsetWidth, el.offsetHeight, 44) * 0.92 : 52;
+  p.maxRadius = el ? Math.min(Math.max(el.offsetHeight || 44, 44) * 0.92, 52) : 52;
   p.rotation = Math.random() * Math.PI;
   p.vRot = (Math.random() > 0.5 ? 1 : -1) * (0.025 + Math.random() * 0.02);
   p.lineWidth = 2.4;
@@ -647,6 +653,9 @@ function burst(el, ev) {
       document.documentElement.classList.contains('reduced-motion')) {
     return;
   }
+  const isSpace = el && (el.classList.contains('space') || (el.dataset && el.dataset.key === 'space'));
+  if (isSpace) return;
+
   initFxCanvas();
   const coord = getFxCoord(el, ev);
   const col = heatColor();
@@ -657,7 +666,7 @@ function burst(el, ev) {
   p.x = coord.x;
   p.y = coord.y;
   p.radius = 4;
-  p.maxRadius = el ? Math.max(el.offsetWidth, el.offsetHeight, 50) * 1.15 : 55;
+  p.maxRadius = el ? Math.min(Math.max(el.offsetHeight || 48, 48) * 1.15, 58) : 55;
   p.color = col;
   p.alpha = 0.65;
   p.life = 0;
