@@ -1410,7 +1410,7 @@ function initSettingsToggles() {
     safeSet(LS.reducedMotion, on ? "1" : "0");
   }
   bindSwitch(reducedMotionToggle, applyReducedMotion);
-  applyReducedMotion(safeGet(LS.reducedMotion, (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) ? "1" : "0") === "1");
+  applyReducedMotion(safeGet(LS.reducedMotion, "0") === "1");
 
   const highContrastToggle = document.getElementById("highContrastToggle");
   function applyHighContrast(on) {

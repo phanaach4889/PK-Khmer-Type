@@ -30,6 +30,13 @@ async function loadExternalData(){
 }
 
 function initApp(){
+  // Ensure animations are active and vibrant by default unless explicitly disabled by user
+  try {
+    if (localStorage.getItem("khmerSettingReducedMotion") !== "1") {
+      document.documentElement.classList.remove("reduce-motion", "reduced-motion");
+    }
+  } catch(e){}
+
   // Synchronous initial render for zero-delay offline startup
   try { if(typeof buildBoard === "function") buildBoard(); } catch(e){ console.error("buildBoard error:", e); }
   try { if(typeof syncLayoutUI === "function") syncLayoutUI(window.currentLayoutId); } catch(e){}

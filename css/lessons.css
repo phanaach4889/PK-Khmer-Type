@@ -186,22 +186,55 @@
     align-items:center;
     justify-content:center;
     color:#ff9d2e;
-    transition:transform .2s ease;
+    transition:transform .2s ease, filter .2s ease;
     vertical-align:middle;
+    animation:streak-flame-breathing 2.2s ease-in-out infinite alternate;
+    filter:drop-shadow(0 0 5px rgba(255,157,46,0.65));
   }
   .streak-flame svg{
     display:block;
+    filter:drop-shadow(0 0 2px rgba(255,209,102,0.4));
   }
   .guide-stat-box.has-streak{
-    border-color:rgba(255,157,46,0.6) !important;
-    box-shadow:0 0 14px rgba(255,157,46,0.35) !important;
+    border-color:rgba(255,157,46,0.7) !important;
+    box-shadow:0 0 16px rgba(255,157,46,0.45), inset 0 0 8px rgba(255,100,20,0.15) !important;
   }
   .guide-stat-box.has-streak .streak-flame{
-    animation:streak-flame-dance .8s infinite alternate ease-in-out;
+    animation:streak-flame-dance 0.55s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  @keyframes streak-flame-breathing{
+    0%{
+      transform:scale(1) rotate(-3deg);
+      filter:drop-shadow(0 0 4px #ff9d2e);
+      color:#ff9d2e;
+    }
+    50%{
+      transform:scale(1.14) rotate(4deg);
+      filter:drop-shadow(0 0 10px #ff7b25) drop-shadow(0 0 16px rgba(255,60,20,0.45));
+      color:#ffaa33;
+    }
+    100%{
+      transform:scale(0.96) rotate(-2deg);
+      filter:drop-shadow(0 0 5px #ff6b15);
+      color:#ff8d20;
+    }
   }
   @keyframes streak-flame-dance{
-    0%{ transform:scale(1) rotate(-4deg); filter:drop-shadow(0 0 4px #ff9d2e); }
-    100%{ transform:scale(1.25) rotate(6deg); filter:drop-shadow(0 0 10px #ff3b30); }
+    0%{
+      transform:scale(1.08) rotate(-7deg);
+      filter:drop-shadow(0 0 8px #ff9d2e) drop-shadow(0 0 20px rgba(255,50,20,0.6));
+      color:#ffaa33;
+    }
+    50%{
+      transform:scale(1.36) rotate(9deg);
+      filter:drop-shadow(0 0 15px #ff3b30) drop-shadow(0 0 28px rgba(255,180,40,0.8));
+      color:#ffd166;
+    }
+    100%{
+      transform:scale(1.15) rotate(-5deg);
+      filter:drop-shadow(0 0 10px #ff6b15) drop-shadow(0 0 22px rgba(255,60,30,0.65));
+      color:#ff7b25;
+    }
   }
   .guide-stat-lbl{
     font-size:0.58rem;
@@ -365,11 +398,7 @@
     transform: translateY(0);
   }
 
-  /* Streak flame in stat box */
-  .streak-flame {
-    display: inline-block;
-    filter: drop-shadow(0 0 5px rgba(255, 120, 40, 0.7));
-  }
+
 
   /* Section 2: Target Finger Callout */
   .guide-target-callout {
