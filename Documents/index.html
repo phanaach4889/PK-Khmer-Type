@@ -259,8 +259,9 @@
           Explore the full 3D mechanical keyboard modeled after PK Khmer Type with sculpted OEM-profile keycaps, dynamic layout switching (Khmer Standard, NiDA, English), mechanical spring physics with tactile audio feedback, grounded studio desk mat mounting, and full museum switch inspection. Type with your real physical keyboard, click any key, or orbit 360°.
         </p>
 
-        <!-- 3D Viewport Stage -->
+        <!-- 3D Mechanical Keyboard Showcase (WIP) -->
         <div class="keycap3d-card wip-card-only">
+          <div class="wip-backdrop-grid" aria-hidden="true"></div>
           <div class="wip-placeholder">
             <div class="wip-particles" aria-hidden="true">
               <span class="wip-particle"></span><span class="wip-particle"></span>
@@ -272,28 +273,41 @@
             </div>
             <div class="wip-glow-ring" aria-hidden="true"></div>
             <div class="wip-content">
-              <div class="wip-icon" aria-hidden="true">
-                <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="4" width="20" height="16" rx="2.5"/>
-                  <line x1="6" y1="8" x2="6.01" y2="8"/>
-                  <line x1="10" y1="8" x2="10.01" y2="8"/>
-                  <line x1="14" y1="8" x2="14.01" y2="8"/>
-                  <line x1="18" y1="8" x2="18.01" y2="8"/>
-                  <line x1="6" y1="12" x2="6.01" y2="12"/>
-                  <line x1="18" y1="12" x2="18.01" y2="12"/>
-                  <line x1="7" y1="16" x2="17" y2="16"/>
-                  <line x1="10" y1="12" x2="14" y2="12"/>
-                </svg>
+              <div class="wip-icon-wrapper">
+                <div class="wip-icon-aura" aria-hidden="true"></div>
+                <div class="wip-icon" aria-hidden="true">
+                  <svg width="68" height="68" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2.5"/>
+                    <line x1="6" y1="8" x2="6.01" y2="8"/>
+                    <line x1="10" y1="8" x2="10.01" y2="8"/>
+                    <line x1="14" y1="8" x2="14.01" y2="8"/>
+                    <line x1="18" y1="8" x2="18.01" y2="8"/>
+                    <line x1="6" y1="12" x2="6.01" y2="12"/>
+                    <line x1="18" y1="12" x2="18.01" y2="12"/>
+                    <line x1="7" y1="16" x2="17" y2="16"/>
+                    <line x1="10" y1="12" x2="14" y2="12"/>
+                  </svg>
+                </div>
               </div>
-              <h3 class="wip-title">Still Working On It</h3>
-              <p class="wip-subtitle doc-i18n" data-en="The interactive 3D keyboard experience is being crafted with care. Check back soon!" data-km="បទពិសោធន៍ក្តារចុច 3D កំពុងត្រូវបានបង្កើតដោយប្រុងប្រយ័ត្ន។ សូមពិនិត្យមើលម្តងទៀតឆាប់ៗ!">The interactive 3D keyboard experience is being crafted with care. Check back soon!</p>
-              <div class="wip-progress-track">
-                <div class="wip-progress-bar"></div>
-              </div>
-              <span class="wip-status">
+              <div class="wip-badge-pill">
                 <span class="wip-pulse"></span>
-                In Development
-              </span>
+                <span class="doc-i18n" data-en="IN ACTIVE DEVELOPMENT" data-km="កំពុងបង្កើតយ៉ាងសកម្ម">IN ACTIVE DEVELOPMENT</span>
+              </div>
+              <h3 class="wip-title doc-i18n" data-en="Still Working On It" data-km="កំពុងបន្តការអភិវឌ្ឍ">Still Working On It</h3>
+              <p class="wip-subtitle doc-i18n"
+                 data-en="The full interactive 3D mechanical keyboard experience is currently under construction. High-precision WebGL shaders, realistic tactile switch physics, and dynamic lighting are being perfected."
+                 data-km="បទពិសោធន៍ក្តារចុចមេកានិច 3D ពេញលេញកំពុងស្ថិតក្នុងការអភិវឌ្ឍ។ ប្រព័ន្ធរូបវិទ្យាកុងតាក់ពិតៗ ស្រមោល និងពន្លឺ WebGL កម្រិតខ្ពស់កំពុងត្រូវបានសម្រិតសម្រាំង។">
+                The full interactive 3D mechanical keyboard experience is currently under construction. High-precision WebGL shaders, realistic tactile switch physics, and dynamic lighting are being perfected.
+              </p>
+              <div class="wip-progress-wrap">
+                <div class="wip-progress-track">
+                  <div class="wip-progress-bar"></div>
+                </div>
+                <div class="wip-status-row">
+                  <span class="wip-status-tag doc-i18n" data-en="Feature: Live ANSI 61-Key 3D Rig" data-km="មុខងារ៖ ម៉ូឌែល 3D 61-Key">Feature: Live ANSI 61-Key 3D Rig</span>
+                  <span class="wip-status-pct">Coming Soon</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1128,8 +1142,7 @@ node scratch/test_documents_endpoint.js</code></pre>
   </div>
 
   <!-- Scripts -->
-  <script src="three.min.js?v=4.4.0"></script>
-  <script src="keycap3d.js?v=4.4.0"></script>
+  <!-- 3D mechanical keyboard engine paused during active development -->
   <script src="docs.js?v=4.4.0"></script>
 </body>
 </html>
