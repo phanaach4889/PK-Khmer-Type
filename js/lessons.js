@@ -2149,7 +2149,9 @@ function showIncompleteLesson(){
 
   function cleanup(){
     window.removeEventListener('keydown', keyHandler);
-    overlay.remove();
+    if(overlay.classList.contains('is-closing')) return;
+    overlay.classList.add('is-closing');
+    setTimeout(() => overlay.remove(), 220);
   }
 
   const keyHandler = (e)=>{
@@ -2281,11 +2283,8 @@ function lessonHandleChar(val, el, stroke){
     recordKeystroke(true);
     lessonIndex++;
     if(el){ el.classList.add('correct'); setTimeout(()=> el.classList.remove('correct'), 260); }
-    emberBurst(el, null, 6, null);
+    emberBurst(el, null, 5, null);
     runeRing(el);
-    if(lessonIndex > 0 && lessonIndex % 15 === 0 && typeof streakCelebrationBurst === 'function'){
-      streakCelebrationBurst(24, el);
-    }
     adaptiveExtend();
     if(lessonIndex >= lessonChars.length){
       completeLesson();
@@ -2446,9 +2445,6 @@ function completeLesson(){
     renderLessonStrip();
   }
 
-  if(typeof streakCelebrationBurst === 'function'){
-    streakCelebrationBurst(48, null);
-  }
   showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars);
 }
 
@@ -2576,11 +2572,22 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
 
   function dismissOverlay(){
     if(keyHandler){ window.removeEventListener('keydown', keyHandler); keyHandler = null; }
-    overlay.remove();
-    if(lessonStrip){
-      lessonStrip.hidden = false;
-      renderLessonStrip();
-    }
+    if(overlay.classList.contains('is-closing')) return;
+    overlay.classList.add('is-closing');
+    let settled = false;
+    const finalize = () => {
+      if(settled) return;
+      settled = true;
+      overlay.remove();
+      if(lessonStrip){
+        lessonStrip.hidden = false;
+        renderLessonStrip();
+      }
+    };
+    overlay.addEventListener('animationend', (e)=>{
+      if(e.target === overlay) finalize();
+    }, { once: true });
+    setTimeout(finalize, 230);
   }
 
   keyHandler = (e)=>{

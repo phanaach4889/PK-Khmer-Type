@@ -1,6 +1,29 @@
 /* ============================================================
    PK Khmer Type — Storage, Authentication & Progress Persistence
    ============================================================ */
+/* Global Physics-Based Modal Dismissal Utility */
+function closeModalAnimated(modalEl, onClosed){
+  if(!modalEl || modalEl.hidden){
+    if(typeof onClosed === 'function') onClosed();
+    return;
+  }
+  if(modalEl.classList.contains('is-closing')) return;
+  modalEl.classList.add('is-closing');
+  let settled = false;
+  const finalize = () => {
+    if(settled) return;
+    settled = true;
+    modalEl.classList.remove('is-closing');
+    modalEl.hidden = true;
+    if(typeof onClosed === 'function') onClosed();
+  };
+  const onEnd = (e) => {
+    if(e.target === modalEl) finalize();
+  };
+  modalEl.addEventListener('animationend', onEnd, { once: true });
+  setTimeout(finalize, 230);
+}
+window.closeModalAnimated = closeModalAnimated;
 
 const AuthProvider = (function(){
   const USERS_KEY = 'khmerAuthUsers';     // { [emailLower]: {username, email, salt, hash, createdAt} }
@@ -643,9 +666,12 @@ const AccountProgress = (function(){
   });
   authOpenBtn.addEventListener('click', openAccountModal);
   authAccountChip.addEventListener('click', openAccountModal);
-  authCloseBtn.addEventListener('click', ()=> authModal.hidden = true);
-  authModal.addEventListener('click', e=>{ if(e.target === authModal) authModal.hidden = true; });
-  authModal.addEventListener('keydown', e=>{ if(e.key === 'Escape') authModal.hidden = true; });
+  function closeAuthModal(){
+    closeModalAnimated(authModal);
+  }
+  authCloseBtn.addEventListener('click', closeAuthModal);
+  authModal.addEventListener('click', e=>{ if(e.target === authModal) closeAuthModal(); });
+  authModal.addEventListener('keydown', e=>{ if(e.key === 'Escape') closeAuthModal(); });
 
   document.getElementById('gotoSignUpBtn').addEventListener('click', ()=> showAuthPanel(signUpForm, 'Sign Up'));
   document.getElementById('gotoSignInBtn').addEventListener('click', ()=> showAuthPanel(signInForm, 'Sign In'));
@@ -824,7 +850,9 @@ const AccountProgress = (function(){
     termsModal.hidden = false;
     requestAnimationFrame(()=> termsAckBtn.focus());
   }
-  function closeTermsModal(){ termsModal.hidden = true; }
+  function closeTermsModal(){
+    closeModalAnimated(termsModal);
+  }
   document.getElementById('authTermsLink').addEventListener('click', openTermsModal);
   termsCloseBtn.addEventListener('click', closeTermsModal);
   termsAckBtn.addEventListener('click', ()=>{

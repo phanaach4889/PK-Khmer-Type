@@ -15,7 +15,11 @@
 
   function closeShortcutsModal(){
     if(!shortcutsModal) return;
-    shortcutsModal.hidden = true;
+    if(typeof window.closeModalAnimated === 'function'){
+      window.closeModalAnimated(shortcutsModal);
+    } else {
+      shortcutsModal.hidden = true;
+    }
   }
 
   function toggleShortcutsModal(){
@@ -246,17 +250,23 @@
 
   /* Universal Escape Key Handler */
   function handleUniversalEscape(){
-    // 1. Close any open modal backdrop
+    // 1. Close any open modal backdrop with smooth spring physics
     const openModals = Array.from(document.querySelectorAll('.modal-backdrop:not([hidden])'));
     if(openModals.length > 0){
-      openModals.forEach(m => { m.hidden = true; });
+      openModals.forEach(m => {
+        if(typeof window.closeModalAnimated === 'function') window.closeModalAnimated(m);
+        else m.hidden = true;
+      });
       return true;
     }
 
     // 2. Close lesson or adaptive completion overlay if present
     const lcOverlay = document.querySelector('.lesson-complete-overlay');
     if(lcOverlay){
-      lcOverlay.remove();
+      if(!lcOverlay.classList.contains('is-closing')){
+        lcOverlay.classList.add('is-closing');
+        setTimeout(() => lcOverlay.remove(), 220);
+      }
       return true;
     }
 

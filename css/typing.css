@@ -632,22 +632,33 @@
   .race-result-overlay{
     position:fixed; inset:0;
     display:flex; align-items:center; justify-content:center;
-    background:rgba(10,9,11,0.72);
-    backdrop-filter:blur(3px);
+    background:
+      radial-gradient(ellipse 70vw 60vh at 50% 42%, rgba(255,209,102,0.16), transparent 70%),
+      rgba(6,7,12,0.85);
+    backdrop-filter:blur(16px) saturate(180%);
+    -webkit-backdrop-filter:blur(16px) saturate(180%);
     z-index:200;
-    animation:overlay-in .25s ease;
+    animation:overlay-in .32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .race-result-overlay.is-closing{
+    animation:overlay-out .22s cubic-bezier(0.4, 0, 1, 1) forwards !important;
+    pointer-events:none;
+  }
+  .race-result-overlay.is-closing .race-result-card{
+    animation:lesson-card-victory-out .22s cubic-bezier(0.4, 0, 1, 1) forwards !important;
   }
   .race-result-card{
     position:relative;
     width:min(90vw, 420px);
     padding:30px 26px 26px;
-    border-radius:16px;
+    border-radius:18px;
     background:linear-gradient(180deg, #141830 0%, #0c0e1c 100%);
-    border:1px solid rgba(255,209,102,0.4);
-    box-shadow:0 0 60px rgba(255,209,102,0.18), 0 20px 50px rgba(0,0,0,0.5);
+    border:1px solid rgba(255,209,102,0.45);
+    box-shadow:0 0 60px rgba(255,209,102,0.25), 0 25px 60px rgba(0,0,0,0.7);
     text-align:center;
     overflow:hidden;
-    animation:record-pop-anim .4s cubic-bezier(.22,.9,.32,1.2);
+    animation:lesson-card-victory-pop .52s cubic-bezier(0.17, 0.89, 0.32, 1.25) both;
+    transform-origin:center center;
   }
   .race-result-card h2{
     font-family:'Orbitron', sans-serif;

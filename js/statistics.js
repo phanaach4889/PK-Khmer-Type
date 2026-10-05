@@ -506,8 +506,15 @@ function initStatisticsDashboard(){
     statsModal.hidden = false;
     if(statsCloseBtn) statsCloseBtn.focus();
   });
-  statsCloseBtn.addEventListener('click', ()=> statsModal.hidden = true);
-  statsModal.addEventListener('click', e=>{ if(e.target === statsModal) statsModal.hidden = true; });
+  function closeStatsModal(){
+    if(typeof window.closeModalAnimated === 'function' && statsModal){
+      window.closeModalAnimated(statsModal);
+    } else if(statsModal){
+      statsModal.hidden = true;
+    }
+  }
+  statsCloseBtn.addEventListener('click', closeStatsModal);
+  statsModal.addEventListener('click', e=>{ if(e.target === statsModal) closeStatsModal(); });
 
 
   /* =====================================================================

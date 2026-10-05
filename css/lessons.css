@@ -1477,14 +1477,30 @@
   .lesson-complete-overlay{
     position:fixed; inset:0;
     background:
-      radial-gradient(ellipse 60vw 50vh at 50% 38%, rgba(255,209,102,0.12), transparent 65%),
-      rgba(8,7,9,0.82);
-    backdrop-filter:blur(5px);
+      radial-gradient(ellipse 70vw 60vh at 50% 42%, rgba(255,209,102,0.16), transparent 70%),
+      rgba(6,7,12,0.85);
+    backdrop-filter:blur(16px) saturate(180%);
+    -webkit-backdrop-filter:blur(16px) saturate(180%);
     display:flex; align-items:center; justify-content:center;
     z-index:70;
-    animation:overlay-in .25s ease;
+    animation:overlay-in .32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
-  @keyframes overlay-in{ from{ opacity:0;} to{ opacity:1;} }
+  .lesson-complete-overlay.is-closing{
+    animation:overlay-out .22s cubic-bezier(0.4, 0, 1, 1) forwards !important;
+    pointer-events:none;
+  }
+  .lesson-complete-overlay.is-closing .lesson-complete-card{
+    animation:lesson-card-victory-out .22s cubic-bezier(0.4, 0, 1, 1) forwards !important;
+  }
+  @keyframes overlay-in{
+    from{ opacity:0; backdrop-filter:blur(0px); -webkit-backdrop-filter:blur(0px); }
+    to{ opacity:1; backdrop-filter:blur(16px) saturate(180%); -webkit-backdrop-filter:blur(16px) saturate(180%); }
+  }
+  @keyframes overlay-out{
+    from{ opacity:1; backdrop-filter:blur(16px) saturate(180%); -webkit-backdrop-filter:blur(16px) saturate(180%); }
+    to{ opacity:0; backdrop-filter:blur(0px); -webkit-backdrop-filter:blur(0px); }
+  }
+
   .lesson-complete-card{
     position:relative;
     width:min(90vw, 400px);
@@ -1498,8 +1514,38 @@
     text-align:center;
     overflow:hidden;
     isolation:isolate;
-    animation:record-pop-anim .55s cubic-bezier(.22,.9,.32,1.2), lc-card-glow 3.2s ease-in-out infinite 0.6s;
+    animation:lesson-card-victory-pop .52s cubic-bezier(0.17, 0.89, 0.32, 1.25) both, lc-card-glow 3.2s ease-in-out infinite 0.6s;
+    transform-origin:center center;
+    will-change:transform, opacity, filter;
   }
+
+  @keyframes lesson-card-victory-pop{
+    0%{
+      opacity: 0;
+      transform: perspective(1000px) translateY(45px) scale(0.74);
+      filter: brightness(1.7) drop-shadow(0 0 45px rgba(255,209,102,0.85));
+    }
+    60%{
+      opacity: 1;
+      transform: perspective(1000px) translateY(-6px) scale(1.035);
+      filter: brightness(1.15) drop-shadow(0 25px 60px rgba(255,209,102,0.4));
+    }
+    82%{
+      transform: perspective(1000px) translateY(2px) scale(0.99);
+      filter: brightness(1.04);
+    }
+    100%{
+      opacity: 1;
+      transform: perspective(1000px) translateY(0) scale(1);
+      filter: brightness(1) drop-shadow(0 20px 50px rgba(0,0,0,0.7));
+    }
+  }
+
+  @keyframes lesson-card-victory-out{
+    0%{ opacity: 1; transform: perspective(1000px) translateY(0) scale(1); }
+    100%{ opacity: 0; transform: perspective(1000px) translateY(25px) scale(0.9); }
+  }
+
   @keyframes lc-card-glow{
     0%,100%{ box-shadow:0 40px 90px -24px rgba(0,0,0,0.8), 0 0 32px rgba(255,209,102,0.22); }
     50%{ box-shadow:0 40px 90px -24px rgba(0,0,0,0.8), 0 0 54px rgba(255,209,102,0.42); }

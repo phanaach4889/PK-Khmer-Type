@@ -232,3 +232,15 @@
   @media (max-width:600px){
     .board-chassis-bar{ flex-wrap:wrap; gap:8px; }
   }
+
+  /* Universal Reduced Motion Accessibility for all Popups & Modals */
+  @media (prefers-reduced-motion: reduce){
+    .modal-backdrop, .modal-card, .settings-modal-card, .shortcuts-card,
+    .stats-card, .auth-card, .terms-card, .temple-confirm-card, .dev-note-card,
+    .lesson-complete-overlay, .lesson-complete-card, .pk-fb-complete-card,
+    .race-result-overlay, .race-result-card, .toast {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+    }
+  }
