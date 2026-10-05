@@ -111,13 +111,13 @@ function ensureUpgradedSettingsModalDOM() {
           <h2 id="settingsModalTitle"><span class="i18n-t" data-en="Settings &amp; Studio" data-km="ការកំណត់ និងស្ទូឌីយោ">Settings &amp; Studio</span> <span class="km-sub">ការកំណត់</span></h2>
           <span class="settings-count-pill" id="settingsActiveCatCount">32 Controls</span>
         </div>
-        <button class="modal-close" id="settingsCloseBtn" aria-label="Close settings">&times;</button>
+        <button class="modal-close" id="settingsCloseBtn" aria-label="Close settings">${typeof pkIcon === 'function' ? pkIcon('close', 16) : '<svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'}</button>
       </div>
       <div class="settings-tools-row">
         <div class="settings-search-box">
           <svg class="pk-icon settings-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <input type="text" id="settingsSearchInput" class="settings-search-input" placeholder="Search settings (e.g. sound, hands, theme, font, cursor, lessons)..." autocomplete="off" spellcheck="false">
-          <button type="button" id="settingsSearchClear" class="settings-search-clear" aria-label="Clear search" hidden>&times;</button>
+          <button type="button" id="settingsSearchClear" class="settings-search-clear" aria-label="Clear search" hidden>${typeof pkIcon === 'function' ? pkIcon('close', 13) : '<svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'}</button>
         </div>
         <div class="settings-presets-bar">
           <span class="preset-chip-label">Presets:</span>
@@ -1058,7 +1058,7 @@ function initSettingsToggles() {
     if (!stack) return;
     const t = document.createElement("div");
     t.className = "toast";
-    t.innerHTML = `<span class="toast-icon">🎨</span><div><div class="toast-title">Hand Colors</div><div class="toast-sub">${name}</div></div>`;
+    t.innerHTML = `<span class="toast-icon">${typeof pkIcon === 'function' ? pkIcon('palette', 18) : ''}</span><div><div class="toast-title">Hand Colors</div><div class="toast-sub">${name}</div></div>`;
     stack.appendChild(t);
     setTimeout(() => t.classList.add("visible"), 20);
     setTimeout(() => {

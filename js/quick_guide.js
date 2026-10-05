@@ -440,7 +440,7 @@
         } else if([10, 25, 50, 100].includes(liveStreak) && this._lastCelebratedStreak !== liveStreak){
           this._lastCelebratedStreak = liveStreak;
           if(typeof showToast === 'function'){
-            showToast('🔥', `${liveStreak} Keystroke Streak!`, isKm ? 'ការវាយជាប់គ្នាគ្មានកំហុស!' : 'Unstoppable rhythm & precision.');
+            showToast(typeof pkIcon === 'function' ? pkIcon('flame', 18) : '', `${liveStreak} Keystroke Streak!`, isKm ? 'ការវាយជាប់គ្នាគ្មានកំហុស!' : 'Unstoppable rhythm & precision.');
           }
         }
       }

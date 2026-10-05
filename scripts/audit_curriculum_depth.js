@@ -99,13 +99,13 @@ function analyzeCourse(layoutId) {
     console.log(`  - New Chars:        ${newCharsInLevel.join(', ') || 'none'}`);
     console.log(`  - Cumulative Keys:  ${cumulativeKeys.size} keys known`);
     console.log(`  - Review Coverage:  ${reviewLessonCount}/${lvlLessons.length} (${reviewRatio}%)`);
-    console.log(`  - Assessment:       ${isTooShort ? '⚠️ TOO SHALLOW / NEEDS DEPTH' : '✓ Good depth'}`);
+    console.log(`  - Assessment:       ${isTooShort ? '[WARN] TOO SHALLOW / NEEDS DEPTH' : '[OK] Good depth'}`);
 
     // Per-lesson breakdown
     perLessonUnits.forEach(pl => {
       const isOrientation = pl.id && pl.id.match(/L00/);
       const threshold = isOrientation ? MIN_UNITS_ORIENTATION : MIN_UNITS;
-      const flag = pl.units < threshold ? ` ⚠ UNDER ${threshold}` : '';
+      const flag = pl.units < threshold ? ` [WARN] UNDER ${threshold}` : '';
       console.log(`    ${pl.id}: ${pl.units} units${flag}`);
     });
   });

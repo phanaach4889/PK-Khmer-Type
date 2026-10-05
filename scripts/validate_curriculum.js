@@ -256,7 +256,7 @@ function validateCurriculum(layoutId) {
     const threshold = isOrientation ? MIN_UNITS_ORIENTATION : MIN_UNITS;
 
     if (totalUnits < threshold) {
-      console.log(`  ⚠ ${l.id} (${l.title}): ${totalUnits} units < ${threshold} minimum`);
+      console.log(`  [WARN] ${l.id} (${l.title}): ${totalUnits} units < ${threshold} minimum`);
       depthWarnings++;
     }
   });

@@ -38,12 +38,12 @@
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Noto+Serif+Khmer:wght@400;600;700&family=Noto+Sans+Khmer:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/base.css?v=48">
-  <link rel="stylesheet" href="css/keyboard.css?v=48">
-  <link rel="stylesheet" href="css/typing.css?v=48">
-  <link rel="stylesheet" href="css/lessons.css?v=48">
-  <link rel="stylesheet" href="css/responsive.css?v=48">
-  <link rel="stylesheet" href="css/settings.css?v=48">
+  <link rel="stylesheet" href="css/base.css?v=49">
+  <link rel="stylesheet" href="css/keyboard.css?v=49">
+  <link rel="stylesheet" href="css/typing.css?v=49">
+  <link rel="stylesheet" href="css/lessons.css?v=49">
+  <link rel="stylesheet" href="css/responsive.css?v=49">
+  <link rel="stylesheet" href="css/settings.css?v=49">
 
 </head>
 <body>
@@ -97,7 +97,7 @@
         <span id="profileAvatarFallback"><svg class="pk-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
       </div>
       <input type="file" id="profileAvatarInput" accept="image/*" hidden>
-      <span class="profile-level-badge" id="profileLevelBadge" aria-hidden="true">⟡</span>
+      <span class="profile-level-badge" id="profileLevelBadge" aria-hidden="true"><svg class="pk-icon" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
       <span class="profile-est-seal" aria-hidden="true">EST.<br>2026</span>
     </div>
     <div class="profile-eyebrow-row">
@@ -170,7 +170,7 @@
         <div class="guide-stat-lbl"><span class="i18n-t" data-en="Accuracy" data-km="ភាពត្រឹមត្រូវ">Accuracy</span></div>
       </div>
       <div class="guide-stat-box" title="Consecutive Correct Keystrokes">
-        <div class="guide-stat-num" id="guideLiveStreak"><span class="streak-flame">🔥</span> <span id="guideStreakVal">0</span></div>
+        <div class="guide-stat-num" id="guideLiveStreak"><span class="streak-flame" aria-hidden="true"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C9 7 5 9 5 15a7 7 0 0 0 14 0c0-6-4-8-7-13Z"/><path d="M12 12c-1.5 2-2 3-2 4.5a2 2 0 0 0 4 0c0-1.5-.5-2.5-2-4.5Z"/></svg></span> <span id="guideStreakVal">0</span></div>
         <div class="guide-stat-lbl"><span class="i18n-t" data-en="Streak" data-km="ជាប់គ្នា">Streak</span></div>
       </div>
       <div class="guide-stat-box" title="Total Keys Typed">
@@ -329,8 +329,8 @@
   <div class="modal-card stats-card">
     <div class="stats-header">
       <div class="modal-top">
-        <h2 id="statsModalTitle"><span class="stats-title-glyph">᯽</span><span class="i18n-t" data-en="Your Statistics" data-km="ស្ថិតិរបស់អ្នក">Your Statistics</span></h2>
-        <button class="modal-close" id="statsCloseBtn" aria-label="Close statistics">&times;</button>
+        <h2 id="statsModalTitle"><span class="stats-title-glyph"><svg class="pk-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="i18n-t" data-en="Your Statistics" data-km="ស្ថិតិរបស់អ្នក">Your Statistics</span></h2>
+        <button class="modal-close" id="statsCloseBtn" aria-label="Close statistics"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
       <p class="stats-subtitle i18n-t" data-en="Your journey across the keyboard, carved in stone." data-km="ដំណើររបស់អ្នកលើក្តារចុច ដែលឆ្លាក់ក្នុងថ្ម។">Your journey across the keyboard, carved in stone.</p>
       <div class="stats-hero" id="statsHero"></div>
@@ -371,14 +371,14 @@
           <h2 id="settingsModalTitle"><span class="i18n-t" data-en="Settings &amp; Studio" data-km="ការកំណត់ និងស្ទូឌីយោ">Settings &amp; Studio</span> <span class="km-sub">ការកំណត់</span></h2>
           <span class="settings-count-pill" id="settingsActiveCatCount">32 Controls</span>
         </div>
-        <button class="modal-close" id="settingsCloseBtn" aria-label="Close settings">&times;</button>
+        <button class="modal-close" id="settingsCloseBtn" aria-label="Close settings"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
 
       <div class="settings-tools-row">
         <div class="settings-search-box">
           <svg class="pk-icon settings-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <input type="text" id="settingsSearchInput" class="settings-search-input" placeholder="Search settings (e.g. sound, hands, theme, font, cursor, lessons)..." autocomplete="off" spellcheck="false">
-          <button type="button" id="settingsSearchClear" class="settings-search-clear" aria-label="Clear search" hidden>&times;</button>
+          <button type="button" id="settingsSearchClear" class="settings-search-clear" aria-label="Clear search" hidden><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
         </div>
         <div class="settings-presets-bar">
           <span class="preset-chip-label">Presets:</span>
@@ -1144,7 +1144,7 @@
   <div class="modal-card shortcuts-card">
     <div class="modal-top">
       <h2 id="shortcutsModalTitle"><span class="i18n-t" data-en="Keyboard Shortcuts" data-km="ផ្លូវកាត់ក្តារចុច">Keyboard Shortcuts</span></h2>
-      <button class="modal-close" id="shortcutsCloseBtn" aria-label="Close shortcuts">&times;</button>
+      <button class="modal-close" id="shortcutsCloseBtn" aria-label="Close shortcuts"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
 
     <div class="shortcuts-section">
@@ -1258,7 +1258,7 @@
 
     <div class="modal-top">
       <h2 id="authModalTitle"><span class="auth-title-icon" aria-hidden="true"><svg class="pk-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="12" r="3"/><path d="M11 12h9m-3 0v3m3-3v2"/></svg></span><span id="authModalTitleText">Sign In</span></h2>
-      <button class="modal-close" id="authCloseBtn" aria-label="Close authentication">&times;</button>
+      <button class="modal-close" id="authCloseBtn" aria-label="Close authentication"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
 
     <div class="auth-tabs" id="authTabs" role="tablist" aria-label="Sign in or create an account">
@@ -1450,7 +1450,7 @@
         <h2 id="termsModalTitle" class="i18n-t" data-en="Terms &amp;amp; Conditions" data-km="ខចែងលក្ខខណ្ឌ">Terms &amp; Conditions</h2>
         <p class="terms-subtitle i18n-t" data-en="PK Khmer Type — demo account system" data-km="PK Khmer Type — ប្រព័ន្ធគណនីសាកល្បង">PK Khmer Type — demo account system</p>
       </div>
-      <button class="modal-close" id="termsCloseBtn" aria-label="Close Terms &amp; Conditions">&times;</button>
+      <button class="modal-close" id="termsCloseBtn" aria-label="Close Terms &amp; Conditions"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
 
     <div class="terms-body">
@@ -1919,7 +1919,7 @@
     <span class="dev-note-sparkle" style="top:70%; right:9%; font-size:0.75rem; animation-delay:1.8s;" aria-hidden="true">&bull;</span>
     <div class="dev-note-corner tl" aria-hidden="true"></div>
     <div class="dev-note-corner br" aria-hidden="true"></div>
-    <button class="modal-close dev-note-close" id="devNoteCloseBtn" aria-label="Close developer note">&times;</button>
+    <button class="modal-close dev-note-close" id="devNoteCloseBtn" aria-label="Close developer note"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <div class="dev-note-seal" aria-hidden="true"><svg class="pk-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="6" y1="8" x2="6" y2="8"/><line x1="10" y1="8" x2="10" y2="8"/><line x1="14" y1="8" x2="14" y2="8"/><line x1="18" y1="8" x2="18" y2="8"/><line x1="6" y1="12" x2="6" y2="12"/><line x1="10" y1="12" x2="10" y2="12"/><line x1="14" y1="12" x2="14" y2="12"/><line x1="18" y1="12" x2="18" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/></svg></div>
     <h2 id="devNoteTitle" class="dev-note-title i18n-t" data-en="A Note From the Developer" data-km="សំបុត្រពីអ្នកអភិវឌ្ឍន៍">A Note From the Developer</h2>
     <div class="dev-note-divider" aria-hidden="true"><span class="line"></span><span class="mark">&bull;</span><span class="line"></span></div>
@@ -1941,24 +1941,24 @@
 
 
   <!-- Scripts -->
-  <script defer src="js/icons.js?v=48"></script>
-  <script defer src="js/storage.js?v=48"></script>
-  <script defer src="data/curriculum-data.js?v=48"></script>
-  <script defer src="data/adaptive-vocab.js?v=48"></script>
-  <script defer src="js/keyboard.js?v=48"></script>
-  <script defer src="js/tracker.js?v=48"></script>
-  <script defer src="js/progress.js?v=48"></script>
-  <script defer src="js/review.js?v=48"></script>
-  <script defer src="js/cursor-inspector.js?v=48"></script>
-  <script defer src="js/feedback.js?v=48"></script>
-  <script defer src="js/adaptive.js?v=48"></script>
-  <script defer src="js/lessons.js?v=48"></script>
-  <script defer src="js/race.js?v=48"></script>
-  <script defer src="js/typing.js?v=48"></script>
-  <script defer src="js/statistics.js?v=48"></script>
-  <script defer src="js/settings.js?v=48"></script>
-  <script defer src="js/shortcuts.js?v=48"></script>
-  <script defer src="js/quick_guide.js?v=48"></script>
-  <script defer src="js/app.js?v=48"></script>
+  <script defer src="js/icons.js?v=49"></script>
+  <script defer src="js/storage.js?v=49"></script>
+  <script defer src="data/curriculum-data.js?v=49"></script>
+  <script defer src="data/adaptive-vocab.js?v=49"></script>
+  <script defer src="js/keyboard.js?v=49"></script>
+  <script defer src="js/tracker.js?v=49"></script>
+  <script defer src="js/progress.js?v=49"></script>
+  <script defer src="js/review.js?v=49"></script>
+  <script defer src="js/cursor-inspector.js?v=49"></script>
+  <script defer src="js/feedback.js?v=49"></script>
+  <script defer src="js/adaptive.js?v=49"></script>
+  <script defer src="js/lessons.js?v=49"></script>
+  <script defer src="js/race.js?v=49"></script>
+  <script defer src="js/typing.js?v=49"></script>
+  <script defer src="js/statistics.js?v=49"></script>
+  <script defer src="js/settings.js?v=49"></script>
+  <script defer src="js/shortcuts.js?v=49"></script>
+  <script defer src="js/quick_guide.js?v=49"></script>
+  <script defer src="js/app.js?v=49"></script>
 </body>
 </html>

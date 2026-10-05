@@ -182,8 +182,15 @@
     100%{ transform:scale(1); text-shadow:none; }
   }
   .streak-flame{
-    display:inline-block;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    color:#ff9d2e;
     transition:transform .2s ease;
+    vertical-align:middle;
+  }
+  .streak-flame svg{
+    display:block;
   }
   .guide-stat-box.has-streak{
     border-color:rgba(255,157,46,0.6) !important;
@@ -1545,7 +1552,6 @@
     0%{ opacity: 1; transform: perspective(1000px) translateY(0) scale(1); }
     100%{ opacity: 0; transform: perspective(1000px) translateY(25px) scale(0.9); }
   }
-
   @keyframes lc-card-glow{
     0%,100%{ box-shadow:0 40px 90px -24px rgba(0,0,0,0.8), 0 0 32px rgba(255,209,102,0.22); }
     50%{ box-shadow:0 40px 90px -24px rgba(0,0,0,0.8), 0 0 54px rgba(255,209,102,0.42); }

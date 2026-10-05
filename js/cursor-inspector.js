@@ -485,7 +485,7 @@
             </span>
           </div>
         </div>
-        ${sk.note ? `<div class="pk-chud-desc"><span class="pk-chud-desc-icon">✦</span><span>${sk.note}</span></div>` : ''}
+        ${sk.note ? `<div class="pk-chud-desc"><span class="pk-chud-desc-icon">${typeof pkIcon === 'function' ? pkIcon('sparkles', 12) : ''}</span><span>${sk.note}</span></div>` : ''}
       `;
       hudEl.classList.add('visible');
       if(typeof global.setActiveFinger === 'function') global.setActiveFinger(keyId, layer);
@@ -542,7 +542,7 @@
     let soundHtml = '';
     if(info && info.ipa){
       const ipaText = info.ipa.startsWith('Pronounced') ? info.ipa : ('Sound: ' + info.ipa);
-      soundHtml = `<div class="pk-chud-desc"><span class="pk-chud-desc-icon">✦</span><span>${ipaText}</span></div>`;
+      soundHtml = `<div class="pk-chud-desc"><span class="pk-chud-desc-icon">${typeof pkIcon === 'function' ? pkIcon('sparkles', 12) : ''}</span><span>${ipaText}</span></div>`;
     }
 
     hudEl.innerHTML = `
@@ -730,7 +730,7 @@
     let soundHtml = '';
     if(info && info.ipa){
       const ipaText = info.ipa.startsWith('Pronounced') ? info.ipa : ('Sound: ' + info.ipa);
-      soundHtml = `<div class="pk-chud-desc"><span class="pk-chud-desc-icon">✦</span><span>${ipaText}</span></div>`;
+      soundHtml = `<div class="pk-chud-desc"><span class="pk-chud-desc-icon">${typeof pkIcon === 'function' ? pkIcon('sparkles', 12) : ''}</span><span>${ipaText}</span></div>`;
     }
 
     hudEl.innerHTML = `
