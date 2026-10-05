@@ -120,6 +120,9 @@ function trialHandleChar(val, el){
       updateStatsDisplay();
       checkStreakAchievement(streak);
       celebrateWord();
+      if(streak > 0 && streak % 5 === 0 && typeof streakCelebrationBurst === 'function'){
+        streakCelebrationBurst(streak >= 10 ? 36 : 22, el);
+      }
       if(isNewBest && streak > 1) triggerRecordCelebration();
       setTimeout(()=>{ clearText(); newTrialWord(); }, 950);
     }

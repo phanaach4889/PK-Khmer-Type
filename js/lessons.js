@@ -2281,8 +2281,11 @@ function lessonHandleChar(val, el, stroke){
     recordKeystroke(true);
     lessonIndex++;
     if(el){ el.classList.add('correct'); setTimeout(()=> el.classList.remove('correct'), 260); }
-    emberBurst(el, null, 5, null);
+    emberBurst(el, null, 6, null);
     runeRing(el);
+    if(lessonIndex > 0 && lessonIndex % 15 === 0 && typeof streakCelebrationBurst === 'function'){
+      streakCelebrationBurst(24, el);
+    }
     adaptiveExtend();
     if(lessonIndex >= lessonChars.length){
       completeLesson();
@@ -2443,6 +2446,9 @@ function completeLesson(){
     renderLessonStrip();
   }
 
+  if(typeof streakCelebrationBurst === 'function'){
+    streakCelebrationBurst(48, null);
+  }
   showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars);
 }
 

@@ -1817,6 +1817,9 @@
       const rect = (typeof boardWrap !== 'undefined' && boardWrap ? boardWrap : document.body).getBoundingClientRect();
       confettiBurst(rect.left + rect.width / 2, rect.top + rect.height * 0.3, accuracy === 100 ? 36 : 24);
     }
+    if (typeof streakCelebrationBurst === 'function') {
+      streakCelebrationBurst(accuracy === 100 ? 42 : 28, null);
+    }
 
     // Continuous uninterrupted practice: seamlessly start next round and display clean inline feedback
     // Modal popup completely removed per user request: zero modal popups

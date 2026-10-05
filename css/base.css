@@ -271,24 +271,49 @@
     font-variant-numeric: tabular-nums;
   }
 
-  /* drifting ambient motes */
+  /* drifting ambient motes & hardware canvas */
   .motes{
     position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;
   }
   .mote{
     position:absolute;
-    width:3px; height:3px;
+    bottom:-30px;
+    left:calc(var(--x, 50) * 1vw);
+    width:var(--s, 3px);
+    height:var(--s, 3px);
     border-radius:50%;
-    background:var(--gold-bright);
-    opacity:0.35;
+    background:var(--c, var(--gold-bright));
+    opacity:0;
+    box-shadow:0 0 calc(var(--s, 3px) * 2.2) var(--c, var(--gold-bright));
     filter:blur(0.5px);
-    animation:drift linear infinite;
+    animation:drift var(--d, 16s) ease-in-out infinite;
+    animation-delay:var(--del, 0s);
+    will-change:transform, opacity;
   }
   @keyframes drift{
-    from{ transform:translateY(0) translateX(0); opacity:0;}
-    10%{ opacity:0.5;}
-    90%{ opacity:0.4;}
-    to{ transform:translateY(-110vh) translateX(20px); opacity:0;}
+    0%{ transform:translate3d(0, 0, 0) scale(0.6); opacity:0;}
+    15%{ opacity:var(--max-op, 0.65);}
+    50%{ transform:translate3d(var(--drift-x, 24px), -55vh, 0) scale(1.15); opacity:var(--max-op, 0.7);}
+    85%{ opacity:var(--max-op, 0.5);}
+    100%{ transform:translate3d(calc(var(--drift-x, 24px) * -0.6), -115vh, 0) scale(0.4); opacity:0;}
+  }
+  html.reduced-motion .mote,
+  [data-reduced-motion="true"] .mote {
+    animation: none !important;
+    display: none !important;
+  }
+
+  /* Hardware-accelerated Canvas Particle & Shockwave Overlay */
+  .fx-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 100;
+  }
+  html.hide-key-fx .fx-canvas {
+    display: none !important;
   }
 
   .content{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; width:100%;}
@@ -564,29 +589,38 @@
     box-shadow:inset -1px 0 0 rgba(0,0,0,0.4), 0 0 10px rgba(255,209,102,0.25);
   }
   .torch .flame{
-    width:20px; height:28px;
-    margin:-24px auto 0;
-    background:radial-gradient(ellipse 60% 90% at 50% 75%, #fff0c2, var(--gold-bright) 42%, var(--fx-violet) 78%, transparent 80%);
+    width:22px; height:32px;
+    margin:-26px auto 0;
+    background:radial-gradient(ellipse 65% 90% at 50% 75%, #ffffff 0%, #fff0c2 22%, var(--gold-bright) 48%, #ff5500 78%, transparent 88%);
     border-radius:50% 50% 50% 50% / 62% 62% 38% 38%;
     transform-origin:50% 100%;
-    animation:flicker 2.1s ease-in-out infinite;
+    animation:flicker 1.8s ease-in-out infinite;
     clip-path:polygon(50% 0%, 100% 38%, 78% 100%, 22% 100%, 0% 38%);
+    filter: drop-shadow(0 0 10px rgba(255, 180, 0, 0.85)) drop-shadow(0 0 24px rgba(255, 85, 0, 0.5));
+    will-change: transform;
   }
-  .torch.right .flame{ animation-delay:-0.6s; }
+  .torch.right .flame{ animation-delay:-0.75s; }
   .torch .glow{
     position:absolute;
-    left:50%; top:-14px;
-    width:64px; height:64px;
+    left:50%; top:-18px;
+    width:80px; height:80px;
     transform:translateX(-50%);
-    background:radial-gradient(circle, rgba(255,209,102,0.32), transparent 70%);
-    animation:flicker 2.1s ease-in-out infinite;
+    background:radial-gradient(circle, rgba(255,209,102,0.42), rgba(255,100,20,0.18) 45%, transparent 72%);
+    animation:torch-glow-flicker 2.4s ease-in-out infinite alternate;
     pointer-events:none;
+    will-change: transform, opacity;
   }
   @keyframes flicker{
     0%,100%{ transform:scaleY(1) scaleX(1) rotate(0deg); opacity:1;}
-    22%{ transform:scaleY(1.1) scaleX(0.92) rotate(-3deg); opacity:0.9;}
-    48%{ transform:scaleY(0.92) scaleX(1.06) rotate(2deg); opacity:1;}
-    74%{ transform:scaleY(1.06) scaleX(0.95) rotate(-2deg); opacity:0.94;}
+    20%{ transform:scaleY(1.14) scaleX(0.9) rotate(-3.5deg); opacity:0.95;}
+    45%{ transform:scaleY(0.9) scaleX(1.08) rotate(2.5deg); opacity:1;}
+    70%{ transform:scaleY(1.08) scaleX(0.94) rotate(-2deg); opacity:0.92;}
+    88%{ transform:scaleY(0.95) scaleX(1.04) rotate(1deg); opacity:0.98;}
+  }
+  @keyframes torch-glow-flicker{
+    0%{ transform:translateX(-50%) scale(1); opacity:0.75; }
+    50%{ transform:translateX(-50%) scale(1.18); opacity:1; }
+    100%{ transform:translateX(-50%) scale(0.92); opacity:0.68; }
   }
 
   .keyboard{
@@ -4642,12 +4676,16 @@
     transform: none;
   }
   .key {
-    transition: background .08s ease !important;
+    transition: transform 0.05s cubic-bezier(0.2, 0, 0.38, 0.9), background .08s ease, box-shadow .08s ease !important;
     font-family: var(--khmer-font, 'Kantumruy Pro', 'Khmer OS Battambang', 'Khmer OS Siemreap', 'Noto Sans Khmer', sans-serif);
   }
   .key.pressed {
-    transform: none !important;
-    filter: brightness(1.2) !important;
+    transform: translateY(2.5px) scale(0.96) !important;
+    filter: brightness(1.28) !important;
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.4),
+      0 0 0 1px color-mix(in srgb, var(--gold-bright) 75%, transparent),
+      0 0 18px color-mix(in srgb, var(--gold-bright) 55%, transparent) !important;
   }
   .manuscript-text, .race-text, .trial-word, .lesson-char-row {
     font-family: var(--khmer-font, 'Kantumruy Pro', 'Khmer OS Battambang', 'Khmer OS Siemreap', 'Noto Sans Khmer', sans-serif);
