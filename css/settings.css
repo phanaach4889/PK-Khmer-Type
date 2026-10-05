@@ -57,6 +57,13 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 15px rgba(255, 209, 102, 0.15);
+  animation: settings-badge-spin 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes settings-badge-spin {
+  0% { transform: rotate(-120deg) scale(0.5); opacity: 0; }
+  65% { transform: rotate(15deg) scale(1.1); }
+  100% { transform: rotate(0deg) scale(1); opacity: 1; }
 }
 
 .settings-title-group h2 {
@@ -176,13 +183,28 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #cbd5e1;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.18s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+  animation: settings-pill-glide 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.settings-preset-btn:nth-child(2) { animation-delay: 0.06s; }
+.settings-preset-btn:nth-child(3) { animation-delay: 0.11s; }
+.settings-preset-btn:nth-child(4) { animation-delay: 0.16s; }
+.settings-preset-btn:nth-child(5) { animation-delay: 0.21s; }
+
+@keyframes settings-pill-glide {
+  from { opacity: 0; transform: translateY(-8px) scale(0.92); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .settings-preset-btn:hover {
-  background: rgba(255, 209, 102, 0.15);
-  border-color: rgba(255, 209, 102, 0.35);
+  background: rgba(255, 209, 102, 0.18);
+  border-color: rgba(255, 209, 102, 0.45);
   color: var(--gold-bright);
+  transform: translateY(-1.5px) scale(1.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+.settings-preset-btn:active {
+  transform: translateY(0) scale(0.97);
 }
 
 /* Category Navigation Pills */

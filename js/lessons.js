@@ -2526,6 +2526,9 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
   remedialActive = false;
 
   document.body.appendChild(overlay);
+  if(typeof confettiBurst === 'function'){
+    confettiBurst(window.innerWidth / 2, window.innerHeight * 0.38, accuracy === 100 ? 55 : (isNewBest ? 45 : 30));
+  }
 
   /* drifting embers inside the card */
   const emberHost = overlay.querySelector('.lesson-complete-card');
