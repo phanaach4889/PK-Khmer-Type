@@ -1688,12 +1688,28 @@
         const underglowHue = (time * 0.28) % 1.0;
         underglowMat.color.setHSL(underglowHue, 1.0, 0.5);
         underglowLight.color.setHSL(underglowHue, 1.0, 0.5);
-        haloMat.color.setHSL(underglowHue, 1.0, 0.5);
-      }
-
       renderer.render(scene, camera);
     }
-    animate();
+
+    let isContainerVisible = true;
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          isContainerVisible = e.isIntersecting;
+        });
+      }, { threshold: 0.05 });
+      observer.observe(container);
+    }
+
+    function renderLoop() {
+      requestAnimationFrame(renderLoop);
+      const isPerf = document.documentElement.classList.contains('performance-mode') ||
+                     document.documentElement.classList.contains('reduce-motion');
+      if (isPerf) autoRotate = false;
+      if (!isContainerVisible) return;
+      animate();
+    }
+    renderLoop();
 
     // Responsive Canvas Resize Listener
     window.addEventListener('resize', () => {

@@ -22,7 +22,17 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
 
-  <link rel="stylesheet" href="docs.css?v=4.4.0">
+  <link rel="stylesheet" href="docs.css?v=4.4.1">
+  <script>
+    try {
+      var p = localStorage.getItem('khmerSettingPerformanceMode');
+      var a = localStorage.getItem('khmerSettingAnimationMode');
+      var r = localStorage.getItem('khmerSettingReducedMotion');
+      if (p === '1' || a === 'off' || r === '1') {
+        document.documentElement.classList.add('performance-mode', 'anim-mode-off', 'reduce-motion', 'reduced-motion');
+      }
+    } catch(e){}
+  </script>
 </head>
 <body>
 

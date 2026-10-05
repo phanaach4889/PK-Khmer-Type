@@ -120,9 +120,7 @@ body {
   font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #fff, var(--doc-gold-bright));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -506,9 +504,7 @@ body {
   line-height: 1.2;
   letter-spacing: -0.03em;
   margin-bottom: 16px;
-  background: linear-gradient(135deg, #ffffff 40%, var(--doc-gold-bright) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
 }
 
 .hero-lead {
@@ -1118,4 +1114,81 @@ code {
   width: 20px;
   height: 20px;
 }
+
+/* ============================================================
+   PERFORMANCE & REDUCED MOTION SYSTEM OVERRIDES
+   ============================================================ */
+html.performance-mode,
+html.reduce-motion,
+html.reduced-motion {
+  scroll-behavior: auto !important;
+}
+
+html.performance-mode *,
+html.reduce-motion *,
+html.reduced-motion * {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+
+html.performance-mode .docs-header,
+html.performance-mode .doc-hero,
+html.performance-mode .callout-card,
+html.performance-mode .tab-nav,
+html.performance-mode .studio-toolbar,
+html.performance-mode .search-dropdown {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background-color: var(--doc-surface-solid) !important;
+}
+
+html.performance-mode .brand-logo,
+html.performance-mode .btn-primary-glow,
+html.performance-mode .btn-press-cta,
+html.performance-mode .metric-card {
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+/* ============================================================
+   COMPACT VIEWPORT RESPONSIVENESS (Short windows / Laptops)
+   ============================================================ */
+@media (max-height: 650px) {
+  :root {
+    --header-h: 56px;
+  }
+  .docs-main {
+    padding: 24px 36px 60px;
+  }
+  .doc-hero {
+    padding: 24px 26px;
+    margin-bottom: 28px;
+  }
+  .hero-title {
+    font-size: 1.85rem;
+    margin-bottom: 12px;
+  }
+  .hero-lead {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+  .metrics-grid {
+    margin-top: 18px;
+    gap: 12px;
+  }
+  .metric-card {
+    padding: 12px 14px;
+  }
+  .metric-val {
+    font-size: 1.5rem;
+  }
+  .section-head {
+    margin-bottom: 14px;
+  }
+  .section-title {
+    font-size: 1.35rem;
+  }
+}
+
 
