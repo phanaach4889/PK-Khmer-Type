@@ -735,11 +735,43 @@
     outline-offset:2px;
     box-shadow:0 0 0 4px rgba(255,209,102,0.25);
   }
-  html.reduce-motion *, html.reduce-motion *::before, html.reduce-motion *::after{
+  /* ================= Universal Animation & Motion Control ================= */
+  html.anim-mode-off,
+  html.anim-mode-off *,
+  html.anim-mode-off *::before,
+  html.anim-mode-off *::after,
+  html.reduce-motion *,
+  html.reduce-motion *::before,
+  html.reduce-motion *::after,
+  html.reduced-motion *,
+  html.reduced-motion *::before,
+  html.reduced-motion *::after{
+    animation:none !important;
     animation-duration:0.001ms !important;
     animation-iteration-count:1 !important;
+    transition:none !important;
     transition-duration:0.001ms !important;
     scroll-behavior:auto !important;
+  }
+  html.anim-mode-off .fx-canvas,
+  html.anim-mode-off #fxCanvas,
+  html.anim-mode-off .ambient-motes,
+  html.anim-mode-off .confetti-piece,
+  html.anim-mode-off .dev-note-scanline,
+  html.anim-mode-off .terms-glow,
+  html.anim-mode-off .dev-note-glow{
+    display:none !important;
+  }
+  html.anim-mode-minimal *,
+  html.anim-mode-minimal *::before,
+  html.anim-mode-minimal *::after{
+    animation-duration:0.08s !important;
+    transition-duration:0.08s !important;
+  }
+  html.anim-mode-minimal .fx-canvas,
+  html.anim-mode-minimal #fxCanvas,
+  html.anim-mode-minimal .ambient-motes{
+    display:none !important;
   }
   html.large-text{ font-size:18px; }
   html.large-text .subtitle, html.large-text .hint{ font-size:0.92rem; }

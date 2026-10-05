@@ -6,6 +6,7 @@
 
 const LS = Object.assign(window.LS || {}, {
   theme: "khmerSettingTheme",
+  animationMode: "khmerSettingAnimationMode",
   reducedMotion: "khmerSettingReducedMotion",
   largeText: "khmerSettingLargeText",
   sound: "khmerSettingSound",
@@ -210,7 +211,8 @@ function ensureUpgradedSettingsModalDOM() {
       </div>
 
       <div class="settings-section" data-cat-section="a11y">
-        <div class="settings-section-header"><h3 class="settings-section-title">Accessibility &amp; Visual Comfort</h3><span class="settings-section-count">3 settings</span></div>
+        <div class="settings-section-header"><h3 class="settings-section-title">Accessibility &amp; Visual Comfort</h3><span class="settings-section-count">4 settings</span></div>
+        <div class="settings-row" data-search="animation animations motion lag speed control effects fast performance zero lag"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Animation &amp; Motion Control</span><span class="settings-row-km">គ្រប់គ្រងចលនា</span></div><div class="settings-row-desc">Master control for all visual animations, key shockwaves, particle bursts, and transitions.</div></div><div class="settings-row-control"><div class="settings-choice" id="animationModeChoice"><button type="button" data-anim-mode="full" class="active">Full</button><button type="button" data-anim-mode="minimal">Minimal</button><button type="button" data-anim-mode="off">Off (Zero Lag)</button></div></div></div>
         <div class="settings-row" data-search="reduced motion animations disable smooth"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Reduced Motion</span><span class="settings-row-km">កាត់បន្ថយចលនា</span></div><div class="settings-row-desc">Minimize animations, floating effects, and camera transitions.</div></div><div class="settings-row-control"><div class="toggle-switch" id="reducedMotionToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
         <div class="settings-row" data-search="high contrast borders visibility sharp"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">High Contrast Mode</span><span class="settings-row-km">កម្រិតពណ៌ខ្ពស់</span></div><div class="settings-row-desc">Strengthen keycap borders, text contrast, and button outlines.</div></div><div class="settings-row-control"><div class="toggle-switch" id="highContrastToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
         <div class="settings-row" data-search="dyslexia wide letter spacing prompt readability"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Wide Prompt Character Spacing</span><span class="settings-row-km">គម្លាតអក្សរទូលាយ</span></div><div class="settings-row-desc">Add generous horizontal spacing between characters in lesson prompts for easier reading.</div></div><div class="settings-row-control"><div class="toggle-switch" id="dyslexiaSpacingToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
@@ -1407,14 +1409,61 @@ function initSettingsToggles() {
   applyScanlines(safeGet(LS.scanlines, "0") === "1");
 
   const reducedMotionToggle = document.getElementById("reducedMotionToggle");
-  function applyReducedMotion(on) {
-    document.documentElement.classList.toggle("reduce-motion", on);
+
+  function applyAnimationMode(mode, save = true) {
+    if (!["full", "minimal", "off"].includes(mode)) mode = "full";
+    document.documentElement.classList.toggle("anim-mode-off", mode === "off");
+    document.documentElement.classList.toggle("anim-mode-minimal", mode === "minimal");
+    document.documentElement.classList.toggle("anim-mode-full", mode === "full");
+
+    const isReduced = mode !== "full";
+    document.documentElement.classList.toggle("reduce-motion", isReduced);
+    document.documentElement.classList.toggle("reduced-motion", isReduced);
     document.documentElement.classList.toggle("motion-override", true);
-    setSwitchUI(reducedMotionToggle, on);
-    safeSet(LS.reducedMotion, on ? "1" : "0");
+
+    if (mode === "off" || mode === "minimal") {
+      document.documentElement.classList.add("hide-key-fx", "hide-motes");
+    } else {
+      document.documentElement.classList.toggle("hide-key-fx", safeGet(LS.keyFx, "1") !== "1");
+      document.documentElement.classList.toggle("hide-motes", safeGet(LS.motes, "0") !== "1");
+    }
+
+    document.querySelectorAll("#animationModeChoice button").forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.animMode === mode);
+    });
+
+    if (reducedMotionToggle) {
+      setSwitchUI(reducedMotionToggle, isReduced);
+    }
+
+    window.__ANIMATION_MODE = mode;
+
+    if (save) {
+      safeSet(LS.animationMode, mode);
+      safeSet(LS.reducedMotion, isReduced ? "1" : "0");
+    }
+  }
+  window.applyAnimationMode = applyAnimationMode;
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest && e.target.closest("#animationModeChoice button");
+    if (btn && btn.dataset.animMode) {
+      applyAnimationMode(btn.dataset.animMode);
+    }
+  });
+
+  function applyReducedMotion(on) {
+    applyAnimationMode(on ? "off" : "full");
   }
   bindSwitch(reducedMotionToggle, applyReducedMotion);
-  applyReducedMotion(safeGet(LS.reducedMotion, "0") === "1");
+
+  const initialAnimMode = safeGet(LS.animationMode, null);
+  if (initialAnimMode) {
+    applyAnimationMode(initialAnimMode, false);
+  } else {
+    const isReduced = safeGet(LS.reducedMotion, "0") === "1";
+    applyAnimationMode(isReduced ? "off" : "full", false);
+  }
 
   const highContrastToggle = document.getElementById("highContrastToggle");
   function applyHighContrast(on) {
@@ -1566,7 +1615,7 @@ function initSettingsToggles() {
       applyTorches(true);
       applyScanlines(false);
       applyFocusMode(false);
-      applyReducedMotion(false);
+      applyAnimationMode("full");
       applyHighContrast(false);
       applyDyslexiaSpacing(false);
     } else if (presetName === "pro") {
@@ -1575,8 +1624,7 @@ function initSettingsToggles() {
       applyCompactKeys(true);
       applyHandsOpacity(40);
       applySwitchProfile("red", true);
-      applyKeyFx(false);
-      applyMotes(false);
+      applyAnimationMode("minimal");
       applyTorches(false);
       applyScanlines(false);
       applyReticle(false);
@@ -1590,8 +1638,7 @@ function initSettingsToggles() {
       if (typeof handsToggle !== "undefined" && handsToggle && !handsToggle.classList.contains("on")) handsToggle.click();
       if (typeof soundToggle !== "undefined" && soundToggle && !soundToggle.classList.contains("on")) soundToggle.click();
       applySwitchProfile("brown", true);
-      applyKeyFx(true);
-      applyMotes(true);
+      applyAnimationMode("full");
       applyTorches(true);
       applyScanlines(true);
       applyMouseInspector(true);
@@ -1599,9 +1646,7 @@ function initSettingsToggles() {
       applyShockwave(true);
       if (!ambienceOn) { ambienceOn = true; startAmbience(); syncAmbienceUI(); }
     } else if (presetName === "performance") {
-      applyReducedMotion(true);
-      applyKeyFx(false);
-      applyMotes(false);
+      applyAnimationMode("off");
       applyTorches(false);
       applyScanlines(false);
       applyReticle(false);

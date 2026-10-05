@@ -32,8 +32,15 @@ async function loadExternalData(){
 function initApp(){
   // Ensure animations are active and vibrant by default unless explicitly disabled by user
   try {
-    if (localStorage.getItem("khmerSettingReducedMotion") !== "1") {
-      document.documentElement.classList.remove("reduce-motion", "reduced-motion");
+    const savedAnim = localStorage.getItem("khmerSettingAnimationMode");
+    if (savedAnim === "off") {
+      document.documentElement.classList.add("anim-mode-off", "reduce-motion", "reduced-motion", "hide-key-fx", "hide-motes");
+    } else if (savedAnim === "minimal") {
+      document.documentElement.classList.add("anim-mode-minimal", "reduce-motion", "reduced-motion", "hide-key-fx", "hide-motes");
+    } else if (localStorage.getItem("khmerSettingReducedMotion") === "1") {
+      document.documentElement.classList.add("anim-mode-off", "reduce-motion", "reduced-motion", "hide-key-fx", "hide-motes");
+    } else {
+      document.documentElement.classList.remove("anim-mode-off", "anim-mode-minimal", "reduce-motion", "reduced-motion");
     }
   } catch(e){}
 

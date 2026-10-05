@@ -582,11 +582,17 @@ function heatColor(streakVal) {
   return '#ffd166';
 }
 
+function isAnimationDisabled() {
+  const html = document.documentElement;
+  return html.classList.contains('anim-mode-off') ||
+         html.classList.contains('anim-mode-minimal') ||
+         html.classList.contains('reduce-motion') ||
+         html.classList.contains('reduced-motion') ||
+         html.classList.contains('hide-key-fx');
+}
+
 function emberBurst(el, ev, count, color) {
-  if (document.documentElement.classList.contains('hide-key-fx') ||
-      document.documentElement.classList.contains('reduced-motion')) {
-    return;
-  }
+  if (isAnimationDisabled()) return;
   const isSpace = el && (el.classList.contains('space') || (el.dataset && el.dataset.key === 'space'));
   if (isSpace) return;
 
@@ -619,10 +625,7 @@ function emberBurst(el, ev, count, color) {
 }
 
 function runeRing(el, color) {
-  if (document.documentElement.classList.contains('hide-key-fx') ||
-      document.documentElement.classList.contains('reduced-motion')) {
-    return;
-  }
+  if (isAnimationDisabled()) return;
   const isSpace = el && (el.classList.contains('space') || (el.dataset && el.dataset.key === 'space'));
   if (isSpace) return;
 
@@ -649,10 +652,7 @@ function runeRing(el, color) {
 }
 
 function burst(el, ev) {
-  if (document.documentElement.classList.contains('hide-key-fx') ||
-      document.documentElement.classList.contains('reduced-motion')) {
-    return;
-  }
+  if (isAnimationDisabled()) return;
   const isSpace = el && (el.classList.contains('space') || (el.dataset && el.dataset.key === 'space'));
   if (isSpace) return;
 
@@ -676,10 +676,7 @@ function burst(el, ev) {
 }
 
 function streakCelebrationBurst(count, el) {
-  if (document.documentElement.classList.contains('hide-key-fx') ||
-      document.documentElement.classList.contains('reduced-motion')) {
-    return;
-  }
+  if (isAnimationDisabled()) return;
   initFxCanvas();
   const coord = getFxCoord(el, null);
   const n = count || 28;

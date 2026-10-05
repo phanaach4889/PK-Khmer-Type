@@ -22,6 +22,12 @@ function achievementOnce(key, icon, title, sub){
 /* ---------- confetti ---------- */
 const CONFETTI_COLORS = ['#ffd166','#ff9d2e','#4a84c4','#c8474c','#eaffda'];
 function confettiBurst(cx, cy, count){
+  if(document.documentElement.classList.contains('anim-mode-off') ||
+     document.documentElement.classList.contains('anim-mode-minimal') ||
+     document.documentElement.classList.contains('reduce-motion') ||
+     document.documentElement.classList.contains('reduced-motion')) {
+    return;
+  }
   count = count || 26;
   for(let i=0;i<count;i++){
     const p = document.createElement('div');
