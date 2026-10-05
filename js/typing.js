@@ -584,7 +584,8 @@ function heatColor(streakVal) {
 
 function isAnimationDisabled() {
   const html = document.documentElement;
-  return html.classList.contains('anim-mode-off') ||
+  return html.classList.contains('performance-mode') ||
+         html.classList.contains('anim-mode-off') ||
          html.classList.contains('anim-mode-minimal') ||
          html.classList.contains('reduce-motion') ||
          html.classList.contains('reduced-motion') ||
@@ -707,6 +708,7 @@ function streakCelebrationBurst(count, el) {
 }
 
 function initAmbientMotes() {
+  if (isAnimationDisabled()) return;
   const container = document.getElementById('motes');
   if (!container || container.children.length > 0) return;
   const frag = document.createDocumentFragment();

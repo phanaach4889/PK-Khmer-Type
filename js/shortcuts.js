@@ -143,6 +143,9 @@
   }
 
   function showFocusShortcutHud(entering, source){
+    if(document.documentElement.classList.contains('performance-mode') || document.documentElement.classList.contains('reduce-motion') || document.documentElement.classList.contains('anim-mode-off')){
+      return;
+    }
     // 1. Viewport edge shockwave ring
     let ripple = document.getElementById('focusScreenRipple');
     if(!ripple){
