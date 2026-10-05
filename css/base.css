@@ -708,6 +708,20 @@
     will-change:transform, opacity;
   }
 
+  /* ================= fx canvas: hardware-accelerated particle overlay ================= */
+  .fx-canvas,
+  #fxCanvas{
+    position:fixed !important;
+    inset:0 !important;
+    top:0 !important;
+    left:0 !important;
+    width:100vw !important;
+    height:100vh !important;
+    pointer-events:none !important;
+    z-index:80 !important;
+    display:block !important;
+  }
+
   /* ================= new: mastery ring chip on lesson strip header ================= */
   .mastery-stat .session-stat-val{ color:var(--temple-blue); }
 

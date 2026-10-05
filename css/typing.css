@@ -713,4 +713,18 @@
   }
   .race-result-actions button.primary:hover{ box-shadow:0 0 26px rgba(255,209,102,0.6); }
 
+  /* fx canvas fixed overlay */
+  .fx-canvas,
+  #fxCanvas{
+    position:fixed !important;
+    inset:0 !important;
+    top:0 !important;
+    left:0 !important;
+    width:100vw !important;
+    height:100vh !important;
+    pointer-events:none !important;
+    z-index:80 !important;
+    display:block !important;
+  }
+
 

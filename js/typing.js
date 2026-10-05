@@ -354,13 +354,31 @@ let fxActiveCount = 0;
 
 function initFxCanvas() {
   if (fxCanvas) return;
+  if (typeof document === 'undefined' || !document.body) return;
   fxCanvas = document.getElementById('fxCanvas');
   if (!fxCanvas) {
     fxCanvas = document.createElement('canvas');
     fxCanvas.id = 'fxCanvas';
     fxCanvas.className = 'fx-canvas';
     fxCanvas.setAttribute('aria-hidden', 'true');
+    fxCanvas.style.position = 'fixed';
+    fxCanvas.style.inset = '0';
+    fxCanvas.style.top = '0';
+    fxCanvas.style.left = '0';
+    fxCanvas.style.width = '100vw';
+    fxCanvas.style.height = '100vh';
+    fxCanvas.style.pointerEvents = 'none';
+    fxCanvas.style.zIndex = '80';
     document.body.appendChild(fxCanvas);
+  } else {
+    fxCanvas.style.position = 'fixed';
+    fxCanvas.style.inset = '0';
+    fxCanvas.style.top = '0';
+    fxCanvas.style.left = '0';
+    fxCanvas.style.width = '100vw';
+    fxCanvas.style.height = '100vh';
+    fxCanvas.style.pointerEvents = 'none';
+    fxCanvas.style.zIndex = '80';
   }
   fxCtx = fxCanvas.getContext('2d', { alpha: true });
   resizeFxCanvas();
@@ -374,9 +392,15 @@ function resizeFxCanvas() {
   fxHeight = window.innerHeight;
   fxCanvas.width = Math.floor(fxWidth * fxDpr);
   fxCanvas.height = Math.floor(fxHeight * fxDpr);
-  fxCanvas.style.width = fxWidth + 'px';
-  fxCanvas.style.height = fxHeight + 'px';
-  fxCtx.scale(fxDpr, fxDpr);
+  fxCanvas.style.position = 'fixed';
+  fxCanvas.style.inset = '0';
+  fxCanvas.style.top = '0';
+  fxCanvas.style.left = '0';
+  fxCanvas.style.width = '100vw';
+  fxCanvas.style.height = '100vh';
+  fxCanvas.style.pointerEvents = 'none';
+  fxCanvas.style.zIndex = '80';
+  fxCtx.setTransform(fxDpr, 0, 0, fxDpr, 0, 0);
 }
 
 function fxSpawn() {
@@ -432,8 +456,6 @@ function fxRenderLoop() {
       fxCtx.save();
       fxCtx.globalAlpha = p.alpha;
       fxCtx.fillStyle = p.color;
-      fxCtx.shadowBlur = curSize * 2.2;
-      fxCtx.shadowColor = p.color;
       fxCtx.beginPath();
       fxCtx.arc(p.x, p.y, curSize, 0, Math.PI * 2);
       fxCtx.fill();
@@ -450,8 +472,6 @@ function fxRenderLoop() {
       fxCtx.globalAlpha = p.alpha;
       fxCtx.strokeStyle = p.color;
       fxCtx.lineWidth = lw;
-      fxCtx.shadowBlur = 8;
-      fxCtx.shadowColor = p.color;
 
       const sides = 6;
       fxCtx.beginPath();
@@ -499,8 +519,6 @@ function fxRenderLoop() {
       fxCtx.rotate(p.rotation);
       fxCtx.globalAlpha = p.alpha;
       fxCtx.fillStyle = p.color;
-      fxCtx.shadowBlur = 6;
-      fxCtx.shadowColor = p.color;
 
       fxCtx.beginPath();
       fxCtx.moveTo(0, -curSize * 1.5);
@@ -571,7 +589,7 @@ function emberBurst(el, ev, count, color) {
   }
   initFxCanvas();
   const coord = getFxCoord(el, ev);
-  const n = count || 6;
+  const n = count || 3;
   const col = color || heatColor();
   const themeColors = [col, '#ffffff', col];
 

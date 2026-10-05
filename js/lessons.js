@@ -1269,11 +1269,29 @@ function resetAllCourseLessonStates(){
    Persistent Active Lesson Session across page refreshes
    ============================================================ */
 const ACTIVE_LESSON_KEY = 'pk_active_lesson_session';
+let _saveLessonTimer = null;
 
-function saveActiveLessonSession(){
+function saveActiveLessonSession(immediate = false){
   if(!lessonActive || !currentLesson || currentLesson.id === -1) {
     return;
   }
+  if(!immediate){
+    if(_saveLessonTimer) clearTimeout(_saveLessonTimer);
+    _saveLessonTimer = setTimeout(()=>{
+      _saveLessonTimer = null;
+      _doSaveActiveLessonSession();
+    }, 350);
+    return;
+  }
+  if(_saveLessonTimer){
+    clearTimeout(_saveLessonTimer);
+    _saveLessonTimer = null;
+  }
+  _doSaveActiveLessonSession();
+}
+
+function _doSaveActiveLessonSession(){
+  if(!lessonActive || !currentLesson || currentLesson.id === -1) return;
   try {
     if(typeof localStorage === 'undefined') return;
     const session = {
@@ -1297,6 +1315,10 @@ function saveActiveLessonSession(){
 }
 
 function clearActiveLessonSession(){
+  if(_saveLessonTimer){
+    clearTimeout(_saveLessonTimer);
+    _saveLessonTimer = null;
+  }
   try {
     if(typeof localStorage !== 'undefined'){
       localStorage.removeItem(ACTIVE_LESSON_KEY);
@@ -1429,7 +1451,12 @@ window.restoreSavedLessonSession = restoreSavedLessonSession;
 if(typeof window !== 'undefined'){
   window.addEventListener('beforeunload', ()=>{
     if(typeof lessonActive !== 'undefined' && lessonActive && currentLesson){
-      saveActiveLessonSession();
+      saveActiveLessonSession(true);
+    }
+  });
+  window.addEventListener('pagehide', ()=>{
+    if(typeof lessonActive !== 'undefined' && lessonActive && currentLesson){
+      saveActiveLessonSession(true);
     }
   });
 }
@@ -1901,15 +1928,21 @@ function renderLessonMeta(def){
 }
 
 function renderLessonChars(){
-  lessonCharRowEl.innerHTML = '';
   const start = Math.max(0, lessonIndex - 2);
   const end = Math.min(lessonChars.length, start + 10);
+  const frag = document.createDocumentFragment();
   for(let i=start;i<end;i++){
     const s = document.createElement('span');
     const ch = lessonChars[i];
     s.className = 'lc-char' + (i < lessonIndex ? ' done' : (i === lessonIndex ? ' current' : '')) + (ch === ' ' ? ' lc-space' : '');
     s.textContent = ch === ' ' ? '␣' : ch;
-    lessonCharRowEl.appendChild(s);
+    frag.appendChild(s);
+  }
+  if(typeof lessonCharRowEl.replaceChildren === 'function'){
+    lessonCharRowEl.replaceChildren(frag);
+  } else {
+    lessonCharRowEl.innerHTML = '';
+    lessonCharRowEl.appendChild(frag);
   }
   updateLessonKeyHighlight();
 }
@@ -2418,9 +2451,7 @@ function completeLesson(){
   }
 
   /* Clean completion without particle burst spam */
-  const rect = (boardWrap || document.body).getBoundingClientRect();
   playChime();
-  confettiBurst(rect.left + rect.width/2, rect.top + rect.height*0.3, accuracy === 100 ? 34 : 22);
 
   clearActiveLessonSession();
   lessonActive = false;
@@ -2527,7 +2558,7 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
 
   document.body.appendChild(overlay);
   if(typeof confettiBurst === 'function'){
-    confettiBurst(window.innerWidth / 2, window.innerHeight * 0.38, accuracy === 100 ? 55 : (isNewBest ? 45 : 30));
+    confettiBurst(window.innerWidth / 2, window.innerHeight * 0.38, accuracy === 100 ? 28 : (isNewBest ? 20 : 14));
   }
 
   /* drifting embers inside the card */
