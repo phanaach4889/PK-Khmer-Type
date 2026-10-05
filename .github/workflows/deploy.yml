@@ -38,11 +38,9 @@ jobs:
           done
           echo "All core JS files passed syntax validation."
 
-      - name: Run Completion Logic & Regression Tests
+      - name: Validate Curriculum Integrity
         run: |
-          if [ -f scratch/test_strict_completion_unlock.js ]; then
-            node scratch/test_strict_completion_unlock.js
-          fi
+          node scripts/validate_curriculum.js
 
   deploy:
     name: Deploy to GitHub Pages
