@@ -1,19 +1,52 @@
 /* ============================================================
    PK Khmer Type — Storage, Authentication & Progress Persistence
    ============================================================ */
-/* Global Physics-Based Modal Dismissal Utility */
+/* Global Physics-Based Modal Animation Utilities */
+function openModalAnimated(modalEl, onOpened){
+  if(!modalEl) return;
+  modalEl.classList.remove('is-closing');
+  modalEl.classList.remove('is-opening');
+  modalEl.hidden = false;
+
+  // Force synchronous reflow so browser restarts all keyframe animations cleanly
+  void modalEl.offsetWidth;
+  modalEl.classList.add('is-opening');
+
+  const cards = modalEl.querySelectorAll('.modal-card, .settings-modal-card, .shortcuts-card, .stats-card, .auth-card, .terms-card, .temple-confirm-card, .dev-note-card');
+  cards.forEach(card => {
+    card.classList.remove('is-entering');
+    void card.offsetWidth;
+    card.classList.add('is-entering');
+  });
+
+  let settled = false;
+  const finalize = () => {
+    if(settled) return;
+    settled = true;
+    if(typeof onOpened === 'function') onOpened();
+  };
+  const onEnd = (e) => {
+    if(e.target === modalEl) finalize();
+  };
+  modalEl.addEventListener('animationend', onEnd, { once: true });
+  setTimeout(finalize, 450);
+}
+window.openModalAnimated = openModalAnimated;
+
 function closeModalAnimated(modalEl, onClosed){
   if(!modalEl || modalEl.hidden){
     if(typeof onClosed === 'function') onClosed();
     return;
   }
   if(modalEl.classList.contains('is-closing')) return;
+  modalEl.classList.remove('is-opening');
   modalEl.classList.add('is-closing');
   let settled = false;
   const finalize = () => {
     if(settled) return;
     settled = true;
     modalEl.classList.remove('is-closing');
+    modalEl.classList.remove('is-opening');
     modalEl.hidden = true;
     if(typeof onClosed === 'function') onClosed();
   };
@@ -21,9 +54,41 @@ function closeModalAnimated(modalEl, onClosed){
     if(e.target === modalEl) finalize();
   };
   modalEl.addEventListener('animationend', onEnd, { once: true });
-  setTimeout(finalize, 230);
+  setTimeout(finalize, 250);
 }
 window.closeModalAnimated = closeModalAnimated;
+
+// Bulletproof Modal MutationObserver:
+// Whenever any modal's `hidden` attribute is set to false or removed anywhere in the app,
+// automatically activate the 3D spring entrance animation!
+if(typeof MutationObserver !== 'undefined'){
+  const modalObserver = new MutationObserver((mutations) => {
+    for(const m of mutations){
+      if(m.type === 'attributes' && m.attributeName === 'hidden'){
+        const el = m.target;
+        if(el && el.classList && el.classList.contains('modal-backdrop')){
+          if(!el.hidden && !el.classList.contains('is-closing') && !el.classList.contains('is-opening')){
+            void el.offsetWidth;
+            el.classList.add('is-opening');
+            const cards = el.querySelectorAll('.modal-card, .settings-modal-card, .shortcuts-card, .stats-card, .auth-card, .terms-card, .temple-confirm-card, .dev-note-card');
+            cards.forEach(card => {
+              card.classList.remove('is-entering');
+              void card.offsetWidth;
+              card.classList.add('is-entering');
+            });
+          }
+        }
+      }
+    }
+  });
+  if(document.body){
+    modalObserver.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['hidden'] });
+  } else {
+    document.addEventListener('DOMContentLoaded', () => {
+      if(document.body) modalObserver.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['hidden'] });
+    });
+  }
+}
 
 const AuthProvider = (function(){
   const USERS_KEY = 'khmerAuthUsers';     // { [emailLower]: {username, email, salt, hash, createdAt} }
@@ -604,7 +669,7 @@ const AccountProgress = (function(){
   }
 
   async function openAccountModal(){
-    authModal.hidden = false;
+    openModalAnimated(authModal);
     const user = await AuthProvider.getCurrentUser();
     if(user){
       populateAccountPanel(user);
@@ -847,7 +912,7 @@ const AccountProgress = (function(){
   const termsCloseBtn = document.getElementById('termsCloseBtn');
   const termsAckBtn = document.getElementById('termsAckBtn');
   function openTermsModal(){
-    termsModal.hidden = false;
+    openModalAnimated(termsModal);
     requestAnimationFrame(()=> termsAckBtn.focus());
   }
   function closeTermsModal(){

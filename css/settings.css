@@ -60,9 +60,14 @@
   animation: settings-badge-spin 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+.modal-backdrop.is-opening .settings-icon-badge,
+.modal-card.is-entering .settings-icon-badge {
+  animation: settings-badge-spin 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 @keyframes settings-badge-spin {
-  0% { transform: rotate(-120deg) scale(0.5); opacity: 0; }
-  65% { transform: rotate(15deg) scale(1.1); }
+  0% { transform: rotate(-140deg) scale(0.35); opacity: 0; filter: blur(3px); }
+  65% { transform: rotate(18deg) scale(1.18); filter: blur(0px); }
   100% { transform: rotate(0deg) scale(1); opacity: 1; }
 }
 
@@ -184,12 +189,16 @@
   color: #cbd5e1;
   cursor: pointer;
   transition: all 0.18s cubic-bezier(0.2, 0.9, 0.3, 1.2);
-  animation: settings-pill-glide 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-.settings-preset-btn:nth-child(2) { animation-delay: 0.06s; }
-.settings-preset-btn:nth-child(3) { animation-delay: 0.11s; }
-.settings-preset-btn:nth-child(4) { animation-delay: 0.16s; }
-.settings-preset-btn:nth-child(5) { animation-delay: 0.21s; }
+.modal-backdrop.is-opening .settings-preset-btn,
+.settings-modal-card.is-entering .settings-preset-btn {
+  animation: settings-pill-glide 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.modal-backdrop.is-opening .settings-preset-btn:nth-child(1), .settings-modal-card.is-entering .settings-preset-btn:nth-child(1) { animation-delay: 0.08s; }
+.modal-backdrop.is-opening .settings-preset-btn:nth-child(2), .settings-modal-card.is-entering .settings-preset-btn:nth-child(2) { animation-delay: 0.12s; }
+.modal-backdrop.is-opening .settings-preset-btn:nth-child(3), .settings-modal-card.is-entering .settings-preset-btn:nth-child(3) { animation-delay: 0.16s; }
+.modal-backdrop.is-opening .settings-preset-btn:nth-child(4), .settings-modal-card.is-entering .settings-preset-btn:nth-child(4) { animation-delay: 0.20s; }
+.modal-backdrop.is-opening .settings-preset-btn:nth-child(5), .settings-modal-card.is-entering .settings-preset-btn:nth-child(5) { animation-delay: 0.24s; }
 
 @keyframes settings-pill-glide {
   from { opacity: 0; transform: translateY(-8px) scale(0.92); }
@@ -238,6 +247,24 @@
   cursor: pointer;
   transition: all 0.15s ease;
 }
+.modal-backdrop.is-opening .settings-cat-tab,
+.settings-modal-card.is-entering .settings-cat-tab {
+  animation: settings-tab-wave 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.modal-backdrop.is-opening .settings-cat-tab:nth-child(1), .settings-modal-card.is-entering .settings-cat-tab:nth-child(1) { animation-delay: 0.05s; }
+.modal-backdrop.is-opening .settings-cat-tab:nth-child(2), .settings-modal-card.is-entering .settings-cat-tab:nth-child(2) { animation-delay: 0.08s; }
+.modal-backdrop.is-opening .settings-cat-tab:nth-child(3), .settings-modal-card.is-entering .settings-cat-tab:nth-child(3) { animation-delay: 0.11s; }
+.modal-backdrop.is-opening .settings-cat-tab:nth-child(4), .settings-modal-card.is-entering .settings-cat-tab:nth-child(4) { animation-delay: 0.14s; }
+.modal-backdrop.is-opening .settings-cat-tab:nth-child(5), .settings-modal-card.is-entering .settings-cat-tab:nth-child(5) { animation-delay: 0.17s; }
+.modal-backdrop.is-opening .settings-cat-tab:nth-child(6), .settings-modal-card.is-entering .settings-cat-tab:nth-child(6) { animation-delay: 0.20s; }
+.modal-backdrop.is-opening .settings-cat-tab:nth-child(7), .settings-modal-card.is-entering .settings-cat-tab:nth-child(7) { animation-delay: 0.23s; }
+.modal-backdrop.is-opening .settings-cat-tab:nth-child(8), .settings-modal-card.is-entering .settings-cat-tab:nth-child(8) { animation-delay: 0.26s; }
+.modal-backdrop.is-opening .settings-cat-tab:nth-child(9), .settings-modal-card.is-entering .settings-cat-tab:nth-child(9) { animation-delay: 0.29s; }
+
+@keyframes settings-tab-wave {
+  from { opacity: 0; transform: translateY(10px) scale(0.92); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
 
 .settings-cat-tab:hover {
   color: #f1f5f9;
@@ -269,6 +296,14 @@
   animation: settingsFadeIn 0.2s ease;
 }
 
+.modal-backdrop.is-opening .settings-section:not([hidden]),
+.settings-modal-card.is-entering .settings-section:not([hidden]) {
+  animation: settingsSectionPop 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.modal-backdrop.is-opening .settings-section:nth-of-type(1), .settings-modal-card.is-entering .settings-section:nth-of-type(1) { animation-delay: 0.12s; }
+.modal-backdrop.is-opening .settings-section:nth-of-type(2), .settings-modal-card.is-entering .settings-section:nth-of-type(2) { animation-delay: 0.18s; }
+.modal-backdrop.is-opening .settings-section:nth-of-type(3), .settings-modal-card.is-entering .settings-section:nth-of-type(3) { animation-delay: 0.24s; }
+
 .settings-section[hidden] {
   display: none !important;
 }
@@ -276,6 +311,11 @@
 @keyframes settingsFadeIn {
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes settingsSectionPop {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .settings-section-header {
