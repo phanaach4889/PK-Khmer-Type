@@ -120,9 +120,7 @@ body {
   font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #fff, var(--doc-gold-bright));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -506,9 +504,7 @@ body {
   line-height: 1.2;
   letter-spacing: -0.03em;
   margin-bottom: 16px;
-  background: linear-gradient(135deg, #ffffff 40%, var(--doc-gold-bright) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
 }
 
 .hero-lead {
@@ -1217,14 +1213,8 @@ code {
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: #fff;
+  color: var(--doc-gold-bright, #ffd166);
   margin: 0;
-  background: linear-gradient(135deg, #ffffff 0%, var(--doc-gold) 50%, #ff9d2e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: wipTitleShimmer 3s ease-in-out infinite;
-  background-size: 200% auto;
 }
 @keyframes wipTitleShimmer {
   0%, 100% { background-position: 0% center; }
@@ -1293,3 +1283,58 @@ code {
   .wip-glow-ring { width: 140px; height: 140px; }
   .wip-progress-track { width: 160px; }
 }
+
+/* ============================================================
+   PERFORMANCE & REDUCED MOTION SYSTEM OVERRIDES (Docs)
+   ============================================================ */
+html.performance-mode,
+html.reduce-motion,
+html.reduced-motion,
+html.anim-mode-off {
+  scroll-behavior: auto !important;
+}
+
+html.performance-mode *,
+html.reduce-motion *,
+html.reduced-motion *,
+html.anim-mode-off * {
+  animation: none !important;
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition: none !important;
+  transition-duration: 0.001ms !important;
+}
+
+html.performance-mode .wip-particles,
+html.performance-mode .wip-particle,
+html.performance-mode .wip-glow-ring,
+html.anim-mode-off .wip-particles,
+html.anim-mode-off .wip-particle,
+html.anim-mode-off .wip-glow-ring {
+  display: none !important;
+}
+
+html.performance-mode .docs-header,
+html.performance-mode .doc-hero,
+html.performance-mode .callout-card,
+html.performance-mode .tab-nav,
+html.performance-mode .studio-toolbar,
+html.performance-mode .search-dropdown,
+html.anim-mode-off .docs-header,
+html.anim-mode-off .doc-hero,
+html.anim-mode-off .callout-card {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background-color: var(--doc-surface-solid) !important;
+}
+
+html.performance-mode .brand-logo,
+html.performance-mode .btn-primary-glow,
+html.performance-mode .btn-press-cta,
+html.performance-mode .metric-card,
+html.anim-mode-off .brand-logo,
+html.anim-mode-off .btn-primary-glow {
+  box-shadow: none !important;
+  filter: none !important;
+}
+

@@ -22,7 +22,17 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
 
-  <link rel="stylesheet" href="docs.css?v=4.4.0">
+  <link rel="stylesheet" href="docs.css?v=4.4.2">
+  <script>
+    try {
+      var p = localStorage.getItem('khmerSettingPerformanceMode');
+      var a = localStorage.getItem('khmerSettingAnimationMode');
+      var r = localStorage.getItem('khmerSettingReducedMotion');
+      if (p === '1' || a === 'off' || r === '1') {
+        document.documentElement.classList.add('performance-mode', 'anim-mode-off', 'reduce-motion', 'reduced-motion');
+      }
+    } catch(e){}
+  </script>
 </head>
 <body>
 
@@ -250,122 +260,40 @@
         </p>
 
         <!-- 3D Viewport Stage -->
-        <div class="keycap3d-card">
-          <div class="keycap3d-viewport" id="keycap3dContainer">
-            <div class="keycap3d-hud">
-              <span class="keycap3d-badge">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
-                <span class="doc-i18n" data-en="Live 3D Keyboard" data-km="ក្តារចុច 3D ផ្ទាល់">Live 3D Keyboard</span>
+        <div class="keycap3d-card wip-card-only">
+          <div class="wip-placeholder">
+            <div class="wip-particles" aria-hidden="true">
+              <span class="wip-particle"></span><span class="wip-particle"></span>
+              <span class="wip-particle"></span><span class="wip-particle"></span>
+              <span class="wip-particle"></span><span class="wip-particle"></span>
+              <span class="wip-particle"></span><span class="wip-particle"></span>
+              <span class="wip-particle"></span><span class="wip-particle"></span>
+              <span class="wip-particle"></span><span class="wip-particle"></span>
+            </div>
+            <div class="wip-glow-ring" aria-hidden="true"></div>
+            <div class="wip-content">
+              <div class="wip-icon" aria-hidden="true">
+                <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2.5"/>
+                  <line x1="6" y1="8" x2="6.01" y2="8"/>
+                  <line x1="10" y1="8" x2="10.01" y2="8"/>
+                  <line x1="14" y1="8" x2="14.01" y2="8"/>
+                  <line x1="18" y1="8" x2="18.01" y2="8"/>
+                  <line x1="6" y1="12" x2="6.01" y2="12"/>
+                  <line x1="18" y1="12" x2="18.01" y2="12"/>
+                  <line x1="7" y1="16" x2="17" y2="16"/>
+                  <line x1="10" y1="12" x2="14" y2="12"/>
+                </svg>
+              </div>
+              <h3 class="wip-title">Still Working On It</h3>
+              <p class="wip-subtitle doc-i18n" data-en="The interactive 3D keyboard experience is being crafted with care. Check back soon!" data-km="បទពិសោធន៍ក្តារចុច 3D កំពុងត្រូវបានបង្កើតដោយប្រុងប្រយ័ត្ន។ សូមពិនិត្យមើលម្តងទៀតឆាប់ៗ!">The interactive 3D keyboard experience is being crafted with care. Check back soon!</p>
+              <div class="wip-progress-track">
+                <div class="wip-progress-bar"></div>
+              </div>
+              <span class="wip-status">
+                <span class="wip-pulse"></span>
+                In Development
               </span>
-              <span class="keycap3d-title">PK Khmer Type Mechanical ANSI 61-Key</span>
-              <span class="keycap3d-hint">Type on physical keyboard or click keys · Drag to orbit · Scroll to zoom</span>
-            </div>
-
-            <!-- Work In Progress Placeholder -->
-            <div class="wip-placeholder">
-              <div class="wip-particles" aria-hidden="true">
-                <span class="wip-particle"></span><span class="wip-particle"></span>
-                <span class="wip-particle"></span><span class="wip-particle"></span>
-                <span class="wip-particle"></span><span class="wip-particle"></span>
-                <span class="wip-particle"></span><span class="wip-particle"></span>
-                <span class="wip-particle"></span><span class="wip-particle"></span>
-                <span class="wip-particle"></span><span class="wip-particle"></span>
-              </div>
-              <div class="wip-glow-ring" aria-hidden="true"></div>
-              <div class="wip-content">
-                <div class="wip-icon" aria-hidden="true">
-                  <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="4" width="20" height="16" rx="2.5"/>
-                    <line x1="6" y1="8" x2="6.01" y2="8"/>
-                    <line x1="10" y1="8" x2="10.01" y2="8"/>
-                    <line x1="14" y1="8" x2="14.01" y2="8"/>
-                    <line x1="18" y1="8" x2="18.01" y2="8"/>
-                    <line x1="6" y1="12" x2="6.01" y2="12"/>
-                    <line x1="18" y1="12" x2="18.01" y2="12"/>
-                    <line x1="7" y1="16" x2="17" y2="16"/>
-                    <line x1="10" y1="12" x2="14" y2="12"/>
-                  </svg>
-                </div>
-                <h3 class="wip-title">Still Working On It</h3>
-                <p class="wip-subtitle doc-i18n" data-en="The interactive 3D keyboard experience is being crafted with care." data-km="បទពិសោធន៍ក្តារចុច 3D កំពុងត្រូវបានបង្កើតដោយប្រុងប្រយ័ត្ន។">The interactive 3D keyboard experience is being crafted with care.</p>
-                <div class="wip-progress-track">
-                  <div class="wip-progress-bar"></div>
-                </div>
-                <span class="wip-status">
-                  <span class="wip-pulse"></span>
-                  In Development
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 3D Controls Toolbar -->
-          <div class="keycap3d-toolbar">
-            <div class="keycap-ctrl-group">
-              <span class="keycap-ctrl-label doc-i18n" data-en="Layout:" data-km="ប្លង់៖">Layout:</span>
-              <button class="key-layout-btn active" data-layout="standard">Khmer Standard</button>
-              <button class="key-layout-btn" data-layout="nida">Khmer NiDA</button>
-              <button class="key-layout-btn" data-layout="english">English US</button>
-            </div>
-
-            <div class="keycap-ctrl-group">
-              <span class="keycap-ctrl-label doc-i18n" data-en="Theme:" data-km="ស្ទីល៖">Theme:</span>
-              <button class="key-theme-btn active" data-theme="angkor">Angkor Gold</button>
-              <button class="key-theme-btn" data-theme="rgb">RGB Chroma</button>
-              <button class="key-theme-btn" data-theme="neon">Cyber Neon</button>
-              <button class="key-theme-btn" data-theme="ceramic">Matcha Sakura</button>
-            </div>
-
-            <div class="keycap-ctrl-group">
-              <span class="keycap-ctrl-label doc-i18n" data-en="View:" data-km="មើល៖">View:</span>
-              <button class="key-view-btn active" data-view="keyboard">
-                <svg class="doc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
-                <span>Full Keyboard</span>
-              </button>
-              <button class="key-view-btn" data-view="switch">
-                <svg class="doc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-                <span>Switch Anatomy</span>
-              </button>
-            </div>
-
-            <div class="keycap-ctrl-group">
-              <button class="key-action-btn active" id="btnAutoRotate" title="Toggle Auto-Rotation">
-                <svg class="doc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-                <span class="doc-i18n" data-en="Spin" data-km="បង្វិល">Spin</span>
-              </button>
-              <button class="key-action-btn" id="btnTypeDemo" title="Play Auto-Type Demo">
-                <svg class="doc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                <span class="doc-i18n" data-en="Type Demo" data-km="វាយសាកល្បង">Type Demo</span>
-              </button>
-              <button class="key-action-btn" id="btnExplodedView" title="Explode keycaps/switch">
-                <svg class="doc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-                <span class="doc-i18n" data-en="Explode" data-km="ពង្រីកផ្នែក">Explode</span>
-              </button>
-              <button class="key-action-btn" id="btnWireframe" title="Toggle 3D Wireframe">
-                <svg class="doc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
-                <span class="doc-i18n" data-en="Wireframe" data-km="គ្រោងឆ្អឹង">Wireframe</span>
-              </button>
-              <button class="key-action-btn active" id="btnToggleSound" title="Toggle Audio Feedback">
-                <svg class="doc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-                <span class="doc-i18n" data-en="Sound" data-km="សំឡេង">Sound</span>
-              </button>
-              <button class="key-action-btn" id="btnReset3DView" title="Reset View Angle">
-                <svg class="doc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 8 8 12 12 16"/><line x1="16" y1="12" x2="8" y2="12"/></svg>
-                <span class="doc-i18n" data-en="Reset" data-km="កំណត់ឡើងវិញ">Reset</span>
-              </button>
-              <button class="key-action-btn btn-press-cta" id="btnPressTrigger" title="Press key switch ripple">
-                <svg class="doc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="6 9 12 15 18 9"/></svg>
-                <span class="doc-i18n" data-en="Ripple Press" data-km="រលកចុច">Ripple Press</span>
-              </button>
-            </div>
-
-            <!-- Single switch legacy compatibility buttons -->
-            <div class="keycap-ctrl-group" style="display:none;" aria-hidden="true">
-              <button class="key-glyph-btn active" data-glyph="ក">ក</button>
-              <button class="key-glyph-btn" data-glyph="ថ">ថ</button>
-              <button class="key-glyph-btn" data-glyph="្">្ (Coeng)</button>
-              <button class="key-glyph-btn" data-glyph="PK">PK</button>
-              <button class="key-glyph-btn" data-glyph="A">A</button>
             </div>
           </div>
         </div>

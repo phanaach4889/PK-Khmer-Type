@@ -6,6 +6,7 @@
 
 const LS = Object.assign(window.LS || {}, {
   theme: "khmerSettingTheme",
+  performanceMode: "khmerSettingPerformanceMode",
   animationMode: "khmerSettingAnimationMode",
   reducedMotion: "khmerSettingReducedMotion",
   largeText: "khmerSettingLargeText",
@@ -211,9 +212,10 @@ function ensureUpgradedSettingsModalDOM() {
       </div>
 
       <div class="settings-section" data-cat-section="a11y">
-        <div class="settings-section-header"><h3 class="settings-section-title">Accessibility &amp; Visual Comfort</h3><span class="settings-section-count">4 settings</span></div>
-        <div class="settings-row" data-search="animation animations motion lag speed control effects fast performance zero lag"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Animation &amp; Motion Control</span><span class="settings-row-km">គ្រប់គ្រងចលនា</span></div><div class="settings-row-desc">Master control for all visual animations, key shockwaves, particle bursts, and transitions.</div></div><div class="settings-row-control"><div class="settings-choice" id="animationModeChoice"><button type="button" data-anim-mode="full" class="active">Full</button><button type="button" data-anim-mode="minimal">Minimal</button><button type="button" data-anim-mode="off">Off (Zero Lag)</button></div></div></div>
-        <div class="settings-row" data-search="reduced motion animations disable smooth"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Reduced Motion</span><span class="settings-row-km">កាត់បន្ថយចលនា</span></div><div class="settings-row-desc">Minimize animations, floating effects, and camera transitions.</div></div><div class="settings-row-control"><div class="toggle-switch" id="reducedMotionToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
+        <div class="settings-section-header"><h3 class="settings-section-title">Performance &amp; Accessibility</h3><span class="settings-section-count">5 settings</span></div>
+        <div class="settings-row" data-search="performance mode reduced motion speed fast zero lag lightweight disable animations effects"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Performance / Reduced Motion Mode</span><span class="settings-row-km">ដំណើរការខ្ពស់ / កាត់បន្ថយចលនា</span></div><div class="settings-row-desc">Prioritize maximum speed and responsiveness. Disables all non-essential animations, transitions, glowing effects, and background particles for instant responsiveness.</div></div><div class="settings-row-control"><div class="toggle-switch" id="performanceModeToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
+        <div class="settings-row" data-search="animation animations motion lag speed control effects fast performance zero lag"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Animation &amp; Motion Control</span><span class="settings-row-km">គ្រប់គ្រងចលនា</span></div><div class="settings-row-desc">Fine-tune motion density across Full, Minimal, or Off (Zero Lag).</div></div><div class="settings-row-control"><div class="settings-choice" id="animationModeChoice"><button type="button" data-anim-mode="full" class="active">Full</button><button type="button" data-anim-mode="minimal">Minimal</button><button type="button" data-anim-mode="off">Off (Zero Lag)</button></div></div></div>
+        <div class="settings-row" data-search="reduced motion animations disable smooth" style="display:none;"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Reduced Motion</span><span class="settings-row-km">កាត់បន្ថយចលនា</span></div><div class="settings-row-desc">Minimize animations, floating effects, and camera transitions.</div></div><div class="settings-row-control"><div class="toggle-switch" id="reducedMotionToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
         <div class="settings-row" data-search="high contrast borders visibility sharp"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">High Contrast Mode</span><span class="settings-row-km">កម្រិតពណ៌ខ្ពស់</span></div><div class="settings-row-desc">Strengthen keycap borders, text contrast, and button outlines.</div></div><div class="settings-row-control"><div class="toggle-switch" id="highContrastToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
         <div class="settings-row" data-search="dyslexia wide letter spacing prompt readability"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Wide Prompt Character Spacing</span><span class="settings-row-km">គម្លាតអក្សរទូលាយ</span></div><div class="settings-row-desc">Add generous horizontal spacing between characters in lesson prompts for easier reading.</div></div><div class="settings-row-control"><div class="toggle-switch" id="dyslexiaSpacingToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
       </div>
@@ -791,7 +793,7 @@ function initSettingsToggles() {
   };
 
   function spawnChoiceButtonRipple(btn, evt) {
-    if (!btn || document.documentElement.classList.contains("reduced-motion")) return;
+    if (!btn || document.documentElement.classList.contains("performance-mode") || document.documentElement.classList.contains("reduced-motion") || document.documentElement.classList.contains("anim-mode-off")) return;
     try {
       const rect = btn.getBoundingClientRect();
       const x = (evt && evt.clientX) ? (evt.clientX - rect.left) : (rect.width / 2);
@@ -812,7 +814,7 @@ function initSettingsToggles() {
 
   function triggerThemeTransitionFX(btn, mode, evt) {
     spawnChoiceButtonRipple(btn, evt);
-    if (document.documentElement.classList.contains("reduced-motion")) return;
+    if (document.documentElement.classList.contains("performance-mode") || document.documentElement.classList.contains("reduced-motion") || document.documentElement.classList.contains("anim-mode-off")) return;
     try {
       const pal = THEME_WAVE_PALETTES[mode] || THEME_WAVE_PALETTES.dark;
       const parentRow = btn ? btn.closest(".settings-row") : null;
@@ -1404,42 +1406,89 @@ function initSettingsToggles() {
   bindSwitch(scanlinesToggle, applyScanlines);
   applyScanlines(safeGet(LS.scanlines, "0") === "1");
 
+  const performanceModeToggle = document.getElementById("performanceModeToggle");
   const reducedMotionToggle = document.getElementById("reducedMotionToggle");
 
-  function applyAnimationMode(mode, save = true) {
-    if (!["full", "minimal", "off"].includes(mode)) mode = "full";
-    document.documentElement.classList.toggle("anim-mode-off", mode === "off");
-    document.documentElement.classList.toggle("anim-mode-minimal", mode === "minimal");
-    document.documentElement.classList.toggle("anim-mode-full", mode === "full");
-
-    const isReduced = mode !== "full";
-    document.documentElement.classList.toggle("reduce-motion", isReduced);
-    document.documentElement.classList.toggle("reduced-motion", isReduced);
+  function applyPerformanceMode(on, save = true) {
+    const isPerf = !!on;
+    document.documentElement.classList.toggle("performance-mode", isPerf);
+    document.documentElement.classList.toggle("anim-mode-off", isPerf);
+    document.documentElement.classList.toggle("reduce-motion", isPerf);
+    document.documentElement.classList.toggle("reduced-motion", isPerf);
     document.documentElement.classList.toggle("motion-override", true);
 
-    if (mode === "off" || mode === "minimal") {
-      document.documentElement.classList.add("hide-key-fx", "hide-motes");
+    if (isPerf) {
+      document.documentElement.classList.remove("anim-mode-full", "anim-mode-minimal");
+      document.documentElement.classList.add("hide-key-fx", "hide-motes", "hide-cursor-shockwave");
+
+      // Cancel any active animation frame on canvas and wipe buffer
+      if (typeof window.cancelAnimationFrame === "function" && window.fxAnimId) {
+        window.cancelAnimationFrame(window.fxAnimId);
+        window.fxAnimId = null;
+      }
+      const canvas = document.getElementById("fxCanvas");
+      if (canvas && canvas.getContext) {
+        const ctx = canvas.getContext("2d");
+        if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      // Remove motes children to eliminate running CSS animations
+      const motesEl = document.getElementById("motes");
+      if (motesEl) motesEl.innerHTML = "";
     } else {
+      document.documentElement.classList.remove("anim-mode-off", "anim-mode-minimal");
+      document.documentElement.classList.add("anim-mode-full");
       document.documentElement.classList.toggle("hide-key-fx", safeGet(LS.keyFx, "1") !== "1");
       document.documentElement.classList.toggle("hide-motes", safeGet(LS.motes, "0") !== "1");
+      document.documentElement.classList.toggle("hide-cursor-shockwave", safeGet(LS.shockwave, "1") !== "1");
     }
+
+    if (performanceModeToggle) setSwitchUI(performanceModeToggle, isPerf);
+    if (reducedMotionToggle) setSwitchUI(reducedMotionToggle, isPerf);
 
     document.querySelectorAll("#animationModeChoice button").forEach((btn) => {
-      btn.classList.toggle("active", btn.dataset.animMode === mode);
+      btn.classList.toggle("active", btn.dataset.animMode === (isPerf ? "off" : "full"));
     });
 
-    if (reducedMotionToggle) {
-      setSwitchUI(reducedMotionToggle, isReduced);
-    }
-
-    window.__ANIMATION_MODE = mode;
+    window.__PERFORMANCE_MODE = isPerf;
+    window.__ANIMATION_MODE = isPerf ? "off" : "full";
 
     if (save) {
-      safeSet(LS.animationMode, mode);
-      safeSet(LS.reducedMotion, isReduced ? "1" : "0");
+      safeSet(LS.performanceMode, isPerf ? "1" : "0");
+      safeSet(LS.reducedMotion, isPerf ? "1" : "0");
+      safeSet(LS.animationMode, isPerf ? "off" : "full");
+    }
+  }
+  window.applyPerformanceMode = applyPerformanceMode;
+
+  function applyAnimationMode(mode, save = true) {
+    if (mode === "off") {
+      applyPerformanceMode(true, save);
+      return;
+    }
+    if (mode === "full") {
+      applyPerformanceMode(false, save);
+      return;
+    }
+    // mode === "minimal"
+    document.documentElement.classList.remove("performance-mode", "anim-mode-off", "anim-mode-full");
+    document.documentElement.classList.add("anim-mode-minimal", "reduce-motion", "reduced-motion", "hide-key-fx", "hide-motes");
+    if (performanceModeToggle) setSwitchUI(performanceModeToggle, false);
+    if (reducedMotionToggle) setSwitchUI(reducedMotionToggle, true);
+    document.querySelectorAll("#animationModeChoice button").forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.animMode === "minimal");
+    });
+    window.__PERFORMANCE_MODE = false;
+    window.__ANIMATION_MODE = "minimal";
+    if (save) {
+      safeSet(LS.performanceMode, "0");
+      safeSet(LS.reducedMotion, "1");
+      safeSet(LS.animationMode, "minimal");
     }
   }
   window.applyAnimationMode = applyAnimationMode;
+
+  bindSwitch(performanceModeToggle, (on) => applyPerformanceMode(on));
+  if (reducedMotionToggle) bindSwitch(reducedMotionToggle, (on) => applyPerformanceMode(on));
 
   document.addEventListener("click", (e) => {
     const btn = e.target.closest && e.target.closest("#animationModeChoice button");
@@ -1448,17 +1497,25 @@ function initSettingsToggles() {
     }
   });
 
-  function applyReducedMotion(on) {
-    applyAnimationMode(on ? "off" : "full");
-  }
-  bindSwitch(reducedMotionToggle, applyReducedMotion);
+  const initialPerf = safeGet(LS.performanceMode, null);
+  const initialAnim = safeGet(LS.animationMode, null);
+  const initialReduced = safeGet(LS.reducedMotion, null);
 
-  const initialAnimMode = safeGet(LS.animationMode, null);
-  if (initialAnimMode) {
-    applyAnimationMode(initialAnimMode, false);
+  let startPerf = false;
+  if (initialPerf !== null) {
+    startPerf = (initialPerf === "1");
+  } else if (initialAnim !== null) {
+    startPerf = (initialAnim === "off");
+  } else if (initialReduced !== null) {
+    startPerf = (initialReduced === "1");
+  }
+
+  if (startPerf) {
+    applyPerformanceMode(true, false);
+  } else if (initialAnim === "minimal") {
+    applyAnimationMode("minimal", false);
   } else {
-    const isReduced = safeGet(LS.reducedMotion, "0") === "1";
-    applyAnimationMode(isReduced ? "off" : "full", false);
+    applyPerformanceMode(false, false);
   }
 
   const highContrastToggle = document.getElementById("highContrastToggle");

@@ -451,8 +451,8 @@
     border:1px solid var(--stone-3);
     margin-bottom:7px;
     font-size:0.7rem;
-    opacity:0; transform:translateX(-6px);
-    animation:stat-bar-in .35s ease forwards;
+    opacity:1; transform:translateX(0);
+    animation:stat-bar-in .35s ease backwards;
   }
   .race-lb-row.rank-1{ border-color:var(--gold-bright); box-shadow:0 0 14px rgba(255,209,102,0.25); }
   .race-lb-rank{
