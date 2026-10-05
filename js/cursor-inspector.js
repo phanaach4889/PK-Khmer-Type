@@ -271,7 +271,11 @@
 
   function loadPreference(){
     try {
-      const val = localStorage.getItem(STORAGE_KEY);
+      let val = localStorage.getItem(STORAGE_KEY);
+      if(val === null){
+        val = localStorage.getItem('khmerCursorInspector');
+        if(val !== null) val = (val === '1' || val === 'true') ? 'true' : 'false';
+      }
       if(val !== null) inspectorEnabled = val === 'true';
     } catch(e){}
   }
@@ -279,7 +283,15 @@
   function savePreference(){
     try {
       localStorage.setItem(STORAGE_KEY, String(inspectorEnabled));
+      localStorage.setItem('khmerCursorInspector', inspectorEnabled ? '1' : '0');
     } catch(e){}
+    const st = document.getElementById('settingsMouseInspectorToggle');
+    if(st && typeof global.setSwitchUI === 'function'){
+      global.setSwitchUI(st, inspectorEnabled);
+    } else if(st){
+      st.classList.toggle('on', inspectorEnabled);
+      st.setAttribute('aria-checked', inspectorEnabled ? 'true' : 'false');
+    }
   }
 
   /* ---- DOM Construction for HUD ---- */
@@ -354,33 +366,61 @@
     };
   }
 
+  /* ---- Anchor HUD Statically to a Target Key Element ---- */
+  function positionHudForKey(keyEl, keyId){
+    if(!hudEl || !keyEl) return;
+    const keyRect = keyEl.getBoundingClientRect();
+    const hudRect = hudEl.getBoundingClientRect();
+    const hudW = hudRect.width || 272;
+    const hudH = hudRect.height || 160;
+    const winW = window.innerWidth;
+    const winH = window.innerHeight;
+    const gap = 12;
+
+    // Anchor horizontally centered on the key
+    let posX = keyRect.left + (keyRect.width / 2) - (hudW / 2);
+
+    // Anchor vertically:
+    // Prefer positioning ABOVE the key so the key itself and typing hands remain visible
+    let posY = keyRect.top - hudH - gap;
+
+    // If placing above would overflow off-screen, place below the key
+    if(posY < 12){
+      posY = keyRect.bottom + gap;
+    }
+
+    // Viewport clamping with safe screen margins
+    posX = Math.max(12, Math.min(posX, winW - hudW - 12));
+    posY = Math.max(10, Math.min(posY, winH - hudH - 10));
+
+    hudEl.style.left = Math.round(posX) + 'px';
+    hudEl.style.top = Math.round(posY) + 'px';
+  }
+
   /* ---- Update Position of HUD with Screen Clamping ---- */
   function updatePosition(x, y){
     lastMouseX = x;
     lastMouseY = y;
     if(!hudEl || !hudEl.classList.contains('visible')) return;
 
+    // If currently inspecting a key, keep it anchored stably to that key!
+    if(currentInspectedKeyId){
+      const keyEl = getKeyEl(currentInspectedKeyId);
+      if(keyEl){
+        positionHudForKey(keyEl, currentInspectedKeyId);
+        return;
+      }
+    }
+
     const hudRect = hudEl.getBoundingClientRect();
-    const hudW = hudRect.width || 250;
-    const hudH = hudRect.height || 150;
-    const gap = 16;
+    const hudW = hudRect.width || 272;
+    const hudH = hudRect.height || 160;
+    const gap = 14;
     const winW = window.innerWidth;
     const winH = window.innerHeight;
 
     let posX = x + gap;
     let posY = y + gap;
-
-    // Smart hand-aware positioning when inspecting keys on the keyboard
-    if(currentInspectedKeyId){
-      const bottomRowOrHomeKeys = new Set([
-        'caps','a','s','d','f','g','h','j','k','l','semicolon','quote','enter',
-        'shiftL','z','x','c','v','b','n','m','comma','period','slash','extra','shiftR'
-      ]);
-      if(bottomRowOrHomeKeys.has(currentInspectedKeyId) && (y - hudH - gap >= 12)){
-        // Place HUD above home/bottom row keys so the 3D hands below remain unobstructed
-        posY = y - hudH - gap;
-      }
-    }
 
     // Flip horizontally if overflow right
     if(posX + hudW > winW - 12){
@@ -391,11 +431,11 @@
       posY = y - hudH - gap;
     }
 
-    posX = Math.max(10, Math.min(posX, winW - hudW - 10));
+    posX = Math.max(12, Math.min(posX, winW - hudW - 12));
     posY = Math.max(10, Math.min(posY, winH - hudH - 10));
 
-    hudEl.style.left = posX + 'px';
-    hudEl.style.top = posY + 'px';
+    hudEl.style.left = Math.round(posX) + 'px';
+    hudEl.style.top = Math.round(posY) + 'px';
   }
 
   function getKeyEl(keyId){
@@ -490,8 +530,9 @@
       hudEl.classList.add('visible');
       if(typeof global.setActiveFinger === 'function') global.setActiveFinger(keyId, layer);
       highlightQuickGuideMiniKey(keyId, fid);
-      if(ev) updatePosition(ev.clientX, ev.clientY);
-      else if(keyEl){ const r = keyEl.getBoundingClientRect(); updatePosition(r.left + r.width/2, r.top + r.height/2); }
+      if(keyEl){
+        positionHudForKey(keyEl, keyId);
+      }
       return;
     }
 
@@ -586,11 +627,8 @@
     // 2. Quick Guide Mini-Keys Sync
     highlightQuickGuideMiniKey(keyId, fid);
 
-    if(ev){
-      updatePosition(ev.clientX, ev.clientY);
-    } else if(keyEl){
-      const r = keyEl.getBoundingClientRect();
-      updatePosition(r.left + r.width/2, r.top + r.height/2);
+    if(keyEl){
+      positionHudForKey(keyEl, keyId);
     }
   }
 
@@ -838,14 +876,27 @@
   function attachEventListeners(){
     ensureDOM();
 
-    // Global mouse tracking for HUD position
-    window.addEventListener('mousemove', (ev)=>{
-      updatePosition(ev.clientX, ev.clientY);
-    }, { passive: true });
-
+    // Clean dismissal when leaving window or losing focus
     window.addEventListener('mouseleave', ()=>{
       uninspectKey();
     });
+    window.addEventListener('blur', ()=>{
+      uninspectKey();
+    });
+    window.addEventListener('resize', ()=>{
+      if(currentInspectedKeyId){
+        const keyEl = getKeyEl(currentInspectedKeyId);
+        if(keyEl) positionHudForKey(keyEl, currentInspectedKeyId);
+        else uninspectKey();
+      }
+    }, { passive: true });
+    window.addEventListener('scroll', ()=>{
+      if(currentInspectedKeyId){
+        const keyEl = getKeyEl(currentInspectedKeyId);
+        if(keyEl) positionHudForKey(keyEl, currentInspectedKeyId);
+        else uninspectKey();
+      }
+    }, { passive: true });
 
     // Global click ripple shockwave
     window.addEventListener('mousedown', (ev)=>{
@@ -858,29 +909,41 @@
       setTimeout(()=>{ if(wave.parentNode) wave.parentNode.removeChild(wave); }, 460);
     }, { passive: true });
 
-    // Keyboard Key Hover & Click Delegation
+    // Keyboard Key Hover & Click Delegation (Anchored, NEVER follows cursor on keys)
     const board = document.getElementById('boardWrap');
     if(board){
       board.addEventListener('mouseover', (ev)=>{
         const keyEl = ev.target.closest('.key');
         if(keyEl && keyEl.dataset && keyEl.dataset.key){
-          inspectKey(keyEl.dataset.key, ev);
+          inspectKey(keyEl.dataset.key);
         }
       });
       board.addEventListener('mousemove', (ev)=>{
         const keyEl = ev.target.closest('.key');
         if(keyEl && keyEl.dataset && keyEl.dataset.key){
-          if(currentInspectedKeyId !== keyEl.dataset.key){
-            inspectKey(keyEl.dataset.key, ev);
-          } else {
-            updatePosition(ev.clientX, ev.clientY);
+          const keyId = keyEl.dataset.key;
+          if(currentInspectedKeyId !== keyId){
+            inspectKey(keyId);
+          }
+          // When moving within the same key, stay completely stationary (do NOT follow cursor)
+        } else {
+          // Pointer moved into gap or padding between keys
+          if(currentInspectedKeyId){
+            uninspectKey();
           }
         }
+      }, { passive: true });
+      board.addEventListener('mouseleave', ()=>{
+        uninspectKey();
       });
       board.addEventListener('mouseout', (ev)=>{
         const keyEl = ev.target.closest('.key');
-        if(keyEl && (!ev.relatedTarget || !keyEl.contains(ev.relatedTarget))){
-          uninspectKey();
+        if(keyEl){
+          if(!ev.relatedTarget || !keyEl.contains(ev.relatedTarget)){
+            if(!ev.relatedTarget || !ev.relatedTarget.closest('.key')){
+              uninspectKey();
+            }
+          }
         }
       });
 
@@ -1029,12 +1092,20 @@
     uninspectKey,
     inspectTextCharacter,
     getCharInfo,
+    positionHudForKey,
     isEnabled: ()=> inspectorEnabled,
-    toggle: (state)=>{
-      inspectorEnabled = typeof state === 'boolean' ? state : !inspectorEnabled;
+    setEnabled: (val)=>{
+      inspectorEnabled = !!val;
       savePreference();
       const btn = document.getElementById('cursorGuideToggle');
       if(btn) btn.classList.toggle('on', inspectorEnabled);
+      if(!inspectorEnabled){
+        uninspectKey();
+      }
+    },
+    toggle: (state)=>{
+      const next = typeof state === 'boolean' ? state : !inspectorEnabled;
+      global.PK_MOUSE_INSPECTOR.setEnabled(next);
     }
   };
   global.PKCursorInspector = global.PK_MOUSE_INSPECTOR;
