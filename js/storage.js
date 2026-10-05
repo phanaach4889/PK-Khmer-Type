@@ -1,15 +1,7 @@
 /* ============================================================
    PK Khmer Type — Storage, Authentication & Progress Persistence
    ============================================================ */
-/* Global Snappy Modal Open & Dismissal Utilities */
-function openModalAnimated(modalEl, onOpened){
-  if(!modalEl) return;
-  modalEl.classList.remove('is-closing');
-  modalEl.hidden = false;
-  if(typeof onOpened === 'function') onOpened();
-}
-window.openModalAnimated = openModalAnimated;
-
+/* Global Physics-Based Modal Dismissal Utility */
 function closeModalAnimated(modalEl, onClosed){
   if(!modalEl || modalEl.hidden){
     if(typeof onClosed === 'function') onClosed();
@@ -29,7 +21,7 @@ function closeModalAnimated(modalEl, onClosed){
     if(e.target === modalEl) finalize();
   };
   modalEl.addEventListener('animationend', onEnd, { once: true });
-  setTimeout(finalize, 180);
+  setTimeout(finalize, 230);
 }
 window.closeModalAnimated = closeModalAnimated;
 

@@ -38,20 +38,12 @@
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Noto+Serif+Khmer:wght@400;600;700&family=Noto+Sans+Khmer:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>
-    try {
-      const _t = localStorage.getItem('khmerSettingTheme') || localStorage.getItem('pk_khmer_theme');
-      const _sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const _eff = _t === 'system' ? (_sysDark ? 'dark' : 'light') : _t;
-      if (_eff && _eff !== 'dark') document.documentElement.classList.add('theme-' + _eff);
-    } catch (e) {}
-  </script>
-  <link rel="stylesheet" href="css/base.css?v=53">
-  <link rel="stylesheet" href="css/keyboard.css?v=53">
-  <link rel="stylesheet" href="css/typing.css?v=53">
-  <link rel="stylesheet" href="css/lessons.css?v=53">
-  <link rel="stylesheet" href="css/responsive.css?v=53">
-  <link rel="stylesheet" href="css/settings.css?v=53">
+  <link rel="stylesheet" href="css/base.css?v=52">
+  <link rel="stylesheet" href="css/keyboard.css?v=52">
+  <link rel="stylesheet" href="css/typing.css?v=52">
+  <link rel="stylesheet" href="css/lessons.css?v=52">
+  <link rel="stylesheet" href="css/responsive.css?v=52">
+  <link rel="stylesheet" href="css/settings.css?v=52">
 
 </head>
 <body>
@@ -82,6 +74,7 @@
 
 <div class="top-actions">
   <button id="focusModeBtn" class="focus-mode-btn" aria-label="Toggle Focus Mode" title="Focus Mode (Hide distractions, Alt+F)"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M3 12h3m12 0h3M12 3v3m0 12v3"/></svg> <span class="focus-btn-text i18n-t" data-en="Focus" data-km="ផ្ដោត">Focus</span> <kbd class="focus-kbd-badge">Alt+F</kbd></button>
+  <button id="guideToggleBtn" class="top-action-btn guide-toggle-btn active" aria-label="Toggle Quick Guide" title="Toggle Quick Guide" aria-pressed="true"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01"/><path d="M10 8h.01"/><path d="M14 8h.01"/><path d="M18 8h.01"/><path d="M6 12h.01"/><path d="M10 12h.01"/><path d="M14 12h.01"/><path d="M18 12h.01"/><path d="M7 16h10"/></svg> <span class="i18n-t" data-en="Guide" data-km="ណែនាំ">Guide</span></button>
   <button id="shortcutsOpenBtn" aria-haspopup="dialog" aria-label="Open keyboard shortcuts" title="Keyboard Shortcuts (?)"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/><line x1="10" y1="12" x2="14" y2="12"/></svg> <span class="i18n-t" data-en="Shortcuts" data-km="ផ្លូវកាត់">Shortcuts</span></button>
   <button id="topLangToggleBtn" class="top-action-btn lang-toggle-btn" aria-label="Translate English to Khmer" title="Translate English to Khmer (Alt+L)"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> <span id="topLangToggleLabel">Translate to Khmer</span></button>
   <button id="statsOpenBtn" aria-haspopup="dialog" aria-label="Open statistics dashboard"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> <span class="i18n-t" data-en="Statistics" data-km="ស្ថិតិ">Statistics</span></button>
@@ -141,7 +134,12 @@
       <span class="gdh-title"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01"/><path d="M10 8h.01"/><path d="M14 8h.01"/><path d="M18 8h.01"/><path d="M6 12h.01"/><path d="M10 12h.01"/><path d="M14 12h.01"/><path d="M18 12h.01"/><path d="M7 16h10"/></svg> <span class="i18n-t" data-en="QUICK GUIDE" data-km="ការណែនាំរហ័ស">QUICK GUIDE</span></span>
       <span class="guide-live-status-pill" id="guideLiveStatusPill"><span class="gls-dot"></span> <span id="guideLiveStatusText">Ready</span></span>
     </div>
-    <span class="gdh-badge" id="guideLayoutBadge">Standard</span>
+    <div class="gdh-header-right">
+      <span class="gdh-badge" id="guideLayoutBadge">Standard</span>
+      <button type="button" class="guide-close-btn" id="guideCloseBtn" aria-label="Close Quick Guide" title="Close Quick Guide">
+        <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
   </div>
 
   <!-- SECTION 1: LIVE PRACTICE RADAR -->
@@ -467,7 +465,7 @@
               <button type="button" class="settings-action-pill" id="settingsOpenShortcutsBtn">Shortcuts</button>
               <button type="button" class="settings-action-pill" id="settingsOpenStatsBtn">Statistics</button>
               <a href="Documents/index.html" class="settings-action-pill">PK Documents</a>
-              <a href="Documents/index.html#keycap-3d" class="settings-action-pill">3D Studio</a>
+              <a href="keyboard-3d.html" class="settings-action-pill">3D Studio</a>
             </div>
           </div>
         </div>
@@ -1027,23 +1025,6 @@
         <div class="settings-section-header">
           <h3 class="settings-section-title">Accessibility &amp; Visual Comfort</h3>
           <span class="settings-section-count">3 settings</span>
-        </div>
-
-        <div class="settings-row" data-search="animation animations motion lag speed control effects fast performance zero lag">
-          <div class="settings-row-info">
-            <div class="settings-row-title-line">
-              <span class="settings-row-name i18n-t" data-en="Animation &amp; Motion Control" data-km="ការគ្រប់គ្រងចលនា និងបែបផែន">Animation &amp; Motion Control</span>
-              <span class="settings-row-km">គ្រប់គ្រងចលនា</span>
-            </div>
-            <div class="settings-row-desc i18n-t" data-en="Master control for all visual animations, key shockwaves, particle bursts, and transitions." data-km="គ្រប់គ្រងចលនា បែបផែនចុច និងការផ្លាស់ប្តូរទាំងអស់ដើម្បីល្បឿនអតិបរមា">Master control for all visual animations, key shockwaves, particle bursts, and transitions.</div>
-          </div>
-          <div class="settings-row-control">
-            <div class="settings-choice" id="animationModeChoice">
-              <button type="button" data-anim-mode="full" class="active">Full</button>
-              <button type="button" data-anim-mode="minimal">Minimal</button>
-              <button type="button" data-anim-mode="off">Off (Zero Lag)</button>
-            </div>
-          </div>
         </div>
 
         <div class="settings-row" data-search="reduced motion animations disable smooth">
@@ -1966,24 +1947,24 @@
 
 
   <!-- Scripts -->
-  <script defer src="js/icons.js?v=53"></script>
-  <script defer src="js/storage.js?v=53"></script>
-  <script defer src="data/curriculum-data.js?v=53"></script>
-  <script defer src="data/adaptive-vocab.js?v=53"></script>
-  <script defer src="js/keyboard.js?v=53"></script>
-  <script defer src="js/tracker.js?v=53"></script>
-  <script defer src="js/progress.js?v=53"></script>
-  <script defer src="js/review.js?v=53"></script>
-  <script defer src="js/cursor-inspector.js?v=53"></script>
-  <script defer src="js/feedback.js?v=53"></script>
-  <script defer src="js/adaptive.js?v=53"></script>
-  <script defer src="js/lessons.js?v=53"></script>
-  <script defer src="js/race.js?v=53"></script>
-  <script defer src="js/typing.js?v=53"></script>
-  <script defer src="js/statistics.js?v=53"></script>
-  <script defer src="js/settings.js?v=53"></script>
-  <script defer src="js/shortcuts.js?v=53"></script>
-  <script defer src="js/quick_guide.js?v=53"></script>
-  <script defer src="js/app.js?v=53"></script>
+  <script defer src="js/icons.js?v=52"></script>
+  <script defer src="js/storage.js?v=52"></script>
+  <script defer src="data/curriculum-data.js?v=52"></script>
+  <script defer src="data/adaptive-vocab.js?v=52"></script>
+  <script defer src="js/keyboard.js?v=52"></script>
+  <script defer src="js/tracker.js?v=52"></script>
+  <script defer src="js/progress.js?v=52"></script>
+  <script defer src="js/review.js?v=52"></script>
+  <script defer src="js/cursor-inspector.js?v=52"></script>
+  <script defer src="js/feedback.js?v=52"></script>
+  <script defer src="js/adaptive.js?v=52"></script>
+  <script defer src="js/lessons.js?v=52"></script>
+  <script defer src="js/race.js?v=52"></script>
+  <script defer src="js/typing.js?v=52"></script>
+  <script defer src="js/statistics.js?v=52"></script>
+  <script defer src="js/settings.js?v=52"></script>
+  <script defer src="js/shortcuts.js?v=52"></script>
+  <script defer src="js/quick_guide.js?v=52"></script>
+  <script defer src="js/app.js?v=52"></script>
 </body>
 </html>

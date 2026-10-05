@@ -108,6 +108,17 @@
       this.handsStatusDesc = document.getElementById('guideHandsStatusDesc');
       this.soundStatusDesc = document.getElementById('guideSoundStatusDesc');
 
+      this.closeBtn = document.getElementById('guideCloseBtn');
+      this.toggleBtn = document.getElementById('guideToggleBtn');
+
+      // Check stored preference: if closed, keep hidden
+      try {
+        if(localStorage.getItem('pk_quick_guide_closed') === 'true'){
+          this.dock.hidden = true;
+        }
+      } catch(e){}
+      this.updateToggleButtonState();
+
       this.wireEvents();
       this.hookGlobalEngines();
       this.updateLayout(typeof currentLayoutId !== 'undefined' ? currentLayoutId : 'standard');
@@ -116,7 +127,33 @@
       this.scheduleWeakKeysUpdate(300);
     }
 
+    updateToggleButtonState(){
+      if(!this.toggleBtn) return;
+      const isVisible = !this.dock.hidden;
+      this.toggleBtn.classList.toggle('active', isVisible);
+      this.toggleBtn.setAttribute('aria-pressed', isVisible ? 'true' : 'false');
+    }
+
     wireEvents(){
+      // Close button in Quick Guide header
+      if(this.closeBtn){
+        this.closeBtn.addEventListener('click', () => {
+          this.dock.hidden = true;
+          try { localStorage.setItem('pk_quick_guide_closed', 'true'); } catch(e){}
+          this.updateToggleButtonState();
+        });
+      }
+
+      // Toggle button in top action bar
+      if(this.toggleBtn){
+        this.toggleBtn.addEventListener('click', () => {
+          const willHide = !this.dock.hidden;
+          this.dock.hidden = willHide;
+          try { localStorage.setItem('pk_quick_guide_closed', willHide ? 'true' : 'false'); } catch(e){}
+          this.updateToggleButtonState();
+        });
+      }
+
       // Quick Action Button in Telemetry Card
       if(this.quickActionBtn){
         this.quickActionBtn.addEventListener('click', () => {

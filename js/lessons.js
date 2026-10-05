@@ -1269,29 +1269,11 @@ function resetAllCourseLessonStates(){
    Persistent Active Lesson Session across page refreshes
    ============================================================ */
 const ACTIVE_LESSON_KEY = 'pk_active_lesson_session';
-let _saveLessonTimer = null;
 
-function saveActiveLessonSession(immediate = false){
+function saveActiveLessonSession(){
   if(!lessonActive || !currentLesson || currentLesson.id === -1) {
     return;
   }
-  if(!immediate){
-    if(_saveLessonTimer) clearTimeout(_saveLessonTimer);
-    _saveLessonTimer = setTimeout(()=>{
-      _saveLessonTimer = null;
-      _doSaveActiveLessonSession();
-    }, 350);
-    return;
-  }
-  if(_saveLessonTimer){
-    clearTimeout(_saveLessonTimer);
-    _saveLessonTimer = null;
-  }
-  _doSaveActiveLessonSession();
-}
-
-function _doSaveActiveLessonSession(){
-  if(!lessonActive || !currentLesson || currentLesson.id === -1) return;
   try {
     if(typeof localStorage === 'undefined') return;
     const session = {
@@ -1315,10 +1297,6 @@ function _doSaveActiveLessonSession(){
 }
 
 function clearActiveLessonSession(){
-  if(_saveLessonTimer){
-    clearTimeout(_saveLessonTimer);
-    _saveLessonTimer = null;
-  }
   try {
     if(typeof localStorage !== 'undefined'){
       localStorage.removeItem(ACTIVE_LESSON_KEY);
@@ -1451,12 +1429,7 @@ window.restoreSavedLessonSession = restoreSavedLessonSession;
 if(typeof window !== 'undefined'){
   window.addEventListener('beforeunload', ()=>{
     if(typeof lessonActive !== 'undefined' && lessonActive && currentLesson){
-      saveActiveLessonSession(true);
-    }
-  });
-  window.addEventListener('pagehide', ()=>{
-    if(typeof lessonActive !== 'undefined' && lessonActive && currentLesson){
-      saveActiveLessonSession(true);
+      saveActiveLessonSession();
     }
   });
 }
@@ -1688,7 +1661,7 @@ function renderLessonStrip(){
         const header = document.createElement('div');
         header.className = 'lesson-level-header' + (collapsed ? ' collapsed' : '');
         header.dataset.level = String(def.level);
-        header.innerHTML = `<span class="llh-chevron">${pkIcon('arrow-down', 11)}</span><span>${lv ? lv.title : `Level ${def.level}`}</span>`;
+        header.innerHTML = `<span class="llh-chevron">${pkIcon(collapsed ? 'arrow-right' : 'arrow-down', 11)}</span><span>${lv ? lv.title : `Level ${def.level}`}</span>`;
         bodyEl.appendChild(header);
         listEl = document.createElement('div');
         listEl.className = 'lesson-level-list' + (collapsed ? ' collapsed' : '');
@@ -1810,20 +1783,11 @@ lessonStrip.addEventListener('click', (e)=>{
   const expandBtn = e.target.closest('#lshExpandBtn');
   if(expandBtn){
     isStripExpanded = !isStripExpanded;
-    lessonStrip.classList.toggle('expanded', isStripExpanded);
-    expandBtn.innerHTML = isStripExpanded ? pkIcon('minimize', 13) : pkIcon('maximize', 13);
-    expandBtn.title = isStripExpanded ? 'Collapse into single column' : 'Expand full lesson catalog (2 columns)';
     // If expanding to 2 columns and all levels are collapsed, open the first level
     if(isStripExpanded && collapsedLevels.size === LEVELS.length){
-      const firstLvl = String(LEVELS[0].id);
-      collapsedLevels.delete(firstLvl);
-      const h0 = lessonStrip.querySelector(`.lesson-level-header[data-level="${firstLvl}"]`);
-      if(h0){
-        h0.classList.remove('collapsed');
-        const l0 = h0.nextElementSibling;
-        if(l0 && l0.classList.contains('lesson-level-list')) l0.classList.remove('collapsed');
-      }
+      collapsedLevels.delete(String(LEVELS[0].id));
     }
+    renderLessonStrip();
     return;
   }
 
@@ -1831,25 +1795,16 @@ lessonStrip.addEventListener('click', (e)=>{
   const header = e.target.closest('.lesson-level-header');
   if(header){
     const level = String(header.dataset.level);
-    const isNowCollapsed = !collapsedLevels.has(level);
-    if(isNowCollapsed){
-      collapsedLevels.add(level);
-    } else {
+    if(collapsedLevels.has(level)){
       collapsedLevels.delete(level);
+      const openLevelsCount = LEVELS.filter(l => !collapsedLevels.has(String(l.id))).length;
+      if(openLevelsCount > 1){
+        isStripExpanded = true;
+      }
+    } else {
+      collapsedLevels.add(level);
     }
-    header.classList.toggle('collapsed', isNowCollapsed);
-    const listEl = header.nextElementSibling;
-    if(listEl && listEl.classList.contains('lesson-level-list')){
-      listEl.classList.toggle('collapsed', isNowCollapsed);
-    }
-    const openLevelsCount = LEVELS.filter(l => !collapsedLevels.has(String(l.id))).length;
-    isStripExpanded = openLevelsCount > 1;
-    lessonStrip.classList.toggle('expanded', isStripExpanded);
-    const expandBtnEl = document.getElementById('lshExpandBtn');
-    if(expandBtnEl){
-      expandBtnEl.innerHTML = isStripExpanded ? pkIcon('minimize', 13) : pkIcon('maximize', 13);
-      expandBtnEl.title = isStripExpanded ? 'Collapse into single column' : 'Expand full lesson catalog (2 columns)';
-    }
+    renderLessonStrip();
     return;
   }
 
@@ -1861,12 +1816,6 @@ lessonStrip.addEventListener('click', (e)=>{
   if(lessonActive && currentLesson && String(currentLesson.id) === String(id)) return;
 
   isStripExpanded = false; // Make it small when clicking on lessons
-  lessonStrip.classList.remove('expanded');
-  const expandBtnOnLesson = document.getElementById('lshExpandBtn');
-  if(expandBtnOnLesson){
-    expandBtnOnLesson.innerHTML = pkIcon('maximize', 13);
-    expandBtnOnLesson.title = 'Expand full lesson catalog (2 columns)';
-  }
   startLesson(id);
 });
 
@@ -1880,26 +1829,11 @@ document.addEventListener('click', (e)=>{
   if(!isStripExpanded && openCount <= 1) return;
 
   isStripExpanded = false;
-  lessonStrip.classList.remove('expanded');
-  const expandBtnOutside = document.getElementById('lshExpandBtn');
-  if(expandBtnOutside){
-    expandBtnOutside.innerHTML = pkIcon('maximize', 13);
-    expandBtnOutside.title = 'Expand full lesson catalog (2 columns)';
-  }
   if(collapsedLevels){
     const keepLv = currentLesson ? String(currentLesson.level) : (LEVELS.length ? String(LEVELS[0].id) : '1');
     collapsedLevels = new Set(LEVELS.map(l => String(l.id)));
     collapsedLevels.delete(keepLv);
-    const headers = lessonStrip.querySelectorAll('.lesson-level-header');
-    headers.forEach(h => {
-      const lvl = String(h.dataset.level);
-      const shouldCollapse = lvl !== keepLv;
-      h.classList.toggle('collapsed', shouldCollapse);
-      const list = h.nextElementSibling;
-      if(list && list.classList.contains('lesson-level-list')){
-        list.classList.toggle('collapsed', shouldCollapse);
-      }
-    });
+    renderLessonStrip();
   }
 });
 
@@ -1967,21 +1901,15 @@ function renderLessonMeta(def){
 }
 
 function renderLessonChars(){
+  lessonCharRowEl.innerHTML = '';
   const start = Math.max(0, lessonIndex - 2);
   const end = Math.min(lessonChars.length, start + 10);
-  const frag = document.createDocumentFragment();
   for(let i=start;i<end;i++){
     const s = document.createElement('span');
     const ch = lessonChars[i];
     s.className = 'lc-char' + (i < lessonIndex ? ' done' : (i === lessonIndex ? ' current' : '')) + (ch === ' ' ? ' lc-space' : '');
     s.textContent = ch === ' ' ? '␣' : ch;
-    frag.appendChild(s);
-  }
-  if(typeof lessonCharRowEl.replaceChildren === 'function'){
-    lessonCharRowEl.replaceChildren(frag);
-  } else {
-    lessonCharRowEl.innerHTML = '';
-    lessonCharRowEl.appendChild(frag);
+    lessonCharRowEl.appendChild(s);
   }
   updateLessonKeyHighlight();
 }
@@ -2490,7 +2418,9 @@ function completeLesson(){
   }
 
   /* Clean completion without particle burst spam */
+  const rect = (boardWrap || document.body).getBoundingClientRect();
   playChime();
+  confettiBurst(rect.left + rect.width/2, rect.top + rect.height*0.3, accuracy === 100 ? 34 : 22);
 
   clearActiveLessonSession();
   lessonActive = false;
@@ -2597,7 +2527,7 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
 
   document.body.appendChild(overlay);
   if(typeof confettiBurst === 'function'){
-    confettiBurst(window.innerWidth / 2, window.innerHeight * 0.38, accuracy === 100 ? 28 : (isNewBest ? 20 : 14));
+    confettiBurst(window.innerWidth / 2, window.innerHeight * 0.38, accuracy === 100 ? 55 : (isNewBest ? 45 : 30));
   }
 
   /* drifting embers inside the card */

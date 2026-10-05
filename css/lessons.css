@@ -46,6 +46,34 @@
     color:var(--gold-bright);
     font-weight:600;
   }
+  .gdh-header-right{
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .guide-close-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:24px;
+    height:24px;
+    border-radius:6px;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.14);
+    color:var(--ink-dim);
+    cursor:pointer;
+    padding:0;
+    transition:background .15s ease, color .15s ease, border-color .15s ease, transform .15s ease;
+  }
+  .guide-close-btn:hover{
+    background:rgba(239,68,68,0.2);
+    border-color:rgba(239,68,68,0.5);
+    color:#fca5a5;
+    transform:scale(1.06);
+  }
+  .guide-close-btn:active{
+    transform:scale(0.94);
+  }
 
   .guide-section{
     background:color-mix(in srgb, var(--stone-2) 65%, var(--stone-1));
@@ -667,8 +695,8 @@
     padding:0;
     box-sizing:border-box;
     box-shadow:0 8px 30px rgba(0,0,0,0.35);
-    transition:width .32s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .2s ease, border-color .2s ease, transform .2s ease;
-    animation:lesson-strip-spring-in 0.24s cubic-bezier(0.16, 1, 0.3, 1) both;
+    transition:width .35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .25s ease, border-color .25s ease, transform .25s ease;
+    animation:lesson-strip-spring-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
     visibility:visible !important;
     opacity:1 !important;
     overflow:hidden;
@@ -676,11 +704,15 @@
   @keyframes lesson-strip-spring-in{
     0%{
       opacity:0;
-      transform:translateX(18px) scale(0.98);
+      transform:perspective(800px) translateX(24px) scale(0.96);
+    }
+    65%{
+      opacity:1;
+      transform:perspective(800px) translateX(-3px) scale(1.01);
     }
     100%{
       opacity:1;
-      transform:translateX(0) scale(1);
+      transform:perspective(800px) translateX(0) scale(1);
     }
   }
   .guide-dock[hidden]{
@@ -1021,16 +1053,10 @@
     width:14px;
     height:14px;
     color:var(--gold-bright);
-    transition:transform .25s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:transform .28s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
   .lesson-level-header:hover .llh-chevron{
-    transform:scale(1.22);
-  }
-  .lesson-level-header.collapsed .llh-chevron{
-    transform:rotate(-90deg);
-  }
-  .lesson-level-header.collapsed:hover .llh-chevron{
-    transform:rotate(-90deg) scale(1.22);
+    transform:scale(1.28);
   }
 
   .lesson-level-list{
@@ -1039,9 +1065,9 @@
     gap:4px;
     margin:0 0 7px;
     overflow:hidden;
-    max-height:2400px;
+    max-height:3000px;
     flex-shrink:0;
-    transition:max-height .28s cubic-bezier(0.16, 1, 0.3, 1), opacity .22s ease, margin .25s ease;
+    transition:max-height .25s ease, opacity .2s ease;
   }
   .lesson-level-list.collapsed{
     max-height:0;
@@ -1197,16 +1223,23 @@
     -webkit-backdrop-filter:blur(16px);
     border:1px solid rgba(255, 209, 102, 0.35);
     box-shadow:0 18px 48px rgba(0,0,0,0.82), 0 0 24px rgba(255,209,102,0.12), inset 0 1px 0 rgba(255,255,255,0.08);
-    animation:panel-in .24s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation:panel-in .38s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   @keyframes panel-in{
     0%{
       opacity:0;
-      transform:translateY(-14px) scale(0.98);
+      transform:perspective(800px) translateY(-26px) scale(0.95);
+      filter:brightness(1.25);
+    }
+    65%{
+      opacity:1;
+      transform:perspective(800px) translateY(3px) scale(1.012);
+      filter:brightness(1.08);
     }
     100%{
       opacity:1;
-      transform:translateY(0) scale(1);
+      transform:perspective(800px) translateY(0) scale(1);
+      filter:brightness(1);
     }
   }
   .lesson-panel[hidden]{ display:none; }
@@ -1473,8 +1506,7 @@
     color:#34d399 !important;
     border-style:solid !important;
     border-color:rgba(52, 211, 153, 0.35) !important;
-    animation:none !important;
-    transition:color .12s ease, border-color .12s ease;
+    animation:lc-char-pop-done .26s cubic-bezier(.34,1.56,.64,1);
   }
   .lc-space.current{
     color:var(--gold-bright) !important;
@@ -1577,25 +1609,36 @@
     text-align:center;
     overflow:hidden;
     isolation:isolate;
-    animation:lesson-card-victory-pop .26s cubic-bezier(0.16, 1, 0.3, 1) both, lc-card-glow 3.2s ease-in-out infinite 0.4s;
+    animation:lesson-card-victory-pop .52s cubic-bezier(0.17, 0.89, 0.32, 1.25) both, lc-card-glow 3.2s ease-in-out infinite 0.6s;
     transform-origin:center center;
-    will-change:transform, opacity;
+    will-change:transform, opacity, filter;
   }
 
   @keyframes lesson-card-victory-pop{
     0%{
       opacity: 0;
-      transform: translateY(18px) scale(0.92);
+      transform: perspective(1000px) translateY(45px) scale(0.74);
+      filter: brightness(1.7) drop-shadow(0 0 45px rgba(255,209,102,0.85));
+    }
+    60%{
+      opacity: 1;
+      transform: perspective(1000px) translateY(-6px) scale(1.035);
+      filter: brightness(1.15) drop-shadow(0 25px 60px rgba(255,209,102,0.4));
+    }
+    82%{
+      transform: perspective(1000px) translateY(2px) scale(0.99);
+      filter: brightness(1.04);
     }
     100%{
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: perspective(1000px) translateY(0) scale(1);
+      filter: brightness(1) drop-shadow(0 20px 50px rgba(0,0,0,0.7));
     }
   }
 
   @keyframes lesson-card-victory-out{
-    0%{ opacity: 1; transform: translateY(0) scale(1); }
-    100%{ opacity: 0; transform: translateY(12px) scale(0.96); }
+    0%{ opacity: 1; transform: perspective(1000px) translateY(0) scale(1); }
+    100%{ opacity: 0; transform: perspective(1000px) translateY(25px) scale(0.9); }
   }
   @keyframes lc-card-glow{
     0%,100%{ box-shadow:0 40px 90px -24px rgba(0,0,0,0.8), 0 0 32px rgba(255,209,102,0.22); }
@@ -2042,11 +2085,15 @@
   @keyframes fb-box-pop{
     0%{
       opacity:0;
-      transform:translateY(8px) scale(0.96);
+      transform:perspective(600px) translateY(18px) scale(0.85) rotateX(15deg);
+    }
+    65%{
+      opacity:1;
+      transform:perspective(600px) translateY(-3px) scale(1.04) rotateX(-3deg);
     }
     100%{
       opacity:1;
-      transform:translateY(0) scale(1);
+      transform:perspective(600px) translateY(0) scale(1) rotateX(0deg);
     }
   }
   .pk-fb-stat-box:hover{
@@ -3403,111 +3450,19 @@ html.theme-sunset .adaptive-summary-card {
 /* ---------- 2. LIGHT THEME (html.theme-light) — ALL DOCKS, PANELS & MODALS ---------- */
 html.theme-light .guide-dock,
 html.theme-light #guideDock,
-html.theme-light.focus-mode .guide-dock,
-html.theme-light.focus-mode #guideDock,
 html.theme-light .lesson-strip,
-html.theme-light #lessonStrip,
-html.theme-light.focus-mode .lesson-strip,
-html.theme-light.focus-mode #lessonStrip,
-html.theme-light .lesson-strip:hover,
-html.theme-light #lessonStrip:hover,
-html.theme-light.focus-mode .lesson-strip:hover,
-html.theme-light.focus-mode #lessonStrip:hover {
+html.theme-light.focus-mode .lesson-strip {
   background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
   border: 1.5px solid #cbd5e1 !important;
   box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12) !important;
   color: #0f172a !important;
-  opacity: 1 !important;
 }
-
-html.theme-light .lesson-strip::before,
-html.theme-light #lessonStrip::before,
-html.theme-light.focus-mode .lesson-strip::before,
-html.theme-light.focus-mode #lessonStrip::before,
-html.theme-light .guide-dock::before,
-html.theme-light #guideDock::before {
-  display: none !important;
-}
-
 html.theme-light .guide-dock-header,
-html.theme-light #guideDock .guide-dock-header,
-html.theme-light.focus-mode .guide-dock-header,
-html.theme-light.focus-mode #guideDock .guide-dock-header,
 html.theme-light .lesson-strip-header,
-html.theme-light #lessonStrip .lesson-strip-header,
-html.theme-light.focus-mode .lesson-strip-header,
-html.theme-light.focus-mode #lessonStrip .lesson-strip-header,
-html.theme-light .lesson-strip-search,
-html.theme-light #lessonStrip .lesson-strip-search,
-html.theme-light.focus-mode .lesson-strip-search,
-html.theme-light.focus-mode #lessonStrip .lesson-strip-search {
+html.theme-light .lesson-strip-search {
   background: #f1f5f9 !important;
   border-bottom: 1px solid #cbd5e1 !important;
   color: #0f172a !important;
-}
-
-html.theme-light .lsh-title,
-html.theme-light #lessonStrip .lsh-title,
-html.theme-light.focus-mode .lsh-title,
-html.theme-light.focus-mode #lessonStrip .lsh-title {
-  color: #0f172a !important;
-  text-shadow: none !important;
-}
-
-html.theme-light .lsh-adaptive-btn,
-html.theme-light #lessonStrip .lsh-adaptive-btn,
-html.theme-light.focus-mode .lsh-adaptive-btn,
-html.theme-light.focus-mode #lessonStrip .lsh-adaptive-btn {
-  background: #e0f2fe !important;
-  border: 1px solid #7dd3fc !important;
-  color: #0369a1 !important;
-  box-shadow: none !important;
-}
-html.theme-light .lsh-adaptive-btn:hover,
-html.theme-light #lessonStrip .lsh-adaptive-btn:hover,
-html.theme-light.focus-mode .lsh-adaptive-btn:hover,
-html.theme-light.focus-mode #lessonStrip .lsh-adaptive-btn:hover {
-  background: #0284c7 !important;
-  color: #ffffff !important;
-  border-color: #0284c7 !important;
-}
-
-html.theme-light .lsh-badge,
-html.theme-light #lessonStrip .lsh-badge,
-html.theme-light.focus-mode .lsh-badge,
-html.theme-light.focus-mode #lessonStrip .lsh-badge,
-html.theme-light .lsh-expand-btn,
-html.theme-light #lessonStrip .lsh-expand-btn,
-html.theme-light.focus-mode .lsh-expand-btn,
-html.theme-light.focus-mode #lessonStrip .lsh-expand-btn {
-  background: #f1f5f9 !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #334155 !important;
-  box-shadow: none !important;
-}
-
-html.theme-light .lesson-strip-body,
-html.theme-light #lessonStripBody,
-html.theme-light #lessonStrip .lesson-strip-body,
-html.theme-light.focus-mode #lessonStrip .lesson-strip-body {
-  background: transparent !important;
-}
-
-html.theme-light .lesson-strip-body::-webkit-scrollbar-track,
-html.theme-light #lessonStripBody::-webkit-scrollbar-track,
-html.theme-light #lessonStrip .lesson-strip-body::-webkit-scrollbar-track {
-  background: #f1f5f9 !important;
-}
-html.theme-light .lesson-strip-body::-webkit-scrollbar-thumb,
-html.theme-light #lessonStripBody::-webkit-scrollbar-thumb,
-html.theme-light #lessonStrip .lesson-strip-body::-webkit-scrollbar-thumb {
-  background: #cbd5e1 !important;
-  box-shadow: none !important;
-}
-html.theme-light .lesson-strip-body::-webkit-scrollbar-thumb:hover,
-html.theme-light #lessonStripBody::-webkit-scrollbar-thumb:hover,
-html.theme-light #lessonStrip .lesson-strip-body::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8 !important;
 }
 html.theme-light .gdh-title,
 html.theme-light .guide-sec-head {
@@ -3639,56 +3594,20 @@ html.theme-light .lesson-level-header {
   border-left: 3px solid var(--gold-bright) !important;
   color: #0f172a !important;
 }
-html.theme-light .lesson-card,
-html.theme-light #lessonStrip .lesson-card {
+html.theme-light .lesson-card {
   background: #ffffff !important;
   border: 1px solid #e2e8f0 !important;
   color: #0f172a !important;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05) !important;
 }
-html.theme-light .lesson-card:hover,
-html.theme-light #lessonStrip .lesson-card:hover {
-  background: #f8fafc !important;
-  border-color: #cbd5e1 !important;
-}
-html.theme-light .lesson-card.active,
-html.theme-light #lessonStrip .lesson-card.active {
-  background: #fffbeb !important;
-  border-color: #f59e0b !important;
-  box-shadow: 0 0 0 1px #f59e0b, 0 4px 12px rgba(245, 158, 11, 0.15) !important;
-}
-html.theme-light .lesson-card-title,
-html.theme-light #lessonStrip .lesson-card-title {
+html.theme-light .lesson-card-title {
   color: #0f172a !important;
 }
-html.theme-light .lesson-card-sub,
-html.theme-light #lessonStrip .lesson-card-sub {
-  color: #64748b !important;
-}
-html.theme-light .lesson-card-num,
-html.theme-light #lessonStrip .lesson-card-num {
-  background: #f1f5f9 !important;
-  border: 1px solid #cbd5e1 !important;
-  color: #475569 !important;
-  box-shadow: none !important;
-  text-shadow: none !important;
-}
-html.theme-light .lesson-card.active .lesson-card-num,
-html.theme-light #lessonStrip .lesson-card.active .lesson-card-num {
-  background: #fef3c7 !important;
-  border-color: #fcd34d !important;
-  color: #b45309 !important;
-}
-html.theme-light .lesson-card.locked,
-html.theme-light #lessonStrip .lesson-card.locked {
-  background: #f8fafc !important;
-  opacity: 0.65 !important;
-  border-color: #e2e8f0 !important;
+html.theme-light .lesson-card-num {
+  background: color-mix(in srgb, var(--gold-bright) 14%, #f1f5f9) !important;
+  color: var(--gold-bright) !important;
 }
 html.theme-light .lesson-card-best,
-html.theme-light .lesson-card-best.mastered,
-html.theme-light #lessonStrip .lesson-card-best,
-html.theme-light #lessonStrip .lesson-card-best.mastered {
+html.theme-light .lesson-card-best.mastered {
   background: #d1fae5 !important;
   border-color: #10b981 !important;
   color: #047857 !important;
@@ -3852,12 +3771,8 @@ html.theme-light .lc-ring::before {
 /* ---------- 3. SEPIA THEME (html.theme-sepia) — ALL DOCKS, PANELS & MODALS ---------- */
 html.theme-sepia .guide-dock,
 html.theme-sepia #guideDock,
-html.theme-sepia.focus-mode .guide-dock,
-html.theme-sepia.focus-mode #guideDock,
 html.theme-sepia .lesson-strip,
-html.theme-sepia #lessonStrip,
-html.theme-sepia.focus-mode .lesson-strip,
-html.theme-sepia.focus-mode #lessonStrip {
+html.theme-sepia.focus-mode .lesson-strip {
   background: linear-gradient(180deg, #faf5ec 0%, #f0e6d2 100%) !important;
   border: 1.5px solid #bfa886 !important;
   box-shadow: 0 16px 40px rgba(44, 27, 12, 0.16) !important;
