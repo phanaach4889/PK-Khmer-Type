@@ -253,10 +253,10 @@
           </h2>
           <a href="#keycap-3d" class="section-anchor">#</a>
         </div>
-        <p class="doc-p doc-i18n"
-           data-en="Explore the full 3D mechanical keyboard modeled after PK Khmer Type with sculpted OEM-profile keycaps, dynamic layout switching (Khmer Standard, NiDA, English), mechanical spring physics with tactile audio feedback, grounded studio desk mat mounting, and full museum switch inspection. Type with your real physical keyboard, click any key, or orbit 360°."
-           data-km="ពិនិត្យមើលក្តារចុចមេកានិចពេញលេញ 3D នៃ PK Khmer Type ជាមួយគ្រាប់ចុចរាង OEM ការប្តូរប្លង់ភ្លាមៗ (Khmer Standard, NiDA, English) ចលនារុញស្ព្រីង និងសំឡេងមេកានិចជាក់ស្តែង លើតុការងារស្ទូឌីយោ និងការពិនិត្យមើលរចនាសម្ព័ន្ធកុងតាក់ switch យ៉ាងលម្អិត។ អ្នកអាចវាយផ្ទាល់ជាមួយក្តារចុចពិតរបស់អ្នក ចុចលើគ្រាប់ 3D ឬបង្វិល ៣៦០ ដឺក្រេ។">
-          Explore the full 3D mechanical keyboard modeled after PK Khmer Type with sculpted OEM-profile keycaps, dynamic layout switching (Khmer Standard, NiDA, English), mechanical spring physics with tactile audio feedback, grounded studio desk mat mounting, and full museum switch inspection. Type with your real physical keyboard, click any key, or orbit 360°.
+        <p class="doc-p section-wip-notice doc-i18n"
+           data-en="🚧 &nbsp;This feature is still being worked on — the interactive 3D keyboard experience is coming soon. Stay tuned!"
+           data-km="🚧 &nbsp;មុខងារនេះនៅតែកំពុងអភិវឌ្ឍ — បទពិសោធន៍ក្តារចុច 3D ពេញលេញនឹងមកដល់ឆាប់ៗ។ សូមរង់ចាំ!">
+          🚧 &nbsp;This feature is still being worked on — the interactive 3D keyboard experience is coming soon. Stay tuned!
         </p>
 
         <!-- 3D Viewport Stage -->
@@ -1049,8 +1049,11 @@ node scripts/validate_curriculum.js
 # Run spaced repetition audit across all 3 layouts:
 node scripts/audit_spaced_review.js
 
-# Run curriculum bundling & integrity:
-node scripts/bundle_curricula.js</code></pre>
+# Run refresh persistence test harness:
+node scratch/test_refresh_lesson_persistence.js
+
+# Run /Documents endpoint tests:
+node scratch/test_documents_endpoint.js</code></pre>
         </div>
       </section>
 
