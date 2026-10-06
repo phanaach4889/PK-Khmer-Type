@@ -2331,6 +2331,8 @@
   html.focus-mode .torch,
   html.focus-mode .scanline-overlay,
   html.focus-mode .developer-note-btn,
+  html.focus-mode #guideToggleBtn,
+  html.focus-mode .guide-toggle-btn,
   html.focus-mode #shortcutsOpenBtn,
   html.focus-mode #topLangToggleBtn,
   html.focus-mode #statsOpenBtn,

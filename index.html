@@ -406,16 +406,24 @@
     </div>
 
     <!-- Category Navigation Bar -->
-    <div class="settings-tabs-scroll" id="settingsCategoryTabs" role="tablist">
-      <button type="button" class="settings-cat-tab active" data-cat="all" role="tab" aria-selected="true">All Settings</button>
-      <button type="button" class="settings-cat-tab" data-cat="general" role="tab" aria-selected="false">General &amp; Layout</button>
-      <button type="button" class="settings-cat-tab" data-cat="keyboard" role="tab" aria-selected="false">Hands &amp; Cursor</button>
-      <button type="button" class="settings-cat-tab" data-cat="audio" role="tab" aria-selected="false">Sound &amp; Audio</button>
-      <button type="button" class="settings-cat-tab" data-cat="typing" role="tab" aria-selected="false">Typing &amp; Lessons</button>
-      <button type="button" class="settings-cat-tab" data-cat="appearance" role="tab" aria-selected="false">Appearance &amp; Themes</button>
-      <button type="button" class="settings-cat-tab" data-cat="immersion" role="tab" aria-selected="false">Immersion &amp; FX</button>
-      <button type="button" class="settings-cat-tab" data-cat="a11y" role="tab" aria-selected="false">Accessibility</button>
-      <button type="button" class="settings-cat-tab" data-cat="data" role="tab" aria-selected="false">Data &amp; Backup</button>
+    <div class="settings-tabs-wrap">
+      <button type="button" class="settings-tabs-arrow left" id="settingsTabsScrollLeft" aria-label="Scroll categories left" title="Scroll categories left">
+        <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="settings-tabs-scroll" id="settingsCategoryTabs" role="tablist">
+        <button type="button" class="settings-cat-tab active" data-cat="all" role="tab" aria-selected="true">All Settings</button>
+        <button type="button" class="settings-cat-tab" data-cat="general" role="tab" aria-selected="false">General &amp; Layout</button>
+        <button type="button" class="settings-cat-tab" data-cat="keyboard" role="tab" aria-selected="false">Hands &amp; Cursor</button>
+        <button type="button" class="settings-cat-tab" data-cat="audio" role="tab" aria-selected="false">Sound &amp; Audio</button>
+        <button type="button" class="settings-cat-tab" data-cat="typing" role="tab" aria-selected="false">Typing &amp; Lessons</button>
+        <button type="button" class="settings-cat-tab" data-cat="appearance" role="tab" aria-selected="false">Appearance &amp; Themes</button>
+        <button type="button" class="settings-cat-tab" data-cat="immersion" role="tab" aria-selected="false">Immersion &amp; FX</button>
+        <button type="button" class="settings-cat-tab" data-cat="a11y" role="tab" aria-selected="false">Accessibility</button>
+        <button type="button" class="settings-cat-tab" data-cat="data" role="tab" aria-selected="false">Data &amp; Backup</button>
+      </div>
+      <button type="button" class="settings-tabs-arrow right" id="settingsTabsScrollRight" aria-label="Scroll categories right" title="Scroll right">
+        <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
     </div>
 
     <!-- Scrollable Settings Sections -->

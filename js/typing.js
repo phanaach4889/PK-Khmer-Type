@@ -583,7 +583,8 @@ function heatColor(streakVal) {
 }
 
 function isAnimationDisabled() {
-  const html = document.documentElement;
+  const html = typeof document !== 'undefined' ? document.documentElement : null;
+  if (!html || !html.classList) return false;
   return html.classList.contains('performance-mode') ||
          html.classList.contains('anim-mode-off') ||
          html.classList.contains('anim-mode-minimal') ||

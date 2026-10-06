@@ -130,16 +130,24 @@ function ensureUpgradedSettingsModalDOM() {
         </div>
       </div>
     </div>
-    <div class="settings-tabs-scroll" id="settingsCategoryTabs" role="tablist">
-      <button type="button" class="settings-cat-tab active" data-cat="all" role="tab" aria-selected="true">All Settings</button>
-      <button type="button" class="settings-cat-tab" data-cat="general" role="tab" aria-selected="false">General &amp; Layout</button>
-      <button type="button" class="settings-cat-tab" data-cat="keyboard" role="tab" aria-selected="false">Hands &amp; Cursor</button>
-      <button type="button" class="settings-cat-tab" data-cat="audio" role="tab" aria-selected="false">Sound &amp; Audio</button>
-      <button type="button" class="settings-cat-tab" data-cat="typing" role="tab" aria-selected="false">Typing &amp; Lessons</button>
-      <button type="button" class="settings-cat-tab" data-cat="appearance" role="tab" aria-selected="false">Appearance &amp; Themes</button>
-      <button type="button" class="settings-cat-tab" data-cat="immersion" role="tab" aria-selected="false">Immersion &amp; FX</button>
-      <button type="button" class="settings-cat-tab" data-cat="a11y" role="tab" aria-selected="false">Accessibility</button>
-      <button type="button" class="settings-cat-tab" data-cat="data" role="tab" aria-selected="false">Data &amp; Backup</button>
+    <div class="settings-tabs-wrap">
+      <button type="button" class="settings-tabs-arrow left" id="settingsTabsScrollLeft" aria-label="Scroll categories left" title="Scroll categories left">
+        <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="settings-tabs-scroll" id="settingsCategoryTabs" role="tablist">
+        <button type="button" class="settings-cat-tab active" data-cat="all" role="tab" aria-selected="true">All Settings</button>
+        <button type="button" class="settings-cat-tab" data-cat="general" role="tab" aria-selected="false">General &amp; Layout</button>
+        <button type="button" class="settings-cat-tab" data-cat="keyboard" role="tab" aria-selected="false">Hands &amp; Cursor</button>
+        <button type="button" class="settings-cat-tab" data-cat="audio" role="tab" aria-selected="false">Sound &amp; Audio</button>
+        <button type="button" class="settings-cat-tab" data-cat="typing" role="tab" aria-selected="false">Typing &amp; Lessons</button>
+        <button type="button" class="settings-cat-tab" data-cat="appearance" role="tab" aria-selected="false">Appearance &amp; Themes</button>
+        <button type="button" class="settings-cat-tab" data-cat="immersion" role="tab" aria-selected="false">Immersion &amp; FX</button>
+        <button type="button" class="settings-cat-tab" data-cat="a11y" role="tab" aria-selected="false">Accessibility</button>
+        <button type="button" class="settings-cat-tab" data-cat="data" role="tab" aria-selected="false">Data &amp; Backup</button>
+      </div>
+      <button type="button" class="settings-tabs-arrow right" id="settingsTabsScrollRight" aria-label="Scroll categories right" title="Scroll right">
+        <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
     </div>
     <div class="settings-body-scroll" id="settingsBodyScroll">
       <div class="settings-section" data-cat-section="general">
@@ -619,7 +627,78 @@ function initSettingsToggles() {
   const emptySearch = document.getElementById("settingsEmptySearch");
   const searchTermEl = document.getElementById("settingsSearchTerm");
   const activeCatCountEl = document.getElementById("settingsActiveCatCount");
+  const tabsScrollEl = document.getElementById("settingsCategoryTabs");
+  const tabScrollLeftBtn = document.getElementById("settingsTabsScrollLeft");
+  const tabScrollRightBtn = document.getElementById("settingsTabsScrollRight");
   let activeCategory = "all";
+
+  function updateTabsScrollArrows() {
+    if (!tabsScrollEl) return;
+    const maxScroll = tabsScrollEl.scrollWidth - tabsScrollEl.clientWidth;
+    if (tabScrollLeftBtn) {
+      tabScrollLeftBtn.disabled = tabsScrollEl.scrollLeft <= 4;
+    }
+    if (tabScrollRightBtn) {
+      tabScrollRightBtn.disabled = tabsScrollEl.scrollLeft >= maxScroll - 4;
+    }
+  }
+
+  if (tabsScrollEl) {
+    // Mouse wheel horizontal scrolling
+    tabsScrollEl.addEventListener("wheel", (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        tabsScrollEl.scrollLeft += e.deltaY;
+        updateTabsScrollArrows();
+      }
+    }, { passive: false });
+
+    // Click and drag horizontal panning
+    let isMouseDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+
+    tabsScrollEl.addEventListener("mousedown", (e) => {
+      if (e.button !== 0) return;
+      isMouseDown = true;
+      startX = e.pageX;
+      scrollStart = tabsScrollEl.scrollLeft;
+      tabsScrollEl.classList.add("is-dragging");
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      if (!isMouseDown || !tabsScrollEl) return;
+      const walk = e.pageX - startX;
+      tabsScrollEl.scrollLeft = scrollStart - walk;
+      updateTabsScrollArrows();
+    });
+
+    window.addEventListener("mouseup", () => {
+      if (!isMouseDown) return;
+      isMouseDown = false;
+      if (tabsScrollEl) {
+        tabsScrollEl.classList.remove("is-dragging");
+        updateTabsScrollArrows();
+      }
+    });
+
+    // Left and right arrow buttons
+    if (tabScrollLeftBtn) {
+      tabScrollLeftBtn.addEventListener("click", () => {
+        tabsScrollEl.scrollBy({ left: -220, behavior: "smooth" });
+        setTimeout(updateTabsScrollArrows, 250);
+      });
+    }
+    if (tabScrollRightBtn) {
+      tabScrollRightBtn.addEventListener("click", () => {
+        tabsScrollEl.scrollBy({ left: 220, behavior: "smooth" });
+        setTimeout(updateTabsScrollArrows, 250);
+      });
+    }
+
+    tabsScrollEl.addEventListener("scroll", updateTabsScrollArrows, { passive: true });
+    setTimeout(updateTabsScrollArrows, 100);
+  }
 
   function filterSettingsView() {
     const query = (searchInput ? searchInput.value : "").trim().toLowerCase();
@@ -674,6 +753,8 @@ function initSettingsToggles() {
         t.classList.toggle("active", isAct);
         t.setAttribute("aria-selected", String(isAct));
       });
+      tab.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      setTimeout(updateTabsScrollArrows, 300);
       if (searchInput && searchInput.value) {
         searchInput.value = "";
       }
@@ -1853,6 +1934,9 @@ function initSettingsToggles() {
     filterSettingsView();
     if (settingsModal) {
       settingsModal.hidden = false;
+      if (typeof updateTabsScrollArrows === "function") {
+        setTimeout(updateTabsScrollArrows, 50);
+      }
       if (settingsCloseBtn) settingsCloseBtn.focus();
     }
   }

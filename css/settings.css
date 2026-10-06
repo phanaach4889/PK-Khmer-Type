@@ -208,19 +208,74 @@
 }
 
 /* Category Navigation Pills */
+.settings-tabs-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(10, 12, 22, 0.65);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.settings-tabs-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--gold-bright, #ffd166);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin: 0 6px;
+  z-index: 2;
+}
+
+.settings-tabs-arrow:hover:not(:disabled) {
+  background: rgba(255, 209, 102, 0.18);
+  border-color: rgba(255, 209, 102, 0.45);
+  transform: scale(1.05);
+}
+
+.settings-tabs-arrow:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.settings-tabs-arrow:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .settings-tabs-scroll {
   display: flex;
   gap: 6px;
   overflow-x: auto;
-  padding: 10px 24px;
-  background: rgba(10, 12, 22, 0.65);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  flex-shrink: 0;
-  /* scrollbar-width: thin (handled via ::-webkit-scrollbar) */
+  overflow-y: hidden;
+  padding: 10px 4px;
+  background: transparent;
+  flex: 1;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  user-select: none;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 209, 102, 0.35) rgba(0, 0, 0, 0.2);
 }
 
-.settings-tabs-scroll::-webkit-scrollbar { height: 4px; }
-.settings-tabs-scroll::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 4px; }
+.settings-tabs-scroll.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.settings-tabs-scroll::-webkit-scrollbar { height: 5px; }
+.settings-tabs-scroll::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.2); border-radius: 999px; }
+.settings-tabs-scroll::-webkit-scrollbar-thumb { background: rgba(255, 209, 102, 0.35); border-radius: 999px; }
+.settings-tabs-scroll::-webkit-scrollbar-thumb:hover { background: rgba(255, 209, 102, 0.6); }
 
 .settings-cat-tab {
   display: inline-flex;
@@ -1159,9 +1214,18 @@ html.theme-light .settings-preset-btn:hover {
   color: #0f172a !important;
 }
 
+html.theme-light .settings-tabs-wrap,
 html.theme-light .settings-tabs-scroll {
   background: #e2e8f0 !important;
   border-bottom: 1px solid #cbd5e1 !important;
+}
+html.theme-light .settings-tabs-arrow {
+  background: rgba(15, 23, 42, 0.05) !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+html.theme-light .settings-tabs-arrow:hover:not(:disabled) {
+  background: #cbd5e1 !important;
 }
 
 html.theme-light .settings-cat-tab {
@@ -1378,9 +1442,18 @@ html.theme-sepia .settings-preset-btn:hover {
   color: #2c1b0c !important;
 }
 
+html.theme-sepia .settings-tabs-wrap,
 html.theme-sepia .settings-tabs-scroll {
   background: #e7dac1 !important;
   border-bottom: 1px solid #ccbc9e !important;
+}
+html.theme-sepia .settings-tabs-arrow {
+  background: rgba(44, 27, 12, 0.05) !important;
+  border-color: #ccbc9e !important;
+  color: #8c531b !important;
+}
+html.theme-sepia .settings-tabs-arrow:hover:not(:disabled) {
+  background: #d9c8aa !important;
 }
 
 html.theme-sepia .settings-cat-tab {
@@ -1567,9 +1640,18 @@ html.theme-glass .settings-count-pill {
   color: #67e8f9 !important;
 }
 
+html.theme-glass .settings-tabs-wrap,
 html.theme-glass .settings-tabs-scroll {
   background: rgba(0, 0, 0, 0.15) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+}
+html.theme-glass .settings-tabs-arrow {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: #67e8f9 !important;
+}
+html.theme-glass .settings-tabs-arrow:hover:not(:disabled) {
+  background: rgba(103, 232, 249, 0.2) !important;
 }
 
 html.theme-glass .settings-cat-tab {
@@ -1823,9 +1905,18 @@ html.theme-jungle .settings-preset-btn:hover {
   color: #eafff0 !important;
 }
 
+html.theme-jungle .settings-tabs-wrap,
 html.theme-jungle .settings-tabs-scroll {
   background: rgba(10, 20, 14, 0.95) !important;
   border-bottom: 1px solid rgba(95, 214, 148, 0.18) !important;
+}
+html.theme-jungle .settings-tabs-arrow {
+  background: rgba(95, 214, 148, 0.08) !important;
+  border-color: rgba(95, 214, 148, 0.22) !important;
+  color: #5fd694 !important;
+}
+html.theme-jungle .settings-tabs-arrow:hover:not(:disabled) {
+  background: rgba(95, 214, 148, 0.2) !important;
 }
 
 html.theme-jungle .settings-cat-tab {
@@ -2058,9 +2149,18 @@ html.theme-temple .settings-preset-btn:hover {
   color: #fff1dc !important;
 }
 
+html.theme-temple .settings-tabs-wrap,
 html.theme-temple .settings-tabs-scroll {
   background: rgba(22, 15, 9, 0.95) !important;
   border-bottom: 1px solid rgba(255, 209, 102, 0.18) !important;
+}
+html.theme-temple .settings-tabs-arrow {
+  background: rgba(255, 209, 102, 0.08) !important;
+  border-color: rgba(255, 209, 102, 0.22) !important;
+  color: #ffd166 !important;
+}
+html.theme-temple .settings-tabs-arrow:hover:not(:disabled) {
+  background: rgba(255, 209, 102, 0.2) !important;
 }
 
 html.theme-temple .settings-cat-tab {
@@ -2293,9 +2393,18 @@ html.theme-moonlight .settings-preset-btn:hover {
   color: #eaf2ff !important;
 }
 
+html.theme-moonlight .settings-tabs-wrap,
 html.theme-moonlight .settings-tabs-scroll {
   background: rgba(11, 18, 36, 0.95) !important;
   border-bottom: 1px solid rgba(191, 224, 255, 0.18) !important;
+}
+html.theme-moonlight .settings-tabs-arrow {
+  background: rgba(191, 224, 255, 0.08) !important;
+  border-color: rgba(191, 224, 255, 0.22) !important;
+  color: #bfe0ff !important;
+}
+html.theme-moonlight .settings-tabs-arrow:hover:not(:disabled) {
+  background: rgba(191, 224, 255, 0.2) !important;
 }
 
 html.theme-moonlight .settings-cat-tab {
@@ -2528,9 +2637,18 @@ html.theme-sunset .settings-preset-btn:hover {
   color: #fff0e6 !important;
 }
 
+html.theme-sunset .settings-tabs-wrap,
 html.theme-sunset .settings-tabs-scroll {
   background: rgba(24, 11, 18, 0.95) !important;
   border-bottom: 1px solid rgba(255, 138, 76, 0.18) !important;
+}
+html.theme-sunset .settings-tabs-arrow {
+  background: rgba(255, 138, 76, 0.08) !important;
+  border-color: rgba(255, 138, 76, 0.22) !important;
+  color: #ff8a4c !important;
+}
+html.theme-sunset .settings-tabs-arrow:hover:not(:disabled) {
+  background: rgba(255, 138, 76, 0.2) !important;
 }
 
 html.theme-sunset .settings-cat-tab {
