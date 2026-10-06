@@ -141,7 +141,7 @@
   <div class="guide-dock-header">
     <div class="gdh-title-wrap">
       <span class="gdh-title"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01"/><path d="M10 8h.01"/><path d="M14 8h.01"/><path d="M18 8h.01"/><path d="M6 12h.01"/><path d="M10 12h.01"/><path d="M14 12h.01"/><path d="M18 12h.01"/><path d="M7 16h10"/></svg> <span class="i18n-t" data-en="QUICK GUIDE" data-km="ការណែនាំរហ័ស">QUICK GUIDE</span></span>
-      <span class="guide-live-status-pill" id="guideLiveStatusPill"><span class="gls-dot"></span> <span id="guideLiveStatusText">Ready</span></span>
+      <span class="guide-live-status-pill" id="guideLiveStatusPill" title="Thinking Orb (Libraries.dev) · Click to switch AI state" role="button" tabindex="0"><canvas class="thinking-orb guide-radar-orb" id="guideRadarOrb" width="20" height="20" data-state="searching" data-size="20"></canvas> <span id="guideLiveStatusText">Searching</span></span>
     </div>
     <div class="gdh-header-right">
       <span class="gdh-badge" id="guideLayoutBadge">Standard</span>
@@ -385,10 +385,6 @@
           </div>
           <h2 id="settingsModalTitle"><span class="i18n-t" data-en="Settings &amp; Studio" data-km="ការកំណត់ និងស្ទូឌីយោ">Settings &amp; Studio</span> <span class="km-sub">ការកំណត់</span></h2>
           <span class="settings-count-pill" id="settingsActiveCatCount">32 Controls</span>
-          <button type="button" class="settings-version-pill" id="settingsVersionPill" title="PK Khmer Type v2.2 Pro Studio · Click to view Release Info" aria-label="Version 2.2 Release Info">
-            <span class="ver-live-dot" aria-hidden="true"></span>
-            <span>v2.2 Pro Studio</span>
-          </button>
         </div>
         <button class="modal-close" id="settingsCloseBtn" aria-label="Close settings"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
@@ -1078,6 +1074,56 @@
           </div>
         </div>
 
+        <div class="settings-row settings-row-stacked" data-search="thinking orb orbs ai indicator libraries dev dotted canvas animation state searching working solving listening connecting weaving composing breathing shaping">
+          <div class="settings-row-info">
+            <div class="settings-row-title-line">
+              <span class="settings-row-name">AI Thinking Orb</span>
+              <span class="settings-row-km">គ្រាប់គិត AI (Libraries.dev)</span>
+              <span class="settings-badge" style="background:rgba(56,189,248,0.18); color:#38bdf8; border:1px solid rgba(56,189,248,0.35); font-size:0.6rem; padding:1px 6px; border-radius:999px;">LIBRARIES.DEV</span>
+            </div>
+            <div class="settings-row-desc">Dotted canvas thought-orb indicators for AI &amp; agent workflows. Nine hand-tuned animated states from Libraries.dev.</div>
+          </div>
+          <div class="settings-row-control">
+            <div class="settings-orb-showcase">
+              <div class="settings-orb-stage">
+                <canvas class="thinking-orb" id="settingsShowcaseOrb" width="64" height="64" data-state="searching" data-size="64" aria-label="AI Thinking Orb Showcase"></canvas>
+                <div class="settings-orb-badge-pill" id="settingsOrbStatePill">state="searching" · size=64</div>
+              </div>
+              <div class="settings-orb-controls">
+                <div class="settings-choice settings-choice-orb-states" id="orbStateChoice">
+                  <button type="button" data-orb-state="working">working</button>
+                  <button type="button" data-orb-state="searching" class="active">searching</button>
+                  <button type="button" data-orb-state="solving">solving</button>
+                  <button type="button" data-orb-state="listening">listening</button>
+                  <button type="button" data-orb-state="connecting">connecting</button>
+                  <button type="button" data-orb-state="weaving">weaving</button>
+                  <button type="button" data-orb-state="composing">composing</button>
+                  <button type="button" data-orb-state="breathing">breathing</button>
+                  <button type="button" data-orb-state="shaping">shaping</button>
+                </div>
+                <div class="settings-orb-subcontrols">
+                  <div class="settings-orb-size-group">
+                    <span class="settings-orb-sublabel">Size:</span>
+                    <button type="button" class="settings-orb-size-btn active" data-orb-size="64">64px</button>
+                    <button type="button" class="settings-orb-size-btn" data-orb-size="32">32px</button>
+                    <button type="button" class="settings-orb-size-btn" data-orb-size="20">20px</button>
+                  </div>
+                  <div class="settings-orb-size-group">
+                    <span class="settings-orb-sublabel">Speed:</span>
+                    <button type="button" class="settings-orb-speed-btn" data-orb-speed="0.5">0.5x</button>
+                    <button type="button" class="settings-orb-speed-btn active" data-orb-speed="1">1x</button>
+                    <button type="button" class="settings-orb-speed-btn" data-orb-speed="1.5">1.5x</button>
+                  </div>
+                </div>
+                <div class="settings-orb-code-preview">
+                  <code>&lt;ThinkingOrb state="<span id="settingsOrbCodeState">searching</span>" size={<span id="settingsOrbCodeSize">64</span>} /&gt;</code>
+                  <button type="button" class="settings-orb-copy-btn" id="settingsOrbCopyBtn" title="Copy React snippet">Copy</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="settings-row" data-search="reduced motion animations disable smooth" style="display:none;">
           <div class="settings-row-info">
             <div class="settings-row-title-line">
@@ -1559,7 +1605,7 @@
   <img src="logo.svg" alt="PK Logo" width="52" height="52">
 </div>
 
-<h1><span class="km">ក ខ គ</span>PK Khmer Type<button type="button" class="hero-version-tag" id="heroVersionTag" title="PK Khmer Type v2.2 Studio · Click to view Release Info" aria-label="Version 2.2 Release Info">v2.2</button></h1>
+<h1><span class="km">ក ខ គ</span>PK Khmer Type</h1>
 <p class="subtitle i18n-t" id="mainSubtitle" data-en="Rest your pointer on &lt;kbd&gt;Shift&lt;/kbd&gt;, &lt;kbd&gt;Ctrl&lt;/kbd&gt;, or &lt;kbd&gt;AltGr&lt;/kbd&gt; to preview a layer — click to pin it, click keys to type, or just use your real keyboard." data-km="ដាក់ព្រួញកណ្ដុរលើ &lt;kbd&gt;Shift&lt;/kbd&gt;, &lt;kbd&gt;Ctrl&lt;/kbd&gt; ឬ &lt;kbd&gt;AltGr&lt;/kbd&gt; ដើម្បីមើលស្រទាប់ជាមុន — ចុចដើម្បីភ្ជាប់វា ចុចគ្រាប់ចុចដើម្បីវាយ ឬគ្រាន់តែប្រើក្តារចុចពិតរបស់អ្នក។">Rest your pointer on <kbd>Shift</kbd>, <kbd>Ctrl</kbd>, or <kbd>AltGr</kbd> to preview a layer — click to pin it, click keys to type, or just use your real keyboard.</p>
 <div class="founder-byline">
   <span class="founder-byline-mark" aria-hidden="true">&bull;</span>
@@ -1905,10 +1951,6 @@
       <span class="chassis-name">PK-KHMER</span>
       <span class="chassis-slash">/</span>
       <span class="chassis-layout-label" id="chassisLayoutLabel">STANDARD</span>
-      <button type="button" class="chassis-version-badge" id="chassisVersionBadge" title="PK Khmer Type v2.2 — Studio Edition · Click to view Release Info" aria-label="Version 2.2 Release Info">
-        <span class="chassis-ver-pulse" aria-hidden="true"></span>
-        <span class="chassis-ver-text">v2.2</span>
-      </button>
     </div>
     <div class="chassis-actions">
       <a href="Documents/index.html" class="chassis-docs-btn" title="PK Khmer Type Documents &amp; Architecture Guide" aria-label="Open Documentation">
@@ -1952,7 +1994,6 @@
     <div class="site-footer-credit-badge">
       <span class="site-footer-live-dot" aria-hidden="true"></span>
       <span class="site-footer-credit i18n-t" data-en="PK Khmer Type — built by Phanna Kurosaki" data-km="PK Khmer Type — សាងសង់ដោយ Phanna Kurosaki">PK Khmer Type — built by Phanna Kurosaki</span>
-      <button type="button" class="site-footer-version-tag" id="footerVersionTag" title="PK Khmer Type v2.2 Studio · Click to view Release Info" aria-label="Version 2.2 Release Info">v2.2</button>
     </div>
     <div class="site-footer-actions">
       <a class="site-footer-link" id="siteFacebookLink" href="https://web.facebook.com/Wphanakurasaki/" target="_blank" rel="noopener noreferrer" aria-label="Phanna Kurosaki on Facebook">
@@ -2001,94 +2042,6 @@
   </div>
 </div>
 
-<!-- Version 2.2 Release Showcase Modal -->
-<div class="modal-backdrop" id="versionModal" hidden role="dialog" aria-modal="true" aria-labelledby="versionModalTitle">
-  <div class="modal-card version-modal-card">
-    <button class="modal-close" id="versionModalCloseBtn" aria-label="Close Release Info">
-      <svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <div class="version-modal-header">
-      <div class="version-modal-crest" aria-hidden="true">
-        <img src="logo.svg" alt="PK Logo" width="44" height="44">
-      </div>
-      <h2 id="versionModalTitle" class="version-modal-title">
-        PK Khmer Type
-        <span class="version-modal-tag">v2.2</span>
-      </h2>
-      <p class="version-modal-sub i18n-t" data-en="Pro Studio Edition — The Premier Dual-Script Touch Typing Studio" data-km="Pro Studio Edition — កម្មវិធីហ្វឹកហាត់វាយអក្សរពីរភាសាដ៏ល្អឥតខ្ចោះ">Pro Studio Edition — The Premier Dual-Script Touch Typing Studio</p>
-    </div>
-
-    <div class="version-modal-grid">
-      <div class="version-feature-item">
-        <div class="version-feature-icon">
-          <svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        </div>
-        <div class="version-feature-text">
-          <h4 class="i18n-t" data-en="Zero-Lag Performance Mode" data-km="មុខងារ Zero-Lag ល្បឿនលឿន">Zero-Lag Performance Mode</h4>
-          <p class="i18n-t" data-en="Instant responsive mode with zero decorative animations for maximum FPS and battery life." data-km="មុខងារឆ្លើយតបរហ័សភ្លាមៗ គ្មានចលនារំខាន សម្រាប់ល្បឿនខ្ពស់បំផុត។">Instant responsive mode with zero decorative animations for maximum FPS and battery life.</p>
-        </div>
-      </div>
-
-      <div class="version-feature-item">
-        <div class="version-feature-icon">
-          <svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="7" y1="16" x2="17" y2="16"/></svg>
-        </div>
-        <div class="version-feature-text">
-          <h4 class="i18n-t" data-en="3 Full Keyboard Layouts" data-km="៣ ប្លង់ក្តារចុចពេញលេញ">3 Full Keyboard Layouts</h4>
-          <p class="i18n-t" data-en="Khmer Standard, Official Khmer NiDA, and English (US) with instant live switching." data-km="Khmer Standard, Khmer NiDA ផ្លូវការ និង English (US) ប្តូរបានភ្លាមៗ។">Khmer Standard, Official Khmer NiDA, and English (US) with instant live switching.</p>
-        </div>
-      </div>
-
-      <div class="version-feature-item">
-        <div class="version-feature-icon">
-          <svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.83L7 15"/></svg>
-        </div>
-        <div class="version-feature-text">
-          <h4 class="i18n-t" data-en="3D Kinematic Finger Guide" data-km="មគ្គុទ្ទេសក៍ម្រាមដៃ 3D">3D Kinematic Finger Guide</h4>
-          <p class="i18n-t" data-en="Real-time reaching hand overlays show exactly which finger strikes each keycap." data-km="ដៃ 3D ថ្លាបង្ហាញច្បាស់ពីម្រាមដៃដែលត្រូវចុចលើគ្រាប់នីមួយៗ។">Real-time reaching hand overlays show exactly which finger strikes each keycap.</p>
-        </div>
-      </div>
-
-      <div class="version-feature-item">
-        <div class="version-feature-icon">
-          <svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
-        </div>
-        <div class="version-feature-text">
-          <h4 class="i18n-t" data-en="8 Studio Themes &amp; Glass" data-km="៨ រូបរាងស្ទូឌីយោ &amp; កញ្ចក់ថ្លា">8 Studio Themes &amp; Glass</h4>
-          <p class="i18n-t" data-en="Temple, Jungle, Moonlight, Sunset, Sepia, Light, plus custom wallpaper engine." data-km="Temple, Jungle, Moonlight, Sunset, Sepia, Light និងការប្តូរផ្ទាំងរូបភាពផ្ទាល់ខ្លួន។">Temple, Jungle, Moonlight, Sunset, Sepia, Light, plus custom wallpaper engine.</p>
-        </div>
-      </div>
-
-      <div class="version-feature-item">
-        <div class="version-feature-icon">
-          <svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-        </div>
-        <div class="version-feature-text">
-          <h4 class="i18n-t" data-en="218-Lesson Curriculum" data-km="២១៨ មេរៀនតាមលំដាប់លំដោយ">218-Lesson Curriculum</h4>
-          <p class="i18n-t" data-en="40 structured levels with strict sequential character unlocking and spaced repetition." data-km="៤០ កម្រិតមានរចនាសម្ព័ន្ធត្រឹមត្រូវ បើកមេរៀនតាមលំដាប់លំដោយច្បាស់លាស់។">40 structured levels with strict sequential character unlocking and spaced repetition.</p>
-        </div>
-      </div>
-
-      <div class="version-feature-item">
-        <div class="version-feature-icon">
-          <svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-        </div>
-        <div class="version-feature-text">
-          <h4 class="i18n-t" data-en="Procedural Audio Synthesizer" data-km="សំឡេងកុងតាក់មេកានិចសំយោគ">Procedural Audio Synthesizer</h4>
-          <p class="i18n-t" data-en="Zero audio files needed — procedural Topre, Holy Panda &amp; Cherry MX click synthesis." data-km="គ្មានឯកសារសំឡេងក្រៅ — សំឡេងកុងតាក់ Topre, Holy Panda &amp; Blue បង្កើតដោយ Web Audio។">Zero audio files needed — procedural Topre, Holy Panda &amp; Cherry MX click synthesis.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="version-modal-footer">
-      <div class="version-modal-author">
-        Created by <strong>Phanna Kurosaki</strong> · 100% Offline PWA Architecture
-      </div>
-      <button type="button" class="version-modal-btn i18n-t" id="versionModalAckBtn" data-en="Explore Studio" data-km="ចូលស្ទូឌីយោ">Explore Studio</button>
-    </div>
-  </div>
-</div>
-
 
   <!-- Scripts -->
   <script defer src="js/icons.js?v=53"></script>
@@ -2106,6 +2059,7 @@
   <script defer src="js/race.js?v=53"></script>
   <script defer src="js/typing.js?v=53"></script>
   <script defer src="js/statistics.js?v=53"></script>
+  <script defer src="js/thinking-orbs.js?v=53"></script>
   <script defer src="js/settings.js?v=53"></script>
   <script defer src="js/shortcuts.js?v=53"></script>
   <script defer src="js/quick_guide.js?v=53"></script>

@@ -232,6 +232,40 @@ function ensureUpgradedSettingsModalDOM() {
         <div class="settings-row" data-search="dyslexia wide letter spacing prompt readability"><div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Wide Prompt Character Spacing</span><span class="settings-row-km">គម្លាតអក្សរទូលាយ</span></div><div class="settings-row-desc">Add generous horizontal spacing between characters in lesson prompts for easier reading.</div></div><div class="settings-row-control"><div class="toggle-switch" id="dyslexiaSpacingToggle" role="switch" aria-checked="false" tabindex="0"></div></div></div>
       </div>
 
+      <div class="settings-section" data-cat-section="orb">
+        <div class="settings-section-header"><h3 class="settings-section-title">AI Thinking Orb <span style="font-size:0.7em;opacity:0.55;font-weight:400;">Libraries.dev</span></h3><span class="settings-section-count">Interactive</span></div>
+        <div class="settings-row settings-row-stacked settings-orb-showcase" data-search="orb thinking ai animated canvas globe searching working listening libraries dev">
+          <div class="settings-orb-stage">
+            <canvas class="thinking-orb" id="settingsShowcaseOrb" width="64" height="64" data-state="searching" data-size="64" aria-label="AI Thinking Orb demo"></canvas>
+            <span class="settings-orb-badge-pill" id="settingsOrbStatePill">state="searching" &middot; size=64</span>
+          </div>
+          <div class="settings-orb-subcontrols">
+            <div class="settings-choice settings-choice-orb-states" id="orbStateChoice">
+              <button type="button" data-orb-state="searching" class="active">searching</button>
+              <button type="button" data-orb-state="working">working</button>
+              <button type="button" data-orb-state="solving">solving</button>
+              <button type="button" data-orb-state="listening">listening</button>
+              <button type="button" data-orb-state="connecting">connecting</button>
+              <button type="button" data-orb-state="weaving">weaving</button>
+              <button type="button" data-orb-state="composing">composing</button>
+              <button type="button" data-orb-state="breathing">breathing</button>
+              <button type="button" data-orb-state="shaping">shaping</button>
+            </div>
+            <div class="settings-orb-size-group">
+              <span style="font-size:0.72em;opacity:0.55;margin-right:6px;">size</span>
+              <button type="button" class="settings-orb-size-btn" data-orb-size="20">20</button>
+              <button type="button" class="settings-orb-size-btn" data-orb-size="32">32</button>
+              <button type="button" class="settings-orb-size-btn active" data-orb-size="64">64</button>
+              <span style="font-size:0.72em;opacity:0.55;margin-left:10px;margin-right:6px;">speed</span>
+              <button type="button" class="settings-orb-speed-btn" data-orb-speed="0.5">0.5&times;</button>
+              <button type="button" class="settings-orb-speed-btn active" data-orb-speed="1">1&times;</button>
+              <button type="button" class="settings-orb-speed-btn" data-orb-speed="1.5">1.5&times;</button>
+            </div>
+            <div class="settings-orb-code-preview"><code>&lt;ThinkingOrb state="<span id="settingsOrbCodeState">searching</span>" size={<span id="settingsOrbCodeSize">64</span>} /&gt;</code><button type="button" class="settings-orb-copy-btn" id="settingsOrbCopyBtn">Copy</button></div>
+          </div>
+        </div>
+      </div>
+
       <div class="settings-section" data-cat-section="data">
         <div class="settings-section-header"><h3 class="settings-section-title">Progress Data, Backup &amp; Reset</h3><span class="settings-section-count">Storage &amp; Backup</span></div>
         <div class="settings-storage-card" data-search="storage progress stats keys typed lessons mastered">
@@ -2119,4 +2153,93 @@ if (document.readyState === "loading") {
       openVersionModal();
     }
   });
+
+  /* ---------- AI Thinking Orb Showcase (Libraries.dev) ---------- */
+  var showcaseOrb = null;
+  var currentOrbState = "searching";
+  var currentOrbSize = 64;
+  var currentOrbSpeed = 1;
+
+  function initShowcaseOrb() {
+    // Always re-query in case DOM was rebuilt by ensureUpgradedSettingsModalDOM()
+    var canvas = document.getElementById("settingsShowcaseOrb");
+    if (!canvas || typeof window.ThinkingOrb !== "function") return;
+    if (!showcaseOrb || showcaseOrb._canvas !== canvas) {
+      // New canvas element after DOM rebuild — create fresh orb
+      if (showcaseOrb) { try { showcaseOrb.destroy(); } catch(e) {} }
+      showcaseOrb = new window.ThinkingOrb(canvas, {
+        state: currentOrbState,
+        size: currentOrbSize,
+        speed: currentOrbSpeed
+      });
+      showcaseOrb._canvas = canvas;
+    }
+  }
+
+  function updateOrbSnippet() {
+    var stateEl = document.getElementById("settingsOrbCodeState");
+    var sizeEl = document.getElementById("settingsOrbCodeSize");
+    var pillEl = document.getElementById("settingsOrbStatePill");
+    if (stateEl) stateEl.textContent = currentOrbState;
+    if (sizeEl) sizeEl.textContent = currentOrbSize;
+    if (pillEl) pillEl.textContent = "state=\"" + currentOrbState + "\" \u00b7 size=" + currentOrbSize;
+  }
+
+  // Use event delegation on the settings modal so listeners survive DOM rebuild
+  var settingsModal = document.getElementById("settingsModal");
+  if (settingsModal) {
+    settingsModal.addEventListener("click", function(e) {
+      // State buttons
+      var stateBtn = e.target.closest("button[data-orb-state]");
+      if (stateBtn) {
+        var stateChoice = document.getElementById("orbStateChoice");
+        if (stateChoice) stateChoice.querySelectorAll("button").forEach(function(b) { b.classList.remove("active"); });
+        stateBtn.classList.add("active");
+        currentOrbState = stateBtn.dataset.orbState;
+        initShowcaseOrb();
+        if (showcaseOrb) showcaseOrb.setState(currentOrbState);
+        updateOrbSnippet();
+        return;
+      }
+      // Size buttons
+      var sizeBtn = e.target.closest("button[data-orb-size]");
+      if (sizeBtn) {
+        settingsModal.querySelectorAll(".settings-orb-size-btn").forEach(function(b) { b.classList.remove("active"); });
+        sizeBtn.classList.add("active");
+        currentOrbSize = Number(sizeBtn.dataset.orbSize || 64);
+        initShowcaseOrb();
+        if (showcaseOrb) showcaseOrb.setSize(currentOrbSize);
+        updateOrbSnippet();
+        return;
+      }
+      // Speed buttons
+      var speedBtn = e.target.closest("button[data-orb-speed]");
+      if (speedBtn) {
+        settingsModal.querySelectorAll(".settings-orb-speed-btn").forEach(function(b) { b.classList.remove("active"); });
+        speedBtn.classList.add("active");
+        currentOrbSpeed = Number(speedBtn.dataset.orbSpeed || 1);
+        initShowcaseOrb();
+        if (showcaseOrb) showcaseOrb.setSpeed(currentOrbSpeed);
+        return;
+      }
+      // Copy button
+      if (e.target.id === "settingsOrbCopyBtn" || e.target.closest("#settingsOrbCopyBtn")) {
+        var copyBtn = document.getElementById("settingsOrbCopyBtn");
+        var snippet = "<ThinkingOrb state=\"" + currentOrbState + "\" size={" + currentOrbSize + "} />";
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(snippet).then(function() {
+            if (copyBtn) { copyBtn.textContent = "Copied!"; setTimeout(function() { if (copyBtn) copyBtn.textContent = "Copy"; }, 1500); }
+          });
+        }
+      }
+    });
+  }
+
+  // Initialize showcase orb when settings opens (after DOM is rebuilt)
+  var settingsOpenBtn = document.getElementById("settingsOpenBtn");
+  if (settingsOpenBtn) {
+    settingsOpenBtn.addEventListener("click", function () {
+      setTimeout(initShowcaseOrb, 120);
+    });
+  }
 })();

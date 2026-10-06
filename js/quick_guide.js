@@ -64,6 +64,8 @@
 
       this.liveStatusPill = document.getElementById('guideLiveStatusPill');
       this.liveStatusText = document.getElementById('guideLiveStatusText');
+      this.radarOrbCanvas = document.getElementById('guideRadarOrb');
+      this.radarOrb = null;
       this.layoutBadge = document.getElementById('guideLayoutBadge');
       this.lessonTitle = document.getElementById('guideLessonTitle');
       this.lessonBadge = document.getElementById('guideLessonBadge');
@@ -161,6 +163,13 @@
         });
       }
 
+      // Thinking Orb Live Status Pill click: cycles through states
+      if(this.liveStatusPill){
+        this.liveStatusPill.addEventListener('click', () => {
+          this.cycleOrbState();
+        });
+      }
+
       // Drill Weak Keys Button
       if(this.drillWeakBtn){
         this.drillWeakBtn.addEventListener('click', () => {
@@ -244,6 +253,25 @@
           if(typeof playKeySound === 'function') playKeySound();
         });
       });
+    }
+
+    cycleOrbState(){
+      const states = ['searching', 'working', 'solving', 'listening', 'connecting', 'weaving', 'composing', 'breathing', 'shaping'];
+      if(this.radarOrbCanvas && typeof window.ThinkingOrb === 'function' && !this.radarOrb){
+        this.radarOrb = new window.ThinkingOrb(this.radarOrbCanvas, { state: 'searching', size: 20 });
+      }
+      const curState = (this.radarOrb && this.radarOrb.state) || 'searching';
+      const nextIdx = (states.indexOf(curState) + 1) % states.length;
+      const nextState = states[nextIdx];
+      if(this.radarOrb){
+        this.radarOrb.setState(nextState);
+      }
+      if(this.liveStatusText){
+        this.liveStatusText.textContent = nextState.charAt(0).toUpperCase() + nextState.slice(1);
+      }
+      if(typeof window.showToast === 'function'){
+        window.showToast(`AI Orb State: ${nextState} (Libraries.dev)`);
+      }
     }
 
     hookGlobalEngines(){
@@ -390,14 +418,27 @@
       const isKm = document.documentElement.classList.contains('site-km-mode');
       const inLesson = (typeof lessonActive !== 'undefined' && lessonActive && typeof currentLesson !== 'undefined' && currentLesson);
 
-      // 1. Live status indicator pill
+      // 1. Live status indicator pill with Thinking Orb
+      if (this.radarOrbCanvas && typeof window.ThinkingOrb === 'function' && !this.radarOrb) {
+        this.radarOrb = new window.ThinkingOrb(this.radarOrbCanvas, {
+          state: inLesson ? 'working' : 'searching',
+          size: 20
+        });
+      }
+
       if(this.liveStatusPill && this.liveStatusText){
         if(inLesson){
           this.liveStatusPill.className = 'guide-live-status-pill status-active';
           this.liveStatusText.textContent = isKm ? 'កំពុងហ្វឹកហាត់' : 'Practicing';
+          if(this.radarOrb && this.radarOrb.state === 'searching') {
+            this.radarOrb.setState('working');
+          }
         } else {
           this.liveStatusPill.className = 'guide-live-status-pill status-ready';
           this.liveStatusText.textContent = isKm ? 'វាយសេរី' : 'Free Typing';
+          if(this.radarOrb && this.radarOrb.state === 'working') {
+            this.radarOrb.setState('searching');
+          }
         }
       }
 
