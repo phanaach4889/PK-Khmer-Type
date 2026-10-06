@@ -269,9 +269,6 @@
       if(this.liveStatusText){
         this.liveStatusText.textContent = nextState.charAt(0).toUpperCase() + nextState.slice(1);
       }
-      if(typeof window.showToast === 'function'){
-        window.showToast(`AI Orb State: ${nextState} (Libraries.dev)`);
-      }
     }
 
     hookGlobalEngines(){
