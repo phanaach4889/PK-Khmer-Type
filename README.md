@@ -5,25 +5,28 @@
 </p>
 
 <p align="center">
+  <img src="https://img.shields.io/badge/Version-v2.2%20Pro%20Studio-ffd166?style=for-the-badge" alt="Version 2.2 Pro Studio">
   <img src="https://img.shields.io/badge/Language-Khmer%20%7C%20English-ffd166?style=for-the-badge" alt="Bilingual Khmer & English">
   <img src="https://img.shields.io/badge/Engine-Vanilla%20ES6%2B%20%7C%20CSS3-ff9d2e?style=for-the-badge" alt="Vanilla JS & CSS3">
+  <img src="https://img.shields.io/badge/Performance-Zero--Lag%20Mode-34d399?style=for-the-badge" alt="Zero-Lag Performance Mode">
+  <img src="https://img.shields.io/badge/Visuals-Thinking--Orbs-818cf8?style=for-the-badge" alt="Thinking Orbs">
   <img src="https://img.shields.io/badge/Audio-Web%20Audio%20Synth-2dd4a7?style=for-the-badge" alt="Web Audio Synthesizer">
   <img src="https://img.shields.io/badge/Themes-8%20Studio%20Themes%20%2B%20Glass-ec4899?style=for-the-badge" alt="8 Themes & Glass">
   <img src="https://img.shields.io/badge/Curriculum-40%20Levels%20%7C%20218%20Lessons-38bdf8?style=for-the-badge" alt="218 Lessons">
 </p>
 
 <p align="center">
-  <b>Master Khmer Standard, Khmer NiDA, and English QWERTY typing through structured progressive lessons, 3D kinematic hand guides, real-time procedural audio synthesis, adaptive drills, and theme-adaptive studio styling.</b><br>
-  រៀនវាយអក្សរខ្មែរ (Standard & NiDA) និងអង់គ្លេស តាមរយៈមេរៀនតាមលំដាប់លំដោយ មគ្គុទ្ទេសក៍ម្រាមដៃ 3D សំឡេងក្ដារចុចសំយោគ និងការរចនាបែបទំនើប។
+  <b>Master Khmer Standard, Khmer NiDA, and English QWERTY typing through structured progressive lessons, 3D kinematic hand guides, real-time procedural audio synthesis, adaptive drills, zero-lag performance mode, and theme-adaptive studio styling.</b><br>
+  រៀនវាយអក្សរខ្មែរ (Standard & NiDA) និងអង់គ្លេស តាមរយៈមេរៀនតាមលំដាប់លំដោយ មគ្គុទ្ទេសក៍ម្រាមដៃ 3D សំឡេងក្ដារចុចសំយោគ មុខងារ Zero-Lag ល្បឿនលឿន និងការរចនាបែបទំនើប។
 </p>
 
 ---
 
 ## 🌟 Overview
 
-**PK Khmer Type** is a standalone, zero-dependency browser typing studio built specifically for mastering the Khmer abugida script (**Khmer Standard** and **Official Khmer NiDA**) alongside **English (US) QWERTY**.
+**PK Khmer Type (v2.2 Pro Studio Edition)** is a standalone, zero-dependency browser typing studio built specifically for mastering the Khmer abugida script (**Khmer Standard** and **Official Khmer NiDA**) alongside **English (US) QWERTY**.
 
-Designed to run effortlessly both **online via any static server** and **100% offline directly from `index.html` (`file:///`)**, it combines a 218-lesson progressive curriculum with a customizable mechanical keyboard studio, 8 bespoke color themes, full frosted glassmorphism, cinematic Focus Mode animations, and per-key mastery analytics.
+Designed to run effortlessly both **online via any static server** and **100% offline directly from `index.html` (`file:///`)**, it combines a 218-lesson progressive curriculum with a customizable mechanical keyboard studio, 8 bespoke color themes, full frosted glassmorphism, instant Zero-Lag Performance mode, ThinkingOrb state visualizers, cinematic Focus Mode, and per-key mastery analytics.
 
 ---
 
@@ -31,27 +34,57 @@ Designed to run effortlessly both **online via any static server** and **100% of
 
 | Feature | Description |
 | :--- | :--- |
+| **Version 2.2 Pro Studio** | Interactive release badges embedded across Hero, Chassis, Settings, and Footer. Clicking any badge launches the **v2.2 Release Showcase Modal** displaying edition highlights and specifications. |
+| **Zero-Lag Performance Mode** | Dedicated high-performance setting that turns off all non-essential animations, transitions, glowing effects, and background particles for instant responsiveness, rock-solid FPS, and zero CPU/GPU overhead. Includes a 3-tier motion density control (*Full, Minimal, Off*). |
+| **ThinkingOrb AI Visualizers** | Integrated 2D canvas thought-orb indicators from **Libraries.dev** (`thinking-orbs`). Powers the live status radar in the Quick Guide header and features a full interactive **Orb Showcase Lab** in Settings (with 9 tuned states, size toggles, speed multipliers, and code snippet export). |
 | **3 Complete Keyboard Layouts** | Instant switching between **Khmer Standard**, **Khmer NiDA**, and **English (US) QWERTY** (`Alt + 1/2/3`). |
 | **218-Lesson Progressive Curriculum** | **40 structured levels**, **218 lessons**, and **664+ exercises** built with strict progressive key unlocking (no unseen characters in early drills). |
-| **Dual-Hand 3D Kinematic Guide** | Translucent left and right hand overlays dynamically reach toward target keys and simultaneous modifier keys (`Shift`, `Ctrl`, `AltGr`). |
-| **Theme-Adaptive Cursor Inspector** | Hover over any keycap or Khmer glyph to inspect its Unicode breakdown, keystroke recipe, finger assignment, and phonetic details (`Alt + M`) with cards that adapt to the active theme. |
-| **Cinematic Focus Mode (`Alt + F`)** | Smooth growing/expansion transition that dims surrounding UI, centers the manuscript and keyboard, and maintains an unobtrusive compact progress indicator. |
+| **Dual-Hand 3D Kinematic Guide** | Translucent left and right hand overlays dynamically reach toward target keys and simultaneous modifier keys (`Shift`, `Ctrl`, `AltGr`) with customizable opacity and color schemes. |
+| **Anchored Cursor Inspector (`Alt + M`)** | Hover over any keycap or Khmer glyph to inspect its Unicode codepoints, keystroke recipe, finger assignment, and phonetic details—statically anchored to keycaps for clean, jitter-free reading. |
+| **Cinematic Focus Mode (`Alt + F`)** | Smooth expansion that hides sidebars, headers, and UI distractions, scaling the manuscript and keyboard to center stage for pure immersion. |
 | **8 Studio Themes & Transparent Glass** | Choose from *Dark (Obsidian Navy), Temple (Torchlit Sandstone & Gold), Moonlight (Celestial Indigo), Jungle (Emerald Rainforest), Sunset (Dusk Plum & Coral), Sepia (Warm Parchment), Light (Slate White),* or the standalone **Transparent Glass** theme. |
-| **Custom Wallpapers & Frosted Glass** | Upload custom background wallpapers with interactive dimming controls and frosted glass headers (`backdrop-filter: blur(28px) saturate(200%)`). |
-| **Studio Color Theme Grid** | 3x3 interactive visual theme swatch selector in Settings with sonar focus indicators, ripple feedback, and live previews. |
-| **Quick Guide Dock Theming** | Fully theme-harmonized Quick Guide reference dock displaying home row positions, subscript rules, live session telemetry, and shortcut cheats. |
+| **Custom Wallpapers & Frosted Glass** | Upload custom background wallpapers with interactive dimming controls and frosted glass styling (`backdrop-filter: blur(28px) saturate(200%)`). |
+| **Smooth Settings Navigation** | Reorganized Settings & Studio Command Center with animated horizontal category scrolling tabs (*All, General, Hands, Audio, Themes, Orbs, Performance, Data, About*). |
 | **Web Audio Switch Synthesizer** | Real-time procedural mechanical switch audio (*Topre Thock, Holy Panda Tactile, Cherry MX Blue, Silent Linear*) and Temple Ambience — zero audio files required. |
 | **Adaptive Practice & Weak-Key Review** | Tracks per-key latency and mistake frequency to automatically generate personalized remedial drills and spaced repetition reviews. |
 | **Temple Trial & Typing Race** | Timed vocabulary survival drills and competitive typing races against adaptive bot pacers with local leaderboards. |
 | **Bilingual UI (`English` / `ភាសាខ្មែរ`)** | Toggle the entire interface, menus, tooltips, and quick guides between English and Khmer at any time (`Alt + L`). |
-| **PK Documents & 3D Studio** | Built-in interactive Khmer script reference guide and Three.js 3D mechanical keycap studio (`Documents/index.html`). |
-| **Offline `file:///` Ready** | Pre-bundled curriculum (`data/curriculum-data.js`) allows opening `index.html` directly from your local filesystem without CORS issues. |
+| **PK Documents & 3D Mechanical Studio** | Built-in interactive Khmer script orthography guide, keycap architecture diagrams, and Three.js 3D mechanical switch studio (`Documents/index.html`). |
+| **100% Offline `file:///` Architecture** | Pre-bundled curriculum (`data/curriculum-data.js`) allows opening `index.html` directly from your local filesystem without CORS errors or build steps. |
+
+---
+
+## ⚡ Zero-Lag Performance Mode
+
+PK Khmer Type prioritizes speed and responsiveness above all else:
+
+- **Instant State Changes**: Replaces multi-frame animated transitions with immediate DOM updates.
+- **Resource Conservation**: Disables looping particle canvas engines, ambient torches, neon glow halos, and blur backdrops.
+- **Fine-Grained Motion Control**:
+  - **Full**: Complete visual immersion, particle motes, scanlines, and spring modals.
+  - **Minimal**: Preserves basic UI feedback while removing heavy background filters.
+  - **Off (Zero Lag)**: Pure mechanical speed engineered for older laptops, low-power devices, and competitive high-WPM typing.
+- **Persistence**: Remembers your preference in `localStorage` across page reloads.
+
+---
+
+## 🔮 ThinkingOrb Visualizer (Libraries.dev)
+
+PK Khmer Type integrates a native 2D canvas port of **`thinking-orbs`** (by Jakub Antalik / Libraries.dev):
+
+- **Quick Guide Radar**: Displays an active 20px inline thought-orb in the guide header communicating live drill status. Clicking the radar pill cycles through the states with live feedback toasts.
+- **Settings Interactive Lab**: A dedicated showcase section inside Settings allowing you to experiment with:
+  - **9 Tuned States**: `searching`, `working`, `solving`, `listening`, `connecting`, `weaving`, `composing`, `breathing`, `shaping`
+  - **Dual Scale Modes**: 64px (avatar scale) and 20px (inline indicator)
+  - **Animation Speed**: `0.5x`, `1.0x`, `1.5x`, `2.0x`
+  - **Pause Control & Code Snippet Generator**: Copy ready-to-use component snippets.
+- **Battery-Friendly**: Automatically pauses when off-screen via `IntersectionObserver` or when Performance Mode is enabled.
 
 ---
 
 ## 🎨 Studio Color Themes
 
-PK Khmer Type features 8 handcrafted themes that apply consistently across all components—including the keyboard chassis, lesson cards, Quick Guide dock, statistics panels, settings modals, and Mouse Cursor Inspector HUD:
+PK Khmer Type features 8 handcrafted themes that apply consistently across all components:
 
 1. **Jungle (ព្រៃព្រឹក្សា):** Deep moss and dark emerald gradients (`#15291c` / `#0c1710`) with glowing jade accents (`#8bf0b3`) and forest keycaps.
 2. **Temple (ប្រាសាទបុរាណ):** Warm torchlit ancient sandstone (`#2e2113` / `#1a120a`) with royal gold borders (`#ffd166`) and saffron amber keycaps.
@@ -119,7 +152,7 @@ Each layout maintains independent progress, star ratings, WPM records, and unloc
 | `Alt` + `1` | Switch to **Khmer Standard Layout** |
 | `Alt` + `2` | Switch to **Khmer NiDA Layout** |
 | `Alt` + `3` | Switch to **English (US) QWERTY Layout** |
-| `Alt` + `F` | Toggle **Focus Mode** (with smooth growing animation) |
+| `Alt` + `F` | Toggle **Focus Mode** (distraction-free layout) |
 | `Alt` + `L` | Toggle **Interface Language** (English ↔ Khmer) |
 | `Alt` + `M` | Toggle **Smart Mouse Cursor Inspector** |
 | `Alt` + `S` | Open **Settings & Command Studio** |
@@ -131,7 +164,7 @@ Each layout maintains independent progress, star ratings, WPM records, and unloc
 ## 🚀 Getting Started
 
 ### Option 1: Open Directly (Offline / No Install)
-Simply double-click **`index.html`** in any modern web browser (Edge, Chrome, Brave, Firefox, Safari). All 218 lessons, audio synthesizers, and themes work out of the box via `file:///`.
+Simply double-click **`index.html`** in any modern web browser (Edge, Chrome, Brave, Firefox, Safari). All 218 lessons, procedural audio synthesizers, canvas orbs, and themes work out of the box via `file:///`.
 
 ### Option 2: Run Local Development Server
 If you have **Node.js** installed, launch the included zero-cache static development server:
@@ -159,28 +192,31 @@ node scripts/bundle_curricula.js
 
 ```text
 .
-├── index.html                      # Main application shell with PWA meta & asset links
+├── index.html                      # Main studio shell with PWA meta & asset links
 ├── manifest.json                   # PWA web app manifest metadata
 ├── logo.svg                        # PK Khmer Type vector crest logo
+├── package.json                    # Project dependencies (thinking-orbs, dev scripts)
 ├── css/
-│   ├── base.css                    # Core layout, 8 color themes, and frosted glassmorphism
-│   ├── keyboard.css                # Keycaps, 3D hand overlay, theme-adaptive cursor HUD
+│   ├── base.css                    # Core layout, 8 color themes, version modal, frosted glass
+│   ├── keyboard.css                # Keycaps, 3D hand overlay, anchored cursor inspector HUD
 │   ├── typing.css                  # Manuscript prompt, character tiles, and error shake
 │   ├── lessons.css                 # Lesson dock, Quick Guide theme rules, completion modals
-│   ├── settings.css                # 3x3 theme grid, search filters, and studio command center
+│   ├── settings.css                # Settings command center, category tabs, orb showcase
 │   └── responsive.css              # Tablet, laptop, and mobile responsive breakpoints
 ├── js/
 │   ├── app.js                      # Application bootstrap, data loader, and layout manager
 │   ├── keyboard.js                 # Keyboard rendering, layer switching, 3D hand kinematics
 │   ├── typing.js                   # Input engine, Windows AltGr filter, Web Audio switch synth
 │   ├── lessons.js                  # Curriculum runner, exercise scoring, mistake review
+│   ├── thinking-orbs.js            # Vanilla 2D canvas engine for ThinkingOrb states (Libraries.dev)
 │   ├── adaptive.js                 # Adaptive practice generator and 100% mastery engine
 │   ├── review.js                   # Spaced repetition & weak-key detector
 │   ├── race.js                     # Temple Trial & Typing Race mode with bot pacers
-│   ├── cursor-inspector.js         # Smart Mouse Cursor Inspector & phonetic HUD tooltip
-│   ├── settings.js                 # 40+ studio controls, theme switcher, wallpaper manager
+│   ├── cursor-inspector.js         # Anchored Mouse Cursor Inspector & phonetic HUD tooltip
+│   ├── settings.js                 # Studio controls, theme switcher, wallpaper & orb manager
 │   ├── statistics.js               # WPM, accuracy, streak, and level progress analytics
 │   ├── shortcuts.js                # Global keyboard shortcuts & modal navigation
+│   ├── quick_guide.js              # Quick Guide dock, radar orb telemetry, shortcut cheats
 │   ├── progress.js                 # Lesson unlock state and star rating logic
 │   ├── tracker.js                  # Per-key stroke telemetry
 │   ├── storage.js                  # LocalStorage persistence, JSON export/import backup
