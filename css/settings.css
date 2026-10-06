@@ -99,6 +99,43 @@
   text-transform: uppercase;
 }
 
+.settings-version-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 209, 102, 0.15), rgba(255, 157, 46, 0.08));
+  border: 1px solid rgba(255, 209, 102, 0.35);
+  color: var(--gold-bright);
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all .2s ease;
+  user-select: none;
+}
+.settings-version-pill:hover {
+  background: linear-gradient(135deg, rgba(255, 209, 102, 0.28), rgba(255, 157, 46, 0.18));
+  border-color: var(--gold-bright);
+  color: #fff9e6;
+  box-shadow: 0 0 14px rgba(255, 209, 102, 0.35);
+  transform: translateY(-1px);
+}
+.settings-version-pill .ver-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 6px #38bdf8;
+  animation: ver-live-dot-glow 2s ease-in-out infinite;
+}
+@keyframes ver-live-dot-glow {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.35); box-shadow: 0 0 10px #38bdf8, 0 0 4px #ffffff; }
+}
+
 /* Search Bar & Preset Toolbar */
 .settings-tools-row {
   display: flex;

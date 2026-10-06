@@ -112,6 +112,10 @@ function ensureUpgradedSettingsModalDOM() {
           </div>
           <h2 id="settingsModalTitle"><span class="i18n-t" data-en="Settings &amp; Studio" data-km="ការកំណត់ និងស្ទូឌីយោ">Settings &amp; Studio</span> <span class="km-sub">ការកំណត់</span></h2>
           <span class="settings-count-pill" id="settingsActiveCatCount">32 Controls</span>
+          <button type="button" class="settings-version-pill" id="settingsVersionPill" title="PK Khmer Type v2.2 Pro Studio · Click to view Release Info" aria-label="Version 2.2 Release Info">
+            <span class="ver-live-dot" aria-hidden="true"></span>
+            <span>v2.2 Pro Studio</span>
+          </button>
         </div>
         <button class="modal-close" id="settingsCloseBtn" aria-label="Close settings">${typeof pkIcon === 'function' ? pkIcon('close', 16) : '<svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'}</button>
       </div>
@@ -2071,4 +2075,48 @@ if (document.readyState === "loading") {
       if (e.key === "Escape") closeDevNote();
     });
   }
+
+  /* ---------- version 2.2 release showcase modal ---------- */
+  var versionModal = document.getElementById("versionModal");
+  var versionModalCloseBtn = document.getElementById("versionModalCloseBtn");
+  var versionModalAckBtn = document.getElementById("versionModalAckBtn");
+
+  function openVersionModal() {
+    if (!versionModal) return;
+    versionModal.hidden = false;
+    if (versionModalAckBtn) versionModalAckBtn.focus();
+  }
+
+  function closeVersionModal() {
+    if (typeof window.closeModalAnimated === "function" && versionModal) {
+      window.closeModalAnimated(versionModal);
+    } else if (versionModal) {
+      versionModal.hidden = true;
+    }
+  }
+
+  window.openVersionModal = openVersionModal;
+  window.closeVersionModal = closeVersionModal;
+
+  if (versionModalCloseBtn) versionModalCloseBtn.addEventListener("click", closeVersionModal);
+  if (versionModalAckBtn) versionModalAckBtn.addEventListener("click", closeVersionModal);
+
+  if (versionModal) {
+    versionModal.addEventListener("click", function (e) {
+      if (e.target === versionModal) closeVersionModal();
+    });
+    versionModal.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeVersionModal();
+    });
+  }
+
+  // Click listeners for all version badges across the studio
+  document.addEventListener("click", function (e) {
+    var trigger = e.target.closest("#heroVersionTag, #chassisVersionBadge, #settingsVersionPill, #footerVersionTag, .hero-version-tag, .chassis-version-badge, .settings-version-pill, .site-footer-version-tag");
+    if (trigger) {
+      e.preventDefault();
+      e.stopPropagation();
+      openVersionModal();
+    }
+  });
 })();

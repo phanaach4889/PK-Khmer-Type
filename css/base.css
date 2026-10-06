@@ -5439,3 +5439,219 @@ html.theme-glass .top-actions button.active {
   color: var(--gold-bright) !important;
   box-shadow: 0 0 18px color-mix(in srgb, var(--gold-bright) 45%, transparent), inset 0 0 12px color-mix(in srgb, var(--gold-bright) 22%, transparent) !important;
 }
+
+/* ============================================================
+   PK Khmer Type Version 2.2 Badges & Release Showcase Modal
+   ============================================================ */
+.hero-version-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 3px 9px;
+  margin-left: 10px;
+  vertical-align: middle;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 209, 102, 0.18), rgba(255, 157, 46, 0.08));
+  border: 1px solid rgba(255, 209, 102, 0.45);
+  color: var(--gold-bright);
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(255, 209, 102, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition: all .22s cubic-bezier(0.16, 1, 0.3, 1);
+  text-transform: none;
+}
+.hero-version-tag:hover {
+  background: linear-gradient(135deg, rgba(255, 209, 102, 0.32), rgba(255, 157, 46, 0.22));
+  border-color: var(--gold-bright);
+  color: #ffffff;
+  transform: scale(1.08) translateY(-1px);
+  box-shadow: 0 0 20px rgba(255, 209, 102, 0.48), 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.hero-version-tag:active {
+  transform: scale(0.96);
+}
+
+.site-footer-version-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(255, 209, 102, 0.1);
+  border: 1px solid rgba(255, 209, 102, 0.28);
+  color: var(--gold-bright);
+  cursor: pointer;
+  transition: all .18s ease;
+  margin-left: 8px;
+}
+.site-footer-version-tag:hover {
+  background: rgba(255, 209, 102, 0.22);
+  border-color: var(--gold-bright);
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 209, 102, 0.35);
+  transform: translateY(-1px);
+}
+
+/* Version 2.2 Release Showcase Modal Card */
+.version-modal-card {
+  width: min(92vw, 620px);
+  padding: 28px 28px 24px;
+  text-align: center;
+  position: relative;
+  border-color: rgba(255, 209, 102, 0.35);
+  box-shadow: 0 35px 85px -15px rgba(0, 0, 0, 0.9), 0 0 50px rgba(255, 209, 102, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+.version-modal-header {
+  margin-bottom: 22px;
+}
+.version-modal-crest {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(255, 209, 102, 0.2), rgba(255, 157, 46, 0.05));
+  border: 1px solid rgba(255, 209, 102, 0.45);
+  box-shadow: 0 0 24px rgba(255, 209, 102, 0.3);
+}
+.version-modal-crest img {
+  filter: drop-shadow(0 2px 8px rgba(255, 209, 102, 0.4));
+}
+.version-modal-title {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 6px;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+.version-modal-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffd166, #ff9d2e);
+  color: #190e03;
+  box-shadow: 0 0 14px rgba(255, 209, 102, 0.5);
+}
+.version-modal-sub {
+  font-size: 0.84rem;
+  color: var(--ink-dim);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+.version-modal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  text-align: left;
+  margin-bottom: 24px;
+}
+.version-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--stone-3);
+  transition: all .18s ease;
+}
+.version-feature-item:hover {
+  background: rgba(255, 209, 102, 0.06);
+  border-color: rgba(255, 209, 102, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+.version-feature-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: rgba(255, 209, 102, 0.12);
+  border: 1px solid rgba(255, 209, 102, 0.3);
+  color: var(--gold-bright);
+}
+.version-feature-text h4 {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 0.86rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: var(--ink);
+}
+.version-feature-text p {
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--ink-dim);
+  margin: 0;
+}
+.version-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.version-modal-author {
+  font-size: 0.75rem;
+  color: var(--ink-dim);
+  text-align: left;
+}
+.version-modal-author strong {
+  color: var(--gold-bright);
+}
+.version-modal-btn {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 10px 22px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+  border: 1px solid var(--gold-bright);
+  color: #241405;
+  cursor: pointer;
+  transition: all .2s ease;
+  box-shadow: 0 4px 14px rgba(255, 209, 102, 0.35);
+}
+.version-modal-btn:hover {
+  box-shadow: 0 6px 22px rgba(255, 209, 102, 0.55);
+  transform: translateY(-1px);
+}
+.version-modal-btn:active {
+  transform: scale(0.97);
+}
+
+/* Reduced motion / Performance mode overrides */
+html.performance-mode .hero-version-tag,
+html.performance-mode .chassis-version-badge,
+html.performance-mode .chassis-ver-pulse,
+html.performance-mode .site-footer-version-tag,
+html.performance-mode .version-modal-crest,
+html.performance-mode .version-modal-tag,
+html.performance-mode .settings-version-pill,
+html.performance-mode .settings-version-pill .ver-live-dot {
+  animation: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
