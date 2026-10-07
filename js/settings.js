@@ -745,7 +745,12 @@ function initSettingsToggles() {
       if (searchTermEl) searchTermEl.textContent = query;
     }
     if (activeCatCountEl) {
-      activeCatCountEl.textContent = totalVisibleRows + (totalVisibleRows === 1 ? " Control" : " Controls");
+      const isKm = document.documentElement.classList.contains("site-km-mode");
+      const enTxt = totalVisibleRows + (totalVisibleRows === 1 ? " Control" : " Controls");
+      const kmTxt = totalVisibleRows + " ការគ្រប់គ្រង";
+      activeCatCountEl.setAttribute("data-en", enTxt);
+      activeCatCountEl.setAttribute("data-km", kmTxt);
+      activeCatCountEl.textContent = isKm ? kmTxt : enTxt;
     }
   }
 
@@ -1999,12 +2004,21 @@ if (document.readyState === "loading") {
 
   function applyLang(lang) {
     var isKm = lang === "km";
+    document.documentElement.setAttribute("lang", isKm ? "km" : "en");
+    document.documentElement.classList.toggle("site-km-mode", isKm);
+
     var nodes = document.querySelectorAll(".i18n-t");
     for (var i = 0; i < nodes.length; i++) {
       var el = nodes[i];
       var text = el.getAttribute(isKm ? "data-km" : "data-en");
       if (text !== null) {
-        el.innerHTML = text;
+        var svgChild = el.querySelector(":scope > svg");
+        if (svgChild && text.indexOf("<svg") === -1) {
+          var svgHtml = svgChild.outerHTML;
+          el.innerHTML = svgHtml + " " + text;
+        } else {
+          el.innerHTML = text;
+        }
       }
       if (isKm) {
         el.setAttribute("lang", "km");
@@ -2012,8 +2026,16 @@ if (document.readyState === "loading") {
         el.removeAttribute("lang");
       }
     }
-    document.documentElement.setAttribute("lang", isKm ? "km" : "en");
-    document.documentElement.classList.toggle("site-km-mode", isKm);
+
+    var phNodes = document.querySelectorAll(".i18n-ph");
+    for (var j = 0; j < phNodes.length; j++) {
+      var phEl = phNodes[j];
+      var phText = phEl.getAttribute(isKm ? "data-km" : "data-en");
+      if (phText !== null) {
+        phEl.setAttribute("placeholder", phText);
+      }
+    }
+
     if (toggleBtn) toggleBtn.setAttribute("aria-pressed", String(isKm));
     if (toggleLabel) toggleLabel.textContent = isKm ? "English" : "ភាសាខ្មែរ";
     if (toggleBtn) toggleBtn.setAttribute("aria-label", isKm ? "Switch site back to English" : "Translate site to Khmer");
@@ -2031,6 +2053,40 @@ if (document.readyState === "loading") {
     langChoiceBtns.forEach(function (b) {
       b.classList.toggle("active", b.dataset.langSet === (isKm ? "km" : "en"));
     });
+
+    // Refresh dynamic UI components when language changes
+    try {
+      if (typeof syncLayoutUI === "function" && typeof currentLayoutId !== "undefined") {
+        syncLayoutUI(currentLayoutId);
+      }
+      if (window.PKQuickGuide && typeof window.PKQuickGuide.refreshLang === "function") {
+        window.PKQuickGuide.refreshLang();
+      }
+      if (window.PKCursorInspector && typeof window.PKCursorInspector.refreshLang === "function") {
+        window.PKCursorInspector.refreshLang();
+      }
+      if (typeof renderLessonStrip === "function") {
+        renderLessonStrip();
+      }
+      if (typeof renderLessonMeta === "function" && typeof activeLessonKey !== "undefined" && activeLessonKey && typeof LESSONS !== "undefined" && LESSONS[activeLessonKey]) {
+        renderLessonMeta(LESSONS[activeLessonKey]);
+      }
+      if (window.PK_ADAPTIVE && typeof window.PK_ADAPTIVE.refreshLang === "function") {
+        window.PK_ADAPTIVE.refreshLang();
+      }
+      if (typeof updateRaceSetupBest === "function") {
+        updateRaceSetupBest();
+      }
+      if (typeof renderRaceLeaderboard === "function") {
+        renderRaceLeaderboard();
+      }
+      if (typeof refreshProfileUI === "function") {
+        refreshProfileUI();
+      }
+      if (typeof renderStats === "function" && typeof statsModal !== "undefined" && statsModal && !statsModal.hidden) {
+        renderStats();
+      }
+    } catch (e) {}
   }
 
   function toggleSiteLanguage() {

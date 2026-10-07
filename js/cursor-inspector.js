@@ -455,6 +455,7 @@
         }
       }
 
+      const isKm = document.documentElement.classList.contains('site-km-mode');
       const mainTitle = sk.titleEn || (sk.title ? sk.title.split('·')[0].trim() : 'Key');
       const kmTitle = sk.titleKm || (sk.title && sk.title.includes('·') ? sk.title.split('·')[1].trim() : '');
 
@@ -463,8 +464,8 @@
           <div class="pk-chud-glyph-box">${sk.symbol}</div>
           <div class="pk-chud-title-wrap">
             <div class="pk-chud-title-row">
-              <span class="pk-chud-name">${mainTitle}</span>
-              ${kmTitle ? `<span class="pk-chud-km-tag">${kmTitle}</span>` : ''}
+              <span class="pk-chud-name">${isKm && kmTitle ? kmTitle : mainTitle}</span>
+              ${kmTitle ? `<span class="pk-chud-km-tag">${isKm ? mainTitle : kmTitle}</span>` : ''}
             </div>
             <div class="pk-chud-category">
               <span class="pk-chud-cat-dot"></span>
@@ -474,14 +475,14 @@
         </div>
         <div class="pk-chud-grid">
           <div class="pk-chud-row">
-            <span class="pk-chud-label">Keystroke</span>
+            <span class="pk-chud-label">${isKm ? 'គ្រាប់ចុច' : 'Keystroke'}</span>
             <span class="pk-chud-recipe">${sk.recipe}</span>
           </div>
           <div class="pk-chud-row">
-            <span class="pk-chud-label">Finger</span>
+            <span class="pk-chud-label">${isKm ? 'ម្រាមដៃ' : 'Finger'}</span>
             <span class="pk-chud-finger">
               <span class="pk-chud-finger-dot" style="background:${finfo.color};color:${finfo.color};"></span>
-              <span>${sk.fingerDesc || finfo.nameEn}</span>
+              <span>${isKm ? (finfo.nameKm || sk.fingerDesc || finfo.nameEn) : (sk.fingerDesc || finfo.nameEn)}</span>
             </span>
           </div>
         </div>
@@ -503,6 +504,7 @@
       else if (keyEl.textContent) glyph = keyEl.textContent.trim();
     }
 
+    const isKm = document.documentElement.classList.contains('site-km-mode');
     const keyLabel = getHumanKeyLabel(keyId);
     const info = getCharInfo(glyph, keyId, layer);
 
@@ -521,7 +523,7 @@
     if (info && info.sub && layoutId !== 'english') {
       subHtml = `
         <div class="pk-chud-subscript-badge">
-          <span>Subscript <strong class="sub-glyph">${info.sub}</strong></span>
+          <span>${isKm ? 'ជើងព្យញ្ជនៈ' : 'Subscript'} <strong class="sub-glyph">${info.sub}</strong></span>
           <span class="pk-chud-recipe"><kbd>${coengKey}</kbd> + <kbd>${keyLabel}</kbd></span>
         </div>
       `;
@@ -537,11 +539,11 @@
     if (kmTag && mainName.includes(kmTag)) {
       mainName = mainName.replace(kmTag, '').replace('·', '').trim();
     }
-    let cardCat = info ? (info.type + (info.series ? (' · ' + info.series) : (info.group ? (' · ' + info.group) : ''))) : 'Typing Key';
+    let cardCat = info ? (info.type + (info.series ? (' · ' + info.series) : (info.group ? (' · ' + info.group) : ''))) : (isKm ? 'គ្រាប់ចុចវាយអក្សរ' : 'Typing Key');
 
     let soundHtml = '';
     if (info && info.ipa) {
-      const ipaText = info.ipa.startsWith('Pronounced') ? info.ipa : ('Sound: ' + info.ipa);
+      const ipaText = info.ipa.startsWith('Pronounced') ? info.ipa : ((isKm ? 'សំឡេង៖ ' : 'Sound: ') + info.ipa);
       soundHtml = `<div class="pk-chud-desc"><span class="pk-chud-desc-icon">${typeof pkIcon === 'function' ? pkIcon('sparkles', 12) : ''}</span><span>${ipaText}</span></div>`;
     }
 
@@ -561,14 +563,14 @@
       </div>
       <div class="pk-chud-grid">
         <div class="pk-chud-row">
-          <span class="pk-chud-label">Keystroke</span>
+          <span class="pk-chud-label">${isKm ? 'គ្រាប់ចុច' : 'Keystroke'}</span>
           <span class="pk-chud-recipe">${recipeHtml}</span>
         </div>
         <div class="pk-chud-row">
-          <span class="pk-chud-label">Finger</span>
+          <span class="pk-chud-label">${isKm ? 'ម្រាមដៃ' : 'Finger'}</span>
           <span class="pk-chud-finger">
             <span class="pk-chud-finger-dot" style="background:${finfo.color};color:${finfo.color};"></span>
-            <span>${finfo.nameEn}</span>
+            <span>${isKm ? (finfo.nameKm || finfo.nameEn) : finfo.nameEn}</span>
           </span>
         </div>
       </div>
@@ -681,6 +683,7 @@
     if (!inspectorEnabled || !char || char === ' ' || char === '\n') return;
     ensureDOM();
 
+    const isKm = document.documentElement.classList.contains('site-km-mode');
     const info = getCharInfo(char);
     const layoutId = global.currentLayoutId || 'standard';
     const coengKey = layoutId === 'standard' ? 'Space' : 'J';
@@ -726,10 +729,10 @@
     if (kmTag && mainName.includes(kmTag)) {
       mainName = mainName.replace(kmTag, '').replace('·', '').trim();
     }
-    let cardCat = info ? (info.type + (info.series ? (' · ' + info.series) : (info.group ? (' · ' + info.group) : ''))) : 'Exercise Character';
+    let cardCat = info ? (info.type + (info.series ? (' · ' + info.series) : (info.group ? (' · ' + info.group) : ''))) : (isKm ? 'តួអក្សរលំហាត់' : 'Exercise Character');
     let soundHtml = '';
     if (info && info.ipa) {
-      const ipaText = info.ipa.startsWith('Pronounced') ? info.ipa : ('Sound: ' + info.ipa);
+      const ipaText = info.ipa.startsWith('Pronounced') ? info.ipa : ((isKm ? 'សំឡេង៖ ' : 'Sound: ') + info.ipa);
       soundHtml = `<div class="pk-chud-desc"><span class="pk-chud-desc-icon">${typeof pkIcon === 'function' ? pkIcon('sparkles', 12) : ''}</span><span>${ipaText}</span></div>`;
     }
 
@@ -749,14 +752,14 @@
       </div>
       <div class="pk-chud-grid">
         <div class="pk-chud-row">
-          <span class="pk-chud-label">Keystroke</span>
+          <span class="pk-chud-label">${isKm ? 'គ្រាប់ចុច' : 'Keystroke'}</span>
           <span class="pk-chud-recipe">${recipeText}</span>
         </div>
         <div class="pk-chud-row">
-          <span class="pk-chud-label">Finger</span>
+          <span class="pk-chud-label">${isKm ? 'ម្រាមដៃ' : 'Finger'}</span>
           <span class="pk-chud-finger">
             <span class="pk-chud-finger-dot" style="background:${finfo.color};color:${finfo.color};"></span>
-            <span>${finfo.nameEn}</span>
+            <span>${isKm ? (finfo.nameKm || finfo.nameEn) : finfo.nameEn}</span>
           </span>
         </div>
       </div>
@@ -927,6 +930,7 @@
   }
 
   /* ---- Toolbar Toggle Control ---- */
+  let renderBtnFn = null;
   function setupToolbarToggle() {
     let btn = document.getElementById('cursorGuideToggle');
     if (!btn) {
@@ -934,9 +938,7 @@
       if (!toolbar) return;
       btn = document.createElement('button');
       btn.id = 'cursorGuideToggle';
-      btn.className = (inspectorEnabled ? 'on' : '') + ' i18n-t';
-      btn.setAttribute('data-en', 'Mouse inspector');
-      btn.setAttribute('data-km', 'ត្រួតពិនិត្យដោយកណ្ដុរ');
+      btn.className = inspectorEnabled ? 'on' : '';
       btn.setAttribute('title', 'Smart Mouse Inspector & Interactive Kinematic Guide (Alt+M)');
       const handsToggle = document.getElementById('handsToggle');
       if (handsToggle && handsToggle.nextSibling) {
@@ -947,6 +949,9 @@
     }
 
     const renderBtn = () => {
+      const isKm = document.documentElement.classList.contains('site-km-mode');
+      const enText = 'Mouse inspector' + (inspectorEnabled ? '' : ' (off)');
+      const kmText = 'ត្រួតពិនិត្យដោយកណ្ដុរ' + (inspectorEnabled ? '' : ' (បិទ)');
       btn.classList.toggle('on', inspectorEnabled);
       btn.setAttribute('aria-pressed', inspectorEnabled ? 'true' : 'false');
       btn.innerHTML = `
@@ -958,9 +963,10 @@
           <line x1="2" y1="12" x2="5" y2="12"/>
           <line x1="19" y1="12" x2="22" y2="12"/>
         </svg>
-        <span>Mouse inspector</span>${inspectorEnabled ? '' : ' (off)'}
+        <span class="i18n-t" data-en="${enText}" data-km="${kmText}">${isKm ? kmText : enText}</span>
       `;
     };
+    renderBtnFn = renderBtn;
 
     renderBtn();
 
@@ -972,10 +978,11 @@
         uninspectKey();
       }
       if (typeof global.showToast === 'function') {
+        const isKm = document.documentElement.classList.contains('site-km-mode');
         global.showToast(
           '<svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>',
-          inspectorEnabled ? 'Mouse Inspector Active' : 'Mouse Inspector Paused',
-          inspectorEnabled ? 'Hover over keys or text to view phonetic guides, finger reach, and subscript formulas.' : 'Standard mouse pointer restored.'
+          inspectorEnabled ? (isKm ? 'ការត្រួតពិនិត្យដោយកណ្ដុរសកម្ម' : 'Mouse Inspector Active') : (isKm ? 'បានផ្អាកការត្រួតពិនិត្យដោយកណ្ដុរ' : 'Mouse Inspector Paused'),
+          inspectorEnabled ? (isKm ? 'ដាក់កណ្ដុរលើគ្រាប់ចុច ឬអត្ថបទដើម្បីមើលមគ្គុទ្ទេសក៍សំឡេង ម្រាមដៃ និងរូបមន្តជើងព្យញ្ជនៈ។' : 'Hover over keys or text to view phonetic guides, finger reach, and subscript formulas.') : (isKm ? 'បានត្រឡប់ទៅព្រួញកណ្ដុរធម្មតាវិញ។' : 'Standard mouse pointer restored.')
         );
       }
     };
@@ -1029,12 +1036,12 @@
     uninspectKey,
     inspectTextCharacter,
     getCharInfo,
+    refreshLang: () => { if (typeof renderBtnFn === 'function') renderBtnFn(); },
     isEnabled: () => inspectorEnabled,
     toggle: (state) => {
       inspectorEnabled = typeof state === 'boolean' ? state : !inspectorEnabled;
       savePreference();
-      const btn = document.getElementById('cursorGuideToggle');
-      if (btn) btn.classList.toggle('on', inspectorEnabled);
+      if (typeof renderBtnFn === 'function') renderBtnFn();
     }
   };
   global.PKCursorInspector = global.PK_MOUSE_INSPECTOR;

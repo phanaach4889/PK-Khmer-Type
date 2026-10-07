@@ -237,6 +237,7 @@ const LAYOUTS = {
     spaceMap: {base:'្', shift:' ', ctrl:'្', altgr:'្'},
     hasLessons: true,
     layerLabels: {base:'Base — Khmer', shift:'Shift — Voiced consonants', ctrl:'Ctrl — Currency & punctuation', altgr:'AltGr — Numerals & clusters'},
+    layerLabelsKm: {base:'Base — ខ្មែរ', shift:'Shift — ព្យញ្ជនៈឃោសៈ', ctrl:'Ctrl — រូបិយប័ណ្ណ និងសញ្ញា', altgr:'AltGr — លេខ និងបណ្ដុំអក្សរ'},
   },
   nida: {
     label: 'Khmer NiDA Keyboard',
@@ -244,6 +245,7 @@ const LAYOUTS = {
     spaceMap: {base:'\u200B', shift:' ', ctrl:' ', altgr:'\u00A0'},
     hasLessons: true,
     layerLabels: {base:'Base — Khmer', shift:'Shift — Marks & punctuation', ctrl:'Ctrl — (unused)', altgr:'AltGr — Symbols & vowels'},
+    layerLabelsKm: {base:'Base — ខ្មែរ', shift:'Shift — សញ្ញា និងវណ្ណយុត្តិ', ctrl:'Ctrl — (មិនប្រើ)', altgr:'AltGr — និមិត្តសញ្ញា និងស្រៈ'},
   },
   english: {
     label: 'English (US)',
@@ -251,6 +253,7 @@ const LAYOUTS = {
     spaceMap: {base:' ', shift:' ', ctrl:' ', altgr:' '},
     hasLessons: true,
     layerLabels: {base:'Base — lowercase', shift:'Shift — UPPERCASE & symbols', ctrl:'Ctrl — (unused)', altgr:'AltGr — (unused)'},
+    layerLabelsKm: {base:'Base — អក្សរតូច', shift:'Shift — អក្សរធំ និងនិមិត្តសញ្ញា', ctrl:'Ctrl — (មិនប្រើ)', altgr:'AltGr — (មិនប្រើ)'},
   },
 };
 const LAYOUT_STORAGE_KEY = 'pk_active_layout';
@@ -429,11 +432,16 @@ function syncLayoutUI(id){
     const nameMap = { standard:'STANDARD', nida:'NiDA', english:'ENGLISH' };
     chassisLabel.textContent = nameMap[targetId] || (targetId ? targetId.toUpperCase() : 'STANDARD');
   }
-  const ll = LAYOUTS[targetId] && LAYOUTS[targetId].layerLabels;
-  if(ll){
+  const isKm = document.documentElement.classList.contains('site-km-mode');
+  const llEn = LAYOUTS[targetId] && LAYOUTS[targetId].layerLabels;
+  const llKm = LAYOUTS[targetId] && LAYOUTS[targetId].layerLabelsKm;
+  if(llEn){
     document.querySelectorAll('.layer-pill').forEach(p=>{
       const key = p.dataset.pill;
-      if(ll[key]) p.textContent = ll[key];
+      if(llEn[key]) p.setAttribute('data-en', llEn[key]);
+      if(llKm && llKm[key]) p.setAttribute('data-km', llKm[key]);
+      const txt = (isKm && llKm && llKm[key]) ? llKm[key] : llEn[key];
+      if(txt) p.textContent = txt;
     });
   }
   const lessonsAvailable = LAYOUTS[targetId] && LAYOUTS[targetId].hasLessons;
@@ -476,6 +484,7 @@ function updateQuickGuide() {
   const subscriptsSec = document.getElementById('guideSubscriptsSec');
   const typeSpaceKbd = document.getElementById('guideTypeSpaceKbd');
   const coengKeyWrap = document.getElementById('guideCoengKeyWrap');
+  const isKm = document.documentElement.classList.contains('site-km-mode');
 
   if (!leftHand) return;
 
@@ -509,7 +518,7 @@ function updateQuickGuide() {
     `;
     if(subscriptsSec) subscriptsSec.style.display = 'block';
     if(typeSpaceKbd) typeSpaceKbd.textContent = 'Shift + Space';
-    if(coengKeyWrap) coengKeyWrap.innerHTML = '<kbd class="guide-kbd">Space</kbd> <span class="i18n-t" data-en="(Standard)" data-km="(ស្តង់ដារ)">(Standard)</span>';
+    if(coengKeyWrap) coengKeyWrap.innerHTML = '<kbd class="guide-kbd">Space</kbd> <span class="i18n-t" data-en="(Standard)" data-km="(ស្តង់ដារ)">' + (isKm ? '(ស្តង់ដារ)' : '(Standard)') + '</span>';
   } else if (currentLayoutId === 'nida') {
     leftHand.innerHTML = `
       <div class="guide-mini-key" title="Left Pinky"><span class="km-ch">ា</span><span class="en-ch">A</span></div>
@@ -525,7 +534,7 @@ function updateQuickGuide() {
     `;
     if(subscriptsSec) subscriptsSec.style.display = 'block';
     if(typeSpaceKbd) typeSpaceKbd.textContent = 'Space';
-    if(coengKeyWrap) coengKeyWrap.innerHTML = '<kbd class="guide-kbd">J</kbd> <span class="i18n-t" data-en="(NiDA)" data-km="(នីដា)">(NiDA)</span>';
+    if(coengKeyWrap) coengKeyWrap.innerHTML = '<kbd class="guide-kbd">J</kbd> <span class="i18n-t" data-en="(NiDA)" data-km="(NiDA)">(NiDA)</span>';
   }
 
   if(window.PKQuickGuide && typeof window.PKQuickGuide.updateLayout === 'function'){
