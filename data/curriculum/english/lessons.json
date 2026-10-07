@@ -42,7 +42,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": null
-      }
+      },
+      "titleKm": "យុថ្កាចង្អុលដៃឆ្វេង (F)"
     },
     {
       "id": "en-L00-02",
@@ -75,7 +76,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L00-01"
-      }
+      },
+      "titleKm": "យុថ្កាចង្អុលដៃស្តាំ (J)"
     },
     {
       "id": "en-L00-03",
@@ -101,7 +103,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L00-02"
-      }
+      },
+      "titleKm": "ការឆ្លាស់ F និង J"
     },
     {
       "id": "en-L00-04",
@@ -128,7 +131,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L00-03"
-      }
+      },
+      "titleKm": "ការទប់ចង្វាក់ និងសម្រាក"
     },
     {
       "id": "en-L01-01",
@@ -170,7 +174,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L00-04"
-      }
+      },
+      "titleKm": "ម្រាមកណ្តាល៖ D និង K"
     },
     {
       "id": "en-L01-02",
@@ -212,7 +217,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L01-01"
-      }
+      },
+      "titleKm": "នាងដៃ៖ S និង L"
     },
     {
       "id": "en-L01-03",
@@ -242,7 +248,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L01-02"
-      }
+      },
+      "titleKm": "លំហាត់ស្នូល ៦ គ្រាប់ចុច"
     },
     {
       "id": "en-L01-04",
@@ -273,7 +280,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L01-03"
-      }
+      },
+      "titleKm": "ចង្វាក់ និងលំហូរស្នូល"
     },
     {
       "id": "en-L02-01",
@@ -315,7 +323,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L01-04"
-      }
+      },
+      "titleKm": "កូនដៃ៖ A និង ចុចក្បៀស (;)"
     },
     {
       "id": "en-L02-02",
@@ -347,7 +356,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L02-01"
-      }
+      },
+      "titleKm": "ផ្សំគ្រាប់ចុចស្នូលទាំង ៨"
     },
     {
       "id": "en-L02-03",
@@ -379,7 +389,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L02-02"
-      }
+      },
+      "titleKm": "ពាក្យជួរផ្ទះស្នូល"
     },
     {
       "id": "en-L02-04",
@@ -412,7 +423,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L02-03"
-      }
+      },
+      "titleKm": "ឃ្លា និងលំហូរជួរផ្ទះស្នូល"
     },
     {
       "id": "en-L02-05",
@@ -444,7 +456,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L02-04"
-      }
+      },
+      "titleKm": "រំលឹក និងពង្រឹងជួរផ្ទះស្នូល"
     },
     {
       "id": "en-L03-01",
@@ -479,7 +492,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L02-05"
-      }
+      },
+      "titleKm": "ឈោងចង្អុលដៃឆ្វេង៖ G"
     },
     {
       "id": "en-L03-02",
@@ -514,7 +528,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L03-01"
-      }
+      },
+      "titleKm": "ឈោងចង្អុលដៃស្តាំ៖ H"
     },
     {
       "id": "en-L03-03",
@@ -541,7 +556,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L03-02"
-      }
+      },
+      "titleKm": "ពាក្យជាមួយ G និង H"
     },
     {
       "id": "en-L03-04",
@@ -574,7 +590,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L03-03"
-      }
+      },
+      "titleKm": "តេស្តស្ទាត់ជំនាញជួរផ្ទះ"
     },
     {
       "id": "en-L04-01",
@@ -609,7 +626,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L03-04"
-      }
+      },
+      "titleKm": "ជួរលើ កណ្តាលឆ្វេង៖ E"
     },
     {
       "id": "en-L04-02",
@@ -644,7 +662,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L04-01"
-      }
+      },
+      "titleKm": "ជួរលើ កណ្តាលស្តាំ៖ I"
     },
     {
       "id": "en-L04-03",
@@ -679,7 +698,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L04-02"
-      }
+      },
+      "titleKm": "ជួរលើ ចង្អុលដៃឆ្វេង៖ R"
     },
     {
       "id": "en-L04-04",
@@ -714,7 +734,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L04-03"
-      }
+      },
+      "titleKm": "ជួរលើ ចង្អុលដៃស្តាំ៖ U"
     },
     {
       "id": "en-L04-05",
@@ -743,7 +764,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L04-04"
-      }
+      },
+      "titleKm": "រំលឹកស្រៈជួរលើ"
     },
     {
       "id": "en-L05-01",
@@ -786,7 +808,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L04-05"
-      }
+      },
+      "titleKm": "T និង Y"
     },
     {
       "id": "en-L05-02",
@@ -829,7 +852,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L05-01"
-      }
+      },
+      "titleKm": "W និង O"
     },
     {
       "id": "en-L05-03",
@@ -872,7 +896,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L05-02"
-      }
+      },
+      "titleKm": "Q និង P"
     },
     {
       "id": "en-L05-04",
@@ -896,7 +921,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L05-03"
-      }
+      },
+      "titleKm": "ពាក្យជួរលើ"
     },
     {
       "id": "en-L05-05",
@@ -920,7 +946,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L05-04"
-      }
+      },
+      "titleKm": "ភាពស្ទាត់ជំនាញជួរលើ និងជួរផ្ទះ"
     },
     {
       "id": "en-L06-01",
@@ -963,7 +990,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L05-05"
-      }
+      },
+      "titleKm": "C និង V"
     },
     {
       "id": "en-L06-02",
@@ -1006,7 +1034,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L06-01"
-      }
+      },
+      "titleKm": "B និង N"
     },
     {
       "id": "en-L06-03",
@@ -1041,7 +1070,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L06-02"
-      }
+      },
+      "titleKm": "M"
     },
     {
       "id": "en-L06-04",
@@ -1084,7 +1114,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L06-03"
-      }
+      },
+      "titleKm": "Z និង X"
     },
     {
       "id": "en-L06-05",
@@ -1127,7 +1158,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L06-04"
-      }
+      },
+      "titleKm": "ក្បៀស (,) និងចុច (.)"
     },
     {
       "id": "en-L06-06",
@@ -1151,7 +1183,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L06-05"
-      }
+      },
+      "titleKm": "ពាក្យជួរក្រោម"
     },
     {
       "id": "en-L07-01",
@@ -1175,7 +1208,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L06-06"
-      }
+      },
+      "titleKm": "អនុវត្តតួអក្សរទាំងអស់"
     },
     {
       "id": "en-L07-02",
@@ -1199,7 +1233,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L07-01"
-      }
+      },
+      "titleKm": "ប្រយោគគ្រប់តួអក្សរ (Pangrams)"
     },
     {
       "id": "en-L07-03",
@@ -1223,7 +1258,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L07-02"
-      }
+      },
+      "titleKm": "បញ្ជីពាក្យទូទៅ"
     },
     {
       "id": "en-L07-04",
@@ -1247,7 +1283,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L07-03"
-      }
+      },
+      "titleKm": "រំលឹកអក្សរក្រមពេញលេញ"
     },
     {
       "id": "en-L08-01",
@@ -1287,7 +1324,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L07-04"
-      }
+      },
+      "titleKm": "មូលដ្ឋានគ្រឹះ Shift"
     },
     {
       "id": "en-L08-02",
@@ -1311,7 +1349,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L08-01"
-      }
+      },
+      "titleKm": "អក្សរធំដៃឆ្វេង"
     },
     {
       "id": "en-L08-03",
@@ -1335,7 +1374,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L08-02"
-      }
+      },
+      "titleKm": "អក្សរធំដៃស្តាំ"
     },
     {
       "id": "en-L08-04",
@@ -1359,7 +1399,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L08-03"
-      }
+      },
+      "titleKm": "នាមជាក់លាក់ (អក្សរធំ)"
     },
     {
       "id": "en-L08-05",
@@ -1383,7 +1424,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L08-04"
-      }
+      },
+      "titleKm": "ការចាប់ផ្តើមប្រយោគ"
     },
     {
       "id": "en-L09-01",
@@ -1445,7 +1487,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L08-05"
-      }
+      },
+      "titleKm": "លេខ ១ ដល់ ៥"
     },
     {
       "id": "en-L09-02",
@@ -1507,7 +1550,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L09-01"
-      }
+      },
+      "titleKm": "លេខ ៦ ដល់ ០"
     },
     {
       "id": "en-L09-03",
@@ -1532,7 +1576,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L09-02"
-      }
+      },
+      "titleKm": "លេខចម្រុះ"
     },
     {
       "id": "en-L09-04",
@@ -1557,7 +1602,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L09-03"
-      }
+      },
+      "titleKm": "លេខក្នុងប្រយោគ"
     },
     {
       "id": "en-L10-01",
@@ -1598,7 +1644,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L09-04"
-      }
+      },
+      "titleKm": "សញ្ញាសួរ (?) និងបន្ទាត់ទ្រេត (/)"
     },
     {
       "id": "en-L10-02",
@@ -1639,7 +1686,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L10-01"
-      }
+      },
+      "titleKm": "អាប៉ូស្រ្តូហ្វ (') និងសញ្ញាសម្រង់ (\")"
     },
     {
       "id": "en-L10-03",
@@ -1729,7 +1777,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L10-02"
-      }
+      },
+      "titleKm": "សញ្ញាឧទាន (!), ចុចពីរ (:) និងនិមិត្តសញ្ញាលេខ"
     },
     {
       "id": "en-L10-04",
@@ -1810,7 +1859,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L10-03"
-      }
+      },
+      "titleKm": "វង់ក្រចក, គ្នាប និងសញ្ញាដង្កៀប"
     },
     {
       "id": "en-L10-05",
@@ -1889,7 +1939,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L10-04"
-      }
+      },
+      "titleKm": "សញ្ញាដក, បូក, ស្មើ និងសញ្ញាពិសេស"
     },
     {
       "id": "en-L11-01",
@@ -1914,7 +1965,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L10-05"
-      }
+      },
+      "titleKm": "ប្រយោគខ្លី"
     },
     {
       "id": "en-L11-02",
@@ -1939,7 +1991,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L11-01"
-      }
+      },
+      "titleKm": "ប្រយោគមធ្យម"
     },
     {
       "id": "en-L11-03",
@@ -1964,7 +2017,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L11-02"
-      }
+      },
+      "titleKm": "ប្រយោគជាមួយវណ្ណយុត្តិ"
     },
     {
       "id": "en-L11-04",
@@ -1989,7 +2043,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L11-03"
-      }
+      },
+      "titleKm": "ប្រយោគជាមួយលេខ"
     },
     {
       "id": "en-L11-05",
@@ -2014,7 +2069,8 @@
       ],
       "unlockRequirements": {
         "previousLesson": "en-L11-04"
-      }
+      },
+      "titleKm": "ការប្រកួតប្រយោគចម្រុះ"
     },
     {
       "id": "en-L12-01",
@@ -2040,7 +2096,8 @@
       "unlockRequirements": {
         "previousLesson": "en-L11-05"
       },
-      "timeLimit": 60
+      "timeLimit": 60,
+      "titleKm": "កថាខណ្ឌពីរប្រយោគ"
     },
     {
       "id": "en-L12-02",
@@ -2066,7 +2123,8 @@
       "unlockRequirements": {
         "previousLesson": "en-L12-01"
       },
-      "timeLimit": 60
+      "timeLimit": 60,
+      "titleKm": "កថាខណ្ឌបីប្រយោគ"
     },
     {
       "id": "en-L12-03",
@@ -2092,7 +2150,8 @@
       "unlockRequirements": {
         "previousLesson": "en-L12-02"
       },
-      "timeLimit": 60
+      "timeLimit": 60,
+      "titleKm": "កថាខណ្ឌរឿងនិទាន"
     },
     {
       "id": "en-L12-04",
@@ -2118,7 +2177,8 @@
       "unlockRequirements": {
         "previousLesson": "en-L12-03"
       },
-      "timeLimit": 60
+      "timeLimit": 60,
+      "titleKm": "កថាខណ្ឌបច្ចេកវិទ្យា"
     },
     {
       "id": "en-L13-01",
@@ -2145,7 +2205,8 @@
       "unlockRequirements": {
         "previousLesson": "en-L12-04"
       },
-      "timeLimit": 180
+      "timeLimit": 180,
+      "titleKm": "ការហ្វឹកហាត់ល្បឿន ១ នាទី"
     },
     {
       "id": "en-L13-02",
@@ -2172,7 +2233,8 @@
       "unlockRequirements": {
         "previousLesson": "en-L13-01"
       },
-      "timeLimit": 180
+      "timeLimit": 180,
+      "titleKm": "ការហ្វឹកហាត់ល្បឿន ៣ នាទី"
     },
     {
       "id": "en-L13-03",
@@ -2199,7 +2261,8 @@
       "unlockRequirements": {
         "previousLesson": "en-L13-02"
       },
-      "timeLimit": 180
+      "timeLimit": 180,
+      "titleKm": "ការប្រកួតប្រជែងល្បឿន"
     },
     {
       "id": "en-L13-04",
@@ -2226,7 +2289,8 @@
       "unlockRequirements": {
         "previousLesson": "en-L13-03"
       },
-      "timeLimit": 180
+      "timeLimit": 180,
+      "titleKm": "តេស្តស្ទាត់ជំនាញភាសាអង់គ្លេស"
     }
   ]
 }

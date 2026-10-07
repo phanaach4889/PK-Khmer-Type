@@ -21,7 +21,8 @@
       "completionRequirements": {
         "allLessonsCompleted": true,
         "minLevelAccuracy": null
-      }
+      },
+      "titleKm": "គ្រាប់ចុចយុថ្កា និងទិសដៅ"
     },
     {
       "id": "en-L01",
@@ -41,7 +42,8 @@
       "completionRequirements": {
         "allLessonsCompleted": true,
         "minLevelAccuracy": 90
-      }
+      },
+      "titleKm": "ជួរផ្ទះស្នូល៖ D, K, S, L"
     },
     {
       "id": "en-L02",
@@ -62,7 +64,8 @@
       "completionRequirements": {
         "allLessonsCompleted": true,
         "minLevelAccuracy": 90
-      }
+      },
+      "titleKm": "ជួរផ្ទះពេញលេញ និងពាក្យ"
     },
     {
       "id": "en-L03",
@@ -82,7 +85,8 @@
       "completionRequirements": {
         "allLessonsCompleted": true,
         "minLevelAccuracy": 90
-      }
+      },
+      "titleKm": "ការឈោងលើជួរផ្ទះ (G, H)"
     },
     {
       "id": "en-L04",
@@ -103,7 +107,8 @@
       "completionRequirements": {
         "allLessonsCompleted": true,
         "minLevelAccuracy": 90
-      }
+      },
+      "titleKm": "ស្រៈជួរលើ (E, I, R, U)"
     },
     {
       "id": "en-L05",
@@ -124,7 +129,8 @@
       "completionRequirements": {
         "allLessonsCompleted": true,
         "minLevelAccuracy": 90
-      }
+      },
+      "titleKm": "គ្រាប់ចុចជួរលើនៅសល់"
     },
     {
       "id": "en-L06",
@@ -146,7 +152,8 @@
       "completionRequirements": {
         "allLessonsCompleted": true,
         "minLevelAccuracy": 90
-      }
+      },
+      "titleKm": "ជួរក្រោម"
     },
     {
       "id": "en-L07",
@@ -166,7 +173,8 @@
       "completionRequirements": {
         "allLessonsCompleted": true,
         "minLevelAccuracy": 90
-      }
+      },
+      "titleKm": "តួអក្សរពេញលេញ A-Z"
     },
     {
       "id": "en-L08",
@@ -187,7 +195,8 @@
       "completionRequirements": {
         "allLessonsCompleted": true,
         "minLevelAccuracy": 90
-      }
+      },
+      "titleKm": "អក្សរធំ (Shift)"
     },
     {
       "id": "en-L09",
@@ -207,7 +216,8 @@
       "completionRequirements": {
         "allLessonsCompleted": true,
         "minLevelAccuracy": 90
-      }
+      },
+      "titleKm": "ជួរលេខ ០-៩"
     },
     {
       "id": "en-L10",
@@ -228,7 +238,8 @@
       "completionRequirements": {
         "allLessonsCompleted": true,
         "minLevelAccuracy": 90
-      }
+      },
+      "titleKm": "សញ្ញាវណ្ណយុត្តិ និងនិមិត្តសញ្ញា"
     },
     {
       "id": "en-L11",
@@ -249,7 +260,8 @@
       "completionRequirements": {
         "allLessonsCompleted": true,
         "minLevelAccuracy": 90
-      }
+      },
+      "titleKm": "ប្រយោគ"
     },
     {
       "id": "en-L12",
@@ -269,7 +281,8 @@
       "completionRequirements": {
         "allLessonsCompleted": true,
         "minLevelAccuracy": 90
-      }
+      },
+      "titleKm": "កថាខណ្ឌ"
     },
     {
       "id": "en-L13",
@@ -289,7 +302,8 @@
       "completionRequirements": {
         "allLessonsCompleted": true,
         "minLevelAccuracy": 90
-      }
+      },
+      "titleKm": "ល្បឿន និងភាពស្ទាត់ជំនាញ"
     }
   ]
 }

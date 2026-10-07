@@ -2518,31 +2518,37 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
     const timeStr = elapsed.toFixed(1) + (isKm ? 'វ' : 's');
     const threshold = def.threshold || 85;
     const failed = accuracy < threshold;
-    const heading = remedialActive ? (isKm ? 'បានបញ្ចប់ការហ្វឹកហាត់កំហុស' : 'Mistake Drill Complete')
-      : failed ? (isKm ? 'បន្តការហ្វឹកហាត់' : 'Keep Practicing')
-      : (isNewBest ? (isKm ? 'កំណត់ត្រាល្អបំផុតថ្មី!' : 'New Personal Best!') : (isKm ? 'បញ្ចប់មេរៀន' : 'Lesson Complete'));
+    const headingEn = remedialActive ? 'Mistake Drill Complete'
+      : failed ? 'Keep Practicing'
+      : (isNewBest ? 'New Personal Best!' : 'Lesson Complete');
+    const headingKm = remedialActive ? 'បានបញ្ចប់ការហ្វឹកហាត់កំហុស'
+      : failed ? 'បន្តការហ្វឹកហាត់'
+      : (isNewBest ? 'កំណត់ត្រាល្អបំផុតថ្មី!' : 'បញ្ចប់មេរៀន');
     const badgeIcon = remedialActive ? pkIcon('target', 32)
       : failed ? pkIcon('reset', 32)
       : accuracy === 100 ? pkIcon('diamond', 32)
       : isNewBest ? pkIcon('zap', 32)
       : pkIcon('star', 32);
 
+    const titleEn = def?.title || 'Lesson';
+    const titleKm = def?.titleKm || def?.title || 'មេរៀន';
+
     overlay.innerHTML = `
       <div class="lesson-complete-card">
         <div class="lc-badge-halo"><div class="lc-badge">${badgeIcon}</div></div>
-        <h2>${heading}</h2>
-        <p>${def.title || (isKm ? 'មេរៀន' : 'Lesson')}</p>
+        <h2 class="i18n-t" data-en="${headingEn}" data-km="${headingKm}">${isKm ? headingKm : headingEn}</h2>
+        <p class="i18n-t" data-en="${titleEn}" data-km="${titleKm}">${isKm ? titleKm : titleEn}</p>
         <div class="lc-divider"><span>◆</span></div>
         <div class="lc-stat-row">
           <div class="lc-ring-wrap">
             <div class="lc-ring" style="--pct:0"><b>0%</b></div>
-            <span class="lc-ring-label">${isKm ? 'សុក្រឹតភាព' : 'Accuracy'}</span>
+            <span class="lc-ring-label i18n-t" data-en="Accuracy" data-km="សុក្រឹតភាព">${isKm ? 'សុក្រឹតភាព' : 'Accuracy'}</span>
           </div>
-          <div class="lc-stat"><b class="lc-time">0.0s</b><span>${isKm ? 'រយៈពេល' : 'Time'}</span></div>
+          <div class="lc-stat"><b class="lc-time">0.0s</b><span class="i18n-t" data-en="Time" data-km="រយៈពេល">${isKm ? 'រយៈពេល' : 'Time'}</span></div>
         </div>
         ${(mistakeChars && mistakeChars.length && !remedialActive) ? `
         <div class="lc-mistakes-preview">
-          <span class="lc-mistakes-title">${isKm ? 'គ្រាប់ចុចត្រូវហ្វឹកហាត់' : 'Keys To Practice'}</span>
+          <span class="lc-mistakes-title i18n-t" data-en="Keys To Practice" data-km="គ្រាប់ចុចត្រូវហ្វឹកហាត់">${isKm ? 'គ្រាប់ចុចត្រូវហ្វឹកហាត់' : 'Keys To Practice'}</span>
           <div class="lc-mistake-chips">
             ${mistakeChars.map(ch => {
               const count = lessonMistakeChars[ch] || 1;
@@ -2559,11 +2565,11 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
             })
           : `
           <div class="lesson-complete-actions">
-            ${(mistakeChars && mistakeChars.length && !remedialActive) ? `<button type="button" class="lc-mistakes primary">${pkIcon('target', 14)} Review Mistakes</button>` : ''}
-            ${(prevLesson) ? `<button type="button" class="lc-prev">${pkIcon('arrow-left', 14)} Previous</button>` : ''}
-            <button type="button" class="lc-retry">${pkIcon('reset', 14)} Retry</button>
-            ${nextLesson ? `<button type="button" class="lc-next${((!mistakeChars || !mistakeChars.length) ? ' primary' : '')}">Next Lesson ${pkIcon('arrow-right', 14)}</button>` : '<button type="button" class="lc-close primary">Close</button>'}
-            ${nextLesson ? '<button type="button" class="lc-close">Close</button>' : ''}
+            ${(mistakeChars && mistakeChars.length && !remedialActive) ? `<button type="button" class="lc-mistakes primary">${pkIcon('target', 14)} <span class="i18n-t" data-en="Review Mistakes" data-km="ពិនិត្យកំហុស">${isKm ? 'ពិនិត្យកំហុស' : 'Review Mistakes'}</span></button>` : ''}
+            ${(prevLesson) ? `<button type="button" class="lc-prev">${pkIcon('arrow-left', 14)} <span class="i18n-t" data-en="Previous" data-km="ថយក្រោយ">${isKm ? 'ថយក្រោយ' : 'Previous'}</span></button>` : ''}
+            <button type="button" class="lc-retry">${pkIcon('reset', 14)} <span class="i18n-t" data-en="Retry" data-km="ព្យាយាមម្តងទៀត">${isKm ? 'ព្យាយាមម្តងទៀត' : 'Retry'}</span></button>
+            ${nextLesson ? `<button type="button" class="lc-next${((!mistakeChars || !mistakeChars.length) ? ' primary' : '')}"><span class="i18n-t" data-en="Next Lesson" data-km="មេរៀនបន្ទាប់">${isKm ? 'មេរៀនបន្ទាប់' : 'Next Lesson'}</span> ${pkIcon('arrow-right', 14)}</button>` : `<button type="button" class="lc-close primary"><span class="i18n-t" data-en="Close" data-km="បិទ">${isKm ? 'បិទ' : 'Close'}</span></button>`}
+            ${nextLesson ? `<button type="button" class="lc-close"><span class="i18n-t" data-en="Close" data-km="បិទ">${isKm ? 'បិទ' : 'Close'}</span></button>` : ''}
           </div>`
         }
       </div>`;

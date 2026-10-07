@@ -942,12 +942,17 @@
 
     const lesson = course.lessons[String(lessonId)];
     if(!lesson || !lesson.recentAttempts || lesson.recentAttempts.length <= 1){
+      const isKm = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
+      const msgEn = 'First attempt recorded — solid starting baseline!';
+      const msgKm = 'បានកត់ត្រាការសាកល្បងដំបូង — មូលដ្ឋានរឹងមាំ!';
       return {
         hasHistory: false,
         totalAttempts: lesson ? lesson.totalAttempts : 1,
         bestAccuracy: currentAttempt ? currentAttempt.accuracy : 100,
         trend: 'baseline',
-        message: 'First attempt recorded — solid starting baseline!'
+        message: isKm ? msgKm : msgEn,
+        messageEn: msgEn,
+        messageKm: msgKm
       };
     }
 
@@ -960,18 +965,20 @@
     const diff = curAcc - prevLast.accuracy;
 
     let trend = 'stable';
-    let message = `Consistent performance at ${curAcc}%.`;
+    let messageEn = `Steady accuracy at ${curAcc}% (previous: ${prevLast.accuracy}%).`;
+    let messageKm = `សុក្រឹតភាពថេរនៅត្រឹម ${curAcc}% (លើកមុន៖ ${prevLast.accuracy}%)។`;
 
     if(diff >= 3){
       trend = 'improving';
-      message = `Accuracy improved by +${diff}% from your previous attempt (${prevLast.accuracy}% → ${curAcc}%)!`;
+      messageEn = `Accuracy improved by +${diff}% from your previous attempt (${prevLast.accuracy}% → ${curAcc}%)!`;
+      messageKm = `សុក្រឹតភាពបានកើនឡើង +${diff}% ធៀបនឹងលើកមុន (${prevLast.accuracy}% → ${curAcc}%)!`;
     } else if(diff <= -3){
       trend = 'declining';
-      message = `Accuracy dipped by ${Math.abs(diff)}% (${prevLast.accuracy}% → ${curAcc}%). A quick focused drill will bring it back up.`;
-    } else {
-      trend = 'stable';
-      message = `Steady accuracy at ${curAcc}% (previous: ${prevLast.accuracy}%).`;
+      messageEn = `Accuracy dipped by ${Math.abs(diff)}% (${prevLast.accuracy}% → ${curAcc}%). A quick focused drill will bring it back up.`;
+      messageKm = `សុក្រឹតភាពបានថយចុះ ${Math.abs(diff)}% (${prevLast.accuracy}% → ${curAcc}%)។ ការហ្វឹកហាត់ខ្លីមួយនឹងជួយបង្កើនមកវិញ។`;
     }
+
+    const isKm = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
 
     return {
       hasHistory: true,
@@ -981,7 +988,9 @@
       currentAccuracy: curAcc,
       diffAccuracy: diff,
       trend,
-      message,
+      message: isKm ? messageKm : messageEn,
+      messageEn,
+      messageKm,
       masteryState: lesson.masteryState
     };
   }

@@ -26,6 +26,20 @@
     thumb: 'Thumb'
   };
 
+  const FINGER_DISPLAY_NAMES_KM = {
+    lp: 'ដៃឆ្វេង · កូនដៃ',
+    lr: 'ដៃឆ្វេង · នាងដៃ',
+    lm: 'ដៃឆ្វេង · កណ្ដាល',
+    li: 'ដៃឆ្វេង · ចង្អុលដៃ',
+    lt: 'ដៃឆ្វេង · មេដៃ',
+    rt: 'ដៃស្ដាំ · មេដៃ',
+    ri: 'ដៃស្ដាំ · ចង្អុលដៃ',
+    rm: 'ដៃស្ដាំ · កណ្ដាល',
+    rr: 'ដៃស្ដាំ · នាងដៃ',
+    rp: 'ដៃស្ដាំ · កូនដៃ',
+    thumb: 'មេដៃ'
+  };
+
   function safeIcon(id, size = 14) {
     if (typeof pkIcon === 'function') return pkIcon(id, size);
     return '';
@@ -53,7 +67,10 @@
     '៖': { name: 'Camnoc Pii Kuuh ៖', category: 'punctuation', desc: 'Colon mark' }
   };
 
-  function formatFingerName(f){
+  function formatFingerName(f, isKm = false){
+    if(isKm){
+      return FINGER_DISPLAY_NAMES_KM[f] || 'ម្រាមដៃ';
+    }
     return FINGER_DISPLAY_NAMES[f] || 'Finger';
   }
 
@@ -309,7 +326,9 @@
         if(cnt >= 3 && pct >= 35){
           weakFingers.push({
             finger: f,
-            name: formatFingerName(f),
+            name: formatFingerName(f, false),
+            nameEn: formatFingerName(f, false),
+            nameKm: formatFingerName(f, true),
             mistakes: cnt,
             pct: pct
           });
@@ -321,37 +340,51 @@
     const shiftMistakes = metrics?.shiftMistakes || 0;
 
     // 3. DATA-BACKED NEXT STEP RECOMMENDATION
-    let recommendationText = '';
+    let recommendationTextEn = '';
+    let recommendationTextKm = '';
     let recommendationAction = 'next'; // 'next', 'review', 'retry'
 
     if(shiftMistakes >= 3){
       recommendationAction = (accuracy < threshold) ? 'retry' : 'review';
-      recommendationText = `Shift coordination caused ${shiftMistakes} mistakes. Hold Shift before pressing the character key.`;
+      recommendationTextEn = `Shift coordination caused ${shiftMistakes} mistakes. Hold Shift before pressing the character key.`;
+      recommendationTextKm = `ការចុចប្តូរ (Shift) បង្កើតកំហុស ${shiftMistakes} ដង។ សូមសង្កត់ Shift មុនពេលចុចគ្រាប់ចុចតួអក្សរ។`;
     } else if(accuracy < threshold){
       recommendationAction = 'retry';
       if(weakKeys.length > 0){
-        recommendationText = `Review this lesson to strengthen ${weakKeys.slice(0, 2).map(k => k.key.toUpperCase()).join(' and ')} before moving forward.`;
+        const keysEn = weakKeys.slice(0, 2).map(k => k.key.toUpperCase()).join(' and ');
+        const keysKm = weakKeys.slice(0, 2).map(k => k.key.toUpperCase()).join(' និង ');
+        recommendationTextEn = `Review this lesson to strengthen ${keysEn} before moving forward.`;
+        recommendationTextKm = `ពិនិត្យឡើងវិញមេរៀននេះដើម្បីពង្រឹង ${keysKm} មុនពេលបន្តទៅមុខ។`;
       } else {
-        recommendationText = `Accuracy was ${accuracy}% (minimum ${threshold}% required). Practice this lesson again to unlock the next level.`;
+        recommendationTextEn = `Accuracy was ${accuracy}% (minimum ${threshold}% required). Practice this lesson again to unlock the next level.`;
+        recommendationTextKm = `សុក្រឹតភាពសម្រេចបាន ${accuracy}% (ត្រូវការយ៉ាងតិច ${threshold}%)។ សូមហ្វឹកហាត់មេរៀននេះម្តងទៀតដើម្បីដោះសោវគ្គបន្ទាប់។`;
       }
     } else if(weakUnits.some(u => KHMER_SPECIAL_UNITS[u.unit])){
       recommendationAction = 'review';
       const special = weakUnits.find(u => KHMER_SPECIAL_UNITS[u.unit]);
-      recommendationText = `Take time on ${special.name}. Mastering modifier combinations will boost your typing fluency.`;
+      recommendationTextEn = `Take time on ${special.name}. Mastering modifier combinations will boost your typing fluency.`;
+      recommendationTextKm = `ចំណាយពេលបន្ថែមលើ ${special.name}។ ការស្ទាត់ជំនាញលើការផ្សំតួអក្សរនឹងបង្កើនល្បឿនវាយអក្សរ។`;
     } else if(weakKeys.length >= 2){
       recommendationAction = 'review';
-      const top2 = weakKeys.slice(0, 2).map(k => k.key.toUpperCase()).join(' and ');
-      recommendationText = `Focus on ${top2} in the review drill to eliminate hesitation.`;
+      const top2En = weakKeys.slice(0, 2).map(k => k.key.toUpperCase()).join(' and ');
+      const top2Km = weakKeys.slice(0, 2).map(k => k.key.toUpperCase()).join(' និង ');
+      recommendationTextEn = `Focus on ${top2En} in the review drill to eliminate hesitation.`;
+      recommendationTextKm = `ផ្តោតលើ ${top2Km} ក្នុងការហ្វឹកហាត់ឡើងវិញដើម្បីលុបបំបាត់ការស្ទាក់ស្ទើរ។`;
     } else if(weakFingers.length > 0){
       recommendationAction = 'next';
-      recommendationText = `${weakFingers[0].name} produced ${weakFingers[0].pct}% of errors. Keep fingers lightly rested on home keys.`;
+      recommendationTextEn = `${weakFingers[0].nameEn} produced ${weakFingers[0].pct}% of errors. Keep fingers lightly rested on home keys.`;
+      recommendationTextKm = `${weakFingers[0].nameKm} បង្កើតកំហុស ${weakFingers[0].pct}%។ សូមដាក់ម្រាមដៃស្រាលៗលើជួរផ្ទះ។`;
     } else if(slowKeys.length > 0){
       recommendationAction = 'next';
-      recommendationText = `Your accuracy is high, but key ${slowKeys[0].key.toUpperCase()} slowed your pace (${slowKeys[0].ratio}× average time).`;
+      recommendationTextEn = `Your accuracy is high, but key ${slowKeys[0].key.toUpperCase()} slowed your pace (${slowKeys[0].ratio}× average time).`;
+      recommendationTextKm = `សុក្រឹតភាពខ្ពស់ ប៉ុន្តែគ្រាប់ចុច ${slowKeys[0].key.toUpperCase()} បានបន្ថយល្បឿនរបស់អ្នក (${slowKeys[0].ratio}× នៃពេលមធ្យម)។`;
     } else {
       recommendationAction = 'next';
-      recommendationText = `Strong accuracy and rhythm! You are ready for the next lesson.`;
+      recommendationTextEn = `Strong accuracy and rhythm! You are ready for the next lesson.`;
+      recommendationTextKm = `សុក្រឹតភាពនិងចង្វាក់វាយល្អឥតខ្ចោះ! អ្នករួចរាល់សម្រាប់មេរៀនបន្ទាប់ហើយ។`;
     }
+
+    const isKmCurrent = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
 
     // Exercise section breakdown array
     const exerciseBreakdown = Object.keys(exerciseStats).map(eid => {
@@ -406,7 +439,9 @@
         difficultExercises
       },
       recommendation: {
-        text: recommendationText,
+        text: isKmCurrent ? recommendationTextKm : recommendationTextEn,
+        textEn: recommendationTextEn,
+        textKm: recommendationTextKm,
         action: recommendationAction
       },
       exerciseBreakdown,
@@ -445,7 +480,9 @@
       }
     });
 
-    const message = `You completed ${completionPct}% of this lesson (${position}/${totalUnits} typing units). ${remainingUnits} units remain.`;
+    const isKmInc = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
+    const messageEn = `You completed ${completionPct}% of this lesson (${position}/${totalUnits} typing units). ${remainingUnits} units remain.`;
+    const messageKm = `អ្នកបានបញ្ចប់ ${completionPct}% នៃមេរៀននេះ (${position}/${totalUnits} តួអក្សរ)។ នៅសល់ ${remainingUnits} តួអក្សរទៀត។`;
 
     return {
       lessonId: def.id || (metrics && metrics.lessonId),
@@ -460,7 +497,9 @@
       lastExpectedName,
       completedSections,
       remainingSections,
-      message
+      message: isKmInc ? messageKm : messageEn,
+      messageEn,
+      messageKm
     };
   }
 
@@ -488,14 +527,11 @@
     const isKm = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
 
     if(state === 'paused'){
-      const resumeTxt = isKm ? 'បន្តមេរៀន' : 'Resume Lesson';
-      const restartTxt = isKm ? 'ចាប់ផ្តើមឡើងវិញ' : 'Restart';
-      const exitTxt = isKm ? 'ចាកចេញទៅវគ្គសិក្សា' : 'Exit to Course';
       return `
       <div class="lesson-complete-actions pk-fb-actions">
-        <button type="button" class="lc-resume primary">${safeIcon('play', 14)} ${resumeTxt}</button>
-        <button type="button" class="lc-retry">${safeIcon('reset', 14)} ${restartTxt}</button>
-        <button type="button" class="lc-exit-confirm secondary">${exitTxt}</button>
+        <button type="button" class="lc-resume primary">${safeIcon('play', 14)} <span class="i18n-t" data-en="Resume Lesson" data-km="បន្តមេរៀន">${isKm ? 'បន្តមេរៀន' : 'Resume Lesson'}</span></button>
+        <button type="button" class="lc-retry">${safeIcon('reset', 14)} <span class="i18n-t" data-en="Restart" data-km="ចាប់ផ្តើមឡើងវិញ">${isKm ? 'ចាប់ផ្តើមឡើងវិញ' : 'Restart'}</span></button>
+        <button type="button" class="lc-exit-confirm secondary"><span class="i18n-t" data-en="Exit to Course" data-km="ចាកចេញទៅវគ្គសិក្សា">${isKm ? 'ចាកចេញទៅវគ្គសិក្សា' : 'Exit to Course'}</span></button>
       </div>`;
     }
 
@@ -504,24 +540,18 @@
       const nextIsPrimary = !hasMistakes;
       const buttons = [];
 
-      const reviewTxt = isKm ? 'ពិនិត្យកំហុស' : 'Review Mistakes';
-      const prevTxt = isKm ? 'ថយក្រោយ' : 'Previous';
-      const retryTxt = isKm ? 'ព្យាយាមម្តងទៀត' : 'Retry';
-      const nextTxt = isKm ? 'មេរៀនបន្ទាប់' : 'Next Lesson';
-      const closeTxt = isKm ? 'បិទ' : 'Close';
-
       if(hasMistakes){
-        buttons.push(`<button type="button" class="lc-mistakes primary">${safeIcon('target', 14)} ${reviewTxt}</button>`);
+        buttons.push(`<button type="button" class="lc-mistakes primary">${safeIcon('target', 14)} <span class="i18n-t" data-en="Review Mistakes" data-km="ពិនិត្យកំហុស">${isKm ? 'ពិនិត្យកំហុស' : 'Review Mistakes'}</span></button>`);
       }
       if(prevLesson){
-        buttons.push(`<button type="button" class="lc-prev">${safeIcon('arrow-left', 14)} ${prevTxt}</button>`);
+        buttons.push(`<button type="button" class="lc-prev">${safeIcon('arrow-left', 14)} <span class="i18n-t" data-en="Previous" data-km="ថយក្រោយ">${isKm ? 'ថយក្រោយ' : 'Previous'}</span></button>`);
       }
-      buttons.push(`<button type="button" class="lc-retry">${safeIcon('reset', 14)} ${retryTxt}</button>`);
+      buttons.push(`<button type="button" class="lc-retry">${safeIcon('reset', 14)} <span class="i18n-t" data-en="Retry" data-km="ព្យាយាមម្តងទៀត">${isKm ? 'ព្យាយាមម្តងទៀត' : 'Retry'}</span></button>`);
       if(nextLesson){
-        buttons.push(`<button type="button" class="lc-next${nextIsPrimary ? ' primary' : ''}">${nextTxt} ${safeIcon('arrow-right', 14)}</button>`);
-        buttons.push(`<button type="button" class="lc-close">${closeTxt}</button>`);
+        buttons.push(`<button type="button" class="lc-next${nextIsPrimary ? ' primary' : ''}"><span class="i18n-t" data-en="Next Lesson" data-km="មេរៀនបន្ទាប់">${isKm ? 'មេរៀនបន្ទាប់' : 'Next Lesson'}</span> ${safeIcon('arrow-right', 14)}</button>`);
+        buttons.push(`<button type="button" class="lc-close"><span class="i18n-t" data-en="Close" data-km="បិទ">${isKm ? 'បិទ' : 'Close'}</span></button>`);
       } else {
-        buttons.push(`<button type="button" class="lc-close primary">${closeTxt}</button>`);
+        buttons.push(`<button type="button" class="lc-close primary"><span class="i18n-t" data-en="Close" data-km="បិទ">${isKm ? 'បិទ' : 'Close'}</span></button>`);
       }
 
       return `
@@ -548,14 +578,22 @@
     const passed = p.accuracy >= threshold;
     const isKm = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
 
-    const heading = (p.accuracy === 100) ? (isKm ? 'មេរៀនឥតខ្ចោះ!' : 'Flawless Lesson!')
-      : (isNewBest) ? (isKm ? 'កំណត់ត្រាល្អបំផុតថ្មី!' : 'New Personal Best!')
-      : (passed) ? (isKm ? 'បញ្ចប់មេរៀន' : 'Lesson Complete')
-      : (isKm ? 'បន្តការហ្វឹកហាត់' : 'Keep Practicing');
+    const headingEn = (p.accuracy === 100) ? 'Flawless Lesson!'
+      : (isNewBest) ? 'New Personal Best!'
+      : (passed) ? 'Lesson Complete'
+      : 'Keep Practicing';
+
+    const headingKm = (p.accuracy === 100) ? 'មេរៀនឥតខ្ចោះ!'
+      : (isNewBest) ? 'កំណត់ត្រាល្អបំផុតថ្មី!'
+      : (passed) ? 'បញ្ចប់មេរៀន'
+      : 'បន្តការហ្វឹកហាត់';
 
     const headingColor = (p.accuracy === 100) ? '#64d2ff'
       : (passed) ? 'var(--gold-bright)'
       : '#ff6b81';
+
+    const titleEn = def?.title || 'Lesson';
+    const titleKm = def?.titleKm || def?.title || 'មេរៀន';
 
     // HTML chips for weak keys
     let weakChipsHtml = '';
@@ -571,7 +609,7 @@
       });
       weakChipsHtml = items.slice(0, 6).join(' ');
     } else {
-      weakChipsHtml = `<span class="pk-fb-empty">${isKm ? 'មិនមានកំហុសកើតឡើងដដែលៗទេ!' : 'No recurring mistakes detected!'}</span>`;
+      weakChipsHtml = `<span class="pk-fb-empty i18n-t" data-en="No recurring mistakes detected!" data-km="មិនមានកំហុសកើតឡើងដដែលៗទេ!">${isKm ? 'មិនមានកំហុសកើតឡើងដដែលៗទេ!' : 'No recurring mistakes detected!'}</span>`;
     }
 
     // HTML chips for strong keys
@@ -581,14 +619,16 @@
         return `<span class="pk-fb-chip good"><b>${k.key.toUpperCase()}</b> <small>100%</small></span>`;
       }).join(' ');
     } else {
-      strongChipsHtml = `<span class="pk-fb-empty">${isKm ? 'បន្តហ្វឹកហាត់ដើម្បីរក្សាភាពច្បាស់លាស់។' : 'Keep practicing to build key consistency.'}</span>`;
+      strongChipsHtml = `<span class="pk-fb-empty i18n-t" data-en="Keep practicing to build key consistency." data-km="បន្តហ្វឹកហាត់ដើម្បីរក្សាភាពច្បាស់លាស់។">${isKm ? 'បន្តហ្វឹកហាត់ដើម្បីរក្សាភាពច្បាស់លាស់។' : 'Keep practicing to build key consistency.'}</span>`;
     }
 
     // Finger feedback notice
     let fingerNoticeHtml = '';
     if(np.weakFingers.length > 0){
       const wf = np.weakFingers[0];
-      fingerNoticeHtml = `<div class="pk-fb-finger-note"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> ${isKm ? `${wf.name} បង្កើតកំហុស ${wf.pct}% (${wf.mistakes} កំហុស)។` : `${wf.name} produced ${wf.pct}% of your mistakes (${wf.mistakes} errors).`}</div>`;
+      const enTxt = `${wf.nameEn || wf.name} produced ${wf.pct}% of your mistakes (${wf.mistakes} errors).`;
+      const kmTxt = `${wf.nameKm || wf.name} បង្កើតកំហុស ${wf.pct}% (${wf.mistakes} កំហុស)។`;
+      fingerNoticeHtml = `<div class="pk-fb-finger-note"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> <span class="i18n-t" data-en="${enTxt}" data-km="${kmTxt}">${isKm ? kmTxt : enTxt}</span></div>`;
     }
 
     // Exercise breakdown rows
@@ -596,11 +636,11 @@
     if(summary.exerciseBreakdown.length > 1){
       exercisesHtml = `
       <div class="pk-fb-section-breakdown">
-        <span class="pk-fb-subhead">${isKm ? 'ការអនុវត្តតាមផ្នែក' : 'Section Performance'}</span>
+        <span class="pk-fb-subhead i18n-t" data-en="Section Performance" data-km="ការអនុវត្តតាមផ្នែក">${isKm ? 'ការអនុវត្តតាមផ្នែក' : 'Section Performance'}</span>
         <div class="pk-fb-exercise-bars">
           ${summary.exerciseBreakdown.map((ex, idx) => `
             <div class="pk-fb-ex-row">
-              <span class="pk-fb-ex-name">${isKm ? `ផ្នែក ${idx + 1}` : `Sec ${idx + 1}`}: ${ex.title}</span>
+              <span class="pk-fb-ex-name"><span class="i18n-t" data-en="Sec ${idx + 1}" data-km="ផ្នែក ${idx + 1}">${isKm ? `ផ្នែក ${idx + 1}` : `Sec ${idx + 1}`}</span>: ${ex.title}</span>
               <div class="pk-fb-ex-track">
                 <div class="pk-fb-ex-fill ${ex.accuracy < threshold ? 'warn' : ''}" style="width:${ex.accuracy}%"></div>
               </div>
@@ -616,18 +656,22 @@
     if(summary.historyComparison && summary.historyComparison.hasHistory){
       const hc = summary.historyComparison;
       const icon = hc.trend === 'improving' ? safeIcon('trending-up', 12) : (hc.trend === 'declining' ? safeIcon('trending-down', 12) : safeIcon('arrow-right', 12));
+      const attemptEn = `Attempt #${hc.totalAttempts}`;
+      const attemptKm = `លើកទី #${hc.totalAttempts}`;
+      const msgEn = hc.messageEn || hc.message;
+      const msgKm = hc.messageKm || hc.message;
       trendHtml = `
       <div class="pk-fb-trend-row ${hc.trend}">
-        <span class="pk-fb-trend-badge">${icon} Attempt #${hc.totalAttempts}</span>
-        <span class="pk-fb-trend-text">${hc.message}</span>
+        <span class="pk-fb-trend-badge">${icon} <span class="i18n-t" data-en="${attemptEn}" data-km="${attemptKm}">${isKm ? attemptKm : attemptEn}</span></span>
+        <span class="pk-fb-trend-text i18n-t" data-en="${msgEn}" data-km="${msgKm}">${isKm ? msgKm : msgEn}</span>
       </div>`;
     }
 
     return `
     <div class="lesson-complete-card pk-fb-complete-card">
       <div class="pk-fb-header">
-        <h2 style="color:${headingColor}">${heading}</h2>
-        <p class="pk-fb-lesson-title">${def.title || (isKm ? 'មេរៀន' : 'Lesson')}</p>
+        <h2 style="color:${headingColor}" class="i18n-t" data-en="${headingEn}" data-km="${headingKm}">${isKm ? headingKm : headingEn}</h2>
+        <p class="pk-fb-lesson-title i18n-t" data-en="${titleEn}" data-km="${titleKm}">${isKm ? titleKm : titleEn}</p>
       </div>
 
       ${trendHtml}
@@ -636,7 +680,7 @@
       <div class="pk-fb-perf-grid">
         <div class="pk-fb-stat-box highlight">
           <span class="val">${p.accuracy}%</span>
-          <span class="lbl">${isKm ? 'សុក្រឹតភាព' : 'Accuracy'}</span>
+          <span class="lbl"><span class="i18n-t" data-en="Accuracy" data-km="សុក្រឹតភាព">${isKm ? 'សុក្រឹតភាព' : 'Accuracy'}</span></span>
         </div>
         <div class="pk-fb-stat-box">
           <span class="val">${p.wpm}</span>
@@ -644,31 +688,31 @@
         </div>
         <div class="pk-fb-stat-box">
           <span class="val">${p.activeTimeSec}s</span>
-          <span class="lbl">${isKm ? 'រយៈពេលអនុវត្ត' : 'Active Time'}</span>
+          <span class="lbl"><span class="i18n-t" data-en="Active Time" data-km="រយៈពេលអនុវត្ត">${isKm ? 'រយៈពេលអនុវត្ត' : 'Active Time'}</span></span>
         </div>
         <div class="pk-fb-stat-box">
           <span class="val">${p.correctUnits}/${p.totalUnits}</span>
-          <span class="lbl">${isKm ? 'បានបញ្ចប់' : 'Completed'}</span>
+          <span class="lbl"><span class="i18n-t" data-en="Completed" data-km="បានបញ្ចប់">${isKm ? 'បានបញ្ចប់' : 'Completed'}</span></span>
         </div>
         <div class="pk-fb-stat-box ${p.mistakes > 0 ? 'has-err' : ''}">
           <span class="val">${p.mistakes}</span>
-          <span class="lbl">${isKm ? 'កំហុស' : 'Mistakes'}</span>
+          <span class="lbl"><span class="i18n-t" data-en="Mistakes" data-km="កំហុស">${isKm ? 'កំហុស' : 'Mistakes'}</span></span>
         </div>
         <div class="pk-fb-stat-box">
           <span class="val">${p.backspaces}</span>
-          <span class="lbl">${isKm ? 'កែតម្រូវ' : 'Fixes'} (${safeIcon('backspace', 11)})</span>
+          <span class="lbl"><span class="i18n-t" data-en="Fixes" data-km="កែតម្រូវ">${isKm ? 'កែតម្រូវ' : 'Fixes'}</span> (${safeIcon('backspace', 11)})</span>
         </div>
       </div>
 
       <!-- WHAT WENT WELL & WHAT NEEDS PRACTICE -->
       <div class="pk-fb-insights-row">
         <div class="pk-fb-insight-col">
-          <span class="pk-fb-subhead good"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> ${isKm ? 'ចំណុចធ្វើបានល្អ' : 'What Went Well'}</span>
+          <span class="pk-fb-subhead good"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <span class="i18n-t" data-en="What Went Well" data-km="ចំណុចធ្វើបានល្អ">${isKm ? 'ចំណុចធ្វើបានល្អ' : 'What Went Well'}</span></span>
           <div class="pk-fb-chip-group">${strongChipsHtml}</div>
         </div>
 
         <div class="pk-fb-insight-col">
-          <span class="pk-fb-subhead warn"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> ${isKm ? 'ចំណុចត្រូវហ្វឹកហាត់បន្ថែម' : 'Needs Practice'}</span>
+          <span class="pk-fb-subhead warn"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> <span class="i18n-t" data-en="Needs Practice" data-km="ចំណុចត្រូវហ្វឹកហាត់បន្ថែម">${isKm ? 'ចំណុចត្រូវហ្វឹកហាត់បន្ថែម' : 'Needs Practice'}</span></span>
           <div class="pk-fb-chip-group">${weakChipsHtml}</div>
         </div>
       </div>
@@ -680,7 +724,7 @@
       <div class="pk-fb-rec-banner ${rec.action}">
         <span class="pk-fb-rec-icon"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span>
         <div class="pk-fb-rec-content">
-          <b>${isKm ? 'ជំហានបន្ទាប់៖' : 'Next Step:'}</b> ${rec.text}
+          <b class="i18n-t" data-en="Next Step:" data-km="ជំហានបន្ទាប់៖">${isKm ? 'ជំហានបន្ទាប់៖' : 'Next Step:'}</b> <span class="i18n-t" data-en="${rec.textEn || rec.text}" data-km="${rec.textKm || rec.text}">${isKm ? (rec.textKm || rec.text) : (rec.textEn || rec.text)}</span>
         </div>
       </div>
 
@@ -699,11 +743,13 @@
    */
   function buildIncompleteLessonHtml(inc, def){
     const isKm = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
+    const titleEn = def?.title || 'Lesson';
+    const titleKm = def?.titleKm || def?.title || 'មេរៀន';
     return `
     <div class="lesson-complete-card pk-fb-paused-card">
       <div class="pk-fb-header">
-        <h2 style="color:var(--gold-bright)">${isKm ? 'មេរៀនបានផ្អាក' : 'Lesson Paused'}</h2>
-        <p class="pk-fb-lesson-title">${def?.title || (isKm ? 'មេរៀន' : 'Lesson')}</p>
+        <h2 style="color:var(--gold-bright)" class="i18n-t" data-en="Lesson Paused" data-km="មេរៀនបានផ្អាក">${isKm ? 'មេរៀនបានផ្អាក' : 'Lesson Paused'}</h2>
+        <p class="pk-fb-lesson-title i18n-t" data-en="${titleEn}" data-km="${titleKm}">${isKm ? titleKm : titleEn}</p>
       </div>
 
       <div class="pk-fb-pause-progress">
@@ -711,35 +757,35 @@
           <div class="pk-fb-pause-fill" style="width:${inc.completionPct}%"></div>
         </div>
         <div class="pk-fb-pause-meta">
-          <span>${inc.completionPct}% ${isKm ? 'បានបញ្ចប់' : 'Completed'}</span>
-          <span>${inc.remainingUnits} ${isKm ? 'តួអក្សរនៅសល់' : 'units remaining'}</span>
+          <span>${inc.completionPct}% <span class="i18n-t" data-en="Completed" data-km="បានបញ្ចប់">${isKm ? 'បានបញ្ចប់' : 'Completed'}</span></span>
+          <span>${inc.remainingUnits} <span class="i18n-t" data-en="units remaining" data-km="តួអក្សរនៅសល់">${isKm ? 'តួអក្សរនៅសល់' : 'units remaining'}</span></span>
         </div>
       </div>
 
       <div class="pk-fb-pause-details">
         <div class="pk-fb-pause-row">
-          <span>${isKm ? 'តួអក្សរបានបញ្ចប់៖' : 'Completed Units:'}</span>
-          <b>${inc.completedUnits} ${isKm ? 'នៃ' : 'of'} ${inc.totalUnits}</b>
+          <span class="i18n-t" data-en="Completed Units:" data-km="តួអក្សរបានបញ្ចប់៖">${isKm ? 'តួអក្សរបានបញ្ចប់៖' : 'Completed Units:'}</span>
+          <b>${inc.completedUnits} <span class="i18n-t" data-en="of" data-km="នៃ">${isKm ? 'នៃ' : 'of'}</span> ${inc.totalUnits}</b>
         </div>
         <div class="pk-fb-pause-row">
-          <span>${isKm ? 'កំហុសរហូតមកដល់ពេលនេះ៖' : 'Mistakes so far:'}</span>
+          <span class="i18n-t" data-en="Mistakes so far:" data-km="កំហុសរហូតមកដល់ពេលនេះ៖">${isKm ? 'កំហុសរហូតមកដល់ពេលនេះ៖' : 'Mistakes so far:'}</span>
           <b>${inc.mistakesSoFar}</b>
         </div>
         ${inc.lastExpectedUnit ? `
         <div class="pk-fb-pause-row">
-          <span>${isKm ? 'តួអក្សរចុងក្រោយ៖' : 'Last character reached:'}</span>
+          <span class="i18n-t" data-en="Last character reached:" data-km="តួអក្សរចុងក្រោយ៖">${isKm ? 'តួអក្សរចុងក្រោយ៖' : 'Last character reached:'}</span>
           <b>${inc.lastExpectedName}</b>
         </div>` : ''}
         ${inc.remainingSections.length > 0 ? `
         <div class="pk-fb-pause-row">
-          <span>${isKm ? 'ផ្នែកនៅសល់៖' : 'Remaining sections:'}</span>
+          <span class="i18n-t" data-en="Remaining sections:" data-km="ផ្នែកនៅសល់៖">${isKm ? 'ផ្នែកនៅសល់៖' : 'Remaining sections:'}</span>
           <b>${inc.remainingSections.map(s => s.title || s.type).join(', ')}</b>
         </div>` : ''}
       </div>
 
       <div class="pk-fb-rec-banner review">
         <div class="pk-fb-rec-content">
-          ${inc.message}
+          <span class="i18n-t" data-en="${inc.messageEn || inc.message}" data-km="${inc.messageKm || inc.message}">${isKm ? (inc.messageKm || inc.message) : (inc.messageEn || inc.message)}</span>
         </div>
       </div>
 
