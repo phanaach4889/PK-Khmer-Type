@@ -1,0 +1,48 @@
+# PK Khmer Type (ក្តារចុចខ្មែរ PK) — Official Crawler Directives
+# Canonical Site: https://phanaach4889.github.io/PK-Khmer-Type/
+# Founded and built by Phanna Kurosaki
+
+User-agent: *
+Allow: /
+
+# Explicitly allow major search engine, image, and AI search crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+Sitemap: https://phanaach4889.github.io/PK-Khmer-Type/sitemap.xml

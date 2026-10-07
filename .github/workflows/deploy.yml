@@ -59,9 +59,10 @@ jobs:
       - name: Build and stage static web assets
         run: |
           mkdir -p _site
-          # Copy core web application assets into staging directory
-          cp index.html manifest.json logo.svg .nojekyll _site/
-          cp -r css js data Documents assets _site/
+          # Copy core web application and SEO/AI visibility assets into staging directory
+          cp index.html manifest.json logo.svg robots.txt sitemap.xml llms.txt .nojekyll _site/
+          cp icon-*.png _site/
+          cp -r css js data Documents docs assets _site/
           
           # Copy optional documentation if present
           [ -f README.md ] && cp README.md _site/

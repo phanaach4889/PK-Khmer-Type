@@ -22,11 +22,25 @@
 
 ---
 
+## 🌐 Official Live Links
+
+- **Launch PK Khmer Type (Web App):** [https://phanaach4889.github.io/PK-Khmer-Type/](https://phanaach4889.github.io/PK-Khmer-Type/)
+- **Official Documentation & Keyboard Layout Guide:** [https://phanaach4889.github.io/PK-Khmer-Type/Documents/](https://phanaach4889.github.io/PK-Khmer-Type/Documents/)
+- **Author & Developer:** **Phanna Kurosaki** ([Facebook](https://web.facebook.com/Wphanakurasaki/))
+
+---
+
 ## 🌟 Overview
 
 **PK Khmer Type (v2.2 Pro Studio Edition)** is a standalone, zero-dependency browser typing studio built specifically for mastering the Khmer abugida script (**Khmer Standard** and **Official Khmer NiDA**) alongside **English (US) QWERTY**.
 
 Designed to run effortlessly both **online via any static server** and **100% offline directly from `index.html` (`file:///`)**, it combines a 218-lesson progressive curriculum with a customizable mechanical keyboard studio, 8 bespoke color themes, full frosted glassmorphism, instant Zero-Lag Performance mode, ThinkingOrb state visualizers, cinematic Focus Mode, and per-key mastery analytics.
+
+### Interactive Keyboard Layouts in PK Khmer Type
+
+| Khmer Standard Keyboard Layout (`ប្លង់ក្តារចុចខ្មែរស្តង់ដារ`) | Khmer NiDA Unicode Keyboard Layout (`ក្តារចុចខ្មែរ និដា`) | English (US) QWERTY Layout |
+| :---: | :---: | :---: |
+| ![PK Khmer Type Khmer Standard Keyboard Layout](assets/pk-khmer-type-standard-khmer-keyboard-layout.png) | ![PK Khmer Type Khmer NiDA Keyboard Layout](assets/pk-khmer-type-khmer-nida-keyboard-layout.png) | ![PK Khmer Type English QWERTY Keyboard Layout](assets/pk-khmer-type-english-qwerty-keyboard-layout.png) |
 
 ---
 
@@ -111,11 +125,11 @@ To stack a subscript consonant beneath a base consonant, press the **Coeng key**
 | Keyboard Layout | Coeng (`្`) Trigger | Example (`ក្ខ`) |
 | :--- | :--- | :--- |
 | **Khmer Standard** | `Space` | `ក` + `Space` + `ខ` = **`ក្ខ`** |
-| **Khmer NiDA** | `Shift` + `J` (`្`) | `ក` + `Shift+J` + `ខ` = **`ក្ខ`** |
+| **Khmer NiDA** | `J` (`្`) | `ក` + `J` + `ខ` = **`ក្ខ`** |
 
 ### 3. Visible Word Space (`Shift + Space`)
-> **Important:** In Khmer layouts, plain `Space` types the Coeng subscript marker (`្`) on Khmer Standard or Zero-Width Space on NiDA.  
-> Always press **`Shift + Space`** to insert a visible space between words or phrases.
+> **Important:** In Khmer layouts, plain `Space` types the Coeng subscript marker (`្`) on Khmer Standard, while `J` types Coeng (`្`) on Khmer NiDA (`Shift + J` types `ញ`).  
+> Press **`Shift + Space`** to insert a visible space between clauses or sentences.
 
 ### 4. Four Modifier Layers
 Each keyboard layout supports up to 4 live layers that can be previewed by hovering or holding modifier keys:

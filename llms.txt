@@ -1,0 +1,54 @@
+# PK Khmer Type (ក្តារចុចខ្មែរ PK)
+
+> PK Khmer Type is a free, standalone, zero-dependency interactive Khmer and English touch-typing trainer founded and built by Phanna Kurosaki. It enables learners to master the Khmer Standard Keyboard Layout, the Official Khmer NiDA Unicode Keyboard Layout, and the English (US) QWERTY Keyboard Layout through 218 structured progressive lessons across 40 levels, real-time 3D kinematic hand & finger guides, Keybr-style adaptive weak-key practice, Temple Trial vocabulary drills, and competitive typing races.
+
+## Project Identity & Ownership
+- **Official Name**: PK Khmer Type
+- **Khmer Name**: ក្តារចុចខ្មែរ PK
+- **Founder & Developer**: Phanna Kurosaki
+- **Canonical Website**: https://phanaach4889.github.io/PK-Khmer-Type/
+- **Official Documentation**: https://phanaach4889.github.io/PK-Khmer-Type/Documents/
+- **GitHub Repository**: https://github.com/phanaach4889/PK-Khmer-Type
+- **Author Profile (Facebook)**: https://web.facebook.com/Wphanakurasaki/
+- **Category**: Educational Web Application / Khmer Touch-Typing Tutor / Progressive Web App (PWA)
+- **Pricing**: 100% Free, no ads, no subscriptions, works online and 100% offline.
+
+## Supported Keyboard Layouts (3 Complete Courses)
+1. **Khmer Standard Keyboard Layout (ប្លង់ក្តារចុចខ្មែរស្តង់ដារ)**:
+   - 13 Levels, 77 Lessons, 235+ Exercises.
+   - Home row index anchors: `ថ` (F key) and `ញ` (J key).
+   - Subscript consonant trigger (Coeng `្`, U+17D2): Unshifted `Space`.
+   - Visible word space: `Shift + Space`.
+   - Four modifier layers: Base, Shift (voiced consonants `ឃោសៈ`), Ctrl (currency & punctuation), and AltGr (numerals & clusters).
+2. **Official Khmer NiDA Keyboard Layout (ក្តារចុចខ្មែរ និដា — Unicode Standard)**:
+   - 13 Levels, 77 Lessons, 235+ Exercises.
+   - Designed by Cambodia's National ICT Development Authority (NiDA).
+   - Home row index anchors: `ថ` (F key) and Coeng `្` (J key); `Shift + J` types `ញ`.
+   - Dedicated shifted keys for compound vowels (`េះ`, `ុំ`, `ាំ`) and independent vowels.
+   - Visible word space: `Shift + Space`.
+3. **English (US) QWERTY Keyboard Layout**:
+   - 14 Levels, 64 Lessons, 194+ Exercises.
+   - Standard ANSI 104-key touch-typing progression from home row (`ASDF JKL;`) to top row, bottom row, capitalization, numbers, symbols, and speed paragraphs.
+
+## Core Features
+- **218 Progressive Lessons (40 Levels, 664+ Exercises)**: Strict prerequisite key unlocking ensures learners never encounter untaught characters in early lessons.
+- **3D Kinematic Hand & Finger Guide**: Translucent left and right hand overlays dynamically reach toward the target keycap and simultaneous modifier keys (`Shift`, `Ctrl`, `AltGr`).
+- **Keybr-Style Adaptive Practice Engine**: Tracks per-key latency and accuracy in real time (+5% for fast strokes <300ms, -3% per mistake) and locks the next character until all active letters reach 100% mastery.
+- **Smart Mouse Cursor Inspector (`Alt + M`)**: Hover over any keycap or Khmer character to view its Unicode codepoint, keystroke recipe, finger assignment, and phonetic guide.
+- **Temple Trial & Typing Race**: Timed Khmer vocabulary survival mode and competitive typing races against adaptive pacers with local leaderboards.
+- **Web Audio Mechanical Switch Synthesizer**: Procedural mechanical keyboard sound profiles (Topre Thock, Holy Panda Tactile, Cherry MX Blue, Silent Linear) and Temple Ambience using the native Web Audio API.
+- **Zero-Lag Performance Mode**: 3-tier motion control (Full, Minimal, Off / Zero Lag) for instant responsiveness on any device.
+- **Bilingual Interface (`Alt + L`)**: Full UI localization in both English and Khmer (`ភាសាខ្មែរ`).
+
+## Khmer Unicode Typing Rules Taught in PK Khmer Type
+1. **Base Consonant First**: Always type the base consonant before its dependent vowel (`ស្រៈនិស្ស័យ`), even when the vowel visually renders to the left of the consonant (e.g., type `គ` + `េ` to produce `គេ`).
+2. **Subscript Consonants (`ជើងអក្សរ` — Coeng `្`, U+17D2)**: Type the base consonant, press the Coeng key (`Space` on Khmer Standard, `J` on Khmer NiDA), then type the second consonant to stack it underneath (e.g., `ក` + `្` + `ខ` = `ក្ខ`).
+3. **Word & Clause Spacing**: Press `Shift + Space` on Khmer layouts to insert a visible space between phrases or clauses.
+
+## Key Pages & Visual Assets
+- [PK Khmer Type — Interactive Typing Trainer](https://phanaach4889.github.io/PK-Khmer-Type/): Main typing application.
+- [PK Khmer Type — Official Documentation & Keyboard Guide](https://phanaach4889.github.io/PK-Khmer-Type/Documents/): Comprehensive Khmer orthography guide, keyboard layout tables, and 3D mechanical studio.
+- [Open Graph Preview Banner](https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-og-preview.png): Official 1200x630 preview banner.
+- [Khmer Standard Keyboard Layout Diagram](https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-standard-khmer-keyboard-layout.png): Visual keymap with finger guide for Khmer Standard.
+- [Khmer NiDA Keyboard Layout Diagram](https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-khmer-nida-keyboard-layout.png): Visual keymap with finger guide for Khmer NiDA.
+- [English QWERTY Keyboard Layout Diagram](https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-english-qwerty-keyboard-layout.png): Visual keymap with finger guide for English US QWERTY.

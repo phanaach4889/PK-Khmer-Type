@@ -1,18 +1,75 @@
 {
   "name": "PK Khmer Type",
-  "short_name": "PK Type",
-  "description": "Master Khmer typing with interactive layouts, speed drills, and real-time guidance.",
+  "short_name": "PK Khmer Type",
+  "description": "PK Khmer Type (ក្តារចុចខ្មែរ PK) — Free interactive Khmer Standard, Khmer NiDA, and English touch-typing trainer with 218 progressive lessons, 3D finger guides, adaptive drills, and typing races. Founded and built by Phanna Kurosaki.",
+  "lang": "en",
+  "dir": "ltr",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#11131f",
   "theme_color": "#ff9d2e",
+  "categories": ["education", "productivity", "utilities"],
   "icons": [
     {
       "src": "logo.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
+    },
+    {
+      "src": "icon-48.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/pk-khmer-type-og-preview.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "PK Khmer Type — Interactive Khmer & English Touch-Typing Studio"
+    },
+    {
+      "src": "assets/pk-khmer-type-standard-khmer-keyboard-layout.png",
+      "sizes": "826x354",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "PK Khmer Type — Khmer Standard Keyboard Layout with 3D Finger Guide"
+    },
+    {
+      "src": "assets/pk-khmer-type-khmer-nida-keyboard-layout.png",
+      "sizes": "827x366",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "PK Khmer Type — Official Khmer NiDA Keyboard Layout with 3D Finger Guide"
+    },
+    {
+      "src": "assets/pk-khmer-type-english-qwerty-keyboard-layout.png",
+      "sizes": "829x343",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "PK Khmer Type — English (US) QWERTY Keyboard Layout with 3D Finger Guide"
     }
   ]
 }
-

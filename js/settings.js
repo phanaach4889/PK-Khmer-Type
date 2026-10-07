@@ -166,7 +166,7 @@ function ensureUpgradedSettingsModalDOM() {
         </div>
         <div class="settings-row" data-search="quick links documents 3d mechanical studio shortcuts statistics">
           <div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Studio &amp; Reference Tools</span><span class="settings-row-km">ឧបករណ៍ជំនួយ</span></div><div class="settings-row-desc">Jump directly to documentation, 3D mechanical viewer, shortcuts, or statistics.</div></div>
-          <div class="settings-row-control"><div class="settings-quick-links"><button type="button" class="settings-action-pill" id="settingsOpenShortcutsBtn">Shortcuts</button><button type="button" class="settings-action-pill" id="settingsOpenStatsBtn">Statistics</button><a href="Documents/index.html" class="settings-action-pill">PK Documents</a><a href="keyboard-3d.html" class="settings-action-pill">3D Studio</a></div></div>
+          <div class="settings-row-control"><div class="settings-quick-links"><button type="button" class="settings-action-pill" id="settingsOpenShortcutsBtn">Shortcuts</button><button type="button" class="settings-action-pill" id="settingsOpenStatsBtn">Statistics</button><a href="Documents/index.html" class="settings-action-pill">PK Documents</a><a href="Documents/index.html#keycap-3d" class="settings-action-pill">3D Studio</a></div></div>
         </div>
       </div>
 

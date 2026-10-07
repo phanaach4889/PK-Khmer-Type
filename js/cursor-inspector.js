@@ -8,7 +8,7 @@
    - Sleek cyber reticle cursor with toggleable toolbar control
    ============================================================ */
 
-(function(global){
+(function (global) {
   'use strict';
 
   const STORAGE_KEY = 'pkMouseInspectorEnabled';
@@ -244,8 +244,8 @@
     ctrlL: 'Ctrl', alt: 'Alt', space: 'Space', altgr: 'AltGr', ctrlR: 'Ctrl'
   };
 
-  function getHumanKeyLabel(keyId){
-    if(!keyId) return '';
+  function getHumanKeyLabel(keyId) {
+    if (!keyId) return '';
     return HUMAN_KEY_LABELS[keyId] || (keyId.startsWith('k') && /^\d$/.test(keyId.slice(1)) ? keyId.slice(1) : keyId.toUpperCase());
   }
 
@@ -269,22 +269,22 @@
   let lastMouseX = 0;
   let lastMouseY = 0;
 
-  function loadPreference(){
+  function loadPreference() {
     try {
       const val = localStorage.getItem(STORAGE_KEY);
-      if(val !== null) inspectorEnabled = val === 'true';
-    } catch(e){}
+      if (val !== null) inspectorEnabled = val === 'true';
+    } catch (e) { }
   }
 
-  function savePreference(){
+  function savePreference() {
     try {
       localStorage.setItem(STORAGE_KEY, String(inspectorEnabled));
-    } catch(e){}
+    } catch (e) { }
   }
 
   /* ---- DOM Construction for HUD ---- */
-  function ensureDOM(){
-    if(!hudEl){
+  function ensureDOM() {
+    if (!hudEl) {
       hudEl = document.createElement('div');
       hudEl.className = 'pk-cursor-hud';
       hudEl.id = 'pkCursorHud';
@@ -292,24 +292,24 @@
       document.body.appendChild(hudEl);
     }
     const oldReticle = document.getElementById('pkCursorReticle');
-    if(oldReticle){
+    if (oldReticle) {
       oldReticle.remove();
     }
     reticleEl = null;
   }
 
   /* ---- Character Resolution ---- */
-  function getCharInfo(char, keyId, layerName){
-    if(!char) return null;
+  function getCharInfo(char, keyId, layerName) {
+    if (!char) return null;
     const custom = KHMER_CHAR_DATA[char];
-    if(custom){
+    if (custom) {
       return Object.assign({ char }, custom);
     }
     // Review engine fallback catalog
-    if(global.PK_REVIEW && global.PK_REVIEW.CATALOG_MAPS){
+    if (global.PK_REVIEW && global.PK_REVIEW.CATALOG_MAPS) {
       const curLayout = global.currentLayoutId || 'standard';
       const cat = global.PK_REVIEW.CATALOG_MAPS[curLayout];
-      if(cat && cat[char]){
+      if (cat && cat[char]) {
         const c = cat[char];
         return {
           char,
@@ -324,7 +324,7 @@
       }
     }
     // Khmer Digits (Human-crafted)
-    if(/[០-៩]/.test(char)){
+    if (/[០-៩]/.test(char)) {
       const numInfo = KHMER_DIGIT_DATA[char] || { nameKm: char, en: '', sound: char };
       return {
         char,
@@ -335,7 +335,7 @@
       };
     }
     // English Letters
-    if(/[a-zA-Z]/.test(char)){
+    if (/[a-zA-Z]/.test(char)) {
       const isUpper = char === char.toUpperCase() && char !== char.toLowerCase();
       return {
         char,
@@ -355,10 +355,10 @@
   }
 
   /* ---- Update Position of HUD with Screen Clamping ---- */
-  function updatePosition(x, y){
+  function updatePosition(x, y) {
     lastMouseX = x;
     lastMouseY = y;
-    if(!hudEl || !hudEl.classList.contains('visible')) return;
+    if (!hudEl || !hudEl.classList.contains('visible')) return;
 
     const hudRect = hudEl.getBoundingClientRect();
     const hudW = hudRect.width || 250;
@@ -371,23 +371,23 @@
     let posY = y + gap;
 
     // Smart hand-aware positioning when inspecting keys on the keyboard
-    if(currentInspectedKeyId){
+    if (currentInspectedKeyId) {
       const bottomRowOrHomeKeys = new Set([
-        'caps','a','s','d','f','g','h','j','k','l','semicolon','quote','enter',
-        'shiftL','z','x','c','v','b','n','m','comma','period','slash','extra','shiftR'
+        'caps', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'semicolon', 'quote', 'enter',
+        'shiftL', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'comma', 'period', 'slash', 'extra', 'shiftR'
       ]);
-      if(bottomRowOrHomeKeys.has(currentInspectedKeyId) && (y - hudH - gap >= 12)){
+      if (bottomRowOrHomeKeys.has(currentInspectedKeyId) && (y - hudH - gap >= 12)) {
         // Place HUD above home/bottom row keys so the 3D hands below remain unobstructed
         posY = y - hudH - gap;
       }
     }
 
     // Flip horizontally if overflow right
-    if(posX + hudW > winW - 12){
+    if (posX + hudW > winW - 12) {
       posX = x - hudW - gap;
     }
     // Flip vertically if overflow bottom
-    if(posY + hudH > winH - 12){
+    if (posY + hudH > winH - 12) {
       posY = y - hudH - gap;
     }
 
@@ -398,14 +398,14 @@
     hudEl.style.top = posY + 'px';
   }
 
-  function getKeyEl(keyId){
-    if(!keyId) return null;
+  function getKeyEl(keyId) {
+    if (!keyId) return null;
     return document.querySelector(`.key[data-key="${keyId}"]`) || (global.keyEls && global.keyEls[keyId]) || document.getElementById('key-' + keyId);
   }
 
   /* ---- Render HUD Content for a Key ---- */
-  function inspectKey(keyId, ev){
-    if(!inspectorEnabled) return;
+  function inspectKey(keyId, ev) {
+    if (!inspectorEnabled) return;
     ensureDOM();
     currentInspectedKeyId = keyId;
 
@@ -416,11 +416,11 @@
     const finfo = (fid && FINGER_INFO[fid]) || { nameEn: 'Touch Key', nameKm: 'ម្រាមដៃ', color: '#ffd166' };
 
     // 1. Dedicated Special / Modifier Key Profile
-    if(SPECIAL_KEYS[keyId]){
+    if (SPECIAL_KEYS[keyId]) {
       let sk = Object.assign({}, SPECIAL_KEYS[keyId]);
-      if(keyId === 'space'){
-        if(layoutId === 'standard'){
-          if(layer === 'shift'){
+      if (keyId === 'space') {
+        if (layoutId === 'standard') {
+          if (layer === 'shift') {
             sk = {
               symbol: '<svg class="pk-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>',
               titleEn: 'Spacebar',
@@ -488,19 +488,19 @@
         ${sk.note ? `<div class="pk-chud-desc"><span class="pk-chud-desc-icon">${typeof pkIcon === 'function' ? pkIcon('sparkles', 12) : ''}</span><span>${sk.note}</span></div>` : ''}
       `;
       hudEl.classList.add('visible');
-      if(typeof global.setActiveFinger === 'function') global.setActiveFinger(keyId, layer);
+      if (typeof global.setActiveFinger === 'function') global.setActiveFinger(keyId, layer);
       highlightQuickGuideMiniKey(keyId, fid);
-      if(ev) updatePosition(ev.clientX, ev.clientY);
-      else if(keyEl){ const r = keyEl.getBoundingClientRect(); updatePosition(r.left + r.width/2, r.top + r.height/2); }
+      if (ev) updatePosition(ev.clientX, ev.clientY);
+      else if (keyEl) { const r = keyEl.getBoundingClientRect(); updatePosition(r.left + r.width / 2, r.top + r.height / 2); }
       return;
     }
 
     // Determine active glyph on this key
     let glyph = '';
-    if(keyEl){
+    if (keyEl) {
       const gEl = keyEl.querySelector('.glyph');
-      if(gEl && gEl.textContent) glyph = gEl.textContent.trim();
-      else if(keyEl.textContent) glyph = keyEl.textContent.trim();
+      if (gEl && gEl.textContent) glyph = gEl.textContent.trim();
+      else if (keyEl.textContent) glyph = keyEl.textContent.trim();
     }
 
     const keyLabel = getHumanKeyLabel(keyId);
@@ -509,16 +509,16 @@
     // Keystroke recipe (clean, human-readable)
     let recipeHtml = `<kbd>${keyLabel}</kbd>`;
     const coengKey = layoutId === 'standard' ? 'Space' : 'J';
-    if(layer === 'shift'){
+    if (layer === 'shift') {
       recipeHtml = `<kbd>Shift</kbd> + <kbd>${keyLabel}</kbd>`;
-    } else if(layer === 'altgr'){
+    } else if (layer === 'altgr') {
       recipeHtml = `<kbd>AltGr</kbd> + <kbd>${keyLabel}</kbd>`;
-    } else if(layer === 'ctrl'){
+    } else if (layer === 'ctrl') {
       recipeHtml = `<kbd>Ctrl</kbd> + <kbd>${keyLabel}</kbd>`;
     }
 
     let subHtml = '';
-    if(info && info.sub && layoutId !== 'english'){
+    if (info && info.sub && layoutId !== 'english') {
       subHtml = `
         <div class="pk-chud-subscript-badge">
           <span>Subscript <strong class="sub-glyph">${info.sub}</strong></span>
@@ -528,19 +528,19 @@
     }
 
     let displayGlyph = glyph || keyLabel;
-    if(displayGlyph.length > 2){
+    if (displayGlyph.length > 2) {
       displayGlyph = displayGlyph.charAt(0);
     }
 
     let mainName = info ? (info.name || `Key ${keyLabel}`) : `Key ${keyLabel}`;
     let kmTag = info ? (info.nameKm || '') : '';
-    if(kmTag && mainName.includes(kmTag)){
+    if (kmTag && mainName.includes(kmTag)) {
       mainName = mainName.replace(kmTag, '').replace('·', '').trim();
     }
     let cardCat = info ? (info.type + (info.series ? (' · ' + info.series) : (info.group ? (' · ' + info.group) : ''))) : 'Typing Key';
 
     let soundHtml = '';
-    if(info && info.ipa){
+    if (info && info.ipa) {
       const ipaText = info.ipa.startsWith('Pronounced') ? info.ipa : ('Sound: ' + info.ipa);
       soundHtml = `<div class="pk-chud-desc"><span class="pk-chud-desc-icon">${typeof pkIcon === 'function' ? pkIcon('sparkles', 12) : ''}</span><span>${ipaText}</span></div>`;
     }
@@ -579,106 +579,106 @@
     hudEl.classList.add('visible');
 
     // 1. Kinematic Hand Guide Sync
-    if(typeof global.setActiveFinger === 'function'){
+    if (typeof global.setActiveFinger === 'function') {
       global.setActiveFinger(keyId, layer);
     }
 
     // 2. Quick Guide Mini-Keys Sync
     highlightQuickGuideMiniKey(keyId, fid);
 
-    if(ev){
+    if (ev) {
       updatePosition(ev.clientX, ev.clientY);
-    } else if(keyEl){
+    } else if (keyEl) {
       const r = keyEl.getBoundingClientRect();
-      updatePosition(r.left + r.width/2, r.top + r.height/2);
+      updatePosition(r.left + r.width / 2, r.top + r.height / 2);
     }
   }
 
-  function uninspectKey(){
+  function uninspectKey() {
     currentInspectedKeyId = null;
-    if(hudEl) hudEl.classList.remove('visible');
+    if (hudEl) hudEl.classList.remove('visible');
 
     // Restore active finger for ongoing lesson / race / adaptive session
-    if(typeof global.lessonActive !== 'undefined' && global.lessonActive && typeof global.highlightLessonTarget === 'function'){
+    if (typeof global.lessonActive !== 'undefined' && global.lessonActive && typeof global.highlightLessonTarget === 'function') {
       global.highlightLessonTarget();
-    } else if(typeof global.raceActive !== 'undefined' && global.raceActive && typeof global.highlightRaceTarget === 'function'){
+    } else if (typeof global.raceActive !== 'undefined' && global.raceActive && typeof global.highlightRaceTarget === 'function') {
       global.highlightRaceTarget();
-    } else if(typeof global.adaptiveActive !== 'undefined' && global.adaptiveActive && typeof global.highlightAdaptiveTarget === 'function'){
+    } else if (typeof global.adaptiveActive !== 'undefined' && global.adaptiveActive && typeof global.highlightAdaptiveTarget === 'function') {
       global.highlightAdaptiveTarget();
-    } else if(typeof global.setActiveFinger === 'function'){
+    } else if (typeof global.setActiveFinger === 'function') {
       global.setActiveFinger(null);
     }
 
     clearQuickGuideMiniKeys();
   }
 
-  function highlightQuickGuideMiniKey(keyId, fingerId){
+  function highlightQuickGuideMiniKey(keyId, fingerId) {
     clearQuickGuideMiniKeys();
-    if(!fingerId) return;
+    if (!fingerId) return;
     const miniKeys = document.querySelectorAll('.guide-mini-key');
-    miniKeys.forEach(mk=>{
+    miniKeys.forEach(mk => {
       const title = (mk.getAttribute('title') || '').toLowerCase();
       const fInfo = FINGER_INFO[fingerId];
-      if(fInfo && title.includes(fInfo.nameEn.toLowerCase().replace('left ', '').replace('right ', ''))){
+      if (fInfo && title.includes(fInfo.nameEn.toLowerCase().replace('left ', '').replace('right ', ''))) {
         mk.classList.add('active');
       }
     });
   }
 
-  function clearQuickGuideMiniKeys(){
-    document.querySelectorAll('.guide-mini-key.active').forEach(mk=> mk.classList.remove('active'));
+  function clearQuickGuideMiniKeys() {
+    document.querySelectorAll('.guide-mini-key.active').forEach(mk => mk.classList.remove('active'));
   }
 
   /* ---- Exercise Text Character Inspector ---- */
   let activeBeaconKeyEl = null;
 
-  function clearTargetKeyBeacon(){
-    if(activeBeaconKeyEl){
+  function clearTargetKeyBeacon() {
+    if (activeBeaconKeyEl) {
       activeBeaconKeyEl.classList.remove('inspector-beacon');
       activeBeaconKeyEl = null;
     }
   }
 
-  function highlightKeyBeacon(keyId){
+  function highlightKeyBeacon(keyId) {
     clearTargetKeyBeacon();
-    if(!keyId) return;
+    if (!keyId) return;
     const keyEl = getKeyEl(keyId);
-    if(keyEl){
+    if (keyEl) {
       keyEl.classList.add('inspector-beacon');
       activeBeaconKeyEl = keyEl;
     }
   }
 
-  function getCharUnderCursor(ev){
+  function getCharUnderCursor(ev) {
     let textNode = null;
     let offset = 0;
-    if(document.caretRangeFromPoint){
+    if (document.caretRangeFromPoint) {
       const range = document.caretRangeFromPoint(ev.clientX, ev.clientY);
-      if(range){
+      if (range) {
         textNode = range.startContainer;
         offset = range.startOffset;
       }
-    } else if(document.caretPositionFromPoint){
+    } else if (document.caretPositionFromPoint) {
       const pos = document.caretPositionFromPoint(ev.clientX, ev.clientY);
-      if(pos){
+      if (pos) {
         textNode = pos.offsetNode;
         offset = pos.offset;
       }
     }
-    if(textNode && textNode.nodeType === Node.TEXT_NODE){
+    if (textNode && textNode.nodeType === Node.TEXT_NODE) {
       const text = textNode.textContent;
-      if(offset < text.length){
+      if (offset < text.length) {
         const ch = text[offset];
-        if(ch && ch.trim()) return ch;
+        if (ch && ch.trim()) return ch;
       }
     }
     const t = ev.target && ev.target.textContent && ev.target.textContent.trim();
-    if(t && t.length === 1) return t;
+    if (t && t.length === 1) return t;
     return null;
   }
 
-  function inspectTextCharacter(char, ev){
-    if(!inspectorEnabled || !char || char === ' ' || char === '\n') return;
+  function inspectTextCharacter(char, ev) {
+    if (!inspectorEnabled || !char || char === ' ' || char === '\n') return;
     ensureDOM();
 
     const info = getCharInfo(char);
@@ -688,21 +688,21 @@
     // Reverse lookup key & layer for this character
     let foundKey = null;
     let foundLayer = 'base';
-    if(global.LAYOUTS && global.LAYOUTS[layoutId]){
+    if (global.LAYOUTS && global.LAYOUTS[layoutId]) {
       const rows = global.LAYOUTS[layoutId].rows || [];
-      for(const row of rows){
-        for(const k of row){
-          if(k.base === char){ foundKey = k.id; foundLayer = 'base'; break; }
-          if(k.shift === char){ foundKey = k.id; foundLayer = 'shift'; break; }
-          if(k.altgr === char){ foundKey = k.id; foundLayer = 'altgr'; break; }
-          if(k.ctrl === char){ foundKey = k.id; foundLayer = 'ctrl'; break; }
+      for (const row of rows) {
+        for (const k of row) {
+          if (k.base === char) { foundKey = k.id; foundLayer = 'base'; break; }
+          if (k.shift === char) { foundKey = k.id; foundLayer = 'shift'; break; }
+          if (k.altgr === char) { foundKey = k.id; foundLayer = 'altgr'; break; }
+          if (k.ctrl === char) { foundKey = k.id; foundLayer = 'ctrl'; break; }
         }
-        if(foundKey) break;
+        if (foundKey) break;
       }
-      if(!foundKey && global.LAYOUTS[layoutId].spaceMap){
+      if (!foundKey && global.LAYOUTS[layoutId].spaceMap) {
         const sm = global.LAYOUTS[layoutId].spaceMap;
-        if(sm.base === char){ foundKey = 'space'; foundLayer = 'base'; }
-        else if(sm.shift === char){ foundKey = 'space'; foundLayer = 'shift'; }
+        if (sm.base === char) { foundKey = 'space'; foundLayer = 'base'; }
+        else if (sm.shift === char) { foundKey = 'space'; foundLayer = 'shift'; }
       }
     }
 
@@ -711,24 +711,24 @@
 
     const keyLabel = foundKey ? getHumanKeyLabel(foundKey) : '';
     let recipeText = `<kbd>${keyLabel || 'Combo'}</kbd>`;
-    if(foundLayer === 'shift') recipeText = `<kbd>Shift</kbd> + <kbd>${keyLabel}</kbd>`;
-    else if(foundLayer === 'altgr') recipeText = `<kbd>AltGr</kbd> + <kbd>${keyLabel}</kbd>`;
+    if (foundLayer === 'shift') recipeText = `<kbd>Shift</kbd> + <kbd>${keyLabel}</kbd>`;
+    else if (foundLayer === 'altgr') recipeText = `<kbd>AltGr</kbd> + <kbd>${keyLabel}</kbd>`;
 
     // Subscript character handling
-    if(char === '្'){
+    if (char === '្') {
       recipeText = `<kbd>${coengKey}</kbd>`;
-    } else if(char.startsWith('្') && char.length > 1){
+    } else if (char.startsWith('្') && char.length > 1) {
       recipeText = `<kbd>${coengKey}</kbd> + <kbd>${keyLabel}</kbd>`;
     }
 
     let mainName = info ? (info.name || char) : char;
     let kmTag = info ? (info.nameKm || '') : '';
-    if(kmTag && mainName.includes(kmTag)){
+    if (kmTag && mainName.includes(kmTag)) {
       mainName = mainName.replace(kmTag, '').replace('·', '').trim();
     }
     let cardCat = info ? (info.type + (info.series ? (' · ' + info.series) : (info.group ? (' · ' + info.group) : ''))) : 'Exercise Character';
     let soundHtml = '';
-    if(info && info.ipa){
+    if (info && info.ipa) {
       const ipaText = info.ipa.startsWith('Pronounced') ? info.ipa : ('Sound: ' + info.ipa);
       soundHtml = `<div class="pk-chud-desc"><span class="pk-chud-desc-icon">${typeof pkIcon === 'function' ? pkIcon('sparkles', 12) : ''}</span><span>${ipaText}</span></div>`;
     }
@@ -764,18 +764,18 @@
     `;
 
     hudEl.classList.add('visible');
-    if(foundKey){
+    if (foundKey) {
       highlightKeyBeacon(foundKey);
-      if(typeof global.setActiveFinger === 'function'){
+      if (typeof global.setActiveFinger === 'function') {
         global.setActiveFinger(foundKey, foundLayer);
       }
       highlightQuickGuideMiniKey(foundKey, fid);
     }
-    if(ev) updatePosition(ev.clientX, ev.clientY);
+    if (ev) updatePosition(ev.clientX, ev.clientY);
   }
 
   /* ---- Real-Time Layer Hover Preview (Banner fulfillment) ---- */
-  function setupLayerHoverPreview(){
+  function setupLayerHoverPreview() {
     const modifiers = [
       { id: 'shiftL', layer: 'shift' },
       { id: 'shiftR', layer: 'shift' },
@@ -784,140 +784,140 @@
       { id: 'altgr', layer: 'altgr' }
     ];
 
-    modifiers.forEach(m=>{
+    modifiers.forEach(m => {
       const el = getKeyEl(m.id);
-      if(!el) return;
-      el.addEventListener('mouseenter', ()=>{
-        if(!inspectorEnabled || global.PKDisableLayerHover) return;
-        if(!global.physicalLayer && !global.lockedLayer){
+      if (!el) return;
+      el.addEventListener('mouseenter', () => {
+        if (!inspectorEnabled || global.PKDisableLayerHover) return;
+        if (!global.physicalLayer && !global.lockedLayer) {
           global.hoverLayer = m.layer;
-          if(typeof global.render === 'function') global.render();
+          if (typeof global.render === 'function') global.render();
         }
       });
-      el.addEventListener('mouseleave', ()=>{
-        if(global.hoverLayer === m.layer){
+      el.addEventListener('mouseleave', () => {
+        if (global.hoverLayer === m.layer) {
           global.hoverLayer = null;
-          if(typeof global.render === 'function') global.render();
+          if (typeof global.render === 'function') global.render();
         }
       });
       // Click locks / pins layer
-      el.addEventListener('click', (ev)=>{
+      el.addEventListener('click', (ev) => {
         ev.stopPropagation();
         global.lockedLayer = (global.lockedLayer === m.layer) ? null : m.layer;
         global.hoverLayer = null;
-        if(typeof global.render === 'function') global.render();
+        if (typeof global.render === 'function') global.render();
       });
     });
 
     // Layer Pills Hover & Click
-    document.querySelectorAll('.layer-pill').forEach(pill=>{
+    document.querySelectorAll('.layer-pill').forEach(pill => {
       const pLayer = pill.dataset.pill;
-      pill.addEventListener('mouseenter', ()=>{
-        if(!inspectorEnabled || global.PKDisableLayerHover) return;
-        if(!global.physicalLayer && !global.lockedLayer){
+      pill.addEventListener('mouseenter', () => {
+        if (!inspectorEnabled || global.PKDisableLayerHover) return;
+        if (!global.physicalLayer && !global.lockedLayer) {
           global.hoverLayer = pLayer === 'base' ? null : pLayer;
-          if(typeof global.render === 'function') global.render();
+          if (typeof global.render === 'function') global.render();
         }
       });
-      pill.addEventListener('mouseleave', ()=>{
-        if(global.hoverLayer){
+      pill.addEventListener('mouseleave', () => {
+        if (global.hoverLayer) {
           global.hoverLayer = null;
-          if(typeof global.render === 'function') global.render();
+          if (typeof global.render === 'function') global.render();
         }
       });
-      pill.addEventListener('click', ()=>{
+      pill.addEventListener('click', () => {
         global.lockedLayer = (global.lockedLayer === pLayer || pLayer === 'base') ? null : pLayer;
         global.hoverLayer = null;
-        document.querySelectorAll('.layer-pill').forEach(p=> p.classList.toggle('locked', p.dataset.pill === global.lockedLayer));
-        if(typeof global.render === 'function') global.render();
+        document.querySelectorAll('.layer-pill').forEach(p => p.classList.toggle('locked', p.dataset.pill === global.lockedLayer));
+        if (typeof global.render === 'function') global.render();
       });
     });
   }
 
   /* ---- Keyboard & Exercise Delegated Listeners ---- */
-  function attachEventListeners(){
+  function attachEventListeners() {
     ensureDOM();
 
     // Global mouse tracking for HUD position
-    window.addEventListener('mousemove', (ev)=>{
+    window.addEventListener('mousemove', (ev) => {
       updatePosition(ev.clientX, ev.clientY);
     }, { passive: true });
 
-    window.addEventListener('mouseleave', ()=>{
+    window.addEventListener('mouseleave', () => {
       uninspectKey();
     });
 
     // Global click ripple shockwave
-    window.addEventListener('mousedown', (ev)=>{
-      if(!inspectorEnabled || document.documentElement.classList.contains('performance-mode') || document.documentElement.classList.contains('hide-cursor-shockwave') || document.documentElement.classList.contains('anim-mode-off')) return;
+    window.addEventListener('mousedown', (ev) => {
+      if (!inspectorEnabled || document.documentElement.classList.contains('performance-mode') || document.documentElement.classList.contains('hide-cursor-shockwave') || document.documentElement.classList.contains('anim-mode-off')) return;
       const wave = document.createElement('div');
       wave.className = 'pk-cursor-shockwave';
       wave.style.left = ev.clientX + 'px';
       wave.style.top = ev.clientY + 'px';
       document.body.appendChild(wave);
-      setTimeout(()=>{ if(wave.parentNode) wave.parentNode.removeChild(wave); }, 460);
+      setTimeout(() => { if (wave.parentNode) wave.parentNode.removeChild(wave); }, 460);
     }, { passive: true });
 
     // Keyboard Key Hover & Click Delegation
     const board = document.getElementById('boardWrap');
-    if(board){
-      board.addEventListener('mouseover', (ev)=>{
+    if (board) {
+      board.addEventListener('mouseover', (ev) => {
         const keyEl = ev.target.closest('.key');
-        if(keyEl && keyEl.dataset && keyEl.dataset.key){
+        if (keyEl && keyEl.dataset && keyEl.dataset.key) {
           inspectKey(keyEl.dataset.key, ev);
         }
       });
-      board.addEventListener('mousemove', (ev)=>{
+      board.addEventListener('mousemove', (ev) => {
         const keyEl = ev.target.closest('.key');
-        if(keyEl && keyEl.dataset && keyEl.dataset.key){
-          if(currentInspectedKeyId !== keyEl.dataset.key){
+        if (keyEl && keyEl.dataset && keyEl.dataset.key) {
+          if (currentInspectedKeyId !== keyEl.dataset.key) {
             inspectKey(keyEl.dataset.key, ev);
           } else {
             updatePosition(ev.clientX, ev.clientY);
           }
         }
       });
-      board.addEventListener('mouseout', (ev)=>{
+      board.addEventListener('mouseout', (ev) => {
         const keyEl = ev.target.closest('.key');
-        if(keyEl && (!ev.relatedTarget || !keyEl.contains(ev.relatedTarget))){
+        if (keyEl && (!ev.relatedTarget || !keyEl.contains(ev.relatedTarget))) {
           uninspectKey();
         }
       });
 
       // Interactive mouse click on keys
-      board.addEventListener('click', (ev)=>{
+      board.addEventListener('click', (ev) => {
         const keyEl = ev.target.closest('.key');
-        if(!keyEl || !keyEl.dataset || !keyEl.dataset.key) return;
+        if (!keyEl || !keyEl.dataset || !keyEl.dataset.key) return;
         const keyId = keyEl.dataset.key;
-        if(typeof global.playKeySound === 'function'){
+        if (typeof global.playKeySound === 'function') {
           global.playKeySound(keyId);
         }
         keyEl.classList.add('active');
-        setTimeout(()=> keyEl.classList.remove('active'), 140);
+        setTimeout(() => keyEl.classList.remove('active'), 140);
       });
     }
 
     // Exercise Prompt & Manuscript Character Hover Delegation
     const textContainers = ['output', 'exerciseText', 'exerciseTarget', 'sampleText', 'raceText', 'lessonPrompt'];
-    textContainers.forEach(id=>{
+    textContainers.forEach(id => {
       const el = document.getElementById(id);
-      if(!el) return;
-      el.addEventListener('mousemove', (ev)=>{
-        if(!inspectorEnabled) return;
+      if (!el) return;
+      el.addEventListener('mousemove', (ev) => {
+        if (!inspectorEnabled) return;
         const ch = getCharUnderCursor(ev);
-        if(ch){
+        if (ch) {
           inspectTextCharacter(ch, ev);
-        } else if(!currentInspectedKeyId){
+        } else if (!currentInspectedKeyId) {
           clearTargetKeyBeacon();
-          if(hudEl) hudEl.classList.remove('visible');
+          if (hudEl) hudEl.classList.remove('visible');
         }
       });
-      el.addEventListener('mouseleave', ()=>{
-        if(!currentInspectedKeyId){
+      el.addEventListener('mouseleave', () => {
+        if (!currentInspectedKeyId) {
           clearTargetKeyBeacon();
-          if(hudEl && hudEl.classList.contains('visible')){
+          if (hudEl && hudEl.classList.contains('visible')) {
             hudEl.classList.remove('visible');
-            if(typeof global.setActiveFinger === 'function') global.setActiveFinger(null);
+            if (typeof global.setActiveFinger === 'function') global.setActiveFinger(null);
           }
         }
       });
@@ -927,11 +927,11 @@
   }
 
   /* ---- Toolbar Toggle Control ---- */
-  function setupToolbarToggle(){
+  function setupToolbarToggle() {
     let btn = document.getElementById('cursorGuideToggle');
-    if(!btn){
+    if (!btn) {
       const toolbar = document.querySelector('.toolbar');
-      if(!toolbar) return;
+      if (!toolbar) return;
       btn = document.createElement('button');
       btn.id = 'cursorGuideToggle';
       btn.className = (inspectorEnabled ? 'on' : '') + ' i18n-t';
@@ -939,7 +939,7 @@
       btn.setAttribute('data-km', 'ត្រួតពិនិត្យដោយកណ្ដុរ');
       btn.setAttribute('title', 'Smart Mouse Inspector & Interactive Kinematic Guide (Alt+M)');
       const handsToggle = document.getElementById('handsToggle');
-      if(handsToggle && handsToggle.nextSibling){
+      if (handsToggle && handsToggle.nextSibling) {
         toolbar.insertBefore(btn, handsToggle.nextSibling);
       } else {
         toolbar.appendChild(btn);
@@ -968,10 +968,10 @@
       inspectorEnabled = !inspectorEnabled;
       savePreference();
       renderBtn();
-      if(!inspectorEnabled){
+      if (!inspectorEnabled) {
         uninspectKey();
       }
-      if(typeof global.showToast === 'function'){
+      if (typeof global.showToast === 'function') {
         global.showToast(
           '<svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>',
           inspectorEnabled ? 'Mouse Inspector Active' : 'Mouse Inspector Paused',
@@ -982,34 +982,34 @@
   }
 
   // Keyboard shortcut (Alt+M) to toggle mouse inspector
-  window.addEventListener('keydown', (ev)=>{
-    if(ev.altKey && (ev.key === 'm' || ev.key === 'M')){
+  window.addEventListener('keydown', (ev) => {
+    if (ev.altKey && (ev.key === 'm' || ev.key === 'M')) {
       ev.preventDefault();
       const btn = document.getElementById('cursorGuideToggle');
-      if(btn) btn.click();
+      if (btn) btn.click();
     }
   });
 
   /* ---- Resilient Hand & Pinky Kinematics Guardian ---- */
-  function ensureHandsKinematics(){
-    if(!global.FINGERS) return;
-    if(!global.FINGERS.some(f => f.id === 'rp')){
-      global.FINGERS.push({id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:12.5, tipW:7.5, kDist:68, restLen:52, restAng:0.10});
+  function ensureHandsKinematics() {
+    if (!global.FINGERS) return;
+    if (!global.FINGERS.some(f => f.id === 'rp')) {
+      global.FINGERS.push({ id: 'rp', hand: 'R', home: 'semicolon', kind: 'pinky', baseW: 12.5, tipW: 7.5, kDist: 68, restLen: 52, restAng: 0.10 });
     }
     const handGroupR = document.querySelector('.hand-group.side-r');
-    if(handGroupR && !document.querySelector('.finger[data-finger="rp"]')){
-      if(typeof global.createFingerElement === 'function'){
+    if (handGroupR && !document.querySelector('.finger[data-finger="rp"]')) {
+      if (typeof global.createFingerElement === 'function') {
         const rpDef = global.FINGERS.find(f => f.id === 'rp');
-        if(rpDef) global.createFingerElement(rpDef);
+        if (rpDef) global.createFingerElement(rpDef);
       }
     }
-    if(typeof global.renderHands === 'function'){
+    if (typeof global.renderHands === 'function') {
       global.renderHands();
     }
   }
 
   /* ---- Initialization ---- */
-  function init(){
+  function init() {
     loadPreference();
     ensureDOM();
     attachEventListeners();
@@ -1017,7 +1017,7 @@
     ensureHandsKinematics();
   }
 
-  if(document.readyState !== 'loading'){
+  if (document.readyState !== 'loading') {
     init();
   } else {
     document.addEventListener('DOMContentLoaded', init);
@@ -1029,12 +1029,12 @@
     uninspectKey,
     inspectTextCharacter,
     getCharInfo,
-    isEnabled: ()=> inspectorEnabled,
-    toggle: (state)=>{
+    isEnabled: () => inspectorEnabled,
+    toggle: (state) => {
       inspectorEnabled = typeof state === 'boolean' ? state : !inspectorEnabled;
       savePreference();
       const btn = document.getElementById('cursorGuideToggle');
-      if(btn) btn.classList.toggle('on', inspectorEnabled);
+      if (btn) btn.classList.toggle('on', inspectorEnabled);
     }
   };
   global.PKCursorInspector = global.PK_MOUSE_INSPECTOR;

@@ -6,9 +6,19 @@
 const toastStack = document.getElementById('toastStack');
 const seenAchievements = new Set();
 function showToast(icon, title, sub){
+  if(!toastStack) return;
+  if(arguments.length === 1){
+    title = icon;
+    icon = typeof pkIcon === 'function' ? pkIcon('check', 18) : '✓';
+    sub = '';
+  } else if(arguments.length === 2 && typeof icon === 'string' && !icon.trim().startsWith('<')){
+    sub = title;
+    title = icon;
+    icon = typeof pkIcon === 'function' ? pkIcon('info', 18) : 'ℹ';
+  }
   const t = document.createElement('div');
   t.className = 'toast';
-  t.innerHTML = `<span class="toast-icon">${icon}</span><div><div class="toast-title">${title}</div>${sub ? `<div class="toast-sub">${sub}</div>` : ''}</div>`;
+  t.innerHTML = `<span class="toast-icon">${icon || ''}</span><div><div class="toast-title">${title || ''}</div>${sub ? `<div class="toast-sub">${sub}</div>` : ''}</div>`;
   toastStack.appendChild(t);
   setTimeout(()=>{ if(t.parentNode) t.remove(); }, 2600);
 }

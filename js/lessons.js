@@ -1502,7 +1502,7 @@ function toggleAllLessonsUnlocked(){
       confettiBurst(rect.left + rect.width/2, rect.top + rect.height/2, 42);
     }
     if(typeof playChime === 'function') playChime();
-    showToast(pkIcon('unlock', 20), 'Master Unlock', 'All 60 lessons unlocked!');
+    showToast(pkIcon('unlock', 20), 'Master Unlock', 'All 77 lessons unlocked!');
   } else {
     showToast(pkIcon('lock', 20), 'Progress Locked', 'Normal lesson progression restored');
   }

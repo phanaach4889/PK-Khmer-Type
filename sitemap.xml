@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Main Interactive Typing Application: PK Khmer Type -->
+  <url>
+    <loc>https://phanaach4889.github.io/PK-Khmer-Type/</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://phanaach4889.github.io/PK-Khmer-Type/" />
+    <xhtml:link rel="alternate" hreflang="km" href="https://phanaach4889.github.io/PK-Khmer-Type/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://phanaach4889.github.io/PK-Khmer-Type/" />
+    <image:image>
+      <image:loc>https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-og-preview.png</image:loc>
+      <image:title>PK Khmer Type — Interactive Khmer &amp; English Touch-Typing Studio</image:title>
+      <image:caption>PK Khmer Type (ក្តារចុចខ្មែរ PK) — Free Khmer Standard, Khmer NiDA, and English QWERTY typing trainer with 218 progressive lessons and 3D finger guides, founded and built by Phanna Kurosaki.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-khmer-typing-trainer.png</image:loc>
+      <image:title>PK Khmer Type Keyboard &amp; Khmer Typing Practice Trainer</image:title>
+      <image:caption>Interactive Khmer typing practice studio showing the Khmer keyboard layout with translucent 3D hand and finger guides in PK Khmer Type.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-standard-khmer-keyboard-layout.png</image:loc>
+      <image:title>PK Khmer Type — Khmer Standard Keyboard Layout (ប្លង់ក្តារចុចខ្មែរស្តង់ដារ)</image:title>
+      <image:caption>Khmer Standard Keyboard Layout in PK Khmer Type with 3D finger placement guide on home row anchors ថ (F) and ញ (J).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-khmer-nida-keyboard-layout.png</image:loc>
+      <image:title>PK Khmer Type — Official Khmer NiDA Keyboard Layout (ក្តារចុចខ្មែរ និដា)</image:title>
+      <image:caption>Official Khmer NiDA Unicode Keyboard Layout in PK Khmer Type with 3D finger placement guide on home row anchors ថ (F) and Coeng ្ (J).</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-english-qwerty-keyboard-layout.png</image:loc>
+      <image:title>PK Khmer Type — English (US) QWERTY Keyboard Layout</image:title>
+      <image:caption>English (US) QWERTY Keyboard Layout in PK Khmer Type with 3D finger placement guide on home row anchors ASDF and JKL;.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://phanaach4889.github.io/PK-Khmer-Type/logo.svg</image:loc>
+      <image:title>PK Khmer Type Official Crest Logo</image:title>
+      <image:caption>Official PK keycap monogram crest logo of PK Khmer Type by Phanna Kurosaki.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Official Documentation, Keyboard Layout Reference & 3D Studio -->
+  <url>
+    <loc>https://phanaach4889.github.io/PK-Khmer-Type/Documents/</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://phanaach4889.github.io/PK-Khmer-Type/Documents/" />
+    <xhtml:link rel="alternate" hreflang="km" href="https://phanaach4889.github.io/PK-Khmer-Type/Documents/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://phanaach4889.github.io/PK-Khmer-Type/Documents/" />
+    <image:image>
+      <image:loc>https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-standard-khmer-keyboard-layout.png</image:loc>
+      <image:title>Khmer Standard Keyboard Layout Guide — PK Khmer Type</image:title>
+      <image:caption>Complete key mapping and home row alignment for the Khmer Standard Keyboard Layout in PK Khmer Type.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-khmer-nida-keyboard-layout.png</image:loc>
+      <image:title>Khmer NiDA Keyboard Layout Guide — PK Khmer Type</image:title>
+      <image:caption>Complete key mapping and home row alignment for the Official Khmer NiDA Unicode Keyboard Layout in PK Khmer Type.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-english-qwerty-keyboard-layout.png</image:loc>
+      <image:title>English (US) QWERTY Keyboard Layout Guide — PK Khmer Type</image:title>
+      <image:caption>Complete key mapping and home row alignment for the English (US) QWERTY Keyboard Layout in PK Khmer Type.</image:caption>
+    </image:image>
+  </url>
+
+</urlset>

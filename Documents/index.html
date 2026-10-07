@@ -3,12 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>PK Khmer Type Documentation — Khmer Keyboard Layouts, Typing Rules &amp; Curriculum Guide</title>
+  <meta name="title" content="PK Khmer Type Documentation — Khmer Keyboard Layouts, Typing Rules &amp; Curriculum Guide">
+  <meta name="description" content="Official documentation for PK Khmer Type (ក្តារចុចខ្មែរ PK) by Phanna Kurosaki. Complete guide to Khmer Standard, Khmer NiDA Unicode, and English QWERTY keyboard layouts, Khmer Unicode typing rules (Coeng ្, base consonants, vowels), 218 lessons, and shortcuts.">
+  <meta name="keywords" content="PK Khmer Type documentation, PK Khmer Type keyboard layout, Khmer Standard keyboard layout, Khmer NiDA keyboard layout, how to type Khmer Unicode, Khmer Coeng subscript typing, ក្តារចុចខ្មែរ PK, ក្តារចុចខ្មែរ និដា, ក្បួនវាយអក្សរខ្មែរ, Phanna Kurosaki">
   <meta name="author" content="Phanna Kurosaki">
-  <meta name="description" content="Official documentation, keyboard layout guides, and curriculum specifications for PK Khmer Type — the premier interactive Khmer & English typing trainer.">
-  <title>PK Khmer Type — Official Documentation & Architecture Guide</title>
+  <meta name="creator" content="Phanna Kurosaki">
+  <meta name="publisher" content="Phanna Kurosaki">
+  <meta name="application-name" content="PK Khmer Type">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+  <!-- Canonical & Language Alternates -->
+  <link rel="canonical" href="https://phanaach4889.github.io/PK-Khmer-Type/Documents/">
+  <link rel="alternate" hreflang="en" href="https://phanaach4889.github.io/PK-Khmer-Type/Documents/">
+  <link rel="alternate" hreflang="km" href="https://phanaach4889.github.io/PK-Khmer-Type/Documents/">
+  <link rel="alternate" hreflang="x-default" href="https://phanaach4889.github.io/PK-Khmer-Type/Documents/">
+
+  <!-- Open Graph / Social Previews -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="PK Khmer Type">
+  <meta property="og:title" content="PK Khmer Type Documentation — Khmer Keyboard Layouts, Typing Rules &amp; Curriculum Guide">
+  <meta property="og:description" content="Complete reference for PK Khmer Type (ក្តារចុចខ្មែរ PK): Khmer Standard, Khmer NiDA Unicode, and English QWERTY keyboard diagrams, Khmer Unicode typing rules, and 218-lesson curriculum.">
+  <meta property="og:url" content="https://phanaach4889.github.io/PK-Khmer-Type/Documents/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="km_KH">
+  <meta property="og:image" content="https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-og-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PK Khmer Type official documentation and interactive Khmer keyboard layout guide">
+  <meta property="og:image" content="https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-standard-khmer-keyboard-layout.png">
+  <meta property="og:image" content="https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-khmer-nida-keyboard-layout.png">
+  <meta property="og:image" content="https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-english-qwerty-keyboard-layout.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PK Khmer Type Documentation — Khmer Keyboard Layouts &amp; Typing Guide">
+  <meta name="twitter:description" content="Official guide to Khmer Standard, Khmer NiDA Unicode, and English QWERTY keyboard layouts, Khmer typing rules, and 218 structured lessons in PK Khmer Type.">
+  <meta name="twitter:image" content="https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-og-preview.png">
+  <meta name="twitter:image:alt" content="PK Khmer Type Documentation — Khmer Standard, Khmer NiDA, and English QWERTY Keyboard Guide">
 
   <!-- Favicon & PWA -->
   <link rel="icon" type="image/svg+xml" href="../logo.svg">
+  <link rel="icon" type="image/png" sizes="48x48" href="../icon-48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../icon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../icon-180.png">
   <link rel="manifest" href="../manifest.json">
   <meta name="theme-color" content="#ff9d2e">
 
@@ -17,12 +57,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Noto+Serif+Khmer:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
 
-  <!-- Cache Buster & Anti-stale Meta -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-
-  <link rel="stylesheet" href="docs.css?v=4.5.0">
+  <link rel="stylesheet" href="docs.css?v=4.6.0">
   <script>
     try {
       var p = localStorage.getItem('khmerSettingPerformanceMode');
@@ -32,6 +67,173 @@
         document.documentElement.classList.add('performance-mode', 'anim-mode-off', 'reduce-motion', 'reduced-motion');
       }
     } catch(e){}
+  </script>
+
+  <!-- Structured Data (Schema.org JSON-LD for Google Search, Images & AI Overviews) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": "https://phanaach4889.github.io/PK-Khmer-Type/Documents/#article",
+        "headline": "PK Khmer Type Documentation — Khmer Keyboard Layouts, Typing Rules & Curriculum Guide",
+        "alternativeHeadline": "ក្តារចុចខ្មែរ PK — ឯកសារផ្លូវការ និងមគ្គុទ្ទេសក៍ប្លង់ក្តារចុចខ្មែរ",
+        "description": "Official documentation, keyboard layout diagrams, Khmer Unicode typing rules, and curriculum specifications for PK Khmer Type — the interactive Khmer Standard, Khmer NiDA, and English QWERTY typing trainer built by Phanna Kurosaki.",
+        "url": "https://phanaach4889.github.io/PK-Khmer-Type/Documents/",
+        "inLanguage": ["en", "km"],
+        "author": {
+          "@type": "Person",
+          "@id": "https://phanaach4889.github.io/PK-Khmer-Type/#author",
+          "name": "Phanna Kurosaki",
+          "url": "https://web.facebook.com/Wphanakurasaki/"
+        },
+        "publisher": {
+          "@type": "Person",
+          "@id": "https://phanaach4889.github.io/PK-Khmer-Type/#author",
+          "name": "Phanna Kurosaki"
+        },
+        "mainEntityOfPage": "https://phanaach4889.github.io/PK-Khmer-Type/Documents/",
+        "about": {
+          "@id": "https://phanaach4889.github.io/PK-Khmer-Type/#app"
+        },
+        "image": [
+          {
+            "@type": "ImageObject",
+            "url": "https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-og-preview.png",
+            "width": 1200,
+            "height": 630,
+            "caption": "PK Khmer Type — Interactive Khmer & English Typing Tutor Overview"
+          },
+          {
+            "@type": "ImageObject",
+            "url": "https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-standard-khmer-keyboard-layout.png",
+            "width": 826,
+            "height": 354,
+            "caption": "PK Khmer Type — Khmer Standard Keyboard Layout (ប្លង់ក្តារចុចខ្មែរស្តង់ដារ)"
+          },
+          {
+            "@type": "ImageObject",
+            "url": "https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-khmer-nida-keyboard-layout.png",
+            "width": 827,
+            "height": 366,
+            "caption": "PK Khmer Type — Khmer NiDA Unicode Keyboard Layout (ក្តារចុចខ្មែរ និដា)"
+          },
+          {
+            "@type": "ImageObject",
+            "url": "https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-english-qwerty-keyboard-layout.png",
+            "width": 829,
+            "height": 343,
+            "caption": "PK Khmer Type — English (US) QWERTY Keyboard Layout"
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://phanaach4889.github.io/PK-Khmer-Type/Documents/#howto-khmer-typing",
+        "name": "How to Practice and Type Khmer Unicode on PK Khmer Type",
+        "description": "Step-by-step guide to learning Khmer touch typing using PK Khmer Type and following the three golden rules of Khmer Unicode character ordering.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Choose Your Keyboard Layout",
+            "text": "Select Khmer Standard (ប្លង់ក្តារចុចខ្មែរស្តង់ដារ), Khmer NiDA (ក្តារចុចខ្មែរ និដា), or English (US) QWERTY from the layout selector bar."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Place Fingers on Home Row Anchors",
+            "text": "Rest your left hand on A S D F (ា ស ដ ថ) and your right hand on J K L ; (ញ ក ល ៈ on Khmer Standard, or ្ ក ល ើ on Khmer NiDA). Use the 3D kinematic hand guide to verify finger placement."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Type Base Consonants Before Dependent Vowels",
+            "text": "Always type the base consonant first followed by the dependent vowel, even when the vowel visually appears to the left of the consonant (for example, type គ then េ to produce គេ)."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 4,
+            "name": "Type Subscripts (Coeng ្) and Word Spaces Correctly",
+            "text": "To stack a subscript consonant (Coeng ្), press Space on Khmer Standard or J on Khmer NiDA, followed by the second consonant (e.g., ក + Coeng + ខ = ក្ខ). Press Shift + Space to insert a visible space between clauses."
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://phanaach4889.github.io/PK-Khmer-Type/Documents/#faq-schema",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is PK Khmer Type?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "PK Khmer Type (ក្តារចុចខ្មែរ PK) is a free, browser-based interactive touch typing tutor built by student developer Phanna Kurosaki. It teaches the Khmer Standard keyboard layout, the official Khmer NiDA Unicode keyboard layout, and English (US) QWERTY across 40 levels, 218 structured lessons, and 664+ exercises, complete with a live virtual keyboard, 3D kinematic finger guide, and Keybr-style adaptive practice."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between the Khmer Standard and Khmer NiDA keyboard layouts?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "On the Khmer Standard keyboard layout, the right-hand index home key J types ញ and unshifted Space triggers the subscript sign Coeng (្). On the Khmer NiDA Unicode keyboard layout (designed by Cambodia's National ICT Development Authority), unshifted J directly triggers Coeng (្) while Shift + J types ញ, and shifted keys include dedicated compound vowels such as េះ, ុំ, and ាំ."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I type subscript consonants (Coeng ្) and spaces on a Khmer keyboard?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "To type a subscript consonant (ជើងព្យញ្ជនៈ) below a base consonant, first type the base consonant, then press the Coeng trigger key (unshifted Space on Khmer Standard, or unshifted J on Khmer NiDA), and then type the second consonant (for example, ក + Coeng + ខ = ក្ខ). To insert a visible word/clause space on Khmer layouts, press Shift + Space."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why do some Khmer vowels show a dotted circle (◌)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Khmer dependent vowels (ស្រៈនិស្ស័យ) cannot stand alone in Unicode. When displayed in isolation on a keyboard key, a dotted circle (U+25CC) is deliberately added so the vowel mark renders clearly instead of collapsing. In normal typing, always type the base consonant first and the vowel second so they combine cleanly without a dotted circle."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use PK Khmer Type completely offline?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! PK Khmer Type is a Progressive Web App (PWA). All layout definitions, Web Audio sound synthesizers, 3D models, and 218 lessons are bundled locally in vanilla JavaScript so you can practice with zero internet connection."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I export or backup my typing progress?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Open the Settings menu (or click the gear icon in the top right), then click \"Export Backup (JSON)\". You can import this file anytime to restore your completed lessons, stats, and badges on another computer or browser."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://phanaach4889.github.io/PK-Khmer-Type/Documents/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "PK Khmer Type",
+            "item": "https://phanaach4889.github.io/PK-Khmer-Type/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Official Documentation & Keyboard Layout Guide",
+            "item": "https://phanaach4889.github.io/PK-Khmer-Type/Documents/"
+          }
+        ]
+      }
+    ]
+  }
   </script>
 </head>
 <body>
@@ -43,7 +245,7 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
       <a href="../index.html" class="brand-group" title="Back to PK Khmer Type application">
-        <img src="../logo.svg" alt="PK Logo" class="brand-logo">
+        <img src="../logo.svg" alt="PK Khmer Type Official Logo" width="38" height="38" class="brand-logo">
         <div class="brand-text">
           <div class="brand-title">PK Khmer Type <span class="brand-badge">DOCS</span></div>
           <div class="brand-sub">ក្តារចុចខ្មែរ PK — ឯកសារផ្លូវការ</div>
@@ -601,6 +803,16 @@
                 </div>
               </div>
             </div>
+            <figure class="layout-preview-figure">
+              <img src="../assets/pk-khmer-type-standard-khmer-keyboard-layout.png"
+                   alt="PK Khmer Type interactive virtual keyboard showing the Khmer Standard keyboard layout (ប្លង់ក្តារចុចខ្មែរស្តង់ដារ) with Base, Shift, AltGr, and Ctrl modifier layers and home row anchors ា ស ដ ថ and ញ ក ល ៈ"
+                   width="826" height="354" loading="eager" decoding="async" class="layout-preview-img">
+              <figcaption class="layout-preview-caption doc-i18n"
+                          data-en="PK Khmer Type — Khmer Standard Keyboard Layout (ប្លង់ក្តារចុចខ្មែរស្តង់ដារ) interactive virtual keyboard"
+                          data-km="PK Khmer Type — ប្លង់ក្តារចុចខ្មែរស្តង់ដារ (Khmer Standard Keyboard Layout) ក្នុងកម្មវិធីហាត់វាយ">
+                PK Khmer Type — Khmer Standard Keyboard Layout (ប្លង់ក្តារចុចខ្មែរស្តង់ដារ) interactive virtual keyboard
+              </figcaption>
+            </figure>
           </div>
 
           <div class="tab-pane" id="tab-nida">
@@ -638,6 +850,16 @@
                 </div>
               </div>
             </div>
+            <figure class="layout-preview-figure">
+              <img src="../assets/pk-khmer-type-khmer-nida-keyboard-layout.png"
+                   alt="PK Khmer Type interactive virtual keyboard showing the official Khmer NiDA Unicode keyboard layout (ក្តារចុចខ្មែរ និដា យូនីកូដ) with Coeng ្ on the J key and home row keys ា ស ដ ថ and ្ ក ល ើ"
+                   width="827" height="366" loading="lazy" decoding="async" class="layout-preview-img">
+              <figcaption class="layout-preview-caption doc-i18n"
+                          data-en="PK Khmer Type — Khmer NiDA Unicode Keyboard Layout (ក្តារចុចខ្មែរ និដា) interactive virtual keyboard"
+                          data-km="PK Khmer Type — ក្តារចុចខ្មែរ និដា យូនីកូដ (Khmer NiDA Keyboard Layout) ក្នុងកម្មវិធីហាត់វាយ">
+                PK Khmer Type — Khmer NiDA Unicode Keyboard Layout (ក្តារចុចខ្មែរ និដា) interactive virtual keyboard
+              </figcaption>
+            </figure>
           </div>
 
           <div class="tab-pane" id="tab-english">
@@ -675,6 +897,16 @@
                 </div>
               </div>
             </div>
+            <figure class="layout-preview-figure">
+              <img src="../assets/pk-khmer-type-english-qwerty-keyboard-layout.png"
+                   alt="PK Khmer Type interactive virtual keyboard showing the English (US) QWERTY touch typing layout with F and J home row anchors"
+                   width="829" height="343" loading="lazy" decoding="async" class="layout-preview-img">
+              <figcaption class="layout-preview-caption doc-i18n"
+                          data-en="PK Khmer Type — English (US) QWERTY Keyboard Layout interactive virtual keyboard"
+                          data-km="PK Khmer Type — ប្លង់ក្តារចុចអង់គ្លេស (English US QWERTY) ក្នុងកម្មវិធីហាត់វាយ">
+                PK Khmer Type — English (US) QWERTY Keyboard Layout interactive virtual keyboard
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
@@ -838,7 +1070,7 @@
             </div>
             <div class="feature-desc">
               <strong>13 Levels · 77 Lessons</strong><br>
-              Follows NiDA typewriter ergonomics starting with home row anchors, Shift+J Coeng combinations, and speed tests.
+              Follows NiDA typewriter ergonomics starting with home row anchors, J-key Coeng (្) combinations, and speed tests.
             </div>
           </div>
 
@@ -1202,11 +1434,53 @@ node scratch/test_documents_endpoint.js</code></pre>
             <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
           </div>
           <div>
+            <strong>Q: What is PK Khmer Type?</strong><br>
+            <span class="doc-i18n"
+                  data-en="PK Khmer Type (ក្តារចុចខ្មែរ PK) is a free, browser-based interactive touch typing tutor built by student developer Phanna Kurosaki. It teaches the Khmer Standard keyboard layout, the official Khmer NiDA Unicode keyboard layout, and English (US) QWERTY across 40 levels, 218 structured lessons, and 664+ exercises, complete with a live virtual keyboard, 3D kinematic finger guide, and Keybr-style adaptive practice."
+                  data-km="PK Khmer Type (ក្តារចុចខ្មែរ PK) គឺជាកម្មវិធីហ្វឹកហាត់វាយអក្សរតាមរយៈកម្មវិធីរុករកដោយឥតគិតថ្លៃ បង្កើតឡើងដោយសិស្សអ្នកអភិវឌ្ឍន៍ Phanna Kurosaki។ វាបង្រៀនប្លង់ក្តារចុចខ្មែរស្តង់ដារ (Khmer Standard) ប្លង់ក្តារចុចខ្មែរ និដា (Khmer NiDA Unicode) និងអង់គ្លេស (English US QWERTY) ឆ្លងកាត់ ៤០ កម្រិត ២១៨ មេរៀន និង ៦៦៤+ លំហាត់។">
+              PK Khmer Type (ក្តារចុចខ្មែរ PK) is a free, browser-based interactive touch typing tutor built by student developer Phanna Kurosaki. It teaches the Khmer Standard keyboard layout, the official Khmer NiDA Unicode keyboard layout, and English (US) QWERTY across 40 levels, 218 structured lessons, and 664+ exercises, complete with a live virtual keyboard, 3D kinematic finger guide, and Keybr-style adaptive practice.
+            </span>
+          </div>
+        </div>
+
+        <div class="callout note">
+          <div class="callout-icon">
+            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          </div>
+          <div>
+            <strong>Q: What is the difference between the Khmer Standard and Khmer NiDA keyboard layouts?</strong><br>
+            <span class="doc-i18n"
+                  data-en="On the Khmer Standard keyboard layout, the right-hand index home key J types ញ and unshifted Space triggers the subscript sign Coeng (្). On the Khmer NiDA Unicode keyboard layout (designed by Cambodia's National ICT Development Authority), unshifted J directly triggers Coeng (្) while Shift + J types ញ, and shifted keys include dedicated compound vowels such as េះ, ុំ, and ាំ."
+                  data-km="នៅលើប្លង់ Khmer Standard គ្រាប់ចុច J វាយអក្សរ ញ ហើយ Space ធម្មតាប្រើសម្រាប់ដាក់ជើង (្)។ រីឯនៅលើប្លង់ Khmer NiDA Unicode គ្រាប់ចុច J ធម្មតាប្រើសម្រាប់ដាក់ជើង (្) ផ្ទាល់ ខណៈដែល Shift + J វាយអក្សរ ញ ហើយមានស្រៈផ្សំដូចជា េះ, ុំ និង ាំ នៅលើស្រទាប់ Shift។">
+              On the Khmer Standard keyboard layout, the right-hand index home key J types ញ and unshifted Space triggers the subscript sign Coeng (្). On the Khmer NiDA Unicode keyboard layout (designed by Cambodia's National ICT Development Authority), unshifted J directly triggers Coeng (្) while Shift + J types ញ, and shifted keys include dedicated compound vowels such as េះ, ុំ, and ាំ.
+            </span>
+          </div>
+        </div>
+
+        <div class="callout note">
+          <div class="callout-icon">
+            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          </div>
+          <div>
+            <strong>Q: How do I type subscript consonants (Coeng ្) and spaces on a Khmer keyboard?</strong><br>
+            <span class="doc-i18n"
+                  data-en="To type a subscript consonant (ជើងព្យញ្ជនៈ) below a base consonant, first type the base consonant, then press the Coeng trigger key (unshifted Space on Khmer Standard, or unshifted J on Khmer NiDA), and then type the second consonant (for example, ក + Coeng + ខ = ក្ខ). To insert a visible word/clause space on Khmer layouts, press Shift + Space."
+                  data-km="ដើម្បីវាយជើងព្យញ្ជនៈនៅក្រោមព្យញ្ជនៈគោល សូមវាយព្យញ្ជនៈគោលជាមុន រួចចុចគ្រាប់ចុចជើង (Space លើ Khmer Standard ឬ J លើ Khmer NiDA) រួចវាយព្យញ្ជនៈទីពីរ (ឧទាហរណ៍ ក + ្ + ខ = ក្ខ)។ ដើម្បីដកឃ្លាដែលមើលឃើញ សូមចុច Shift + Space។">
+              To type a subscript consonant (ជើងព្យញ្ជនៈ) below a base consonant, first type the base consonant, then press the Coeng trigger key (unshifted Space on Khmer Standard, or unshifted J on Khmer NiDA), and then type the second consonant (for example, ក + Coeng + ខ = ក្ខ). To insert a visible word/clause space on Khmer layouts, press Shift + Space.
+            </span>
+          </div>
+        </div>
+
+        <div class="callout note">
+          <div class="callout-icon">
+            <svg class="doc-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          </div>
+          <div>
             <strong>Q: Why do some Khmer vowels show a dotted circle (◌)?</strong><br>
             <span class="doc-i18n"
-                  data-en="Khmer dependent vowels (ស្រៈនិស្ស័យ) cannot stand alone in Unicode. When displayed in isolation on a keyboard key, a dotted circle (U+25CC) is deliberately added so the vowel mark renders clearly instead of collapsing into an illegible dot."
-                  data-km="ស្រៈនិស្ស័យក្នុងយូនីកូដមិនអាចឈរតែឯងបានឡើយ។ នៅពេលបង្ហាញដាច់តែឯងលើគ្រាប់ចុច រង្វង់មូលចំនុចៗ (U+25CC) ត្រូវបានបន្ថែមដោយចេតនា ដើម្បីឱ្យស្រៈបង្ហាញបានច្បាស់។">
-              Khmer dependent vowels (ស្រៈនិស្ស័យ) cannot stand alone in Unicode. When displayed in isolation on a keyboard key, a dotted circle (U+25CC) is deliberately added so the vowel mark renders clearly instead of collapsing into an illegible dot.
+                  data-en="Khmer dependent vowels (ស្រៈនិស្ស័យ) cannot stand alone in Unicode. When displayed in isolation on a keyboard key, a dotted circle (U+25CC) is deliberately added so the vowel mark renders clearly instead of collapsing into an illegible dot. In normal typing, always type the base consonant first and the vowel second so they combine cleanly without a dotted circle."
+                  data-km="ស្រៈនិស្ស័យក្នុងយូនីកូដមិនអាចឈរតែឯងបានឡើយ។ នៅពេលបង្ហាញដាច់តែឯងលើគ្រាប់ចុច រង្វង់មូលចំនុចៗ (U+25CC) ត្រូវបានបន្ថែមដោយចេតនា ដើម្បីឱ្យស្រៈបង្ហាញបានច្បាស់។ ពេលវាយអក្សរធម្មតា សូមវាយព្យញ្ជនៈដើមមុន រួចទើបវាយស្រៈតាមក្រោយ។">
+              Khmer dependent vowels (ស្រៈនិស្ស័យ) cannot stand alone in Unicode. When displayed in isolation on a keyboard key, a dotted circle (U+25CC) is deliberately added so the vowel mark renders clearly instead of collapsing into an illegible dot. In normal typing, always type the base consonant first and the vowel second so they combine cleanly without a dotted circle.
             </span>
           </div>
         </div>
