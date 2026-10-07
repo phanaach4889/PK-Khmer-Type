@@ -938,6 +938,12 @@ function initStorageActions(){
     try{
       if (typeof window !== 'undefined') {
         window.__isResettingProgress = true;
+        if (typeof window.executeLessonExit === 'function') {
+          try { window.executeLessonExit(); } catch(e){}
+        }
+        if (typeof window.clearActiveLessonSession === 'function') {
+          try { window.clearActiveLessonSession(); } catch(e){}
+        }
       }
       if (typeof window !== 'undefined' && window.PK_ADAPTIVE && typeof window.PK_ADAPTIVE.resetAdaptiveState === 'function') {
         window.PK_ADAPTIVE.resetAdaptiveState();

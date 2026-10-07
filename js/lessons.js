@@ -1231,6 +1231,10 @@ function suspendLessonForLayoutSwitch(prevLayout){
 function restoreLessonAfterLayoutSwitch(newLayout){
   const saved = COURSE_LESSON_STATES[newLayout];
   if(!saved || !saved.lesson) return false;
+  if(!saved.remedialActive && typeof isLessonLocked === 'function' && isLessonLocked(saved.lesson.id)){
+    COURSE_LESSON_STATES[newLayout] = null;
+    return false;
+  }
 
   currentLesson = saved.lesson;
   lessonChars = saved.chars;
@@ -1263,6 +1267,13 @@ function resetAllCourseLessonStates(){
   COURSE_LESSON_STATES.standard = null;
   COURSE_LESSON_STATES.nida = null;
   COURSE_LESSON_STATES.english = null;
+  clearActiveLessonSession();
+  if(typeof document !== 'undefined'){
+    document.querySelectorAll('.lesson-complete-overlay').forEach(el => el.remove());
+  }
+  if(lessonActive || currentLesson){
+    executeLessonExit();
+  }
 }
 
 /* ============================================================
@@ -1271,7 +1282,14 @@ function resetAllCourseLessonStates(){
 const ACTIVE_LESSON_KEY = 'pk_active_lesson_session';
 
 function saveActiveLessonSession(){
+  if(typeof window !== 'undefined' && window.__isResettingProgress) {
+    return;
+  }
   if(!lessonActive || !currentLesson || currentLesson.id === -1) {
+    return;
+  }
+  if(!remedialActive && typeof isLessonLocked === 'function' && isLessonLocked(currentLesson.id)) {
+    clearActiveLessonSession();
     return;
   }
   try {
@@ -1328,6 +1346,11 @@ function restoreSavedLessonSession(){
 
   const def = list.find(l => String(l.id) === String(session.lessonId));
   if(!def) return false;
+
+  if(!session.remedialActive && typeof isLessonLocked === 'function' && isLessonLocked(def.id)){
+    clearActiveLessonSession();
+    return false;
+  }
 
   currentLesson = def;
   if(!def.layoutId) def.layoutId = targetLayout;
@@ -1494,7 +1517,12 @@ window.getLessonBest = getLessonBest;
 function toggleAllLessonsUnlocked(){
   allLessonsUnlocked = !allLessonsUnlocked;
   try{ localStorage.setItem('khmerUnlockAll', allLessonsUnlocked ? '1' : '0'); }catch(e){}
-  renderLessonStrip();
+  if(!allLessonsUnlocked && currentLesson && !remedialActive && isLessonLocked(currentLesson.id)){
+    collapsedLevels = null;
+    executeLessonExit();
+  } else {
+    renderLessonStrip();
+  }
   if(allLessonsUnlocked){
     const logoEl = document.getElementById('siteLogo');
     const rect = logoEl ? logoEl.getBoundingClientRect() : (boardWrap || document.body).getBoundingClientRect();
@@ -1588,6 +1616,11 @@ function renderLessonStrip(){
     if(!Array.isArray(LESSONS) || LESSONS.length === 0){
       lessonStrip.removeAttribute('hidden');
       lessonStrip.hidden = false;
+      return;
+    }
+    if(currentLesson && !remedialActive && isLessonLocked(currentLesson.id)){
+      collapsedLevels = null;
+      executeLessonExit();
       return;
     }
     if(!collapsedLevels) collapsedLevels = defaultCollapsedLevels();
@@ -1999,7 +2032,7 @@ function startLesson(idOrDef){
   }
   const def = (typeof idOrDef === 'object') ? idOrDef : LESSONS.find(l=> String(l.id) === String(idOrDef));
   if(!def) return;
-  if(typeof idOrDef !== 'object' && isLessonLocked(def.id)) return;
+  if(!def.isRemedial && isLessonLocked(def.id)) return;
 
   if(currentLayoutId && COURSE_LESSON_STATES[currentLayoutId]){
     COURSE_LESSON_STATES[currentLayoutId] = null;
@@ -2245,6 +2278,11 @@ function adaptiveExtend(){
 
 function lessonHandleChar(val, el, stroke){
   if(!lessonActive || !val) return;
+  if(currentLesson && !remedialActive && isLessonLocked(currentLesson.id)){
+    collapsedLevels = null;
+    executeLessonExit();
+    return;
+  }
   if(lessonIndex >= lessonChars.length) return;
   const expected = lessonChars[lessonIndex];
   if(!expected) return;

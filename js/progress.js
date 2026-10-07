@@ -1069,6 +1069,9 @@
         }
       } catch(e){}
       flush();
+      if(typeof window !== 'undefined' && window.currentLesson && typeof window.isLessonLocked === 'function' && window.isLessonLocked(window.currentLesson.id) && typeof window.executeLessonExit === 'function'){
+        try { window.executeLessonExit(); } catch(e){}
+      }
       return true;
     }
     return false;
@@ -1090,6 +1093,9 @@
       });
       delete course.levels[String(levelId)];
       flush();
+      if(typeof window !== 'undefined' && window.currentLesson && typeof window.isLessonLocked === 'function' && window.isLessonLocked(window.currentLesson.id) && typeof window.executeLessonExit === 'function'){
+        try { window.executeLessonExit(); } catch(e){}
+      }
       return true;
     }
     return false;
@@ -1111,6 +1117,12 @@
       }
     } catch(e){}
     flush();
+    if(typeof window !== 'undefined'){
+      if(window.COURSE_LESSON_STATES) window.COURSE_LESSON_STATES[layout] = null;
+      if(window.currentLesson && typeof window.isLessonLocked === 'function' && window.isLessonLocked(window.currentLesson.id) && typeof window.executeLessonExit === 'function'){
+        try { window.executeLessonExit(); } catch(e){}
+      }
+    }
     return true;
   }
 
@@ -1128,7 +1140,7 @@
     try {
       if(typeof localStorage !== 'undefined'){
         getAllStorageKeys().forEach(k => {
-          if(k.startsWith('khmerLessonBest_') || k === STORAGE_KEY || k === 'khmerTrackingData_v1' || k === 'pk_adaptive_state_v1' || k.startsWith('pk_adaptive_')){
+          if(k.startsWith('khmerLessonBest_') || k === STORAGE_KEY || k === 'khmerTrackingData_v1' || k === 'pk_adaptive_state_v1' || k === 'pk_active_lesson_session' || k.startsWith('pk_adaptive_')){
             localStorage.removeItem(k);
           }
         });
