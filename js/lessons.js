@@ -1010,6 +1010,10 @@ function createLessonModel(rawLesson, exercisesMap, layoutId, levelObj){
           : rawContent.split('');
 
         if(!units.length) return;
+        if(entries.length > 0 && entries[entries.length - 1].ch !== ' ' && units[0] !== ' '){
+          entries.push(spaceEntry(currentTable));
+          unitOffset++;
+        }
         const start = unitOffset;
 
         for(let i=0; i<units.length; i++){
@@ -2257,23 +2261,11 @@ lessonExitBtn.addEventListener('click', ()=> exitLesson(false));
 function adaptiveReinforce(ch){
   // Deliberately no mid-stream duplicate injections to prevent repetitive letter stutter.
 }
-/* Adaptive difficulty, the other direction: a learner cruising through a
-   combo/test lesson with zero mistakes gets a longer session, gradually,
-   instead of a fixed length. */
+/* Lesson length is governed by the structured 5-stage curriculum progression
+   (short -> a little longer -> longer -> kinda long -> very long) rather than
+   appending random characters mid-attempt. */
 function adaptiveExtend(){
-  if(lessonExtendedOnce) return;
-  if(currentLesson.type !== 'combo' && currentLesson.type !== 'test') return;
-  if(lessonMistakes > 0) return;
-  const halfway = Math.floor(lessonChars.length * 0.6);
-  if(lessonIndex !== halfway) return;
-  lessonExtendedOnce = true;
-  const pool = lessonKeyIds.map((id,i)=> ({id, layer:lessonLayers[i], ch:lessonChars[i]}));
-  for(let i=0;i<6;i++){
-    const e = pickRandom(pool);
-    lessonChars.push(e.ch);
-    lessonLayers.push(e.layer);
-    lessonKeyIds.push(e.id);
-  }
+  // Deliberately no mid-stream random character injection.
 }
 
 function lessonHandleChar(val, el, stroke){

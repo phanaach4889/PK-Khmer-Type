@@ -38,9 +38,7 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "en-L00-01-E01",
-        "en-L00-01-E02",
-        "en-L00-01-E03"
+        "en-L00-01-E01"
       ],
       "unlockRequirements": {
         "previousLesson": null
@@ -73,9 +71,7 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "en-L00-02-E01",
-        "en-L00-02-E02",
-        "en-L00-02-E03"
+        "en-L00-02-E01"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L00-01"
@@ -101,8 +97,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "en-L00-03-E01",
-        "en-L00-03-E02",
-        "en-L00-03-E03"
+        "en-L00-03-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L00-02"
@@ -129,8 +124,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "en-L00-04-E01",
-        "en-L00-04-E02",
-        "en-L00-04-E03"
+        "en-L00-04-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L00-03"
@@ -172,9 +166,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "en-L01-01-E01",
-        "en-L01-01-E02",
-        "en-L01-01-E03",
-        "en-L01-01-E04"
+        "en-L01-01-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L00-04"
@@ -216,9 +208,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "en-L01-02-E01",
-        "en-L01-02-E02",
-        "en-L01-02-E03",
-        "en-L01-02-E04"
+        "en-L01-02-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L01-01"
@@ -248,9 +238,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "en-L01-03-E01",
-        "en-L01-03-E02",
-        "en-L01-03-E03",
-        "en-L01-03-E04"
+        "en-L01-03-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L01-02"
@@ -281,9 +269,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "en-L01-04-E01",
-        "en-L01-04-E02",
-        "en-L01-04-E03",
-        "en-L01-04-E04"
+        "en-L01-04-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L01-03"
@@ -325,9 +311,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "en-L02-01-E01",
-        "en-L02-01-E02",
-        "en-L02-01-E03",
-        "en-L02-01-E04"
+        "en-L02-01-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L01-04"
@@ -359,9 +343,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "en-L02-02-E01",
-        "en-L02-02-E02",
-        "en-L02-02-E03",
-        "en-L02-02-E04"
+        "en-L02-02-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L02-01"
@@ -393,9 +375,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "en-L02-03-E01",
-        "en-L02-03-E02",
-        "en-L02-03-E03",
-        "en-L02-03-E04"
+        "en-L02-03-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L02-02"
@@ -428,9 +408,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "en-L02-04-E01",
-        "en-L02-04-E02",
-        "en-L02-04-E03",
-        "en-L02-04-E04"
+        "en-L02-04-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L02-03"
@@ -462,8 +440,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "en-L02-05-E01",
-        "en-L02-05-E02",
-        "en-L02-05-E03"
+        "en-L02-05-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L02-04"
@@ -498,8 +475,7 @@
       "exerciseRefs": [
         "en-L03-01-E01",
         "en-L03-01-E02",
-        "en-L03-01-E03",
-        "en-L03-01-E04"
+        "en-L03-01-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L02-05"
@@ -534,8 +510,7 @@
       "exerciseRefs": [
         "en-L03-02-E01",
         "en-L03-02-E02",
-        "en-L03-02-E03",
-        "en-L03-02-E04"
+        "en-L03-02-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L03-01"
@@ -562,8 +537,7 @@
       "exerciseRefs": [
         "en-L03-03-E01",
         "en-L03-03-E02",
-        "en-L03-03-E03",
-        "en-L03-03-E04"
+        "en-L03-03-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L03-02"
@@ -631,8 +605,7 @@
       "exerciseRefs": [
         "en-L04-01-E01",
         "en-L04-01-E02",
-        "en-L04-01-E03",
-        "en-L04-01-E04"
+        "en-L04-01-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L03-04"
@@ -667,8 +640,7 @@
       "exerciseRefs": [
         "en-L04-02-E01",
         "en-L04-02-E02",
-        "en-L04-02-E03",
-        "en-L04-02-E04"
+        "en-L04-02-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L04-01"
@@ -703,8 +675,7 @@
       "exerciseRefs": [
         "en-L04-03-E01",
         "en-L04-03-E02",
-        "en-L04-03-E03",
-        "en-L04-03-E04"
+        "en-L04-03-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L04-02"
@@ -739,8 +710,7 @@
       "exerciseRefs": [
         "en-L04-04-E01",
         "en-L04-04-E02",
-        "en-L04-04-E03",
-        "en-L04-04-E04"
+        "en-L04-04-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L04-03"
@@ -769,8 +739,7 @@
       "exerciseRefs": [
         "en-L04-05-E01",
         "en-L04-05-E02",
-        "en-L04-05-E03",
-        "en-L04-05-E04"
+        "en-L04-05-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L04-04"
@@ -813,8 +782,7 @@
       "exerciseRefs": [
         "en-L05-01-E01",
         "en-L05-01-E02",
-        "en-L05-01-E03",
-        "en-L05-01-E04"
+        "en-L05-01-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L04-05"
@@ -857,8 +825,7 @@
       "exerciseRefs": [
         "en-L05-02-E01",
         "en-L05-02-E02",
-        "en-L05-02-E03",
-        "en-L05-02-E04"
+        "en-L05-02-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L05-01"
@@ -901,8 +868,7 @@
       "exerciseRefs": [
         "en-L05-03-E01",
         "en-L05-03-E02",
-        "en-L05-03-E03",
-        "en-L05-03-E04"
+        "en-L05-03-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L05-02"
@@ -926,8 +892,7 @@
       "exerciseRefs": [
         "en-L05-04-E01",
         "en-L05-04-E02",
-        "en-L05-04-E03",
-        "en-L05-04-E04"
+        "en-L05-04-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L05-03"
@@ -951,8 +916,7 @@
       "exerciseRefs": [
         "en-L05-05-E01",
         "en-L05-05-E02",
-        "en-L05-05-E03",
-        "en-L05-05-E04"
+        "en-L05-05-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L05-04"
@@ -995,8 +959,7 @@
       "exerciseRefs": [
         "en-L06-01-E01",
         "en-L06-01-E02",
-        "en-L06-01-E03",
-        "en-L06-01-E04"
+        "en-L06-01-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L05-05"
@@ -1039,8 +1002,7 @@
       "exerciseRefs": [
         "en-L06-02-E01",
         "en-L06-02-E02",
-        "en-L06-02-E03",
-        "en-L06-02-E04"
+        "en-L06-02-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L06-01"
@@ -1075,8 +1037,7 @@
       "exerciseRefs": [
         "en-L06-03-E01",
         "en-L06-03-E02",
-        "en-L06-03-E03",
-        "en-L06-03-E04"
+        "en-L06-03-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L06-02"
@@ -1119,8 +1080,7 @@
       "exerciseRefs": [
         "en-L06-04-E01",
         "en-L06-04-E02",
-        "en-L06-04-E03",
-        "en-L06-04-E04"
+        "en-L06-04-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L06-03"
@@ -1163,8 +1123,7 @@
       "exerciseRefs": [
         "en-L06-05-E01",
         "en-L06-05-E02",
-        "en-L06-05-E03",
-        "en-L06-05-E04"
+        "en-L06-05-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L06-04"
@@ -1188,8 +1147,7 @@
       "exerciseRefs": [
         "en-L06-06-E01",
         "en-L06-06-E02",
-        "en-L06-06-E03",
-        "en-L06-06-E04"
+        "en-L06-06-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L06-05"
@@ -1213,8 +1171,7 @@
       "exerciseRefs": [
         "en-L07-01-E01",
         "en-L07-01-E02",
-        "en-L07-01-E03",
-        "en-L07-01-E04"
+        "en-L07-01-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L06-06"
@@ -1326,8 +1283,7 @@
       "exerciseRefs": [
         "en-L08-01-E01",
         "en-L08-01-E02",
-        "en-L08-01-E03",
-        "en-L08-01-E04"
+        "en-L08-01-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L07-04"
@@ -1571,7 +1527,8 @@
       "exerciseRefs": [
         "en-L09-03-E01",
         "en-L09-03-E02",
-        "en-L09-03-E03"
+        "en-L09-03-E03",
+        "en-L09-03-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L09-02"
@@ -1595,7 +1552,8 @@
       "exerciseRefs": [
         "en-L09-04-E01",
         "en-L09-04-E02",
-        "en-L09-04-E03"
+        "en-L09-04-E03",
+        "en-L09-04-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L09-03"
@@ -1635,7 +1593,8 @@
       "exerciseRefs": [
         "en-L10-01-E01",
         "en-L10-01-E02",
-        "en-L10-01-E03"
+        "en-L10-01-E03",
+        "en-L10-01-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L09-04"
@@ -1675,7 +1634,8 @@
       "exerciseRefs": [
         "en-L10-02-E01",
         "en-L10-02-E02",
-        "en-L10-02-E03"
+        "en-L10-02-E03",
+        "en-L10-02-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L10-01"
@@ -1764,7 +1724,8 @@
       "exerciseRefs": [
         "en-L10-03-E01",
         "en-L10-03-E02",
-        "en-L10-03-E03"
+        "en-L10-03-E03",
+        "en-L10-03-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L10-02"
@@ -1844,7 +1805,8 @@
       "exerciseRefs": [
         "en-L10-04-E01",
         "en-L10-04-E02",
-        "en-L10-04-E03"
+        "en-L10-04-E03",
+        "en-L10-04-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L10-03"
@@ -1922,7 +1884,8 @@
       "exerciseRefs": [
         "en-L10-05-E01",
         "en-L10-05-E02",
-        "en-L10-05-E03"
+        "en-L10-05-E03",
+        "en-L10-05-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L10-04"
@@ -1970,7 +1933,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "en-L11-02-E01",
-        "en-L11-02-E02"
+        "en-L11-02-E02",
+        "en-L11-02-E03",
+        "en-L11-02-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L11-01"
@@ -1993,7 +1958,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "en-L11-03-E01",
-        "en-L11-03-E02"
+        "en-L11-03-E02",
+        "en-L11-03-E03",
+        "en-L11-03-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L11-02"
@@ -2016,7 +1983,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "en-L11-04-E01",
-        "en-L11-04-E02"
+        "en-L11-04-E02",
+        "en-L11-04-E03",
+        "en-L11-04-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L11-03"
@@ -2039,7 +2008,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "en-L11-05-E01",
-        "en-L11-05-E02"
+        "en-L11-05-E02",
+        "en-L11-05-E03",
+        "en-L11-05-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L11-04"
@@ -2061,7 +2032,10 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "en-L12-01-E01"
+        "en-L12-01-E01",
+        "en-L12-01-E02",
+        "en-L12-01-E03",
+        "en-L12-01-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L11-05"
@@ -2084,7 +2058,10 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "en-L12-02-E01"
+        "en-L12-02-E01",
+        "en-L12-02-E02",
+        "en-L12-02-E03",
+        "en-L12-02-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L12-01"
@@ -2107,7 +2084,10 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "en-L12-03-E01"
+        "en-L12-03-E01",
+        "en-L12-03-E02",
+        "en-L12-03-E03",
+        "en-L12-03-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L12-02"
@@ -2130,7 +2110,10 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "en-L12-04-E01"
+        "en-L12-04-E01",
+        "en-L12-04-E02",
+        "en-L12-04-E03",
+        "en-L12-04-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L12-03"
@@ -2153,7 +2136,11 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "en-L13-01-E01"
+        "en-L13-01-E01",
+        "en-L13-01-E02",
+        "en-L13-01-E03",
+        "en-L13-01-E04",
+        "en-L13-01-E05"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L12-04"
@@ -2176,7 +2163,11 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "en-L13-02-E01"
+        "en-L13-02-E01",
+        "en-L13-02-E02",
+        "en-L13-02-E03",
+        "en-L13-02-E04",
+        "en-L13-02-E05"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L13-01"
@@ -2199,7 +2190,11 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "en-L13-03-E01"
+        "en-L13-03-E01",
+        "en-L13-03-E02",
+        "en-L13-03-E03",
+        "en-L13-03-E04",
+        "en-L13-03-E05"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L13-02"
@@ -2222,7 +2217,11 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "en-L13-04-E01"
+        "en-L13-04-E01",
+        "en-L13-04-E02",
+        "en-L13-04-E03",
+        "en-L13-04-E04",
+        "en-L13-04-E05"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L13-03"

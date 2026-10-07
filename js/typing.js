@@ -30,7 +30,7 @@ function splitIntoTypingUnits(text, layoutId){
   const units = [];
   let i = 0;
   while(i < normalized.length){
-    if(layoutId === 'nida' && i + 1 < normalized.length){
+    if((layoutId === 'nida' || layoutId === 'standard') && i + 1 < normalized.length){
       const pair = normalized.slice(i, i + 2);
       if(KHMER_COMPOUND_VOWELS.includes(pair)){
         units.push(pair);

@@ -39,9 +39,7 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "nida-L00-01-E01",
-        "nida-L00-01-E02",
-        "nida-L00-01-E03"
+        "nida-L00-01-E01"
       ],
       "unlockRequirements": {
         "previousLesson": null
@@ -75,9 +73,7 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "nida-L00-02-E01",
-        "nida-L00-02-E02",
-        "nida-L00-02-E03"
+        "nida-L00-02-E01"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L00-01"
@@ -103,8 +99,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L00-03-E01",
-        "nida-L00-03-E02",
-        "nida-L00-03-E03"
+        "nida-L00-03-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L00-02"
@@ -131,8 +126,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L00-04-E01",
-        "nida-L00-04-E02",
-        "nida-L00-04-E03"
+        "nida-L00-04-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L00-03"
@@ -167,9 +161,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L01-01-E01",
-        "nida-L01-01-E02",
-        "nida-L01-01-E03",
-        "nida-L01-01-E04"
+        "nida-L01-01-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L00-04"
@@ -212,9 +204,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L01-02-E01",
-        "nida-L01-02-E02",
-        "nida-L01-02-E03",
-        "nida-L01-02-E04"
+        "nida-L01-02-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L01-01"
@@ -249,9 +239,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L01-03-E01",
-        "nida-L01-03-E02",
-        "nida-L01-03-E03",
-        "nida-L01-03-E04"
+        "nida-L01-03-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L01-02"
@@ -294,9 +282,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L01-04-E01",
-        "nida-L01-04-E02",
-        "nida-L01-04-E03",
-        "nida-L01-04-E04"
+        "nida-L01-04-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L01-03"
@@ -320,9 +306,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L01-05-E01",
-        "nida-L01-05-E02",
-        "nida-L01-05-E03",
-        "nida-L01-05-E04"
+        "nida-L01-05-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L01-04"
@@ -357,9 +341,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L02-01-E01",
-        "nida-L02-01-E02",
-        "nida-L02-01-E03",
-        "nida-L02-01-E04"
+        "nida-L02-01-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L01-05"
@@ -394,9 +376,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L02-02-E01",
-        "nida-L02-02-E02",
-        "nida-L02-02-E03",
-        "nida-L02-02-E04"
+        "nida-L02-02-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L02-01"
@@ -422,9 +402,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L02-03-E01",
-        "nida-L02-03-E02",
-        "nida-L02-03-E03",
-        "nida-L02-03-E04"
+        "nida-L02-03-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L02-02"
@@ -448,9 +426,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L02-04-E01",
-        "nida-L02-04-E02",
-        "nida-L02-04-E03",
-        "nida-L02-04-E04"
+        "nida-L02-04-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L02-03"
@@ -494,8 +470,7 @@
       "exerciseRefs": [
         "nida-L03-01-E01",
         "nida-L03-01-E02",
-        "nida-L03-01-E03",
-        "nida-L03-01-E04"
+        "nida-L03-01-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L02-04"
@@ -531,8 +506,7 @@
       "exerciseRefs": [
         "nida-L03-02-E01",
         "nida-L03-02-E02",
-        "nida-L03-02-E03",
-        "nida-L03-02-E04"
+        "nida-L03-02-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L03-01"
@@ -575,8 +549,7 @@
       "exerciseRefs": [
         "nida-L03-03-E01",
         "nida-L03-03-E02",
-        "nida-L03-03-E03",
-        "nida-L03-03-E04"
+        "nida-L03-03-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L03-02"
@@ -620,8 +593,7 @@
       "exerciseRefs": [
         "nida-L03-04-E01",
         "nida-L03-04-E02",
-        "nida-L03-04-E03",
-        "nida-L03-04-E04"
+        "nida-L03-04-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L03-03"
@@ -646,8 +618,7 @@
       "exerciseRefs": [
         "nida-L03-05-E01",
         "nida-L03-05-E02",
-        "nida-L03-05-E03",
-        "nida-L03-05-E04"
+        "nida-L03-05-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L03-04"
@@ -672,8 +643,7 @@
       "exerciseRefs": [
         "nida-L03-06-E01",
         "nida-L03-06-E02",
-        "nida-L03-06-E03",
-        "nida-L03-06-E04"
+        "nida-L03-06-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L03-05"
@@ -717,8 +687,7 @@
       "exerciseRefs": [
         "nida-L04-01-E01",
         "nida-L04-01-E02",
-        "nida-L04-01-E03",
-        "nida-L04-01-E04"
+        "nida-L04-01-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L03-06"
@@ -754,8 +723,7 @@
       "exerciseRefs": [
         "nida-L04-02-E01",
         "nida-L04-02-E02",
-        "nida-L04-02-E03",
-        "nida-L04-02-E04"
+        "nida-L04-02-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L04-01"
@@ -798,8 +766,7 @@
       "exerciseRefs": [
         "nida-L04-03-E01",
         "nida-L04-03-E02",
-        "nida-L04-03-E03",
-        "nida-L04-03-E04"
+        "nida-L04-03-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L04-02"
@@ -835,8 +802,7 @@
       "exerciseRefs": [
         "nida-L04-04-E01",
         "nida-L04-04-E02",
-        "nida-L04-04-E03",
-        "nida-L04-04-E04"
+        "nida-L04-04-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L04-03"
@@ -861,8 +827,7 @@
       "exerciseRefs": [
         "nida-L04-05-E01",
         "nida-L04-05-E02",
-        "nida-L04-05-E03",
-        "nida-L04-05-E04"
+        "nida-L04-05-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L04-04"
@@ -906,8 +871,7 @@
       "exerciseRefs": [
         "nida-L05-01-E01",
         "nida-L05-01-E02",
-        "nida-L05-01-E03",
-        "nida-L05-01-E04"
+        "nida-L05-01-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L04-05"
@@ -943,8 +907,7 @@
       "exerciseRefs": [
         "nida-L05-02-E01",
         "nida-L05-02-E02",
-        "nida-L05-02-E03",
-        "nida-L05-02-E04"
+        "nida-L05-02-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L05-01"
@@ -1024,8 +987,7 @@
       "exerciseRefs": [
         "nida-L05-04-E01",
         "nida-L05-04-E02",
-        "nida-L05-04-E03",
-        "nida-L05-04-E04"
+        "nida-L05-04-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L05-03"
@@ -1069,8 +1031,7 @@
       "exerciseRefs": [
         "nida-L05-05-E01",
         "nida-L05-05-E02",
-        "nida-L05-05-E03",
-        "nida-L05-05-E04"
+        "nida-L05-05-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L05-04"
@@ -1120,9 +1081,7 @@
       "exerciseRefs": [
         "nida-L05-06-E01",
         "nida-L05-06-E02",
-        "nida-L05-06-E03",
-        "nida-L05-06-E04",
-        "nida-L05-06-E05"
+        "nida-L05-06-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L05-05"
@@ -1172,8 +1131,7 @@
       "exerciseRefs": [
         "nida-L05-08-E01",
         "nida-L05-08-E02",
-        "nida-L05-08-E03",
-        "nida-L05-08-E04"
+        "nida-L05-08-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L05-07"
@@ -1792,7 +1750,8 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L08-01-E01",
-        "nida-L08-01-E02"
+        "nida-L08-01-E02",
+        "nida-L08-01-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L07-07"
@@ -1816,7 +1775,8 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L08-02-E01",
-        "nida-L08-02-E02"
+        "nida-L08-02-E02",
+        "nida-L08-02-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L08-01"
@@ -1840,7 +1800,8 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L08-03-E01",
-        "nida-L08-03-E02"
+        "nida-L08-03-E02",
+        "nida-L08-03-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L08-02"
@@ -1889,7 +1850,8 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L08-05-E01",
-        "nida-L08-05-E02"
+        "nida-L08-05-E02",
+        "nida-L08-05-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L08-04"
@@ -1913,7 +1875,8 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L08-06-E01",
-        "nida-L08-06-E02"
+        "nida-L08-06-E02",
+        "nida-L08-06-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L08-05"
@@ -1947,7 +1910,8 @@
       "exerciseRefs": [
         "nida-L09-01-E01",
         "nida-L09-01-E02",
-        "nida-L09-01-E03"
+        "nida-L09-01-E03",
+        "nida-L09-01-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L08-06"
@@ -1988,7 +1952,8 @@
       "exerciseRefs": [
         "nida-L09-02-E01",
         "nida-L09-02-E02",
-        "nida-L09-02-E03"
+        "nida-L09-02-E03",
+        "nida-L09-02-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L09-01"
@@ -2049,7 +2014,8 @@
       "exerciseRefs": [
         "nida-L09-03-E01",
         "nida-L09-03-E02",
-        "nida-L09-03-E03"
+        "nida-L09-03-E03",
+        "nida-L09-03-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L09-02"
@@ -2090,7 +2056,8 @@
       "exerciseRefs": [
         "nida-L09-04-E01",
         "nida-L09-04-E02",
-        "nida-L09-04-E03"
+        "nida-L09-04-E03",
+        "nida-L09-04-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L09-03"
@@ -2114,7 +2081,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L09-05-E01",
-        "nida-L09-05-E02"
+        "nida-L09-05-E02",
+        "nida-L09-05-E03",
+        "nida-L09-05-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L09-04"
@@ -2138,7 +2107,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L10-01-E01",
-        "nida-L10-01-E02"
+        "nida-L10-01-E02",
+        "nida-L10-01-E03",
+        "nida-L10-01-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L09-05"
@@ -2162,7 +2133,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L10-02-E01",
-        "nida-L10-02-E02"
+        "nida-L10-02-E02",
+        "nida-L10-02-E03",
+        "nida-L10-02-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L10-01"
@@ -2186,7 +2159,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L10-03-E01",
-        "nida-L10-03-E02"
+        "nida-L10-03-E02",
+        "nida-L10-03-E03",
+        "nida-L10-03-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L10-02"
@@ -2210,7 +2185,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L10-04-E01",
-        "nida-L10-04-E02"
+        "nida-L10-04-E02",
+        "nida-L10-04-E03",
+        "nida-L10-04-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L10-03"
@@ -2234,7 +2211,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L10-05-E01",
-        "nida-L10-05-E02"
+        "nida-L10-05-E02",
+        "nida-L10-05-E03",
+        "nida-L10-05-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L10-04"
@@ -2258,7 +2237,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L10-06-E01",
-        "nida-L10-06-E02"
+        "nida-L10-06-E02",
+        "nida-L10-06-E03",
+        "nida-L10-06-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L10-05"
@@ -2354,7 +2335,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L10-07-E01",
-        "nida-L10-07-E02"
+        "nida-L10-07-E02",
+        "nida-L10-07-E03",
+        "nida-L10-07-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L10-06"
@@ -2378,7 +2361,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L10-08-E01",
-        "nida-L10-08-E02"
+        "nida-L10-08-E02",
+        "nida-L10-08-E03",
+        "nida-L10-08-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L10-07"
@@ -2412,7 +2397,8 @@
       "exerciseRefs": [
         "nida-L11-01-E01",
         "nida-L11-01-E02",
-        "nida-L11-01-E03"
+        "nida-L11-01-E03",
+        "nida-L11-01-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L10-08"
@@ -2436,7 +2422,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L11-02-E01",
-        "nida-L11-02-E02"
+        "nida-L11-02-E02",
+        "nida-L11-02-E03",
+        "nida-L11-02-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L11-01"
@@ -2459,7 +2447,10 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "nida-L11-03-E01"
+        "nida-L11-03-E01",
+        "nida-L11-03-E02",
+        "nida-L11-03-E03",
+        "nida-L11-03-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L11-02"
@@ -2482,7 +2473,10 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "nida-L11-04-E01"
+        "nida-L11-04-E01",
+        "nida-L11-04-E02",
+        "nida-L11-04-E03",
+        "nida-L11-04-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L11-03"
@@ -2506,7 +2500,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L11-05-E01",
-        "nida-L11-05-E02"
+        "nida-L11-05-E02",
+        "nida-L11-05-E03",
+        "nida-L11-05-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L11-04"
@@ -2530,7 +2526,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L11-06-E01",
-        "nida-L11-06-E02"
+        "nida-L11-06-E02",
+        "nida-L11-06-E03",
+        "nida-L11-06-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L11-05"
@@ -2553,7 +2551,11 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "nida-L12-01-E01"
+        "nida-L12-01-E01",
+        "nida-L12-01-E02",
+        "nida-L12-01-E03",
+        "nida-L12-01-E04",
+        "nida-L12-01-E05"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L11-06"
@@ -2578,7 +2580,10 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L12-02-E01",
-        "nida-L12-02-E02"
+        "nida-L12-02-E02",
+        "nida-L12-02-E03",
+        "nida-L12-02-E04",
+        "nida-L12-02-E05"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L12-01"
@@ -2602,7 +2607,11 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "nida-L12-03-E01"
+        "nida-L12-03-E01",
+        "nida-L12-03-E02",
+        "nida-L12-03-E03",
+        "nida-L12-03-E04",
+        "nida-L12-03-E05"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L12-02"
@@ -2723,7 +2732,10 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L12-04-E01",
-        "nida-L12-04-E02"
+        "nida-L12-04-E02",
+        "nida-L12-04-E03",
+        "nida-L12-04-E04",
+        "nida-L12-04-E05"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L12-03"
@@ -2748,7 +2760,10 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "nida-L12-05-E01",
-        "nida-L12-05-E02"
+        "nida-L12-05-E02",
+        "nida-L12-05-E03",
+        "nida-L12-05-E04",
+        "nida-L12-05-E05"
       ],
       "unlockRequirements": {
         "previousLesson": "nida-L12-04"

@@ -4,1253 +4,1018 @@
   "exercises": {
     "en-L00-01-E01": {
       "type": "single-char",
-      "content": "fff fff fff",
-      "description": "Left index on F bump"
-    },
-    "en-L00-01-E02": {
-      "type": "single-char",
-      "content": "f f f f f",
-      "description": "Tap F with left index"
-    },
-    "en-L00-01-E03": {
-      "type": "single-char",
-      "content": "ff ff ff ff",
-      "description": "Double taps on F"
+      "content": "fff ff f ff fff",
+      "description": "Tap F gently with your left index finger"
     },
     "en-L00-02-E01": {
       "type": "single-char",
-      "content": "jjj jjj jjj",
-      "description": "Right index on J bump"
-    },
-    "en-L00-02-E02": {
-      "type": "single-char",
-      "content": "j j j j j",
-      "description": "Tap J with right index"
-    },
-    "en-L00-02-E03": {
-      "type": "single-char",
-      "content": "jj jj jj jj",
-      "description": "Double taps on J"
+      "content": "jjj jj j jj jjj jj",
+      "description": "Tap J gently with your right index finger"
     },
     "en-L00-03-E01": {
       "type": "single-char",
-      "content": "fff jjj fjf jfj",
-      "description": "Index finger coordination"
+      "content": "ff jj fj jf",
+      "description": "Alternate left and right index anchors"
     },
     "en-L00-03-E02": {
       "type": "drill",
-      "content": "ff jj ffj jjf fj jf ff jj",
-      "description": "Alternating index pairs"
-    },
-    "en-L00-03-E03": {
-      "type": "drill",
-      "content": "fj jf fjf jfj ffj jjf f j fj jf",
-      "description": "Rhythmic index drill"
+      "content": "fjf jfj fj",
+      "description": "Smooth F and J alternation"
     },
     "en-L00-04-E01": {
       "type": "single-char",
-      "content": "f j f j ff jj",
-      "description": "Index and space coordination"
+      "content": "f j ff jj fj",
+      "description": "Index anchors with steady thumb space"
     },
     "en-L00-04-E02": {
       "type": "drill",
-      "content": "ff jj fj jf ff jj fj jf",
-      "description": "Pairs and alternating flow"
-    },
-    "en-L00-04-E03": {
-      "type": "drill",
-      "content": "fjf jfj fj jf ffj jjf ff jj fj jf",
-      "description": "Continuous index flow"
+      "content": "jf fjf jfj fj",
+      "description": "Balanced rhythm on F and J"
     },
     "en-L01-01-E01": {
       "type": "single-char",
-      "content": "ddd kkk dkd kdk",
-      "description": "Middle finger isolation"
+      "content": "ddd kkk dk kd",
+      "description": "Middle fingers on D and K"
     },
     "en-L01-01-E02": {
       "type": "drill",
-      "content": "dd kk ddk kkd dk kd dd kk",
-      "description": "Double taps and alternation"
-    },
-    "en-L01-01-E03": {
-      "type": "drill",
-      "content": "dk kd dkd kdk ddk kkd d k dk kd",
-      "description": "Cross-hand middle finger coordination"
+      "content": "fd jk df kj dkd",
+      "description": "Combine D and K with F and J anchors"
     },
     "en-L01-02-E01": {
       "type": "single-char",
-      "content": "sss lll sls lsl",
-      "description": "Ring finger isolation"
+      "content": "sss lll sl ls",
+      "description": "Ring fingers on S and L"
     },
     "en-L01-02-E02": {
       "type": "drill",
-      "content": "ss ll ssl lls sl ls ss ll",
-      "description": "Double taps and alternation"
-    },
-    "en-L01-02-E03": {
-      "type": "drill",
-      "content": "sl ls sls lsl ssl lls s l sl ls",
-      "description": "Cross-hand ring finger coordination"
+      "content": "sd kl fs jl sdf jkl",
+      "description": "Combine S and L with middle and index keys"
     },
     "en-L01-03-E01": {
       "type": "drill",
-      "content": "ff jj dd kk ss ll",
-      "description": "Core pair repetitions"
+      "content": "df jk sd kl fd kj",
+      "description": "Adjacent finger pairs on the home row"
     },
     "en-L01-03-E02": {
       "type": "drill",
-      "content": "fd jk sd lk fs jl",
-      "description": "Alternating reach pairs"
-    },
-    "en-L01-03-E03": {
-      "type": "drill",
-      "content": "df kj ds kl sf lj",
-      "description": "Reversed hand pairs"
+      "content": "ds lk sf jl dfk jds",
+      "description": "Cross-hand alternating home row pairs"
     },
     "en-L01-04-E01": {
       "type": "drill",
-      "content": "ff dd ss jj kk ll",
-      "description": "Left and right finger cascades"
+      "content": "sdf jkl fds lkj sdf",
+      "description": "Three-finger inward and outward rolls"
     },
     "en-L01-04-E02": {
       "type": "drill",
-      "content": "sdf jkl lkj fds",
-      "description": "Home row three-finger rolls"
-    },
-    "en-L01-04-E03": {
-      "type": "drill",
-      "content": "fds jkl sdf lkj fs jl sd lk",
-      "description": "Balanced hand alternation"
+      "content": "dfj kls fjd slk fdjks",
+      "description": "Six-key home row rhythm and control"
     },
     "en-L02-01-E01": {
       "type": "single-char",
-      "content": "aaa ;;; a;a ;a;",
-      "description": "Pinky finger isolation"
+      "content": "aaa ;;; a; ;a asd jkl;",
+      "description": "Pinky fingers on A and semicolon"
     },
     "en-L02-01-E02": {
       "type": "drill",
-      "content": "aa ;; aa; ;;a a; ;a aa ;;",
-      "description": "Double taps and alternation"
-    },
-    "en-L02-01-E03": {
-      "type": "drill",
-      "content": "a; ;a a;a ;a; aa; ;;a a ; a; ;a",
-      "description": "Cross-hand pinky finger coordination"
+      "content": "fdsa ;lkj a; sl dk fj",
+      "description": "Link pinky keys across the home row"
     },
     "en-L02-02-E01": {
       "type": "drill",
-      "content": "asdf jkl; ;lkj fdsa",
-      "description": "Full home row hand cascades"
+      "content": "asdf jkl; ;lkj fdsa a;sl",
+      "description": "Full eight-finger home row sweeps"
     },
     "en-L02-02-E02": {
       "type": "drill",
-      "content": "a; sl dk fj",
-      "description": "Symmetrical finger pairs"
-    },
-    "en-L02-02-E03": {
-      "type": "drill",
-      "content": "fj dk sl a; ;l kj fd sa",
-      "description": "Inside-out and outside-in coordination"
+      "content": "fj dk sl a; asdf jkl; fd",
+      "description": "Inside-out and outside-in finger flow"
     },
     "en-L02-03-E01": {
       "type": "word",
-      "content": [
-        "as",
-        "ask",
-        "sad",
-        "dad"
-      ],
-      "description": "Simple core home-row words"
+      "content": "as ask sad dad lad all",
+      "description": "First real English words on the home row"
     },
     "en-L02-03-E02": {
       "type": "word",
-      "content": [
-        "fall",
-        "lass",
-        "flask",
-        "lad"
-      ],
-      "description": "Four and five-letter core words"
-    },
-    "en-L02-03-E03": {
-      "type": "word",
-      "content": [
-        "salad",
-        "all",
-        "add",
-        "alas"
-      ],
-      "description": "Rhythmic core home-row vocabulary"
+      "content": "fall lass salad flask alas dad",
+      "description": "Smooth home row word combinations"
     },
     "en-L02-04-E01": {
       "type": "drill",
-      "content": "ask dad as a lad",
-      "description": "Short core phrases"
+      "content": "ask dad; a sad lad falls;",
+      "description": "Short home row phrases with semicolon"
     },
     "en-L02-04-E02": {
       "type": "drill",
-      "content": "a sad salad fall",
-      "description": "Continuous core typing"
-    },
-    "en-L02-04-E03": {
-      "type": "drill",
-      "content": "add a flask alas all ask sad",
-      "description": "Consolidated core home-row flow"
+      "content": "add a salad flask; ask all lads",
+      "description": "Connected phrase flow on the home row"
     },
     "en-L02-05-E01": {
-      "type": "drill",
-      "content": "a s d f j k l ; as df jk l;",
-      "description": "Core 8-key baseline check"
+      "type": "word",
+      "content": "dad sad ask fall salad flask",
+      "description": "Core home row vocabulary review"
     },
     "en-L02-05-E02": {
-      "type": "word",
-      "content": [
-        "dad",
-        "sad",
-        "ask",
-        "fall",
-        "salad",
-        "flask"
-      ],
-      "description": "Core word fluency review"
-    },
-    "en-L02-05-E03": {
       "type": "drill",
-      "content": "alas a lad ask all dad fall sad",
-      "description": "Final 8-key core test"
+      "content": "alas a lad; ask all dads; a fall",
+      "description": "Fluent rhythm across all eight core keys"
     },
     "en-L03-01-E01": {
       "type": "single-char",
-      "content": "ggg gfg gfg",
-      "description": "Reach left index to G"
+      "content": "ggg fg gf fgf gfg",
+      "description": "Left index reach from F to G"
     },
     "en-L03-01-E02": {
-      "type": "drill",
-      "content": "gag gas sag gal",
-      "description": "G with left hand"
+      "type": "word",
+      "content": "gag gas sag gal glad flag",
+      "description": "Home row words featuring G"
     },
     "en-L03-01-E03": {
-      "type": "word",
-      "content": [
-        "glad",
-        "flag",
-        "slag",
-        "gals"
-      ],
-      "description": "Words with G"
+      "type": "drill",
+      "content": "a glad gal; add a flag",
+      "description": "Short phrases with G and core keys"
     },
     "en-L03-02-E01": {
       "type": "single-char",
-      "content": "hhh hjh hjh",
-      "description": "Reach right index to H"
+      "content": "hhh jh hj jhj hjh",
+      "description": "Right index reach from J to H"
     },
     "en-L03-02-E02": {
-      "type": "drill",
-      "content": "hah has had ash",
-      "description": "H with right hand"
+      "type": "word",
+      "content": "hah has had ash half hall",
+      "description": "Home row words featuring H"
     },
     "en-L03-02-E03": {
-      "type": "word",
-      "content": [
-        "half",
-        "dash",
-        "flash",
-        "hash"
-      ],
-      "description": "Words with H"
+      "type": "drill",
+      "content": "dad had half a flask; a hall",
+      "description": "Short phrases with H and core keys"
     },
     "en-L03-03-E01": {
       "type": "word",
-      "content": [
-        "glad",
-        "flag",
-        "half",
-        "hall"
-      ],
-      "description": "Combined G and H words"
+      "content": "glad flag half hall dash",
+      "description": "Core words combining G and H"
     },
     "en-L03-03-E02": {
       "type": "word",
-      "content": [
-        "dash",
-        "flash",
-        "shall",
-        "glass"
-      ],
-      "description": "Full home row vocabulary"
+      "content": "flash shall glass slash",
+      "description": "Longer home row words with G and H"
     },
     "en-L03-03-E03": {
       "type": "drill",
-      "content": "half a glass had a flash",
-      "description": "Home row sentences"
+      "content": "a glad lad had half a glass",
+      "description": "Connected home row clause"
     },
     "en-L03-04-E01": {
       "type": "word",
-      "content": [
-        "flash",
-        "glass",
-        "salad",
-        "flask"
-      ],
-      "description": "Full home row challenge words"
+      "content": "flash glass salad flask glad",
+      "description": "Home row mastery vocabulary"
     },
     "en-L03-04-E02": {
       "type": "drill",
-      "content": "a glad lad had a half glass",
-      "description": "Complete home row sentence flow"
+      "content": "a glad lad had a half glass;",
+      "description": "Rhythmic home row clause"
     },
     "en-L03-04-E03": {
       "type": "drill",
-      "content": "shall dad ask all gals as a glad lad",
-      "description": "Home row reach speed test"
+      "content": "shall dad ask all gals",
+      "description": "Complete ten-key home row mastery"
     },
     "en-L04-01-E01": {
       "type": "single-char",
-      "content": "eee ede ede",
-      "description": "Middle finger reach to E"
+      "content": "eee ed de ded ede",
+      "description": "Left middle reach from D to E"
     },
     "en-L04-01-E02": {
-      "type": "drill",
-      "content": "ed de ed de",
-      "description": "D to E transitions"
+      "type": "word",
+      "content": "see fee feed seed fled shed",
+      "description": "Words built with E and home row"
     },
     "en-L04-01-E03": {
-      "type": "word",
-      "content": [
-        "see",
-        "fee",
-        "feed",
-        "seed",
-        "fled",
-        "shed",
-        "heel"
-      ],
-      "description": "Words with E"
+      "type": "drill",
+      "content": "she sees a glad lad; feel safe; feed a sled",
+      "description": "Fluent phrases featuring E"
     },
     "en-L04-02-E01": {
       "type": "single-char",
-      "content": "iii iki iki",
-      "description": "Middle finger reach to I"
+      "content": "iii ik ki kik iki",
+      "description": "Right middle reach from K to I"
     },
     "en-L04-02-E02": {
-      "type": "drill",
-      "content": "ik ki ik ki",
-      "description": "K to I transitions"
+      "type": "word",
+      "content": "kid lid fill sill hide side file",
+      "description": "Words built with I, E, and home row"
     },
     "en-L04-02-E03": {
-      "type": "word",
-      "content": [
-        "kid",
-        "lid",
-        "fill",
-        "sill",
-        "hide",
-        "side",
-        "file"
-      ],
-      "description": "Words with I"
+      "type": "drill",
+      "content": "his kid hid a silk file; fill a safe lid",
+      "description": "Fluent phrases featuring I and E"
     },
     "en-L04-03-E01": {
       "type": "single-char",
-      "content": "rrr rfr rfr",
-      "description": "Index reach to R"
+      "content": "rrr rf fr frf rfr",
+      "description": "Left index reach from F to R"
     },
     "en-L04-03-E02": {
-      "type": "drill",
-      "content": "rf fr rf fr",
-      "description": "F to R transitions"
+      "type": "word",
+      "content": "red ride fire free dear gear hear",
+      "description": "Words featuring R with E and I"
     },
     "en-L04-03-E03": {
-      "type": "word",
-      "content": [
-        "red",
-        "ride",
-        "fire",
-        "free",
-        "dear",
-        "gear",
-        "hear",
-        "rare"
-      ],
-      "description": "Words with R"
+      "type": "drill",
+      "content": "read a rare file; hear a red deer; feel free",
+      "description": "Connected phrases with R"
     },
     "en-L04-04-E01": {
       "type": "single-char",
-      "content": "uuu uju uju",
-      "description": "Index reach to U"
+      "content": "uuu uj ju juj uju",
+      "description": "Right index reach from J to U"
     },
     "en-L04-04-E02": {
-      "type": "drill",
-      "content": "uj ju uj ju",
-      "description": "J to U transitions"
+      "type": "word",
+      "content": "rule sure full dull rush slug gull glue",
+      "description": "Words featuring U and top vowels"
     },
     "en-L04-04-E03": {
-      "type": "word",
-      "content": [
-        "rule",
-        "sure",
-        "full",
-        "dull",
-        "rush",
-        "slug",
-        "gull",
-        "glue"
-      ],
-      "description": "Words with U"
+      "type": "drill",
+      "content": "use a full jar; a sure guide is here; rush",
+      "description": "Connected phrases with U"
     },
     "en-L04-05-E01": {
       "type": "word",
-      "content": [
-        "red",
-        "ride",
-        "side",
-        "rule"
-      ],
-      "description": "Vowel word groups"
+      "content": "red ride side rule fire sure dear",
+      "description": "Top row vowel vocabulary review"
     },
     "en-L04-05-E02": {
       "type": "word",
-      "content": [
-        "fire",
-        "sure",
-        "dear",
-        "hear"
-      ],
-      "description": "Four-letter vowel words"
+      "content": "hear read file seed guide fresh field",
+      "description": "Blending E, I, R, U with home row"
     },
     "en-L04-05-E03": {
       "type": "drill",
-      "content": "she is sure he is dear",
-      "description": "Flowing phrases"
+      "content": "she is sure he read a fresh file",
+      "description": "Smooth vowel flow across rows"
     },
     "en-L05-01-E01": {
       "type": "single-char",
-      "content": "ttt yyy tyt yty",
-      "description": "Upper index reaches"
+      "content": "ttt yyy ft jy tf yj tyt",
+      "description": "Index reaches to T and Y"
     },
     "en-L05-01-E02": {
       "type": "word",
-      "content": [
-        "try",
-        "dry",
-        "they",
-        "year"
-      ],
-      "description": "Words with T and Y"
+      "content": "try dry they year stay gray gate true tree",
+      "description": "Words featuring T and Y"
     },
     "en-L05-01-E03": {
-      "type": "word",
-      "content": [
-        "stay",
-        "gray",
-        "gate",
-        "hate",
-        "true"
-      ],
-      "description": "Common T/Y vocabulary"
+      "type": "drill",
+      "content": "they try a tall gray tree; stay true right here",
+      "description": "Connected clause with T and Y"
     },
     "en-L05-02-E01": {
       "type": "single-char",
-      "content": "www ooo wow owo",
-      "description": "Ring finger upper reaches"
+      "content": "www ooo sw lo ws ol wow",
+      "description": "Ring finger reaches to W and O"
     },
     "en-L05-02-E02": {
       "type": "word",
-      "content": [
-        "word",
-        "work",
-        "world",
-        "slow"
-      ],
-      "description": "Words with W and O"
+      "content": "word work world slow wood good look foot door",
+      "description": "Words featuring W and O"
     },
     "en-L05-02-E03": {
-      "type": "word",
-      "content": [
-        "wood",
-        "good",
-        "look",
-        "foot",
-        "took"
-      ],
-      "description": "Double-O words"
+      "type": "drill",
+      "content": "good work takes steady daily effort for the world",
+      "description": "Connected clause with W and O"
     },
     "en-L05-03-E01": {
       "type": "single-char",
-      "content": "qqq ppp qpq pqp",
-      "description": "Pinky upper reaches"
+      "content": "qqq ppp aq ;p qa p; qpq",
+      "description": "Pinky reaches to Q and P"
     },
     "en-L05-03-E02": {
       "type": "word",
-      "content": [
-        "quit",
-        "quiet",
-        "part",
-        "play"
-      ],
-      "description": "Words with Q and P"
+      "content": "quit quiet part play page rope hope drop post park",
+      "description": "Words featuring Q and P"
     },
     "en-L05-03-E03": {
-      "type": "word",
-      "content": [
-        "page",
-        "rope",
-        "hope",
-        "drop",
-        "post"
-      ],
-      "description": "P vocabulary"
+      "type": "drill",
+      "content": "keep quiet at the park; read the top page today",
+      "description": "Connected clause with Q and P"
     },
     "en-L05-04-E01": {
       "type": "word",
-      "content": [
-        "type",
-        "your",
-        "with",
-        "power"
-      ],
-      "description": "Frequent top row words"
+      "content": "type your with power write poetry quote",
+      "description": "Full top row word combinations"
     },
     "en-L05-04-E02": {
       "type": "word",
-      "content": [
-        "write",
-        "poetry",
-        "quote",
-        "water"
-      ],
-      "description": "Extended top row words"
+      "content": "water tower route quiet party proud paper",
+      "description": "Alternating left and right top reaches"
     },
     "en-L05-04-E03": {
       "type": "drill",
-      "content": "write your poetry with power",
-      "description": "Top row sentence flow"
+      "content": "write your poetry with quiet pride; quote power",
+      "description": "Fluent top row expression"
     },
     "en-L05-05-E01": {
       "type": "word",
-      "content": [
-        "quite",
-        "your",
-        "with",
-        "you"
-      ],
-      "description": "Review set 1"
+      "content": "quite your with two tour true tire wire",
+      "description": "Top and home row review words"
     },
     "en-L05-05-E02": {
-      "type": "word",
-      "content": [
-        "two",
-        "tour",
-        "true",
-        "tire",
-        "wire"
-      ],
-      "description": "Review set 2"
+      "type": "drill",
+      "content": "they walk with you to your quiet house today;",
+      "description": "Smooth two-row phrase transition"
     },
     "en-L05-05-E03": {
       "type": "drill",
-      "content": "they walk with you to your house",
-      "description": "Fluent review sentence"
+      "content": "write your words with pride as you type with speed",
+      "description": "Top and home row mastery flow"
     },
     "en-L06-01-E01": {
       "type": "single-char",
-      "content": "ccc vvv cvc vcv",
-      "description": "Left hand bottom reaches"
+      "content": "ccc vvv dc fv cd vf cvc vcv",
+      "description": "Left middle and index reaches to C and V"
     },
     "en-L06-01-E02": {
       "type": "word",
-      "content": [
-        "cave",
-        "voice",
-        "cover",
-        "very"
-      ],
-      "description": "Words with C and V"
+      "content": "cave voice cover very clover civil active care clear carve",
+      "description": "Words featuring C and V"
     },
     "en-L06-01-E03": {
-      "type": "word",
-      "content": [
-        "clover",
-        "civil",
-        "active",
-        "care"
-      ],
-      "description": "Expanded vocabulary"
+      "type": "drill",
+      "content": "every clear voice carries active care; save real value",
+      "description": "Connected clause with C and V"
     },
     "en-L06-02-E01": {
       "type": "single-char",
-      "content": "bbb nnn bnb nbn",
-      "description": "Bottom index reaches"
+      "content": "bbb nnn fb jn bf nj bnb nbn",
+      "description": "Index reaches to bottom row B and N"
     },
     "en-L06-02-E02": {
       "type": "word",
-      "content": [
-        "been",
-        "bent",
-        "best",
-        "bone"
-      ],
-      "description": "Words with B and N"
+      "content": "been bent best bone born burn bank band begin noble cabin",
+      "description": "Words featuring B and N"
     },
     "en-L06-02-E03": {
-      "type": "word",
-      "content": [
-        "born",
-        "burn",
-        "bank",
-        "band"
-      ],
-      "description": "B and N word flow"
+      "type": "drill",
+      "content": "bring your best focus and noble energy to every line now",
+      "description": "Connected clause with B and N"
     },
     "en-L06-03-E01": {
       "type": "single-char",
-      "content": "mmm jmj jmj",
+      "content": "mmm jm mj jmj mjm jmm mjj mmm",
       "description": "Right index reach to M"
     },
     "en-L06-03-E02": {
       "type": "word",
-      "content": [
-        "more",
-        "make",
-        "time",
-        "home"
-      ],
-      "description": "Words with M"
+      "content": "more make time home from come much move warm music frame",
+      "description": "Words featuring M across rows"
     },
     "en-L06-03-E03": {
-      "type": "word",
-      "content": [
-        "from",
-        "come",
-        "much",
-        "move"
-      ],
-      "description": "Frequent M words"
+      "type": "drill",
+      "content": "make more time for calm music and steady practice at home today",
+      "description": "Connected clause with M"
     },
     "en-L06-04-E01": {
       "type": "single-char",
-      "content": "zzz xxx zxz xzx",
-      "description": "Left pinky/ring bottom reaches"
+      "content": "zzz xxx az sx za xs zxz xzx zzz",
+      "description": "Left pinky and ring reaches to Z and X"
     },
     "en-L06-04-E02": {
       "type": "word",
-      "content": [
-        "zero",
-        "zone",
-        "size",
-        "next"
-      ],
-      "description": "Words with Z and X"
+      "content": "zero zone size next taxi box six exact prize extra index relax",
+      "description": "Words featuring Z and X"
     },
     "en-L06-04-E03": {
-      "type": "word",
-      "content": [
-        "taxi",
-        "box",
-        "six",
-        "exact"
-      ],
-      "description": "Z and X words"
+      "type": "drill",
+      "content": "six boxes of extra prize quartz arrived in the next quiet zone",
+      "description": "Connected clause with Z and X"
     },
     "en-L06-05-E01": {
       "type": "drill",
-      "content": ",,, ... ,., .,.",
-      "description": "Comma and period taps"
+      "content": ",,, ... k, l. ,. ., ,., .,. ,,, ...",
+      "description": "Right middle and ring reaches to comma and period"
     },
     "en-L06-05-E02": {
       "type": "drill",
-      "content": "one, two, three. four, five.",
-      "description": "Words with comma and period"
+      "content": "one, two, three. four, five, six. come, look, and learn.",
+      "description": "Rhythmic lists with comma and period"
     },
     "en-L06-05-E03": {
       "type": "drill",
-      "content": "come, look. move, wait. go, stop.",
-      "description": "Phrases with punctuation"
+      "content": "red, green, and blue. slow, steady, and fast. move, wait, and listen.",
+      "description": "Structured phrases with punctuation"
     },
     "en-L06-06-E01": {
       "type": "word",
-      "content": [
-        "come",
-        "move",
-        "been",
-        "next"
-      ],
-      "description": "Bottom row set 1"
+      "content": "come move been next zinc box climb calm active",
+      "description": "Bottom row core vocabulary"
     },
     "en-L06-06-E02": {
       "type": "word",
-      "content": [
-        "zinc",
-        "box",
-        "climb",
-        "calm"
-      ],
-      "description": "Bottom row set 2"
+      "content": "voice bronze custom modern number value carve blend",
+      "description": "Multi-row word integration"
     },
     "en-L06-06-E03": {
       "type": "drill",
-      "content": "the box came back from the zone.",
-      "description": "Full sentence with bottom keys"
+      "content": "the calm climber moved the heavy bronze box back from the quiet zone.",
+      "description": "Complete bottom row sentence"
     },
     "en-L07-01-E01": {
       "type": "drill",
-      "content": "abc def ghi jkl",
-      "description": "Alphabet groups 1"
+      "content": "abc def ghi jkl mno pqr stu vwx yz",
+      "description": "Sequential alphabet warm-up"
     },
     "en-L07-01-E02": {
       "type": "drill",
-      "content": "mno pqr stu vwx yz",
-      "description": "Alphabet groups 2"
+      "content": "abcdefghijklmnopqrstuvwxyz zyxwvutsrqponmlkjihgfedcba",
+      "description": "Forward and reverse alphabet flow"
     },
     "en-L07-01-E03": {
-      "type": "drill",
-      "content": "abcdefghijklmnopqrstuvwxyz",
-      "description": "Continuous alphabet"
+      "type": "sentence",
+      "content": "every finger knows its exact home position and reaches smoothly across all three rows.",
+      "description": "Full alphabet control"
     },
     "en-L07-02-E01": {
       "type": "sentence",
       "content": "the quick brown fox jumps over the lazy dog.",
-      "description": "Standard pangram"
+      "description": "Classic English pangram"
     },
     "en-L07-02-E02": {
       "type": "sentence",
-      "content": "pack my box with five dozen liquor jugs.",
-      "description": "Compact pangram"
+      "content": "pack my box with five dozen liquor jugs and gleaming black quartz.",
+      "description": "Compact all-letter pangram"
     },
     "en-L07-02-E03": {
       "type": "sentence",
-      "content": "jackdaws love my big sphinx of quartz.",
-      "description": "Rare letter pangram"
+      "content": "the five boxing wizards jump quickly over the lazy brown dog today.",
+      "description": "Dynamic rhythm pangram"
     },
     "en-L07-03-E01": {
       "type": "word",
-      "content": [
-        "about",
-        "other",
-        "which",
-        "their",
-        "there"
-      ],
-      "description": "Frequent English words 1"
+      "content": "about other which their there would these could first water",
+      "description": "High-frequency English words part 1"
     },
     "en-L07-03-E02": {
       "type": "word",
-      "content": [
-        "would",
-        "these",
-        "could",
-        "first",
-        "water"
-      ],
-      "description": "Frequent English words 2"
+      "content": "sound great every small found place where after back little",
+      "description": "High-frequency English words part 2"
     },
     "en-L07-03-E03": {
-      "type": "word",
-      "content": [
-        "sound",
-        "great",
-        "every",
-        "small",
-        "found"
-      ],
-      "description": "Frequent English words 3"
+      "type": "sentence",
+      "content": "every small sound in the quiet water could show where they went.",
+      "description": "Flowing common-word sentence"
     },
     "en-L07-04-E01": {
-      "type": "drill",
-      "content": "the five boxing wizards jump quickly.",
-      "description": "Review pangram"
+      "type": "sentence",
+      "content": "the five boxing wizards jump quickly across the wide wooden stage.",
+      "description": "Alphabet dexterity sentence 1"
     },
     "en-L07-04-E02": {
-      "type": "drill",
-      "content": "how vexingly quick daft zebras jump.",
-      "description": "Comprehensive test"
+      "type": "sentence",
+      "content": "how vexingly quick daft zebras jump under the bright autumn sun.",
+      "description": "Alphabet dexterity sentence 2"
+    },
+    "en-L07-04-E03": {
+      "type": "sentence",
+      "content": "jackdaws love my big sphinx of black quartz and golden bronze.",
+      "description": "Alphabet mastery review"
     },
     "en-L08-01-E01": {
       "type": "drill",
-      "content": "F J D K S L A",
-      "description": "Opposite hand shift for home row"
+      "content": "F J D K S L A G H E I R U T Y W O Q P C V B N M",
+      "description": "Upper-case reach with opposite Shift keys"
     },
     "en-L08-01-E02": {
       "type": "drill",
-      "content": "E I R U T Y W O",
-      "description": "Top row capitals"
+      "content": "Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz",
+      "description": "Alternating capital and lowercase pairs"
     },
     "en-L08-01-E03": {
-      "type": "drill",
-      "content": "C V B N M Z X",
-      "description": "Bottom row capitals"
+      "type": "sentence",
+      "content": "Hold the opposite Shift key smoothly for every capital letter you type.",
+      "description": "Capitalization technique"
     },
     "en-L08-02-E01": {
-      "type": "drill",
+      "type": "word",
       "content": "Asia Boston Canada Denver Europe Qatar Quebec Quick",
-      "description": "Left hand capitals using Right Shift"
+      "description": "Left-hand capital words with Right Shift"
     },
     "en-L08-02-E02": {
-      "type": "drill",
-      "content": "Texas Washington Chicago Florida",
-      "description": "State names with left hand capitals"
+      "type": "word",
+      "content": "Texas Washington Chicago Florida Seattle Dallas Atlanta Geneva",
+      "description": "Major cities with left-hand capitals"
+    },
+    "en-L08-02-E03": {
+      "type": "sentence",
+      "content": "Detroit, Austin, Baltimore, Brussels, Cardiff, and Geneva welcome travelers every summer.",
+      "description": "Left-hand capitals in context"
     },
     "en-L08-03-E01": {
-      "type": "drill",
-      "content": "Japan Korea London Madrid New York",
-      "description": "Right hand capitals using Left Shift"
+      "type": "word",
+      "content": "Japan Korea London Madrid New York India Mexico Norway",
+      "description": "Right-hand capital words with Left Shift"
     },
     "en-L08-03-E02": {
-      "type": "drill",
-      "content": "India Mexico Norway Poland United",
-      "description": "Country names with right hand capitals"
+      "type": "word",
+      "content": "Poland United Tokyo Rome Paris Lisbon Oslo Dublin Ottawa Lima Hanoi",
+      "description": "Global capitals with Left Shift"
+    },
+    "en-L08-03-E03": {
+      "type": "sentence",
+      "content": "Phnom Penh, Kyoto, Manila, and Nairobi are vibrant cities with rich cultural history.",
+      "description": "Right-hand capitals in context"
     },
     "en-L08-04-E01": {
       "type": "word",
-      "content": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Queen",
-        "Quiet"
-      ],
+      "content": "Monday Tuesday Wednesday Thursday Friday Saturday Sunday",
       "description": "Days of the week"
     },
     "en-L08-04-E02": {
       "type": "word",
-      "content": [
-        "January",
-        "February",
-        "March",
-        "April"
-      ],
+      "content": "January February March April May June July August September",
       "description": "Months of the year"
     },
     "en-L08-04-E03": {
-      "type": "word",
-      "content": [
-        "America",
-        "Cambodia",
-        "England",
-        "France"
-      ],
-      "description": "Country names"
+      "type": "sentence",
+      "content": "Cambodia, America, England, France, Germany, and Japan celebrate culture from October to December.",
+      "description": "Proper nouns in context"
     },
     "en-L08-05-E01": {
       "type": "sentence",
-      "content": "The sun rises in the east.",
-      "description": "Capital T start"
+      "content": "The sun rises in the east and brightens the quiet green valley.",
+      "description": "Capitalized sentence flow 1"
     },
     "en-L08-05-E02": {
       "type": "sentence",
-      "content": "Good morning to all students.",
-      "description": "Capital G start"
+      "content": "Good morning to all students who came to practice their typing skills today.",
+      "description": "Capitalized sentence flow 2"
     },
     "en-L08-05-E03": {
       "type": "sentence",
-      "content": "Practice makes every skill better.",
-      "description": "Capital P start"
+      "content": "Clear posture, relaxed wrists, and steady focus build lasting keyboard mastery.",
+      "description": "Capitalized sentence flow 3"
     },
     "en-L09-01-E01": {
       "type": "single-char",
-      "content": "111 222 333 444 555",
-      "description": "Left hand numbers"
+      "content": "111 222 333 444 555 12 23 34 45 51 12345",
+      "description": "Left-hand number reaches 1 to 5"
     },
     "en-L09-01-E02": {
       "type": "drill",
-      "content": "12 23 34 45 51",
-      "description": "Number pairs"
+      "content": "123 234 345 543 432 321 12345 54321 13524 24135",
+      "description": "Sequential and alternating numbers 1 to 5"
     },
     "en-L09-01-E03": {
-      "type": "drill",
-      "content": "123 345 543 212",
-      "description": "Number sequences"
+      "type": "sentence",
+      "content": "Page 12, Line 34, Item 51, and Group 23 are listed in Section 45.",
+      "description": "Numbers 1 to 5 in context"
+    },
+    "en-L09-01-E04": {
+      "type": "sentence",
+      "content": "There are 5 chapters, 15 lessons, and 25 exercises in Part 1 of the book.",
+      "description": "Applied left-hand numbers"
     },
     "en-L09-02-E01": {
       "type": "single-char",
-      "content": "666 777 888 999 000",
-      "description": "Right hand numbers"
+      "content": "666 777 888 999 000 67 78 89 90 06 67890 09876",
+      "description": "Right-hand number reaches 6 to 0"
     },
     "en-L09-02-E02": {
       "type": "drill",
-      "content": "67 78 89 90 06",
-      "description": "Right number pairs"
+      "content": "678 789 890 098 987 876 67890 09876 68079 97086",
+      "description": "Sequential and alternating numbers 6 to 0"
     },
     "en-L09-02-E03": {
-      "type": "drill",
-      "content": "678 890 098 765",
-      "description": "Right number sequences"
+      "type": "sentence",
+      "content": "Room 60, Gate 78, Flight 890, and Track 67 are open at Level 90 today.",
+      "description": "Numbers 6 to 0 in context"
+    },
+    "en-L09-02-E04": {
+      "type": "sentence",
+      "content": "Out of 90 questions on the exam, she answered 87 correctly in 60 minutes.",
+      "description": "Applied right-hand numbers"
     },
     "en-L09-03-E01": {
       "type": "drill",
-      "content": "10 20 30 40 50 60 70 80 90 100",
-      "description": "Decade numbers"
+      "content": "10 20 30 40 50 60 70 80 90 100 200 500 1000 2000",
+      "description": "Round numbers across the full number row"
     },
     "en-L09-03-E02": {
       "type": "drill",
-      "content": "12345 67890 2026 1999",
-      "description": "Multi-digit numbers"
+      "content": "12345 67890 2026 1999 2050 1024 4096 8192 65536",
+      "description": "Multi-digit numbers and years"
     },
     "en-L09-03-E03": {
-      "type": "drill",
-      "content": "365 days, 24 hours, 60 minutes",
-      "description": "Numbers with words"
+      "type": "sentence",
+      "content": "A standard year has 365 days, 52 weeks, 12 months, and 4 distinct seasons.",
+      "description": "Calendar numbers in prose"
+    },
+    "en-L09-03-E04": {
+      "type": "sentence",
+      "content": "Each day brings 24 hours, 1440 minutes, and 86400 seconds of new opportunity.",
+      "description": "Time measurements in prose"
     },
     "en-L09-04-E01": {
       "type": "sentence",
-      "content": "There are 7 days in 1 week.",
-      "description": "Sentence with digits"
+      "content": "There are 7 days in 1 week and 30 or 31 days in every calendar month.",
+      "description": "Everyday number sentences 1"
     },
     "en-L09-04-E02": {
       "type": "sentence",
-      "content": "Room 101 is on floor 2 of the building.",
-      "description": "Address/room sentence"
+      "content": "Room 101 is on floor 2 of the main building near Gate 14.",
+      "description": "Everyday number sentences 2"
     },
     "en-L09-04-E03": {
       "type": "sentence",
-      "content": "The year 2026 brings new technology.",
-      "description": "Year in sentence"
+      "content": "The year 2026 brings new technology and tools for 1500 students.",
+      "description": "Everyday number sentences 3"
+    },
+    "en-L09-04-E04": {
+      "type": "sentence",
+      "content": "Typing at 60 words per minute with 98 percent accuracy is our goal.",
+      "description": "Everyday number sentences 4"
     },
     "en-L10-01-E01": {
       "type": "drill",
-      "content": "who? what? when? where? why?",
-      "description": "Question words with ?"
+      "content": "who? what? when? where? why? how? yes/no true/false",
+      "description": "Question mark and forward slash warm-up"
     },
     "en-L10-01-E02": {
       "type": "drill",
-      "content": "is it true? can you see it? will they come?",
-      "description": "Questions"
+      "content": "day/night input/output read/write start/stop up/down left/right",
+      "description": "Paired slash expressions"
+    },
+    "en-L10-01-E03": {
+      "type": "sentence",
+      "content": "Is it true? Can you see the screen clearly? Will they arrive on time today?",
+      "description": "Questions in natural flow"
+    },
+    "en-L10-01-E04": {
+      "type": "sentence",
+      "content": "Check the date/time settings and verify whether the read/write mode is active?",
+      "description": "Combined slash and question drill"
     },
     "en-L10-02-E01": {
       "type": "drill",
-      "content": "it's don't can't won't he's she's",
+      "content": "it's don't can't won't he's she's we're they're you'll I'm",
       "description": "Contractions with apostrophe"
     },
     "en-L10-02-E02": {
       "type": "drill",
-      "content": "\"hello\" \"welcome\" \"goodbye\" \"yes\"",
-      "description": "Quoted dialogue"
+      "content": "\"hello\" \"welcome\" \"goodbye\" \"thank you\" \"well done\" \"great job\"",
+      "description": "Quotation marks warm-up"
+    },
+    "en-L10-02-E03": {
+      "type": "sentence",
+      "content": "The teacher said, \"Don't look down at the keyboard while you're typing.\"",
+      "description": "Quoted speech with contractions 1"
+    },
+    "en-L10-02-E04": {
+      "type": "sentence",
+      "content": "\"Practice with patience,\" he reminded us, \"and you'll master every single key.\"",
+      "description": "Quoted speech with contractions 2"
     },
     "en-L10-03-E01": {
       "type": "drill",
-      "content": "stop! look! note: email@domain.com #1 item $50 save 20% rate^2 Smith & Sons 5 * 5",
-      "description": "Exclamation marks"
+      "content": "stop! look! listen! note: item #1 costs $50 @store #sale $25 & $10",
+      "description": "Exclamation, colon, and shift symbols"
     },
     "en-L10-03-E02": {
       "type": "drill",
-      "content": "score: 100! #tag sale $99 15% discount fish & chips x^y 8 * 8 is 64 @user",
-      "description": "Colons and exclamations"
+      "content": "save 20% rate^2 Smith & Sons 5 * 5 is 25 @user #typing $100 * 2",
+      "description": "Percent, caret, ampersand, and asterisk"
+    },
+    "en-L10-03-E03": {
+      "type": "sentence",
+      "content": "Score: 100! Claim the #1 deal at $99 with a 15% discount & free shipping today!",
+      "description": "Commercial symbols in context"
+    },
+    "en-L10-03-E04": {
+      "type": "sentence",
+      "content": "Reminder: send your full update to support@school.org by 5:00 PM! #milestone",
+      "description": "Email, time colon, and hashtags"
     },
     "en-L10-04-E01": {
       "type": "drill",
-      "content": "(one) (two) [three] [four] {alpha} {beta} <start> <end> 5 > 2 and 3 < 7",
-      "description": "Parentheses and brackets"
+      "content": "(one) (two) [three] [four] {alpha} {beta} <start> <end> [0] {1} (2)",
+      "description": "Parentheses, brackets, braces, and angles"
     },
     "en-L10-04-E02": {
       "type": "drill",
-      "content": "item (1) and item [2] in {block}; condition <limit> is true > false",
-      "description": "Mixed brackets in sentence"
+      "content": "func(x) [index] {value} <tag> (a & b) [1] {id: 2} <item> (ok) [2]",
+      "description": "Structured enclosure pairs"
+    },
+    "en-L10-04-E03": {
+      "type": "sentence",
+      "content": "Verify that (10 > 5) and (2 < 8) inside the main [config] {settings} block.",
+      "description": "Comparison operators and brackets"
+    },
+    "en-L10-04-E04": {
+      "type": "sentence",
+      "content": "Each <section> contains [items] grouped by (category), [index], and {priority} level.",
+      "description": "Nested enclosure fluency"
     },
     "en-L10-05-E01": {
       "type": "drill",
-      "content": "1 + 1 = 2 and 5 - 3 = 2; file_name_test C:\\path | pipe `code` ~home/",
-      "description": "Arithmetic with symbols"
+      "content": "1 + 1 = 2 and 5 - 3 = 2; file_name_test C:\\path | `code` ~home/dir",
+      "description": "Math, underscore, backslash, pipe, and grave"
     },
     "en-L10-05-E02": {
       "type": "drill",
-      "content": "first_name + last_name = full_name; cat file | grep text; `value` ~ /root\\dir",
-      "description": "Hyphenated words"
+      "content": "first_name + last_name = full_name; `value` ~ /root\\dir | status_code = 200",
+      "description": "Technical identifiers and operators"
+    },
+    "en-L10-05-E03": {
+      "type": "sentence",
+      "content": "Set user_name = \"admin\" | total_cost = 10 + 5 - 2 | path = C:\\docs\\`file_1`.",
+      "description": "System configuration syntax"
+    },
+    "en-L10-05-E04": {
+      "type": "sentence",
+      "content": "Backup ~user/config_file to D:\\archive\\2026_backup | final_result = \"success\"!",
+      "description": "Full symbol and operator synthesis"
     },
     "en-L11-01-E01": {
       "type": "sentence",
-      "content": "The sky is blue today.",
-      "description": "Short sentence 1"
+      "content": "The sky is bright and blue above the quiet green valley this morning.",
+      "description": "Short connected sentences 1"
     },
     "en-L11-01-E02": {
       "type": "sentence",
-      "content": "Cats like to sleep warm.",
-      "description": "Short sentence 2"
+      "content": "Birds sing cheerful songs in the tall green trees every morning.",
+      "description": "Short connected sentences 2"
     },
     "en-L11-01-E03": {
       "type": "sentence",
-      "content": "Birds sing in the morning.",
-      "description": "Short sentence 3"
-    },
-    "en-L11-02-E01": {
-      "type": "sentence",
-      "content": "Every good typist keeps both hands on the home row.",
-      "description": "Typing rule sentence"
-    },
-    "en-L11-02-E02": {
-      "type": "sentence",
-      "content": "Learning to type with accuracy leads to greater speed.",
-      "description": "Accuracy sentence"
-    },
-    "en-L11-03-E01": {
-      "type": "sentence",
-      "content": "Can you type fast? Yes, with steady daily practice!",
-      "description": "Question and answer"
-    },
-    "en-L11-03-E02": {
-      "type": "sentence",
-      "content": "She said, \"Keep your eyes on the screen!\"",
-      "description": "Dialogue quote"
-    },
-    "en-L11-04-E01": {
-      "type": "sentence",
-      "content": "There are 26 letters, 10 digits, and many symbols.",
-      "description": "Numbers in sentence"
-    },
-    "en-L11-04-E02": {
-      "type": "sentence",
-      "content": "Flight 747 departs at 6:45 from gate 12.",
-      "description": "Airport flight announcement"
-    },
-    "en-L11-05-E01": {
-      "type": "sentence",
-      "content": "He asked: \"Is 100% accuracy your target for today?\"",
-      "description": "Complex sentence"
-    },
-    "en-L11-05-E02": {
-      "type": "sentence",
-      "content": "Yes! Accuracy and rhythm always come before raw speed.",
-      "description": "Challenge response"
-    },
-    "en-L12-01-E01": {
-      "type": "paragraph",
-      "content": "Touch typing is the ability to type without looking at the keys. It frees your mind to focus on your thoughts and ideas.",
-      "description": "Paragraph 1"
-    },
-    "en-L12-02-E01": {
-      "type": "paragraph",
-      "content": "Keep your wrists straight and your fingers gently curved. Return your index fingers to F and J after reaching for keys. Smooth rhythm creates fast typing.",
-      "description": "Paragraph 2"
-    },
-    "en-L12-03-E01": {
-      "type": "paragraph",
-      "content": "The library was quiet as the evening sun set through the tall windows. Students typed notes with steady clicks, filling pages with knowledge.",
-      "description": "Story paragraph"
-    },
-    "en-L12-04-E01": {
-      "type": "paragraph",
-      "content": "Modern keyboards connect people across continents in fractions of a second. Clear communication begins with accurate keystrokes and thoughtful words.",
-      "description": "Tech paragraph"
-    },
-    "en-L13-01-E01": {
-      "type": "drill",
-      "content": "speed and accuracy combine to create effortless writing across every digital tool we use daily.",
-      "description": "Speed drill 1"
-    },
-    "en-L13-02-E01": {
-      "type": "drill",
-      "content": "steady practice builds lasting muscle memory. when fingers move with confidence, writing becomes as natural as speaking.",
-      "description": "Speed drill 2"
-    },
-    "en-L13-03-E01": {
-      "type": "drill",
-      "content": "challenge yourself to maintain 98 percent accuracy while increasing your typing speed on every attempt.",
-      "description": "Speed challenge"
-    },
-    "en-L13-04-E01": {
-      "type": "test",
-      "content": "congratulations! you have mastered the complete english us qwerty keyboard layout with excellent precision.",
-      "description": "Final test"
-    },
-    "en-L01-01-E04": {
-      "type": "drill",
-      "content": "ddd d dd kkk k kk dk kd dkd kdk ddd kkk",
-      "description": "Rhythm and fluency consolidation for Middle Fingers: D and K"
-    },
-    "en-L01-02-E04": {
-      "type": "drill",
-      "content": "sss s ss lll l ll sl ls sls lsl sss lll",
-      "description": "Rhythm and fluency consolidation for Ring Fingers: S and L"
-    },
-    "en-L01-03-E04": {
-      "type": "drill",
-      "content": "sdf jkl fds lkj fs jl sd lk df kj sdf jkl",
-      "description": "Structured six-key rolls and pairs"
-    },
-    "en-L01-04-E04": {
-      "type": "drill",
-      "content": "sdf jkl fds lkj ff dd ss jj kk ll sdf jkl lkj fds",
-      "description": "Core flow and rhythm mastery"
-    },
-    "en-L02-01-E04": {
-      "type": "drill",
-      "content": "aaa a aa ;;; ; ;; a; ;a a;a ;a; aaa ;;;",
-      "description": "Rhythm and fluency consolidation for Pinky Fingers: A and Semicolon"
-    },
-    "en-L02-02-E04": {
-      "type": "drill",
-      "content": "asdf jkl; ;lkj fdsa a; sl dk fj fj dk sl a; asdf jkl; ;lkj fdsa",
-      "description": "Complete 8-key home row mastery"
-    },
-    "en-L02-03-E04": {
-      "type": "word",
-      "content": "ask dad all fall sad lad flask salad alas lass",
-      "description": "Consolidation of core home row words"
-    },
-    "en-L02-04-E04": {
-      "type": "drill",
-      "content": "ask dad as all lads fall sad alas add a flask ask all",
-      "description": "Consolidation of home row phrases"
-    },
-    "en-L03-01-E04": {
-      "type": "drill",
-      "content": "fg gf fgf gfg gag gas gal glad flag slag gals glad flag",
-      "description": "Left index G reach fluency drill"
-    },
-    "en-L03-02-E04": {
-      "type": "drill",
-      "content": "jh hj jhj hjh hah has had ash half dash flash hash hall",
-      "description": "Right index H reach fluency drill"
-    },
-    "en-L03-03-E04": {
-      "type": "word",
-      "content": "glad flag half hall dash flash shall glass had a flash",
-      "description": "Consolidation of G and H words"
-    },
-    "en-L04-01-E04": {
-      "type": "drill",
-      "content": "ded ede dede fee see feed seed fled shed heel see feed",
-      "description": "Left middle E reach and word fluency"
-    },
-    "en-L04-02-E04": {
-      "type": "drill",
-      "content": "kik iki kiki kid lid fill sill hide side file kid fill",
-      "description": "Right middle I reach and word fluency"
-    },
-    "en-L04-03-E04": {
-      "type": "drill",
-      "content": "frf rfr frfr red ride fire free dear gear hear rare fire",
-      "description": "Left index R reach and word fluency"
-    },
-    "en-L04-04-E04": {
-      "type": "drill",
-      "content": "juj uju juju rule sure full dull rush slug gull glue rule",
-      "description": "Right index U reach and word fluency"
-    },
-    "en-L04-05-E04": {
-      "type": "word",
-      "content": "red ride side rule fire sure dear hear glue file seed",
-      "description": "Consolidation of top row vowel words"
-    },
-    "en-L05-01-E04": {
-      "type": "drill",
-      "content": "ftf jyj try dry they year stay gray gate hate true they",
-      "description": "T and Y index finger reach and word fluency"
-    },
-    "en-L05-02-E04": {
-      "type": "drill",
-      "content": "sws lol wow owo word work world slow wood good look foot",
-      "description": "W and O ring finger reach and word fluency"
-    },
-    "en-L05-03-E04": {
-      "type": "drill",
-      "content": "aqa ;p; quit quiet part play page rope hope drop post quit",
-      "description": "Q and P pinky finger reach and word fluency"
-    },
-    "en-L05-04-E04": {
-      "type": "word",
-      "content": "power water quote write poetry tower route quiet party",
-      "description": "Top row word fluency consolidation"
-    },
-    "en-L05-05-E04": {
-      "type": "drill",
-      "content": "write your words with pride as you type with speed today",
-      "description": "Top and home row fluency sentence"
-    },
-    "en-L06-01-E04": {
-      "type": "drill",
-      "content": "dcd fvf cvc vcv cave voice cover very clover civil active",
-      "description": "C and V reach and word fluency"
-    },
-    "en-L06-02-E04": {
-      "type": "drill",
-      "content": "fbf jnj bnb nbn been bent best bone born burn bank band",
-      "description": "B and N reach and word fluency"
-    },
-    "en-L06-03-E04": {
-      "type": "drill",
-      "content": "jmj mjm jmm mjj more make time home from come much move",
-      "description": "M reach and word fluency"
-    },
-    "en-L06-04-E04": {
-      "type": "drill",
-      "content": "aza sxs zxz xzx zero zone size next taxi box six exact",
-      "description": "Z and X reach and word fluency"
-    },
-    "en-L06-05-E04": {
-      "type": "drill",
-      "content": "red, green, blue. slow, steady, fast. ready, set, go.",
-      "description": "Comma and period cadence drill"
-    },
-    "en-L06-06-E04": {
-      "type": "word",
-      "content": "come move been next zinc calm climb active voice bronze",
-      "description": "Bottom row word fluency consolidation"
-    },
-    "en-L07-01-E04": {
-      "type": "drill",
-      "content": "zyx wvu tsr qpo nml kji hgf edc ba abcdefghijklmnopqrstuvwxyz",
-      "description": "Reverse and forward alphabet flow"
-    },
-    "en-L07-04-E03": {
-      "type": "sentence",
-      "content": "the quick brown fox jumps over the lazy dog.",
-      "description": "Classic pangram fluency review"
-    },
-    "en-L08-01-E04": {
-      "type": "drill",
-      "content": "Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz",
-      "description": "Alphabetical uppercase pairs drill"
-    },
-    "en-L08-02-E03": {
-      "type": "words",
-      "content": "Seattle Dallas Atlanta Detroit Austin Baltimore Cleveland",
-      "description": "Left-hand capital cities drill"
-    },
-    "en-L08-03-E03": {
-      "type": "words",
-      "content": "Tokyo Rome Paris Berlin Lisbon Oslo Dublin Ottawa Lima",
-      "description": "Right-hand capital cities drill"
-    },
-    "en-L09-01-E04": {
-      "type": "drill",
-      "content": "12345 54321 13524 42531 11 22 33 44 55 15 24 33 42 51",
-      "description": "Numbers 1 to 5 rhythm and cadence"
-    },
-    "en-L09-02-E04": {
-      "type": "drill",
-      "content": "67890 09876 68079 97086 66 77 88 99 00 60 79 88 97 06",
-      "description": "Numbers 6 to 0 rhythm and cadence"
-    },
-    "en-L10-01-E03": {
-      "type": "drill",
-      "content": "yes/no true/false day/night input/output ready? now? ok?",
-      "description": "Question mark and slash practical words"
-    },
-    "en-L10-02-E03": {
-      "type": "drill",
-      "content": "\"it's fine\" \"we can't wait\" \"she's here\" \"let's go\"",
-      "description": "Apostrophe and quotation marks in phrases"
-    },
-    "en-L10-03-E03": {
-      "type": "drill",
-      "content": "price: $25! total: $100 (#1 deal) 50% off & save $10 now @home: 8 * 2 is 16",
-      "description": "Realistic symbol and math sentence"
-    },
-    "en-L10-04-E03": {
-      "type": "drill",
-      "content": "func(x) [index] {value} <tag> (a and b) [0] {id: 1} <item> 10 > 5 and 2 < 8",
-      "description": "Brackets, braces and code symbols"
-    },
-    "en-L10-05-E03": {
-      "type": "drill",
-      "content": "user_name = \"test\" | cost = 10 + 5 - 2 | path = C:\\docs\\`file` ~home",
-      "description": "Math operators, hyphens and path symbols"
+      "content": "Clear streams wind gently between mossy stones and bright wildflowers.",
+      "description": "Short connected sentences 3"
     },
     "en-L11-01-E04": {
       "type": "sentence",
-      "content": "Trees grow tall and green under the bright sun.",
-      "description": "Short nature sentence"
+      "content": "Steady habits turn small daily efforts into lasting achievements. Every calm step moves you forward.",
+      "description": "Short connected sentences 4"
+    },
+    "en-L11-02-E01": {
+      "type": "sentence",
+      "content": "Every good typist keeps both hands relaxed on the center home row.",
+      "description": "Medium technique sentences 1"
+    },
+    "en-L11-02-E02": {
+      "type": "sentence",
+      "content": "Learning to type with high accuracy always leads to greater speed. Trust your fingers.",
+      "description": "Medium technique sentences 2"
+    },
+    "en-L11-02-E03": {
+      "type": "sentence",
+      "content": "When you make a mistake, pause briefly and return cleanly to your anchor keys.",
+      "description": "Medium technique sentences 3"
+    },
+    "en-L11-02-E04": {
+      "type": "sentence",
+      "content": "Strong posture and light keystrokes keep your hands comfortable for hours. Skill grows every day.",
+      "description": "Medium technique sentences 4"
+    },
+    "en-L11-03-E01": {
+      "type": "sentence",
+      "content": "Can you type fast without looking? Yes, with steady daily practice and relaxed finger posture!",
+      "description": "Punctuated sentences 1"
+    },
+    "en-L11-03-E02": {
+      "type": "sentence",
+      "content": "She smiled and said, \"Keep your eyes on the screen and trust your muscle memory!\"",
+      "description": "Punctuated sentences 2"
+    },
+    "en-L11-03-E03": {
+      "type": "sentence",
+      "content": "Why rush through a sentence when clean accuracy saves time and builds confidence?",
+      "description": "Punctuated sentences 3"
+    },
+    "en-L11-03-E04": {
+      "type": "sentence",
+      "content": "\"Focus on rhythm first,\" the instructor advised, \"and effortless speed will follow!\"",
+      "description": "Punctuated sentences 4"
+    },
+    "en-L11-04-E01": {
+      "type": "sentence",
+      "content": "There are 26 letters, 10 digits, and many punctuation symbols on a standard computer keyboard.",
+      "description": "Number sentences 1"
+    },
+    "en-L11-04-E02": {
+      "type": "sentence",
+      "content": "Flight 747 departs at 6:45 AM from Gate 12 at Terminal 3 and lands at 9:30 AM.",
+      "description": "Number sentences 2"
+    },
+    "en-L11-04-E03": {
+      "type": "sentence",
+      "content": "In 2026, over 1,500 learners completed all 14 levels and 64 lessons of this course.",
+      "description": "Number sentences 3"
+    },
+    "en-L11-04-E04": {
+      "type": "sentence",
+      "content": "Chapter 8 covers 25 new vocabulary words across pages 104 to 118 of the student reference guide.",
+      "description": "Number sentences 4"
+    },
+    "en-L11-05-E01": {
+      "type": "sentence",
+      "content": "He asked: \"Is 100% accuracy your #1 target for today's 30-minute keyboard practice session?\"",
+      "description": "Mixed sentence challenge 1"
+    },
+    "en-L11-05-E02": {
+      "type": "sentence",
+      "content": "Yes! Accuracy, posture, and steady rhythm always come before raw typing speed on every test.",
+      "description": "Mixed sentence challenge 2"
+    },
+    "en-L11-05-E03": {
+      "type": "sentence",
+      "content": "Check item #14 (price: $49.95) & apply the 15% student discount [code: SAVE_15] at checkout!",
+      "description": "Mixed sentence challenge 3"
+    },
+    "en-L11-05-E04": {
+      "type": "sentence",
+      "content": "When typing expressions like `total = a + b * (c - d)`, every bracket, operator, and symbol matters!",
+      "description": "Mixed sentence challenge 4"
+    },
+    "en-L12-01-E01": {
+      "type": "paragraph",
+      "content": "Touch typing is the ability to type without looking down at the keys. It frees your mind to focus on your ideas.",
+      "description": "Paragraph round 1"
+    },
+    "en-L12-01-E02": {
+      "type": "paragraph",
+      "content": "When your fingers know every key by touch, writing becomes effortless. You capture thoughts as quickly as they form.",
+      "description": "Paragraph round 2"
+    },
+    "en-L12-01-E03": {
+      "type": "paragraph",
+      "content": "Start each session with relaxed shoulders and gently curved fingers. Let the bumps on F and J guide your hands.",
+      "description": "Paragraph round 3"
+    },
+    "en-L12-01-E04": {
+      "type": "paragraph",
+      "content": "Every accurate keystroke strengthens the link between eyes and hands.",
+      "description": "Paragraph round 4"
+    },
+    "en-L12-02-E01": {
+      "type": "paragraph",
+      "content": "Keep your wrists straight and your fingers gently curved over the home row. Return your index fingers to F and J.",
+      "description": "Paragraph round 1"
+    },
+    "en-L12-02-E02": {
+      "type": "paragraph",
+      "content": "Smooth rhythm creates fast, reliable typing across long documents. A light, crisp touch reduces finger fatigue.",
+      "description": "Paragraph round 2"
+    },
+    "en-L12-02-E03": {
+      "type": "paragraph",
+      "content": "If you notice a recurring mistake on a particular letter, slow down slightly. Precision builds effortless speed.",
+      "description": "Paragraph round 3"
+    },
+    "en-L12-02-E04": {
+      "type": "paragraph",
+      "content": "Take brief pauses between paragraphs to relax your hands and breathe evenly today.",
+      "description": "Paragraph round 4"
+    },
+    "en-L12-03-E01": {
+      "type": "paragraph",
+      "content": "The library was quiet as the evening sun set through the tall arched windows. Students typed notes with steady clicks.",
+      "description": "Story paragraph round 1"
+    },
+    "en-L12-03-E02": {
+      "type": "paragraph",
+      "content": "Outside, a gentle breeze rustled the green leaves along the stone courtyard. Inside, researchers compared manuscripts.",
+      "description": "Story paragraph round 2"
+    },
+    "en-L12-03-E03": {
+      "type": "paragraph",
+      "content": "Every book on the wooden shelves began as a sequence of careful thoughts. Writing connects thinkers across time.",
+      "description": "Story paragraph round 3"
+    },
+    "en-L12-03-E04": {
+      "type": "paragraph",
+      "content": "As the clock struck seven, the reading lamps glowed warmly across the oak tables.",
+      "description": "Story paragraph round 4"
+    },
+    "en-L12-04-E01": {
+      "type": "paragraph",
+      "content": "Modern keyboards connect people across continents in fractions of a second. Clear communication begins with accuracy.",
+      "description": "Technology paragraph round 1"
+    },
+    "en-L12-04-E02": {
+      "type": "paragraph",
+      "content": "Whether you are drafting an article, writing software, or sending a message, fluent typing turns thought into text.",
+      "description": "Technology paragraph round 2"
+    },
+    "en-L12-04-E03": {
+      "type": "paragraph",
+      "content": "Digital literacy empowers learners to share knowledge, preserve heritage, and collaborate on global projects worldwide.",
+      "description": "Technology paragraph round 3"
+    },
+    "en-L12-04-E04": {
+      "type": "paragraph",
+      "content": "By mastering both English and Khmer keyboard layouts, you bridge rich languages and unlock new opportunities.",
+      "description": "Technology paragraph round 4"
+    },
+    "en-L13-01-E01": {
+      "type": "drill",
+      "content": "Speed and accuracy combine to create effortless writing across every digital tool we use daily.",
+      "description": "One-minute endurance round 1"
+    },
+    "en-L13-01-E02": {
+      "type": "drill",
+      "content": "Stay calm and keep your eyes moving smoothly ahead of your cursor as each line unfolds.",
+      "description": "One-minute endurance round 2"
+    },
+    "en-L13-01-E03": {
+      "type": "drill",
+      "content": "Do not rush individual bursts at the expense of steady rhythm; consistency wins every race.",
+      "description": "One-minute endurance round 3"
+    },
+    "en-L13-01-E04": {
+      "type": "drill",
+      "content": "Feel the balance between your left and right hands as they alternate cleanly across the keyboard.",
+      "description": "One-minute endurance round 4"
+    },
+    "en-L13-01-E05": {
+      "type": "drill",
+      "content": "Finish this one-minute endurance drill with the same composure and precision you had on the first word.",
+      "description": "One-minute endurance round 5"
+    },
+    "en-L13-02-E01": {
+      "type": "drill",
+      "content": "Steady practice builds lasting muscle memory that serves you for a lifetime of writing and study.",
+      "description": "Three-minute endurance round 1"
+    },
+    "en-L13-02-E02": {
+      "type": "drill",
+      "content": "When fingers move with quiet confidence, typing becomes as natural and expressive as speaking aloud.",
+      "description": "Three-minute endurance round 2"
+    },
+    "en-L13-02-E03": {
+      "type": "drill",
+      "content": "Longer typing sessions test both your mental concentration and your physical posture at the desk.",
+      "description": "Three-minute endurance round 3"
+    },
+    "en-L13-02-E04": {
+      "type": "drill",
+      "content": "Common letter patterns like th, ing, tion, and ment now feel like single fluid motions under your hands.",
+      "description": "Three-minute endurance round 4"
+    },
+    "en-L13-02-E05": {
+      "type": "drill",
+      "content": "Sustained fluency comes from patience, attention to detail, and mindful repetition across real prose.",
+      "description": "Three-minute endurance round 5"
+    },
+    "en-L13-03-E01": {
+      "type": "drill",
+      "content": "Challenge yourself to maintain 98 percent accuracy while gradually increasing your typing speed today.",
+      "description": "Speed challenge round 1"
+    },
+    "en-L13-03-E02": {
+      "type": "drill",
+      "content": "Precision under pressure is the true mark of an accomplished and confident keyboard professional.",
+      "description": "Speed challenge round 2"
+    },
+    "en-L13-03-E03": {
+      "type": "drill",
+      "content": "In this advanced challenge, you encounter letters, capitals, numbers, and symbols woven into prose.",
+      "description": "Speed challenge round 3"
+    },
+    "en-L13-03-E04": {
+      "type": "drill",
+      "content": "Keep your gaze steady on the screen and trust every reach from Q to P and from Z to M without looking down.",
+      "description": "Speed challenge round 4"
+    },
+    "en-L13-03-E05": {
+      "type": "drill",
+      "content": "Incorporate smooth thumb timing on the spacebar and push through the final stretch with crisp focus!",
+      "description": "Speed challenge round 5"
+    },
+    "en-L13-04-E01": {
+      "type": "test",
+      "content": "Congratulations! You have mastered the complete English US QWERTY keyboard layout with remarkable precision.",
+      "description": "Mastery test round 1"
+    },
+    "en-L13-04-E02": {
+      "type": "test",
+      "content": "From your very first index-finger taps on F and J, you progressed step by step to full touch-typing fluency.",
+      "description": "Mastery test round 2"
+    },
+    "en-L13-04-E03": {
+      "type": "test",
+      "content": "Over 14 structured levels, you conquered the home row, top row, bottom row, capitals, numbers, and symbols.",
+      "description": "Mastery test round 3"
+    },
+    "en-L13-04-E04": {
+      "type": "test",
+      "content": "Whether you are writing essays, coding (`const score = 100;`), or working at 60+ WPM, your foundation is solid.",
+      "description": "Mastery test round 4"
+    },
+    "en-L13-04-E05": {
+      "type": "test",
+      "content": "Keep your posture upright, your wrists relaxed, and your accuracy above 96% - you have passed the Mastery Test!",
+      "description": "Mastery test round 5"
     }
   }
 }

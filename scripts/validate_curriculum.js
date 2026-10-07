@@ -235,13 +235,17 @@ function validateCurriculum(layoutId) {
   console.log(`Total Violations: ${totalViolations}`);
   console.log(`--------------------------------------------------`);
 
-  // 4. Keystroke Depth Check (minimum units per lesson)
-  const MIN_UNITS = 80;
-  const MIN_UNITS_ORIENTATION = 20; // orientation/anchor lessons allowed smaller
+  // 4. Progressive 5-Stage Length Curve Check
+  // Stage 1 (L00-L02): 15-65u  ("Oh, this is short.")
+  // Stage 2 (L03-L05): 60-145u ("Oh, it's a bit longer.")
+  // Stage 3 (L06-L08): 135-265u ("Okay, it feels longer now.")
+  // Stage 4 (L09-L10): 220-375u ("This is kinda long.")
+  // Stage 5 (L11-L13): 300-600u ("OMG, why is this so long?")
   let depthWarnings = 0;
+  let prevUnits = 0;
 
-  console.log(`\n  KEYSTROKE DEPTH CHECK (target >= ${MIN_UNITS} units/lesson):`);
-  lessons.forEach(l => {
+  console.log(`\n  5-STAGE PROGRESSIVE LENGTH CURVE CHECK:`);
+  lessons.forEach((l, idx) => {
     const refs = l.exerciseRefs || l.exercises || [];
     let totalUnits = 0;
     refs.forEach(eid => {
@@ -252,19 +256,33 @@ function validateCurriculum(layoutId) {
       }
     });
 
-    const isOrientation = l.level && l.level.match(/L00/);
-    const threshold = isOrientation ? MIN_UNITS_ORIENTATION : MIN_UNITS;
+    const lvlMatch = l.level && l.level.match(/L(\d+)/);
+    const lvlNum = lvlMatch ? parseInt(lvlMatch[1], 10) : 0;
+    let minExpected = 15, maxExpected = 65;
+    if (lvlNum >= 3 && lvlNum <= 5) { minExpected = 60; maxExpected = 145; }
+    else if (lvlNum >= 6 && lvlNum <= 8) { minExpected = 135; maxExpected = 265; }
+    else if (lvlNum >= 9 && lvlNum <= 10) { minExpected = 220; maxExpected = 375; }
+    else if (lvlNum >= 11) { minExpected = 300; maxExpected = 600; }
 
-    if (totalUnits < threshold) {
-      console.log(`  [WARN] ${l.id} (${l.title}): ${totalUnits} units < ${threshold} minimum`);
+    if (totalUnits < minExpected || totalUnits > maxExpected) {
+      console.log(`  [WARN] ${l.id} (${l.title}): ${totalUnits}u outside stage bounds [${minExpected}u..${maxExpected}u]`);
       depthWarnings++;
     }
+    if (idx > 0 && totalUnits < prevUnits) {
+      console.log(`  [WARN] ${l.id} (${l.title}): non-monotonic length ${totalUnits}u < previous ${prevUnits}u`);
+      depthWarnings++;
+    }
+    if (idx > 0 && prevUnits > 0 && (totalUnits / prevUnits) > 1.5) {
+      console.log(`  [WARN] ${l.id} (${l.title}): sudden jump ${(totalUnits / prevUnits).toFixed(2)}x (${prevUnits}u -> ${totalUnits}u)`);
+      depthWarnings++;
+    }
+    prevUnits = totalUnits;
   });
 
   if (depthWarnings === 0) {
-    console.log(`  [PASS] All lessons meet minimum keystroke depth.`);
+    console.log(`  [PASS] All lessons follow the smooth 5-stage progressive length curve.`);
   } else {
-    console.log(`  [WARN] ${depthWarnings} lesson(s) below minimum keystroke depth.`);
+    console.log(`  [WARN] ${depthWarnings} lesson(s) had progressive length curve warnings.`);
   }
 
   return { passed: failedLessons === 0, depthWarnings };

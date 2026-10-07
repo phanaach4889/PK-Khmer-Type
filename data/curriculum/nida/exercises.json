@@ -4,1609 +4,1228 @@
   "exercises": {
     "nida-L00-01-E01": {
       "type": "single-char",
-      "content": "ថថថ ថថថ ថថថ",
-      "description": "Left index on F (ថ)"
-    },
-    "nida-L00-01-E02": {
-      "type": "single-char",
-      "content": "ថ ថ ថ ថ ថ",
-      "description": "Tap ថ with rhythm"
-    },
-    "nida-L00-01-E03": {
-      "type": "single-char",
-      "content": "ថថ ថថ ថថ ថថ",
-      "description": "Double taps on ថ"
+      "content": "ថថថ ថថ ថ ថថ ថថថ",
+      "description": "ចុចគ្រាប់ចុច ថ ដោយម្រាមចង្អុលឆ្វេង"
     },
     "nida-L00-02-E01": {
       "type": "single-char",
-      "content": "កកក កកក កកក",
-      "description": "Right middle on K (ក)"
-    },
-    "nida-L00-02-E02": {
-      "type": "single-char",
-      "content": "ក ក ក ក ក",
-      "description": "Tap ក with right middle"
-    },
-    "nida-L00-02-E03": {
-      "type": "single-char",
-      "content": "កក កក កក កក",
-      "description": "Double taps on ក"
+      "content": "កកក កក ក កក កកក កក",
+      "description": "ចុចគ្រាប់ចុច ក ដោយម្រាមកណ្តាលស្តាំ"
     },
     "nida-L00-03-E01": {
       "type": "drill",
-      "content": "ថ ក ថ ក ថ",
-      "description": "Alternating anchors with space"
+      "content": "ថ ក ថ ក ថក",
+      "description": "ឆ្លាស់គ្រាប់ចុច ថ និង ក ជាមួយ Space"
     },
     "nida-L00-03-E02": {
       "type": "drill",
-      "content": "ក ថ ក ថ ក",
-      "description": "Reverse alternating rhythm"
-    },
-    "nida-L00-03-E03": {
-      "type": "drill",
-      "content": "ថ ថ ក ក ថ",
-      "description": "Double taps separated by space"
+      "content": "កថ ថក ក ថ ក",
+      "description": "ចង្វាក់ឆ្លាស់ដៃឆ្វេងនិងស្តាំ"
     },
     "nida-L00-04-E01": {
       "type": "drill",
       "content": "ថក កថ ថក កថ",
-      "description": "Paired anchor coordination"
+      "description": "ផ្គុំតួអក្សរគោល ថ និង ក"
     },
     "nida-L00-04-E02": {
       "type": "drill",
-      "content": "ថថកក កកថថ",
-      "description": "Double anchor clusters"
-    },
-    "nida-L00-04-E03": {
-      "type": "drill",
-      "content": "កក ថថ កថ ថក",
-      "description": "Anchor dexterity drill"
+      "content": "ថថ កក ថក កថ ថ",
+      "description": "ពង្រឹងទីតាំងម្រាមដៃគោល"
     },
     "nida-L01-01-E01": {
       "type": "single-char",
-      "content": "កា កា កាកា ថា ថា ថាថា កាកា ថាថា កា ថា កាថា ថាកា កា ថា",
-      "description": "Left pinky vowel ា"
+      "content": "កា ថា កាកា ថា",
+      "description": "ផ្គុំស្រៈ ា ជាមួយ ក និង ថ"
     },
     "nida-L01-01-E02": {
       "type": "word",
-      "content": [
-        "កា",
-        "កា",
-        "កា",
-        "ថា",
-        "ថា",
-        "ថា"
-      ],
-      "description": "First syllables: កា and ថា"
-    },
-    "nida-L01-01-E03": {
-      "type": "word",
-      "content": [
-        "កាថា",
-        "ថាកា",
-        "កា",
-        "ថា"
-      ],
-      "description": "Combining ា with anchors"
+      "content": "កាថា ថាកា កា ថា",
+      "description": "ពាក្យដំបូង៖ កា ថា កាថា"
     },
     "nida-L01-02-E01": {
       "type": "single-char",
-      "content": "សសស ដដដ សដស",
-      "description": "Left ring and middle fingers"
+      "content": "សស ដដ សដ ដស សា",
+      "description": "ម្រាមនាងឆ្វេង (ស) និងម្រាមកណ្តាលឆ្វេង (ដ)"
     },
     "nida-L01-02-E02": {
       "type": "word",
-      "content": [
-        "សា",
-        "ដា",
-        "កាសា",
-        "ដាកា"
-      ],
-      "description": "Syllables with ស and ដ"
-    },
-    "nida-L01-02-E03": {
-      "type": "word",
-      "content": [
-        "សាក",
-        "ដក",
-        "សដកា"
-      ],
-      "description": "Words with learned keys"
+      "content": "ដា កាសា ដាកា សាក ដក",
+      "description": "ពាក្យផ្សំដោយ ស ដ ក ថ ា"
     },
     "nida-L01-03-E01": {
       "type": "single-char",
-      "content": "ងងង ងងង ងងង",
-      "description": "Left index reach to ង"
+      "content": "ងង កង ដង សង ងា ដង",
+      "description": "ឈោងម្រាមចង្អុលឆ្វេងទៅ ង (G)"
     },
     "nida-L01-03-E02": {
       "type": "word",
-      "content": [
-        "ងា",
-        "ដង",
-        "កង",
-        "សង"
-      ],
-      "description": "Words with ង"
-    },
-    "nida-L01-03-E03": {
-      "type": "word",
-      "content": [
-        "កាង",
-        "សាង",
-        "ថាង"
-      ],
-      "description": "High-frequency syllables"
+      "content": "កាង សាង ដាង ងាក កងដង",
+      "description": "ពាក្យផ្សំមានតួ ង"
     },
     "nida-L01-04-E01": {
       "type": "single-char",
-      "content": "ហហហ លលល ហលហ",
-      "description": "Right hand home row expansion"
+      "content": "ហហ លល ហា លា សាលា",
+      "description": "ម្រាមចង្អុលស្តាំ (ហ) និងម្រាមនាងស្តាំ (ល)"
     },
     "nida-L01-04-E02": {
       "type": "word",
-      "content": [
-        "ហា",
-        "លា",
-        "ហាល",
-        "លកា"
-      ],
-      "description": "Words with ហ and ល"
-    },
-    "nida-L01-04-E03": {
-      "type": "word",
-      "content": [
-        "សាលា",
-        "កាល",
-        "ហាលដាក"
-      ],
-      "description": "Real Khmer words"
+      "content": "ហាល កាល ហាង លាង សាលា កាល",
+      "description": "ពាក្យពេញនិយមលើជួរដេកកណ្តាល"
     },
     "nida-L01-05-E01": {
       "type": "word",
-      "content": [
-        "កាស",
-        "សាលា",
-        "ហាង",
-        "ថាស"
-      ],
-      "description": "Home row words 1"
+      "content": "កាស សាលា ហាង ថាស កាល លា",
+      "description": "រំឭកពាក្យជួរដេកកណ្តាល ១"
     },
     "nida-L01-05-E02": {
-      "type": "word",
-      "content": [
-        "កាល",
-        "ដក",
-        "កក",
-        "សក",
-        "លា"
-      ],
-      "description": "Home row words 2"
-    },
-    "nida-L01-05-E03": {
       "type": "drill",
-      "content": "សាលា កាល ហាល កាស ថាស",
-      "description": "Fluent home row sequence"
+      "content": "ដក កក សក លា ហាល សាលា",
+      "description": "រំឭកពាក្យជួរដេកកណ្តាល ២"
     },
     "nida-L02-01-E01": {
       "type": "single-char",
-      "content": "កើ កើ កើកើ ដើ ដើ ដើដើ សើ សើ សើសើ ថើ ថើ ថើថើ",
-      "description": "Right pinky on semicolon key"
+      "content": "កើ ដើ សើ ថើ ហើ លើ កើដើ",
+      "description": "ហាត់ស្រៈ ើ ជាមួយព្យញ្ជនៈជួរកណ្តាល"
     },
     "nida-L02-01-E02": {
       "type": "word",
-      "content": [
-        "កើ",
-        "សើ",
-        "ដើ",
-        "ហើ"
-      ],
-      "description": "Syllables with ើ"
-    },
-    "nida-L02-01-E03": {
-      "type": "word",
-      "content": [
-        "លើង",
-        "កើក",
-        "សើល"
-      ],
-      "description": "Combinations with ើ"
+      "content": "កើក សើល លើង ដើកើ សើថើ លើកើ",
+      "description": "ពាក្យនិងព្យាង្គមានស្រៈ ើ"
     },
     "nida-L02-02-E01": {
       "type": "single-char",
-      "content": [
-        "កាក់",
-        "ដាក់",
-        "សាក់",
-        "ថាក់"
-      ],
-      "description": "Bantoc key on quote"
+      "content": "កាក់ ដាក់ សាក់ ថាក់ លាក់",
+      "description": "ហាត់សញ្ញាបន្តក់ (់) ឱ្យបានត្រឹមត្រូវ"
     },
     "nida-L02-02-E02": {
       "type": "word",
-      "content": [
-        "កាក់",
-        "ដាក់",
-        "សាក់",
-        "លាក់"
-      ],
-      "description": "Short vowel stop words"
-    },
-    "nida-L02-02-E03": {
-      "type": "word",
-      "content": [
-        "ហាក់",
-        "ដក់",
-        "សក់"
-      ],
-      "description": "Words with ់"
+      "content": "លាក់ ហាក់ ដក់ សក់ កាក់ ដាក់",
+      "description": "ពាក្យប្រើសញ្ញាបន្តក់លើជួរកណ្តាល"
     },
     "nida-L02-03-E01": {
       "type": "word",
-      "content": [
-        "ដក់",
-        "កក់",
-        "សក់",
-        "លាក់",
-        "កាក់"
-      ],
-      "description": "Short vowel stop words"
+      "content": "ដក់ កក់ សក់ លាក់ កាក់",
+      "description": "ពាក្យខ្លីៗមានសញ្ញាបន្តក់"
     },
     "nida-L02-03-E02": {
-      "type": "word",
-      "content": [
-        "ដាក់",
-        "សាក់",
-        "ហាក់",
-        "កាក់"
-      ],
-      "description": "Combining Bantoc with home row"
-    },
-    "nida-L02-03-E03": {
       "type": "drill",
-      "content": "កាក់ ដាក់ សាក់ លាក់ ដក់ សក់",
-      "description": "Bantoc fluency drill"
+      "content": "ដាក់ សាក់ ហាក់ សាលា កាក់ ដាក់ លាក់",
+      "description": "លំហាត់វាយពាក្យបន្តក់ជាប់គ្នា"
     },
     "nida-L02-04-E01": {
       "type": "word",
-      "content": [
-        "កើ",
-        "កាក់",
-        "សើ",
-        "សាក់"
-      ],
-      "description": "Review set 1"
+      "content": "កើ កាក់ សើ សាក់ ហាក់ លាក់ ដក់",
+      "description": "រំឭកស្រៈនិងសញ្ញាជួរកណ្តាល"
     },
     "nida-L02-04-E02": {
-      "type": "word",
-      "content": [
-        "ហាក់",
-        "លាក់",
-        "ដាក់",
-        "កាល"
-      ],
-      "description": "Review set 2"
-    },
-    "nida-L02-04-E03": {
       "type": "drill",
-      "content": "សាលា កាក់ ដាក់ កាល ហាល",
-      "description": "Full home row mastery"
+      "content": "សាលា កាក់ ដាក់ កាល ហាល ថាស សាក់",
+      "description": "ស្ទាត់ជំនាញជួរដេកកណ្តាលទាំងមូល"
     },
     "nida-L03-01-E01": {
       "type": "single-char",
-      "content": "កេកេ រររ កេរេ ដេដេ រររ សេរេ",
+      "content": "រា រើ រាក់ រេ រាក់",
       "description": "Left hand top row keys"
     },
     "nida-L03-01-E02": {
       "type": "word",
-      "content": [
-        "រា",
-        "រើ",
-        "រាក់",
-        "រេ"
-      ],
+      "content": "រា រើ រាក់ រេ រាក់ កេ",
       "description": "Syllables with រ"
     },
     "nida-L03-01-E03": {
       "type": "word",
-      "content": [
-        "កេរ",
-        "សេរ",
-        "ដេរ",
-        "រលក"
-      ],
+      "content": "កេរ ដេរ សេរ រលក ដើរ រក រា",
       "description": "Words with េ និង រ"
     },
     "nida-L03-02-E01": {
       "type": "single-char",
-      "content": "តតត តតត តតត",
+      "content": "តតត តតត តតត តា តើ តេ",
       "description": "Left index reach to ត"
     },
     "nida-L03-02-E02": {
       "type": "word",
-      "content": [
-        "តា",
-        "តើ",
-        "តេ"
-      ],
+      "content": "តតត តតត តតត តា តើ តេ តា",
       "description": "Syllables with ត"
     },
     "nida-L03-02-E03": {
       "type": "word",
-      "content": [
-        "តារា",
-        "តាក់",
-        "តេរ",
-        "កាត"
-      ],
+      "content": "តា ដើរ សាលា តារា កាត់ កាត",
       "description": "Words with ត"
     },
     "nida-L03-03-E01": {
       "type": "single-char",
-      "content": "យយយ កុកុ យុយុ ដុដុ យយយ សុសុកុ",
+      "content": "យា យុ យុយ យារ សុសុកុ",
       "description": "Right index top row"
     },
     "nida-L03-03-E02": {
       "type": "word",
-      "content": [
-        "យា",
-        "យុ",
-        "យុយ",
-        "យារ"
-      ],
+      "content": "យា យុ យុយ យារ សុសុកុ យា",
       "description": "Syllables with យ"
     },
     "nida-L03-03-E03": {
       "type": "word",
-      "content": [
-        "កាយ",
-        "ងាយ",
-        "តុ",
-        "យុត"
-      ],
+      "content": "តារា យក លុយ ដាក់ លើ តុ យាយ យុ",
       "description": "Words with យ and ុ"
     },
     "nida-L03-04-E01": {
       "type": "single-char",
-      "content": "កិកិ កោកោ សិសិ សោសោ ដិដិ ដោដោ កិកោ សិសោ ដិដោ",
+      "content": "កិ កោ តិ តោ កិ កោ តិក",
       "description": "Right hand top vowels"
     },
     "nida-L03-04-E02": {
       "type": "word",
-      "content": [
-        "កិ",
-        "កោ",
-        "តិ",
-        "តោ"
-      ],
+      "content": "កិ កោ តិ តោ កិ កោ តិក កិ",
       "description": "Vowel syllables"
     },
     "nida-L03-04-E03": {
       "type": "word",
-      "content": [
-        "តិក",
-        "កោ",
-        "តោ",
-        "កោរ"
-      ],
+      "content": "តារា ដេក លើ កាត ងាយ យក លុយ តិក",
       "description": "Words with ិ and ោ"
     },
     "nida-L03-05-E01": {
       "type": "word",
-      "content": [
-        "កាត",
-        "កាយ",
-        "រាយ"
-      ],
+      "content": "កាត កាយ រាយ កោ តោ តុ ងាយ",
       "description": "Words set 1"
     },
     "nida-L03-05-E02": {
       "type": "word",
-      "content": [
-        "កោ",
-        "តោ",
-        "តុ",
-        "ងាយ"
-      ],
+      "content": "កាត កាយ រាយ កោ តោ តុ ងាយ កោ",
       "description": "Words set 2"
     },
     "nida-L03-05-E03": {
       "type": "word",
-      "content": [
-        "តារា",
-        "យុត",
-        "សាយ",
-        "លាយ"
-      ],
+      "content": "កាត កាយ រាយ កោ តោ តុ ងាយ តារា",
       "description": "Words set 3"
     },
     "nida-L03-06-E01": {
       "type": "word",
-      "content": [
-        "រាយ",
-        "រេ",
-        "យុត",
-        "យារ"
-      ],
+      "content": "យាយ ដើរ សាលា រក តារា ងាយ",
       "description": "Review set 1"
     },
     "nida-L03-06-E02": {
       "type": "word",
-      "content": [
-        "តារា",
-        "កោ",
-        "តុ",
-        "ងាយ"
-      ],
+      "content": "យាយ ដើរ សាលា រក តារា ងាយ រាយ",
       "description": "Review set 2"
     },
     "nida-L03-06-E03": {
       "type": "drill",
-      "content": "តារា ដេក លើ កាត ងាយ",
+      "content": "យាយ ដើរ សាលា រក តារា ងាយ រេ យុត",
       "description": "Top row review drill"
     },
     "nida-L04-01-E01": {
       "type": "single-char",
-      "content": "ចចច វវវ ចវច",
+      "content": "ចចច វវវ ចវច ចា វា ចិ វិ ចា",
       "description": "Left hand bottom row"
     },
     "nida-L04-01-E02": {
       "type": "word",
-      "content": [
-        "ចា",
-        "វា",
-        "ចិ",
-        "វិ"
-      ],
+      "content": "ចចច វវវ ចវច ចា វា ចិ វិ ចា ចា",
       "description": "Syllables with ច and វ"
     },
     "nida-L04-01-E03": {
       "type": "word",
-      "content": [
-        "ចារ",
-        "វាចា",
-        "វាយ",
-        "ចាក់"
-      ],
+      "content": "តារា ចារ វាចា លើ កាត ដាក់ លើ តុ ចា",
       "description": "Words with ច and វ"
     },
     "nida-L04-02-E01": {
       "type": "single-char",
-      "content": "បបប បបប បបប",
+      "content": "បបប បបប បបប បា បិ បុក បោក",
       "description": "Left index reach to ប"
     },
     "nida-L04-02-E02": {
       "type": "word",
-      "content": [
-        "បា",
-        "បិ",
-        "បុក",
-        "បោក"
-      ],
+      "content": "បង បើក បាយ បោក បាក់ កាត ដាក់ តុ",
       "description": "Syllables with ប"
     },
     "nida-L04-02-E03": {
       "type": "word",
-      "content": [
-        "បើក",
-        "បើ",
-        "បាក់",
-        "បោក"
-      ],
+      "content": "បង តារា បើក កាត យក លុយ ដាក់ តុ បាក់",
       "description": "Words with ប"
     },
     "nida-L04-03-E01": {
       "type": "single-char",
-      "content": "ននន មមម នមន",
+      "content": "ននន មមម នមន នា មា និ មិ នា",
       "description": "Right index bottom row"
     },
     "nida-L04-03-E02": {
       "type": "word",
-      "content": [
-        "នា",
-        "មា",
-        "និ",
-        "មិ"
-      ],
+      "content": "មាន បាន នាម មាត់ មក ចាន បាយ បង នា",
       "description": "Syllables with ន and ម"
     },
     "nida-L04-03-E03": {
       "type": "word",
-      "content": [
-        "មាន",
-        "បាន",
-        "នាម",
-        "មាត់"
-      ],
+      "content": "បង មាន ចាន បាយ ដាក់ លើ តុ សាលា មា និ",
       "description": "Words with ន and ម"
     },
     "nida-L04-04-E01": {
       "type": "single-char",
-      "content": "។។។ ។។។ ។។។",
+      "content": "តារា មាន ចាន។ បង បាន មក សាលា។",
       "description": "Khmer full stop key"
     },
     "nida-L04-04-E02": {
       "type": "drill",
-      "content": "មាន។ បាន។ មក។ វាចា។",
+      "content": "តារា មាន ចាន។ បង បាន មក សាលា។ មក។",
       "description": "Words with full stop"
     },
     "nida-L04-04-E03": {
       "type": "drill",
-      "content": "តារា មក។ តោ ដេក។ តារា មាន ចាន។",
+      "content": "យាយ ដើរ មក សាលា។ តារា មាន កាត។ មាន។ តោ",
       "description": "Simple phrases with full stop"
     },
     "nida-L04-05-E01": {
       "type": "word",
-      "content": [
-        "ចារ",
-        "វាចា",
-        "បាន",
-        "មាន"
-      ],
+      "content": "តារា មាន ចាន។ វា បាន មក សាលា។",
       "description": "Review set 1"
     },
     "nida-L04-05-E02": {
       "type": "word",
-      "content": [
-        "បាន",
-        "នាម",
-        "មាត់",
-        "ចាក់"
-      ],
+      "content": "តារា មាន ចាន។ វា បាន មក សាលា។ វាចា",
       "description": "Review set 2"
     },
     "nida-L04-05-E03": {
       "type": "drill",
-      "content": "តារា មាន ចាន។ វា បាន មក។",
+      "content": "បង មាន កាត លុយ ដាក់ លើ តុ សាលា។ ចារ មាត់",
       "description": "Flowing review sentences"
     },
     "nida-L05-01-E01": {
       "type": "single-char",
-      "content": "ខខខ ឆឆឆ ខឆខ",
+      "content": "ខា ឆា ខុស ឆាប់ ខាន ឆោម ខាត ឆាយ",
       "description": "Left hand consonants ខ and ឆ"
     },
     "nida-L05-01-E02": {
       "type": "word",
-      "content": [
-        "ខា",
-        "ឆា",
-        "ខុស",
-        "ឆាប់"
-      ],
+      "content": "បង មក ឆាប់ ខាន សាលា។ ខា ឆា ខុស ឆាប់",
       "description": "Words with ខ and ឆ"
     },
     "nida-L05-01-E03": {
       "type": "word",
-      "content": [
-        "ខាន",
-        "ឆោម",
-        "ខាត",
-        "ឆាយ"
-      ],
+      "content": "តារា ចារ វាចា ឆាប់ បាន លុយ។ ខាន ឆោម ខាត ឆាយ",
       "description": "Vocabulary with ខ and ឆ"
     },
     "nida-L05-02-E01": {
       "type": "single-char",
-      "content": "ផផផ ផផផ ផផផ",
+      "content": "ផា ផាត់ ផុស ផោ ផាល ផាត់មុខ ផាត់",
       "description": "Right pinky reach to ផ"
     },
     "nida-L05-02-E02": {
       "type": "word",
-      "content": [
-        "ផា",
-        "ផាត់",
-        "ផុស",
-        "ផោ"
-      ],
+      "content": "បង ឆាប់ មក សាលា តារា។ ផា ផុស ផាត់មុខ",
       "description": "Words with ផ"
     },
     "nida-L05-02-E03": {
       "type": "word",
-      "content": [
-        "ផាត់",
-        "ផុស",
-        "ផាល",
-        "ផាត់មុខ"
-      ],
+      "content": "យាយ មាន ផាល ដាក់ តុ បាយ។ ផោ ផាល បង ឆាប់ សាលា",
       "description": "Extended ផ words"
     },
     "nida-L05-03-E01": {
       "type": "single-char",
-      "content": "ឋឋឋ ឋឋឋ ឋឋឋ",
+      "content": "ឋាន ឋិត ឋិតថេរ ឋានសុខ កឋិន ឋិតថេរ",
       "description": "Left pinky reach to ឋ"
     },
     "nida-L05-03-E02": {
       "type": "word",
-      "content": [
-        "ឋាន",
-        "ឋិត",
-        "ឋិតថេរ"
-      ],
+      "content": "ការងារ ឋិតថេរ មក សុខ បង មាន ឋាន ឋិតថេរ",
       "description": "Words with ឋ"
+    },
+    "nida-L05-03-E03": {
+      "type": "drill",
+      "content": "បង មាន ឋាន ឋិតថេរ ឋាន ឋិត ឋានសុខ កឋិន ការងារ",
+      "description": "Retroflex consonant and authentic words"
     },
     "nida-L05-04-E01": {
       "type": "single-char",
-      "content": "កៀកៀ កឹកឹ សៀសៀ សឹសឹ ដៀដៀ ដឹដឹ",
+      "content": "រៀន នឹក ដឹង សៀវ បង រលឹក ចារ ការងារ",
       "description": "Vowels ៀ and ឹ"
     },
     "nida-L05-04-E02": {
       "type": "word",
-      "content": [
-        "រៀន",
-        "នឹក",
-        "ដឹង",
-        "សៀវ"
-      ],
+      "content": "បង រៀន នឹក ដឹង ការងារ សាលា។ រៀន ផាត់មុខ",
       "description": "Words with ៀ and ឹ"
     },
     "nida-L05-04-E03": {
       "type": "word",
-      "content": [
-        "បង រៀន",
-        "នឹក រលឹក",
-        "រៀន ចារ"
-      ],
+      "content": "តារា មក រៀន ឆាប់ ដឹង វាចា នឹក ដឹង សៀវ បង សាលា។",
       "description": "Phrases with ៀ and ឹ"
     },
     "nida-L05-05-E01": {
       "type": "single-char",
-      "content": "កុំកុំ ហ៊ានហ៊ាន សុំសុំ ស៊ុបស៊ុប ដុំដុំ កុំសុំ ហ៊ានស៊ុប",
+      "content": "កុំ សុំ រុំ ដុំ នុំ មុំ កុំសុំ រុំដុំ ផាត់មុខ",
       "description": "Compound vowel ុំ and register sign ៊"
     },
     "nida-L05-05-E02": {
       "type": "word",
-      "content": [
-        "កុំ",
-        "សុំ",
-        "រុំ",
-        "ដុំ"
-      ],
+      "content": "បង កុំ ខាន មក រៀន សាលា។ កុំ សុំ រុំ ដុំ ឋិតថេរ",
       "description": "Words with ុំ"
     },
     "nida-L05-05-E03": {
       "type": "word",
-      "content": [
-        "ស៊ុប",
-        "ហ៊ាន",
-        "កុំ",
-        "សុំ"
-      ],
+      "content": "តារា សុំ នុំ ដុំ ដាក់ លើ តុ។ នុំ មុំ កុំសុំ រុំដុំ ឋានសុខ",
       "description": "Words with ៊"
     },
     "nida-L05-06-E01": {
       "type": "single-char",
-      "content": "ញញញ ញញ ញ",
+      "content": "ក្មេង រៀន ច្បាប់ លើ ក្តារ នៅ សាលា។ ញញ",
       "description": "Consonant ញ key J"
     },
     "nida-L05-06-E02": {
       "type": "drill",
-      "content": "ក្ក ក្ម ស្ម ត្ម ក្ក ក្ម ស្ម ត្ម",
+      "content": "ក្មេង រៀន ច្បាប់ លើ ក្តារ នៅ សាលា។ ផាត់មុខ",
       "description": "Coeng marker key Shift+J"
     },
     "nida-L05-06-E03": {
       "type": "drill",
-      "content": "ក្ក ក្ម ស្ម ត្ម",
+      "content": "តារា ដឹង ច្បាប់ ល្អ ពេល មក រៀន។ ក្ក ក្ម ស្ម ច្បាប់",
       "description": "Consonant + Subscript + Consonant"
-    },
-    "nida-L05-06-E04": {
-      "type": "drill",
-      "content": "ក្មេង ក្តារ ច្បាប់ ខ្លា",
-      "description": "Simple subscript clusters"
     },
     "nida-L05-07-E01": {
       "type": "word",
-      "content": [
-        "ក្រ",
-        "ស្រ",
-        "ប្រ",
-        "ត្រ"
-      ],
+      "content": "បង មាន ប្រាក់ ទិញ ត្រី នៅ ស្រុក។ ក្រចក",
       "description": "Subscript រ (្រ) clusters"
     },
     "nida-L05-07-E02": {
       "type": "word",
-      "content": [
-        "ប្រាក់",
-        "ក្រចក",
-        "ស្រុក",
-        "ច្រក"
-      ],
+      "content": "បង មាន ប្រាក់ ទិញ ត្រី នៅ ស្រុក។ ក្រ ស្រឡាញ់",
       "description": "Common cluster words"
+    },
+    "nida-L05-07-E03": {
+      "type": "drill",
+      "content": "ក្មេង ស្រុក យើង ខំ រៀន បាន ល្អ។ ស្រ ប្រ ត្រ ប្រាក់ បង",
+      "description": "Rhythm and cadence reinforcement for Consonant Clusters (ក្រ, ស្រ, ប្រ)"
     },
     "nida-L05-08-E01": {
       "type": "word",
-      "content": [
-        "រៀន",
-        "ដឹង",
-        "កុំ",
-        "ប្រាក់"
-      ],
+      "content": "រៀន ដឹង កុំ ប្រាក់ សាលា តារា មាន ឆាប់ រៀន",
       "description": "Base layer review 1"
     },
     "nida-L05-08-E02": {
       "type": "word",
-      "content": [
-        "សាលា",
-        "តារា",
-        "មាន",
-        "ឆាប់"
-      ],
+      "content": "តារា និង សុខ មក រៀន។ សាលា រៀន សប្បាយ។ ដឹង សាលា",
       "description": "Base layer review 2"
     },
     "nida-L05-08-E03": {
       "type": "drill",
-      "content": "តារា និង សុខ មក រៀន។ សាលា រៀន សប្បាយ។",
+      "content": "ក្មេង ឆ្លាត ខំ រៀន នៅ សាលា រាល់ ថ្ងៃ។ កុំ ប្រាក់ ក្មេង",
       "description": "Base layer paragraph"
     },
     "nida-L06-01-E01": {
       "type": "single-char",
-      "content": "គគគ ជជជ គជគ",
+      "content": "គិត ជិត គូរ ជួរ ជា ជាតិ គោក ជោគ គិត ជាតិ",
       "description": "Shift consonants គ and ជ"
     },
     "nida-L06-01-E02": {
       "type": "word",
-      "content": [
-        "គិត",
-        "ជិត",
-        "គូរ",
-        "ជួរ"
-      ],
+      "content": "បង គិត ជិត គូរ រូប នៅ សាលា រៀន។ ជិត គូរ ប្រជាជន",
       "description": "Words with គ and ជ"
+    },
+    "nida-L06-01-E03": {
+      "type": "drill",
+      "content": "ប្រជាជន ជាតិ យើង ខំ រៀន បាន ជួរ ជា គោក ជោគ បង រូប សប្បាយ។",
+      "description": "Shifted consonants pair drills and real words"
     },
     "nida-L06-02-E01": {
       "type": "single-char",
-      "content": "ទទទ ធធធ ទធទ",
+      "content": "ទី ទិញ ធំ ធារ ទា ទាន ធាត ទោស ទាក់ ទី ផ្ទះ។",
       "description": "Shift consonants ទ and ធ"
     },
     "nida-L06-02-E02": {
       "type": "word",
-      "content": [
-        "ទី",
-        "ទិញ",
-        "ធំ",
-        "ធារ"
-      ],
+      "content": "បង ទៅ ទីផ្សារ ទិញ ត្រី ធំ មក ផ្ទះ។ ទិញ ធំ ទីផ្សារ",
       "description": "Words with ទ and ធ"
+    },
+    "nida-L06-02-E03": {
+      "type": "drill",
+      "content": "សាលា រៀន យើង មាន ទីធ្លា ធំ ស្អាត។ ធារ ទា ទាន ធាត ទោស ទីធ្លា",
+      "description": "Shifted dental consonants and real words"
     },
     "nida-L06-03-E01": {
       "type": "single-char",
-      "content": "ពពព ភភភ ពភព",
+      "content": "ពីរ ពូ ភាព ភ្នំ ពុក ពាក់ ពិត ភាគ ភោគ រីករាយ។",
       "description": "Shift consonants ព and ភ"
     },
     "nida-L06-03-E02": {
       "type": "word",
-      "content": [
-        "ពីរ",
-        "ពូ",
-        "ភាព",
-        "ភ្នំ"
-      ],
+      "content": "ពុក និង ពូ ដើរ ទៅ មើល ភ្នំ ធំ។ ពីរ ពូ ភាព ភ្នំ ពាក់",
       "description": "Words with ព and ភ"
+    },
+    "nida-L06-03-E03": {
+      "type": "drill",
+      "content": "ការ រៀន ពិត ជា នាំ មក ភាព រីករាយ។ ពុក ពិត ភាគ ភោគ និង សប្បាយ។",
+      "description": "Shifted labial consonants and real words"
     },
     "nida-L06-04-E01": {
       "type": "single-char",
-      "content": "ឌឌឌ ណណណ ឌណឌ",
+      "content": "ឌី គណនា បុណ្យ គុណ កាណូត ឌី គណនា បុណ្យ បង្រៀន។",
       "description": "Shift consonants ឌ and ណ"
     },
     "nida-L06-04-E02": {
       "type": "word",
-      "content": [
-        "ឌី",
-        "គណនា",
-        "បុណ្យ",
-        "គុណ"
-      ],
+      "content": "សិស្ស រៀន គណនា លេខ នៅ ក្នុង សាលា។ គុណ កាណូត សិស្ស រៀន",
       "description": "Words with ឌ and ណ"
+    },
+    "nida-L06-04-E03": {
+      "type": "drill",
+      "content": "យើង ដឹង គុណ ពុក ម្តាយ និង គ្រូ បង្រៀន។ លេខ នៅ ក្នុង សាលា។ យើង",
+      "description": "Shifted retroflex consonants and real words"
     },
     "nida-L06-05-E01": {
       "type": "single-char",
-      "content": "អអអ អអអ អអអ",
+      "content": "អ្នក អាន ញាតិ ញញឹម អាហារ អាកាស អរគុណ អាកាសធាតុ",
       "description": "Shift consonant អ"
     },
     "nida-L06-05-E02": {
       "type": "word",
-      "content": [
-        "អ្នក",
-        "អាន",
-        "ញាតិ",
-        "ញញឹម"
-      ],
+      "content": "អ្នក អាន សៀវភៅ ដោយ ទឹកមុខ ញញឹម រីករាយ។ អ្នក អាន ទឹកមុខ",
       "description": "Words with អ and ញ"
+    },
+    "nida-L06-05-E03": {
+      "type": "drill",
+      "content": "អាកាសធាតុ ល្អ ធ្វើ យើង សប្បាយ ចិត្ត។ ញាតិ ញញឹម អាហារ អាកាស អរគុណ",
+      "description": "Vowel anchor / independent reach and authentic words"
     },
     "nida-L06-06-E01": {
       "type": "single-char",
-      "content": "ឃឃឃ ឈឈឈ ឍឍឍ ឡឡឡ",
+      "content": "ឃើញ ឈរ វឌ្ឍន ឡាន ឃាត ឈាន ឡោឡា ឃើញ ឈរ វឌ្ឍន ឡោឡា",
       "description": "Rare shift consonants"
     },
     "nida-L06-06-E02": {
       "type": "word",
-      "content": [
-        "ឃើញ",
-        "ឈរ",
-        "វឌ្ឍន",
-        "ឡាន"
-      ],
+      "content": "បង ឈរ មើល ឡាន បើក តាម ផ្លូវ ធំ។ ឡាន ឃាត ឈាន បង អាកាសធាតុ",
       "description": "Words with rare consonants"
+    },
+    "nida-L06-06-E03": {
+      "type": "drill",
+      "content": "ការ ខំ រៀន នាំ មក វឌ្ឍនភាព ដល់ ជាតិ។ មើល បើក តាម ផ្លូវ ធំ។ វឌ្ឍនភាព",
+      "description": "Rare consonants and authentic vocabulary"
     },
     "nida-L06-07-E01": {
       "type": "drill",
-      "content": "ក គ ច ជ ត ទ ប ព ផ ភ",
+      "content": "ក គ ច ជ ត ទ ប ព ផ ភ កូន គិត ចាន ជិត ក គ អាកាសធាតុ",
       "description": "Consonant series pairs"
     },
     "nida-L06-07-E02": {
       "type": "word",
-      "content": [
-        "កូន គិត",
-        "ចាន ជិត",
-        "តាម ទិញ"
-      ],
+      "content": "កូន ល្អ គិត គូរ ជួយ ការងារ ពុក ម្តាយ។ ច ជ ត ទ ប អាកាសធាតុ",
       "description": "Contrasting pairs"
+    },
+    "nida-L06-07-E03": {
+      "type": "drill",
+      "content": "បង តាម ទិញ ចាន និង សៀវភៅ នៅ ផ្សារ។ ព ផ ភ កូន គិត ចាន ជិត ល្អ រីករាយ។",
+      "description": "Rhythm and cadence reinforcement for Base vs Shift Pairs Drill"
     },
     "nida-L06-08-E01": {
       "type": "word",
-      "content": [
-        "ឃើញ",
-        "ជួយ",
-        "ទិញ",
-        "ធំ",
-        "ភ្នំ"
-      ],
+      "content": "ឃើញ ជួយ ទិញ ធំ ភ្នំ ឃុំ ឈើ ឡាន គំនិត ឃើញ ជួយ សប្បាយ",
       "description": "Shift consonants vocabulary"
     },
     "nida-L06-08-E02": {
       "type": "drill",
-      "content": "អ្នក ជួយ គិត ពី ភាព សប្បាយ។",
+      "content": "អ្នក ជួយ គិត ពី ភាព សប្បាយ រីករាយ។ គំនិត ល្អ ជួយ ការងារ បាន",
       "description": "Sentence with shift consonants"
+    },
+    "nida-L06-08-E03": {
+      "type": "drill",
+      "content": "គំនិត ល្អ ជួយ ការងារ បាន ទិញ ធំ ភ្នំ ឃុំ ឈើ ឡាន គំនិត អ្នក គិត អាកាសធាតុ",
+      "description": "Rhythm and cadence reinforcement for Shift Consonants Review"
     },
     "nida-L07-01-E01": {
       "type": "single-char",
-      "content": "កីកី គូគូ ដីដី ពូពូ កីគូ ដីពូ",
+      "content": "ពីរ គូ ទី ពូ ជី ទូ លី ហូរ ទូក ពីរ គូ ទី ពូ អាកាសធាតុ",
       "description": "Long vowels ី and ូ"
     },
     "nida-L07-01-E02": {
       "type": "word",
-      "content": [
-        "ទី",
-        "ពីរ",
-        "កូន",
-        "ទូ"
-      ],
+      "content": "ពូ ចែវ ទូក ពីរ ទៅ ទីរួមស្រុក ឆាប់។ ជី ទូ លី ហូរ ទូក ទីរួមស្រុក",
       "description": "Words with ី and ូ"
+    },
+    "nida-L07-01-E03": {
+      "type": "drill",
+      "content": "ទឹក ហូរ តាម ប្រឡាយ ជិត ភូមិ យើង។ ចែវ ទៅ ឆាប់។ ទឹក តាម ប្រឡាយ ទីរួមស្រុក",
+      "description": "Rhythm and cadence reinforcement for ី (Shift+I) and ូ (Shift+U)"
     },
     "nida-L07-02-E01": {
       "type": "single-char",
-      "content": "កែកែ ថែថែ ដៃដៃ ព្រៃព្រៃ កែថែ ដៃព្រៃ",
+      "content": "តែ ដៃ ខែ ថ្ងៃ ដែក ចែ ថ្លៃ ផ្លែ ខ្មែរ តែ ដៃ ទីរួមស្រុក",
       "description": "Vowels ែ and ៃ"
     },
     "nida-L07-02-E02": {
       "type": "word",
-      "content": [
-        "កែវ",
-        "ដែក",
-        "ដៃ",
-        "ថ្ងៃ"
-      ],
+      "content": "សិស្ស ខ្មែរ ខំ រៀន រាល់ ថ្ងៃ ខាន។ ខែ ថ្ងៃ ដែក ចែ ថ្លៃ ទីរួមស្រុក",
       "description": "Words with ែ and ៃ"
+    },
+    "nida-L07-02-E03": {
+      "type": "drill",
+      "content": "ផ្លែឈើ នៅ ស្រុក យើង មាន តម្លៃ សមរម្យ។ ផ្លែ ខ្មែរ សិស្ស ខំ រៀន រាល់ ផ្លែឈើ",
+      "description": "Rhythm and cadence reinforcement for ែ (Shift+E) and ៃ (Shift+S)"
     },
     "nida-L07-03-E01": {
       "type": "single-char",
-      "content": "គួរបួន ដៅដៅ ទៅទៅ គួរបួន ដៅទៅ",
+      "content": "ទៅ នៅ គួរ ជួយ មួយ ក្រៅ ផ្លូវ ស្រួល ទៅ នៅ គួរ ទីរួមស្រុក",
       "description": "Complex vowels ួ and ៅ"
     },
     "nida-L07-03-E02": {
       "type": "word",
-      "content": [
-        "ជួយ",
-        "រួក",
-        "ទៅ",
-        "នៅ"
-      ],
+      "content": "យើង គួរ ជួយ គ្នា ធ្វើ ការងារ សាលា។ ជួយ មួយ ក្រៅ ផ្លូវ ស្រួល ការងារ",
       "description": "Words with ួ and ៅ"
+    },
+    "nida-L07-03-E03": {
+      "type": "drill",
+      "content": "ផ្លូវ ថ្មី ធ្វើ ការ ធ្វើ ដំណើរ ស្រួល។ យើង គ្នា ធ្វើ សាលា។ ថ្មី ការ ដំណើរ រួក",
+      "description": "Rhythm and cadence reinforcement for ួ (Shift+Y) and ៅ (Shift+O)"
     },
     "nida-L07-04-E01": {
       "type": "single-char",
-      "content": "ចាំចាំ នាំនាំ កំកំ ធំធំ ចាំនាំ កំធំ",
+      "content": "ចាំ នាំ ធំ កំលាំង ទាំង ាំង សំខាន់ រាំ ចាំ នាំ ធំ កំលាំង ទីរួមស្រុក",
       "description": "Nasalized vowels ាំ and ំ"
     },
     "nida-L07-04-E02": {
       "type": "word",
-      "content": [
-        "ចាំ",
-        "នាំ",
-        "ធំ",
-        "កំលាំង"
-      ],
+      "content": "ការ រៀន សូត្រ មាន ខ្លាំង ណាស់។ យើង ទាំងអស់ គ្នា ខំ រៀន ដោយ កំលាំង ចិត្ត។",
       "description": "Words with ាំ and ំ"
+    },
+    "nida-L07-04-E03": {
+      "type": "drill",
+      "content": "យើង ទាំងអស់ គ្នា ខំ រៀន ដោយ កំលាំង ចិត្ត។ ទាំង ាំង សំខាន់ រាំ ការ រៀន សូត្រ ខ្លាំង",
+      "description": "Rhythm and cadence reinforcement for ាំ (Shift+A) and ំ (Shift+M)"
     },
     "nida-L07-05-E01": {
       "type": "single-char",
-      "content": "ចេះចេះ ដោះដោះ ចុះចុះ ផ្ទះផ្ទះ ចេះដោះ ចុះផ្ទះ",
+      "content": "ផ្ទះ ចេះ កោះ ចុះ ដោះ លះ ព្រះ ឈ្មោះ ផ្ទះ ចេះ កោះ ចុះ ដោះ លះ ផ្ទះផ្ទះ",
       "description": "Aspirated vowel endings"
     },
     "nida-L07-05-E02": {
       "type": "word",
-      "content": [
-        "ផ្ទះ",
-        "ចេះ",
-        "កោះ",
-        "ចុះ"
-      ],
+      "content": "បង ចេះ ដោះ ស្រាយ ការងារ នៅ ផ្ទះ បាន ល្អ។ ព្រះ ឈ្មោះ បង ស្រាយ ការងារ ល្អ។",
       "description": "Words with aspirated endings"
+    },
+    "nida-L07-05-E03": {
+      "type": "drill",
+      "content": "កោះ នៅ ស្រុក ខ្មែរ មាន ទេសភាព ស្អាត ណាស់។ នៅ បាន ស្រុក ខ្មែរ មាន ទេសភាព ទីរួមស្រុក",
+      "description": "Rhythm and cadence reinforcement for ះ េះ ោះ ុះ"
     },
     "nida-L07-06-E01": {
       "type": "single-char",
-      "content": "ឈឺឈឺ រឿរឿ លឿនលឿន ឈឺរឿង លឿនលឿន",
+      "content": "គឺ រឿង ជឿ គ្រឿង ឈឺ លឿន លឿង យឺត គឺ រឿង ជឿ គ្រឿង ឈឺ ត្រឹមត្រូវ",
       "description": "Remaining shift vowels"
     },
     "nida-L07-06-E02": {
       "type": "word",
-      "content": [
-        "គឺ",
-        "រឿង",
-        "ជឿ",
-        "គ្រឿង"
-      ],
+      "content": "បង អាន រឿង ព្រេង ខ្មែរ បាន លឿន ណាស់។ លឿន លឿង យឺត បង អាន ព្រេង ត្រឹមត្រូវ",
       "description": "Words with ឺ and ឿ"
+    },
+    "nida-L07-06-E03": {
+      "type": "drill",
+      "content": "ការ វាយ អក្សរ ត្រឹមត្រូវ ធ្វើ លឿន ជាង មុន។ ខ្មែរ បាន ណាស់។ ការ វាយ អក្សរ ត្រឹមត្រូវ",
+      "description": "Rhythm and cadence reinforcement for ឺ (Shift+W) and ឿ (Shift+[)"
     },
     "nida-L07-07-E01": {
       "type": "word",
-      "content": [
-        "ទី",
-        "កូន",
-        "ដែក",
-        "ថ្ងៃ",
-        "នៅ"
-      ],
+      "content": "ទី កូន ដែក ថ្ងៃ នៅ ផ្ទះ ចេះ គឺ រឿង ទី កូន ដែក ថ្ងៃ នៅ ត្រឹមត្រូវ",
       "description": "Review set 1"
     },
     "nida-L07-07-E02": {
       "type": "word",
-      "content": [
-        "ផ្ទះ",
-        "ចេះ",
-        "គឺ",
-        "រឿង"
-      ],
+      "content": "កា កិ កី កឹ កឺ កុ កូ កួ កើ កឿ កៀ កេ កែ កៃ កោ កៅ កុំ កំ កាំ កះ ផ្ទះ ចេះ ខ្មែរ",
       "description": "Review set 2"
+    },
+    "nida-L07-07-E03": {
+      "type": "drill",
+      "content": "កូន ខ្មែរ ចេះ អាន និង សរសេរ អក្សរ ខ្មែរ ច្បាស់។ គឺ រឿង កា កិ កី កឹ កឺ កុ កូ ត្រឹមត្រូវ",
+      "description": "Rhythm and cadence reinforcement for All Vowels Review"
     },
     "nida-L08-01-E01": {
       "type": "word",
-      "content": [
-        "គ្រូ",
-        "ប្រទេស",
-        "ក្រុម",
-        "ព្រៃ"
-      ],
+      "content": "គ្រូ ប្រទេស ក្រុម ព្រៃ ស្រុក ក្រៅ ព្រឹក គ្រួសារ គ្រូ ត្រឹមត្រូវ",
       "description": "Words with ្រ"
+    },
+    "nida-L08-01-E02": {
+      "type": "drill",
+      "content": "គ្រូ បង្រៀន សិស្ស នៅ សាលា រៀន រាល់ ព្រឹក។ ប្រទេស ក្រុម ព្រៃ ស្រុក ត្រឹមត្រូវ",
+      "description": "Rhythm and cadence reinforcement for ្រ (Subscript R) Clusters"
+    },
+    "nida-L08-01-E03": {
+      "type": "drill",
+      "content": "គ្រួសារ យើង ស្រឡាញ់ ប្រទេស កម្ពុជា ជានិច្ច។ ក្រៅ ព្រឹក គ្រួសារ បង្រៀន សិស្ស នៅ ជានិច្ច។",
+      "description": "Rhythm and cadence reinforcement for ្រ (Subscript R) Clusters"
     },
     "nida-L08-02-E01": {
       "type": "word",
-      "content": [
-        "ខ្លា",
-        "ផ្លូវ",
-        "ឆ្លើយ",
-        "ភ្លើង"
-      ],
+      "content": "ខ្លា ផ្លូវ ឆ្លើយ ភ្លើង ភ្លៀង ធ្លាក់ ស្លឹក ខ្លាំង ផ្លែ ខ្លា ច្បាស់។",
       "description": "Words with ្ល"
+    },
+    "nida-L08-02-E02": {
+      "type": "drill",
+      "content": "សិស្ស ឆ្លាត ឆ្លើយ សំណួរ គ្រូ បាន យ៉ាង ច្បាស់។ ផ្លូវ ឆ្លើយ ភ្លើង ភ្លៀង ស្លឹកឈើ",
+      "description": "Rhythm and cadence reinforcement for ្ល (Subscript L) Clusters"
+    },
+    "nida-L08-02-E03": {
+      "type": "drill",
+      "content": "ពេល ភ្លៀង ធ្លាក់ ស្លឹកឈើ លូតលាស់ បៃតង។ ធ្លាក់ ស្លឹក ខ្លាំង ផ្លែ សិស្ស ឆ្លាត សំណួរ ត្រឹមត្រូវ",
+      "description": "Rhythm and cadence reinforcement for ្ល (Subscript L) Clusters"
     },
     "nida-L08-03-E01": {
       "type": "word",
-      "content": [
-        "កញ្ញា",
-        "បញ្ជី",
-        "កម្ពុជា",
-        "សម្បត្តិ"
-      ],
+      "content": "កញ្ញា បញ្ជី កម្ពុជា សម្បត្តិ អំណាច ជំនួយ ធម្មជាតិ កញ្ញា បញ្ជី អំណាច",
       "description": "Nasal subscript words"
+    },
+    "nida-L08-03-E02": {
+      "type": "drill",
+      "content": "ប្រទេស កម្ពុជា មាន សម្បត្តិ ធម្មជាតិ សម្បូរបែប។ កញ្ញា កត់ បញ្ជី សៀវភៅ នៅ ក្នុង នៅ",
+      "description": "Rhythm and cadence reinforcement for Subscript ញ ណ ន ម"
+    },
+    "nida-L08-03-E03": {
+      "type": "drill",
+      "content": "កញ្ញា កត់ បញ្ជី សៀវភៅ នៅ ក្នុង កម្ពុជា សម្បត្តិ ជំនួយ ធម្មជាតិ ប្រទេស មាន សម្បូរបែប។ សៀវភៅ",
+      "description": "Rhythm and cadence reinforcement for Subscript ញ ណ ន ម"
     },
     "nida-L08-04-E01": {
       "type": "word",
-      "content": [
-        "ក្ក",
-        "ស្ស",
-        "ត្ត",
-        "ន្ន"
-      ],
+      "content": "ក្ក ស្ស ត្ត ន្ន ចិត្ត សន្តិភាព សប្បាយ បញ្ញត្តិ ក្ក ស្ស ត្ត រៀនសូត្រ។",
       "description": "Doubled consonant clusters"
     },
     "nida-L08-04-E02": {
       "type": "word",
-      "content": [
-        "ចិត្ត",
-        "សន្តិភាព",
-        "សប្បាយ",
-        "បញ្ញត្តិ"
-      ],
+      "content": "សន្តិភាព នាំ មក នូវ ភាព សប្បាយ រីករាយ ដល់ ជាតិ។ ន្ន ចិត្ត សន្តិភាព សប្បាយ បញ្ញត្តិ",
       "description": "Words with doubled consonants"
+    },
+    "nida-L08-04-E03": {
+      "type": "drill",
+      "content": "សិស្ស មាន ចិត្ត អំណត់ ក្នុង ការ សិក្សា រៀនសូត្រ។ នាំ មក នូវ ភាព រីករាយ ដល់ ជាតិ។ សិស្ស សម្បូរបែប។",
+      "description": "Rhythm and cadence reinforcement for Doubled Consonants"
     },
     "nida-L08-05-E01": {
       "type": "word",
-      "content": [
-        "សង្គ្រាម",
-        "កន្ត្រៃ",
-        "អន្តរជាតិ",
-        "មន្ត្រី"
-      ],
+      "content": "សង្គ្រាម កន្ត្រៃ អន្តរជាតិ មន្ត្រី ស្ងួត ម្ហូប ក្បាល ស្អាត ស្តាប់ ស្ងួត",
       "description": "Multi-tier clusters"
+    },
+    "nida-L08-05-E02": {
+      "type": "drill",
+      "content": "សិស្ស ស្អាតបាត យកចិត្តទុកដាក់ ស្តាប់ គ្រូ ពន្យល់ មេរៀន។ សង្គ្រាម កន្ត្រៃ អន្តរជាតិ។",
+      "description": "Rhythm and cadence reinforcement for Complex Subscripts"
+    },
+    "nida-L08-05-E03": {
+      "type": "drill",
+      "content": "ម្ហូប ខ្មែរ មាន រសជាតិ ឆ្ងាញ់ ល្បី លើ ឆាក អន្តរជាតិ។ អន្តរជាតិ មន្ត្រី ម្ហូប ក្បាល យកចិត្តទុកដាក់",
+      "description": "Rhythm and cadence reinforcement for Complex Subscripts"
     },
     "nida-L08-06-E01": {
       "type": "word",
-      "content": [
-        "ប្រទេស",
-        "កម្ពុជា",
-        "អន្តរជាតិ",
-        "សង្គ្រាម"
-      ],
+      "content": "ប្រទេស កម្ពុជា អន្តរជាតិ សង្គ្រាម ភាសាខ្មែរ ប្រវត្តិសាស្ត្រ អរគុណ សប្បាយ",
       "description": "Mastery cluster words"
+    },
+    "nida-L08-06-E02": {
+      "type": "drill",
+      "content": "ការ វាយ អក្សរ ជើង ខ្មែរ ជួយ សរសេរ ពាក្យ បាន ត្រឹមត្រូវ។ ប្រទេស កម្ពុជា ប្រវត្តិសាស្ត្រ",
+      "description": "Rhythm and cadence reinforcement for Coeng Mastery Review"
+    },
+    "nida-L08-06-E03": {
+      "type": "drill",
+      "content": "យើង សិក្សា ប្រវត្តិសាស្ត្រ និង ភាសាខ្មែរ ដោយ មោទនភាព។ អន្តរជាតិ សង្គ្រាម ភាសាខ្មែរ ប្រវត្តិសាស្ត្រ",
+      "description": "Rhythm and cadence reinforcement for Coeng Mastery Review"
     },
     "nida-L09-01-E01": {
       "type": "single-char",
-      "content": "ប៉ា ម៉ាក់ ហ៊ាន ប៉ា ម៉ាក់ ហ៊ាន",
+      "content": "ប៉ា ម៉ាក់ ប៉ះ ប៉ោង ម៉ោង ច៉ា ប៉ុន្មាន ប៉ុណ្ណោះ ត្រឹមត្រូវ។",
       "description": "Musekkatoan sign"
     },
     "nida-L09-01-E02": {
       "type": "word",
-      "content": [
-        "ប៉ា",
-        "ម៉ាក់",
-        "ប៉ះ",
-        "ស៊ុប"
-      ],
+      "content": "ប៉ា និង ម៉ាក់ ជូន កូន ទៅ សាលារៀន តាម ម៉ោង កំណត់។ អក្ខរាវិរុទ្ធ",
       "description": "Words with ៉ and ៊"
+    },
+    "nida-L09-01-E03": {
+      "type": "drill",
+      "content": "ការ ប្រើ សញ្ញា មូសិកទន្ត ជួយ អក្ខរាវិរុទ្ធ ខ្មែរ ត្រឹមត្រូវ។ ប៉ុន្មាន",
+      "description": "Rhythm and cadence reinforcement for ៉ (Shift+') and ៊ (Shift+/)"
+    },
+    "nida-L09-01-E04": {
+      "type": "drill",
+      "content": "ប៉ា ម៉ាក់ ប៉ះ ប៉ោង ម៉ោង ច៉ា ប៉ុន្មាន ប៉ុណ្ណោះ ត្រឹមត្រូវ។ ប៉ា ប្រវត្តិសាស្ត្រ",
+      "description": "Rhythm and cadence reinforcement for ៉ (Shift+') and ៊ (Shift+/)"
     },
     "nida-L09-02-E01": {
       "type": "single-char",
-      "content": "ៗៗៗ ៕៕៕ ៗ៕ៗ",
+      "content": "ផ្សេងៗ ញឹកៗ តិចៗ ឆាប់ៗ ល្អៗ ថ្មីៗ ៕ ផ្សេងៗ ជារៀងរាល់ថ្ងៃ។",
       "description": "Repetition mark and section end"
     },
     "nida-L09-02-E02": {
       "type": "word",
-      "content": [
-        "ផ្សេងៗ",
-        "ញឹកៗ",
-        "តិចៗ"
-      ],
+      "content": "សិស្សានុសិស្ស ហាត់ វាយ អក្សរ ខ្មែរ ញឹកៗ ជារៀងរាល់ថ្ងៃ។ ស្រាវជ្រាវ",
       "description": "Repeated words"
+    },
+    "nida-L09-02-E03": {
+      "type": "drill",
+      "content": "ចំណេះដឹង ផ្សេងៗ កើត ចេញ ពី ការ អាន និង ការ ស្រាវជ្រាវ ៕ ប្រវត្តិសាស្ត្រ",
+      "description": "Repeat symbol and phrase punctuation"
+    },
+    "nida-L09-02-E04": {
+      "type": "drill",
+      "content": "ផ្សេងៗ ញឹកៗ តិចៗ ឆាប់ៗ ល្អៗ ថ្មីៗ ៕ ផ្សេងៗ ជារៀងរាល់ថ្ងៃ។ ញឹកៗ តិចៗ ត្រឹមត្រូវ។",
+      "description": "Repeat symbol and phrase punctuation"
     },
     "nida-L09-03-E01": {
       "type": "single-char",
-      "content": "ព័ត៌មាន ធម៌ ពេជ្រ ដ៏ ប៉ុក៎ នុ៎ះ អូ៎ ហា៎",
+      "content": "ព័ត៌មាន ធម៌ ពេជ្រ ដ៏ ប៉ុក៎ នុ៎ះ អូ៎ ប្រយោជន៍ សំឡេង ប្រយោជន៍",
       "description": "Top diacritics"
     },
     "nida-L09-03-E02": {
       "type": "word",
-      "content": "ព័ត៌មាន ធម៌ ពេជ្រ ដ៏ ប៉ុក៎ នុ៎ះ អូ៎ ព័ត៌មាន ធម៌ ដ៏ ប៉ុក៎ នុ៎ះ",
+      "content": "ព័ត៌មាន ពិត មាន ប្រយោជន៍ ដ៏ សំខាន់ សម្រាប់ ប្រជាជន គ្រប់ រូប។ ពេជ្រ",
       "description": "Words with diacritics"
+    },
+    "nida-L09-03-E03": {
+      "type": "drill",
+      "content": "ការ សិក្សា ព្រះធម៌ និង ចំណេះដឹង ទូទៅ នាំ មក នូវ សេចក្តី សុខ។ យកចិត្តទុកដាក់",
+      "description": "Rhythm and cadence reinforcement for Top Diacritics (័ ៌ ៍ ៏)"
+    },
+    "nida-L09-03-E04": {
+      "type": "drill",
+      "content": "ព័ត៌មាន ធម៌ ពេជ្រ ដ៏ ប៉ុក៎ នុ៎ះ អូ៎ ប្រយោជន៍ សំឡេង ប្រយោជន៍ ព័ត៌មាន អក្ខរាវិរុទ្ធ",
+      "description": "Rhythm and cadence reinforcement for Top Diacritics (័ ៌ ៍ ៏)"
     },
     "nida-L09-04-E01": {
       "type": "single-char",
-      "content": "៛៛៛ ៖៖៖",
+      "content": "តម្លៃ៛ ចាយ៛ ដូចតទៅ៖ កំណត់ចំណាំ៖ រាយនាមដូចខាងក្រោម៖ កំណត់ចំណាំ៖",
       "description": "Currency and colon"
     },
     "nida-L09-04-E02": {
       "type": "word",
-      "content": [
-        "តម្លៃ៛",
-        "ចាយ៛",
-        "ដូចតទៅ៖"
-      ],
+      "content": "យើង ចាយ ប្រាក់ រៀល៛ នៅ ក្នុង ប្រទេស កម្ពុជា ដូចតទៅ៖ ប្រវត្តិសាស្ត្រ",
       "description": "Currency and punctuation phrases"
-    },
-    "nida-L09-05-E01": {
-      "type": "word",
-      "content": [
-        "ព័ត៌មាន",
-        "ទូរស័ព្ទ",
-        "អាទិត្យ",
-        "ចាយ៛",
-        "ផ្សេងៗ"
-      ],
-      "description": "Comprehensive diacritic review"
-    },
-    "nida-L10-01-E01": {
-      "type": "word",
-      "content": [
-        "លោកពុក",
-        "ម្តាយ",
-        "កូន",
-        "បង",
-        "ប្អូន"
-      ],
-      "description": "Family vocabulary"
-    },
-    "nida-L10-02-E01": {
-      "type": "word",
-      "content": [
-        "សាលា",
-        "សិស្ស",
-        "គ្រូ",
-        "សៀវភៅ",
-        "ប៊ិច"
-      ],
-      "description": "School vocabulary"
-    },
-    "nida-L10-03-E01": {
-      "type": "word",
-      "content": [
-        "បាយ",
-        "ទឹក",
-        "ត្រី",
-        "សាច់",
-        "បន្លែ"
-      ],
-      "description": "Food vocabulary"
-    },
-    "nida-L10-04-E01": {
-      "type": "word",
-      "content": [
-        "ផ្ទះ",
-        "ភូមិ",
-        "ផ្សារ",
-        "វត្ត",
-        "ក្រុង"
-      ],
-      "description": "Places vocabulary"
-    },
-    "nida-L10-05-E01": {
-      "type": "word",
-      "content": [
-        "ទៅ",
-        "មក",
-        "ញ៉ាំ",
-        "រៀន",
-        "ធ្វើ",
-        "ដើរ"
-      ],
-      "description": "Common verbs"
-    },
-    "nida-L10-06-E01": {
-      "type": "word",
-      "content": [
-        "ល្អ",
-        "ស្អាត",
-        "ធំ",
-        "តូច",
-        "ឆ្ងាញ់",
-        "លឿន"
-      ],
-      "description": "Adjectives"
-    },
-    "nida-L10-07-E01": {
-      "type": "word",
-      "content": [
-        "ថ្ងៃ",
-        "ខែ",
-        "ឆ្នាំ",
-        "ម៉ោង",
-        "ព្រឹក",
-        "យប់",
-        "០",
-        "១",
-        "២",
-        "៣",
-        "៤",
-        "៥",
-        "៦",
-        "៧",
-        "៨",
-        "៩"
-      ],
-      "description": "Time words"
-    },
-    "nida-L10-08-E01": {
-      "type": "word",
-      "content": [
-        "ប្រទេស",
-        "កម្ពុជា",
-        "ភាសាខ្មែរ",
-        "ប្រជាជន",
-        "សន្តិភាព"
-      ],
-      "description": "Major Khmer vocabulary"
-    },
-    "nida-L11-01-E01": {
-      "type": "sentence",
-      "content": "ខ្ញុំ រៀន ភាសា ខ្មែរ។",
-      "description": "Short sentence 1"
-    },
-    "nida-L11-01-E02": {
-      "type": "sentence",
-      "content": "កម្ពុជា ជា ប្រទេស ស្អាត។",
-      "description": "Short sentence 2"
-    },
-    "nida-L11-02-E01": {
-      "type": "sentence",
-      "content": "ការ ហ្វឹកហាត់ វាយ អក្សរ ជួយ ឱ្យ យើង វាយ បាន រហ័ស។",
-      "description": "Medium sentence 1"
-    },
-    "nida-L11-02-E02": {
-      "type": "sentence",
-      "content": "ចូរ ដាក់ ម្រាមដៃ លើ ជួរដេក ដើម ជានិច្ច ដើម្បី វាយ ត្រូវ។",
-      "description": "Medium sentence 2"
-    },
-    "nida-L11-03-E01": {
-      "type": "sentence",
-      "content": "ភាសាខ្មែរ ជា ភាសា ផ្លូវការ នៃ ព្រះរាជាណាចក្រ កម្ពុជា ដែល មាន ប្រវត្តិសាស្ត្រ យូរលង់។",
-      "description": "Long sentence 1"
-    },
-    "nida-L11-04-E01": {
-      "type": "paragraph",
-      "content": "ការ រៀន វាយ អក្សរ ទាមទារ ការ អត់ធ្មត់។ កាលណា យើង ព្យាយាម យើង នឹង ទទួល បាន ជោគជ័យ។",
-      "description": "Short paragraph"
-    },
-    "nida-L11-05-E01": {
-      "type": "paragraph",
-      "content": "ប្រាសាទ អង្គរវត្ត ជា សម្បត្តិ វប្បធម៌ ដ៏ ពិសិដ្ឋ របស់ ជាតិ ខ្មែរ និង ពិភពលោក។",
-      "description": "Culture paragraph"
-    },
-    "nida-L11-06-E01": {
-      "type": "paragraph",
-      "content": "សូម ស្វាគមន៍ មកកាន់ កម្មវិធី ហាត់ វាយ អក្សរ ខ្មែរ ដ៏ ល្អ បំផុត។",
-      "description": "Final paragraph challenge"
-    },
-    "nida-L12-01-E01": {
-      "type": "drill",
-      "content": "ការ វាយ អក្សរ ខ្មែរ ដោយ ត្រឹមត្រូវ ជួយ បង្កើន ប្រសិទ្ធភាព ការងារ និង ការ សិក្សា។",
-      "description": "1-minute drill"
-    },
-    "nida-L12-02-E01": {
-      "type": "drill",
-      "content": "ចូរ បន្ត ការ ហ្វឹកហាត់ រាល់ ថ្ងៃ ដើម្បី រក្សា ភាព ស្ទាត់ជំនាញ លើ ក្តារចុច នីដា។",
-      "description": "3-minute drill"
-    },
-    "nida-L12-03-E01": {
-      "type": "drill",
-      "content": "វាយ ឱ្យ បាន លឿន និង ត្រឹមត្រូវ បំផុត ដើម្បី បំបែក កំណត់ត្រា ផ្ទាល់ខ្លួន របស់ អ្នក។",
-      "description": "Speed challenge"
-    },
-    "nida-L12-04-E01": {
-      "type": "drill",
-      "content": "ឪពុក ឧត្តម ឱ្យ ឯកសារ ឱកាស ឥឡូវ ឦសាន ឩសាន ឫស្សី ឬកពា ឭកិក ឮសូរ ឰដ៏ ឳសថ",
-      "description": "Independent vowels"
-    },
-    "nida-L12-05-E01": {
-      "type": "test",
-      "content": "អបអរសាទរ។ អ្នក បាន បញ្ចប់ វគ្គ សិក្សា វាយ អក្សរ ខ្មែរ នីដា ដោយ ជោគជ័យ បំផុត។",
-      "description": "NiDA final mastery test"
-    },
-    "nida-L01-01-E04": {
-      "type": "drill",
-      "content": "កា កា កាកា ថា ថា ថាថា កាកា ថាថា កា ថា ថា កា កាថា ថាកា កាកា ថាថា កា ថា កា ថា",
-      "description": "Rhythm and cadence reinforcement for Vowel ា (A)"
-    },
-    "nida-L01-02-E04": {
-      "type": "drill",
-      "content": "សស ដដ សសដ ដដស សដ ដស សស ដដ សា ដា សាក ដក កាសា ដាកា",
-      "description": "Structured consonant pairs and real words"
-    },
-    "nida-L01-03-E04": {
-      "type": "drill",
-      "content": "ងង ងង ងងា ងាង ងា ងង ងង កង សង ដង កាង សាង ថាង ងង ងង",
-      "description": "Left index reach with authentic words"
-    },
-    "nida-L01-04-E04": {
-      "type": "drill",
-      "content": "ហហ លល ហហល លលហ ហល លហ ហហ លល ហា លា ហាល សាលា កាល",
-      "description": "Structured consonant flow and real vocabulary"
-    },
-    "nida-L01-05-E04": {
-      "type": "drill",
-      "content": "កក ថថ សស ដដ ងង ហហ លល កាស សាលា ហាង ថាស កាល ដក",
-      "description": "Home row review and authentic words"
-    },
-    "nida-L02-01-E04": {
-      "type": "drill",
-      "content": "កើ កើ កើកើ ដើ ដើ ដើដើ សើ សើ សើសើ ថើ ថើ ថើថើ កើ ដើ សើ ថើ កើដើ សើថើ ដើកើ",
-      "description": "Rhythm and cadence reinforcement for Right Pinky Vowel ើ (;)"
-    },
-    "nida-L02-02-E04": {
-      "type": "drill",
-      "content": "កាក់ កាក់ កាក់កាក់ ដាក់ ដាក់ ដាក់ដាក់ សាក់ សាក់ សាក់សាក់ ហាក់ លាក់ ដក់ កាក់ ដាក់ សាក់",
-      "description": "Rhythm and cadence reinforcement for Final Stop Mark ់ (' Bantoc)"
-    },
-    "nida-L02-03-E04": {
-      "type": "drill",
-      "content": "ហហហ ហ ហហ លលល ល លល ហើ ហើ ហើហើ លើ លើ លើលើ កាក់ ដាក់ សាក់ ហើ លើ កាក់ ដាក់",
-      "description": "Rhythm and cadence reinforcement for Bantoc Short Words"
-    },
-    "nida-L02-04-E04": {
-      "type": "drill",
-      "content": "កើ ដើ សើ ថើ ហើ លើ កាក់ ដាក់ សាក់ កាស សាលា ហាង ថាស",
-      "description": "Home row complete review with real words"
-    },
-    "nida-L03-01-E04": {
-      "type": "drill",
-      "content": "ររ ររ រេរេ កេកេ ដេដេ សេសេ កេ ដេ សេ រេ រក កេរ ដើរ",
-      "description": "Top row consonant and vowel drill"
-    },
-    "nida-L03-02-E04": {
-      "type": "drill",
-      "content": "តត តត តតា តាតា តា តារា កាត កាត់ ដាក់ សាក់ ហាត់",
-      "description": "Left index reach with authentic words"
-    },
-    "nida-L03-03-E04": {
-      "type": "drill",
-      "content": "យយ យយ យុយុ កុកុ ដុដុ សុសុ យុ កុ ដុ សុ យក យាយ លុយ តុ ដុត",
-      "description": "Right index reach and real words"
-    },
-    "nida-L03-04-E04": {
-      "type": "drill",
-      "content": "កិ កិ កិកិ កោ កោ កោកោ សិ សិ សិសិ សោ សោ សោសោ ដិ ដិ ដោ ដោ កិ កោ សិ សោ ដិ ដោ",
-      "description": "Rhythm and cadence reinforcement for Right Hand Vowels ិ (I) and ោ (O)"
-    },
-    "nida-L03-05-E04": {
-      "type": "drill",
-      "content": "កុកុ កិកិ កោកោ យុយុ ដុក ដិក ដោក តោ ដើរ រក កាត លុយ តុ",
-      "description": "Top and home row authentic vocabulary"
-    },
-    "nida-L03-06-E04": {
-      "type": "drill",
-      "content": "កុ កិ កោ យុ រេ តេ ដុក ដិក ដោក តោ ដើរ រក កាត លុយ តុ",
-      "description": "Top row review and words"
-    },
-    "nida-L04-01-E04": {
-      "type": "drill",
-      "content": "ចច វវ ចចវ វវច ចវ វច ចច វវ ចា វា ចាក់ វាចា ចារ វាល",
-      "description": "Bottom row pair alternation and words"
-    },
-    "nida-L04-02-E04": {
-      "type": "drill",
-      "content": "បប បប បាបា បុបុ បេបេ បា បុ បេ បាយ បង បក បាក់ បាត",
-      "description": "Bottom row reach and real words"
-    },
-    "nida-L04-03-E04": {
-      "type": "drill",
-      "content": "នន មម ននម មមន នម មន នន មម នា មា នាម មាត់ មាន មក បាន",
-      "description": "Bottom row nasal consonants and real words"
-    },
-    "nida-L04-04-E04": {
-      "type": "drill",
-      "content": "មាន។ បាន។ មក។ វាចា។ តារា មក។ តោ ដេក។ តារា មាន ចាន។",
-      "description": "Khan full stop in short sentences"
-    },
-    "nida-L04-05-E04": {
-      "type": "drill",
-      "content": "ចច វវ បប នន មម បាន មាន ចារ វាចា ចាក់ នាម មាត់ មក។",
-      "description": "Bottom row review and words"
-    },
-    "nida-L05-01-E04": {
-      "type": "drill",
-      "content": "ខខ ឆឆ ខខឆ ឆឆខ ខឆ ឆខ ខខ ឆឆ ខា ឆា ខុស ខាត ខាន ឆា ឆាយ",
-      "description": "Aspirated consonants pairs and words"
-    },
-    "nida-L05-02-E04": {
-      "type": "drill",
-      "content": "ផផ ផផ ផាផា ផុផុ ផោផោ ផា ផុ ផោ ផាត់ ផុស ផាល",
-      "description": "Consonant drill and real words"
-    },
-    "nida-L05-03-E03": {
-      "type": "drill",
-      "content": "ឋឋ ឋឋ ឋាឋា ឋាន ឋិត ឋិតថេរ ឋឋ ឋឋ ឋាន ឋិត ឋិតថេរ ឋា ឋិ ឋាន ឋិតថេរ",
-      "description": "Retroflex consonant and authentic words"
-    },
-    "nida-L05-04-E04": {
-      "type": "drill",
-      "content": "កៀ កៀ កៀកៀ កឹ កឹ កឹកឹ ដៀ ដៀ ដៀដៀ ដឹ ដឹ ដឹដឹ សៀ សៀ សឹ សឹ កៀ ដៀ កឹ ដឹ កៀកៀ កឹកឹ",
-      "description": "Rhythm and cadence reinforcement for ៀ ([) and ឹ (W)"
-    },
-    "nida-L05-05-E04": {
-      "type": "drill",
-      "content": "កុំ កុំ កុំកុំ សុំ សុំ សុំសុំ ដុំ ដុំ ដុំដុំ ហ៊ាន ស៊ុប កុំ សុំ ដុំ ហ៊ាន កុំកុំ សុំសុំ ដុំដុំ",
-      "description": "Rhythm and cadence reinforcement for Compound ុំ (,) and ៊ (/)"
-    },
-    "nida-L05-06-E05": {
-      "type": "drill",
-      "content": "ញញញ ញ ញញ ក្ក ក្ម ស្ម ត្ម ញញ ញ ញញ ក្តារ ក្មេង ច្បាប់ ខ្លា ញញញ ញ ញញ",
-      "description": "Rhythm and cadence reinforcement for ញ (J) and Subscript ្ (Shift+J)"
-    },
-    "nida-L05-07-E03": {
-      "type": "drill",
-      "content": "ក្រ ក្រ ក្រក្រ ស្រ ស្រ ស្រស្រ ប្រ ប្រ ប្រប្រ ត្រ ត្រ ត្រត្រ ក្រចក ប្រាក់ ស្រុក ច្រក ត្រី ក្រៅ ស្រឡាញ់ ក្រ ស្រ ប្រ ត្រ",
-      "description": "Rhythm and cadence reinforcement for Consonant Clusters (ក្រ, ស្រ, ប្រ)"
-    },
-    "nida-L05-08-E04": {
-      "type": "drill",
-      "content": "រៀន ដឹង កុំ ប្រាក់ ក្មេង ក្តារ ច្បាប់ ខ្លា រៀន ដឹង កុំ ប្រាក់ ក្រចក ស្រុក",
-      "description": "Rhythm and cadence reinforcement for Base Layer Mastery Review"
-    },
-    "nida-L06-01-E03": {
-      "type": "drill",
-      "content": "គគ ជជ គគជ ជជគ គជ ជគ គគ ជជ គិត ជិត ជា ជាតិ គោក ជោគ គគ ជជ គិត ជិត ជា ជាតិ",
-      "description": "Shifted consonants pair drills and real words"
-    },
-    "nida-L06-02-E03": {
-      "type": "drill",
-      "content": "ទទ ធធ ទទធ ធធទ ទធ ធទ ទទ ធធ ទា ទាន ធាត ទោស ទាក់ ធាក់ ទទ ធធ ទា ទាន ធាក់",
-      "description": "Shifted dental consonants and real words"
-    },
-    "nida-L06-03-E03": {
-      "type": "drill",
-      "content": "ពព ភភ ពពភ ភភព ពភ ភព ពព ភភ ពុក ពាក់ ពិត ភាព ភាគ ភោគ ពព ភភ ពុក ពាក់ ភាព",
-      "description": "Shifted labial consonants and real words"
-    },
-    "nida-L06-04-E03": {
-      "type": "drill",
-      "content": "ឌឌ ណណ ឌឌណ ណណឌ ឌណ ណឌ ឌឌ ណណ គណនា គុណ អាណា កាណូត ឌឌ ណណ ឌណ ណឌ គណនា គុណ",
-      "description": "Shifted retroflex consonants and real words"
-    },
-    "nida-L06-05-E03": {
-      "type": "drill",
-      "content": "អអ អអ អាអា អាន អាហារ អាកាស អាសនៈ អអ អអ អាន អាហារ អាកាស អាសនៈ",
-      "description": "Vowel anchor / independent reach and authentic words"
-    },
-    "nida-L06-06-E03": {
-      "type": "drill",
-      "content": "ឃឃ ឈឈ ឍឍ ឡឡ ឈរ ឡាន ឃាត ឈាន ឡោឡា ឃឃ ឈឈ ឍឍ ឡឡ ឈរ ឡាន ឃាត",
-      "description": "Rare consonants and authentic vocabulary"
-    },
-    "nida-L06-07-E03": {
-      "type": "drill",
-      "content": "ក គ ខ ឃ ច ជ ដ ឌ ត ទ ប ផ ស ហ ក គ ខ ឃ ច ជ ដ ឌ ត ទ ប ផ",
-      "description": "Rhythm and cadence reinforcement for Base vs Shift Pairs Drill"
-    },
-    "nida-L06-08-E03": {
-      "type": "drill",
-      "content": "ធំ ភ្នំ ឃុំ ឈើ ឡាន គំនិត ធំ ភ្នំ ឃុំ ឈើ ឡាន គំនិត ធំ ភ្នំ ឃុំ ឈើ",
-      "description": "Rhythm and cadence reinforcement for Shift Consonants Review"
-    },
-    "nida-L07-01-E03": {
-      "type": "drill",
-      "content": "កី កី កីកី គូ គូ គូគូ ដី ដី ដីដី ពូ ពូ ពូពូ កី គូ ដី ពូ កីកី គូគូ ដីដី ពូពូ",
-      "description": "Rhythm and cadence reinforcement for ី (Shift+I) and ូ (Shift+U)"
-    },
-    "nida-L07-02-E03": {
-      "type": "drill",
-      "content": "កែ កែ កែកែ ថែ ថែ ថែថែ ដៃ ដៃ ដៃដៃ ព្រៃ ព្រៃ ព្រៃព្រៃ កែ ថែ ដៃ ព្រៃ កែកែ ថែថែ ដៃដៃ ព្រៃព្រៃ",
-      "description": "Rhythm and cadence reinforcement for ែ (Shift+E) and ៃ (Shift+S)"
-    },
-    "nida-L07-03-E03": {
-      "type": "drill",
-      "content": "គួរ គួរ គួរបួន ដៅ ដៅ ដៅដៅ ទៅ ទៅ ទៅទៅ គួរ ដៅ ទៅ បួន គួរបួន ដៅដៅ ទៅទៅ",
-      "description": "Rhythm and cadence reinforcement for ួ (Shift+Y) and ៅ (Shift+O)"
-    },
-    "nida-L07-04-E03": {
-      "type": "drill",
-      "content": "ចាំ ចាំ ចាំចាំ នាំ នាំ នាំនាំ កំ កំ កំកំ ធំ ធំ ធំធំ ចាំ នាំ កំ ធំ ចាំចាំ នាំនាំ កំកំ ធំធំ",
-      "description": "Rhythm and cadence reinforcement for ាំ (Shift+A) and ំ (Shift+M)"
-    },
-    "nida-L07-05-E03": {
-      "type": "drill",
-      "content": "ចេះ ចេះ ចេះចេះ ដោះ ដោះ ដោះដោះ ចុះ ចុះ ចុះចុះ ផ្ទះ ផ្ទះ ផ្ទះផ្ទះ ចេះ ដោះ ចុះ ផ្ទះ ចេះចេះ ដោះដោះ",
-      "description": "Rhythm and cadence reinforcement for ះ េះ ោះ ុះ"
-    },
-    "nida-L07-06-E03": {
-      "type": "drill",
-      "content": "ឈឺ ឈឺ ឈឺឈឺ រឿង រឿង រឿងរឿង លឿន លឿន លឿនលឿន ឈឺ រឿង លឿន ឈឺឈឺ រឿងរឿង លឿនលឿន",
-      "description": "Rhythm and cadence reinforcement for ឺ (Shift+W) and ឿ (Shift+[)"
-    },
-    "nida-L07-07-E03": {
-      "type": "drill",
-      "content": "កា កិ កី កឹ កឺ កុ កូ កួ កើ កឿ កៀ កេ កែ កៃ កោ កៅ កុំ កំ កាំ កះ កា កិ កី កឹ",
-      "description": "Rhythm and cadence reinforcement for All Vowels Review"
-    },
-    "nida-L08-01-E02": {
-      "type": "drill",
-      "content": "គ្រូ ប្រទេស ក្រុម ព្រៃ ស្រុក ក្រៅ គ្រូ ប្រទេស ក្រុម ព្រៃ ព្រះ ព្រឹក គ្រួសារ គ្រូ ប្រទេស",
-      "description": "Rhythm and cadence reinforcement for ្រ (Subscript R) Clusters"
-    },
-    "nida-L08-02-E02": {
-      "type": "drill",
-      "content": "ខ្លា ផ្លូវ ឆ្លើយ ភ្លៀង ធ្លាក់ ស្លឹក ខ្លា ផ្លូវ ឆ្លើយ ភ្លៀង ខ្លាំង ផ្លែ ខ្លា ផ្លូវ ឆ្លើយ",
-      "description": "Rhythm and cadence reinforcement for ្ល (Subscript L) Clusters"
-    },
-    "nida-L08-03-E02": {
-      "type": "drill",
-      "content": "កញ្ញា អំណាច ជំនួយ កម្ពុជា ធម្មជាតិ សម្បត្តិ កញ្ញា ជំនួយ កម្ពុជា ធម្មជាតិ",
-      "description": "Rhythm and cadence reinforcement for Subscript ញ ណ ន ម"
-    },
-    "nida-L08-04-E03": {
-      "type": "drill",
-      "content": "ក្ក ស្ស ត្ត ន្ន ចិត្ត សន្តិភាព សប្បាយ បញ្ញត្តិ ចិត្ត សប្បាយ ក្ក ស្ស ត្ត ន្ន",
-      "description": "Rhythm and cadence reinforcement for Doubled Consonants"
-    },
-    "nida-L08-05-E02": {
-      "type": "drill",
-      "content": "ស្ងួត ម្ហូប ក្បាល ស្អាត ស្ងប់ស្ងាត់ ស្តាប់ ស្ងួត ម្ហូប ក្បាល ស្អាត ស្តាប់",
-      "description": "Rhythm and cadence reinforcement for Complex Subscripts"
-    },
-    "nida-L08-06-E02": {
-      "type": "drill",
-      "content": "កម្ពុជា ប្រទេស ភាសាខ្មែរ ប្រវត្តិសាស្ត្រ អរគុណ សប្បាយ កម្ពុជា ប្រទេស ភាសាខ្មែរ",
-      "description": "Rhythm and cadence reinforcement for Coeng Mastery Review"
-    },
-    "nida-L09-01-E03": {
-      "type": "drill",
-      "content": "ប៉ា ប៉ា ប៉ាប៉ា ម៉ាក់ ម៉ាក់ ម៉ាក់ម៉ាក់ ហ៊ាន ហ៊ាន ហ៊ានហ៊ាន ប៉ា ម៉ាក់ ហ៊ាន ប៉ាប៉ា ម៉ាក់ម៉ាក់",
-      "description": "Rhythm and cadence reinforcement for ៉ (Shift+') and ៊ (Shift+/)"
-    },
-    "nida-L09-02-E03": {
-      "type": "drill",
-      "content": "ផ្សេងៗ ញឹកៗ តិចៗ ឆាប់ៗ ជារៀងរាល់ថ្ងៃ។ សិស្សទាំងអស់ខិតខំរៀនសូត្រ។ ខ្ញុំស្រឡាញ់ប្រទេសកម្ពុជា។",
-      "description": "Repeat symbol and phrase punctuation"
-    },
-    "nida-L09-03-E03": {
-      "type": "drill",
-      "content": "ព័ត៌មាន ធម៌ ពេជ្រ ដ៏ ប៉ុក៎ នុ៎ះ ព័ត៌មាន ធម៌ ពេជ្រ ដ៏ ប៉ុក៎ នុ៎ះ",
-      "description": "Rhythm and cadence reinforcement for Top Diacritics (័ ៌ ៍ ៏)"
     },
     "nida-L09-04-E03": {
       "type": "drill",
-      "content": "តម្លៃ ៥០០០៛ ចាយ ៛ ដូចតទៅ៖ ទី១៖ ទី២៖ រាយនាមដូចខាងក្រោម៖",
+      "content": "សូម កត់ត្រា ចំណុច សំខាន់ៗ ក្នុង មេរៀន ដូចខាងក្រោម៖ តម្លៃ៛ រាយនាមដូចខាងក្រោម៖",
       "description": "Riel currency symbol and colon"
+    },
+    "nida-L09-04-E04": {
+      "type": "drill",
+      "content": "តម្លៃ៛ ចាយ៛ ដូចតទៅ៖ កំណត់ចំណាំ៖ រាយនាមដូចខាងក្រោម៖ កំណត់ចំណាំ៖ ចាយ៛ រាយនាមដូចខាងក្រោម៖",
+      "description": "Riel currency symbol and colon"
+    },
+    "nida-L09-05-E01": {
+      "type": "word",
+      "content": "នៅ ថ្ងៃអាទិត្យ យើង អាន ព័ត៌មាន ផ្សេងៗ និង សម្រាក នៅ ផ្ទះ។ ចាយ៛",
+      "description": "Comprehensive diacritic review"
     },
     "nida-L09-05-E02": {
       "type": "drill",
-      "content": "ព័ត៌មាន ទូរស័ព្ទ អាទិត្យ ចាយ៛ ផ្សេងៗ ព្រះធម៌ កិត្តិយស ប្រយោជន៍ សម្បត្តិ សំឡេង",
+      "content": "នៅ ថ្ងៃអាទិត្យ យើង អាន ព័ត៌មាន ផ្សេងៗ និង សម្រាក នៅ ផ្ទះ។ ថ្ងៃអាទិត្យ",
       "description": "Diacritics in authentic vocabulary"
+    },
+    "nida-L09-05-E03": {
+      "type": "drill",
+      "content": "ការ រក្សា កិត្តិយស និង សេចក្តី ថ្លៃថ្នូរ ជា តម្លៃ ដ៏ ខ្ពង់ខ្ពស់៖ អក្ខរាវិរុទ្ធ",
+      "description": "Diacritics in authentic vocabulary"
+    },
+    "nida-L09-05-E04": {
+      "type": "drill",
+      "content": "នៅ ថ្ងៃអាទិត្យ យើង អាន ព័ត៌មាន ផ្សេងៗ និង សម្រាក នៅ ផ្ទះ។ ចាយ៛ ព័ត៌មាន ទូរស័ព្ទ អាទិត្យ",
+      "description": "Diacritics in authentic vocabulary"
+    },
+    "nida-L10-01-E01": {
+      "type": "word",
+      "content": "លោកពុក និង ម្តាយ តែងតែ ទូន្មាន កូន ចៅ ឱ្យ ខិតខំ រៀនសូត្រ។ លោកពុក",
+      "description": "Family vocabulary"
     },
     "nida-L10-01-E02": {
       "type": "drill",
-      "content": "ជីដូន ជីតា មីង ពូ បងស្រី ប្អូនប្រុស គ្រួសារ រីករាយ ស្រឡាញ់ គ្នា",
+      "content": "លោកពុក និង ម្តាយ តែងតែ ទូន្មាន កូន ចៅ ឱ្យ ខិតខំ រៀនសូត្រ។ សិស្សានុសិស្ស",
       "description": "Extended family vocabulary"
+    },
+    "nida-L10-01-E03": {
+      "type": "drill",
+      "content": "សមាជិក គ្រួសារ យើង ចេះ គោរព ស្រឡាញ់ និង ជួយ ទុក្ខធុរៈ គ្នា ទៅវិញទៅមក។ ប្អូនប្រុស",
+      "description": "Extended family vocabulary"
+    },
+    "nida-L10-01-E04": {
+      "type": "drill",
+      "content": "លោកពុក និង ម្តាយ តែងតែ ទូន្មាន កូន ចៅ ឱ្យ ខិតខំ រៀនសូត្រ។ លោកពុក ម្តាយ រាយនាមដូចខាងក្រោម៖",
+      "description": "Extended family vocabulary"
+    },
+    "nida-L10-02-E01": {
+      "type": "word",
+      "content": "សិស្សានុសិស្ស អាន សៀវភៅ ស្វែងរក ចំណេះដឹង ថ្មីៗ នៅ ក្នុង បណ្ណាល័យ។ តុ",
+      "description": "School vocabulary"
     },
     "nida-L10-02-E02": {
       "type": "drill",
-      "content": "បន្ទប់រៀន មិត្តភក្តិ ក្តារខៀន តុ កៅអី សាលារៀន ចំណេះដឹង បណ្ណាល័យ",
+      "content": "សិស្សានុសិស្ស អាន សៀវភៅ ស្វែងរក ចំណេះដឹង ថ្មីៗ នៅ ក្នុង បណ្ណាល័យ។ បន្ទប់រៀន",
       "description": "Extended school vocabulary"
+    },
+    "nida-L10-02-E03": {
+      "type": "drill",
+      "content": "គ្រូ បង្រៀន សរសេរ មេរៀន លើ ក្តារខៀន យ៉ាង ច្បាស់លាស់ ក្នុង បន្ទប់រៀន។ សិស្សានុសិស្ស",
+      "description": "Extended school vocabulary"
+    },
+    "nida-L10-02-E04": {
+      "type": "drill",
+      "content": "សិស្សានុសិស្ស អាន សៀវភៅ ស្វែងរក ចំណេះដឹង ថ្មីៗ នៅ ក្នុង បណ្ណាល័យ។ តុ សាលា សិស្ស មិត្តភក្តិ",
+      "description": "Extended school vocabulary"
+    },
+    "nida-L10-03-E01": {
+      "type": "word",
+      "content": "ម្ហូប ខ្មែរ មាន បាយ សម្ល ត្រី សាច់ និង បន្លែ ធម្មជាតិ ឆ្ងាញ់ ពិសា។ នៅ",
+      "description": "Food vocabulary"
     },
     "nida-L10-03-E02": {
       "type": "drill",
-      "content": "សម្ល ម្ហូប ផ្លែឈើ បង្អែម អង្ករ នំបុ័ង ឆ្ងាញ់ ទឹកត្រី ម្ហូបខ្មែរ",
+      "content": "ម្ហូប ខ្មែរ មាន បាយ សម្ល ត្រី សាច់ និង បន្លែ ធម្មជាតិ ឆ្ងាញ់ ពិសា។ ធម្មជាតិ",
       "description": "Extended food and culinary words"
+    },
+    "nida-L10-03-E03": {
+      "type": "drill",
+      "content": "ការ ទទួលទាន អាហារ ស្អាត និង ផ្លែឈើ ស្រស់ ជួយ ឱ្យ សុខភាព មាំមួន។ បាយ ទឹក ដូចខាងក្រោម៖",
+      "description": "Extended food and culinary words"
+    },
+    "nida-L10-03-E04": {
+      "type": "drill",
+      "content": "ម្ហូប ខ្មែរ មាន បាយ សម្ល ត្រី សាច់ និង បន្លែ ធម្មជាតិ ឆ្ងាញ់ ពិសា។ នៅ ត្រី រាយនាមដូចខាងក្រោម៖",
+      "description": "Extended food and culinary words"
+    },
+    "nida-L10-04-E01": {
+      "type": "word",
+      "content": "រាជធានី ភ្នំពេញ មាន ផ្លូវ ធំៗ សួនច្បារ ស្រស់ស្អាត និង វត្តអារាម បុរាណ។",
+      "description": "Places vocabulary"
     },
     "nida-L10-04-E02": {
       "type": "drill",
-      "content": "ស្រុក ខេត្ត រាជធានី ភ្នំពេញ ផ្លូវ សួនច្បារ វត្តអារាម មន្ទីរពេទ្យ",
+      "content": "រាជធានី ភ្នំពេញ មាន ផ្លូវ ធំៗ សួនច្បារ ស្រស់ស្អាត និង វត្តអារាម បុរាណ។ រាជធានី",
       "description": "Geographic and place vocabulary"
+    },
+    "nida-L10-04-E03": {
+      "type": "drill",
+      "content": "ប្រជាជន នៅ តាម ភូមិ ស្រុក និង ខេត្ត រស់នៅ ប្រកប ដោយ សុខដុមរមនា។ ផ្ទះ ភូមិ សិស្សានុសិស្ស",
+      "description": "Geographic and place vocabulary"
+    },
+    "nida-L10-04-E04": {
+      "type": "drill",
+      "content": "រាជធានី ភ្នំពេញ មាន ផ្លូវ ធំៗ សួនច្បារ ស្រស់ស្អាត និង វត្តអារាម បុរាណ។ រាជធានី ផ្សារ វត្តអារាម",
+      "description": "Geographic and place vocabulary"
+    },
+    "nida-L10-05-E01": {
+      "type": "word",
+      "content": "ទៅ មក ដើរ អាន សរសេរ និយាយ ជួយ ស្តាប់ រត់ ឈរ អង្គុយ ធ្វើការ គិតគូរ រៀន ទៅ",
+      "description": "Common verbs"
     },
     "nida-L10-05-E02": {
       "type": "drill",
-      "content": "អាន សរសេរ និយាយ ជួយ ស្តាប់ រត់ ឈរ អង្គុយ ធ្វើការ គិតគូរ អាន សរសេរ",
+      "content": "សិស្ស ល្អ ចេះ ស្តាប់ គ្រូ ពន្យល់ អាន សៀវភៅ និង សរសេរ មេរៀន បាន ត្រឹមត្រូវ។ ស្តាប់",
       "description": "High-frequency action verbs"
+    },
+    "nida-L10-05-E03": {
+      "type": "drill",
+      "content": "ពេល អង្គុយ វាយ អក្សរ យើង ត្រូវ ដាក់ ខ្លួន ឱ្យ ត្រង់ និង គិតគូរ ឱ្យ ច្បាស់។ សិស្សានុសិស្ស",
+      "description": "High-frequency action verbs"
+    },
+    "nida-L10-05-E04": {
+      "type": "drill",
+      "content": "ទៅ មក ដើរ អាន សរសេរ និយាយ ជួយ ស្តាប់ រត់ ឈរ អង្គុយ ធ្វើការ គិតគូរ រៀន ទៅ មក ដើរ អាន សរសេរ រៀនសូត្រ។",
+      "description": "High-frequency action verbs"
+    },
+    "nida-L10-06-E01": {
+      "type": "word",
+      "content": "ការ សរសេរ អក្សរ ខ្មែរ ឱ្យ បាន ស្អាតបាត និង ត្រឹមត្រូវ ជា ទម្លាប់ ដ៏ ល្អ។ ធំ",
+      "description": "Adjectives"
     },
     "nida-L10-06-E02": {
       "type": "drill",
-      "content": "ខ្ពស់ ទាប វែង ខ្លី ថ្មី ចាស់ ស្រួល ពិបាក រហ័ស ស្អាតបាត",
+      "content": "ការ សរសេរ អក្សរ ខ្មែរ ឱ្យ បាន ស្អាតបាត និង ត្រឹមត្រូវ ជា ទម្លាប់ ដ៏ ល្អ។ ត្រឹមត្រូវ",
       "description": "Descriptive adjectives pairs"
+    },
+    "nida-L10-06-E03": {
+      "type": "drill",
+      "content": "ទោះបី មេរៀន ថ្មី ពិបាក បន្តិច ក្តី ការ ព្យាយាម នឹង ធ្វើ ឱ្យ យើង វាយ បាន រហ័ស។ សិស្សានុសិស្ស",
+      "description": "Descriptive adjectives pairs"
+    },
+    "nida-L10-06-E04": {
+      "type": "drill",
+      "content": "ការ សរសេរ អក្សរ ខ្មែរ ឱ្យ បាន ស្អាតបាត និង ត្រឹមត្រូវ ជា ទម្លាប់ ដ៏ ល្អ។ ធំ ល្អ ស្អាត សិស្សានុសិស្ស",
+      "description": "Descriptive adjectives pairs"
+    },
+    "nida-L10-07-E01": {
+      "type": "word",
+      "content": "ក្នុង ១ សប្តាហ៍ មាន ៧ ថ្ងៃ ហើយ ក្នុង ១ ឆ្នាំ មាន ១២ ខែ ឬ ៣៦៥ ថ្ងៃ។ ម្ហូបខ្មែរ",
+      "description": "Time words"
     },
     "nida-L10-07-E02": {
       "type": "drill",
-      "content": "០១២ ៣៤៥ ៦៧៨ ៩ ឆ្នាំ ២០២៦ ម៉ោង ៧ ព្រឹក ថ្ងៃទី ១៥ ខែ មេសា ១០០ ភាគរយ ០១២ ៣៤៥ ៦៧៨",
+      "content": "ក្នុង ១ សប្តាហ៍ មាន ៧ ថ្ងៃ ហើយ ក្នុង ១ ឆ្នាំ មាន ១២ ខែ ឬ ៣៦៥ ថ្ងៃ។ ថ្ងៃ ខែ មន្ទីរពេទ្យ",
       "description": "Rhythm and cadence reinforcement for Time and Numbers"
+    },
+    "nida-L10-07-E03": {
+      "type": "drill",
+      "content": "នៅ ឆ្នាំ ២០២៦ សិស្ស ជាង ៥០០ នាក់ បាន ហាត់ វាយ អក្សរ បាន ១០០ ភាគរយ។ ឆ្នាំ ម៉ោង ព្រឹក សុខដុមរមនា។",
+      "description": "Rhythm and cadence reinforcement for Time and Numbers"
+    },
+    "nida-L10-07-E04": {
+      "type": "drill",
+      "content": "ក្នុង ១ សប្តាហ៍ មាន ៧ ថ្ងៃ ហើយ ក្នុង ១ ឆ្នាំ មាន ១២ ខែ ឬ ៣៦៥ ថ្ងៃ។ ម្ហូបខ្មែរ យប់ ០ ១ ២ ៣ ៤ ត្រឹមត្រូវ។",
+      "description": "Rhythm and cadence reinforcement for Time and Numbers"
+    },
+    "nida-L10-08-E01": {
+      "type": "word",
+      "content": "ប្រជាជន កម្ពុជា រួម សាមគ្គីភាព គ្នា ថែរក្សា សន្តិភាព និង វប្បធម៌ ជាតិ។ ប្រទេស",
+      "description": "Major Khmer vocabulary"
     },
     "nida-L10-08-E02": {
       "type": "drill",
-      "content": "វប្បធម៌ អរិយធម៌ ការអភិវឌ្ឍ សាមគ្គីភាព រីកចម្រើន ប្រទេសជាតិ មាតុភូមិ",
+      "content": "ប្រជាជន កម្ពុជា រួម សាមគ្គីភាព គ្នា ថែរក្សា សន្តិភាព និង វប្បធម៌ ជាតិ។ កម្ពុជា ប្រជាជន",
       "description": "Advanced vocabulary review"
+    },
+    "nida-L10-08-E03": {
+      "type": "drill",
+      "content": "ការអភិវឌ្ឍ ចំណេះដឹង នាំ មក នូវ ភាព រីកចម្រើន ដល់ មាតុភូមិ ជាទី ស្រឡាញ់។ ភាសាខ្មែរ សន្តិភាព វប្បធម៌",
+      "description": "Advanced vocabulary review"
+    },
+    "nida-L10-08-E04": {
+      "type": "drill",
+      "content": "ប្រជាជន កម្ពុជា រួម សាមគ្គីភាព គ្នា ថែរក្សា សន្តិភាព និង វប្បធម៌ ជាតិ។ ប្រទេស អរិយធម៌ ការអភិវឌ្ឍ សាមគ្គីភាព",
+      "description": "Advanced vocabulary review"
+    },
+    "nida-L11-01-E01": {
+      "type": "sentence",
+      "content": "ខ្ញុំ រៀន ភាសា ខ្មែរ ជារៀងរាល់ថ្ងៃ ដោយ យកចិត្តទុកដាក់។ សាលា យើង ស្អាត និង មាន ដើមឈើ ធំៗ។",
+      "description": "ប្រយោគខ្លីៗ ទី ១"
+    },
+    "nida-L11-01-E02": {
+      "type": "sentence",
+      "content": "ប្រទេស កម្ពុជា មាន ធម្មជាតិ និង ប្រាសាទ បុរាណ ស្រស់ ស្អាត ណាស់ នៅ គ្រប់ ខេត្ត ក្រុង ទាំងអស់។",
+      "description": "ប្រយោគខ្លីៗ ទី ២"
     },
     "nida-L11-01-E03": {
       "type": "drill",
-      "content": "ខ្ញុំ រៀន ភាសា ខ្មែរ។ កម្ពុជា ជា ប្រទេស ស្អាត។ ខ្ញុំ រៀន ភាសា ខ្មែរ។",
-      "description": "Rhythm and cadence reinforcement for Short Sentences (Shift+Space)"
+      "content": "សាលារៀន ជា កន្លែង បណ្តុះ ចំណេះដឹង និង សីលធម៌ ដ៏ ល្អ ប្រពៃ សម្រាប់ កូន ខ្មែរ គ្រប់ រូប នៅ ថ្ងៃនេះ។",
+      "description": "ប្រយោគខ្លីៗ ទី ៣"
+    },
+    "nida-L11-01-E04": {
+      "type": "drill",
+      "content": "យើង ទាំងអស់ គ្នា ស្រឡាញ់ ការ អាន សៀវភៅ និង ការ សរសេរ អក្សរ ខ្មែរ ឱ្យ បាន ត្រឹមត្រូវ ល្អ ជានិច្ច។",
+      "description": "ប្រយោគខ្លីៗ ទី ៤"
+    },
+    "nida-L11-02-E01": {
+      "type": "sentence",
+      "content": "ការ ហ្វឹកហាត់ វាយ អក្សរ ជួយ ឱ្យ យើង សរសេរ អត្ថបទ បាន រហ័ស និង ត្រឹមត្រូវ ល្អ នៅ ក្នុង ការងារ។",
+      "description": "ប្រយោគមធ្យម ទី ១"
+    },
+    "nida-L11-02-E02": {
+      "type": "sentence",
+      "content": "ចូរ ដាក់ ម្រាមដៃ លើ ជួរដេក ដើម ជានិច្ច ដើម្បី វាយ គ្រាប់ចុច ដោយ មិន បាច់ មើល ក្តារចុច កុំព្យូទ័រ។",
+      "description": "ប្រយោគមធ្យម ទី ២"
+    },
+    "nida-L11-02-E03": {
+      "type": "sentence",
+      "content": "នៅពេល យើង វាយ អក្សរ បាន ស្ទាត់ជំនាញ យើង អាច គិត ផ្តោត លើ អត្ថន័យ នៃ គំនិត បាន យ៉ាង ល្អ ប្រសើរ។",
+      "description": "ប្រយោគមធ្យម ទី ៣"
+    },
+    "nida-L11-02-E04": {
+      "type": "sentence",
+      "content": "ចង្វាក់ នៃ ការ ចុច គ្រាប់ចុច ស្មើៗ គ្នា ប្រសើរ ជាង ការ បង្ខំ វាយ លឿន ជ្រុល ហើយ មាន កំហុស ច្រើន។",
+      "description": "ប្រយោគមធ្យម ទី ៤"
+    },
+    "nida-L11-03-E01": {
+      "type": "sentence",
+      "content": "ភាសាខ្មែរ ជា ភាសា ផ្លូវការ នៃ ព្រះរាជាណាចក្រ កម្ពុជា ដែល មាន ប្រវត្តិសាស្ត្រ ដ៏ យូរលង់ ណាស់ មក ហើយ។",
+      "description": "ប្រយោគវែង ទី ១"
+    },
+    "nida-L11-03-E02": {
+      "type": "sentence",
+      "content": "អក្សរសាស្ត្រ ខ្មែរ ជា ដួងព្រលឹង នៃ វប្បធម៌ ជាតិ ដែល កូន ខ្មែរ គ្រប់ រូប ត្រូវ ចូលរួម ថែរក្សា ការពារ។",
+      "description": "ប្រយោគវែង ទី ២"
+    },
+    "nida-L11-03-E03": {
+      "type": "sentence",
+      "content": "ការ ប្រើប្រាស់ ភាសា ខ្មែរ នៅ លើ ប្រព័ន្ធ បច្ចេកវិទ្យា ឌីជីថល ជួយ ផ្សព្វផ្សាយ ចំណេះដឹង ឱ្យ កាន់តែ ទូលំទូលាយ។",
+      "description": "ប្រយោគវែង ទី ៣"
+    },
+    "nida-L11-03-E04": {
+      "type": "sentence",
+      "content": "សិស្ស និស្សិត គួរ ពង្រឹង សមត្ថភាព វាយ អក្សរ ខ្មែរ ឱ្យ បាន ស្ទាត់ជំនាញ សម្រាប់ ការ សិក្សា និង ការងារ សម័យ ថ្មី។",
+      "description": "ប្រយោគវែង ទី ៤"
+    },
+    "nida-L11-04-E01": {
+      "type": "paragraph",
+      "content": "ការ រៀន វាយ អក្សរ ទាមទារ ការ អត់ធ្មត់ និង ការ ព្យាយាម ហ្វឹកហាត់ បន្តិច ម្តងៗ ជារៀងរាល់ថ្ងៃ ដោយ យកចិត្តទុកដាក់។",
+      "description": "កថាខណ្ឌខ្លី ទី ១"
+    },
+    "nida-L11-04-E02": {
+      "type": "paragraph",
+      "content": "កាលណា យើង ផ្តោត ចិត្ត លើ ភាព ត្រឹមត្រូវ ជាមុន ល្បឿន នៃ ការ វាយ អក្សរ នឹង កើន ឡើង ដោយ ធម្មជាតិ ជាមិនខាន។",
+      "description": "កថាខណ្ឌខ្លី ទី ២"
+    },
+    "nida-L11-04-E03": {
+      "type": "paragraph",
+      "content": "កុំ បាក់ទឹកចិត្ត នៅពេល មាន កំហុស បន្តិចបន្តួច ព្រោះ រាល់ ការ កែតម្រូវ ធ្វើ ឱ្យ ម្រាមដៃ កាន់តែ ចងចាំ ទីតាំង គ្រាប់ចុច។",
+      "description": "កថាខណ្ឌខ្លី ទី ៣"
+    },
+    "nida-L11-04-E04": {
+      "type": "paragraph",
+      "content": "អ្នក ដែល ខិតខំ ហាត់ វាយ អក្សរ តាម លំដាប់ មេរៀន តែងតែ ទទួល បាន លទ្ធផល ល្អ ប្រសើរ និង មាន ទំនុកចិត្ត ខ្ពស់ ជានិច្ច។",
+      "description": "កថាខណ្ឌខ្លី ទី ៤"
+    },
+    "nida-L11-05-E01": {
+      "type": "paragraph",
+      "content": "ប្រាសាទ អង្គរវត្ត ជា សម្បត្តិ វប្បធម៌ ដ៏ ពិសិដ្ឋ របស់ ជាតិ ខ្មែរ និង ជា អច្ឆរិយវត្ថុ ដ៏ អស្ចារ្យ នៃ ពិភពលោក ទាំងមូល។",
+      "description": "អត្ថបទវប្បធម៌ ទី ១"
     },
     "nida-L11-05-E02": {
       "type": "drill",
-      "content": "របាំព្រះរាជទ្រព្យ និងល្ខោនខោល ជាមរតកវប្បធម៌អរូបីដ៏មានតម្លៃមិនអាចកាត់ថ្លៃបាននៃប្រជាជាតិកម្ពុជា។",
-      "description": "Khmer cultural heritage paragraph"
+      "content": "របាំព្រះរាជទ្រព្យ និង ល្ខោនខោល ជា មរតក វប្បធម៌ អរូបី ដ៏ មាន តម្លៃ មិន អាច កាត់ថ្លៃ បាន នៃ ប្រជាជាតិ កម្ពុជា។",
+      "description": "អត្ថបទវប្បធម៌ ទី ២"
+    },
+    "nida-L11-05-E03": {
+      "type": "drill",
+      "content": "បុព្វបុរស ខ្មែរ បាន កសាង ប្រាង្គ ប្រាសាទ សិលាចារឹក និង ក្បាច់ចម្លាក់ ដ៏ វិចិត្រ បន្សល់ ទុក ឱ្យ កូនចៅ ជំនាន់ ក្រោយ ថែរក្សា។",
+      "description": "អត្ថបទវប្បធម៌ ទី ៣"
+    },
+    "nida-L11-05-E04": {
+      "type": "drill",
+      "content": "យុវជន ជំនាន់ ថ្មី មាន តួនាទី សិក្សា ស្វែងយល់ និង ការពារ មរតក វប្បធម៌ ជាតិ ឱ្យ គង់វង្ស ស្ថិតស្ថេរ រុងរឿង តទៅ អនាគត។",
+      "description": "អត្ថបទវប្បធម៌ ទី ៤"
+    },
+    "nida-L11-06-E01": {
+      "type": "paragraph",
+      "content": "សូម ស្វាគមន៍ មកកាន់ កម្មវិធី ហាត់ វាយ អក្សរ ខ្មែរ ដែល រៀបចំ ឡើង តាម គោលការណ៍ គរុកោសល្យ ច្បាស់លាស់ សម្រាប់ អ្នក សិក្សា។",
+      "description": "លំហាត់កថាខណ្ឌរួម ទី ១"
     },
     "nida-L11-06-E02": {
       "type": "drill",
-      "content": "ការវាយអក្សរដោយប្រើម្រាមដៃទាំងដប់ជួយបង្កើនល្បឿន និងប្រសិទ្ធភាពក្នុងការងារប្រចាំថ្ងៃរបស់អ្នក។",
-      "description": "Touch typing benefits challenge paragraph"
+      "content": "ការ វាយ អក្សរ ដោយ ប្រើ ម្រាមដៃ ទាំង ដប់ ជួយ បង្កើន ល្បឿន និង ប្រសិទ្ធភាព ក្នុង ការងារ ប្រចាំថ្ងៃ របស់ អ្នក យ៉ាង ឆាប់រហ័ស។",
+      "description": "លំហាត់កថាខណ្ឌរួម ទី ២"
+    },
+    "nida-L11-06-E03": {
+      "type": "drill",
+      "content": "ចូរ រក្សា ទម្លាប់ អង្គុយ ឱ្យ ត្រង់ ខ្លួន សម្រាក ស្មា ឱ្យ ស្រួល ហើយ ដាក់ ភ្នែក មើល លើ អេក្រង់ ជានិច្ច ពេល កំពុង វាយ អត្ថបទ។",
+      "description": "លំហាត់កថាខណ្ឌរួម ទី ៣"
+    },
+    "nida-L11-06-E04": {
+      "type": "drill",
+      "content": "ការ បញ្ចប់ កម្រិត អត្ថបទ នេះ បង្ហាញ ថា អ្នក មាន មូលដ្ឋាន គ្រឹះ រឹងមាំ សម្រាប់ ឈាន ទៅ កាន់ កម្រិត ល្បឿន ខ្ពស់ នៅ មេរៀន បន្ទាប់។",
+      "description": "លំហាត់កថាខណ្ឌរួម ទី ៤"
+    },
+    "nida-L12-01-E01": {
+      "type": "drill",
+      "content": "ការ វាយ អក្សរ ខ្មែរ ដោយ ត្រឹមត្រូវ ជួយ បង្កើន ប្រសិទ្ធភាព ការងារ រដ្ឋបាល និង ការ សិក្សា ស្រាវជ្រាវ។",
+      "description": "លំហាត់ ១ នាទី — វគ្គទី ១"
+    },
+    "nida-L12-01-E02": {
+      "type": "drill",
+      "content": "នៅក្នុង លំហាត់ កំណត់ ពេល ១ នាទី នេះ សូម រក្សា ចង្វាក់ វាយ ឱ្យ ស្មើ ដោយ កុំ ប្រញាប់ ជ្រុល ពេក។",
+      "description": "លំហាត់ ១ នាទី — វគ្គទី ២"
+    },
+    "nida-L12-01-E03": {
+      "type": "drill",
+      "content": "ការ វាយ អក្សរ ខុស តិច បំផុត នឹង ជួយ ឱ្យ ល្បឿន សុទ្ធ របស់ អ្នក ខ្ពស់ ជាង ការ វាយ លឿន តែ ខុស ច្រើន។",
+      "description": "លំហាត់ ១ នាទី — វគ្គទី ៣"
+    },
+    "nida-L12-01-E04": {
+      "type": "drill",
+      "content": "ម្រាមដៃ នីមួយៗ ស្គាល់ តួនាទី របស់ ខ្លួន លើ គ្រាប់ចុច ទាំង ជួរ កណ្តាល ជួរ លើ និង ជួរ ក្រោម យ៉ាង ច្បាស់។",
+      "description": "លំហាត់ ១ នាទី — វគ្គទី ៤"
+    },
+    "nida-L12-01-E05": {
+      "type": "drill",
+      "content": "សូម បញ្ចប់ វគ្គ ទី ៥ នៃ លំហាត់ កំណត់ ពេល នេះ ដោយ ទំនុកចិត្ត និង ភាព ស្ទាត់ជំនាញ ខ្ពស់ បំផុត របស់ អ្នក។",
+      "description": "លំហាត់ ១ នាទី — វគ្គទី ៥"
+    },
+    "nida-L12-02-E01": {
+      "type": "drill",
+      "content": "ចូរ បន្ត ការ ហ្វឹកហាត់ រាល់ ថ្ងៃ ដើម្បី រក្សា ភាព ស្ទាត់ជំនាញ លើ ក្តារចុច កុំព្យូទ័រ របស់ អ្នក ជានិច្ច។",
+      "description": "លំហាត់ ៣ នាទី — វគ្គទី ១"
     },
     "nida-L12-02-E02": {
       "type": "drill",
-      "content": "ការតស៊ូព្យាយាមហ្វឹកហាត់ដោយយកចិត្តទុកដាក់ នឹងនាំមកនូវភាពជោគជ័យដ៏ត្រចះត្រចង់ក្នុងការងារ។",
-      "description": "Practice and persistence timed drill"
+      "content": "ការ ខិតខំ ព្យាយាម ហ្វឹកហាត់ ដោយ យកចិត្តទុកដាក់ នឹង នាំ មក នូវ ភាព ជោគជ័យ ដ៏ ត្រចះត្រចង់ ក្នុង ការងារ។",
+      "description": "លំហាត់ ៣ នាទី — វគ្គទី ២"
+    },
+    "nida-L12-02-E03": {
+      "type": "drill",
+      "content": "នៅពេល វាយ អត្ថបទ វែងៗ កំណត់ ពេល ៣ នាទី ការ ដកដង្ហើម មួយៗ និង ការ ដាក់ ដៃ ស្រាលៗ ជួយ កាត់បន្ថយ ការ នឿយហត់។",
+      "description": "លំហាត់ ៣ នាទី — វគ្គទី ៣"
+    },
+    "nida-L12-02-E04": {
+      "type": "drill",
+      "content": "សមត្ថភាព សរសេរ អត្ថបទ ខ្មែរ បាន លឿន និង ត្រឹមត្រូវ តាម អក្ខរាវិរុទ្ធ គឺជា ជំនាញ ដ៏ មាន តម្លៃ នា សម័យ ទំនើប។",
+      "description": "លំហាត់ ៣ នាទី — វគ្គទី ៤"
+    },
+    "nida-L12-02-E05": {
+      "type": "drill",
+      "content": "រាល់ នាទី ដែល អ្នក ចំណាយ លើ ការ ហាត់ វាយ អក្សរ ថ្ងៃនេះ នឹង ផ្តល់ ផល ប្រយោជន៍ ដ៏ ធំធេង រាប់ ឆ្នាំ ទៅ មុខ ទៀត។",
+      "description": "លំហាត់ ៣ នាទី — វគ្គទី ៥"
+    },
+    "nida-L12-03-E01": {
+      "type": "drill",
+      "content": "វាយ ឱ្យ បាន លឿន និង ត្រឹមត្រូវ បំផុត ដើម្បី បំបែក កំណត់ត្រា ល្បឿន ផ្ទាល់ខ្លួន របស់ អ្នក នៅ ថ្ងៃនេះ។",
+      "description": "ប្រកួតល្បឿន — វគ្គទី ១"
+    },
+    "nida-L12-03-E02": {
+      "type": "drill",
+      "content": "ការ ប្រកួត ប្រជែង ដ៏ ល្អ បំផុត គឺ ការ យកឈ្នះ លើ កំណត់ត្រា ចាស់ របស់ យើង ពី មួយ ថ្ងៃ ទៅ មួយ ថ្ងៃ។",
+      "description": "ប្រកួតល្បឿន — វគ្គទី ២"
+    },
+    "nida-L12-03-E03": {
+      "type": "drill",
+      "content": "សូម ផ្តោត អារម្មណ៍ លើ ពាក្យ ខាងមុខ មួយ ឬ ពីរ ពាក្យ ដើម្បី ឱ្យ ម្រាមដៃ ត្រៀម ចុច គ្រាប់ចុច បន្ទាប់ ទាន់ ពេលវេលា។",
+      "description": "ប្រកួតល្បឿន — វគ្គទី ៣"
+    },
+    "nida-L12-03-E04": {
+      "type": "drill",
+      "content": "ការ គួបផ្សំ រវាង ជើង អក្សរ តួអក្សរ ផ្សំ និង វណ្ណយុត្តិ ខ្មែរ ពេលនេះ ក្លាយជា ចលនា ធម្មជាតិ ដ៏ ល្អ របស់ ម្រាមដៃ អ្នក។",
+      "description": "ប្រកួតល្បឿន — វគ្គទី ៤"
+    },
+    "nida-L12-03-E05": {
+      "type": "drill",
+      "content": "បន្ត ល្បឿន និង ភាព ច្បាស់លាស់ ឥត ឈប់ឈរ រហូត ដល់ តួអក្សរ ចុងក្រោយ នៃ ការ សាកល្បង ល្បឿន កម្រិត ខ្ពស់ នេះ។",
+      "description": "ប្រកួតល្បឿន — វគ្គទី ៥"
+    },
+    "nida-L12-04-E01": {
+      "type": "drill",
+      "content": "ឪពុក ឧត្តម ឱកាស ឯកសារ ឥឡូវ ឦសាន ឩសាន ឫស្សី ឬកពា ឭកិក ឮសូរ ឰដ៏ ឳសថ តួអក្សរ ពេញតួ ខ្មែរ។",
+      "description": "ស្រៈពេញតួទាំងអស់ — វគ្គទី ១"
     },
     "nida-L12-04-E02": {
       "type": "drill",
-      "content": "ឥឥ ឦឦ ឧឧ ឩឩ ឪឪ ឫឫ ឬឬ ឭឭ ឮឮ ឯឯ ឰឰ ឱឱ ឳឳ ឪពុក ឥឡូវ ឦសាន ឧត្តម ឫស្សី ឯកសារ ឱកាស",
-      "description": "Rhythm and cadence reinforcement for Independent Vowels Bonus"
+      "content": "ឥឥ ឦឦ ឧឧ ឩឩ ឪឪ ឫឫ ឬឬ ឭឭ ឮឮ ឯឯ ឰឰ ឱឱ ឳឳ ឪពុក ឥឡូវ ឦសាន ឧត្តម ឫស្សី ឯកសារ ឱកាស ល្អ ប្រសើរ។",
+      "description": "ស្រៈពេញតួទាំងអស់ — វគ្គទី ២"
+    },
+    "nida-L12-04-E03": {
+      "type": "drill",
+      "content": "ឪពុក រៀបចំ ឯកសារ សំខាន់ៗ នៅ ឥឡូវ នេះ ដើម្បី ផ្តល់ ឱកាស សិក្សា ដ៏ ឧត្តម ដល់ កូនៗ គ្រប់ គ្នា នៅ ក្នុង គ្រួសារ យើង។",
+      "description": "ស្រៈពេញតួទាំងអស់ — វគ្គទី ៣"
+    },
+    "nida-L12-04-E04": {
+      "type": "drill",
+      "content": "នៅ ភូមិភាគ ឦសាន នៃ ប្រទេស កម្ពុជា មាន ព្រៃ ឫស្សី ធម្មជាតិ និង រុក្ខជាតិ ធ្វើ ជា ឳសថ បុរាណ ដ៏ មាន តម្លៃ ខ្ពស់ ណាស់។",
+      "description": "ស្រៈពេញតួទាំងអស់ — វគ្គទី ៤"
+    },
+    "nida-L12-04-E05": {
+      "type": "drill",
+      "content": "ការ ស្គាល់ តួអក្សរ ពេញតួ ទាំងអស់ ជួយ ឱ្យ យើង វាយ ពាក្យ បាលី សំស្ក្រឹត និង ពាក្យ ខ្មែរ កម្រិត ខ្ពស់ បាន គ្រប់ តួ ដោយ ស្ទាត់ជំនាញ។",
+      "description": "ស្រៈពេញតួទាំងអស់ — វគ្គទី ៥"
+    },
+    "nida-L12-05-E01": {
+      "type": "test",
+      "content": "អបអរសាទរ។ អ្នក បាន បញ្ចប់ វគ្គ សិក្សា វាយ អក្សរ ខ្មែរ តាំងពី កម្រិត ដំបូង រហូត ដល់ កម្រិត ស្ទាត់ជំនាញ ដោយ ជោគជ័យ។",
+      "description": "ប្រឡងបញ្ចប់វគ្គ — វគ្គទី ១"
     },
     "nida-L12-05-E02": {
       "type": "drill",
-      "content": "ភាពស្ទាត់ជំនាញក្នុងការវាយអក្សរខ្មែរ គឺជាមូលដ្ឋានគ្រឹះដ៏សំខាន់សម្រាប់យុគសម័យឌីជីថលនាពេលបច្ចុប្បន្ន។",
-      "description": "Mastery assessment paragraph"
+      "content": "ភាពស្ទាត់ជំនាញ ក្នុង ការ វាយ អក្សរ ខ្មែរ ជា មូលដ្ឋានគ្រឹះ ដ៏ សំខាន់ សម្រាប់ ការ សិក្សា និង ការងារ ក្នុង សម័យ ឌីជីថល ថ្មី។",
+      "description": "ប្រឡងបញ្ចប់វគ្គ — វគ្គទី ២"
+    },
+    "nida-L12-05-E03": {
+      "type": "drill",
+      "content": "ចាប់តាំងពី ការ ដាក់ ម្រាមដៃ លើ គ្រាប់ចុច គោល ថ និង ក មក អ្នក អាច វាយ គ្រប់ តួអក្សរ ជើង អក្សរ និង លេខ បាន យ៉ាង លឿន។",
+      "description": "ប្រឡងបញ្ចប់វគ្គ — វគ្គទី ៣"
+    },
+    "nida-L12-05-E04": {
+      "type": "drill",
+      "content": "សូម បន្ត ប្រើប្រាស់ ចំណេះដឹង នេះ ដើម្បី បង្កើត ស្នាដៃ អត្ថបទ ល្អៗ និង លើក កម្ពស់ អក្សរសាស្ត្រ ជាតិ ខ្មែរ នៅ គ្រប់ វេទិកា។",
+      "description": "ប្រឡងបញ្ចប់វគ្គ — វគ្គទី ៤"
+    },
+    "nida-L12-05-E05": {
+      "type": "drill",
+      "content": "សូម ជូនពរ ឱ្យ អ្នក ទទួល បាន ជោគជ័យ គ្រប់ ភារកិច្ច សិក្សា និង រក្សា បាន នូវ ល្បឿន ព្រមទាំង ភាព ត្រឹមត្រូវ ខ្ពស់ ជានិច្ច ៕",
+      "description": "ប្រឡងបញ្ចប់វគ្គ — វគ្គទី ៥"
     }
   }
 }

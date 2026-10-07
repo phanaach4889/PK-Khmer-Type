@@ -39,9 +39,7 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "standard-L00-01-E01",
-        "standard-L00-01-E02",
-        "standard-L00-01-E03"
+        "standard-L00-01-E01"
       ],
       "unlockRequirements": {
         "previousLesson": null
@@ -75,9 +73,7 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "standard-L00-02-E01",
-        "standard-L00-02-E02",
-        "standard-L00-02-E03"
+        "standard-L00-02-E01"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L00-01"
@@ -103,8 +99,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L00-03-E01",
-        "standard-L00-03-E02",
-        "standard-L00-03-E03"
+        "standard-L00-03-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L00-02"
@@ -131,8 +126,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L00-04-E01",
-        "standard-L00-04-E02",
-        "standard-L00-04-E03"
+        "standard-L00-04-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L00-03"
@@ -167,9 +161,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L01-01-E01",
-        "standard-L01-01-E02",
-        "standard-L01-01-E03",
-        "standard-L01-01-E04"
+        "standard-L01-01-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L00-04"
@@ -212,9 +204,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L01-02-E01",
-        "standard-L01-02-E02",
-        "standard-L01-02-E03",
-        "standard-L01-02-E04"
+        "standard-L01-02-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L01-01"
@@ -249,9 +239,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L01-03-E01",
-        "standard-L01-03-E02",
-        "standard-L01-03-E03",
-        "standard-L01-03-E04"
+        "standard-L01-03-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L01-02"
@@ -294,9 +282,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L01-04-E01",
-        "standard-L01-04-E02",
-        "standard-L01-04-E03",
-        "standard-L01-04-E04"
+        "standard-L01-04-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L01-03"
@@ -320,9 +306,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L01-05-E01",
-        "standard-L01-05-E02",
-        "standard-L01-05-E03",
-        "standard-L01-05-E04"
+        "standard-L01-05-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L01-04"
@@ -357,9 +341,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L02-01-E01",
-        "standard-L02-01-E02",
-        "standard-L02-01-E03",
-        "standard-L02-01-E04"
+        "standard-L02-01-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L01-05"
@@ -394,9 +376,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L02-02-E01",
-        "standard-L02-02-E02",
-        "standard-L02-02-E03",
-        "standard-L02-02-E04"
+        "standard-L02-02-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L02-01"
@@ -422,9 +402,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L02-03-E01",
-        "standard-L02-03-E02",
-        "standard-L02-03-E03",
-        "standard-L02-03-E04"
+        "standard-L02-03-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L02-02"
@@ -448,9 +426,7 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L02-04-E01",
-        "standard-L02-04-E02",
-        "standard-L02-04-E03",
-        "standard-L02-04-E04"
+        "standard-L02-04-E02"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L02-03"
@@ -494,8 +470,7 @@
       "exerciseRefs": [
         "standard-L03-01-E01",
         "standard-L03-01-E02",
-        "standard-L03-01-E03",
-        "standard-L03-01-E04"
+        "standard-L03-01-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L02-04"
@@ -531,8 +506,7 @@
       "exerciseRefs": [
         "standard-L03-02-E01",
         "standard-L03-02-E02",
-        "standard-L03-02-E03",
-        "standard-L03-02-E04"
+        "standard-L03-02-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L03-01"
@@ -575,8 +549,7 @@
       "exerciseRefs": [
         "standard-L03-03-E01",
         "standard-L03-03-E02",
-        "standard-L03-03-E03",
-        "standard-L03-03-E04"
+        "standard-L03-03-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L03-02"
@@ -620,8 +593,7 @@
       "exerciseRefs": [
         "standard-L03-04-E01",
         "standard-L03-04-E02",
-        "standard-L03-04-E03",
-        "standard-L03-04-E04"
+        "standard-L03-04-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L03-03"
@@ -646,8 +618,7 @@
       "exerciseRefs": [
         "standard-L03-05-E01",
         "standard-L03-05-E02",
-        "standard-L03-05-E03",
-        "standard-L03-05-E04"
+        "standard-L03-05-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L03-04"
@@ -672,8 +643,7 @@
       "exerciseRefs": [
         "standard-L03-06-E01",
         "standard-L03-06-E02",
-        "standard-L03-06-E03",
-        "standard-L03-06-E04"
+        "standard-L03-06-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L03-05"
@@ -717,8 +687,7 @@
       "exerciseRefs": [
         "standard-L04-01-E01",
         "standard-L04-01-E02",
-        "standard-L04-01-E03",
-        "standard-L04-01-E04"
+        "standard-L04-01-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L03-06"
@@ -754,8 +723,7 @@
       "exerciseRefs": [
         "standard-L04-02-E01",
         "standard-L04-02-E02",
-        "standard-L04-02-E03",
-        "standard-L04-02-E04"
+        "standard-L04-02-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L04-01"
@@ -798,8 +766,7 @@
       "exerciseRefs": [
         "standard-L04-03-E01",
         "standard-L04-03-E02",
-        "standard-L04-03-E03",
-        "standard-L04-03-E04"
+        "standard-L04-03-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L04-02"
@@ -835,8 +802,7 @@
       "exerciseRefs": [
         "standard-L04-04-E01",
         "standard-L04-04-E02",
-        "standard-L04-04-E03",
-        "standard-L04-04-E04"
+        "standard-L04-04-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L04-03"
@@ -861,8 +827,7 @@
       "exerciseRefs": [
         "standard-L04-05-E01",
         "standard-L04-05-E02",
-        "standard-L04-05-E03",
-        "standard-L04-05-E04"
+        "standard-L04-05-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L04-04"
@@ -906,8 +871,7 @@
       "exerciseRefs": [
         "standard-L05-01-E01",
         "standard-L05-01-E02",
-        "standard-L05-01-E03",
-        "standard-L05-01-E04"
+        "standard-L05-01-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L04-05"
@@ -943,8 +907,7 @@
       "exerciseRefs": [
         "standard-L05-02-E01",
         "standard-L05-02-E02",
-        "standard-L05-02-E03",
-        "standard-L05-02-E04"
+        "standard-L05-02-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L05-01"
@@ -1024,8 +987,7 @@
       "exerciseRefs": [
         "standard-L05-04-E01",
         "standard-L05-04-E02",
-        "standard-L05-04-E03",
-        "standard-L05-04-E04"
+        "standard-L05-04-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L05-03"
@@ -1035,10 +997,10 @@
       "id": "standard-L05-05",
       "level": "standard-L05",
       "order": 5,
-      "title": "Compound ុំ (Shift+J) and ៊ (Shift+3)",
-      "titleKm": "ស្រៈផ្សំ ុំ (Shift+J) និង ៊ (Shift+3)",
-      "description": "Compound ុំ (Shift+J) and ៊ (Shift+3)",
-      "objective": "Master Compound ុំ (Shift+J) and ៊ (Shift+3)",
+      "title": "Compound ុំ (Shift+J)",
+      "titleKm": "ស្រៈផ្សំ ុំ (Shift+J)",
+      "description": "Compound ុំ (Shift+J)",
+      "objective": "Master Compound ុំ (Shift+J)",
       "type": "drill",
       "newKeys": [
         {
@@ -1046,17 +1008,10 @@
           "layer": "shift",
           "char": "ុំ",
           "finger": "ri"
-        },
-        {
-          "keyId": "k3",
-          "layer": "shift",
-          "char": "៊",
-          "finger": "lm"
         }
       ],
       "requiredKeys": [
-        "j",
-        "k3"
+        "j"
       ],
       "fingerFocus": [
         "rm",
@@ -1069,8 +1024,7 @@
       "exerciseRefs": [
         "standard-L05-05-E01",
         "standard-L05-05-E02",
-        "standard-L05-05-E03",
-        "standard-L05-05-E04"
+        "standard-L05-05-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L05-04"
@@ -1113,9 +1067,7 @@
       "exerciseRefs": [
         "standard-L05-06-E01",
         "standard-L05-06-E02",
-        "standard-L05-06-E03",
-        "standard-L05-06-E04",
-        "standard-L05-06-E05"
+        "standard-L05-06-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L05-05"
@@ -1165,8 +1117,7 @@
       "exerciseRefs": [
         "standard-L05-08-E01",
         "standard-L05-08-E02",
-        "standard-L05-08-E03",
-        "standard-L05-08-E04"
+        "standard-L05-08-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L05-07"
@@ -1657,10 +1608,10 @@
       "type": "drill",
       "newKeys": [
         {
-          "keyId": "h",
-          "layer": "shift",
+          "keyId": "semicolon",
+          "layer": "base",
           "char": "ះ",
-          "finger": "ri"
+          "finger": "rp"
         },
         {
           "keyId": "v",
@@ -1682,7 +1633,7 @@
         }
       ],
       "requiredKeys": [
-        "h",
+        "semicolon",
         "v",
         "bracketL",
         "g"
@@ -1785,7 +1736,8 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L08-01-E01",
-        "standard-L08-01-E02"
+        "standard-L08-01-E02",
+        "standard-L08-01-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L07-07"
@@ -1809,7 +1761,8 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L08-02-E01",
-        "standard-L08-02-E02"
+        "standard-L08-02-E02",
+        "standard-L08-02-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L08-01"
@@ -1833,7 +1786,8 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L08-03-E01",
-        "standard-L08-03-E02"
+        "standard-L08-03-E02",
+        "standard-L08-03-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L08-02"
@@ -1882,7 +1836,8 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L08-05-E01",
-        "standard-L08-05-E02"
+        "standard-L08-05-E02",
+        "standard-L08-05-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L08-04"
@@ -1906,7 +1861,8 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L08-06-E01",
-        "standard-L08-06-E02"
+        "standard-L08-06-E02",
+        "standard-L08-06-E03"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L08-05"
@@ -1916,10 +1872,10 @@
       "id": "standard-L09-01",
       "level": "standard-L09",
       "order": 1,
-      "title": "៉ (Shift+') and ៊ (Shift+3)",
-      "titleKm": "សញ្ញា ៉ និង ៊ (Shift+3)",
-      "description": "៉ (Shift+') and ៊ (Shift+3)",
-      "objective": "Master ៉ (Shift+') and ៊ (Shift+3)",
+      "title": "៉ (Shift+') Muusikatoan",
+      "titleKm": "សញ្ញាមូសិកទន្ត ៉ (Shift+')",
+      "description": "៉ (Shift+') Muusikatoan",
+      "objective": "Master ៉ (Shift+') Muusikatoan",
       "type": "drill",
       "newKeys": [
         {
@@ -1927,17 +1883,10 @@
           "layer": "shift",
           "char": "៉",
           "finger": "rp"
-        },
-        {
-          "keyId": "k3",
-          "layer": "shift",
-          "char": "៊",
-          "finger": "lm"
         }
       ],
       "requiredKeys": [
-        "quote",
-        "k3"
+        "quote"
       ],
       "fingerFocus": [],
       "difficulty": 8,
@@ -1947,7 +1896,8 @@
       "exerciseRefs": [
         "standard-L09-01-E01",
         "standard-L09-01-E02",
-        "standard-L09-01-E03"
+        "standard-L09-01-E03",
+        "standard-L09-01-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L08-06"
@@ -1988,7 +1938,8 @@
       "exerciseRefs": [
         "standard-L09-02-E01",
         "standard-L09-02-E02",
-        "standard-L09-02-E03"
+        "standard-L09-02-E03",
+        "standard-L09-02-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L09-01"
@@ -1998,28 +1949,22 @@
       "id": "standard-L09-03",
       "level": "standard-L09",
       "order": 3,
-      "title": "Top Diacritics (័ ៌ ៍ ៏ ៎ ៑)",
+      "title": "Top Diacritics (៍ ័ ៏ ៎ ៌)",
       "titleKm": "វណ្ណយុត្តិខាងលើ (័ ៌ ៍ ៏ ៎ ៑)",
       "description": "Top Diacritics (័ ៌ ៍ ៏ ៎ ៑)",
       "objective": "Master Top Diacritics (័ ៌ ៍ ៏ ៎ ៑)",
       "type": "drill",
       "newKeys": [
         {
-          "keyId": "k5",
-          "layer": "shift",
-          "char": "័",
-          "finger": "li"
-        },
-        {
           "keyId": "k6",
           "layer": "shift",
-          "char": "៌",
+          "char": "៍",
           "finger": "ri"
         },
         {
           "keyId": "k7",
           "layer": "shift",
-          "char": "៍",
+          "char": "័",
           "finger": "ri"
         },
         {
@@ -2037,12 +1982,11 @@
         {
           "keyId": "k0",
           "layer": "shift",
-          "char": "៑",
+          "char": "៌",
           "finger": "rp"
         }
       ],
       "requiredKeys": [
-        "k5",
         "k6",
         "k7",
         "k8",
@@ -2057,7 +2001,8 @@
       "exerciseRefs": [
         "standard-L09-03-E01",
         "standard-L09-03-E02",
-        "standard-L09-03-E03"
+        "standard-L09-03-E03",
+        "standard-L09-03-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L09-02"
@@ -2067,7 +2012,7 @@
       "id": "standard-L09-04",
       "level": "standard-L09",
       "order": 4,
-      "title": "៛ (Shift+4), ៈ (;) and ៖ (Shift+;)",
+      "title": "៛ (Shift+4) and ៖ (Shift+;)",
       "titleKm": "៛, ៈ និង ៖",
       "description": "៛ (Shift+4), ៈ (;) and ៖ (Shift+;)",
       "objective": "Master ៛ (Shift+4), ៈ (;) and ៖ (Shift+;)",
@@ -2078,12 +2023,6 @@
           "layer": "shift",
           "char": "៛",
           "finger": "li"
-        },
-        {
-          "keyId": "semicolon",
-          "layer": "base",
-          "char": "ៈ",
-          "finger": "rp"
         },
         {
           "keyId": "semicolon",
@@ -2104,7 +2043,8 @@
       "exerciseRefs": [
         "standard-L09-04-E01",
         "standard-L09-04-E02",
-        "standard-L09-04-E03"
+        "standard-L09-04-E03",
+        "standard-L09-04-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L09-03"
@@ -2128,7 +2068,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L09-05-E01",
-        "standard-L09-05-E02"
+        "standard-L09-05-E02",
+        "standard-L09-05-E03",
+        "standard-L09-05-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L09-04"
@@ -2152,7 +2094,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L10-01-E01",
-        "standard-L10-01-E02"
+        "standard-L10-01-E02",
+        "standard-L10-01-E03",
+        "standard-L10-01-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L09-05"
@@ -2176,7 +2120,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L10-02-E01",
-        "standard-L10-02-E02"
+        "standard-L10-02-E02",
+        "standard-L10-02-E03",
+        "standard-L10-02-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L10-01"
@@ -2200,7 +2146,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L10-03-E01",
-        "standard-L10-03-E02"
+        "standard-L10-03-E02",
+        "standard-L10-03-E03",
+        "standard-L10-03-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L10-02"
@@ -2224,7 +2172,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L10-04-E01",
-        "standard-L10-04-E02"
+        "standard-L10-04-E02",
+        "standard-L10-04-E03",
+        "standard-L10-04-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L10-03"
@@ -2248,7 +2198,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L10-05-E01",
-        "standard-L10-05-E02"
+        "standard-L10-05-E02",
+        "standard-L10-05-E03",
+        "standard-L10-05-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L10-04"
@@ -2272,7 +2224,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L10-06-E01",
-        "standard-L10-06-E02"
+        "standard-L10-06-E02",
+        "standard-L10-06-E03",
+        "standard-L10-06-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L10-05"
@@ -2368,7 +2322,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L10-07-E01",
-        "standard-L10-07-E02"
+        "standard-L10-07-E02",
+        "standard-L10-07-E03",
+        "standard-L10-07-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L10-06"
@@ -2392,7 +2348,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L10-08-E01",
-        "standard-L10-08-E02"
+        "standard-L10-08-E02",
+        "standard-L10-08-E03",
+        "standard-L10-08-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L10-07"
@@ -2426,7 +2384,8 @@
       "exerciseRefs": [
         "standard-L11-01-E01",
         "standard-L11-01-E02",
-        "standard-L11-01-E03"
+        "standard-L11-01-E03",
+        "standard-L11-01-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L10-08"
@@ -2450,7 +2409,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L11-02-E01",
-        "standard-L11-02-E02"
+        "standard-L11-02-E02",
+        "standard-L11-02-E03",
+        "standard-L11-02-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L11-01"
@@ -2473,7 +2434,10 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "standard-L11-03-E01"
+        "standard-L11-03-E01",
+        "standard-L11-03-E02",
+        "standard-L11-03-E03",
+        "standard-L11-03-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L11-02"
@@ -2496,7 +2460,10 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "standard-L11-04-E01"
+        "standard-L11-04-E01",
+        "standard-L11-04-E02",
+        "standard-L11-04-E03",
+        "standard-L11-04-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L11-03"
@@ -2520,7 +2487,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L11-05-E01",
-        "standard-L11-05-E02"
+        "standard-L11-05-E02",
+        "standard-L11-05-E03",
+        "standard-L11-05-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L11-04"
@@ -2544,7 +2513,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L11-06-E01",
-        "standard-L11-06-E02"
+        "standard-L11-06-E02",
+        "standard-L11-06-E03",
+        "standard-L11-06-E04"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L11-05"
@@ -2567,7 +2538,11 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "standard-L12-01-E01"
+        "standard-L12-01-E01",
+        "standard-L12-01-E02",
+        "standard-L12-01-E03",
+        "standard-L12-01-E04",
+        "standard-L12-01-E05"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L11-06"
@@ -2592,7 +2567,10 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L12-02-E01",
-        "standard-L12-02-E02"
+        "standard-L12-02-E02",
+        "standard-L12-02-E03",
+        "standard-L12-02-E04",
+        "standard-L12-02-E05"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L12-01"
@@ -2616,7 +2594,11 @@
       "speedTarget": null,
       "mistakeTolerance": 5,
       "exerciseRefs": [
-        "standard-L12-03-E01"
+        "standard-L12-03-E01",
+        "standard-L12-03-E02",
+        "standard-L12-03-E03",
+        "standard-L12-03-E04",
+        "standard-L12-03-E05"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L12-02"
@@ -2733,7 +2715,10 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L12-04-E01",
-        "standard-L12-04-E02"
+        "standard-L12-04-E02",
+        "standard-L12-04-E03",
+        "standard-L12-04-E04",
+        "standard-L12-04-E05"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L12-03"
@@ -2758,7 +2743,10 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "standard-L12-05-E01",
-        "standard-L12-05-E02"
+        "standard-L12-05-E02",
+        "standard-L12-05-E03",
+        "standard-L12-05-E04",
+        "standard-L12-05-E05"
       ],
       "unlockRequirements": {
         "previousLesson": "standard-L12-04"
