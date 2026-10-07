@@ -324,7 +324,6 @@
         <ul class="toc-list">
           <li><a href="#persistence" class="toc-link"><span class="doc-i18n" data-en="Session Persistence" data-km="ការរក្សាទិន្នន័យ">Session Persistence</span></a></li>
           <li><a href="#audio-engine" class="toc-link"><span class="doc-i18n" data-en="Web Audio Engine" data-km="ប្រព័ន្ធសំឡេង">Web Audio Engine</span></a></li>
-          <li><a href="#tech-reference" class="toc-link"><span class="doc-i18n" data-en="Technical Reference" data-km="ឯកសារយោងបច្ចេកទេស">Technical Reference</span></a></li>
           <li><a href="#faq" class="toc-link"><span class="doc-i18n" data-en="FAQ &amp; Support" data-km="សំណួរញឹកញាប់">FAQ &amp; Support</span></a></li>
         </ul>
       </div>
@@ -1271,26 +1270,6 @@
             </ul>
           </div>
         </div>
-
-        <div class="code-block-wrap">
-          <div class="code-header">
-            <span>localStorage State Schema</span>
-            <button class="copy-btn">Copy</button>
-          </div>
-          <pre><code>// 'pk_active_lesson_session' in localStorage:
-{
-  "layoutId": "english",
-  "lessonId": "en-L00-01",
-  "index": 7,
-  "mistakes": 0,
-  "mistakeChars": {},
-  "startTime": 1727824800000,
-  "timeLeft": null,
-  "chars": ["f", "f", "f", "␣", "j", "j", "j", "␣", "f", "j"],
-  "layers": ["base", "base", "base", "base", "base", ...],
-  "keyIds": ["f", "f", "f", "space", "j", "j", "j", ...]
-}</code></pre>
-        </div>
       </section>
 
       <!-- 11. Web Audio Engine -->
@@ -1340,84 +1319,7 @@
         </div>
       </section>
 
-      <!-- 12. Technical Reference -->
-      <section id="tech-reference" class="doc-section">
-        <div class="section-head">
-          <h2 class="section-title">
-            <span class="section-icon">
-              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33 1.65 1.65 0 0 0 1.51-1V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-            </span>
-            <span class="doc-i18n" data-en="Technical Architecture &amp; Repository Map" data-km="រចនាសម្ព័ន្ធបច្ចេកទេស និងផែនទីកូដ">Technical Architecture &amp; Repository Map</span>
-          </h2>
-          <a href="#tech-reference" class="section-anchor">#</a>
-        </div>
-        <p class="doc-p doc-i18n"
-           data-en="The repository is built on a clean, modular Vanilla HTML/CSS/JS architecture designed for maximum performance, offline reliability, and zero bundler overhead:"
-           data-km="គម្រោងនេះសាងសង់ឡើងលើស្ថាបត្យកម្ម Vanilla HTML/CSS/JS យ៉ាងស្អាត និងលឿនបំផុត អាចដំណើរការ offline បាន និងគ្មានភាពស្មុគស្មាញនៃ bundler ឡើយ៖">
-          The repository is built on a clean, modular Vanilla HTML/CSS/JS architecture designed for maximum performance, offline reliability, and zero bundler overhead:
-        </p>
-
-        <div class="code-block-wrap">
-          <div class="code-header">
-            <span>Project Directory Structure</span>
-            <button class="copy-btn">Copy</button>
-          </div>
-          <pre><code>pk-khmer-type/
-├── index.html                   # Main interactive typing tutor (Classic UI)
-├── logo.svg                     # Official PK Khmer Type crest vector
-├── manifest.json                # PWA standalone web app configuration
-├── Documents/                   # Official Documentation Endpoint (/Documents)
-│   ├── index.html               # Documentation portal markup
-│   ├── docs.css                 # Documentation stylesheet & design system
-│   ├── docs.js                  # Search, scrollspy, and interactive docs logic
-│   ├── three.min.js             # Local Three.js 3D WebGL engine
-│   └── keycap3d.js              # Interactive 3D mechanical keycap & switch model
-├── css/
-│   ├── base.css                 # Design tokens, variables, typography & layout
-│   ├── keyboard.css             # Virtual keyboard styling & key illumination
-│   ├── typing.css               # Manuscript & interactive typing stream
-│   ├── lessons.css              # Curriculum strip, lesson cards, modal overlays
-│   └── responsive.css           # Mobile & tablet viewports
-├── js/
-│   ├── app.js                   # Application bootstrapper & layout synchronization
-│   ├── keyboard.js              # Layout definitions, key rendering, layer switching
-│   ├── lessons.js               # Curriculum engine, runner, session persistence
-│   ├── adaptive.js              # Keybr-style adaptive practice & letter strip
-│   ├── race.js                  # Temple Trial competitive race mode & bot pacers
-│   ├── typing.js                # Core keystroke dispatcher & unit normalization
-│   ├── progress.js              # Local progress storage, unlocking & stats
-│   ├── review.js                # Weak-key tracking & spaced repetition audit
-│   ├── statistics.js            # User analytics, speed graphs & accuracy metrics
-│   └── settings.js              # Theme switcher, sound toggles, backup export
-├── data/
-│   ├── keyboard.json            # Layout glyph maps across all 3 keyboard courses
-│   ├── curriculum-data.js       # Bundled curriculum for instant offline hydration
-│   └── curriculum/              # JSON curriculum files (levels, lessons, exercises)
-└── scripts/
-    ├── validate_curriculum.js   # Automated CI curriculum validation & depth check
-    └── audit_spaced_review.js   # Spaced repetition key verification suite</code></pre>
-        </div>
-
-        <div class="code-block-wrap">
-          <div class="code-header">
-            <span>Running Automated Audits</span>
-            <button class="copy-btn">Copy</button>
-          </div>
-          <pre><code># Run curriculum structural integrity & prerequisite audit:
-node scripts/validate_curriculum.js
-
-# Run spaced repetition audit across all 3 layouts:
-node scripts/audit_spaced_review.js
-
-# Run refresh persistence test harness:
-node scratch/test_refresh_lesson_persistence.js
-
-# Run /Documents endpoint tests:
-node scratch/test_documents_endpoint.js</code></pre>
-        </div>
-      </section>
-
-      <!-- 13. FAQ & Troubleshooting -->
+      <!-- 12. FAQ & Troubleshooting -->
       <section id="faq" class="doc-section">
         <div class="section-head">
           <h2 class="section-title">

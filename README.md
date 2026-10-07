@@ -9,7 +9,6 @@
   <img src="https://img.shields.io/badge/Language-Khmer%20%7C%20English-ffd166?style=for-the-badge" alt="Bilingual Khmer & English">
   <img src="https://img.shields.io/badge/Engine-Vanilla%20ES6%2B%20%7C%20CSS3-ff9d2e?style=for-the-badge" alt="Vanilla JS & CSS3">
   <img src="https://img.shields.io/badge/Performance-Zero--Lag%20Mode-34d399?style=for-the-badge" alt="Zero-Lag Performance Mode">
-  <img src="https://img.shields.io/badge/Visuals-Thinking--Orbs-818cf8?style=for-the-badge" alt="Thinking Orbs">
   <img src="https://img.shields.io/badge/Audio-Web%20Audio%20Synth-2dd4a7?style=for-the-badge" alt="Web Audio Synthesizer">
   <img src="https://img.shields.io/badge/Themes-8%20Studio%20Themes%20%2B%20Glass-ec4899?style=for-the-badge" alt="8 Themes & Glass">
   <img src="https://img.shields.io/badge/Curriculum-40%20Levels%20%7C%20218%20Lessons-38bdf8?style=for-the-badge" alt="218 Lessons">
@@ -34,7 +33,7 @@
 
 **PK Khmer Type (v2.2 Pro Studio Edition)** is a standalone, zero-dependency browser typing studio built specifically for mastering the Khmer abugida script (**Khmer Standard** and **Official Khmer NiDA**) alongside **English (US) QWERTY**.
 
-Designed to run effortlessly both **online via any static server** and **100% offline directly from `index.html` (`file:///`)**, it combines a 218-lesson progressive curriculum with a customizable mechanical keyboard studio, 8 bespoke color themes, full frosted glassmorphism, instant Zero-Lag Performance mode, ThinkingOrb state visualizers, cinematic Focus Mode, and per-key mastery analytics.
+Designed to run effortlessly both **online via any static server** and **100% offline directly from `index.html` (`file:///`)**, it combines a 218-lesson progressive curriculum with a customizable mechanical keyboard studio, 8 bespoke color themes, full frosted glassmorphism, instant Zero-Lag Performance mode, cinematic Focus Mode, and per-key mastery analytics.
 
 ### Interactive Keyboard Layouts in PK Khmer Type
 
@@ -50,7 +49,6 @@ Designed to run effortlessly both **online via any static server** and **100% of
 | :--- | :--- |
 | **Version 2.2 Pro Studio** | Interactive release badges embedded across Hero, Chassis, Settings, and Footer. Clicking any badge launches the **v2.2 Release Showcase Modal** displaying edition highlights and specifications. |
 | **Zero-Lag Performance Mode** | Dedicated high-performance setting that turns off all non-essential animations, transitions, glowing effects, and background particles for instant responsiveness, rock-solid FPS, and zero CPU/GPU overhead. Includes a 3-tier motion density control (*Full, Minimal, Off*). |
-| **ThinkingOrb AI Visualizers** | Integrated 2D canvas thought-orb indicators from **Libraries.dev** (`thinking-orbs`). Powers the live status radar in the Quick Guide header and features a full interactive **Orb Showcase Lab** in Settings (with 9 tuned states, size toggles, speed multipliers, and code snippet export). |
 | **3 Complete Keyboard Layouts** | Instant switching between **Khmer Standard**, **Khmer NiDA**, and **English (US) QWERTY** (`Alt + 1/2/3`). |
 | **218-Lesson Progressive Curriculum** | **40 structured levels**, **218 lessons**, and **664+ exercises** built with strict progressive key unlocking (no unseen characters in early drills). |
 | **Dual-Hand 3D Kinematic Guide** | Translucent left and right hand overlays dynamically reach toward target keys and simultaneous modifier keys (`Shift`, `Ctrl`, `AltGr`) with customizable opacity and color schemes. |
@@ -58,7 +56,7 @@ Designed to run effortlessly both **online via any static server** and **100% of
 | **Cinematic Focus Mode (`Alt + F`)** | Smooth expansion that hides sidebars, headers, and UI distractions, scaling the manuscript and keyboard to center stage for pure immersion. |
 | **8 Studio Themes & Transparent Glass** | Choose from *Dark (Obsidian Navy), Temple (Torchlit Sandstone & Gold), Moonlight (Celestial Indigo), Jungle (Emerald Rainforest), Sunset (Dusk Plum & Coral), Sepia (Warm Parchment), Light (Slate White),* or the standalone **Transparent Glass** theme. |
 | **Custom Wallpapers & Frosted Glass** | Upload custom background wallpapers with interactive dimming controls and frosted glass styling (`backdrop-filter: blur(28px) saturate(200%)`). |
-| **Smooth Settings Navigation** | Reorganized Settings & Studio Command Center with animated horizontal category scrolling tabs (*All, General, Hands, Audio, Themes, Orbs, Performance, Data, About*). |
+| **Smooth Settings Navigation** | Reorganized Settings & Studio Command Center with animated horizontal category scrolling tabs (*All, General, Hands, Audio, Themes, Performance, Data, About*). |
 | **Web Audio Switch Synthesizer** | Real-time procedural mechanical switch audio (*Topre Thock, Holy Panda Tactile, Cherry MX Blue, Silent Linear*) and Temple Ambience — zero audio files required. |
 | **Adaptive Practice & Weak-Key Review** | Tracks per-key latency and mistake frequency to automatically generate personalized remedial drills and spaced repetition reviews. |
 | **Temple Trial & Typing Race** | Timed vocabulary survival drills and competitive typing races against adaptive bot pacers with local leaderboards. |
@@ -79,20 +77,6 @@ PK Khmer Type prioritizes speed and responsiveness above all else:
   - **Minimal**: Preserves basic UI feedback while removing heavy background filters.
   - **Off (Zero Lag)**: Pure mechanical speed engineered for older laptops, low-power devices, and competitive high-WPM typing.
 - **Persistence**: Remembers your preference in `localStorage` across page reloads.
-
----
-
-## 🔮 ThinkingOrb Visualizer (Libraries.dev)
-
-PK Khmer Type integrates a native 2D canvas port of **`thinking-orbs`** (by Jakub Antalik / Libraries.dev):
-
-- **Quick Guide Radar**: Displays an active 20px inline thought-orb in the guide header communicating live drill status. Clicking the radar pill cycles through the states with live feedback toasts.
-- **Settings Interactive Lab**: A dedicated showcase section inside Settings allowing you to experiment with:
-  - **9 Tuned States**: `searching`, `working`, `solving`, `listening`, `connecting`, `weaving`, `composing`, `breathing`, `shaping`
-  - **Dual Scale Modes**: 64px (avatar scale) and 20px (inline indicator)
-  - **Animation Speed**: `0.5x`, `1.0x`, `1.5x`, `2.0x`
-  - **Pause Control & Code Snippet Generator**: Copy ready-to-use component snippets.
-- **Battery-Friendly**: Automatically pauses when off-screen via `IntersectionObserver` or when Performance Mode is enabled.
 
 ---
 
@@ -178,7 +162,7 @@ Each layout maintains independent progress, star ratings, WPM records, and unloc
 ## 🚀 Getting Started
 
 ### Option 1: Open Directly (Offline / No Install)
-Simply double-click **`index.html`** in any modern web browser (Edge, Chrome, Brave, Firefox, Safari). All 218 lessons, procedural audio synthesizers, canvas orbs, and themes work out of the box via `file:///`.
+Simply double-click **`index.html`** in any modern web browser (Edge, Chrome, Brave, Firefox, Safari). All 218 lessons, procedural audio synthesizers, and themes work out of the box via `file:///`.
 
 ### Option 2: Run Local Development Server
 If you have **Node.js** installed, launch the included zero-cache static development server:
@@ -209,28 +193,26 @@ node scripts/bundle_curricula.js
 ├── index.html                      # Main studio shell with PWA meta & asset links
 ├── manifest.json                   # PWA web app manifest metadata
 ├── logo.svg                        # PK Khmer Type vector crest logo
-├── package.json                    # Project dependencies (thinking-orbs, dev scripts)
 ├── css/
 │   ├── base.css                    # Core layout, 8 color themes, version modal, frosted glass
 │   ├── keyboard.css                # Keycaps, 3D hand overlay, anchored cursor inspector HUD
 │   ├── typing.css                  # Manuscript prompt, character tiles, and error shake
 │   ├── lessons.css                 # Lesson dock, Quick Guide theme rules, completion modals
-│   ├── settings.css                # Settings command center, category tabs, orb showcase
+│   ├── settings.css                # Settings command center and category tabs
 │   └── responsive.css              # Tablet, laptop, and mobile responsive breakpoints
 ├── js/
 │   ├── app.js                      # Application bootstrap, data loader, and layout manager
 │   ├── keyboard.js                 # Keyboard rendering, layer switching, 3D hand kinematics
 │   ├── typing.js                   # Input engine, Windows AltGr filter, Web Audio switch synth
 │   ├── lessons.js                  # Curriculum runner, exercise scoring, mistake review
-│   ├── thinking-orbs.js            # Vanilla 2D canvas engine for ThinkingOrb states (Libraries.dev)
 │   ├── adaptive.js                 # Adaptive practice generator and 100% mastery engine
 │   ├── review.js                   # Spaced repetition & weak-key detector
 │   ├── race.js                     # Temple Trial & Typing Race mode with bot pacers
 │   ├── cursor-inspector.js         # Anchored Mouse Cursor Inspector & phonetic HUD tooltip
-│   ├── settings.js                 # Studio controls, theme switcher, wallpaper & orb manager
+│   ├── settings.js                 # Studio controls, theme switcher, and wallpaper manager
 │   ├── statistics.js               # WPM, accuracy, streak, and level progress analytics
 │   ├── shortcuts.js                # Global keyboard shortcuts & modal navigation
-│   ├── quick_guide.js              # Quick Guide dock, radar orb telemetry, shortcut cheats
+│   ├── quick_guide.js              # Quick Guide dock, live telemetry, shortcut cheats
 │   ├── progress.js                 # Lesson unlock state and star rating logic
 │   ├── tracker.js                  # Per-key stroke telemetry
 │   ├── storage.js                  # LocalStorage persistence, JSON export/import backup

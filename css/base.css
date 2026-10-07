@@ -5655,46 +5655,9 @@ html.performance-mode .settings-version-pill .ver-live-dot {
   transform: none !important;
 }
 
-/* ============================================================
-   Thinking Orbs (Libraries.dev) Styling & Integration
-   ============================================================ */
-.thinking-orb {
-  display: inline-block;
-  vertical-align: middle;
-  border-radius: 50%;
-  image-rendering: auto;
-  user-select: none;
-}
-.guide-radar-orb {
-  width: 20px;
-  height: 20px;
-  margin-right: 6px;
-  flex-shrink: 0;
-  cursor: pointer;
-  transition: transform .2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.guide-radar-orb:hover {
-  transform: scale(1.22);
-}
 .guide-live-status-pill {
-  cursor: pointer;
   display: inline-flex;
   align-items: center;
+  gap: 6px;
   user-select: none;
-  transition: all .2s ease;
 }
-.guide-live-status-pill:hover {
-  border-color: rgba(56, 189, 248, 0.5) !important;
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.25) !important;
-}
-.guide-live-status-pill:active {
-  transform: scale(0.97);
-}
-
-/* Zero-Lag Performance Mode overrides for Thinking Orbs */
-html.performance-mode .thinking-orb {
-  animation: none !important;
-  transition: none !important;
-}
-
-

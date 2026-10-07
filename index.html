@@ -356,7 +356,7 @@
   <div class="guide-dock-header">
     <div class="gdh-title-wrap">
       <span class="gdh-title"><svg class="pk-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01"/><path d="M10 8h.01"/><path d="M14 8h.01"/><path d="M18 8h.01"/><path d="M6 12h.01"/><path d="M10 12h.01"/><path d="M14 12h.01"/><path d="M18 12h.01"/><path d="M7 16h10"/></svg> <span class="i18n-t" data-en="QUICK GUIDE" data-km="ការណែនាំរហ័ស">QUICK GUIDE</span></span>
-      <span class="guide-live-status-pill" id="guideLiveStatusPill" title="Thinking Orb (Libraries.dev) · Click to switch AI state" role="button" tabindex="0"><canvas class="thinking-orb guide-radar-orb" id="guideRadarOrb" width="20" height="20" data-state="searching" data-size="20"></canvas> <span id="guideLiveStatusText">Searching</span></span>
+      <span class="guide-live-status-pill status-ready" id="guideLiveStatusPill"><span class="gac-pulse-dot" aria-hidden="true"></span> <span id="guideLiveStatusText">Free Typing</span></span>
     </div>
     <div class="gdh-header-right">
       <span class="gdh-badge" id="guideLayoutBadge">Standard</span>
@@ -1285,56 +1285,6 @@
               <button type="button" data-anim-mode="full" class="active">Full</button>
               <button type="button" data-anim-mode="minimal">Minimal</button>
               <button type="button" data-anim-mode="off">Off (Zero Lag)</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="settings-row settings-row-stacked" data-search="thinking orb orbs ai indicator libraries dev dotted canvas animation state searching working solving listening connecting weaving composing breathing shaping">
-          <div class="settings-row-info">
-            <div class="settings-row-title-line">
-              <span class="settings-row-name">AI Thinking Orb</span>
-              <span class="settings-row-km">គ្រាប់គិត AI (Libraries.dev)</span>
-              <span class="settings-badge" style="background:rgba(56,189,248,0.18); color:#38bdf8; border:1px solid rgba(56,189,248,0.35); font-size:0.6rem; padding:1px 6px; border-radius:999px;">LIBRARIES.DEV</span>
-            </div>
-            <div class="settings-row-desc">Dotted canvas thought-orb indicators for AI &amp; agent workflows. Nine hand-tuned animated states from Libraries.dev.</div>
-          </div>
-          <div class="settings-row-control">
-            <div class="settings-orb-showcase">
-              <div class="settings-orb-stage">
-                <canvas class="thinking-orb" id="settingsShowcaseOrb" width="64" height="64" data-state="searching" data-size="64" aria-label="AI Thinking Orb Showcase"></canvas>
-                <div class="settings-orb-badge-pill" id="settingsOrbStatePill">state="searching" · size=64</div>
-              </div>
-              <div class="settings-orb-controls">
-                <div class="settings-choice settings-choice-orb-states" id="orbStateChoice">
-                  <button type="button" data-orb-state="working">working</button>
-                  <button type="button" data-orb-state="searching" class="active">searching</button>
-                  <button type="button" data-orb-state="solving">solving</button>
-                  <button type="button" data-orb-state="listening">listening</button>
-                  <button type="button" data-orb-state="connecting">connecting</button>
-                  <button type="button" data-orb-state="weaving">weaving</button>
-                  <button type="button" data-orb-state="composing">composing</button>
-                  <button type="button" data-orb-state="breathing">breathing</button>
-                  <button type="button" data-orb-state="shaping">shaping</button>
-                </div>
-                <div class="settings-orb-subcontrols">
-                  <div class="settings-orb-size-group">
-                    <span class="settings-orb-sublabel">Size:</span>
-                    <button type="button" class="settings-orb-size-btn active" data-orb-size="64">64px</button>
-                    <button type="button" class="settings-orb-size-btn" data-orb-size="32">32px</button>
-                    <button type="button" class="settings-orb-size-btn" data-orb-size="20">20px</button>
-                  </div>
-                  <div class="settings-orb-size-group">
-                    <span class="settings-orb-sublabel">Speed:</span>
-                    <button type="button" class="settings-orb-speed-btn" data-orb-speed="0.5">0.5x</button>
-                    <button type="button" class="settings-orb-speed-btn active" data-orb-speed="1">1x</button>
-                    <button type="button" class="settings-orb-speed-btn" data-orb-speed="1.5">1.5x</button>
-                  </div>
-                </div>
-                <div class="settings-orb-code-preview">
-                  <code>&lt;ThinkingOrb state="<span id="settingsOrbCodeState">searching</span>" size={<span id="settingsOrbCodeSize">64</span>} /&gt;</code>
-                  <button type="button" class="settings-orb-copy-btn" id="settingsOrbCopyBtn" title="Copy React snippet">Copy</button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -2291,7 +2241,7 @@
       <li><strong>Khmer NiDA Course:</strong> 13 levels and 77 structured lessons tailored for the Khmer NiDA Unicode keyboard layout.</li>
       <li><strong>English (US) Course:</strong> 14 levels and 64 structured lessons covering home row, top row, bottom row, Shift capitals, numbers, punctuation, and speed challenges.</li>
       <li><strong>Adaptive Practice Engine:</strong> Keybr-inspired continuous drill generator targeting your weakest keys until every active character reaches 100% mastery.</li>
-      <li><strong>Temple Trial &amp; Typing Race:</strong> Timed Khmer word challenges and real-time WPM races against AI pacers.</li>
+      <li><strong>Temple Trial &amp; Typing Race:</strong> Timed Khmer word challenges and real-time WPM races against automated bot pacers.</li>
     </ul>
     <p>Explore the full documentation, keyboard shortcuts, and Khmer Unicode typing rules at <a href="Documents/index.html" style="color:#ffd166;">https://phanaach4889.github.io/PK-Khmer-Type/Documents/</a>.</p>
   </article>
@@ -2313,7 +2263,6 @@
   <script defer src="js/race.js?v=53"></script>
   <script defer src="js/typing.js?v=53"></script>
   <script defer src="js/statistics.js?v=53"></script>
-  <script defer src="js/thinking-orbs.js?v=53"></script>
   <script defer src="js/settings.js?v=53"></script>
   <script defer src="js/shortcuts.js?v=53"></script>
   <script defer src="js/quick_guide.js?v=53"></script>
