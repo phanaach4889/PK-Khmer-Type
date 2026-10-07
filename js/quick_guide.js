@@ -214,11 +214,12 @@
       if(this.btnSpace){
         this.btnSpace.addEventListener('click', () => {
           const isStd = (typeof currentLayoutId !== 'undefined' && currentLayoutId === 'standard');
+          const isKm = document.documentElement.classList.contains('site-km-mode');
           if(typeof showToast === 'function'){
             showToast(
               pkIcon('keyboard', 16),
-              isStd ? 'Type Space: Shift + Space' : 'Type Space: Spacebar',
-              isStd ? 'Standard Khmer uses Space for sub-consonants (ជើង).' : 'Press Space to separate words.'
+              isStd ? (isKm ? 'វាយចន្លោះ៖ Shift + Space' : 'Type Space: Shift + Space') : (isKm ? 'វាយចន្លោះ៖ Spacebar' : 'Type Space: Spacebar'),
+              isStd ? (isKm ? 'ក្តារចុចស្តង់ដារប្រើ Space សម្រាប់ជើងអក្សរ (ជើង)។' : 'Standard Khmer uses Space for sub-consonants (ជើង).') : (isKm ? 'ចុច Space ដើម្បីខណ្ឌពាក្យ។' : 'Press Space to separate words.')
             );
           }
         });
@@ -304,13 +305,13 @@
       // Update Layout Badge
       if(this.layoutBadge){
         if(l.includes('eng')){
-          this.layoutBadge.textContent = 'English';
+          this.layoutBadge.textContent = isKm ? 'អង់គ្លេស' : 'English';
           this.layoutBadge.className = 'gdh-badge badge-eng';
         } else if(l.includes('nid')){
           this.layoutBadge.textContent = 'NiDA';
           this.layoutBadge.className = 'gdh-badge badge-nida';
         } else {
-          this.layoutBadge.textContent = 'Standard';
+          this.layoutBadge.textContent = isKm ? 'ស្តង់ដារ' : 'Standard';
           this.layoutBadge.className = 'gdh-badge badge-std';
         }
       }
@@ -477,7 +478,7 @@
         } else if([10, 25, 50, 100].includes(liveStreak) && this._lastCelebratedStreak !== liveStreak){
           this._lastCelebratedStreak = liveStreak;
           if(typeof showToast === 'function'){
-            showToast(typeof pkIcon === 'function' ? pkIcon('flame', 18) : '', `${liveStreak} Keystroke Streak!`, isKm ? 'ការវាយជាប់គ្នាគ្មានកំហុស!' : 'Unstoppable rhythm & precision.');
+            showToast(typeof pkIcon === 'function' ? pkIcon('flame', 18) : '', isKm ? `${liveStreak} គ្រាប់ចុចជាប់គ្នា!` : `${liveStreak} Keystroke Streak!`, isKm ? 'ការវាយជាប់គ្នាគ្មានកំហុស!' : 'Unstoppable rhythm & precision.');
           }
         }
       }
@@ -487,14 +488,15 @@
     }
 
     updateToolStatuses(){
+      const isKm = document.documentElement.classList.contains('site-km-mode');
       if(this.handsStatusDesc){
         const isHandsOn = (typeof handsOn !== 'undefined' && handsOn);
-        this.handsStatusDesc.textContent = isHandsOn ? 'Active' : 'Off';
+        this.handsStatusDesc.textContent = isHandsOn ? (isKm ? 'បើក' : 'Active') : (isKm ? 'បិទ' : 'Off');
         this.handsStatusDesc.className = isHandsOn ? 'gas-sub status-on' : 'gas-sub status-off';
       }
       if(this.soundStatusDesc){
         const isSoundOn = (typeof soundOn !== 'undefined' && soundOn);
-        this.soundStatusDesc.textContent = isSoundOn ? 'On' : 'Muted';
+        this.soundStatusDesc.textContent = isSoundOn ? (isKm ? 'បើក' : 'On') : (isKm ? 'បិទ' : 'Muted');
         this.soundStatusDesc.className = isSoundOn ? 'gas-sub status-on' : 'gas-sub status-off';
       }
     }
@@ -632,12 +634,13 @@
 
     drillSpecificChar(char){
       const curLayout = (typeof currentLayoutId !== 'undefined' ? currentLayoutId : 'standard');
+      const isKm = document.documentElement.classList.contains('site-km-mode');
       if(typeof PK_REVIEW !== 'undefined' && typeof PK_REVIEW.generateReviewDrill === 'function'){
         const drill = PK_REVIEW.generateReviewDrill(curLayout, { target: char, length: 28 });
         if(drill && typeof startLesson === 'function'){
           startLesson(drill);
           if(typeof showToast === 'function'){
-            showToast(pkIcon('sparkle', 16), `Targeted Drill: ${char}`, 'Focusing on accuracy and rhythm for this key.');
+            showToast(pkIcon('sparkle', 16), isKm ? `ការហ្វឹកហាត់គោលដៅ៖ ${char}` : `Targeted Drill: ${char}`, isKm ? 'ផ្តោតលើភាពត្រឹមត្រូវ និងចង្វាក់នៃគ្រាប់ចុចនេះ។' : 'Focusing on accuracy and rhythm for this key.');
           }
           this.updateTelemetry();
           return;
@@ -648,11 +651,12 @@
 
     launchWeakKeyPractice(){
       const curLayout = (typeof currentLayoutId !== 'undefined' ? currentLayoutId : 'standard');
+      const isKm = document.documentElement.classList.contains('site-km-mode');
       if(typeof PK_REVIEW !== 'undefined' && typeof PK_REVIEW.startAdaptivePractice === 'function'){
         const drill = PK_REVIEW.startAdaptivePractice(curLayout);
         if(drill){
           if(typeof showToast === 'function'){
-            showToast(pkIcon('sparkle', 16), 'Adaptive Weak-Key Drill', 'Curated practice focusing on your trouble keys.');
+            showToast(pkIcon('sparkle', 16), isKm ? 'ការហ្វឹកហាត់គ្រាប់ចុចខ្សោយ' : 'Adaptive Weak-Key Drill', isKm ? 'ការអនុវត្តតម្រូវតាមគ្រាប់ចុចដែលអ្នកពិបាក។' : 'Curated practice focusing on your trouble keys.');
           }
           this.updateTelemetry();
           return;
@@ -661,6 +665,17 @@
 
       // If no adaptive drill targets found, start regular first lesson
       this.handleQuickAction();
+    }
+
+    refreshLang(){
+      const curLayout = (typeof currentLayoutId !== 'undefined' ? currentLayoutId : 'standard');
+      this.updateLayout(curLayout);
+      this.updateTelemetry();
+      this.updateWeakKeys();
+      this.updateToolStatuses();
+      if(this.targetKeyBadge && this.targetKeyBadge.classList.contains('resting')){
+        this.updateTargetFinger(null);
+      }
     }
 
     handleQuickAction(){

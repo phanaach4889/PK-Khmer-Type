@@ -261,10 +261,14 @@ function renderRaceLeaderboard(){
   setRacePill(raceLbDifficultyTabs, 'lbDifficulty', raceLbDifficulty);
   setRacePill(raceLbLengthTabs, 'lbLength', raceLbLength);
   const list = loadRaceLeaderboard(raceLbDifficulty, raceLbLength);
+  const isKm = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
   if(!list.length){
-    raceLbList.innerHTML = '<li class="race-lb-empty">No racers yet for '
-      + raceLbDifficulty.charAt(0).toUpperCase() + raceLbDifficulty.slice(1)
-      + ' · ' + raceLengthLabel(raceLbLength) + '. Be the first!</li>';
+    const diffKm = { easy: 'ងាយស្រួល', medium: 'មធ្យម', hard: 'ពិបាក' }[raceLbDifficulty] || raceLbDifficulty;
+    const diffLabel = isKm ? diffKm : (raceLbDifficulty.charAt(0).toUpperCase() + raceLbDifficulty.slice(1));
+    const emptyMsg = isKm
+      ? `មិនទាន់មានអ្នកប្រណាំងសម្រាប់ ${diffLabel} · ${raceLengthLabel(raceLbLength)} នៅឡើយទេ។ ចាប់ផ្តើមមុនគេ!`
+      : `No racers yet for ${diffLabel} · ${raceLengthLabel(raceLbLength)}. Be the first!`;
+    raceLbList.innerHTML = `<li class="race-lb-empty">${emptyMsg}</li>`;
     return;
   }
   raceLbList.innerHTML = list.map((e,i)=>
@@ -383,10 +387,11 @@ function raceScore(wpm, accuracy, mistakes){
 }
 
 function updateRaceSetupBest(){
+  const isKm = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
   const rec = getRaceBest(raceDifficulty, raceLength);
   raceSetupBestEl.textContent = rec
-    ? `Best — WPM ${rec.wpm} · Accuracy ${rec.accuracy}% · Score ${rec.score}`
-    : 'No record yet for this difficulty & length';
+    ? (isKm ? `ល្អបំផុត — WPM ${rec.wpm} · សុក្រឹតភាព ${rec.accuracy}% · ពិន្ទុ ${rec.score}` : `Best — WPM ${rec.wpm} · Accuracy ${rec.accuracy}% · Score ${rec.score}`)
+    : (isKm ? 'មិនទាន់មានកំណត់ត្រាសម្រាប់កម្រិត និងប្រវែងនេះនៅឡើយទេ' : 'No record yet for this difficulty & length');
 }
 
 function setRacePill(row, attr, value){
@@ -581,10 +586,11 @@ function enterRaceMode(){
   if(typeof window !== 'undefined' && window.adaptiveActive && typeof PK_ADAPTIVE !== 'undefined' && typeof PK_ADAPTIVE.exitSession === 'function'){
     PK_ADAPTIVE.exitSession(false);
   }
+  const isKm = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
   raceMode = true;
   racePanel.hidden = false;
   raceToggle.classList.add('on');
-  raceToggle.innerHTML = pkIcon('close', 14) + ' Exit Race';
+  raceToggle.innerHTML = pkIcon('close', 14) + ' ' + (isKm ? 'ចាកចេញពីការប្រណាំង' : 'Exit Race');
   raceToggle.setAttribute('aria-pressed','true');
   setRacePill(raceDifficultyRow, 'difficulty', raceDifficulty);
   setRacePill(raceLengthRow, 'length', raceLength);
@@ -600,8 +606,9 @@ function exitRaceMode(){
   raceReset();
   raceMode = false;
   racePanel.hidden = true;
+  const isKm = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
   raceToggle.classList.remove('on');
-  raceToggle.innerHTML = pkIcon('flag', 14) + ' Typing Race';
+  raceToggle.innerHTML = pkIcon('flag', 14) + ' ' + (isKm ? 'ប្រណាំងវាយអក្សរ' : 'Typing Race');
   raceToggle.setAttribute('aria-pressed','false');
   lockedLayer = null;
   render();
@@ -656,8 +663,11 @@ function startRace(){
   raceMistakes = 0;
   raceCorrectTotal = 0;
   raceLastStreakCorrect = 0;
-  raceDifficultyLabelEl.textContent = raceDifficulty.charAt(0).toUpperCase() + raceDifficulty.slice(1)
-    + (raceLength === 'text' ? ' · Full Text' : ' · ' + raceLength + 's');
+  const isKm = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
+  const diffKm = { easy: 'ងាយស្រួល', medium: 'មធ្យម', hard: 'ពិបាក' }[raceDifficulty] || raceDifficulty;
+  const diffName = isKm ? diffKm : (raceDifficulty.charAt(0).toUpperCase() + raceDifficulty.slice(1));
+  const lenStr = raceLength === 'text' ? (isKm ? ' · អត្ថបទពេញ' : ' · Full Text') : (' · ' + raceLength + (isKm ? 'វ' : 's'));
+  raceDifficultyLabelEl.textContent = diffName + lenStr;
   raceRenderText();
   raceUpdateHud();
   raceRunCountdown(()=>{
@@ -744,29 +754,30 @@ function raceFinish(timedOut){
 }
 
 function showRaceResults({wpm, accuracy, elapsed, charsTyped, mistakes, score, isNewBest, racerName, rank, lbTotal}){
+  const isKm = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
   const overlay = document.createElement('div');
   overlay.className = 'race-result-overlay';
   overlay.innerHTML = `
     <div class="race-result-card">
       <div class="race-badge">${pkIcon('trophy', 38)}</div>
-      <h2>RACE COMPLETE!</h2>
+      <h2>${isKm ? 'បញ្ចប់ការប្រណាំង!' : 'RACE COMPLETE!'}</h2>
       <p class="race-pb" style="color:var(--ink-dim); text-transform:none; letter-spacing:0;">
-        ${escapeHtml(racerName)} — Rank <b style="color:var(--gold-bright)">#${rank}</b> of ${lbTotal} on this leaderboard
+        ${escapeHtml(racerName)} — ${isKm ? `ចំណាត់ថ្នាក់ <b style="color:var(--gold-bright)">#${rank}</b> ក្នុងចំណោម ${lbTotal} នៅលើតារាងនេះ` : `Rank <b style="color:var(--gold-bright)">#${rank}</b> of ${lbTotal} on this leaderboard`}
       </p>
-      ${isNewBest ? '<p class="race-pb">' + pkIcon('zap', 14) + ' New Personal Best!</p>' : ''}
+      ${isNewBest ? '<p class="race-pb">' + pkIcon('zap', 14) + ' ' + (isKm ? 'កំណត់ត្រាល្អបំផុតថ្មី!' : 'New Personal Best!') + '</p>' : ''}
       <div class="race-result-grid">
         <div><b>${wpm}</b><span>WPM</span></div>
-        <div><b>${accuracy}%</b><span>Accuracy</span></div>
-        <div><b>${elapsed.toFixed(1)}s</b><span>Time</span></div>
-        <div><b>${charsTyped}</b><span>Characters</span></div>
-        <div><b>${mistakes}</b><span>Mistakes</span></div>
-        <div><b>${score}</b><span>Score</span></div>
+        <div><b>${accuracy}%</b><span>${isKm ? 'សុក្រឹតភាព' : 'Accuracy'}</span></div>
+        <div><b>${elapsed.toFixed(1)}${isKm ? 'វ' : 's'}</b><span>${isKm ? 'រយៈពេល' : 'Time'}</span></div>
+        <div><b>${charsTyped}</b><span>${isKm ? 'តួអក្សរ' : 'Characters'}</span></div>
+        <div><b>${mistakes}</b><span>${isKm ? 'កំហុស' : 'Mistakes'}</span></div>
+        <div><b>${score}</b><span>${isKm ? 'ពិន្ទុ' : 'Score'}</span></div>
       </div>
       <div class="race-result-actions">
-        <button class="race-again primary">${pkIcon('reset', 14)} Race Again</button>
-        <button class="race-view-leaderboard">${pkIcon('trophy', 14)} Leaderboard</button>
-        <button class="race-change-difficulty">${pkIcon('settings', 14)} Change Difficulty</button>
-        <button class="race-exit">Exit Race</button>
+        <button class="race-again primary">${pkIcon('reset', 14)} ${isKm ? 'ប្រណាំងម្តងទៀត' : 'Race Again'}</button>
+        <button class="race-view-leaderboard">${pkIcon('trophy', 14)} ${isKm ? 'តារាងពិន្ទុ' : 'Leaderboard'}</button>
+        <button class="race-change-difficulty">${pkIcon('settings', 14)} ${isKm ? 'ប្ដូរកម្រិតលំបាក' : 'Change Difficulty'}</button>
+        <button class="race-exit">${isKm ? 'ចាកចេញ' : 'Exit Race'}</button>
       </div>
     </div>`;
   document.body.appendChild(overlay);

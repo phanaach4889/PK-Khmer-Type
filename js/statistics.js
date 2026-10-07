@@ -374,11 +374,12 @@ function initStatisticsDashboard(){
       listEl.innerHTML = `<li class="race-lb-empty i18n-t" data-en="No one on the board yet — save your score to be first!" data-km="មិនទាន់មានអ្នកនៅលើតារាងនេះទេ — រក្សាទុកពិន្ទុរបស់អ្នកជាមុនគេ!">No one on the board yet — save your score to be first!</li>`;
       return;
     }
+    const isKm = document.documentElement.classList.contains('site-km-mode');
     listEl.innerHTML = list.map((e,i)=>
       `<li class="race-lb-row${i===0 ? ' rank-1' : ''}" style="animation-delay:${i*35}ms">
         <span class="race-lb-rank">${i===0 ? pkIcon('crown', 14) : i===1 ? pkIcon('award', 14) : i===2 ? pkIcon('star', 14) : (i+1)}</span>
         <span class="race-lb-name">${escapeHtml(e.name || '')}</span>
-        <span class="race-lb-score"><b>${e.mastered || 0}</b>/${e.total || 0} mastered</span>
+        <span class="race-lb-score"><b>${e.mastered || 0}</b>/${e.total || 0} ${isKm ? 'ស្ទាត់' : 'mastered'}</span>
       </li>`
     ).join('');
   }
@@ -467,24 +468,28 @@ function initStatisticsDashboard(){
     }).join('');
 
     const statsRaceRecords = document.getElementById('statsRaceRecords');
-    const lengthLabels = {'15':'15s','30':'30s','60':'60s','text':'Full text'};
+    const lengthLabels = isKm
+      ? {'15':'១៥វ','30':'៣០វ','60':'៦០វ','text':'អត្ថបទពេញ'}
+      : {'15':'15s','30':'30s','60':'60s','text':'Full text'};
     const anyRaceRecord = RACE_DIFFICULTIES.some(d=> RACE_LENGTHS.some(len=> getRaceBest(d, len)));
     if(!anyRaceRecord){
-      statsRaceRecords.innerHTML = `<div class="race-record-empty">No races completed yet — try ${pkIcon('flag', 14)} Typing Race!</div>`;
+      statsRaceRecords.innerHTML = `<div class="race-record-empty">${isKm ? `មិនទាន់បានបញ្ចប់ការប្រណាំងណាមួយទេ — សាកល្បង ${pkIcon('flag', 14)} ប្រណាំងវាយអក្សរ!` : `No races completed yet — try ${pkIcon('flag', 14)} Typing Race!`}</div>`;
     } else {
       statsRaceRecords.innerHTML = RACE_DIFFICULTIES.map((d,i)=>{
         const rows = RACE_LENGTHS.map(len=>{
           const rec = getRaceBest(d, len);
           const tag = lengthLabels[len];
-          if(!rec) return `<div class="race-record-length-row"><span class="rr-tag">${tag}</span><span class="race-record-none">— no record —</span></div>`;
-          return `<div class="race-record-length-row"><span class="rr-tag">${tag}</span><span><b>${rec.wpm}</b> WPM · ${rec.accuracy}% · Score ${rec.score}</span></div>`;
+          if(!rec) return `<div class="race-record-length-row"><span class="rr-tag">${tag}</span><span class="race-record-none">${isKm ? '— គ្មានកំណត់ត្រា —' : '— no record —'}</span></div>`;
+          return `<div class="race-record-length-row"><span class="rr-tag">${tag}</span><span><b>${rec.wpm}</b> WPM · ${rec.accuracy}% · ${isKm ? 'ពិន្ទុ' : 'Score'} ${rec.score}</span></div>`;
         }).join('');
         const totalRaces = RACE_LENGTHS.reduce((sum,len)=>{ const r = getRaceBest(d,len); return sum + (r ? r.races : 0); }, 0);
-        const diffLabel = d.charAt(0).toUpperCase() + d.slice(1);
+        const diffKm = { easy: 'ងាយស្រួល', medium: 'មធ្យម', hard: 'ពិបាក' }[d] || d;
+        const diffLabel = isKm ? diffKm : (d.charAt(0).toUpperCase() + d.slice(1));
+        const racesLabel = isKm ? `${totalRaces} ការប្រណាំង` : `${totalRaces} race${totalRaces===1?'':'s'}`;
         return `<div class="race-record-card" style="animation-delay:${i*55}ms">
           <div class="race-record-card-head">
             <span class="race-record-diff">${diffLabel}</span>
-            <span class="race-record-races">${totalRaces} race${totalRaces===1?'':'s'}</span>
+            <span class="race-record-races">${racesLabel}</span>
           </div>
           <div class="race-record-lengths">${rows}</div>
         </div>`;
@@ -598,28 +603,35 @@ function initStatisticsDashboard(){
     profileNameDisplay.setAttribute('data-text', profile.name || 'Phanna Kurosaki');
     refreshAvatarUI();
 
+    const isKm = document.documentElement.classList.contains('site-km-mode');
     const layoutCount = document.querySelectorAll('#layoutStrip .layout-pill').length || 3;
-    profileSubstats.textContent = `• ${(typeof TOTAL_LESSONS_ALL_LAYOUTS !== "undefined" ? TOTAL_LESSONS_ALL_LAYOUTS : 86)} lessons shipped · ${layoutCount} layouts live`;
+    const lessonTotal = typeof TOTAL_LESSONS_ALL_LAYOUTS !== "undefined" ? TOTAL_LESSONS_ALL_LAYOUTS : 86;
+    profileSubstats.textContent = isKm
+      ? `• ${lessonTotal} មេរៀនបានបង្កើត · ${layoutCount} ប្លង់ក្តារចុច`
+      : `• ${lessonTotal} lessons shipped · ${layoutCount} layouts live`;
 
     const xpFill = document.getElementById('profileXpFill');
     const xpLabel = document.getElementById('profileXpLabel');
     const ROADMAP_PCT = 82;
     const ROADMAP_NEXT = 'race mode polish';
+    const nextKm = 'សម្រួលការប្រណាំង';
     if(xpFill){
       xpFill.style.width = ROADMAP_PCT + '%';
     }
     if(xpLabel){
-      xpLabel.innerHTML = `<b>${ROADMAP_PCT}%</b> toward v1.0 — ${ROADMAP_NEXT} next`;
+      xpLabel.innerHTML = isKm
+        ? `<b>${ROADMAP_PCT}%</b> ឆ្ពោះទៅ v1.0 — បន្ទាប់គឺ ${nextKm}`
+        : `<b>${ROADMAP_PCT}%</b> toward v1.0 — ${ROADMAP_NEXT} next`;
     }
     profileSidebar.classList.add('tier-5');
 
     const tiles = [
-      [TOTAL_LESSONS_ALL_LAYOUTS, 'Lessons Crafted', pkIcon('book', 20), '#ffd166'],
-      [layoutCount, 'Layouts Designed', pkIcon('keyboard', 20), '#2dd4a7'],
-      ['100%', 'Solo-Built', pkIcon('tool', 20), '#ff5a70'],
-      ['2026', 'Founder Since', pkIcon('crown', 20), '#ffd166'],
-      ['0', 'Ads', pkIcon('ban', 20), '#5fd694'],
-      ['24/7', 'Actively Building', pkIcon('zap', 20), '#5fd694', true],
+      [TOTAL_LESSONS_ALL_LAYOUTS, isKm ? 'មេរៀនបានបង្កើត' : 'Lessons Crafted', pkIcon('book', 20), '#ffd166'],
+      [layoutCount, isKm ? 'ប្លង់ក្តារចុច' : 'Layouts Designed', pkIcon('keyboard', 20), '#2dd4a7'],
+      ['100%', isKm ? 'បង្កើតដោយផ្ទាល់' : 'Solo-Built', pkIcon('tool', 20), '#ff5a70'],
+      ['2026', isKm ? 'បង្កើតតាំងពី' : 'Founder Since', pkIcon('crown', 20), '#ffd166'],
+      ['0', isKm ? 'ពាណិជ្ជកម្ម' : 'Ads', pkIcon('ban', 20), '#5fd694'],
+      ['24/7', isKm ? 'កំពុងអភិវឌ្ឍន៍' : 'Actively Building', pkIcon('zap', 20), '#5fd694', true],
     ];
     profileStatsGrid.innerHTML = tiles.map(([val,label,icon,accent,live],i)=>
       `<div class="stat-tile" style="--tile-accent:${accent};--tile-delay:${(i*0.06).toFixed(2)}s">${live ? '<span class="stat-tile-live" aria-hidden="true"></span>' : ''}<div class="stat-tile-icon">${icon}</div><div class="stat-tile-val">${val}</div><div class="stat-tile-label">${label}</div></div>`

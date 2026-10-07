@@ -1273,25 +1273,26 @@
       const isNeedsPractice = st.isUnlocked && !isZero && !isWeak && !isMastered && !isImproving;
       const isFocusPill = !isZero && (st.unit === s.focusUnit || st.state === 'focus');
 
+      const isKm = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
       let pillStateClass = 'as-locked';
-      let statusLabel = 'Locked';
+      let statusLabel = isKm ? 'បានចាក់សោ' : 'Locked';
 
       if (st.isUnlocked) {
         if (isZero) {
           pillStateClass = 'as-active as-zero';
-          statusLabel = 'Active (New)';
+          statusLabel = isKm ? 'សកម្ម (ថ្មី)' : 'Active (New)';
         } else if (isWeak) {
           pillStateClass = 'as-weak';
-          statusLabel = `Weak (${displayScore}%)`;
+          statusLabel = isKm ? `ខ្សោយ (${displayScore}%)` : `Weak (${displayScore}%)`;
         } else if (isMastered) {
           pillStateClass = 'as-mastered as-strong';
-          statusLabel = `Mastered (${displayScore}%)`;
+          statusLabel = isKm ? `ស្ទាត់ (${displayScore}%)` : `Mastered (${displayScore}%)`;
         } else if (isImproving) {
           pillStateClass = 'as-advancing as-improving';
-          statusLabel = `Improving (${displayScore}%)`;
+          statusLabel = isKm ? `កំពុងរីកចម្រើន (${displayScore}%)` : `Improving (${displayScore}%)`;
         } else {
           pillStateClass = 'as-learning as-needs-practice';
-          statusLabel = `Needs Practice (${displayScore}%)`;
+          statusLabel = isKm ? `ត្រូវហ្វឹកហាត់បន្ថែម (${displayScore}%)` : `Needs Practice (${displayScore}%)`;
         }
       }
 
@@ -1333,13 +1334,20 @@
       const tooltip = document.createElement('div');
       tooltip.className = 'as-tooltip';
 
+      const lblMastery = isKm ? 'ភាពស្ទាត់៖' : 'Mastery:';
+      const lblAccuracy = isKm ? 'សុក្រឹតភាព៖' : 'Accuracy:';
+      const lblMilestone = isKm ? 'វឌ្ឍនភាពដំណាក់កាល៖' : 'Stage Milestone:';
+      const lblSpeed = isKm ? 'ល្បឿនមធ្យម៖' : 'Avg Speed:';
+      const lblTrend = isKm ? 'និន្នាការ៖' : 'Trend:';
+      const lockedHint = isKm ? 'ដោះសោនៅពេលអក្សរសកម្មទាំងអស់ឡើងដល់ 100%' : 'Unlocks when all active letters reach 100%';
+
       tooltip.innerHTML = `
         <div style="font-weight:700;color:var(--gold-bright);">${st.unit.toUpperCase()} · ${statusLabel}</div>
-        ${st.isUnlocked ? `<div>Mastery: <b>${isZero ? '0%' : displayScore + '%'}</b></div>
-        <div>Accuracy: <b>${st.accuracy}%</b> (${st.correct}/${st.attempts})</div>
-        <div>Stage Milestone: <b>${st.completion}%</b> (${st.completedUnits}/${st.targetUnits})</div>
-        <div>Avg Speed: <b>${st.avgResponseMs > 0 ? st.avgResponseMs + 'ms' : '—'}</b></div>
-        <div>Trend: <b>${isZero ? '—' : (st.trend > 0 ? '+' + st.trend : st.trend) + '%'}</b></div>` : '<div>Unlocks when all active letters reach 100%</div>'}
+        ${st.isUnlocked ? `<div>${lblMastery} <b>${isZero ? '0%' : displayScore + '%'}</b></div>
+        <div>${lblAccuracy} <b>${st.accuracy}%</b> (${st.correct}/${st.attempts})</div>
+        <div>${lblMilestone} <b>${st.completion}%</b> (${st.completedUnits}/${st.targetUnits})</div>
+        <div>${lblSpeed} <b>${st.avgResponseMs > 0 ? st.avgResponseMs + 'ms' : '—'}</b></div>
+        <div>${lblTrend} <b>${isZero ? '—' : (st.trend > 0 ? '+' + st.trend : st.trend) + '%'}</b></div>` : `<div>${lockedHint}</div>`}
       `;
 
       pill.setAttribute('aria-label', `${st.unit.toUpperCase()} ${statusLabel}: ${st.isUnlocked ? `${displayScore}% mastery, ${st.accuracy}% accuracy` : 'Locked'}`);
@@ -1358,10 +1366,11 @@
     const l = normalizeLayout(layoutId || (typeof currentLayoutId !== 'undefined' ? currentLayoutId : 'english'));
     const subEl = document.getElementById('adaptiveSidebarSub');
     if (!subEl) return;
+    const isKm = document.documentElement.classList.contains('site-km-mode');
     const s = loadAdaptiveState(l);
     const activeLetters = s.unlockedUnits.slice(0, 6).map(u => u.toUpperCase()).join(' ');
     const more = s.unlockedUnits.length > 6 ? ` +${s.unlockedUnits.length - 6}` : '';
-    subEl.textContent = `Stage ${s.stage} · ${activeLetters}${more}`;
+    subEl.textContent = isKm ? `ដំណាក់កាល ${s.stage} · ${activeLetters}${more}` : `Stage ${s.stage} · ${activeLetters}${more}`;
   }
 
   /* ---------- Weak-Key Focus HUD & Inline Toast ---------- */
@@ -1369,12 +1378,15 @@
     if (typeof document === 'undefined') return;
     const l = normalizeLayout(layoutId || (activeSession ? activeSession.layoutId : currentLayoutId));
     const evalRes = evaluateWeaknesses(l);
+    const isKm = document.documentElement.classList.contains('site-km-mode');
 
     const focusChip = document.getElementById('afhFocusChip');
     if (focusChip) {
       if (evalRes.focus && evalRes.focus.unit) {
         focusChip.textContent = evalRes.focus.unit.toUpperCase();
-        focusChip.title = `Priority: ${evalRes.focus.priorityLevel} · Accuracy: ${evalRes.focus.accuracy}%`;
+        focusChip.title = isKm
+          ? `អាទិភាព៖ ${evalRes.focus.priorityLevel} · សុក្រឹតភាព៖ ${evalRes.focus.accuracy}%`
+          : `Priority: ${evalRes.focus.priorityLevel} · Accuracy: ${evalRes.focus.accuracy}%`;
       } else {
         focusChip.textContent = '—';
       }
@@ -1388,13 +1400,15 @@
           const chip = document.createElement('span');
           chip.className = `afh-weak-chip ${w.state === 'needs-practice' ? 'needs-practice' : ''}`;
           chip.textContent = `${w.unit.toUpperCase()} ${w.accuracy}%`;
-          chip.title = `${w.label} · Mistakes: ${w.mistakes} · Speed: ${w.avgResponseMs}ms`;
+          chip.title = isKm
+            ? `${w.label} · កំហុស៖ ${w.mistakes} · ល្បឿន៖ ${w.avgResponseMs}ms`
+            : `${w.label} · Mistakes: ${w.mistakes} · Speed: ${w.avgResponseMs}ms`;
           weakChips.appendChild(chip);
         });
       } else {
         const healthy = document.createElement('span');
         healthy.className = 'afh-healthy-chip';
-        healthy.textContent = 'All active keys healthy';
+        healthy.textContent = isKm ? 'គ្រាប់ចុចសកម្មទាំងអស់ល្អប្រសើរ' : 'All active keys healthy';
         weakChips.appendChild(healthy);
       }
     }
@@ -1421,10 +1435,15 @@
     if (roundToastTimer) clearTimeout(roundToastTimer);
     toast.hidden = false;
     toast.style.opacity = '1';
+    const isKm = document.documentElement.classList.contains('site-km-mode');
     if (summaryResult && summaryResult.newLetterUnlocked) {
-      toast.textContent = `Unlocked '${summaryResult.newLetterUnlocked.toUpperCase()}'! · ${summaryResult.accuracy}% Accuracy · Focus: ${summaryResult.focusUnit || '—'}`;
+      toast.textContent = isKm
+        ? `បានដោះសោ '${summaryResult.newLetterUnlocked.toUpperCase()}'! · សុក្រឹតភាព ${summaryResult.accuracy}% · ផ្ដោតលើ៖ ${summaryResult.focusUnit || '—'}`
+        : `Unlocked '${summaryResult.newLetterUnlocked.toUpperCase()}'! · ${summaryResult.accuracy}% Accuracy · Focus: ${summaryResult.focusUnit || '—'}`;
     } else {
-      toast.textContent = `Round Complete · ${summaryResult ? summaryResult.accuracy : 100}% Accuracy · Focus: ${(summaryResult && summaryResult.focusUnit) || '—'}`;
+      toast.textContent = isKm
+        ? `បញ្ចប់ជុំ · សុក្រឹតភាព ${summaryResult ? summaryResult.accuracy : 100}% · ផ្ដោតលើ៖ ${(summaryResult && summaryResult.focusUnit) || '—'}`
+        : `Round Complete · ${summaryResult ? summaryResult.accuracy : 100}% Accuracy · Focus: ${(summaryResult && summaryResult.focusUnit) || '—'}`;
     }
 
     roundToastTimer = setTimeout(() => {
@@ -1590,9 +1609,11 @@
       if (manuscript) manuscript.hidden = true;
       if (panel) panel.hidden = false;
 
+      const isKm = document.documentElement.classList.contains('site-km-mode');
+
       // Badges & top meta
       const stageBadge = document.getElementById('adaptiveStageBadge');
-      if (stageBadge) stageBadge.textContent = `Stage ${s.stage}`;
+      if (stageBadge) stageBadge.textContent = isKm ? `ដំណាក់កាល ${s.stage}` : `Stage ${s.stage}`;
 
       const focusBadge = document.getElementById('adaptiveFocusBadge');
       const focusWrap = document.getElementById('adaptiveFocusWrap');
@@ -1600,7 +1621,7 @@
       if (drill.focusUnit) {
         if (focusBadge) {
           focusBadge.hidden = false;
-          focusBadge.textContent = `Focus: ${drill.focusUnit.toUpperCase()}`;
+          focusBadge.textContent = isKm ? `ផ្ដោតលើ៖ ${drill.focusUnit.toUpperCase()}` : `Focus: ${drill.focusUnit.toUpperCase()}`;
         }
         if (focusWrap) focusWrap.style.display = 'inline-flex';
         if (focusVal) focusVal.textContent = drill.focusUnit.toUpperCase();
@@ -1611,7 +1632,9 @@
 
       const countEl = document.getElementById('adaptiveUnlockedCount');
       if (countEl) {
-        countEl.textContent = `${s.unlockedUnits.length}/${(PROGRESSIONS[l] || []).length} Active`;
+        countEl.textContent = isKm
+          ? `${s.unlockedUnits.length}/${(PROGRESSIONS[l] || []).length} សកម្ម`
+          : `${s.unlockedUnits.length}/${(PROGRESSIONS[l] || []).length} Active`;
       }
 
       renderLetterStrip(null, l);
@@ -1922,6 +1945,32 @@
     window.adaptiveHandleBackspace = adaptiveHandleBackspace;
   }
 
+  function refreshLang() {
+    const l = normalizeLayout(typeof currentLayoutId !== 'undefined' ? currentLayoutId : 'english');
+    updateSidebarCard(l);
+    renderLetterStrip(null, l);
+    updateAdaptiveFocusHud(l);
+    if (activeSession && typeof document !== 'undefined') {
+      const isKm = document.documentElement.classList.contains('site-km-mode');
+      const stageBadge = document.getElementById('adaptiveStageBadge');
+      if (stageBadge && activeSession.drill) {
+        const s = loadAdaptiveState(l);
+        stageBadge.textContent = isKm ? `ដំណាក់កាល ${s.stage}` : `Stage ${s.stage}`;
+      }
+      const focusBadge = document.getElementById('adaptiveFocusBadge');
+      if (focusBadge && activeSession.drill && activeSession.drill.focusUnit) {
+        focusBadge.textContent = isKm ? `ផ្ដោតលើ៖ ${activeSession.drill.focusUnit.toUpperCase()}` : `Focus: ${activeSession.drill.focusUnit.toUpperCase()}`;
+      }
+      const countEl = document.getElementById('adaptiveUnlockedCount');
+      if (countEl) {
+        const s = loadAdaptiveState(l);
+        countEl.textContent = isKm
+          ? `${s.unlockedUnits.length}/${(PROGRESSIONS[l] || []).length} សកម្ម`
+          : `${s.unlockedUnits.length}/${(PROGRESSIONS[l] || []).length} Active`;
+      }
+    }
+  }
+
   /* ============================================================
      EXPORTED API
      ============================================================ */
@@ -1947,6 +1996,7 @@
     updateSidebarCard,
     startAdaptiveSession,
     exitSession,
+    refreshLang,
     adaptiveHandleChar,
     adaptiveHandleBackspace,
     showAdaptiveSummaryModal,

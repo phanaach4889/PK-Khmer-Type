@@ -50,7 +50,17 @@ const FINGER_LABELS = {
   ri:'Right Index', rm:'Right Middle', rr:'Right Ring', rp:'Right Pinky',
   lt:'Left Thumb', rt:'Right Thumb'
 };
-function fingerLabel(id){ return FINGER_LABELS[KEY_FINGER[id]] || ''; }
+const FINGER_LABELS_KM = {
+  lp:'ម្រាមកូនឆ្វេង', lr:'ម្រាមនាងឆ្វេង', lm:'ម្រាមកណ្ដាលឆ្វេង', li:'ម្រាមចង្អុលឆ្វេង',
+  ri:'ម្រាមចង្អុលស្ដាំ', rm:'ម្រាមកណ្ដាលស្ដាំ', rr:'ម្រាមនាងស្ដាំ', rp:'ម្រាមកូនស្ដាំ',
+  lt:'មេដៃឆ្វេង', rt:'មេដៃស្ដាំ'
+};
+function fingerLabel(id){
+  const isKm = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
+  const fid = KEY_FINGER[id];
+  if(isKm && FINGER_LABELS_KM[fid]) return FINGER_LABELS_KM[fid];
+  return FINGER_LABELS[fid] || '';
+}
 
 const KEY_LABELS = {
   semicolon:';', quote:"'", backslash:'\\', comma:',', period:'.', slash:'/',
@@ -1634,15 +1644,17 @@ function renderLessonStrip(){
     let masteredCount = 0;
     LESSONS.forEach(l => { const b = getLessonBest(l.id); if(b && b.mastered) masteredCount++; });
 
+    const isKm = document.documentElement.classList.contains('site-km-mode');
+
     const topBar = document.createElement('div');
     topBar.className = 'lesson-strip-header';
     topBar.innerHTML = `
-      <span class="lsh-title">${pkIcon('book', 14)} LESSONS</span>
+      <span class="lsh-title">${pkIcon('book', 14)} <span class="i18n-t" data-en="LESSONS" data-km="មេរៀន">LESSONS</span></span>
       <div class="lsh-actions">
         <button type="button" class="lsh-adaptive-btn" id="lshAdaptiveBtn" title="Start Adaptive Practice" aria-label="Start Adaptive Practice">
           ${pkIcon('refresh', 12)} <span class="i18n-t" data-en="Adaptive" data-km="ការអនុវត្តបន្ស៊ាំ">Adaptive</span>
         </button>
-        <span class="lsh-badge" title="${masteredCount}/${LESSONS.length} Lessons Mastered"><span class="lsh-badge-num">${masteredCount}/${LESSONS.length}</span> <span class="lsh-badge-txt">Mastered</span></span>
+        <span class="lsh-badge" title="${masteredCount}/${LESSONS.length} ${isKm ? 'មេរៀនបានស្ទាត់' : 'Lessons Mastered'}"><span class="lsh-badge-num">${masteredCount}/${LESSONS.length}</span> <span class="lsh-badge-txt"><span class="i18n-t" data-en="Mastered" data-km="ស្ទាត់">Mastered</span></span></span>
         <button type="button" class="lsh-expand-btn" id="lshExpandBtn" title="${isStripExpanded ? 'Compact sidebar (1 column)' : 'Expand sidebar (2 columns)'}" aria-label="Toggle sidebar width">
           ${pkIcon(isStripExpanded ? 'collapse' : 'expand', 12)}
         </button>
@@ -1650,7 +1662,6 @@ function renderLessonStrip(){
     `;
     frag.appendChild(topBar);
 
-    const isKm = document.documentElement.classList.contains('site-km-mode');
     const searchPlaceholder = isKm ? "ស្វែងរកមេរៀន អក្សរ..." : "Search lessons, letters...";
     
     const searchBar = document.createElement('div');
@@ -1670,8 +1681,8 @@ function renderLessonStrip(){
       ? PK_ADAPTIVE.loadAdaptiveState(currentLayoutId)
       : null;
     const activeSub = sAdaptive
-      ? `Stage ${sAdaptive.stage} · ${sAdaptive.unlockedUnits.slice(0, 6).map(u=>u.toUpperCase()).join(' ')}${sAdaptive.unlockedUnits.length > 6 ? ' +' + (sAdaptive.unlockedUnits.length - 6) : ''}`
-      : 'Targeted letters practice';
+      ? (isKm ? `ដំណាក់កាល ${sAdaptive.stage} · ${sAdaptive.unlockedUnits.slice(0, 6).map(u=>u.toUpperCase()).join(' ')}${sAdaptive.unlockedUnits.length > 6 ? ' +' + (sAdaptive.unlockedUnits.length - 6) : ''}` : `Stage ${sAdaptive.stage} · ${sAdaptive.unlockedUnits.slice(0, 6).map(u=>u.toUpperCase()).join(' ')}${sAdaptive.unlockedUnits.length > 6 ? ' +' + (sAdaptive.unlockedUnits.length - 6) : ''}`)
+      : (isKm ? 'ការហ្វឹកហាត់អក្សរគោលដៅ' : 'Targeted letters practice');
     adaptiveCard.innerHTML = `
       <div class="asc-left">
         <div class="asc-title">
@@ -1698,7 +1709,7 @@ function renderLessonStrip(){
         const header = document.createElement('div');
         header.className = 'lesson-level-header' + (collapsed ? ' collapsed' : '');
         header.dataset.level = String(def.level);
-        header.innerHTML = `<span class="llh-chevron">${pkIcon(collapsed ? 'arrow-right' : 'arrow-down', 11)}</span><span>${lv ? lv.title : `Level ${def.level}`}</span>`;
+        header.innerHTML = `<span class="llh-chevron">${pkIcon(collapsed ? 'arrow-right' : 'arrow-down', 11)}</span><span>${lv ? (isKm && lv.titleKm ? lv.titleKm : lv.title) : (isKm ? `កម្រិត ${def.level}` : `Level ${def.level}`)}</span>`;
         bodyEl.appendChild(header);
         listEl = document.createElement('div');
         listEl.className = 'lesson-level-list' + (collapsed ? ' collapsed' : '');
@@ -1711,7 +1722,7 @@ function renderLessonStrip(){
       card.dataset.lesson = def.id;
 
       const examplesHtml = def.examples && def.examples.length
-        ? `<div class="lesson-card-examples"><span class="lce-lbl">Ex:</span> ${def.examples.slice(0, 3).map(ex=>`<span class="lce-chip">${ex}</span>`).join(' ')}</div>`
+        ? `<div class="lesson-card-examples"><span class="lce-lbl">${isKm ? 'ឧទាហរណ៍៖' : 'Ex:'}</span> ${def.examples.slice(0, 3).map(ex=>`<span class="lce-chip">${ex}</span>`).join(' ')}</div>`
         : '';
 
       const best = getLessonBest(def.id);
@@ -1875,16 +1886,20 @@ document.addEventListener('click', (e)=>{
 });
 
 function renderLessonMeta(def){
+  const isKm = document.documentElement.classList.contains('site-km-mode');
   const levelObj = LEVELS.find(l => l.id === def.level);
-  const levelTitle = levelObj ? levelObj.title : `Level ${def.level}`;
+  const levelTitle = levelObj ? (isKm && levelObj.titleKm ? levelObj.titleKm : levelObj.title) : (isKm ? `កម្រិត ${def.level}` : `Level ${def.level}`);
   lessonMetaBadgeEl.textContent = `${levelTitle} · ${(def.type || 'drill').toUpperCase()}`;
   lessonMetaBadgeEl.className = 'lesson-meta-badge' + (def.type==='review' || def.type==='test' || def.type==='words' ? ' badge-'+def.type : '');
   const best = getLessonBest(def.id);
-  lessonMetaBestEl.textContent = best ? `Best ${best.accuracy}% in ${best.time.toFixed(1)}s · Attempts ${best.attempts||1}` : 'Not attempted yet';
+  lessonMetaBestEl.textContent = best
+    ? (isKm ? `ល្អបំផុត ${best.accuracy}% ក្នុង ${best.time.toFixed(1)}វ · ការសាកល្បង ${best.attempts||1}` : `Best ${best.accuracy}% in ${best.time.toFixed(1)}s · Attempts ${best.attempts||1}`)
+    : (isKm ? 'មិនទាន់បានសាកល្បងនៅឡើយ' : 'Not attempted yet');
 
   if(def.newIds && def.newIds.length){
     lessonNewKeysEl.hidden = false;
-    lessonNewKeysEl.innerHTML = '<span class="lesson-newkeys-label">Target Keys</span>' + def.newIds.map(id=>{
+    const targetLabel = isKm ? 'គ្រាប់ចុចគោលដៅ' : 'Target Keys';
+    lessonNewKeysEl.innerHTML = `<span class="lesson-newkeys-label">${targetLabel}</span>` + def.newIds.map(id=>{
       const layer = def.newLayer || def.layer || 'base';
       let ch = (def.newChars && def.newChars[id]) || charFor(id, layer);
       if(!ch) ch = charFor(id, 'base') || charFor(id, 'shift') || '';
@@ -2499,12 +2514,13 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
   if(feedbackSummary && typeof PK_FEEDBACK.buildPostLessonCardHtml === 'function'){
     overlay.innerHTML = PK_FEEDBACK.buildPostLessonCardHtml(feedbackSummary, def, isNewBest, prevLesson, nextLesson);
   } else {
-    const timeStr = elapsed.toFixed(1) + 's';
+    const isKm = document.documentElement.classList.contains('site-km-mode');
+    const timeStr = elapsed.toFixed(1) + (isKm ? 'វ' : 's');
     const threshold = def.threshold || 85;
     const failed = accuracy < threshold;
-    const heading = remedialActive ? 'Mistake Drill Complete'
-      : failed ? 'Keep Practicing'
-      : (isNewBest ? 'New Best!' : 'Lesson Complete');
+    const heading = remedialActive ? (isKm ? 'បានបញ្ចប់ការហ្វឹកហាត់កំហុស' : 'Mistake Drill Complete')
+      : failed ? (isKm ? 'បន្តការហ្វឹកហាត់' : 'Keep Practicing')
+      : (isNewBest ? (isKm ? 'កំណត់ត្រាល្អបំផុតថ្មី!' : 'New Personal Best!') : (isKm ? 'បញ្ចប់មេរៀន' : 'Lesson Complete'));
     const badgeIcon = remedialActive ? pkIcon('target', 32)
       : failed ? pkIcon('reset', 32)
       : accuracy === 100 ? pkIcon('diamond', 32)
@@ -2515,18 +2531,18 @@ function showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars){
       <div class="lesson-complete-card">
         <div class="lc-badge-halo"><div class="lc-badge">${badgeIcon}</div></div>
         <h2>${heading}</h2>
-        <p>${def.title}</p>
+        <p>${def.title || (isKm ? 'មេរៀន' : 'Lesson')}</p>
         <div class="lc-divider"><span>◆</span></div>
         <div class="lc-stat-row">
           <div class="lc-ring-wrap">
             <div class="lc-ring" style="--pct:0"><b>0%</b></div>
-            <span class="lc-ring-label">Accuracy</span>
+            <span class="lc-ring-label">${isKm ? 'សុក្រឹតភាព' : 'Accuracy'}</span>
           </div>
-          <div class="lc-stat"><b class="lc-time">0.0s</b><span>Time</span></div>
+          <div class="lc-stat"><b class="lc-time">0.0s</b><span>${isKm ? 'រយៈពេល' : 'Time'}</span></div>
         </div>
         ${(mistakeChars && mistakeChars.length && !remedialActive) ? `
         <div class="lc-mistakes-preview">
-          <span class="lc-mistakes-title">Keys To Practice</span>
+          <span class="lc-mistakes-title">${isKm ? 'គ្រាប់ចុចត្រូវហ្វឹកហាត់' : 'Keys To Practice'}</span>
           <div class="lc-mistake-chips">
             ${mistakeChars.map(ch => {
               const count = lessonMistakeChars[ch] || 1;

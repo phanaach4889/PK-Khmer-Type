@@ -125,13 +125,16 @@
   function getRealTimeHint(metrics){
     if(!metrics || !metrics.active) return null;
     if(metrics.mistakeCount < 2) return null;
+    const isKm = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
 
     // Check most missed key
     if(metrics.mostMissedKey){
       const k = typeof metrics.mostMissedKey === 'object' ? metrics.mostMissedKey.key : metrics.mostMissedKey;
       const displayKey = k.length === 1 ? k.toUpperCase() : k;
       const count = (typeof metrics.mostMissedKey === 'object' && metrics.mostMissedKey.count) || (metrics.keyMistakes && metrics.keyMistakes[k]) || 2;
-      return `Tip: Key ${displayKey} has caused ${count} mistakes in this lesson.`;
+      return isKm
+        ? `ព័ត៌មានជំនួយ៖ គ្រាប់ចុច ${displayKey} មានកំហុស ${count} ដងក្នុងមេរៀននេះ។`
+        : `Tip: Key ${displayKey} has caused ${count} mistakes in this lesson.`;
     }
 
     // Check most missed unit
@@ -140,19 +143,25 @@
       if(u && u !== ' '){
         const uName = formatUnitName(u, metrics.layoutId);
         const count = (typeof metrics.mostMissedUnit === 'object' && metrics.mostMissedUnit.count) || (metrics.unitMistakes && metrics.unitMistakes[u]) || 2;
-        return `Tip: ${uName} has caused ${count} mistakes in this lesson.`;
+        return isKm
+          ? `ព័ត៌មានជំនួយ៖ ${uName} មានកំហុស ${count} ដងក្នុងមេរៀននេះ។`
+          : `Tip: ${uName} has caused ${count} mistakes in this lesson.`;
       }
     }
 
     // Check finger concentration
     if(metrics.difficultFinger){
       const fName = formatFingerName(metrics.difficultFinger.finger);
-      return `Tip: Steady your hand on ${fName} (${metrics.difficultFinger.pct}% of mistakes).`;
+      return isKm
+        ? `ព័ត៌មានជំនួយ៖ តម្រង់ដៃឱ្យនឹងលើ ${fName} (${metrics.difficultFinger.pct}% នៃកំហុស)។`
+        : `Tip: Steady your hand on ${fName} (${metrics.difficultFinger.pct}% of mistakes).`;
     }
 
     // High backspace correction count
     if(metrics.backspaceCount >= 4 && metrics.position > 5){
-      return `Tip: Pace yourself smoothly to reduce backspace corrections.`;
+      return isKm
+        ? `ព័ត៌មានជំនួយ៖ រក្សាចង្វាក់វាយឱ្យស្មើដើម្បីកាត់បន្ថយការលុបកែតម្រូវ។`
+        : `Tip: Pace yourself smoothly to reduce backspace corrections.`;
     }
 
     return null;
@@ -476,13 +485,17 @@
     const prevLesson = options.prevLesson || null;
     const nextLesson = options.nextLesson || null;
     const isRemedial = !!options.isRemedial;
+    const isKm = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
 
     if(state === 'paused'){
+      const resumeTxt = isKm ? 'បន្តមេរៀន' : 'Resume Lesson';
+      const restartTxt = isKm ? 'ចាប់ផ្តើមឡើងវិញ' : 'Restart';
+      const exitTxt = isKm ? 'ចាកចេញទៅវគ្គសិក្សា' : 'Exit to Course';
       return `
       <div class="lesson-complete-actions pk-fb-actions">
-        <button type="button" class="lc-resume primary">${safeIcon('play', 14)} Resume Lesson</button>
-        <button type="button" class="lc-retry">${safeIcon('reset', 14)} Restart</button>
-        <button type="button" class="lc-exit-confirm secondary">Exit to Course</button>
+        <button type="button" class="lc-resume primary">${safeIcon('play', 14)} ${resumeTxt}</button>
+        <button type="button" class="lc-retry">${safeIcon('reset', 14)} ${restartTxt}</button>
+        <button type="button" class="lc-exit-confirm secondary">${exitTxt}</button>
       </div>`;
     }
 
@@ -491,18 +504,24 @@
       const nextIsPrimary = !hasMistakes;
       const buttons = [];
 
+      const reviewTxt = isKm ? 'ពិនិត្យកំហុស' : 'Review Mistakes';
+      const prevTxt = isKm ? 'ថយក្រោយ' : 'Previous';
+      const retryTxt = isKm ? 'ព្យាយាមម្តងទៀត' : 'Retry';
+      const nextTxt = isKm ? 'មេរៀនបន្ទាប់' : 'Next Lesson';
+      const closeTxt = isKm ? 'បិទ' : 'Close';
+
       if(hasMistakes){
-        buttons.push(`<button type="button" class="lc-mistakes primary">${safeIcon('target', 14)} Review Mistakes</button>`);
+        buttons.push(`<button type="button" class="lc-mistakes primary">${safeIcon('target', 14)} ${reviewTxt}</button>`);
       }
       if(prevLesson){
-        buttons.push(`<button type="button" class="lc-prev">${safeIcon('arrow-left', 14)} Previous</button>`);
+        buttons.push(`<button type="button" class="lc-prev">${safeIcon('arrow-left', 14)} ${prevTxt}</button>`);
       }
-      buttons.push(`<button type="button" class="lc-retry">${safeIcon('reset', 14)} Retry</button>`);
+      buttons.push(`<button type="button" class="lc-retry">${safeIcon('reset', 14)} ${retryTxt}</button>`);
       if(nextLesson){
-        buttons.push(`<button type="button" class="lc-next${nextIsPrimary ? ' primary' : ''}">Next Lesson ${safeIcon('arrow-right', 14)}</button>`);
-        buttons.push(`<button type="button" class="lc-close">Close</button>`);
+        buttons.push(`<button type="button" class="lc-next${nextIsPrimary ? ' primary' : ''}">${nextTxt} ${safeIcon('arrow-right', 14)}</button>`);
+        buttons.push(`<button type="button" class="lc-close">${closeTxt}</button>`);
       } else {
-        buttons.push(`<button type="button" class="lc-close primary">Close</button>`);
+        buttons.push(`<button type="button" class="lc-close primary">${closeTxt}</button>`);
       }
 
       return `
@@ -527,11 +546,12 @@
     const rec = summary.recommendation;
     const threshold = summary.threshold || 85;
     const passed = p.accuracy >= threshold;
+    const isKm = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
 
-    const heading = (p.accuracy === 100) ? 'Flawless Lesson!'
-      : (isNewBest) ? 'New Personal Best!'
-      : (passed) ? 'Lesson Complete'
-      : 'Keep Practicing';
+    const heading = (p.accuracy === 100) ? (isKm ? 'មេរៀនឥតខ្ចោះ!' : 'Flawless Lesson!')
+      : (isNewBest) ? (isKm ? 'កំណត់ត្រាល្អបំផុតថ្មី!' : 'New Personal Best!')
+      : (passed) ? (isKm ? 'បញ្ចប់មេរៀន' : 'Lesson Complete')
+      : (isKm ? 'បន្តការហ្វឹកហាត់' : 'Keep Practicing');
 
     const headingColor = (p.accuracy === 100) ? '#64d2ff'
       : (passed) ? 'var(--gold-bright)'
@@ -551,7 +571,7 @@
       });
       weakChipsHtml = items.slice(0, 6).join(' ');
     } else {
-      weakChipsHtml = `<span class="pk-fb-empty">No recurring mistakes detected!</span>`;
+      weakChipsHtml = `<span class="pk-fb-empty">${isKm ? 'មិនមានកំហុសកើតឡើងដដែលៗទេ!' : 'No recurring mistakes detected!'}</span>`;
     }
 
     // HTML chips for strong keys
@@ -561,14 +581,14 @@
         return `<span class="pk-fb-chip good"><b>${k.key.toUpperCase()}</b> <small>100%</small></span>`;
       }).join(' ');
     } else {
-      strongChipsHtml = `<span class="pk-fb-empty">Keep practicing to build key consistency.</span>`;
+      strongChipsHtml = `<span class="pk-fb-empty">${isKm ? 'បន្តហ្វឹកហាត់ដើម្បីរក្សាភាពច្បាស់លាស់។' : 'Keep practicing to build key consistency.'}</span>`;
     }
 
     // Finger feedback notice
     let fingerNoticeHtml = '';
     if(np.weakFingers.length > 0){
       const wf = np.weakFingers[0];
-      fingerNoticeHtml = `<div class="pk-fb-finger-note"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> ${wf.name} produced ${wf.pct}% of your mistakes (${wf.mistakes} errors).</div>`;
+      fingerNoticeHtml = `<div class="pk-fb-finger-note"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> ${isKm ? `${wf.name} បង្កើតកំហុស ${wf.pct}% (${wf.mistakes} កំហុស)។` : `${wf.name} produced ${wf.pct}% of your mistakes (${wf.mistakes} errors).`}</div>`;
     }
 
     // Exercise breakdown rows
@@ -576,11 +596,11 @@
     if(summary.exerciseBreakdown.length > 1){
       exercisesHtml = `
       <div class="pk-fb-section-breakdown">
-        <span class="pk-fb-subhead">Section Performance</span>
+        <span class="pk-fb-subhead">${isKm ? 'ការអនុវត្តតាមផ្នែក' : 'Section Performance'}</span>
         <div class="pk-fb-exercise-bars">
           ${summary.exerciseBreakdown.map((ex, idx) => `
             <div class="pk-fb-ex-row">
-              <span class="pk-fb-ex-name">Sec ${idx + 1}: ${ex.title}</span>
+              <span class="pk-fb-ex-name">${isKm ? `ផ្នែក ${idx + 1}` : `Sec ${idx + 1}`}: ${ex.title}</span>
               <div class="pk-fb-ex-track">
                 <div class="pk-fb-ex-fill ${ex.accuracy < threshold ? 'warn' : ''}" style="width:${ex.accuracy}%"></div>
               </div>
@@ -607,7 +627,7 @@
     <div class="lesson-complete-card pk-fb-complete-card">
       <div class="pk-fb-header">
         <h2 style="color:${headingColor}">${heading}</h2>
-        <p class="pk-fb-lesson-title">${def.title || 'Lesson'}</p>
+        <p class="pk-fb-lesson-title">${def.title || (isKm ? 'មេរៀន' : 'Lesson')}</p>
       </div>
 
       ${trendHtml}
@@ -616,7 +636,7 @@
       <div class="pk-fb-perf-grid">
         <div class="pk-fb-stat-box highlight">
           <span class="val">${p.accuracy}%</span>
-          <span class="lbl">Accuracy</span>
+          <span class="lbl">${isKm ? 'សុក្រឹតភាព' : 'Accuracy'}</span>
         </div>
         <div class="pk-fb-stat-box">
           <span class="val">${p.wpm}</span>
@@ -624,31 +644,31 @@
         </div>
         <div class="pk-fb-stat-box">
           <span class="val">${p.activeTimeSec}s</span>
-          <span class="lbl">Active Time</span>
+          <span class="lbl">${isKm ? 'រយៈពេលអនុវត្ត' : 'Active Time'}</span>
         </div>
         <div class="pk-fb-stat-box">
           <span class="val">${p.correctUnits}/${p.totalUnits}</span>
-          <span class="lbl">Completed</span>
+          <span class="lbl">${isKm ? 'បានបញ្ចប់' : 'Completed'}</span>
         </div>
         <div class="pk-fb-stat-box ${p.mistakes > 0 ? 'has-err' : ''}">
           <span class="val">${p.mistakes}</span>
-          <span class="lbl">Mistakes</span>
+          <span class="lbl">${isKm ? 'កំហុស' : 'Mistakes'}</span>
         </div>
         <div class="pk-fb-stat-box">
           <span class="val">${p.backspaces}</span>
-          <span class="lbl">Fixes (${safeIcon('backspace', 11)})</span>
+          <span class="lbl">${isKm ? 'កែតម្រូវ' : 'Fixes'} (${safeIcon('backspace', 11)})</span>
         </div>
       </div>
 
       <!-- WHAT WENT WELL & WHAT NEEDS PRACTICE -->
       <div class="pk-fb-insights-row">
         <div class="pk-fb-insight-col">
-          <span class="pk-fb-subhead good"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> What Went Well</span>
+          <span class="pk-fb-subhead good"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> ${isKm ? 'ចំណុចធ្វើបានល្អ' : 'What Went Well'}</span>
           <div class="pk-fb-chip-group">${strongChipsHtml}</div>
         </div>
 
         <div class="pk-fb-insight-col">
-          <span class="pk-fb-subhead warn"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Needs Practice</span>
+          <span class="pk-fb-subhead warn"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> ${isKm ? 'ចំណុចត្រូវហ្វឹកហាត់បន្ថែម' : 'Needs Practice'}</span>
           <div class="pk-fb-chip-group">${weakChipsHtml}</div>
         </div>
       </div>
@@ -660,7 +680,7 @@
       <div class="pk-fb-rec-banner ${rec.action}">
         <span class="pk-fb-rec-icon"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span>
         <div class="pk-fb-rec-content">
-          <b>Next Step:</b> ${rec.text}
+          <b>${isKm ? 'ជំហានបន្ទាប់៖' : 'Next Step:'}</b> ${rec.text}
         </div>
       </div>
 
@@ -678,11 +698,12 @@
    * Builds the Incomplete Lesson (Lesson Paused) modal HTML.
    */
   function buildIncompleteLessonHtml(inc, def){
+    const isKm = typeof document !== 'undefined' && document.documentElement.classList.contains('site-km-mode');
     return `
     <div class="lesson-complete-card pk-fb-paused-card">
       <div class="pk-fb-header">
-        <h2 style="color:var(--gold-bright)">Lesson Paused</h2>
-        <p class="pk-fb-lesson-title">${def?.title || 'Lesson'}</p>
+        <h2 style="color:var(--gold-bright)">${isKm ? 'មេរៀនបានផ្អាក' : 'Lesson Paused'}</h2>
+        <p class="pk-fb-lesson-title">${def?.title || (isKm ? 'មេរៀន' : 'Lesson')}</p>
       </div>
 
       <div class="pk-fb-pause-progress">
@@ -690,28 +711,28 @@
           <div class="pk-fb-pause-fill" style="width:${inc.completionPct}%"></div>
         </div>
         <div class="pk-fb-pause-meta">
-          <span>${inc.completionPct}% Completed</span>
-          <span>${inc.remainingUnits} units remaining</span>
+          <span>${inc.completionPct}% ${isKm ? 'បានបញ្ចប់' : 'Completed'}</span>
+          <span>${inc.remainingUnits} ${isKm ? 'តួអក្សរនៅសល់' : 'units remaining'}</span>
         </div>
       </div>
 
       <div class="pk-fb-pause-details">
         <div class="pk-fb-pause-row">
-          <span>Completed Units:</span>
-          <b>${inc.completedUnits} of ${inc.totalUnits}</b>
+          <span>${isKm ? 'តួអក្សរបានបញ្ចប់៖' : 'Completed Units:'}</span>
+          <b>${inc.completedUnits} ${isKm ? 'នៃ' : 'of'} ${inc.totalUnits}</b>
         </div>
         <div class="pk-fb-pause-row">
-          <span>Mistakes so far:</span>
+          <span>${isKm ? 'កំហុសរហូតមកដល់ពេលនេះ៖' : 'Mistakes so far:'}</span>
           <b>${inc.mistakesSoFar}</b>
         </div>
         ${inc.lastExpectedUnit ? `
         <div class="pk-fb-pause-row">
-          <span>Last character reached:</span>
+          <span>${isKm ? 'តួអក្សរចុងក្រោយ៖' : 'Last character reached:'}</span>
           <b>${inc.lastExpectedName}</b>
         </div>` : ''}
         ${inc.remainingSections.length > 0 ? `
         <div class="pk-fb-pause-row">
-          <span>Remaining sections:</span>
+          <span>${isKm ? 'ផ្នែកនៅសល់៖' : 'Remaining sections:'}</span>
           <b>${inc.remainingSections.map(s => s.title || s.type).join(', ')}</b>
         </div>` : ''}
       </div>
