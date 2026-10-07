@@ -61,6 +61,7 @@ jobs:
           mkdir -p _site
           # Copy core web application and SEO/AI visibility assets into staging directory
           cp index.html manifest.json logo.svg robots.txt sitemap.xml llms.txt .nojekyll _site/
+          cp google*.html _site/ 2>/dev/null || true
           cp icon-*.png _site/
           cp -r css js data Documents docs assets _site/
           
