@@ -2055,6 +2055,8 @@ function updateLessonKeyHighlight(){
   }
   setActiveFinger(id, layer);
 }
+window.updateLessonKeyHighlight = updateLessonKeyHighlight;
+window.highlightLessonTarget = updateLessonKeyHighlight;
 
 function updateLessonProgress(){
   const tw = document.getElementById('lessonTimerWrap');

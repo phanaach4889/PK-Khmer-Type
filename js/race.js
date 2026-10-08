@@ -452,6 +452,8 @@ function raceUpdateKeyHighlight(){
   }
   setActiveFinger(id, layer);
 }
+window.updateRaceKeyHighlight = updateRaceKeyHighlight;
+window.highlightRaceTarget = updateRaceKeyHighlight;
 
 function raceElapsedSeconds(){
   return (Date.now() - raceStartTime) / 1000;

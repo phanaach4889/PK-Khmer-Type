@@ -216,9 +216,13 @@
     pointer-events:none;
     z-index:5;
     overflow:visible;
-    transition:opacity .35s ease;
+    opacity:var(--hands-opacity, 0.85);
+    transition:opacity .35s ease, visibility .35s ease;
   }
-  .hands-overlay.hidden{ opacity:0; }
+  .hands-overlay.hidden{
+    opacity:0 !important;
+    visibility:hidden !important;
+  }
 
   .hands-overlay .hand-group{
     filter:url(#handShadow);

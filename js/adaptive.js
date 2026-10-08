@@ -1511,6 +1511,8 @@
       setActiveFinger(keyId, layer);
     }
   }
+  window.updateAdaptiveKeyHighlight = updateAdaptiveKeyHighlight;
+  window.highlightAdaptiveTarget = updateAdaptiveKeyHighlight;
 
   function updateAdaptiveProgress() {
     if (!activeSession || typeof document === 'undefined') return;

@@ -54,10 +54,24 @@ function initApp(){
   // Synchronous initial render for zero-delay offline startup
   try { if(typeof buildBoard === "function") buildBoard(); } catch(e){ console.error("buildBoard error:", e); }
   try { if(typeof syncLayoutUI === "function") syncLayoutUI(window.currentLayoutId); } catch(e){}
+  try { if(typeof render === "function") render(); } catch(e){ console.error("render error:", e); }
   try { if(typeof renderLessonStrip === "function") renderLessonStrip(); } catch(e){ console.error("renderLessonStrip error:", e); }
+  try { if(typeof syncHandsToggleUI === "function") syncHandsToggleUI(); } catch(e){}
   try { if(typeof updateHandsOverlay === "function") updateHandsOverlay(); } catch(e){ console.error("updateHandsOverlay error:", e); }
   try { if(typeof updateMasteryStat === "function") updateMasteryStat(); } catch(e){ console.error("updateMasteryStat error:", e); }
   try { if(typeof restoreSavedLessonSession === "function") restoreSavedLessonSession(); } catch(e){ console.error("restoreSavedLessonSession error:", e); }
+
+  // Re-measure hand kinematics after layout & web fonts settle
+  if(typeof requestAnimationFrame === "function"){
+    requestAnimationFrame(()=>{
+      try { if(typeof updateHandsOverlay === "function") updateHandsOverlay(); } catch(e){}
+    });
+  }
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(()=>{
+      try { if(typeof updateHandsOverlay === "function") updateHandsOverlay(); } catch(e){}
+    }).catch(()=>{});
+  }
 
   // Async data enrichment when hosted on server
   loadExternalData();

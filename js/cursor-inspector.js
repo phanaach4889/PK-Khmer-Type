@@ -601,11 +601,21 @@
     if (hudEl) hudEl.classList.remove('visible');
 
     // Restore active finger for ongoing lesson / race / adaptive session
-    if (typeof global.lessonActive !== 'undefined' && global.lessonActive && typeof global.highlightLessonTarget === 'function') {
+    const isLessonOn = (typeof lessonActive !== 'undefined' && lessonActive) || Boolean(global.lessonActive);
+    const isRaceOn = (typeof raceActive !== 'undefined' && raceActive) || Boolean(global.raceActive);
+    const isAdaptiveOn = Boolean(global.adaptiveActive);
+
+    if (isLessonOn && typeof updateLessonKeyHighlight === 'function') {
+      updateLessonKeyHighlight();
+    } else if (isLessonOn && typeof global.highlightLessonTarget === 'function') {
       global.highlightLessonTarget();
-    } else if (typeof global.raceActive !== 'undefined' && global.raceActive && typeof global.highlightRaceTarget === 'function') {
+    } else if (isRaceOn && typeof updateRaceKeyHighlight === 'function') {
+      updateRaceKeyHighlight();
+    } else if (isRaceOn && typeof global.highlightRaceTarget === 'function') {
       global.highlightRaceTarget();
-    } else if (typeof global.adaptiveActive !== 'undefined' && global.adaptiveActive && typeof global.highlightAdaptiveTarget === 'function') {
+    } else if (isAdaptiveOn && typeof global.updateAdaptiveKeyHighlight === 'function') {
+      global.updateAdaptiveKeyHighlight();
+    } else if (isAdaptiveOn && typeof global.highlightAdaptiveTarget === 'function') {
       global.highlightAdaptiveTarget();
     } else if (typeof global.setActiveFinger === 'function') {
       global.setActiveFinger(null);
@@ -895,6 +905,9 @@
         if (typeof global.playKeySound === 'function') {
           global.playKeySound(keyId);
         }
+        if (typeof global.triggerFingerPress === 'function') {
+          global.triggerFingerPress(keyId);
+        }
         keyEl.classList.add('active');
         setTimeout(() => keyEl.classList.remove('active'), 140);
       });
@@ -919,8 +932,7 @@
         if (!currentInspectedKeyId) {
           clearTargetKeyBeacon();
           if (hudEl && hudEl.classList.contains('visible')) {
-            hudEl.classList.remove('visible');
-            if (typeof global.setActiveFinger === 'function') global.setActiveFinger(null);
+            uninspectKey();
           }
         }
       });

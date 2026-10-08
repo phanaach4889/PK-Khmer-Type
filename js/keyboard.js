@@ -640,6 +640,7 @@ window.FINGERS = FINGERS;
 const handsOverlay = document.getElementById('handsOverlay');
 const handsToggle = document.getElementById('handsToggle');
 let handsOn = true;
+window.handsOn = handsOn;
 const fingerEls = {}; // id -> {g, shape, shine, crease1, crease2, nail, tip}
 window.fingerEls = fingerEls;
 
@@ -1138,8 +1139,13 @@ function buildHand(hand, fingers, wrapRect, activeF, targetKey){
 
 function updateHandsOverlay(){
   if(!handsOverlay) return;
-  if(!handsOn){ handsOverlay.classList.add('hidden'); return; }
+  if(!handsOn){
+    handsOverlay.classList.add('hidden');
+    handsOverlay.style.display = 'none';
+    return;
+  }
   handsOverlay.classList.remove('hidden');
+  handsOverlay.style.display = '';
   const wrapRect = boardWrap.getBoundingClientRect();
   if(!wrapRect.width || !wrapRect.height) return;
   handsOverlay.setAttribute('viewBox', `0 0 ${wrapRect.width} ${wrapRect.height}`);
@@ -1204,7 +1210,7 @@ function updateHandsOverlay(){
           if(spaceEl){
             const r = spaceEl.getBoundingClientRect();
             const frac = f.hand === 'L' ? 0.38 : 0.62;
-            tip = { x: (r.left + r.width*frac - wrapRect.left) / scaleX, y: tip.y };
+            tip = { x: r.left + r.width * frac - wrapRect.left, y: tip.y };
           }
         }
       } else {
@@ -1320,23 +1326,56 @@ function strikeFinger(fe){
    "next key" glow from setActiveFinger/lesson guidance. When the struck
    key lives on a modifier layer (Shift, Ctrl, AltGr), the modifier finger
    flashes on the modifier key at the same moment, as if it were held down for the combo. */
+let freeTypeFingerResetTimer = null;
 function triggerFingerPress(keyId){
   if(!handsOn) return;
   const fid = keyId ? KEY_FINGER[keyId] : null;
   if(!fid) return;
+  const lyr = currentLayer();
+
+  const isGuidedSession = (typeof lessonActive !== 'undefined' && lessonActive) ||
+                          (typeof raceActive !== 'undefined' && raceActive) ||
+                          Boolean(window.adaptiveActive);
+  if(!isGuidedSession){
+    setActiveFinger(keyId, lyr);
+    clearTimeout(freeTypeFingerResetTimer);
+    freeTypeFingerResetTimer = setTimeout(()=>{
+      const stillUnguided = !(typeof lessonActive !== 'undefined' && lessonActive) &&
+                            !(typeof raceActive !== 'undefined' && raceActive) &&
+                            !window.adaptiveActive;
+      if(stillUnguided && activeTargetKey === keyId){
+        setActiveFinger(null);
+      }
+    }, 650);
+  }
+
   strikeFinger(fingerEls[fid]);
 
-  const lyr = currentLayer();
   if(lyr && lyr !== 'base'){
     const mod = modifierInfoFor(keyId, lyr);
     if(mod && mod.fingerId && mod.fingerId !== fid) strikeFinger(fingerEls[mod.fingerId]);
   }
 }
+window.triggerFingerPress = triggerFingerPress;
+
+function syncHandsToggleUI(){
+  if(!handsToggle) return;
+  window.handsOn = handsOn;
+  handsToggle.classList.toggle('on', handsOn);
+  handsToggle.setAttribute('aria-pressed', handsOn ? 'true' : 'false');
+  const isKm = document.documentElement.classList.contains('site-km-mode');
+  const enText = 'Finger guide' + (handsOn ? '' : ' (off)');
+  const kmText = 'មគ្គុទ្ទេសក៍ម្រាមដៃ' + (handsOn ? '' : ' (បិទ)');
+  handsToggle.innerHTML = `${pkIcon('keyboard', 15)} <span class="i18n-t" data-en="${enText}" data-km="${kmText}">${isKm ? kmText : enText}</span>`;
+  if(window.PKQuickGuide && typeof window.PKQuickGuide.updateToolStatuses === 'function'){
+    window.PKQuickGuide.updateToolStatuses();
+  }
+}
+window.syncHandsToggleUI = syncHandsToggleUI;
 
 handsToggle.addEventListener('click', ()=>{
   handsOn = !handsOn;
-  handsToggle.classList.toggle('on', handsOn);
-  handsToggle.innerHTML = pkIcon('keyboard', 14) + ' Finger guide' + (handsOn ? '' : ' (off)');
+  syncHandsToggleUI();
   updateHandsOverlay();
 });
 

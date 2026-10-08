@@ -1132,7 +1132,7 @@ function initSettingsToggles() {
     pct = Math.max(15, Math.min(100, parseInt(pct, 10) || 85));
     document.documentElement.style.setProperty("--hands-opacity", (pct / 100).toFixed(2));
     const overlayEl = document.getElementById("handsOverlay");
-    if (overlayEl) overlayEl.style.opacity = (pct / 100).toFixed(2);
+    if (overlayEl) overlayEl.style.removeProperty("opacity");
     if (handsOpacitySlider) handsOpacitySlider.value = pct;
     if (handsOpacityValue) handsOpacityValue.textContent = pct + "%";
     safeSet(LS.handsOpacity, String(pct));
