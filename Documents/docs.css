@@ -1716,3 +1716,188 @@ html.anim-mode-minimal .btn-primary-glow {
   filter: none !important;
 }
 
+/* ==========================================================================
+   STUDIO COMMAND BAR & HUD CONTROLS SHOWCASE (#studio-controls)
+   ========================================================================== */
+.cmd-showcase-stage {
+  position: relative;
+  border-radius: 18px;
+  padding: 24px;
+  margin: 18px 0 24px;
+  background: radial-gradient(120% 140% at 15% 0%, rgba(255, 209, 102, 0.11) 0%, rgba(11, 15, 27, 0.92) 55%, rgba(7, 10, 19, 0.98) 100%);
+  border: 1px solid rgba(255, 209, 102, 0.24);
+  box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.cmd-showcase-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.cmd-showcase-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffd166;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(255, 209, 102, 0.12);
+  border: 1px solid rgba(255, 209, 102, 0.35);
+}
+
+.cmd-showcase-hint {
+  font-size: 0.78rem;
+  color: var(--doc-text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cmd-replica-dock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 8px 10px;
+  border-radius: 14px;
+  background: rgba(10, 14, 26, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.cmd-replica-btn {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  padding: 7px 14px;
+  min-height: 36px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cmd-replica-btn svg {
+  width: 15px;
+  height: 15px;
+  color: #ffd166;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 6px rgba(255, 209, 102, 0.3));
+  transition: transform 0.2s ease, color 0.2s ease, filter 0.2s ease;
+}
+
+.cmd-replica-btn:hover,
+.cmd-replica-btn.is-selected {
+  color: #ffffff;
+  border-color: rgba(255, 209, 102, 0.68);
+  background: linear-gradient(180deg, rgba(255, 209, 102, 0.2), rgba(10, 14, 26, 0.65));
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 16px rgba(255, 209, 102, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+}
+
+.cmd-replica-btn:hover svg,
+.cmd-replica-btn.is-selected svg {
+  color: #ffe8a3;
+  filter: drop-shadow(0 0 8px rgba(255, 209, 102, 0.65));
+}
+
+.cmd-replica-kbd {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.64rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(8, 12, 22, 0.92);
+  border: 1px solid rgba(255, 209, 102, 0.58);
+  color: #ffd166;
+  letter-spacing: 0.03em;
+  margin-left: 2px;
+  line-height: 1.25;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.cmd-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.cmd-spec-card {
+  position: relative;
+  border-radius: 14px;
+  padding: 16px;
+  background: rgba(15, 21, 38, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+}
+
+.cmd-spec-card:hover,
+.cmd-spec-card.is-highlighted {
+  border-color: rgba(255, 209, 102, 0.65);
+  background: linear-gradient(180deg, rgba(255, 209, 102, 0.1), rgba(15, 21, 38, 0.85));
+  box-shadow: 0 10px 26px -8px rgba(0, 0, 0, 0.55), 0 0 20px rgba(255, 209, 102, 0.16);
+  transform: translateY(-2px);
+}
+
+.cmd-spec-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.cmd-spec-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.cmd-spec-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 209, 102, 0.12);
+  border: 1px solid rgba(255, 209, 102, 0.3);
+  color: #ffd166;
+  flex-shrink: 0;
+}
+
+.cmd-spec-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--doc-text);
+  margin: 0;
+}
+
+.cmd-spec-desc {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--doc-text-muted);
+  margin: 0;
+}
+
+

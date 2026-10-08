@@ -288,6 +288,7 @@
           <li><a href="#overview" class="toc-link"><span class="doc-i18n" data-en="Overview &amp; Vision" data-km="ទិដ្ឋភាពទូទៅ និងចក្ខុវិស័យ">Overview &amp; Vision</span></a></li>
           <li><a href="#keycap-3d" class="toc-link"><span class="doc-i18n" data-en="3D Mechanical Keyboard" data-km="ម៉ូឌែលក្តារចុច 3D">3D Mechanical Keyboard</span> <span class="toc-badge">3D</span></a></li>
           <li><a href="#quickstart" class="toc-link"><span class="doc-i18n" data-en="Quick Start Guide" data-km="មគ្គុទ្ទេសក៍រហ័ស">Quick Start Guide</span></a></li>
+          <li><a href="#studio-controls" class="toc-link"><span class="doc-i18n" data-en="Studio Command Bar" data-km="របារបញ្ជាស្ទូឌីយោ">Studio Command Bar</span> <span class="toc-badge">HUD</span></a></li>
           <li><a href="#shortcuts" class="toc-link"><span class="doc-i18n" data-en="Keyboard Shortcuts" data-km="គ្រាប់ចុចកាត់">Keyboard Shortcuts</span></a></li>
         </ul>
       </div>
@@ -677,6 +678,176 @@
               </tr>
             </tbody>
           </table>
+        </div>
+      </section>
+
+      <!-- 2.5 Studio Command Bar & HUD Controls Showcase -->
+      <section id="studio-controls" class="doc-section">
+        <div class="section-head">
+          <h2 class="section-title">
+            <span class="section-icon">
+              <svg class="doc-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M6 9h3"/><path d="M11 9h3"/><path d="M16 9h2"/><path d="M6 15h12"/></svg>
+            </span>
+            <span class="doc-i18n" data-en="Studio Command Bar &amp; HUD Controls" data-km="របារបញ្ជាស្ទូឌីយោ និងការគ្រប់គ្រង HUD">Studio Command Bar &amp; HUD Controls</span>
+            <a href="#studio-controls" class="anchor-link" aria-label="Link to section">#</a>
+          </h2>
+          <p class="section-lead doc-i18n" data-en="A unified frosted-glass command dock anchored at the top-right of the typing studio, giving you single-click and hotkey access to Focus Mode, the Quick Guide, Shortcuts, Bilingual UI Translation, Telemetry Analytics, Studio Settings, and Cloud Profile Sync." data-km="របារបញ្ជាកញ្ចក់ស្រអាប់ដែលស្ថិតនៅផ្នែកខាងលើស្តាំនៃស្ទូឌីយោវាយអក្សរ ផ្តល់ឱ្យអ្នកនូវការចូលប្រើដោយចុចតែម្តង និងគ្រាប់ចុចកាត់ទៅកាន់មុខងារផ្តោតអារម្មណ៍ មគ្គុទ្ទេសក៍រហ័ស ផ្លូវកាត់ ការបកប្រែភាសា ស្ថិតិ ការកំណត់ និងគណនី។">
+            A unified frosted-glass command dock anchored at the top-right of the typing studio, giving you single-click and hotkey access to Focus Mode, the Quick Guide, Shortcuts, Bilingual UI Translation, Telemetry Analytics, Studio Settings, and Cloud Profile Sync.
+          </p>
+        </div>
+
+        <div class="cmd-showcase-stage">
+          <div class="cmd-showcase-head">
+            <span class="cmd-showcase-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span class="doc-i18n" data-en="Interactive Command Dock Replica" data-km="គំរូរបារបញ្ជាអន្តរកម្មផ្ទាល់">Interactive Command Dock Replica</span>
+            </span>
+            <span class="cmd-showcase-hint">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              <span class="doc-i18n" data-en="Hover or click any command button below to inspect its module" data-km="ដាក់ម៉ៅ ឬចុចលើប៊ូតុងបញ្ជាណាមួយខាងក្រោមដើម្បីពិនិត្យមុខងាររបស់វា">Hover or click any command button below to inspect its module</span>
+            </span>
+          </div>
+
+          <!-- Live Interactive Replica of .top-actions -->
+          <div class="cmd-replica-dock" role="toolbar" aria-label="Interactive Studio Command Bar Preview">
+            <button type="button" class="cmd-replica-btn is-selected" data-cmd-target="focus">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>
+              <span class="doc-i18n" data-en="Focus" data-km="ផ្ដោត">Focus</span>
+              <kbd class="cmd-replica-kbd">Alt+F</kbd>
+            </button>
+            <button type="button" class="cmd-replica-btn" data-cmd-target="guide">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              <span class="doc-i18n" data-en="Guide" data-km="ណែនាំ">Guide</span>
+            </button>
+            <button type="button" class="cmd-replica-btn" data-cmd-target="shortcuts">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+              <span class="doc-i18n" data-en="Shortcuts" data-km="ផ្លូវកាត់">Shortcuts</span>
+            </button>
+            <button type="button" class="cmd-replica-btn" data-cmd-target="translate">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <span class="doc-i18n" data-en="Translate to Khmer" data-km="បកប្រែជាភាសាខ្មែរ">Translate to Khmer</span>
+            </button>
+            <button type="button" class="cmd-replica-btn" data-cmd-target="statistics">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              <span class="doc-i18n" data-en="Statistics" data-km="ស្ថិតិ">Statistics</span>
+            </button>
+            <button type="button" class="cmd-replica-btn" data-cmd-target="settings">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33 1.65 1.65 0 0 0 1.51-1V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <span class="doc-i18n" data-en="Settings" data-km="ការកំណត់">Settings</span>
+            </button>
+            <button type="button" class="cmd-replica-btn" data-cmd-target="signin">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <span class="doc-i18n" data-en="Sign In" data-km="ចូល">Sign In</span>
+            </button>
+          </div>
+
+          <!-- 7 Interactive Specification Cards -->
+          <div class="cmd-spec-grid">
+            <div class="cmd-spec-card is-highlighted" data-cmd-card="focus">
+              <div class="cmd-spec-top">
+                <div class="cmd-spec-title-wrap">
+                  <span class="cmd-spec-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>
+                  </span>
+                  <h4 class="cmd-spec-title doc-i18n" data-en="Focus Mode" data-km="មុខងារផ្ដោតអារម្មណ៍">Focus Mode</h4>
+                </div>
+                <span class="kbd-combo"><kbd>Alt</kbd><span class="kbd-plus">+</span><kbd>F</kbd></span>
+              </div>
+              <p class="cmd-spec-desc doc-i18n" data-en="Collapses surrounding chrome, sidebars, and decorative banners so only the active Khmer manuscript and virtual keyboard remain on screen." data-km="លាក់របារចំហៀង និងផ្ទាំងតុបតែងជុំវិញ ដើម្បីឱ្យនៅសល់តែអត្ថបទមេរៀន និងក្តារចុចនិម្មិតនៅលើអេក្រង់ប៉ុណ្ណោះ។">
+                Collapses surrounding chrome, sidebars, and decorative banners so only the active Khmer manuscript and virtual keyboard remain on screen.
+              </p>
+            </div>
+
+            <div class="cmd-spec-card" data-cmd-card="guide">
+              <div class="cmd-spec-top">
+                <div class="cmd-spec-title-wrap">
+                  <span class="cmd-spec-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                  </span>
+                  <h4 class="cmd-spec-title doc-i18n" data-en="Quick Guide Sidebar" data-km="របារមគ្គុទ្ទេសក៍រហ័ស">Quick Guide Sidebar</h4>
+                </div>
+                <span class="toc-badge">HUD</span>
+              </div>
+              <p class="cmd-spec-desc doc-i18n" data-en="Toggles the live right-hand Quick Guide dock displaying real-time Coeng (្) subscript sequences, Shift/AltGr hints, and finger zone mappings." data-km="បិទ/បើកផ្ទាំងមគ្គុទ្ទេសក៍រហ័សនៅខាងស្តាំ ដែលបង្ហាញលំដាប់វាយជើងអក្សរ (្) ការណែនាំ Shift/AltGr និងទីតាំងម្រាមដៃផ្ទាល់។">
+                Toggles the live right-hand Quick Guide dock displaying real-time Coeng (្) subscript sequences, Shift/AltGr hints, and finger zone mappings.
+              </p>
+            </div>
+
+            <div class="cmd-spec-card" data-cmd-card="shortcuts">
+              <div class="cmd-spec-top">
+                <div class="cmd-spec-title-wrap">
+                  <span class="cmd-spec-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/><line x1="7" y1="16" x2="17" y2="16"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+                  </span>
+                  <h4 class="cmd-spec-title doc-i18n" data-en="Shortcuts Matrix" data-km="តារាងផ្លូវកាត់ក្តារចុច">Shortcuts Matrix</h4>
+                </div>
+                <kbd>?</kbd>
+              </div>
+              <p class="cmd-spec-desc doc-i18n" data-en="Opens the instant keyboard reference overlay listing every studio hotkey, Khmer subscript chord, and spacebar rule without leaving your drill." data-km="បើកផ្ទាំងយោងផ្លូវកាត់ក្តារចុចភ្លាមៗ ដែលរាយគ្រប់គ្រាប់ចុចកាត់ របៀបវាយជើងអក្សរ និងក្បួនដកឃ្លាដោយមិនចាំបាច់ចាកចេញពីលំហាត់។">
+                Opens the instant keyboard reference overlay listing every studio hotkey, Khmer subscript chord, and spacebar rule without leaving your drill.
+              </p>
+            </div>
+
+            <div class="cmd-spec-card" data-cmd-card="translate">
+              <div class="cmd-spec-top">
+                <div class="cmd-spec-title-wrap">
+                  <span class="cmd-spec-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                  </span>
+                  <h4 class="cmd-spec-title doc-i18n" data-en="Bilingual UI Engine" data-km="ប្រព័ន្ធបកប្រែពីរភាសា">Bilingual UI Engine</h4>
+                </div>
+                <span class="kbd-combo"><kbd>Alt</kbd><span class="kbd-plus">+</span><kbd>L</kbd></span>
+              </div>
+              <p class="cmd-spec-desc doc-i18n" data-en="Switches the entire application interface between English and native Khmer script in real time while preserving technical acronyms (WPM, FPS, JSON, NiDA)." data-km="ប្តូរផ្ទៃកម្មវិធីទាំងមូលរវាងភាសាអង់គ្លេស និងភាសាខ្មែរភ្លាមៗ ដោយរក្សាទុកពាក្យបច្ចេកទេសសំខាន់ៗ (WPM, FPS, JSON, NiDA)។">
+                Switches the entire application interface between English and native Khmer script in real time while preserving technical acronyms (WPM, FPS, JSON, NiDA).
+              </p>
+            </div>
+
+            <div class="cmd-spec-card" data-cmd-card="statistics">
+              <div class="cmd-spec-top">
+                <div class="cmd-spec-title-wrap">
+                  <span class="cmd-spec-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                  </span>
+                  <h4 class="cmd-spec-title doc-i18n" data-en="Telemetry &amp; Statistics" data-km="ទិន្នន័យវិភាគ និងស្ថិតិ">Telemetry &amp; Statistics</h4>
+                </div>
+                <span class="toc-badge">DATA</span>
+              </div>
+              <p class="cmd-spec-desc doc-i18n" data-en="Launches the analytics dashboard featuring your 60-day activity heatmap, per-key mastery percentages, WPM trends, and JSON backup/restore tools." data-km="បើកផ្ទាំងគ្រប់គ្រងស្ថិតិដែលបង្ហាញតារាងសកម្មភាព ៦០ ថ្ងៃ ភាគរយស្ទាត់ជំនាញតាមគ្រាប់ចុច និន្នាការ WPM និងឧបករណ៍រក្សាទុក/ស្តារទិន្នន័យ JSON។">
+                Launches the analytics dashboard featuring your 60-day activity heatmap, per-key mastery percentages, WPM trends, and JSON backup/restore tools.
+              </p>
+            </div>
+
+            <div class="cmd-spec-card" data-cmd-card="settings">
+              <div class="cmd-spec-top">
+                <div class="cmd-spec-title-wrap">
+                  <span class="cmd-spec-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33 1.65 1.65 0 0 0 1.51-1V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                  </span>
+                  <h4 class="cmd-spec-title doc-i18n" data-en="Studio Settings" data-km="ការកំណត់ស្ទូឌីយោ">Studio Settings</h4>
+                </div>
+                <span class="toc-badge">CFG</span>
+              </div>
+              <p class="cmd-spec-desc doc-i18n" data-en="Configures visual themes (Angkor Dark, Light, Sepia, Glass), mechanical switch audio profiles, 4K wallpapers, font scaling, and Master Unlock." data-km="កំណត់រចនាប័ទ្មពណ៌ (ងងឹត ភ្លឺ សេព្យា កញ្ចក់) សំឡេងក្តារចុចមេកានិច ផ្ទាំងរូបភាព 4K ទំហំអក្សរ និងការដោះសោមេរៀនទាំងអស់។">
+                Configures visual themes (Angkor Dark, Light, Sepia, Glass), mechanical switch audio profiles, 4K wallpapers, font scaling, and Master Unlock.
+              </p>
+            </div>
+
+            <div class="cmd-spec-card" data-cmd-card="signin">
+              <div class="cmd-spec-top">
+                <div class="cmd-spec-title-wrap">
+                  <span class="cmd-spec-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </span>
+                  <h4 class="cmd-spec-title doc-i18n" data-en="Account &amp; Profile Sync" data-km="គណនី និងការធ្វើសមកាលកម្ម">Account &amp; Profile Sync</h4>
+                </div>
+                <span class="toc-badge">SYNC</span>
+              </div>
+              <p class="cmd-spec-desc doc-i18n" data-en="Authenticates your scholar profile for cross-device cloud progress synchronization while maintaining 100% offline-first local storage." data-km="ភ្ជាប់គណនីអ្នកសិក្សារបស់អ្នកដើម្បីធ្វើសមកាលកម្មវឌ្ឍនភាពឆ្លងឧបករណ៍ ខណៈពេលដែលរក្សាទុកទិន្នន័យក្នុងម៉ាស៊ីនដោយមិនចាំបាច់មានអ៊ីនធឺណិត ១០០%។">
+                Authenticates your scholar profile for cross-device cloud progress synchronization while maintaining 100% offline-first local storage.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

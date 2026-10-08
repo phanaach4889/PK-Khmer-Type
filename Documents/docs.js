@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'overview': { en: 'Getting Started', km: 'ការចាប់ផ្តើម' },
       'keycap-3d': { en: 'Interactive 3D Object', km: 'ម៉ូឌែល 3D ផ្ទាល់' },
       'quickstart': { en: 'Getting Started', km: 'ការចាប់ផ្តើម' },
+      'studio-controls': { en: 'Studio HUD & Controls', km: 'របារបញ្ជាស្ទូឌីយោ' },
       'shortcuts': { en: 'Getting Started', km: 'ការចាប់ផ្តើម' },
       'keyboard-layouts': { en: 'Keyboards & Script', km: 'ក្តារចុច និងអក្សរ' },
       'khmer-mechanics': { en: 'Keyboards & Script', km: 'ក្តារចុច និងអក្សរ' },
@@ -85,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'keycap-3d': '3d, threejs, webgl, model, keycap, switch, spring, stem, explode, wireframe, mechanical, cherry, oem, angkor gold, cyber neon, ceramic, ម៉ូឌែល, គ្រាប់ចុច, ស្ព្រីង, មេកានិច',
       'overview': 'overview, philosophy, vision, muscle memory, abugida, mission, ทស្សនវិស័យ, ទិដ្ឋភាពទូទៅ, ចក្ខុវិស័យ',
       'quickstart': 'quick start, guide, beginner, steps, tutorial, getting started, ចាប់ផ្តើម, មគ្គុទ្ទេសក៍, ជំហាន',
+      'studio-controls': 'command bar, top actions, hud, focus, alt+f, guide, shortcuts, translate to khmer, statistics, settings, sign in, toolbar, របារបញ្ជា, ផ្ដោត, ណែនាំ, ផ្លូវកាត់, ស្ថិតិ, ការកំណត់',
       'shortcuts': 'shortcuts, hotkeys, keys, focus mode, language, caps lock, search, space, shift, alt+f, alt+l, esc, គ្រាប់ចុចកាត់, ផ្លូវកាត់',
       'keyboard-layouts': 'layouts, standard, nida, qwerty, english, mondol, home row, fingers, f j bumps, ប្លង់, ក្តារចុច, ស្តង់ដារ, នីដា',
       'khmer-mechanics': 'mechanics, rules, grammar, subscript, coeng, base consonant, ្, spacing, shift space, ជើង, ព្យញ្ជនៈ, ស្រៈ, ក្បួន',
@@ -453,4 +455,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   applyDocLanguage(currentDocLang);
+
+  // =========================================================================
+  // 8. STUDIO COMMAND BAR REPLICA INTERACTIVITY
+  // =========================================================================
+  const replicaBtns = document.querySelectorAll('.cmd-replica-btn[data-cmd-target]');
+  const specCards = document.querySelectorAll('.cmd-spec-card[data-cmd-card]');
+
+  function activateCommandSpec(targetKey) {
+    replicaBtns.forEach(btn => {
+      btn.classList.toggle('is-selected', btn.dataset.cmdTarget === targetKey);
+    });
+    specCards.forEach(card => {
+      card.classList.toggle('is-highlighted', card.dataset.cmdCard === targetKey);
+    });
+  }
+
+  replicaBtns.forEach(btn => {
+    const key = btn.dataset.cmdTarget;
+    btn.addEventListener('mouseenter', () => activateCommandSpec(key));
+    btn.addEventListener('click', () => activateCommandSpec(key));
+  });
+
+  specCards.forEach(card => {
+    const key = card.dataset.cmdCard;
+    card.addEventListener('mouseenter', () => activateCommandSpec(key));
+    card.addEventListener('click', () => activateCommandSpec(key));
+  });
 });
+

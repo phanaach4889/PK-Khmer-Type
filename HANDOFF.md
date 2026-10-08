@@ -30,9 +30,14 @@
 5. **`js/statistics.js`**:
    - Localized `refreshProfileUI()` (substats, roadmap goal, and stat grid tiles); localized `renderStats()` (`statsRaceRecords` cards, tags, and empty state); localized `renderLessonsLeaderboard()` (`mastered` / `ស្ទាត់` score labels).
 
+### D. Studio Command Bar & HUD Showcase (`index.html`, `css/base.css`, `Documents/`)
+- Upgraded `.top-actions` into a frosted-glass Studio Command Dock with distinct inline SVG icons (0 emojis) and high-contrast `<kbd class="focus-kbd-badge">Alt+F</kbd>` keycap badge styling.
+- Added the interactive **Studio Command Bar & HUD Controls** showcase (`#studio-controls`) in `Documents/index.html`, `Documents/docs.css`, and `Documents/docs.js`.
+
 ---
 
 ## 2. Localization Safeguards
-- **Brand Names & System Keys**: `PK Khmer Type`, `Shift`, `AltGr`, `Space`, `Enter`, `Bksp`, `Tab`, and shortcut combinations (`Alt+L`) remain untranslated.
+- **Brand Names & System Keys**: `PK Khmer Type`, `Shift`, `AltGr`, `Space`, `Enter`, `Bksp`, `Tab`, and shortcut combinations (`Alt+L`, `Alt+F`) remain untranslated.
 - **Practice Content**: Never translate exercise prompt characters or practice vocabulary.
 - **Technical Units**: Units (`WPM`, `CPM`, `%`, `KB`, `.json`) remain standard.
+

@@ -2291,8 +2291,15 @@
 
   /* ================= new: top nav / utility bar ================= */
   .top-actions{
-    position:absolute; top:16px; right:20px; z-index:40;
-    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    position:absolute; top:14px; right:20px; z-index:40;
+    display:flex; align-items:center; gap:7px; flex-wrap:wrap;
+    padding:5px 7px;
+    border-radius:14px;
+    background:rgba(10, 14, 26, 0.68);
+    border:1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:0 12px 30px -8px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.12);
+    backdrop-filter:blur(16px) saturate(140%);
+    -webkit-backdrop-filter:blur(16px) saturate(140%);
     transform:none !important;
   }
   .top-actions button{
@@ -2301,10 +2308,10 @@
     font-weight:600;
     letter-spacing:0.02em;
     text-transform:none;
-    background:rgba(255,255,255,0.035);
-    border:1px solid rgba(255,255,255,0.09);
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.1);
     color:var(--ink-dim);
-    padding:6px 14px;
+    padding:6px 13px;
     min-height:34px;
     border-radius:10px;
     cursor:pointer;
@@ -2312,9 +2319,7 @@
     align-items:center;
     justify-content:center;
     gap:7px;
-    box-shadow:0 1px 4px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.06);
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
+    box-shadow:0 2px 5px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.08);
     transition:background .2s ease, border-color .2s ease, box-shadow .2s ease, color .2s ease;
     transform:none !important;
   }
@@ -2327,35 +2332,42 @@
     width:15px; height:15px;
     color:var(--gold-bright);
     flex-shrink:0;
-    transition:color .2s ease;
+    filter:drop-shadow(0 0 6px rgba(255,209,102,0.25));
+    transition:color .2s ease, filter .2s ease;
     transform:none !important;
   }
   .top-actions button:hover{
-    color:var(--ink);
-    border-color:rgba(255,255,255,0.22);
-    background:rgba(255,255,255,0.07);
-    box-shadow:0 3px 12px rgba(0,0,0,0.35);
+    color:#ffffff;
+    border-color:rgba(255,209,102,0.45);
+    background:linear-gradient(180deg, rgba(255,209,102,0.14), rgba(255,255,255,0.05));
+    box-shadow:0 4px 14px rgba(0,0,0,0.45), 0 0 14px rgba(255,209,102,0.18), inset 0 1px 0 rgba(255,255,255,0.18);
     transform:none !important;
   }
   .top-actions button:hover .pk-icon{
     transform:none !important;
-    color:#ffe394;
+    color:#ffe8a3;
+    filter:drop-shadow(0 0 8px rgba(255,209,102,0.55));
   }
   .top-actions button:active{
     transform:none !important;
-    box-shadow:0 2px 6px rgba(0,0,0,0.5), 0 0 8px rgba(255,209,102,0.2);
+    box-shadow:0 2px 6px rgba(0,0,0,0.5), 0 0 10px rgba(255,209,102,0.28);
     background:var(--stone-2);
   }
+  .top-actions .guide-toggle-btn.active,
+  .top-actions .focus-mode-btn.active,
   .top-actions .lang-toggle-btn.active{
-    border-color:rgba(255,209,102,0.65);
+    border-color:rgba(255,209,102,0.68);
     color:var(--gold-bright);
-    background:linear-gradient(180deg, rgba(255,209,102,0.16), rgba(0,0,0,0.26)), var(--stone-2);
-    box-shadow:0 4px 16px rgba(0,0,0,0.45), 0 0 16px rgba(255,209,102,0.28), inset 0 1px 0 rgba(255,255,255,0.18);
+    background:linear-gradient(180deg, rgba(255,209,102,0.18), rgba(10,14,26,0.55));
+    box-shadow:0 4px 16px rgba(0,0,0,0.45), 0 0 16px rgba(255,209,102,0.28), inset 0 1px 0 rgba(255,255,255,0.2);
     transform:none !important;
   }
+  .top-actions .guide-toggle-btn.active .pk-icon,
+  .top-actions .focus-mode-btn.active .pk-icon,
   .top-actions .lang-toggle-btn.active .pk-icon{
     transform:none !important;
     color:var(--gold-bright);
+    filter:drop-shadow(0 0 8px rgba(255,209,102,0.6));
   }
   #topLangToggleBtn{
     min-width:145px;
@@ -4955,10 +4967,12 @@
     stroke-linejoin: round;
     flex-shrink: 0;
   }
-  .top-actions button .pk-icon,
   .toolbar button .pk-icon,
   .manuscript-label button .pk-icon {
     margin-right: 6px;
+  }
+  .top-actions button .pk-icon {
+    margin-right: 0;
   }
   .lesson-strip-header .pk-icon {
     margin-right: 5px;
@@ -5072,35 +5086,35 @@
   /* ================= Remade Alt + F Focus Mode Shortcut HUD & Effects ================= */
   .focus-kbd-badge {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.62rem;
+    font-size: 0.64rem;
     font-weight: 700;
-    padding: 2px 6px;
+    padding: 2px 7px;
     border-radius: 6px;
-    background: rgba(255, 209, 102, 0.14);
-    border: 1px solid rgba(255, 209, 102, 0.35);
-    color: var(--gold-bright);
+    background: rgba(8, 12, 22, 0.88);
+    border: 1px solid rgba(255, 209, 102, 0.55);
+    color: #ffd166;
     letter-spacing: 0.03em;
     margin-left: 2px;
-    line-height: 1.2;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    line-height: 1.25;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
     transition: all 0.2s ease;
   }
   .focus-mode-btn:hover .focus-kbd-badge,
   .focus-mode-btn.active .focus-kbd-badge {
-    background: var(--gold-bright);
-    color: #241405;
-    border-color: var(--gold-bright);
-    box-shadow: 0 0 10px rgba(255, 209, 102, 0.5);
+    background: rgba(6, 9, 18, 0.95);
+    color: #ffe8a3;
+    border-color: #ffd166;
+    box-shadow: 0 0 10px rgba(255, 209, 102, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
   html.theme-light .focus-kbd-badge {
-    background: #f1f5f9;
-    border-color: #cbd5e1;
-    color: #0f172a;
+    background: #0f172a;
+    border-color: #334155;
+    color: #ffd166;
   }
   html.theme-sepia .focus-kbd-badge {
-    background: #ede3d1;
-    border-color: #ccbc9e;
-    color: #2c1b0c;
+    background: #241405;
+    border-color: #8c6b3f;
+    color: #ffd166;
   }
 
   /* Keycap Combo Flash on Alt + F */
