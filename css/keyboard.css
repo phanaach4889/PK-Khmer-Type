@@ -1767,4 +1767,26 @@
     box-shadow: 0 0 16px rgba(255, 209, 102, 0.45) !important;
   }
 
+  /* Minimal Mode Keyboard Overrides: Zero typing lag, instant response */
+  html.anim-mode-minimal .key-strike-shockwave,
+  html.anim-mode-minimal .key-ripple,
+  html.anim-mode-minimal .key-ember,
+  html.anim-mode-minimal .lesson-target-pulse,
+  html.anim-mode-minimal .hand-resting-breath,
+  html.anim-mode-minimal .active-finger-beacon,
+  html.anim-mode-minimal .chassis-led-pulse,
+  html.anim-mode-minimal .chassis-ver-glow,
+  html.anim-mode-minimal .pkBeaconPulse,
+  html.anim-mode-minimal .guide-mini-key.active,
+  html.anim-mode-minimal .guide-mini-key.mini-pulsing {
+    animation: none !important;
+  }
+
+  html.anim-mode-minimal .layer-pill:hover,
+  html.anim-mode-minimal .guide-mini-key:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+
+
 

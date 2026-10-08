@@ -1634,11 +1634,16 @@ html.performance-mode .wip-orb-dot,
 html.anim-mode-off .wip-scanlines,
 html.anim-mode-off .wip-grid,
 html.anim-mode-off .wip-orbital,
-html.anim-mode-off .wip-orb-dot {
+html.anim-mode-off .wip-orb-dot,
+html.anim-mode-minimal .wip-scanlines,
+html.anim-mode-minimal .wip-grid,
+html.anim-mode-minimal .wip-orbital,
+html.anim-mode-minimal .wip-orb-dot {
   animation: none !important;
 }
 html.performance-mode .wip-particles,
-html.anim-mode-off .wip-particles {
+html.anim-mode-off .wip-particles,
+html.anim-mode-minimal .wip-particles {
   display: none !important;
 }
 
@@ -1665,12 +1670,20 @@ html.anim-mode-off * {
   transition-duration: 0.001ms !important;
 }
 
+html.anim-mode-minimal * {
+  transition-duration: 0.1s !important;
+  animation-iteration-count: 1 !important;
+}
+
 html.performance-mode .wip-particles,
 html.performance-mode .wip-particle,
 html.performance-mode .wip-glow-ring,
 html.anim-mode-off .wip-particles,
 html.anim-mode-off .wip-particle,
-html.anim-mode-off .wip-glow-ring {
+html.anim-mode-off .wip-glow-ring,
+html.anim-mode-minimal .wip-particles,
+html.anim-mode-minimal .wip-particle,
+html.anim-mode-minimal .wip-glow-ring {
   display: none !important;
 }
 
@@ -1682,7 +1695,10 @@ html.performance-mode .studio-toolbar,
 html.performance-mode .search-dropdown,
 html.anim-mode-off .docs-header,
 html.anim-mode-off .doc-hero,
-html.anim-mode-off .callout-card {
+html.anim-mode-off .callout-card,
+html.anim-mode-minimal .docs-header,
+html.anim-mode-minimal .doc-hero,
+html.anim-mode-minimal .callout-card {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   background-color: var(--doc-surface-solid) !important;
@@ -1693,7 +1709,9 @@ html.performance-mode .btn-primary-glow,
 html.performance-mode .btn-press-cta,
 html.performance-mode .metric-card,
 html.anim-mode-off .brand-logo,
-html.anim-mode-off .btn-primary-glow {
+html.anim-mode-off .btn-primary-glow,
+html.anim-mode-minimal .brand-logo,
+html.anim-mode-minimal .btn-primary-glow {
   box-shadow: none !important;
   filter: none !important;
 }

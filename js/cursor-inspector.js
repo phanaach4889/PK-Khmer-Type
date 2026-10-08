@@ -852,7 +852,7 @@
 
     // Global click ripple shockwave
     window.addEventListener('mousedown', (ev) => {
-      if (!inspectorEnabled || document.documentElement.classList.contains('performance-mode') || document.documentElement.classList.contains('hide-cursor-shockwave') || document.documentElement.classList.contains('anim-mode-off')) return;
+      if (!inspectorEnabled || document.documentElement.classList.contains('performance-mode') || document.documentElement.classList.contains('hide-cursor-shockwave') || document.documentElement.classList.contains('anim-mode-off') || document.documentElement.classList.contains('anim-mode-minimal')) return;
       const wave = document.createElement('div');
       wave.className = 'pk-cursor-shockwave';
       wave.style.left = ev.clientX + 'px';

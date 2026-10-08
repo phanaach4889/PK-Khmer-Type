@@ -4182,3 +4182,25 @@ html.theme-glass .lesson-complete-overlay {
   background: rgba(0, 0, 0, 0.22) !important;
   backdrop-filter: blur(3px) !important;
 }
+
+/* Minimal Mode Lesson Overrides: Snappy lesson switching, zero lag */
+html.anim-mode-minimal .streak-flame,
+html.anim-mode-minimal .gls-pulse,
+html.anim-mode-minimal .progress-sheen-sweep,
+html.anim-mode-minimal .lc-char-target-breathe,
+html.anim-mode-minimal .lc-cursor-beam,
+html.anim-mode-minimal .lc-card-glow,
+html.anim-mode-minimal .lc-sheen-spin,
+html.anim-mode-minimal .lc-halo-spin,
+html.anim-mode-minimal .lc-title-shimmer,
+html.anim-mode-minimal .mistakes-btn-pulse,
+html.anim-mode-minimal .fb-bar-shimmer,
+html.anim-mode-minimal .lesson-strip-spring-in,
+html.anim-mode-minimal .focus-dock-grow-in {
+  animation: none !important;
+}
+
+html.anim-mode-minimal .lesson-card:hover {
+  transform: none !important;
+}
+

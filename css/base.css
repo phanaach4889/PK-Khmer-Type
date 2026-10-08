@@ -761,6 +761,14 @@
   html.anim-mode-off .lesson-card,
   html.anim-mode-off .lc-card,
   html.anim-mode-off .profile-card .stat-tile,
+  html.anim-mode-minimal .stat-tile,
+  html.anim-mode-minimal .stats-bar-row,
+  html.anim-mode-minimal .race-record-card,
+  html.anim-mode-minimal .race-lb-row,
+  html.anim-mode-minimal .stats-grid,
+  html.anim-mode-minimal .lesson-card,
+  html.anim-mode-minimal .lc-card,
+  html.anim-mode-minimal .profile-card .stat-tile,
   html.reduce-motion .stat-tile,
   html.reduce-motion .stats-bar-row,
   html.reduce-motion .race-record-card,
@@ -775,9 +783,10 @@
     visibility: visible !important;
   }
 
-  /* Eliminate heavy continuous GPU blur in performance mode */
+  /* Eliminate heavy continuous GPU blur and text-shadow in performance and minimal mode */
   html.performance-mode *,
-  html.anim-mode-off * {
+  html.anim-mode-off *,
+  html.anim-mode-minimal * {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     text-shadow: none !important;
@@ -804,10 +813,20 @@
   html.anim-mode-off button:active,
   html.anim-mode-off .key:hover,
   html.anim-mode-off .key:active,
-  html.anim-mode-off .lesson-card:hover {
+  html.anim-mode-off .lesson-card:hover,
+  html.anim-mode-minimal button:hover,
+  html.anim-mode-minimal button:active,
+  html.anim-mode-minimal a:hover,
+  html.anim-mode-minimal .key:hover,
+  html.anim-mode-minimal .key:active,
+  html.anim-mode-minimal .site-crest-icon:hover,
+  html.anim-mode-minimal .lesson-card:hover,
+  html.anim-mode-minimal .guide-stat-box:hover,
+  html.anim-mode-minimal .profile-card:hover,
+  html.anim-mode-minimal .layout-pill:hover,
+  html.anim-mode-minimal .layer-pill:hover,
+  html.anim-mode-minimal .gas-btn:hover {
     transform: none !important;
-    animation: none !important;
-    transition: none !important;
   }
 
   /* Solid non-blur modal backdrop in performance mode */
@@ -850,8 +869,73 @@
   html.anim-mode-off .focus-screen-ripple,
   html.anim-mode-off .pk-cursor-shockwave,
   html.anim-mode-off .theme-click-ripple,
-  html.anim-mode-off .streak-flame {
+  html.anim-mode-off .streak-flame,
+  html.anim-mode-minimal #motes,
+  html.anim-mode-minimal .motes,
+  html.anim-mode-minimal .torch,
+  html.anim-mode-minimal #scanlineOverlay,
+  html.anim-mode-minimal .scanline-overlay,
+  html.anim-mode-minimal #fxCanvas,
+  html.anim-mode-minimal .fx-canvas,
+  html.anim-mode-minimal .profile-fx-particles,
+  html.anim-mode-minimal .fx-laser,
+  html.anim-mode-minimal .banner-sheen,
+  html.anim-mode-minimal .dev-note-glow,
+  html.anim-mode-minimal .dev-note-sparkle,
+  html.anim-mode-minimal .dev-note-scanline,
+  html.anim-mode-minimal .focus-screen-ripple,
+  html.anim-mode-minimal .pk-cursor-shockwave,
+  html.anim-mode-minimal .theme-click-ripple,
+  html.anim-mode-minimal .streak-flame,
+  html.anim-mode-minimal .ripple,
+  html.anim-mode-minimal .ember {
     display: none !important;
+  }
+
+  /* ================= Minimal Animation Mode — Snappy, Zero-Lag ================= */
+  /* Cap transitions to snappy 0.1s linear, no spring bounciness or delays */
+  html.anim-mode-minimal * {
+    transition-duration: 0.1s !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  /* Stop all endless background looping keyframes */
+  html.anim-mode-minimal .crest,
+  html.anim-mode-minimal .site-crest-icon,
+  html.anim-mode-minimal .dev-note-seal,
+  html.anim-mode-minimal .avatar-halo,
+  html.anim-mode-minimal .auth-ring,
+  html.anim-mode-minimal .auth-orb,
+  html.anim-mode-minimal .tile-live-pulse,
+  html.anim-mode-minimal .xp-sheen,
+  html.anim-mode-minimal .fx-aura-breathe,
+  html.anim-mode-minimal .founder-card,
+  html.anim-mode-minimal .fx-dot,
+  html.anim-mode-minimal .fx-badge-ring,
+  html.anim-mode-minimal .fx-tile-sweep,
+  html.anim-mode-minimal .temple-confirm-pulse,
+  html.anim-mode-minimal .temple-confirm-icon,
+  html.anim-mode-minimal .dev-note-card::before,
+  html.anim-mode-minimal .dev-note-title,
+  html.anim-mode-minimal .theme-card.active,
+  html.anim-mode-minimal .theme-active-breath,
+  html.anim-mode-minimal .theme-active-sheen,
+  html.anim-mode-minimal .theme-dot-sonar,
+  html.anim-mode-minimal [class*="breathe"],
+  html.anim-mode-minimal [class*="pulse"],
+  html.anim-mode-minimal [class*="drift"],
+  html.anim-mode-minimal [class*="shimmer"],
+  html.anim-mode-minimal [class*="halo"] {
+    animation: none !important;
+  }
+
+  /* Fast, clean 0.12s modal display without spring physics */
+  html.anim-mode-minimal .modal-card,
+  html.anim-mode-minimal .modal-backdrop,
+  html.anim-mode-minimal .temple-confirm-card {
+    animation-duration: 0.12s !important;
+    animation-timing-function: ease-out !important;
+    transform: none !important;
   }
   html.large-text{ font-size:18px; }
   html.large-text .subtitle, html.large-text .hint{ font-size:0.92rem; }

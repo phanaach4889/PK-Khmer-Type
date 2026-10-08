@@ -1562,6 +1562,21 @@ function initSettingsToggles() {
     // mode === "minimal"
     document.documentElement.classList.remove("performance-mode", "anim-mode-off", "anim-mode-full", "reduce-motion", "reduced-motion");
     document.documentElement.classList.add("anim-mode-minimal", "hide-key-fx", "hide-motes", "hide-cursor-shockwave");
+
+    // Cancel running canvas animation frame loops immediately to free GPU/CPU
+    if (typeof window.cancelAnimationFrame === "function" && window.fxAnimId) {
+      window.cancelAnimationFrame(window.fxAnimId);
+      window.fxAnimId = null;
+    }
+    const canvas = document.getElementById("fxCanvas");
+    if (canvas && canvas.getContext) {
+      const ctx = canvas.getContext("2d");
+      if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    // Remove motes children to eliminate running CSS background animations
+    const motesEl = document.getElementById("motes");
+    if (motesEl) motesEl.innerHTML = "";
+
     if (performanceModeToggle) setSwitchUI(performanceModeToggle, false);
     if (reducedMotionToggle) setSwitchUI(reducedMotionToggle, false);
     document.querySelectorAll("#animationModeChoice button").forEach((btn) => {

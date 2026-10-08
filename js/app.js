@@ -43,9 +43,11 @@ function initApp(){
       document.documentElement.classList.add("anim-mode-full");
       document.documentElement.classList.remove("performance-mode", "anim-mode-off", "anim-mode-minimal", "reduce-motion", "reduced-motion");
     } else {
-      // Default for new visitors: Minimal mode (gentle motion, without heavy motes or particle bursts)
+      // Default for new visitors: Minimal mode (snappy, zero-lag, no continuous animations)
       document.documentElement.classList.add("anim-mode-minimal", "hide-key-fx", "hide-motes", "hide-cursor-shockwave");
       document.documentElement.classList.remove("performance-mode", "anim-mode-off", "anim-mode-full", "reduce-motion", "reduced-motion");
+      const motesEl = document.getElementById("motes");
+      if (motesEl) motesEl.innerHTML = "";
     }
   } catch(e){}
 
