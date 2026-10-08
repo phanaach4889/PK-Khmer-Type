@@ -599,7 +599,12 @@ function switchLayout(id, force = false){
 }
 if(layoutStrip){
   layoutStrip.querySelectorAll('.layout-pill[data-layout]').forEach(p=>{
-    p.addEventListener('click', ()=> switchLayout(p.dataset.layout));
+    p.addEventListener('click', ()=> {
+      switchLayout(p.dataset.layout);
+      if(typeof playHolographicChime === 'function'){
+        playHolographicChime(p.dataset.layout !== 'english');
+      }
+    });
   });
 }
 

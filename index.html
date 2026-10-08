@@ -1794,9 +1794,30 @@
 </div>
 
 <div class="layout-strip" id="layoutStrip" role="tablist" aria-label="Keyboard layout">
-  <div class="layout-pill active i18n-t" data-layout="standard" data-en="Khmer Keyboard Layout" data-km="ប្លង់ក្តារចុចខ្មែរ" role="tab" tabindex="0" aria-selected="true">Khmer Keyboard Layout</div>
-  <div class="layout-pill i18n-t" data-layout="nida" data-en="Khmer NiDA Keyboard" data-km="ក្តារចុច Khmer NiDA" role="tab" tabindex="0" aria-selected="false">Khmer NiDA Keyboard</div>
-  <div class="layout-pill i18n-t" data-layout="english" data-en="English (US)" data-km="English (US)" role="tab" tabindex="0" aria-selected="false">English (US)</div>
+  <button type="button" class="layout-pill active" data-layout="standard" role="tab" tabindex="0" aria-selected="true" title="Khmer Standard Layout (Alt+1)">
+    <span class="layout-pill-icon" aria-hidden="true">
+      <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M7 16h10"/></svg>
+    </span>
+    <span class="layout-pill-name i18n-t" data-en="Khmer Standard" data-km="ខ្មែរស្តង់ដារ">Khmer Standard</span>
+    <span class="layout-pill-badge">77</span>
+    <kbd class="layout-pill-kbd">Alt+1</kbd>
+  </button>
+  <button type="button" class="layout-pill" data-layout="nida" role="tab" tabindex="0" aria-selected="false" title="Khmer NiDA Keyboard (Alt+2)">
+    <span class="layout-pill-icon" aria-hidden="true">
+      <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </span>
+    <span class="layout-pill-name i18n-t" data-en="Khmer NiDA" data-km="ខ្មែរ និដា">Khmer NiDA</span>
+    <span class="layout-pill-badge">77</span>
+    <kbd class="layout-pill-kbd">Alt+2</kbd>
+  </button>
+  <button type="button" class="layout-pill" data-layout="english" role="tab" tabindex="0" aria-selected="false" title="English US Layout (Alt+3)">
+    <span class="layout-pill-icon" aria-hidden="true">
+      <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    </span>
+    <span class="layout-pill-name i18n-t" data-en="English (US)" data-km="English (US)">English (US)</span>
+    <span class="layout-pill-badge">64</span>
+    <kbd class="layout-pill-kbd">Alt+3</kbd>
+  </button>
 </div>
 
 <div class="session-bar" id="sessionBar">

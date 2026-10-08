@@ -332,11 +332,11 @@ html.site-km-mode .pk-tut-tlang-arrow {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(92vw, 460px);
+  width: min(92vw, 530px);
   background: #0a0e1c;
   border: 1px solid rgba(255, 209, 102, 0.45);
   border-radius: 24px;
-  padding: 34px 32px 30px;
+  padding: 30px 28px 26px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8),
               0 0 36px rgba(255, 209, 102, 0.2);
   color: #f1f5f9;
@@ -542,6 +542,143 @@ html.site-km-mode .pk-tut-tlang-arrow {
 .pk-tut-path-num svg {
   width: 14px;
   height: 14px;
+}
+
+/* ================= Choose Your Starting Track (Welcome Modal) ================= */
+.pk-tut-track-picker {
+  margin: 14px 0 20px;
+  text-align: left;
+}
+
+.pk-tut-track-heading {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #cbd5e1;
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+.pk-tut-track-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pk-tut-track-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: rgba(14, 20, 36, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.2, 0.9, 0.3, 1);
+  user-select: none;
+  position: relative;
+}
+
+.pk-tut-track-card:hover:not(.active) {
+  border-color: rgba(255, 209, 102, 0.4);
+  background: rgba(255, 209, 102, 0.08);
+  transform: translateY(-1px);
+}
+
+.pk-tut-track-card.active {
+  background: linear-gradient(135deg, rgba(255, 209, 102, 0.16), rgba(10, 14, 28, 0.85));
+  border: 1.5px solid #ffd166;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 18px rgba(255, 209, 102, 0.28);
+}
+
+.pk-tut-track-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.pk-tut-track-icon-box svg {
+  width: 18px;
+  height: 18px;
+}
+
+.pk-tut-track-card.active .pk-tut-track-icon-box {
+  background: rgba(255, 209, 102, 0.2);
+  border-color: rgba(255, 209, 102, 0.5);
+  color: #ffd166;
+  box-shadow: 0 0 10px rgba(255, 209, 102, 0.4);
+}
+
+.pk-tut-track-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.pk-tut-track-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.pk-tut-track-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.pk-tut-track-card.active .pk-tut-track-name {
+  color: #ffd166;
+}
+
+.pk-tut-track-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #94a3b8;
+}
+
+.pk-tut-track-card.active .pk-tut-track-badge {
+  background: rgba(255, 209, 102, 0.2);
+  border-color: rgba(255, 209, 102, 0.45);
+  color: #ffd166;
+}
+
+.pk-tut-track-desc {
+  font-size: 0.73rem;
+  color: #94a3b8;
+  line-height: 1.35;
+}
+
+.pk-tut-track-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.pk-tut-track-card.active .pk-tut-track-check {
+  background: #ffd166;
+  border-color: #ffd166;
+  color: #070a12;
+  box-shadow: 0 0 10px rgba(255, 209, 102, 0.7);
 }
 
 .pk-tut-modal-actions {

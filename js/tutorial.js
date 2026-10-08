@@ -93,11 +93,22 @@
       path4: 'Use Adaptive Practice and Studio Controls to customize your training.',
       startNextLesson: 'Start Next Lesson',
       exploreAlone: 'Explore on My Own',
-      guideFeature: 'Guide Feature'
+      guideFeature: 'Guide Feature',
+
+      chooseStartTrack: 'Choose where you want to start learning:',
+      trackStdTitle: 'Khmer Standard',
+      trackStdDesc: 'Classic home row anchors G & Ñ, consonants, vowels, and coeng subscripts.',
+      trackStdTag: '77 Lessons',
+      trackNidaTitle: 'Khmer NiDA',
+      trackNidaDesc: 'Official national standard curriculum widely used in government & education.',
+      trackNidaTag: '77 Lessons',
+      trackEngTitle: 'English (US)',
+      trackEngDesc: 'Structured QWERTY touch-typing curriculum from ASDF home row to high speed.',
+      trackEngTag: '64 Lessons'
     },
     km: {
       welcomeTitle: 'សូមស្វាគមន៍មកកាន់ PK Khmer Type',
-      welcomeSubtitle: 'រៀនវាយអក្សរខ្មែរមួយជំហានម្តងៗ។ យើងខ្ញុំនឹងណែនាំអ្នកតាមរយៈមេរៀនដំបូង។',
+      welcomeSubtitle: 'រៀនវាយអក្សរមួយជំហានម្តងៗ។ ជ្រើសរើសក្តារចុចដែលអ្នកចង់ចាប់ផ្តើមរៀន៖',
       startLearning: 'ចាប់ផ្តើមរៀន',
       skipTutorial: 'រំលងការណែនាំ',
       step: 'ជំហាន',
@@ -110,6 +121,17 @@
       practiceMore: 'ហ្វឹកហាត់បន្ថែម',
       continueTutorial: 'បន្តការណែនាំ',
       startDrill: 'ចាប់ផ្តើមហាត់!',
+
+      chooseStartTrack: 'ជ្រើសរើសក្តារចុចដែលអ្នកចង់ចាប់ផ្តើមរៀន៖',
+      trackStdTitle: 'ខ្មែរស្តង់ដារ (Standard)',
+      trackStdDesc: 'មេរៀនគ្រាប់ចុចគោល ក & ញ ព្យញ្ជនៈ ស្រៈនិស្ស័យ និងជើងអក្សរ។',
+      trackStdTag: '៧៧ មេរៀន',
+      trackNidaTitle: 'ខ្មែរ និដា (NiDA)',
+      trackNidaDesc: 'ប្លង់ក្តារចុចផ្លូវការសម្រាប់ស្ថាប័នរដ្ឋ និងសាលារៀន។',
+      trackNidaTag: '៧៧ មេរៀន',
+      trackEngTitle: 'English (US)',
+      trackEngDesc: 'រៀនវាយក្តារចុចអង់គ្លេស QWERTY ពីជួរកណ្តាល ASDF រហូតដល់ស្ទាត់ជំនាញ។',
+      trackEngTag: '៦៤ មេរៀន',
 
       step1Title: 'ជំហានទី ១ — ស្វែងរកមេរៀនរបស់អ្នក',
       step1Desc: 'មេរៀនរបស់អ្នកស្ថិតនៅទីនេះ។ ចាប់ផ្តើមពីមេរៀនដំបូងដែលបានដោះសោ ហើយបន្តដំណើរទៅមុខ។',
@@ -332,6 +354,55 @@
           </div>
           <h2 class="pk-tut-modal-title" id="pkTutModalTitle">Welcome to PK Khmer Type</h2>
           <p class="pk-tut-modal-subtitle" id="pkTutModalSubtitle">Learn to type Khmer step by step.</p>
+
+          <!-- Interactive Track Selector (Choose where to start) -->
+          <div id="pkTutTrackPicker" class="pk-tut-track-picker">
+            <div class="pk-tut-track-heading" id="pkTutTrackHeading">Choose where you want to start learning:</div>
+            <div class="pk-tut-track-list">
+              <div class="pk-tut-track-card active" data-track="standard" tabindex="0" role="button" aria-pressed="true">
+                <div class="pk-tut-track-icon-box" aria-hidden="true">${TUT_ICONS.lessons}</div>
+                <div class="pk-tut-track-info">
+                  <div class="pk-tut-track-title-row">
+                    <span class="pk-tut-track-name" id="pkTutTrackStdName">Khmer Standard</span>
+                    <span class="pk-tut-track-badge" id="pkTutTrackStdTag">77 Lessons</span>
+                  </div>
+                  <div class="pk-tut-track-desc" id="pkTutTrackStdDesc">Classic home row anchors G &amp; Ñ, consonants, vowels, and coeng subscripts.</div>
+                </div>
+                <div class="pk-tut-track-check" aria-hidden="true">
+                  <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+              </div>
+
+              <div class="pk-tut-track-card" data-track="nida" tabindex="0" role="button" aria-pressed="false">
+                <div class="pk-tut-track-icon-box" aria-hidden="true">${TUT_ICONS.key}</div>
+                <div class="pk-tut-track-info">
+                  <div class="pk-tut-track-title-row">
+                    <span class="pk-tut-track-name" id="pkTutTrackNidaName">Khmer NiDA</span>
+                    <span class="pk-tut-track-badge" id="pkTutTrackNidaTag">77 Lessons</span>
+                  </div>
+                  <div class="pk-tut-track-desc" id="pkTutTrackNidaDesc">Official national standard curriculum widely used in government &amp; education.</div>
+                </div>
+                <div class="pk-tut-track-check" aria-hidden="true">
+                  <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+              </div>
+
+              <div class="pk-tut-track-card" data-track="english" tabindex="0" role="button" aria-pressed="false">
+                <div class="pk-tut-track-icon-box" aria-hidden="true">${TUT_ICONS.globe}</div>
+                <div class="pk-tut-track-info">
+                  <div class="pk-tut-track-title-row">
+                    <span class="pk-tut-track-name" id="pkTutTrackEngName">English (US)</span>
+                    <span class="pk-tut-track-badge" id="pkTutTrackEngTag">64 Lessons</span>
+                  </div>
+                  <div class="pk-tut-track-desc" id="pkTutTrackEngDesc">Structured QWERTY touch-typing curriculum from ASDF home row to high speed.</div>
+                </div>
+                <div class="pk-tut-track-check" aria-hidden="true">
+                  <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div id="pkTutPathContainer" style="display:none;">
             <ul class="pk-tut-path-list">
               <li class="pk-tut-path-item"><span class="pk-tut-path-num">${TUT_ICONS.card}</span> <span id="pkTutPath1">Complete the next available lesson.</span></li>
@@ -422,6 +493,30 @@
         document.getElementById('pkTutModalSubtitle').textContent = this.t('welcomeSubtitle');
         document.getElementById('pkTutModalPriBtn').textContent = this.t('startLearning');
         document.getElementById('pkTutModalSecBtn').textContent = this.t('skipTutorial');
+
+        const trackHeading = document.getElementById('pkTutTrackHeading');
+        if(trackHeading) trackHeading.textContent = this.t('chooseStartTrack');
+
+        const stdName = document.getElementById('pkTutTrackStdName');
+        if(stdName) stdName.textContent = this.t('trackStdTitle');
+        const stdDesc = document.getElementById('pkTutTrackStdDesc');
+        if(stdDesc) stdDesc.textContent = this.t('trackStdDesc');
+        const stdTag = document.getElementById('pkTutTrackStdTag');
+        if(stdTag) stdTag.textContent = this.t('trackStdTag');
+
+        const nidaName = document.getElementById('pkTutTrackNidaName');
+        if(nidaName) nidaName.textContent = this.t('trackNidaTitle');
+        const nidaDesc = document.getElementById('pkTutTrackNidaDesc');
+        if(nidaDesc) nidaDesc.textContent = this.t('trackNidaDesc');
+        const nidaTag = document.getElementById('pkTutTrackNidaTag');
+        if(nidaTag) nidaTag.textContent = this.t('trackNidaTag');
+
+        const engName = document.getElementById('pkTutTrackEngName');
+        if(engName) engName.textContent = this.t('trackEngTitle');
+        const engDesc = document.getElementById('pkTutTrackEngDesc');
+        if(engDesc) engDesc.textContent = this.t('trackEngDesc');
+        const engTag = document.getElementById('pkTutTrackEngTag');
+        if(engTag) engTag.textContent = this.t('trackEngTag');
       } else if(this.currentModalMode === 'firstDone'){
         document.getElementById('pkTutModalTitle').textContent = this.t('firstDoneTitle');
         document.getElementById('pkTutModalSubtitle').textContent = this.t('firstDoneDesc');
@@ -460,16 +555,50 @@
       const maskSvg = overlay.querySelector('.pk-tutorial-mask-svg');
       const frame = document.getElementById('pkSpotlightFrame');
       const pathBox = document.getElementById('pkTutPathContainer');
+      const trackPicker = document.getElementById('pkTutTrackPicker');
 
       overlay.hidden = false;
       modal.style.display = 'block';
       tooltip.style.display = 'none';
       pathBox.style.display = 'none';
+      if(trackPicker) trackPicker.style.display = 'block';
       frame.classList.add('hidden-frame');
       maskSvg.style.display = 'none';
 
       document.getElementById('pkTutModalTitle').textContent = this.t('welcomeTitle');
       document.getElementById('pkTutModalSubtitle').textContent = this.t('welcomeSubtitle');
+
+      // Wire interactive track cards
+      const curLayout = window.activeLayout || window.currentLayoutId || 'standard';
+      const trackCards = modal.querySelectorAll('.pk-tut-track-card');
+      trackCards.forEach(card => {
+        const isTrack = card.dataset.track === curLayout;
+        card.classList.toggle('active', isTrack);
+        card.setAttribute('aria-pressed', String(isTrack));
+
+        card.onclick = (e) => {
+          e.stopPropagation();
+          const chosen = card.dataset.track;
+          trackCards.forEach(c => {
+            const act = c === card;
+            c.classList.toggle('active', act);
+            c.setAttribute('aria-pressed', String(act));
+          });
+          if(typeof window.switchLayout === 'function'){
+            window.switchLayout(chosen);
+          }
+          if(typeof playHolographicChime === 'function'){
+            playHolographicChime(chosen !== 'english');
+          }
+        };
+
+        card.onkeydown = (e) => {
+          if(e.key === ' ' || e.key === 'Enter'){
+            e.preventDefault();
+            card.click();
+          }
+        };
+      });
 
       const priBtn = document.getElementById('pkTutModalPriBtn');
       const secBtn = document.getElementById('pkTutModalSecBtn');
@@ -587,6 +716,15 @@
           collapsedLevels.delete(String(LEVELS[0].id));
           if(typeof renderLessonStrip === 'function') renderLessonStrip();
         }
+
+        // Allow user to click any unlocked lesson directly from step 1
+        const onAnyCardClick = (e) => {
+          const card = e.target.closest('.lesson-card:not(.locked)');
+          if(card){
+            setTimeout(() => this.goToStep('lesson-target-prompt'), 350);
+          }
+        };
+        strip.addEventListener('click', onAnyCardClick, { once: true });
       }
 
       const target = (strip && strip.querySelector('.lesson-strip-header')) || strip;
@@ -616,13 +754,18 @@
         firstCard = strip.querySelector('.lesson-card');
       }
 
+      if(strip){
+        const onAnyCardClick = (e) => {
+          const card = e.target.closest('.lesson-card:not(.locked)');
+          if(card){
+            setTimeout(() => this.goToStep('lesson-target-prompt'), 350);
+          }
+        };
+        strip.addEventListener('click', onAnyCardClick, { once: true });
+      }
+
       if(firstCard){
         firstCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        const onCardClick = () => {
-          firstCard.removeEventListener('click', onCardClick);
-          setTimeout(() => this.goToStep('lesson-target-prompt'), 350);
-        };
-        firstCard.addEventListener('click', onCardClick, { once: true });
       }
 
       this.spotlight(firstCard || strip, {
@@ -767,6 +910,7 @@
       const maskSvg = overlay.querySelector('.pk-tutorial-mask-svg');
       const pill = document.getElementById('pkTutorialPracticePill');
       const pathBox = document.getElementById('pkTutPathContainer');
+      const trackPicker = document.getElementById('pkTutTrackPicker');
 
       overlay.hidden = false;
       modal.style.display = 'block';
@@ -774,6 +918,7 @@
       pill.style.display = 'none';
       maskSvg.style.display = 'none';
       pathBox.style.display = 'none';
+      if(trackPicker) trackPicker.style.display = 'none';
 
       document.getElementById('pkTutModalTitle').innerHTML = `<span class="pk-tut-inline-icon" aria-hidden="true">${TUT_ICONS.trophy}</span> <span>${this.t('firstDoneTitle')}</span>`;
       document.getElementById('pkTutModalSubtitle').textContent = this.t('firstDoneDesc');
@@ -997,6 +1142,7 @@
       const maskSvg = overlay.querySelector('.pk-tutorial-mask-svg');
       const pathBox = document.getElementById('pkTutPathContainer');
       const pill = document.getElementById('pkTutorialPracticePill');
+      const trackPicker = document.getElementById('pkTutTrackPicker');
 
       overlay.hidden = false;
       modal.style.display = 'block';
@@ -1005,6 +1151,7 @@
       frame.classList.add('hidden-frame');
       maskSvg.style.display = 'none';
       pathBox.style.display = 'block';
+      if(trackPicker) trackPicker.style.display = 'none';
 
       document.getElementById('pkTutModalTitle').innerHTML = `<span class="pk-tut-inline-icon" aria-hidden="true">${TUT_ICONS.crown}</span> <span>${this.t('finishTitle')}</span>`;
       document.getElementById('pkTutModalSubtitle').textContent = this.t('finishSubtitle');
