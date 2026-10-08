@@ -10,3 +10,4 @@ Whenever you finish making code, asset, or documentation changes for a user requ
 2. Commit with a clear, descriptive commit message (`git commit -m "<type>(<scope>): <summary>"`).
 3. Pull with rebase to integrate any upstream changes cleanly (`git pull --rebase origin main`), resolving any conflicts if they arise.
 4. Push the commit immediately to GitHub (`git push origin main`) before ending your turn, without waiting for the user to ask.
+
