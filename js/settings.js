@@ -164,9 +164,9 @@ function ensureUpgradedSettingsModalDOM() {
           <div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Interface Language</span><span class="settings-row-km">ភាសា</span></div><div class="settings-row-desc">Translate menus, buttons, and lesson guides between English and Khmer (Alt+L).</div></div>
           <div class="settings-row-control"><div class="settings-choice" id="settingsLangChoice"><button type="button" data-lang-set="en" class="active">English</button><button type="button" data-lang-set="km">ភាសាខ្មែរ (Khmer)</button></div></div>
         </div>
-        <div class="settings-row" data-search="quick links documents 3d mechanical studio shortcuts statistics">
-          <div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Studio &amp; Reference Tools</span><span class="settings-row-km">ឧបករណ៍ជំនួយ</span></div><div class="settings-row-desc">Jump directly to documentation, 3D mechanical viewer, shortcuts, or statistics.</div></div>
-          <div class="settings-row-control"><div class="settings-quick-links"><button type="button" class="settings-action-pill" id="settingsOpenShortcutsBtn">Shortcuts</button><button type="button" class="settings-action-pill" id="settingsOpenStatsBtn">Statistics</button><a href="Documents/index.html" class="settings-action-pill">PK Documents</a><a href="Documents/index.html#keycap-3d" class="settings-action-pill">3D Studio</a></div></div>
+        <div class="settings-row" data-search="quick links documents 3d mechanical studio shortcuts statistics tutorial onboarding guide">
+          <div class="settings-row-info"><div class="settings-row-title-line"><span class="settings-row-name">Studio &amp; Reference Tools</span><span class="settings-row-km">ឧបករណ៍ជំនួយ</span></div><div class="settings-row-desc">Jump directly to documentation, 3D mechanical viewer, shortcuts, statistics, or restart the tutorial.</div></div>
+          <div class="settings-row-control"><div class="settings-quick-links"><button type="button" class="settings-action-pill" id="settingsRestartTutorialBtn">Onboarding Tutorial</button><button type="button" class="settings-action-pill" id="settingsOpenShortcutsBtn">Shortcuts</button><button type="button" class="settings-action-pill" id="settingsOpenStatsBtn">Statistics</button><a href="Documents/index.html" class="settings-action-pill">PK Documents</a><a href="Documents/index.html#keycap-3d" class="settings-action-pill">3D Studio</a></div></div>
         </div>
       </div>
 
@@ -866,6 +866,16 @@ function initSettingsToggles() {
       if (settingsModal) settingsModal.hidden = true;
       const stBtn = document.getElementById("statsOpenBtn");
       if (stBtn) stBtn.click();
+    });
+  }
+  const restartTutBtn = document.getElementById("settingsRestartTutorialBtn");
+  if (restartTutBtn) {
+    restartTutBtn.addEventListener("click", () => {
+      const settingsModal = document.getElementById("settingsModal");
+      if (settingsModal) settingsModal.hidden = true;
+      if (window.PK_TUTORIAL && typeof window.PK_TUTORIAL.start === "function") {
+        window.PK_TUTORIAL.start(true);
+      }
     });
   }
 

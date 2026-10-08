@@ -1,0 +1,403 @@
+/* ============================================================
+   PK Khmer Type — Interactive First-Time User Tutorial (CSS)
+   ============================================================ */
+
+/* Fullscreen Tutorial Backdrop & Mask Overlay */
+.pk-tutorial-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99990;
+  pointer-events: auto;
+  overflow: hidden;
+  transition: opacity 0.25s ease;
+}
+
+.pk-tutorial-overlay[hidden] {
+  display: none !important;
+}
+
+.pk-tutorial-mask-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.pk-tutorial-mask-svg rect#pkSpotlightHole {
+  transition: x 0.28s cubic-bezier(0.2, 0.9, 0.3, 1),
+              y 0.28s cubic-bezier(0.2, 0.9, 0.3, 1),
+              width 0.28s cubic-bezier(0.2, 0.9, 0.3, 1),
+              height 0.28s cubic-bezier(0.2, 0.9, 0.3, 1),
+              rx 0.2s ease, ry 0.2s ease;
+}
+
+/* Glowing Spotlight Outline Frame */
+.pk-spotlight-frame {
+  position: fixed;
+  pointer-events: none;
+  border: 2px solid #ffd166;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px rgba(255, 209, 102, 0.3),
+              0 0 24px rgba(255, 209, 102, 0.45),
+              inset 0 0 12px rgba(255, 209, 102, 0.15);
+  transition: top 0.28s cubic-bezier(0.2, 0.9, 0.3, 1),
+              left 0.28s cubic-bezier(0.2, 0.9, 0.3, 1),
+              width 0.28s cubic-bezier(0.2, 0.9, 0.3, 1),
+              height 0.28s cubic-bezier(0.2, 0.9, 0.3, 1),
+              border-radius 0.2s ease,
+              opacity 0.2s ease;
+  z-index: 99992;
+  box-sizing: border-box;
+}
+
+.pk-spotlight-frame.hidden-frame {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Tooltip Card Box */
+.pk-tutorial-tooltip {
+  position: fixed;
+  width: min(92vw, 360px);
+  background: #0d1222;
+  border: 1px solid rgba(255, 209, 102, 0.4);
+  border-radius: 18px;
+  padding: 20px 22px 18px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.75),
+              0 0 28px rgba(255, 209, 102, 0.18);
+  color: #f1f5f9;
+  z-index: 99995;
+  box-sizing: border-box;
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  transition: top 0.28s cubic-bezier(0.2, 0.9, 0.3, 1),
+              left 0.28s cubic-bezier(0.2, 0.9, 0.3, 1),
+              opacity 0.2s ease,
+              transform 0.2s ease;
+}
+
+.pk-tutorial-tooltip-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.pk-tutorial-step-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffd166;
+  background: rgba(255, 209, 102, 0.14);
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 209, 102, 0.25);
+}
+
+.pk-tutorial-close-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pk-tutorial-close-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.pk-tutorial-title {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px;
+  line-height: 1.35;
+}
+
+.pk-tutorial-body {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  line-height: 1.55;
+  margin: 0 0 18px;
+}
+
+.pk-tutorial-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pk-tutorial-skip-btn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 4px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+}
+
+.pk-tutorial-skip-btn:hover {
+  color: #cbd5e1;
+}
+
+.pk-tutorial-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pk-tutorial-btn-sec {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pk-tutorial-btn-sec:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.pk-tutorial-btn-pri {
+  background: #ffd166;
+  border: 1px solid #ffd166;
+  color: #070a12;
+  font-size: 0.84rem;
+  font-weight: 700;
+  padding: 7px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 209, 102, 0.3);
+  transition: all 0.15s ease;
+}
+
+.pk-tutorial-btn-pri:hover {
+  background: #ffe082;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(255, 209, 102, 0.45);
+}
+
+/* Welcome & Finish Modal Card */
+.pk-tutorial-modal-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(92vw, 460px);
+  background: #0a0e1c;
+  border: 1px solid rgba(255, 209, 102, 0.45);
+  border-radius: 24px;
+  padding: 34px 32px 30px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8),
+              0 0 36px rgba(255, 209, 102, 0.2);
+  color: #f1f5f9;
+  z-index: 99996;
+  text-align: center;
+  box-sizing: border-box;
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  animation: pkTutModalIn 0.24s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+@keyframes pkTutModalIn {
+  from { opacity: 0; transform: translate(-50%, -46%) scale(0.96); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.pk-tut-crest-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(255, 209, 102, 0.1);
+  border: 1px solid rgba(255, 209, 102, 0.3);
+  color: #ffd166;
+}
+
+.pk-tut-crest-icon img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.pk-tut-modal-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+
+.pk-tut-modal-subtitle {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+
+.pk-tut-path-list {
+  text-align: left;
+  background: rgba(16, 22, 38, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  list-style: none;
+}
+
+.pk-tut-path-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.88rem;
+  color: #e2e8f0;
+  margin-bottom: 12px;
+  line-height: 1.45;
+}
+
+.pk-tut-path-item:last-child {
+  margin-bottom: 0;
+}
+
+.pk-tut-path-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 209, 102, 0.18);
+  color: #ffd166;
+  font-weight: 700;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.pk-tut-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pk-tut-btn-primary {
+  width: 100%;
+  background: #ffd166;
+  border: 1px solid #ffd166;
+  color: #070a12;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(255, 209, 102, 0.35);
+  transition: all 0.15s ease;
+}
+
+.pk-tut-btn-primary:hover {
+  background: #ffe082;
+  transform: translateY(-1px);
+}
+
+.pk-tut-btn-secondary {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pk-tut-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f1f5f9;
+}
+
+/* Floating Non-Intrusive Practice HUD Pill */
+.pk-tutorial-practice-pill {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(13, 18, 34, 0.92);
+  border: 1px solid rgba(255, 209, 102, 0.45);
+  border-radius: 999px;
+  padding: 8px 18px 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6),
+              0 0 16px rgba(255, 209, 102, 0.2);
+  z-index: 99980;
+  color: #f1f5f9;
+  font-size: 0.85rem;
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.pk-tut-pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffd166;
+  box-shadow: 0 0 8px #ffd166;
+}
+
+.pk-tut-pill-btn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 0.76rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  margin-left: 4px;
+}
+
+.pk-tut-pill-btn:hover {
+  color: #cbd5e1;
+}
+
+/* Reduced Motion / Minimal Animation adjustments */
+html.reduced-motion .pk-tutorial-mask-svg rect#pkSpotlightHole,
+html.anim-mode-minimal .pk-tutorial-mask-svg rect#pkSpotlightHole,
+html.reduced-motion .pk-spotlight-frame,
+html.anim-mode-minimal .pk-spotlight-frame,
+html.reduced-motion .pk-tutorial-tooltip,
+html.anim-mode-minimal .pk-tutorial-tooltip {
+  transition: none !important;
+}
+
+html.reduced-motion .pk-tutorial-modal-card,
+html.anim-mode-minimal .pk-tutorial-modal-card {
+  animation: none !important;
+}

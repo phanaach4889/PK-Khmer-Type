@@ -2550,6 +2550,10 @@ function completeLesson(){
     renderLessonStrip();
   }
 
+  try {
+    window.dispatchEvent(new CustomEvent('pkLessonCompleted', { detail: { lesson: def, accuracy, elapsed, isNewBest } }));
+  } catch(e){}
+
   showLessonComplete(def, accuracy, elapsed, isNewBest, mistakeChars);
 }
 
