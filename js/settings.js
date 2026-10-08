@@ -953,8 +953,53 @@ function initSettingsToggles() {
     }
   });
 
+  const THEME_DEFAULT_ACCENT = {
+    dark: "gold",
+    temple: "gold",
+    sepia: "gold",
+    jungle: "jade",
+    moonlight: "cyan",
+    glass: "cyan",
+    light: "cyan",
+    sunset: "ruby"
+  };
+
+  const ACCENTS = {
+    gold:     { gold: "#ff9d2e", bright: "#ffd166", ink: "#1a1106", glow: "rgba(255, 209, 102, 0.42)", soft: "rgba(255, 209, 102, 0.16)", border: "rgba(255, 209, 102, 0.36)" },
+    jade:     { gold: "#3f9d6b", bright: "#5fd694", ink: "#061a10", glow: "rgba(95, 214, 148, 0.42)",  soft: "rgba(95, 214, 148, 0.16)",  border: "rgba(95, 214, 148, 0.36)" },
+    sapphire: { gold: "#14b8a6", bright: "#2dd4a7", ink: "#041e19", glow: "rgba(45, 212, 167, 0.42)",  soft: "rgba(45, 212, 167, 0.16)",  border: "rgba(45, 212, 167, 0.36)" },
+    ruby:     { gold: "#e11d48", bright: "#ff5a70", ink: "#ffffff", glow: "rgba(255, 90, 112, 0.45)",  soft: "rgba(255, 90, 112, 0.16)",  border: "rgba(255, 90, 112, 0.38)" },
+    cyan:     { gold: "#0284c7", bright: "#38bdf8", ink: "#041628", glow: "rgba(56, 189, 248, 0.42)",  soft: "rgba(56, 189, 248, 0.16)",  border: "rgba(56, 189, 248, 0.36)" },
+    amethyst: { gold: "#9333ea", bright: "#c084fc", ink: "#160726", glow: "rgba(192, 132, 252, 0.45)", soft: "rgba(192, 132, 252, 0.16)", border: "rgba(192, 132, 252, 0.38)" }
+  };
+
+  const accentButtons = document.querySelectorAll("#accentChoice button");
+  function applyAccent(name) {
+    const key = ACCENTS[name] ? name : "gold";
+    const a = ACCENTS[key];
+    const root = document.documentElement;
+    root.setAttribute("data-accent-color", key);
+    root.style.setProperty("--gold", a.gold);
+    root.style.setProperty("--gold-bright", a.bright);
+    root.style.setProperty("--accent-ink", a.ink);
+    root.style.setProperty("--accent-glow", a.glow);
+    root.style.setProperty("--accent-soft", a.soft);
+    root.style.setProperty("--accent-border", a.border);
+    accentButtons.forEach((b) => {
+      const isAct = b.dataset.accent === key;
+      b.classList.toggle("active", isAct);
+      b.setAttribute("aria-pressed", isAct ? "true" : "false");
+    });
+    safeSet(LS.accent, key);
+    try {
+      if (localStorage.getItem("khmerSettingHandColorPreset") === "match" && window.PKHandsColor && typeof window.PKHandsColor.applyHandColors === "function") {
+        window.PKHandsColor.applyHandColors("match");
+      }
+    } catch (e) {}
+  }
+
   const themeButtons = document.querySelectorAll("#themeChoice button");
-  function applyTheme(mode) {
+  function applyTheme(mode, syncThemeAccent) {
     const sysDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
     const effective = mode === "system" ? (sysDark ? "dark" : "light") : mode;
     document.documentElement.classList.toggle("theme-light", effective === "light");
@@ -966,33 +1011,26 @@ function initSettingsToggles() {
     document.documentElement.classList.toggle("theme-glass", effective === "glass");
     themeButtons.forEach((b) => b.classList.toggle("active", b.dataset.theme === mode));
     safeSet(LS.theme, mode);
+    if (syncThemeAccent && THEME_DEFAULT_ACCENT[effective]) {
+      applyAccent(THEME_DEFAULT_ACCENT[effective]);
+    }
   }
   themeButtons.forEach((b) => {
     b.addEventListener("click", (e) => {
-      applyTheme(b.dataset.theme);
+      applyTheme(b.dataset.theme, false);
       triggerThemeTransitionFX(b, b.dataset.theme, e);
       if (soundOn) playClick("down");
     });
   });
-  applyTheme(safeGet(LS.theme, "dark"));
+  applyTheme(safeGet(LS.theme, "dark"), false);
 
-  const ACCENTS = {
-    gold:     { gold: "#ff9d2e", bright: "#ffd166" },
-    jade:     { gold: "#3f9d6b", bright: "#5fd694" },
-    sapphire: { gold: "#2f6fa8", bright: "#2dd4a7" },
-    ruby:     { gold: "#a8404a", bright: "#ff5a70" },
-    cyan:     { gold: "#0284c7", bright: "#38bdf8" },
-    amethyst: { gold: "#9333ea", bright: "#c084fc" }
-  };
-  const accentButtons = document.querySelectorAll("#accentChoice button");
-  function applyAccent(name) {
-    const a = ACCENTS[name] || ACCENTS.gold;
-    document.documentElement.style.setProperty("--gold", a.gold);
-    document.documentElement.style.setProperty("--gold-bright", a.bright);
-    accentButtons.forEach((b) => b.classList.toggle("active", b.dataset.accent === name));
-    safeSet(LS.accent, name);
-  }
-  accentButtons.forEach((b) => b.addEventListener("click", () => applyAccent(b.dataset.accent)));
+  accentButtons.forEach((b) => {
+    b.addEventListener("click", (e) => {
+      applyAccent(b.dataset.accent);
+      triggerThemeTransitionFX(b, b.dataset.accent, e);
+      if (soundOn) playClick("down");
+    });
+  });
   applyAccent(safeGet(LS.accent, "gold"));
 
   // Khmer Script Font Family
