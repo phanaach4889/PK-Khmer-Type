@@ -426,10 +426,6 @@ function syncLayoutUI(id){
       p.classList.toggle('active', isActive);
       p.setAttribute('aria-selected', isActive ? 'true' : 'false');
     });
-    const nidaBtn = document.getElementById('nidaGuideBtn');
-    if(nidaBtn){
-      nidaBtn.classList.toggle('highlighted', targetId === 'nida');
-    }
   }
   const chassisLabel = document.getElementById('chassisLayoutLabel');
   if(chassisLabel){

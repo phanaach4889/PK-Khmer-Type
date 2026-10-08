@@ -1284,9 +1284,6 @@ function updateNidaTestStatus(val){
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{
-  const guideBtn = document.getElementById('nidaGuideBtn');
-  if(guideBtn) guideBtn.addEventListener('click', () => openNidaGuideModal());
-
   const hudGuideBtn = document.getElementById('nidaHudGuideBtn');
   if(hudGuideBtn) hudGuideBtn.addEventListener('click', () => openNidaGuideModal());
 
