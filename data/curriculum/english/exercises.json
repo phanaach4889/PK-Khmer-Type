@@ -39,8 +39,8 @@
     },
     "en-L01-01-E02": {
       "type": "drill",
-      "content": "fd jk df kj dkd",
-      "description": "Combine D and K with F and J anchors"
+      "content": "dd kk dk kd dkd",
+      "description": "Rhythm and fluency on D and K"
     },
     "en-L01-02-E01": {
       "type": "single-char",
@@ -49,8 +49,8 @@
     },
     "en-L01-02-E02": {
       "type": "drill",
-      "content": "sd kl fs jl sdf jkl",
-      "description": "Combine S and L with middle and index keys"
+      "content": "ss ll sl ls sls",
+      "description": "Rhythm and fluency on S and L"
     },
     "en-L01-03-E01": {
       "type": "drill",
@@ -74,13 +74,13 @@
     },
     "en-L02-01-E01": {
       "type": "single-char",
-      "content": "aaa ;;; a; ;a asd jkl;",
+      "content": "aaa ;;; a; ;a aa ;;",
       "description": "Pinky fingers on A and semicolon"
     },
     "en-L02-01-E02": {
       "type": "drill",
-      "content": "fdsa ;lkj a; sl dk fj",
-      "description": "Link pinky keys across the home row"
+      "content": "aa ;; aa aa ;; ;; ;; aa",
+      "description": "Rhythm and fluency on A and semicolon"
     },
     "en-L02-02-E01": {
       "type": "drill",

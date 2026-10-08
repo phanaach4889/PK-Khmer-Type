@@ -116,13 +116,13 @@ lessons.forEach((l, idx) => {
         addedLength += pattern.length + 1;
       }
 
-      // Pattern 2: Alternations between primary and known core keys
-      if (validBaseChars.length > 1 && addedLength < deficit) {
-        const anchor1 = validBaseChars[0] || 'f';
-        const anchor2 = validBaseChars[1] || 'j';
-        for (let c of primaryChars) {
+      // Pattern 2: Alternations strictly among primary characters (no unassigned key leaks)
+      if (primaryChars.length > 1 && addedLength < deficit) {
+        for (let i = 0; i < primaryChars.length; i++) {
           if (addedLength >= deficit) break;
-          const alt = `${c}${anchor1} ${anchor2}${c} ${c}${anchor2}`;
+          const c1 = primaryChars[i];
+          const c2 = primaryChars[(i + 1) % primaryChars.length];
+          const alt = `${c1}${c2} ${c2}${c1} ${c1}${c1} ${c2}${c2}`;
           chunks.push(alt);
           addedLength += alt.length + 1;
         }

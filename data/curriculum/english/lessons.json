@@ -40,6 +40,9 @@
       "exerciseRefs": [
         "en-L00-01-E01"
       ],
+      "examples": [
+        "ff"
+      ],
       "unlockRequirements": {
         "previousLesson": null
       },
@@ -73,6 +76,9 @@
       "mistakeTolerance": 5,
       "exerciseRefs": [
         "en-L00-02-E01"
+      ],
+      "examples": [
+        "jj"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L00-01"
@@ -172,6 +178,10 @@
         "en-L01-01-E01",
         "en-L01-01-E02"
       ],
+      "examples": [
+        "dd",
+        "kk"
+      ],
       "unlockRequirements": {
         "previousLesson": "en-L00-04"
       },
@@ -214,6 +224,10 @@
       "exerciseRefs": [
         "en-L01-02-E01",
         "en-L01-02-E02"
+      ],
+      "examples": [
+        "ss",
+        "ll"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L01-01"
@@ -320,6 +334,10 @@
       "exerciseRefs": [
         "en-L02-01-E01",
         "en-L02-01-E02"
+      ],
+      "examples": [
+        "aa",
+        ";;"
       ],
       "unlockRequirements": {
         "previousLesson": "en-L01-04"

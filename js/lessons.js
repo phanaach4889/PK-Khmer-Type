@@ -133,77 +133,114 @@ function shuffled(arr){
 
 /* ---- exercise generators (operate on arrays of entries) ---- */
 
-/* Introduce new keys one at a time: solo repetition first, then a light
-   mix among the new keys, then a light mix with everything learned
-   before this lesson. This is the "learn a little → practice → mix"
-   pattern used throughout the whole course. */
+/* Introduce new keys strictly within their allowed content.
+   If lesson examples are specified, LESSON EXAMPLES is the source of truth:
+   content is generated strictly and exclusively from those example tokens.
+   Never introduces or mixes characters from prior or unrelated lessons. */
 function seqIntro(newEntries, priorEntries, opts={}){
   const soloReps = opts.soloReps ?? 4;
   const examples = opts.examples || [];
   const seq = [];
+  const table = opts.table;
 
-  // 1. Introduce each new key with solo repetition separated by space
+  const pushToken = (tok) => {
+    for(const ch of tok){
+      if(ch === ' '){
+        seq.push(spaceEntry(table));
+      } else {
+        const loc = resolveCharLocation(ch, table);
+        if(loc) seq.push(loc);
+        else seq.push({ id: ch, layer: 'base', ch: ch });
+      }
+    }
+  };
+
+  // If examples are provided, strictly generate practice content from examples only
+  if(examples && examples.length){
+    // Pattern 1: Direct sequence (e.g. aa ;;)
+    examples.forEach(ex => {
+      pushToken(ex);
+      seq.push(spaceEntry(table));
+    });
+
+    // Pattern 2: Doubled pairs (e.g. aa aa ;; ;;)
+    examples.forEach(ex => {
+      pushToken(ex);
+      seq.push(spaceEntry(table));
+      pushToken(ex);
+      seq.push(spaceEntry(table));
+    });
+
+    // Pattern 3: Varied / reversed / alternating combinations (e.g. ;; aa ;; aa)
+    if(examples.length >= 2){
+      const rev = examples.slice().reverse();
+      for(let r=0; r<2; r++){
+        rev.forEach(ex => {
+          pushToken(ex);
+          seq.push(spaceEntry(table));
+        });
+      }
+      for(let r=0; r<2; r++){
+        examples.forEach(ex => {
+          pushToken(ex);
+          seq.push(spaceEntry(table));
+        });
+      }
+    } else {
+      for(let r=0; r<4; r++){
+        pushToken(examples[0]);
+        seq.push(spaceEntry(table));
+      }
+    }
+
+    while(seq.length && seq[seq.length-1].ch === ' ') seq.pop();
+    return seq;
+  }
+
+  // Fallback when no examples are provided: practice solely the new entries
   newEntries.forEach(e=>{
     for(let r=0;r<soloReps;r++) seq.push(e);
-    seq.push(spaceEntry(opts.table));
+    seq.push(spaceEntry(table));
   });
 
-  // 2. If 2 or more new keys, alternate and double-tap with spaces
   if(newEntries.length >= 2){
     for(let r=0;r<2;r++){
       newEntries.forEach(e=> seq.push(e));
-      seq.push(spaceEntry(opts.table));
+      seq.push(spaceEntry(table));
     }
     newEntries.forEach(e=>{
       seq.push(e); seq.push(e);
-      seq.push(spaceEntry(opts.table));
+      seq.push(spaceEntry(table));
     });
   }
 
-  // 3. Examples if provided
-  if(examples && examples.length){
-    examples.forEach(ex=>{
-      for(const ch of ex){
-        if(ch === ' '){
-          seq.push(spaceEntry(opts.table));
-        } else {
-          const loc = resolveCharLocation(ch, opts.table);
-          if(loc) seq.push(loc);
-        }
-      }
-      seq.push(spaceEntry(opts.table));
-    });
-  }
-
-  // 4. Mix with prior learned keys if available
-  if(priorEntries && priorEntries.length){
-    const full = priorEntries.concat(newEntries);
-    for(let r=0;r<4;r++){
-      seq.push(pickRandom(newEntries));
-      seq.push(pickRandom(full));
-      seq.push(spaceEntry(opts.table));
-    }
-  }
-
-  // Clean trailing spaces
   while(seq.length && seq[seq.length-1].ch === ' ') seq.pop();
   return seq;
 }
 
-/* Fixed-length combinations repeated `count` times with spaced rhythm. */
+/* Fixed-length combinations repeated `count` times with spaced rhythm.
+   When examples are provided, repetition is kept strictly within the examples. */
 function seqCombo(pool, comboLen, count, examples){
   const seq = [];
   if(examples && examples.length){
-    examples.forEach(ex=>{
-      for(const ch of ex){
+    const pushToken = (tok) => {
+      for(const ch of tok){
         if(ch === ' ') seq.push(spaceEntry());
         else {
           const loc = resolveCharLocation(ch);
           if(loc) seq.push(loc);
         }
       }
-      seq.push(spaceEntry());
-    });
+    };
+    const repeats = Math.max(2, Math.floor(count / examples.length));
+    for(let i=0; i<repeats; i++){
+      examples.forEach(ex => {
+        pushToken(ex);
+        seq.push(spaceEntry());
+      });
+    }
+    while(seq.length && seq[seq.length-1].ch === ' ') seq.pop();
+    return seq;
   }
   for(let i=0;i<count;i++){
     for(let c=0;c<comboLen;c++) seq.push(pickRandom(pool));
@@ -686,7 +723,7 @@ function buildHomeRowCourse(table, idOffset, wordBank){
   // 1. F & J
   {
     const ids = ['f', 'j'];
-    const ex = entriesFromIds(ids, 'base', table).map(e=> e.ch + ' ' + e.ch);
+    const ex = entriesFromIds(ids, 'base', table).map(e=> e.ch + e.ch);
     addLesson(1, 'intro', 'Home Row — Index Anchors (F & J)', `${modLabel.base} · ${ids.map(keyLabel).join(' ')}`,
       ()=> materialize(seqIntro(entriesFromIds(ids,'base',table), [], {soloReps:4, examples:ex, table})),
       {newIds:ids, newLayer:'base', examples:ex});
@@ -695,10 +732,9 @@ function buildHomeRowCourse(table, idOffset, wordBank){
   // 2. D & K
   {
     const ids = ['d', 'k'];
-    const ex = entriesFromIds(ids, 'base', table).map(e=> e.ch + ' ' + e.ch);
-    const priorSnap = pool.slice();
+    const ex = entriesFromIds(ids, 'base', table).map(e=> e.ch + e.ch);
     addLesson(1, 'intro', 'Home Row — Middle Fingers (D & K)', `${modLabel.base} · ${ids.map(keyLabel).join(' ')}`,
-      ()=> materialize(seqIntro(entriesFromIds(ids,'base',table), priorSnap, {soloReps:4, examples:ex, table})),
+      ()=> materialize(seqIntro(entriesFromIds(ids,'base',table), [], {soloReps:4, examples:ex, table})),
       {newIds:ids, newLayer:'base', examples:ex});
     pool = pool.concat(entriesFromIds(ids,'base',table));
   }
@@ -713,20 +749,18 @@ function buildHomeRowCourse(table, idOffset, wordBank){
   // 4. S & L
   {
     const ids = ['s', 'l'];
-    const ex = entriesFromIds(ids, 'base', table).map(e=> e.ch + ' ' + e.ch);
-    const priorSnap = pool.slice();
+    const ex = entriesFromIds(ids, 'base', table).map(e=> e.ch + e.ch);
     addLesson(1, 'intro', 'Home Row — Ring Fingers (S & L)', `${modLabel.base} · ${ids.map(keyLabel).join(' ')}`,
-      ()=> materialize(seqIntro(entriesFromIds(ids,'base',table), priorSnap, {soloReps:4, examples:ex, table})),
+      ()=> materialize(seqIntro(entriesFromIds(ids,'base',table), [], {soloReps:4, examples:ex, table})),
       {newIds:ids, newLayer:'base', examples:ex});
     pool = pool.concat(entriesFromIds(ids,'base',table));
   }
   // 5. Pinkies A & ;
   {
     const ids = ['a', 'semicolon'];
-    const ex = entriesFromIds(ids, 'base', table).map(e=> e.ch + ' ' + e.ch);
-    const priorSnap = pool.slice();
+    const ex = entriesFromIds(ids, 'base', table).map(e=> e.ch + e.ch);
     addLesson(1, 'intro', 'Home Row — Pinky Fingers (A & ;)', `${modLabel.base} · ${ids.map(keyLabel).join(' ')}`,
-      ()=> materialize(seqIntro(entriesFromIds(ids,'base',table), priorSnap, {soloReps:4, examples:ex, table})),
+      ()=> materialize(seqIntro(entriesFromIds(ids,'base',table), [], {soloReps:4, examples:ex, table})),
       {newIds:ids, newLayer:'base', examples:ex});
     pool = pool.concat(entriesFromIds(ids,'base',table));
   }
@@ -741,10 +775,9 @@ function buildHomeRowCourse(table, idOffset, wordBank){
   // 7. G & H (Index Reaches from Anchors)
   {
     const ids = ['g', 'h'];
-    const ex = entriesFromIds(ids, 'base', table).map(e=> e.ch + ' ' + e.ch);
-    const priorSnap = pool.slice();
+    const ex = entriesFromIds(ids, 'base', table).map(e=> e.ch + e.ch);
     addLesson(2, 'intro', 'Home Row — Index Reach (G & H)', `${modLabel.base} · ${ids.map(keyLabel).join(' ')}`,
-      ()=> materialize(seqIntro(entriesFromIds(ids,'base',table), priorSnap, {soloReps:4, examples:ex, table})),
+      ()=> materialize(seqIntro(entriesFromIds(ids,'base',table), [], {soloReps:4, examples:ex, table})),
       {newIds:ids, newLayer:'base', examples:ex});
     pool = pool.concat(entriesFromIds(ids,'base',table));
   }
@@ -970,20 +1003,8 @@ function createLessonModel(rawLesson, exercisesMap, layoutId, levelObj){
   }
 
   const refs = rawLesson.exerciseRefs || rawLesson.exercises || [];
-  let examples = rawLesson.examples || [];
-  if(!examples.length){
-    const wordsSet = new Set();
-    refs.forEach(eid => {
-      const ex = exercisesMap[eid];
-      if(!ex || !ex.content) return;
-      if(Array.isArray(ex.content)){
-        ex.content.forEach(w => { if(typeof w === 'string' && w.trim()) wordsSet.add(w.trim()); });
-      } else if(typeof ex.content === 'string'){
-        ex.content.split(/\s+/).forEach(w => { if(w.trim()) wordsSet.add(w.trim()); });
-      }
-    });
-    examples = Array.from(wordsSet).slice(0, 4);
-  }
+  const hasExplicitExamples = Array.isArray(rawLesson.examples) && rawLesson.examples.length > 0;
+  const examples = hasExplicitExamples ? rawLesson.examples.slice() : [];
 
   const threshold = rawLesson.accuracyTarget
     || (rawLesson.masteryCriteria && rawLesson.masteryCriteria.accuracy)
@@ -1000,6 +1021,7 @@ function createLessonModel(rawLesson, exercisesMap, layoutId, levelObj){
     newIds: newIds,
     newLayer: newLayer,
     examples: examples,
+    hasExplicitExamples: hasExplicitExamples,
     unlockRequirements: rawLesson.unlockRequirements || null,
     generate: function(){
       const currentTable = (layoutId === 'nida') ? KEY_BY_ID_NIDA
@@ -1009,11 +1031,49 @@ function createLessonModel(rawLesson, exercisesMap, layoutId, levelObj){
       const sections = [];
       let unitOffset = 0;
 
+      // When explicit examples are defined, LESSON EXAMPLES is the strict source of truth.
+      // Every character generated must strictly be among the characters in examples.
+      let allowedChars = null;
+      if(hasExplicitExamples && examples.length){
+        allowedChars = new Set();
+        examples.forEach(ex => {
+          for(const ch of String(ex)) allowedChars.add(ch);
+        });
+        allowedChars.add(' ');
+      }
+
       refs.forEach((eid, idx) => {
         const ex = exercisesMap[eid];
         if(!ex || !ex.content) return;
-        const rawContent = Array.isArray(ex.content) ? ex.content.join(' ') : ex.content;
+        let rawContent = Array.isArray(ex.content) ? ex.content.join(' ') : ex.content;
         if(!rawContent) return;
+
+        // If explicit examples govern this lesson, filter out unauthorized words
+        if(allowedChars){
+          const validWords = rawContent.split(/\s+/).filter(w => {
+            if(!w) return false;
+            for(const c of w){
+              if(!allowedChars.has(c)) return false;
+            }
+            return true;
+          });
+          if(validWords.length > 0){
+            rawContent = validWords.join(' ');
+          } else {
+            // Generate rhythmic combinations strictly from examples
+            const exList = examples;
+            const chunks = [];
+            chunks.push(exList.join(' '));
+            chunks.push(exList.map(x => `${x} ${x}`).join(' '));
+            if(exList.length >= 2){
+              chunks.push(exList.slice().reverse().join(' '));
+              chunks.push(exList.join(' '));
+            } else {
+              chunks.push(exList[0] + ' ' + exList[0]);
+            }
+            rawContent = chunks.join(' ');
+          }
+        }
 
         const units = (typeof splitIntoTypingUnits === 'function')
           ? splitIntoTypingUnits(rawContent, layoutId)
