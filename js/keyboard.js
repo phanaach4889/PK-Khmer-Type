@@ -426,6 +426,10 @@ function syncLayoutUI(id){
       p.classList.toggle('active', isActive);
       p.setAttribute('aria-selected', isActive ? 'true' : 'false');
     });
+    const nidaBtn = document.getElementById('nidaGuideBtn');
+    if(nidaBtn){
+      nidaBtn.classList.toggle('highlighted', targetId === 'nida');
+    }
   }
   const chassisLabel = document.getElementById('chassisLayoutLabel');
   if(chassisLabel){
@@ -556,6 +560,7 @@ function switchLayout(id, force = false){
   }
   if(typeof trialActive !== 'undefined' && trialActive) stopTrial();
   if(typeof raceMode !== 'undefined' && raceMode) exitRaceMode();
+  if(id !== 'nida' && typeof hideNidaSwitchHud === 'function') hideNidaSwitchHud();
   currentLayoutId = id;
   window.currentLayoutId = currentLayoutId;
   try {

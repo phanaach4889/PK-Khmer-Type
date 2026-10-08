@@ -727,4 +727,552 @@
     display:block !important;
   }
 
+  /* ================= Khmer NiDA Layout Switch & Download System ================= */
+  .layout-action-btn.nida-guide-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'Space Grotesk', 'Noto Sans Khmer', sans-serif;
+    font-size:0.75rem;
+    font-weight:600;
+    padding:8px 14px;
+    border-radius:10px;
+    border:1px solid rgba(255,209,102,0.4);
+    background:rgba(255,209,102,0.08);
+    color:var(--gold-bright);
+    cursor:pointer;
+    transition:all .18s cubic-bezier(.22,1,.36,1);
+    margin-left:4px;
+    user-select:none;
+  }
+  .layout-action-btn.nida-guide-btn:hover{
+    background:rgba(255,209,102,0.2);
+    border-color:var(--gold-bright);
+    color:#fff;
+    transform:translateY(-1px);
+    box-shadow:0 6px 16px rgba(255,209,102,0.25);
+  }
+  .layout-action-btn.nida-guide-btn:active{
+    transform:scale(0.97);
+  }
+  .layout-action-btn.nida-guide-btn.highlighted{
+    border-color:var(--gold-bright);
+    background:rgba(255,209,102,0.16);
+    box-shadow:0 0 14px rgba(255,209,102,0.35);
+  }
+
+  /* Floating HUD Banner when user strikes English keys on Khmer NiDA */
+  .nida-switch-hud{
+    position:sticky;
+    top:12px;
+    margin:0 auto 12px;
+    max-width:min(94vw, 680px);
+    z-index:99;
+    transition:opacity .2s ease, transform .2s cubic-bezier(.16,1,.3,1);
+  }
+  .nida-switch-hud[hidden]{ display:none !important; }
+  .nida-switch-hud.wobble .nida-switch-hud-inner{
+    animation:nida-hud-shake .36s cubic-bezier(.36,.07,.19,.97) both;
+  }
+  @keyframes nida-hud-shake{
+    10%, 90% { transform: translate3d(-2px, 0, 0); }
+    20%, 80% { transform: translate3d(3px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+  }
+
+  .nida-switch-hud-inner{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:12px 18px;
+    background:linear-gradient(135deg, rgba(38,18,22,0.95), rgba(22,14,24,0.96));
+    border:1px solid rgba(255,90,95,0.6);
+    border-radius:14px;
+    box-shadow:
+      0 12px 32px rgba(0,0,0,0.65),
+      0 0 24px rgba(255,90,95,0.22),
+      inset 0 1px 0 rgba(255,255,255,0.12);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+  }
+  .nida-switch-hud-icon-wrap{
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    background:rgba(255,90,95,0.15);
+    border:1px solid rgba(255,90,95,0.4);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--temple-red, #ff3b56);
+    flex-shrink:0;
+  }
+  .nida-switch-hud-content{
+    flex:1;
+    min-width:0;
+  }
+  .nida-switch-hud-title{
+    font-family:'Space Grotesk','Noto Sans Khmer',sans-serif;
+    font-size:0.92rem;
+    font-weight:700;
+    color:#fff;
+    margin-bottom:2px;
+  }
+  .nida-switch-hud-desc{
+    font-size:0.8rem;
+    color:var(--ink-dim);
+    display:flex;
+    align-items:center;
+    gap:6px;
+    flex-wrap:wrap;
+  }
+  .hud-kbd,
+  .nida-quick-banner kbd,
+  .nida-steps-list kbd{
+    display:inline-block;
+    padding:2px 7px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    font-weight:700;
+    color:var(--gold-bright);
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,209,102,0.35);
+    border-radius:6px;
+    box-shadow:0 2px 0 rgba(0,0,0,0.3);
+  }
+  .hud-mac-hint{
+    font-size:0.75rem;
+    color:var(--ink-muted);
+  }
+  .nida-switch-hud-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-shrink:0;
+  }
+  .nida-hud-guide-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'Space Grotesk','Noto Sans Khmer',sans-serif;
+    font-size:0.76rem;
+    font-weight:600;
+    padding:7px 13px;
+    border-radius:8px;
+    background:linear-gradient(135deg, var(--gold-bright), var(--gold));
+    border:1px solid var(--gold-bright);
+    color:#241405;
+    cursor:pointer;
+    transition:all .16s ease;
+    white-space:nowrap;
+  }
+  .nida-hud-guide-btn:hover{
+    box-shadow:0 0 16px rgba(255,209,102,0.55);
+    transform:translateY(-1px);
+  }
+  .nida-hud-close-btn{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.12);
+    color:var(--ink-dim);
+    width:30px;
+    height:30px;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .nida-hud-close-btn:hover{
+    background:rgba(255,255,255,0.14);
+    color:#fff;
+  }
+
+  /* Khmer NiDA Guide Modal Styles */
+  .modal-card.nida-guide-card{
+    width:min(94vw, 720px);
+    max-height:86vh;
+    padding:24px 26px 28px;
+  }
+  .nida-modal-icon-badge{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:rgba(255,209,102,0.12);
+    border:1px solid rgba(255,209,102,0.35);
+    color:var(--gold-bright);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .modal-title-group{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .modal-subtitle{
+    margin:2px 0 0;
+    font-size:0.78rem;
+    color:var(--ink-dim);
+    font-weight:400;
+  }
+
+  .nida-quick-banner{
+    margin:14px 0 16px;
+    padding:12px 16px;
+    background:rgba(255,209,102,0.05);
+    border:1px solid rgba(255,209,102,0.22);
+    border-radius:12px;
+  }
+  .nida-qb-title{
+    font-family:'Space Grotesk','Noto Sans Khmer',sans-serif;
+    font-size:0.78rem;
+    font-weight:700;
+    color:var(--gold-bright);
+    margin-bottom:8px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+  .nida-qb-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+    gap:8px 14px;
+  }
+  .nida-qb-item{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+  }
+  .nida-qb-os{
+    font-size:0.72rem;
+    color:var(--ink-dim);
+    font-weight:600;
+  }
+  .nida-qb-keys{
+    font-size:0.8rem;
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    gap:5px;
+    flex-wrap:wrap;
+  }
+  .nida-qb-or{
+    font-size:0.72rem;
+    color:var(--ink-muted);
+  }
+
+  .nida-tab-nav{
+    display:flex;
+    gap:6px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    padding-bottom:8px;
+    margin-bottom:16px;
+    overflow-x:auto;
+  }
+  .nida-tab-btn{
+    font-family:'Space Grotesk','Noto Sans Khmer',sans-serif;
+    font-size:0.76rem;
+    font-weight:600;
+    color:var(--ink-dim);
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:8px;
+    padding:7px 13px;
+    cursor:pointer;
+    transition:all .16s ease;
+    white-space:nowrap;
+  }
+  .nida-tab-btn:hover{
+    color:var(--ink);
+    background:rgba(255,255,255,0.08);
+  }
+  .nida-tab-btn.active{
+    color:#241405;
+    background:linear-gradient(135deg, var(--gold-bright), var(--gold));
+    border-color:var(--gold-bright);
+    font-weight:700;
+    box-shadow:0 2px 10px rgba(255,209,102,0.3);
+  }
+
+  .nida-tab-panel{
+    animation:modal-card-spring-in .3s ease both;
+  }
+  .nida-tab-panel[hidden]{ display:none !important; }
+
+  .nida-step-box{
+    padding:12px 16px;
+    border-radius:10px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.08);
+    margin-bottom:14px;
+  }
+  .nida-step-box.highlight{
+    background:rgba(255,209,102,0.06);
+    border-color:rgba(255,209,102,0.25);
+  }
+  .nida-sb-badge{
+    font-family:'Space Grotesk','Noto Sans Khmer',sans-serif;
+    font-size:0.75rem;
+    font-weight:700;
+    color:var(--gold-bright);
+    margin-bottom:4px;
+  }
+  .nida-sb-text{
+    margin:0;
+    font-size:0.82rem;
+    line-height:1.55;
+    color:var(--ink);
+  }
+
+  .nida-steps-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .nida-steps-list li{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    padding:10px 14px;
+    background:rgba(0,0,0,0.22);
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:10px;
+  }
+  .nida-step-num{
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    background:rgba(255,209,102,0.18);
+    border:1px solid rgba(255,209,102,0.4);
+    color:var(--gold-bright);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    margin-top:1px;
+  }
+  .nida-step-info{
+    flex:1;
+    min-width:0;
+  }
+  .nida-step-info strong{
+    font-size:0.84rem;
+    color:#fff;
+    display:block;
+    margin-bottom:3px;
+  }
+  .nida-step-info p{
+    margin:0;
+    font-size:0.78rem;
+    color:var(--ink-dim);
+    line-height:1.5;
+  }
+  .nida-step-info code{
+    background:rgba(255,255,255,0.08);
+    padding:1px 5px;
+    border-radius:4px;
+    font-family:'JetBrains Mono', monospace;
+    color:var(--gold-bright);
+  }
+
+  .nida-download-cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:10px;
+    margin:12px 0;
+  }
+  .nida-dl-card{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 14px;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,209,102,0.25);
+    border-radius:12px;
+    text-decoration:none;
+    color:inherit;
+    transition:all .18s ease;
+  }
+  .nida-dl-card:hover{
+    background:rgba(255,209,102,0.09);
+    border-color:var(--gold-bright);
+    transform:translateY(-1px);
+    box-shadow:0 6px 18px rgba(0,0,0,0.4);
+  }
+  .nida-dl-icon{
+    width:36px;
+    height:36px;
+    border-radius:10px;
+    background:rgba(255,209,102,0.15);
+    border:1px solid rgba(255,209,102,0.3);
+    color:var(--gold-bright);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .nida-dl-meta{
+    flex:1;
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+  .nida-dl-name{
+    font-size:0.8rem;
+    font-weight:700;
+    color:#fff;
+  }
+  .nida-dl-desc{
+    font-size:0.7rem;
+    color:var(--ink-dim);
+  }
+  .nida-dl-badge{
+    font-size:0.68rem;
+    font-weight:600;
+    color:var(--gold-bright);
+    background:rgba(255,209,102,0.12);
+    padding:4px 8px;
+    border-radius:6px;
+    white-space:nowrap;
+  }
+
+  .nida-mobile-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:12px;
+  }
+  .nida-mobile-card{
+    padding:14px 16px;
+    background:rgba(0,0,0,0.22);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:12px;
+  }
+  .nida-mobile-card h4{
+    margin:0 0 10px;
+    font-size:0.86rem;
+    color:var(--gold-bright);
+  }
+  .nida-mobile-card ol{
+    margin:0;
+    padding-left:18px;
+    font-size:0.78rem;
+    color:var(--ink-dim);
+    line-height:1.55;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+
+  /* Live Test Input Zone */
+  .nida-test-zone{
+    margin-top:18px;
+    padding:14px 16px;
+    background:linear-gradient(180deg, rgba(16,21,36,0.8), rgba(12,16,28,0.9));
+    border:1px solid rgba(255,209,102,0.25);
+    border-radius:14px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .nida-test-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:8px;
+  }
+  .nida-test-title{
+    font-family:'Space Grotesk','Noto Sans Khmer',sans-serif;
+    font-size:0.76rem;
+    font-weight:700;
+    color:var(--gold-bright);
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+  .nida-test-clear-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    font-size:0.7rem;
+    padding:3px 8px;
+    border-radius:6px;
+    border:1px solid rgba(255,255,255,0.1);
+    background:rgba(255,255,255,0.04);
+    color:var(--ink-dim);
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .nida-test-clear-btn:hover{
+    background:rgba(255,255,255,0.1);
+    color:#fff;
+  }
+  .nida-test-input-row{
+    margin-bottom:8px;
+  }
+  .nida-test-input{
+    width:100%;
+    box-sizing:border-box;
+    padding:11px 14px;
+    font-family:'Noto Sans Khmer', 'Noto Serif Khmer', 'JetBrains Mono', sans-serif;
+    font-size:1.05rem;
+    color:#fff;
+    background:rgba(0,0,0,0.35);
+    border:1px solid rgba(255,209,102,0.3);
+    border-radius:10px;
+    outline:none;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .nida-test-input:focus{
+    border-color:var(--gold-bright);
+    box-shadow:0 0 16px rgba(255,209,102,0.25);
+  }
+  .nida-test-status{
+    min-height:24px;
+    display:flex;
+    align-items:center;
+  }
+  .nida-test-badge{
+    font-size:0.76rem;
+    font-weight:600;
+    padding:4px 10px;
+    border-radius:6px;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .nida-test-badge.neutral{
+    color:var(--ink-muted);
+    background:rgba(255,255,255,0.05);
+  }
+  .nida-test-badge.good{
+    color:#38ef7d;
+    background:rgba(56,239,125,0.12);
+    border:1px solid rgba(56,239,125,0.3);
+    animation:nida-pulse-good .4s ease;
+  }
+  .nida-test-badge.bad{
+    color:#ff5a5f;
+    background:rgba(255,90,95,0.14);
+    border:1px solid rgba(255,90,95,0.35);
+    animation:nida-pulse-bad .3s ease;
+  }
+  @keyframes nida-pulse-good{
+    0%{ transform:scale(0.95); opacity:0.7; }
+    50%{ transform:scale(1.03); }
+    100%{ transform:scale(1); opacity:1; }
+  }
+  @keyframes nida-pulse-bad{
+    0%, 100%{ transform:translateX(0); }
+    25%{ transform:translateX(-3px); }
+    75%{ transform:translateX(3px); }
+  }
+
+
 

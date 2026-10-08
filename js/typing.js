@@ -1124,6 +1124,31 @@ window.addEventListener('keydown', (e)=>{
   // Prevent holding down a key from repeatedly spamming inputs and racking up duplicate mistakes
   if(e.repeat && id !== 'backspace') return;
 
+  // Strict System Language Enforcement for Khmer NiDA layout
+  if(currentLayoutId === 'nida'){
+    const isKhmerChar = e.key && /[\u1780-\u17FF]/.test(e.key);
+    if(isKhmerChar){
+      hideNidaSwitchHud();
+    } else {
+      const isEnglishLetter = e.code && e.code.startsWith('Key') && /^[a-zA-Z]$/.test(e.key);
+      const isEnglishDigit = e.code && e.code.startsWith('Digit') && !e.shiftKey && /^[0-9]$/.test(e.key);
+      const isEnglishSymbol = !e.shiftKey && (
+        (e.code === 'Minus' && e.key === '-') ||
+        (e.code === 'Equal' && e.key === '=') ||
+        (e.code === 'BracketLeft' && e.key === '[') ||
+        (e.code === 'BracketRight' && e.key === ']') ||
+        (e.code === 'Semicolon' && e.key === ';') ||
+        (e.code === 'Quote' && e.key === "'") ||
+        (e.code === 'Backquote' && e.key === '`')
+      );
+      if(isEnglishLetter || isEnglishDigit || isEnglishSymbol){
+        e.preventDefault();
+        showNidaSwitchHud();
+        return;
+      }
+    }
+  }
+
   if(keyEls[id]) keyEls[id].classList.add('pressed');
   e.preventDefault();
   typeKey(id);
@@ -1171,4 +1196,133 @@ window.addEventListener('blur', ()=>{
     if(keyEls[k]) keyEls[k].classList.remove('pressed');
   });
   render();
+});
+
+/* ================= Khmer NiDA Language Switch & Download Modal Logic ================= */
+let nidaHudTimer = null;
+
+function showNidaSwitchHud(){
+  const hud = document.getElementById('nidaSwitchHud');
+  if(!hud) return;
+  hud.hidden = false;
+  hud.classList.remove('wobble');
+  void hud.offsetWidth; // trigger reflow
+  hud.classList.add('wobble');
+  clearTimeout(nidaHudTimer);
+  nidaHudTimer = setTimeout(()=>{
+    hideNidaSwitchHud();
+  }, 7000);
+}
+
+function hideNidaSwitchHud(){
+  clearTimeout(nidaHudTimer);
+  const hud = document.getElementById('nidaSwitchHud');
+  if(!hud) return;
+  hud.hidden = true;
+  hud.classList.remove('wobble');
+}
+
+window.showNidaSwitchHud = showNidaSwitchHud;
+window.hideNidaSwitchHud = hideNidaSwitchHud;
+
+function openNidaGuideModal(tabId = 'win-builtin'){
+  const modal = document.getElementById('nidaGuideModal');
+  if(!modal) return;
+  modal.hidden = false;
+  if(tabId) selectNidaGuideTab(tabId);
+  const testInput = document.getElementById('nidaTestInput');
+  if(testInput){
+    testInput.value = '';
+    updateNidaTestStatus('');
+    setTimeout(()=>{ try{ testInput.focus(); }catch(e){} }, 120);
+  }
+}
+
+function closeNidaGuideModal(){
+  const modal = document.getElementById('nidaGuideModal');
+  if(!modal) return;
+  if(typeof window.closeModalAnimated === 'function'){
+    window.closeModalAnimated(modal);
+  } else {
+    modal.hidden = true;
+  }
+}
+
+window.openNidaGuideModal = openNidaGuideModal;
+window.closeNidaGuideModal = closeNidaGuideModal;
+
+function selectNidaGuideTab(tabId){
+  const modal = document.getElementById('nidaGuideModal');
+  if(!modal) return;
+  modal.querySelectorAll('.nida-tab-btn').forEach(btn => {
+    const isCurrent = btn.dataset.tab === tabId;
+    btn.classList.toggle('active', isCurrent);
+    btn.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+  });
+  modal.querySelectorAll('.nida-tab-panel').forEach(panel => {
+    panel.hidden = panel.id !== `nidaTab-${tabId}`;
+  });
+}
+
+function updateNidaTestStatus(val){
+  const statusEl = document.getElementById('nidaTestStatus');
+  if(!statusEl) return;
+  const isKm = document.documentElement.classList.contains('site-km-mode');
+  if(!val || !val.trim()){
+    statusEl.innerHTML = `<span class="nida-test-badge neutral">${isKm ? 'រង់ចាំការវាយ...' : 'Waiting for keystroke...'}</span>`;
+    return;
+  }
+  const hasKhmer = /[\u1780-\u17FF]/.test(val);
+  const hasEnglish = /[a-zA-Z]/.test(val);
+  if(hasKhmer){
+    statusEl.innerHTML = `<span class="nida-test-badge good">${isKm ? '✅ ជោគជ័យ! ក្តារចុច Khmer NiDA ត្រឹមត្រូវ' : '✅ Success! Khmer NiDA keyboard is active!'}</span>`;
+  } else if(hasEnglish){
+    statusEl.innerHTML = `<span class="nida-test-badge bad">${isKm ? '❌ ក្តារចុចនៅតែជាភាសាអង់គ្លេស។ សូមចុច Win + Space' : '❌ Keyboard is in English. Press Win + Space to switch!'}</span>`;
+  } else {
+    statusEl.innerHTML = `<span class="nida-test-badge neutral">${isKm ? 'កំពុងវាយ...' : 'Typing...'}</span>`;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  const guideBtn = document.getElementById('nidaGuideBtn');
+  if(guideBtn) guideBtn.addEventListener('click', () => openNidaGuideModal());
+
+  const hudGuideBtn = document.getElementById('nidaHudGuideBtn');
+  if(hudGuideBtn) hudGuideBtn.addEventListener('click', () => openNidaGuideModal());
+
+  const hudCloseBtn = document.getElementById('nidaHudCloseBtn');
+  if(hudCloseBtn) hudCloseBtn.addEventListener('click', () => hideNidaSwitchHud());
+
+  const guideCloseBtn = document.getElementById('nidaGuideCloseBtn');
+  if(guideCloseBtn) guideCloseBtn.addEventListener('click', () => closeNidaGuideModal());
+
+  const guideDoneBtn = document.getElementById('nidaGuideDoneBtn');
+  if(guideDoneBtn) guideDoneBtn.addEventListener('click', () => closeNidaGuideModal());
+
+  const guideModal = document.getElementById('nidaGuideModal');
+  if(guideModal){
+    guideModal.addEventListener('click', (e)=>{
+      if(e.target === guideModal) closeNidaGuideModal();
+    });
+  }
+
+  document.querySelectorAll('.nida-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => selectNidaGuideTab(btn.dataset.tab));
+  });
+
+  const testInput = document.getElementById('nidaTestInput');
+  if(testInput){
+    testInput.addEventListener('input', (e) => updateNidaTestStatus(e.target.value));
+  }
+
+  const testClearBtn = document.getElementById('nidaTestClearBtn');
+  if(testClearBtn){
+    testClearBtn.addEventListener('click', ()=>{
+      if(testInput){
+        testInput.value = '';
+        updateNidaTestStatus('');
+        testInput.focus();
+      }
+    });
+  }
 });

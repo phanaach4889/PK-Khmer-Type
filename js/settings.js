@@ -1560,10 +1560,10 @@ function initSettingsToggles() {
       return;
     }
     // mode === "minimal"
-    document.documentElement.classList.remove("performance-mode", "anim-mode-off", "anim-mode-full");
-    document.documentElement.classList.add("anim-mode-minimal", "reduce-motion", "reduced-motion", "hide-key-fx", "hide-motes");
+    document.documentElement.classList.remove("performance-mode", "anim-mode-off", "anim-mode-full", "reduce-motion", "reduced-motion");
+    document.documentElement.classList.add("anim-mode-minimal", "hide-key-fx", "hide-motes", "hide-cursor-shockwave");
     if (performanceModeToggle) setSwitchUI(performanceModeToggle, false);
-    if (reducedMotionToggle) setSwitchUI(reducedMotionToggle, true);
+    if (reducedMotionToggle) setSwitchUI(reducedMotionToggle, false);
     document.querySelectorAll("#animationModeChoice button").forEach((btn) => {
       btn.classList.toggle("active", btn.dataset.animMode === "minimal");
     });
@@ -1571,7 +1571,7 @@ function initSettingsToggles() {
     window.__ANIMATION_MODE = "minimal";
     if (save) {
       safeSet(LS.performanceMode, "0");
-      safeSet(LS.reducedMotion, "1");
+      safeSet(LS.reducedMotion, "0");
       safeSet(LS.animationMode, "minimal");
     }
   }
@@ -1602,10 +1602,11 @@ function initSettingsToggles() {
 
   if (startPerf) {
     applyPerformanceMode(true, false);
-  } else if (initialAnim === "minimal") {
-    applyAnimationMode("minimal", false);
-  } else {
+  } else if (initialAnim === "full") {
     applyPerformanceMode(false, false);
+  } else {
+    // Default for new visitors: Minimal mode (gentle animations without heavy particles)
+    applyAnimationMode("minimal", false);
   }
 
   const highContrastToggle = document.getElementById("highContrastToggle");

@@ -253,12 +253,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Noto+Serif+Khmer:wght@400;600;700&family=Noto+Sans+Khmer:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/base.css?v=53">
-  <link rel="stylesheet" href="css/keyboard.css?v=53">
-  <link rel="stylesheet" href="css/typing.css?v=53">
-  <link rel="stylesheet" href="css/lessons.css?v=53">
-  <link rel="stylesheet" href="css/responsive.css?v=53">
-  <link rel="stylesheet" href="css/settings.css?v=53">
+  <link rel="stylesheet" href="css/base.css?v=54">
+  <link rel="stylesheet" href="css/keyboard.css?v=54">
+  <link rel="stylesheet" href="css/typing.css?v=54">
+  <link rel="stylesheet" href="css/lessons.css?v=54">
+  <link rel="stylesheet" href="css/responsive.css?v=54">
+  <link rel="stylesheet" href="css/settings.css?v=54">
   <script>
     try {
       var p = localStorage.getItem('khmerSettingPerformanceMode');
@@ -266,6 +266,11 @@
       var r = localStorage.getItem('khmerSettingReducedMotion');
       if (p === '1' || a === 'off' || r === '1') {
         document.documentElement.classList.add('performance-mode', 'anim-mode-off', 'reduce-motion', 'reduced-motion', 'hide-key-fx', 'hide-motes', 'hide-cursor-shockwave');
+      } else if (a === 'full') {
+        document.documentElement.classList.add('anim-mode-full');
+      } else {
+        // Default for new visitors: Minimal mode
+        document.documentElement.classList.add('anim-mode-minimal', 'hide-key-fx', 'hide-motes', 'hide-cursor-shockwave');
       }
     } catch(e){}
   </script>
@@ -1282,8 +1287,8 @@
           </div>
           <div class="settings-row-control">
             <div class="settings-choice" id="animationModeChoice">
-              <button type="button" data-anim-mode="full" class="active i18n-t" data-en="Full" data-km="ពេញលេញ">Full</button>
-              <button type="button" data-anim-mode="minimal" class="i18n-t" data-en="Minimal" data-km="តិចតួច">Minimal</button>
+              <button type="button" data-anim-mode="full" class="i18n-t" data-en="Full" data-km="ពេញលេញ">Full</button>
+              <button type="button" data-anim-mode="minimal" class="active i18n-t" data-en="Minimal" data-km="តិចតួច">Minimal</button>
               <button type="button" data-anim-mode="off" class="i18n-t" data-en="Off (Zero Lag)" data-km="បិទ (រហ័សបំផុត)">Off (Zero Lag)</button>
             </div>
           </div>
@@ -1781,6 +1786,10 @@
   <div class="layout-pill active i18n-t" data-layout="standard" data-en="Khmer Keyboard Layout" data-km="ប្លង់ក្តារចុចខ្មែរ" role="tab" tabindex="0" aria-selected="true">Khmer Keyboard Layout</div>
   <div class="layout-pill i18n-t" data-layout="nida" data-en="Khmer NiDA Keyboard" data-km="ក្តារចុច Khmer NiDA" role="tab" tabindex="0" aria-selected="false">Khmer NiDA Keyboard</div>
   <div class="layout-pill i18n-t" data-layout="english" data-en="English (US)" data-km="English (US)" role="tab" tabindex="0" aria-selected="false">English (US)</div>
+  <button type="button" class="layout-action-btn nida-guide-btn" id="nidaGuideBtn" aria-label="How to get Khmer NiDA Keyboard" title="Download &amp; Setup Guide for Khmer NiDA Keyboard">
+    <svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    <span class="i18n-t" data-en="Get NiDA" data-km="ដំឡើង NiDA">Get NiDA</span>
+  </button>
 </div>
 
 <div class="session-bar" id="sessionBar">
@@ -1795,6 +1804,34 @@
   <div class="layer-pill i18n-t" data-pill="shift" data-en="Shift — Voiced consonants" data-km="Shift — ព្យញ្ជនៈឃោសៈ">Shift — Voiced consonants</div>
   <div class="layer-pill pill-ctrl i18n-t" data-pill="ctrl" data-en="Ctrl — Currency &amp; punctuation" data-km="Ctrl — រូបិយប័ណ្ណ និងសញ្ញា">Ctrl — Currency &amp; punctuation</div>
   <div class="layer-pill pill-altgr i18n-t" data-pill="altgr" data-en="AltGr — Numerals &amp; clusters" data-km="AltGr — លេខ និងបណ្ដុំអក្សរ">AltGr — Numerals &amp; clusters</div>
+</div>
+
+<!-- Strict Khmer NiDA Switch Reminder HUD -->
+<div class="nida-switch-hud" id="nidaSwitchHud" hidden role="alert" aria-live="assertive">
+  <div class="nida-switch-hud-inner">
+    <div class="nida-switch-hud-icon-wrap" aria-hidden="true">
+      <svg class="pk-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    </div>
+    <div class="nida-switch-hud-content">
+      <div class="nida-switch-hud-title i18n-t" data-en="Please switch keyboard to Khmer (NiDA)" data-km="សូមប្តូរក្តារចុចកុំព្យូទ័រទៅជា Khmer (NiDA)">
+        សូមប្តូរក្តារចុចកុំព្យូទ័រទៅជា Khmer (NiDA)
+      </div>
+      <div class="nida-switch-hud-desc">
+        <span class="i18n-t" data-en="Press shortcut to switch:" data-km="ចុចគ្រាប់ចុចកាត់ដើម្បីប្តូរ៖">ចុចគ្រាប់ចុចកាត់ដើម្បីប្តូរ៖</span>
+        <kbd class="hud-kbd">⊞ Win + Space</kbd> <span class="i18n-t" data-en="or" data-km="ឬ">or</span> <kbd class="hud-kbd">Alt + Shift</kbd>
+        <span class="hud-mac-hint">(Mac: <kbd class="hud-kbd">⌃ Control + Space</kbd>)</span>
+      </div>
+    </div>
+    <div class="nida-switch-hud-actions">
+      <button type="button" class="nida-hud-guide-btn" id="nidaHudGuideBtn">
+        <svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span class="i18n-t" data-en="How to Install NiDA" data-km="របៀបដំឡើង និងទាញយក">របៀបដំឡើង និងទាញយក</span>
+      </button>
+      <button type="button" class="nida-hud-close-btn" id="nidaHudCloseBtn" aria-label="Close notification">
+        <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
 </div>
 
 <div class="manuscript notranslate" id="manuscript" translate="no">
@@ -2211,6 +2248,219 @@
   </div>
 </div>
 
+<!-- ================= Khmer NiDA Keyboard Guide & Download Modal ================= -->
+<div class="modal-backdrop" id="nidaGuideModal" hidden role="dialog" aria-modal="true" aria-labelledby="nidaGuideTitle">
+  <div class="modal-card nida-guide-card">
+    <div class="modal-top">
+      <div class="modal-title-group">
+        <div class="nida-modal-icon-badge" aria-hidden="true">
+          <svg class="pk-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div>
+          <h2 id="nidaGuideTitle" class="modal-title i18n-t" data-en="How to Get &amp; Switch to Khmer NiDA Keyboard" data-km="របៀបទាញយក និងដំឡើងក្តារចុច Khmer NiDA">How to Get &amp; Switch to Khmer NiDA Keyboard</h2>
+          <p class="modal-subtitle i18n-t" data-en="Setup instructions for Windows, Mac &amp; Mobile to practice authentic touch typing." data-km="ការណែនាំដំឡើងលើ Windows, Mac និងទូរស័ព្ទ ដើម្បីហ្វឹកហាត់វាយអក្សរខ្មែរពិតប្រាកដ។">Setup instructions for Windows, Mac &amp; Mobile to practice authentic touch typing.</p>
+        </div>
+      </div>
+      <button class="modal-close" id="nidaGuideCloseBtn" aria-label="Close guide"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+
+    <!-- Quick Switch Shortcuts Banner -->
+    <div class="nida-quick-banner">
+      <div class="nida-qb-title i18n-t" data-en="Instant Language Switch Shortcuts:" data-km="គ្រាប់ចុចកាត់សម្រាប់ប្តូរភាសារហ័ស៖">Instant Language Switch Shortcuts:</div>
+      <div class="nida-qb-grid">
+        <div class="nida-qb-item">
+          <span class="nida-qb-os">Windows 11 / 10</span>
+          <span class="nida-qb-keys"><kbd>⊞ Win</kbd> + <kbd>Space</kbd> <span class="nida-qb-or i18n-t" data-en="or" data-km="ឬ">or</span> <kbd>Alt</kbd> + <kbd>Shift</kbd></span>
+        </div>
+        <div class="nida-qb-item">
+          <span class="nida-qb-os">macOS (Apple Mac)</span>
+          <span class="nida-qb-keys"><kbd>⌃ Ctrl</kbd> + <kbd>Space</kbd> <span class="nida-qb-or i18n-t" data-en="or" data-km="ឬ">or</span> <kbd>🌐 Globe</kbd></span>
+        </div>
+        <div class="nida-qb-item">
+          <span class="nida-qb-os">Mobile (Android / iOS)</span>
+          <span class="nida-qb-keys"><span class="i18n-t" data-en="Tap the 🌐 globe icon on keyboard" data-km="ចុចលើរូបសញ្ញា 🌐 ផែនដីលើក្តារចុច">Tap the 🌐 globe icon on keyboard</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs Navigation -->
+    <div class="nida-tab-nav" role="tablist" aria-label="Operating system setup guide">
+      <button type="button" class="nida-tab-btn active i18n-t" data-tab="win-builtin" role="tab" aria-selected="true" data-en="Windows 11 / 10 (Built-in)" data-km="Windows 11 / 10 (ស្រាប់)">Windows 11 / 10 (Built-in)</button>
+      <button type="button" class="nida-tab-btn i18n-t" data-tab="win-installer" role="tab" aria-selected="false" data-en="Download Installer (.exe)" data-km="ទាញយកកម្មវិធីដំឡើង (.exe)">Download Installer (.exe)</button>
+      <button type="button" class="nida-tab-btn i18n-t" data-tab="mac-guide" role="tab" aria-selected="false" data-en="macOS (Mac)" data-km="macOS (Mac)">macOS (Mac)</button>
+      <button type="button" class="nida-tab-btn i18n-t" data-tab="mobile-guide" role="tab" aria-selected="false" data-en="Mobile (Gboard/iOS)" data-km="ទូរស័ព្ទ (Gboard/iOS)">Mobile (Gboard/iOS)</button>
+    </div>
+
+    <!-- Tab 1: Windows Built-in -->
+    <div class="nida-tab-panel" id="nidaTab-win-builtin" role="tabpanel">
+      <div class="nida-step-box highlight">
+        <div class="nida-sb-badge i18n-t" data-en="⭐ Recommended — No Download Required!" data-km="⭐ ងាយស្រួលបំផុត — មិនបាច់ទាញយកទេ!">⭐ Recommended — No Download Required!</div>
+        <p class="nida-sb-text i18n-t" data-en="Windows 10 and Windows 11 already have the official Khmer NiDA keyboard included for free by Microsoft. You only need to add it in Windows Settings once:" data-km="Windows 10 និង Windows 11 មានភ្ជាប់មកស្រាប់ជាមួយក្តារចុចផ្លូវការ Khmer NiDA ដោយឥតគិតថ្លៃ។ អ្នកគ្រាន់តែបើកវាក្នុង Windows Settings ម្តងប៉ុណ្ណោះ៖">Windows 10 and Windows 11 already have the official Khmer NiDA keyboard included for free by Microsoft. You only need to add it in Windows Settings once:</p>
+      </div>
+      <ol class="nida-steps-list">
+        <li>
+          <div class="nida-step-num">1</div>
+          <div class="nida-step-info">
+            <strong class="i18n-t" data-en="Open Windows Settings" data-km="បើក Windows Settings">Open Windows Settings</strong>
+            <p class="i18n-t" data-en="Press &lt;kbd&gt;⊞ Win&lt;/kbd&gt; + &lt;kbd&gt;I&lt;/kbd&gt; on your keyboard to open Windows Settings." data-km="ចុច &lt;kbd&gt;⊞ Win&lt;/kbd&gt; + &lt;kbd&gt;I&lt;/kbd&gt; លើក្តារចុចរបស់អ្នក ដើម្បីបើក Windows Settings។">Press <kbd>⊞ Win</kbd> + <kbd>I</kbd> on your keyboard to open Windows Settings.</p>
+          </div>
+        </li>
+        <li>
+          <div class="nida-step-num">2</div>
+          <div class="nida-step-info">
+            <strong class="i18n-t" data-en="Go to Time &amp; Language" data-km="ចូលទៅកាន់ Time &amp; Language">Go to Time &amp; Language</strong>
+            <p class="i18n-t" data-en="Select &lt;strong&gt;Time &amp;amp; Language&lt;/strong&gt; from the left menu, then click &lt;strong&gt;Language &amp;amp; Region&lt;/strong&gt; (or &lt;strong&gt;Language&lt;/strong&gt; on Windows 10)." data-km="ជ្រើសរើស &lt;strong&gt;Time &amp;amp; Language&lt;/strong&gt; ពីម៉ឺនុយខាងឆ្វេង បន្ទាប់មកចុច &lt;strong&gt;Language &amp;amp; Region&lt;/strong&gt; (ឬ &lt;strong&gt;Language&lt;/strong&gt; លើ Windows 10)។">Select <strong>Time &amp; Language</strong> from the left menu, then click <strong>Language &amp; Region</strong> (or <strong>Language</strong> on Windows 10).</p>
+          </div>
+        </li>
+        <li>
+          <div class="nida-step-num">3</div>
+          <div class="nida-step-info">
+            <strong class="i18n-t" data-en="Add Khmer Language" data-km="បន្ថែមភាសាខ្មែរ">Add Khmer Language</strong>
+            <p class="i18n-t" data-en="Click &lt;strong&gt;Add a language&lt;/strong&gt;, type &lt;code&gt;Khmer&lt;/code&gt; or &lt;code&gt;ភាសាខ្មែរ&lt;/code&gt;, choose &lt;strong&gt;Khmer (Cambodia)&lt;/strong&gt;, and click &lt;strong&gt;Install&lt;/strong&gt;." data-km="ចុច &lt;strong&gt;Add a language&lt;/strong&gt; វាយពាក្យ &lt;code&gt;Khmer&lt;/code&gt; ឬ &lt;code&gt;ភាសាខ្មែរ&lt;/code&gt; ជ្រើសរើស &lt;strong&gt;Khmer (Cambodia)&lt;/strong&gt; រួចចុច &lt;strong&gt;Install&lt;/strong&gt;។">Click <strong>Add a language</strong>, type <code>Khmer</code> or <code>ភាសាខ្មែរ</code>, choose <strong>Khmer (Cambodia)</strong>, and click <strong>Install</strong>.</p>
+          </div>
+        </li>
+        <li>
+          <div class="nida-step-num">4</div>
+          <div class="nida-step-info">
+            <strong class="i18n-t" data-en="Switch &amp; Start Typing!" data-km="ប្តូរភាសា ហើយចាប់ផ្តើមវាយ!">Switch &amp; Start Typing!</strong>
+            <p class="i18n-t" data-en="Press &lt;kbd&gt;⊞ Win&lt;/kbd&gt; + &lt;kbd&gt;Space&lt;/kbd&gt; anytime to switch between English and Khmer NiDA!" data-km="ចុច &lt;kbd&gt;⊞ Win&lt;/kbd&gt; + &lt;kbd&gt;Space&lt;/kbd&gt; គ្រប់ពេល ដើម្បីប្តូររវាងភាសាអង់គ្លេស និង Khmer NiDA!">Press <kbd>⊞ Win</kbd> + <kbd>Space</kbd> anytime to switch between English and Khmer NiDA!</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Tab 2: Standalone Installer Download -->
+    <div class="nida-tab-panel" id="nidaTab-win-installer" role="tabpanel" hidden>
+      <div class="nida-step-box">
+        <p class="nida-sb-text i18n-t" data-en="If you are using Windows 7, 8, 10, or prefer the traditional Open Institute / KhemaraSoft installer package, you can download the official Khmer Unicode NiDA keyboard installer below:" data-km="ប្រសិនបើអ្នកប្រើប្រាស់ Windows 7, 8, 10 ឬចង់បានកញ្ចប់ដំឡើងបែបបុរាណរបស់ Open Institute / KhemaraSoft អ្នកអាចទាញយកកម្មវិធីដំឡើងផ្លូវការ Khmer Unicode NiDA ខាងក្រោមនេះ៖">If you are using Windows 7, 8, 10, or prefer the traditional Open Institute / KhemaraSoft installer package, you can download the official Khmer Unicode NiDA keyboard installer below:</p>
+      </div>
+      <div class="nida-download-cards">
+        <a href="https://khemarasoft.com/download/" target="_blank" rel="noopener noreferrer" class="nida-dl-card">
+          <div class="nida-dl-icon" aria-hidden="true"><svg class="pk-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+          <div class="nida-dl-meta">
+            <span class="nida-dl-name">KhemaraSoft Khmer Unicode Installer</span>
+            <span class="nida-dl-desc i18n-t" data-en="Official Khmer Keyboard Installer for Windows (32/64-bit)" data-km="កម្មវិធីដំឡើងក្តារចុចខ្មែរផ្លូវការសម្រាប់ Windows (32/64-bit)">Official Khmer Keyboard Installer for Windows (32/64-bit)</span>
+          </div>
+          <span class="nida-dl-badge i18n-t" data-en="Visit Download ↗" data-km="ទាញយក ↗">Visit Download ↗</span>
+        </a>
+        <a href="http://www.open.org.kh/khmer/" target="_blank" rel="noopener noreferrer" class="nida-dl-card">
+          <div class="nida-dl-icon" aria-hidden="true"><svg class="pk-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+          <div class="nida-dl-meta">
+            <span class="nida-dl-name">Open Institute Khmer Software Initiative</span>
+            <span class="nida-dl-desc i18n-t" data-en="Original National NiDA Keyboard Package &amp; Khmer Fonts" data-km="កញ្ចប់ក្តារចុច NiDA ដើម និងពុម្ពអក្សរខ្មែរ">Original National NiDA Keyboard Package &amp; Khmer Fonts</span>
+          </div>
+          <span class="nida-dl-badge i18n-t" data-en="Visit Download ↗" data-km="ទាញយក ↗">Visit Download ↗</span>
+        </a>
+      </div>
+      <ol class="nida-steps-list" style="margin-top:14px;">
+        <li>
+          <div class="nida-step-num">1</div>
+          <div class="nida-step-info">
+            <strong class="i18n-t" data-en="Run Setup.exe" data-km="បើកដំណើរការ Setup.exe">Run Setup.exe</strong>
+            <p class="i18n-t" data-en="Extract the downloaded zip archive, right click &lt;code&gt;Setup.exe&lt;/code&gt; and select &lt;strong&gt;Run as administrator&lt;/strong&gt;." data-km="ពន្លាឯកសារ zip ដែលបានទាញយក ចុចស្តាំលើ &lt;code&gt;Setup.exe&lt;/code&gt; ហើយជ្រើសរើស &lt;strong&gt;Run as administrator&lt;/strong&gt;។">Extract the downloaded zip archive, right click <code>Setup.exe</code> and select <strong>Run as administrator</strong>.</p>
+          </div>
+        </li>
+        <li>
+          <div class="nida-step-num">2</div>
+          <div class="nida-step-info">
+            <strong class="i18n-t" data-en="Restart or Log Out" data-km="Restart ឬ Sign Out">Restart or Log Out</strong>
+            <p class="i18n-t" data-en="After the installation finishes, restart your PC or log out to let Windows load the new keyboard driver." data-km="បន្ទាប់ពីដំឡើងចប់ សូម restart កុំព្យូទ័រ ឬ sign out ដើម្បីឱ្យ Windows ដំណើរការកម្មវិធីក្តារចុចថ្មី។">After the installation finishes, restart your PC or log out to let Windows load the new keyboard driver.</p>
+          </div>
+        </li>
+        <li>
+          <div class="nida-step-num">3</div>
+          <div class="nida-step-info">
+            <strong class="i18n-t" data-en="Switch using Alt + Shift or Win + Space" data-km="ប្តូរភាសាដោយចុច Alt + Shift ឬ Win + Space">Switch using Alt + Shift or Win + Space</strong>
+            <p class="i18n-t" data-en="Select Khmer NiDA from your taskbar language bar or press &lt;kbd&gt;Alt&lt;/kbd&gt; + &lt;kbd&gt;Shift&lt;/kbd&gt;." data-km="ជ្រើសរើស Khmer NiDA ពីរបារភាសានៅជ្រុងខាងក្រោម ឬចុច &lt;kbd&gt;Alt&lt;/kbd&gt; + &lt;kbd&gt;Shift&lt;/kbd&gt;។">Select Khmer NiDA from your taskbar language bar or press <kbd>Alt</kbd> + <kbd>Shift</kbd>.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Tab 3: macOS -->
+    <div class="nida-tab-panel" id="nidaTab-mac-guide" role="tabpanel" hidden>
+      <div class="nida-step-box">
+        <p class="nida-sb-text i18n-t" data-en="Apple Mac computers have official Khmer keyboard support built directly into macOS:" data-km="កុំព្យូទ័រ Apple Mac មានភ្ជាប់មកស្រាប់ជាមួយក្តារចុចភាសាខ្មែរផ្លូវការក្នុង macOS៖">Apple Mac computers have official Khmer keyboard support built directly into macOS:</p>
+      </div>
+      <ol class="nida-steps-list">
+        <li>
+          <div class="nida-step-num">1</div>
+          <div class="nida-step-info">
+            <strong class="i18n-t" data-en="Open System Settings" data-km="បើក System Settings">Open System Settings</strong>
+            <p class="i18n-t" data-en="Click the Apple  menu &gt; &lt;strong&gt;System Settings&lt;/strong&gt; (or System Preferences)." data-km="ចុចម៉ឺនុយផ្លែប៉ោម  &gt; &lt;strong&gt;System Settings&lt;/strong&gt; (ឬ System Preferences)។">Click the Apple  menu &gt; <strong>System Settings</strong> (or System Preferences).</p>
+          </div>
+        </li>
+        <li>
+          <div class="nida-step-num">2</div>
+          <div class="nida-step-info">
+            <strong class="i18n-t" data-en="Navigate to Keyboard &gt; Input Sources" data-km="ចូលទៅ Keyboard &gt; Input Sources">Navigate to Keyboard &gt; Input Sources</strong>
+            <p class="i18n-t" data-en="Click &lt;strong&gt;Keyboard&lt;/strong&gt; in the sidebar, find &lt;strong&gt;Text Input&lt;/strong&gt;, and click &lt;strong&gt;Edit...&lt;/strong&gt; next to Input Sources." data-km="ចុច &lt;strong&gt;Keyboard&lt;/strong&gt; ក្នុងរបារចំហៀង រកមើល &lt;strong&gt;Text Input&lt;/strong&gt; រួចចុច &lt;strong&gt;Edit...&lt;/strong&gt; នៅជិត Input Sources។">Click <strong>Keyboard</strong> in the sidebar, find <strong>Text Input</strong>, and click <strong>Edit...</strong> next to Input Sources.</p>
+          </div>
+        </li>
+        <li>
+          <div class="nida-step-num">3</div>
+          <div class="nida-step-info">
+            <strong class="i18n-t" data-en="Add Khmer" data-km="បន្ថែមភាសាខ្មែរ">Add Khmer</strong>
+            <p class="i18n-t" data-en="Click &lt;strong&gt;+&lt;/strong&gt; (Add), search &lt;code&gt;Khmer&lt;/code&gt;, select &lt;strong&gt;Khmer&lt;/strong&gt;, and click &lt;strong&gt;Add&lt;/strong&gt;." data-km="ចុចសញ្ញា &lt;strong&gt;+&lt;/strong&gt; ស្វែងរក &lt;code&gt;Khmer&lt;/code&gt; ជ្រើសរើស &lt;strong&gt;Khmer&lt;/strong&gt; រួចចុច &lt;strong&gt;Add&lt;/strong&gt;។">Click <strong>+</strong> (Add), search <code>Khmer</code>, select <strong>Khmer</strong>, and click <strong>Add</strong>.</p>
+          </div>
+        </li>
+        <li>
+          <div class="nida-step-num">4</div>
+          <div class="nida-step-info">
+            <strong class="i18n-t" data-en="Switch with Control + Space" data-km="ប្តូរភាសាដោយចុច Control + Space">Switch with Control + Space</strong>
+            <p class="i18n-t" data-en="Press &lt;kbd&gt;⌃ Control&lt;/kbd&gt; + &lt;kbd&gt;Space&lt;/kbd&gt; or the &lt;kbd&gt;🌐 Globe&lt;/kbd&gt; key on modern Mac keyboards to switch instantly." data-km="ចុច &lt;kbd&gt;⌃ Control&lt;/kbd&gt; + &lt;kbd&gt;Space&lt;/kbd&gt; ឬគ្រាប់ចុច &lt;kbd&gt;🌐 ផែនដី&lt;/kbd&gt; លើក្តារចុច Mac ដើម្បីប្តូរភាសាភ្លាមៗ។">Press <kbd>⌃ Control</kbd> + <kbd>Space</kbd> or the <kbd>🌐 Globe</kbd> key on modern Mac keyboards to switch instantly.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Tab 4: Mobile -->
+    <div class="nida-tab-panel" id="nidaTab-mobile-guide" role="tabpanel" hidden>
+      <div class="nida-step-box">
+        <p class="nida-sb-text i18n-t" data-en="How to enable Khmer NiDA typing on mobile phones and tablets:" data-km="របៀបបើកក្តារចុច Khmer NiDA លើទូរស័ព្ទ និងថេប្លេត៖">How to enable Khmer NiDA typing on mobile phones and tablets:</p>
+      </div>
+      <div class="nida-mobile-grid">
+        <div class="nida-mobile-card">
+          <h4>Android (Google Gboard)</h4>
+          <ol>
+            <li class="i18n-t" data-en="Install &lt;strong&gt;Gboard&lt;/strong&gt; from Google Play Store if not already installed." data-km="ដំឡើង &lt;strong&gt;Gboard&lt;/strong&gt; ពី Google Play Store ប្រសិនបើមិនទាន់មាន។">Install <strong>Gboard</strong> from Google Play Store if not already installed.</li>
+            <li class="i18n-t" data-en="Open Gboard Settings &gt; &lt;strong&gt;Languages&lt;/strong&gt; &gt; &lt;strong&gt;Add keyboard&lt;/strong&gt;." data-km="បើកការកំណត់ Gboard &gt; &lt;strong&gt;Languages&lt;/strong&gt; &gt; &lt;strong&gt;Add keyboard&lt;/strong&gt;។">Open Gboard Settings &gt; <strong>Languages</strong> &gt; <strong>Add keyboard</strong>.</li>
+            <li class="i18n-t" data-en="Search &lt;strong&gt;Khmer&lt;/strong&gt; and select &lt;strong&gt;Khmer (Cambodia)&lt;/strong&gt;." data-km="ស្វែងរក &lt;strong&gt;Khmer&lt;/strong&gt; ហើយជ្រើសរើស &lt;strong&gt;Khmer (Cambodia)&lt;/strong&gt;។">Search <strong>Khmer</strong> and select <strong>Khmer (Cambodia)</strong>.</li>
+            <li class="i18n-t" data-en="Tap the 🌐 globe icon to switch languages." data-km="ចុចរូប 🌐 ផែនដីដើម្បីប្តូរភាសា។">Tap the 🌐 globe icon to switch languages.</li>
+          </ol>
+        </div>
+        <div class="nida-mobile-card">
+          <h4>iPhone &amp; iPad (iOS)</h4>
+          <ol>
+            <li class="i18n-t" data-en="Open &lt;strong&gt;Settings&lt;/strong&gt; &gt; &lt;strong&gt;General&lt;/strong&gt; &gt; &lt;strong&gt;Keyboard&lt;/strong&gt;." data-km="បើក &lt;strong&gt;Settings&lt;/strong&gt; &gt; &lt;strong&gt;General&lt;/strong&gt; &gt; &lt;strong&gt;Keyboard&lt;/strong&gt;។">Open <strong>Settings</strong> &gt; <strong>General</strong> &gt; <strong>Keyboard</strong>.</li>
+            <li class="i18n-t" data-en="Tap &lt;strong&gt;Keyboards&lt;/strong&gt; &gt; &lt;strong&gt;Add New Keyboard...&lt;/strong&gt;" data-km="ចុច &lt;strong&gt;Keyboards&lt;/strong&gt; &gt; &lt;strong&gt;Add New Keyboard...&lt;/strong&gt;">Tap <strong>Keyboards</strong> &gt; <strong>Add New Keyboard...</strong></li>
+            <li class="i18n-t" data-en="Scroll down and choose &lt;strong&gt;Khmer&lt;/strong&gt;." data-km="រមូរចុះក្រោម ហើយជ្រើសរើស &lt;strong&gt;Khmer&lt;/strong&gt;។">Scroll down and choose <strong>Khmer</strong>.</li>
+            <li class="i18n-t" data-en="Tap the 🌐 globe key at the bottom left to switch." data-km="ចុចគ្រាប់ចុច 🌐 ផែនដីនៅជ្រុងខាងឆ្វេងក្រោមដើម្បីប្តូរ។">Tap the 🌐 globe key at the bottom left to switch.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Test Input Zone -->
+    <div class="nida-test-zone">
+      <div class="nida-test-header">
+        <span class="nida-test-title i18n-t" data-en="Interactive Test: Verify your keyboard switch right here" data-km="សាកល្បងផ្ទាល់៖ ពិនិត្យមើលថាតើក្តារចុចរបស់អ្នកបានប្តូរឬនៅ">Interactive Test: Verify your keyboard switch right here</span>
+        <button type="button" class="nida-test-clear-btn" id="nidaTestClearBtn" aria-label="Clear test input"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg> <span class="i18n-t" data-en="Clear" data-km="សម្អាត">Clear</span></button>
+      </div>
+      <div class="nida-test-input-row">
+        <input type="text" id="nidaTestInput" class="nida-test-input" placeholder="ចុចទីនេះ ហើយសាកល្បងវាយគ្រាប់ចុច... / Click here and type any key..." autocomplete="off" spellcheck="false">
+      </div>
+      <div class="nida-test-status" id="nidaTestStatus">
+        <span class="nida-test-badge neutral i18n-t" data-en="Waiting for keystroke..." data-km="រង់ចាំការវាយ...">Waiting for keystroke...</span>
+      </div>
+    </div>
+
+    <div class="modal-footer-actions" style="margin-top:18px;display:flex;justify-content:flex-end;">
+      <button type="button" class="auth-submit-btn i18n-t" id="nidaGuideDoneBtn" data-en="Got it! Start Typing" data-km="យល់ហើយ! ចាប់ផ្តើមវាយ">Got it! Start Typing</button>
+    </div>
+  </div>
+</div>
+
 <noscript>
   <article style="max-width:960px;margin:24px auto;padding:24px;background:#111626;color:#f2e8cf;border:1px solid rgba(255,209,102,0.3);border-radius:14px;font-family:sans-serif;line-height:1.6;">
     <h2>PK Khmer Type (ក្តារចុចខ្មែរ PK) — Free Interactive Khmer &amp; English Typing Tutor</h2>
@@ -2248,24 +2498,24 @@
 </noscript>
 
   <!-- Scripts -->
-  <script defer src="js/icons.js?v=53"></script>
-  <script defer src="js/storage.js?v=53"></script>
-  <script defer src="data/curriculum-data.js?v=53"></script>
-  <script defer src="data/adaptive-vocab.js?v=53"></script>
-  <script defer src="js/keyboard.js?v=53"></script>
-  <script defer src="js/tracker.js?v=53"></script>
-  <script defer src="js/progress.js?v=53"></script>
-  <script defer src="js/review.js?v=53"></script>
-  <script defer src="js/cursor-inspector.js?v=53"></script>
-  <script defer src="js/feedback.js?v=53"></script>
-  <script defer src="js/adaptive.js?v=53"></script>
-  <script defer src="js/lessons.js?v=53"></script>
-  <script defer src="js/race.js?v=53"></script>
-  <script defer src="js/typing.js?v=53"></script>
-  <script defer src="js/statistics.js?v=53"></script>
-  <script defer src="js/settings.js?v=53"></script>
-  <script defer src="js/shortcuts.js?v=53"></script>
-  <script defer src="js/quick_guide.js?v=53"></script>
-  <script defer src="js/app.js?v=53"></script>
+  <script defer src="js/icons.js?v=54"></script>
+  <script defer src="js/storage.js?v=54"></script>
+  <script defer src="data/curriculum-data.js?v=54"></script>
+  <script defer src="data/adaptive-vocab.js?v=54"></script>
+  <script defer src="js/keyboard.js?v=54"></script>
+  <script defer src="js/tracker.js?v=54"></script>
+  <script defer src="js/progress.js?v=54"></script>
+  <script defer src="js/review.js?v=54"></script>
+  <script defer src="js/cursor-inspector.js?v=54"></script>
+  <script defer src="js/feedback.js?v=54"></script>
+  <script defer src="js/adaptive.js?v=54"></script>
+  <script defer src="js/lessons.js?v=54"></script>
+  <script defer src="js/race.js?v=54"></script>
+  <script defer src="js/typing.js?v=54"></script>
+  <script defer src="js/statistics.js?v=54"></script>
+  <script defer src="js/settings.js?v=54"></script>
+  <script defer src="js/shortcuts.js?v=54"></script>
+  <script defer src="js/quick_guide.js?v=54"></script>
+  <script defer src="js/app.js?v=54"></script>
 </body>
 </html>

@@ -39,11 +39,13 @@ function initApp(){
     if (isPerf) {
       document.documentElement.classList.add("performance-mode", "anim-mode-off", "reduce-motion", "reduced-motion", "hide-key-fx", "hide-motes", "hide-cursor-shockwave");
       document.documentElement.classList.remove("anim-mode-full", "anim-mode-minimal");
-    } else if (savedAnim === "minimal") {
-      document.documentElement.classList.add("anim-mode-minimal", "reduce-motion", "reduced-motion", "hide-key-fx", "hide-motes");
-      document.documentElement.classList.remove("performance-mode", "anim-mode-off", "anim-mode-full");
-    } else {
+    } else if (savedAnim === "full") {
+      document.documentElement.classList.add("anim-mode-full");
       document.documentElement.classList.remove("performance-mode", "anim-mode-off", "anim-mode-minimal", "reduce-motion", "reduced-motion");
+    } else {
+      // Default for new visitors: Minimal mode (gentle motion, without heavy motes or particle bursts)
+      document.documentElement.classList.add("anim-mode-minimal", "hide-key-fx", "hide-motes", "hide-cursor-shockwave");
+      document.documentElement.classList.remove("performance-mode", "anim-mode-off", "anim-mode-full", "reduce-motion", "reduced-motion");
     }
   } catch(e){}
 

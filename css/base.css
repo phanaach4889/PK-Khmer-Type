@@ -2438,7 +2438,8 @@
   .modal-backdrop.is-closing .auth-card,
   .modal-backdrop.is-closing .terms-card,
   .modal-backdrop.is-closing .temple-confirm-card,
-  .modal-backdrop.is-closing .dev-note-card{
+  .modal-backdrop.is-closing .dev-note-card,
+  .modal-backdrop.is-closing .nida-guide-card{
     animation: modal-card-spring-out 0.22s cubic-bezier(0.4, 0, 1, 1) forwards !important;
   }
 
