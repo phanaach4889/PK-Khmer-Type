@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PK Khmer Type — Option 2 · D.4-A2 Spotlight Lab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070a12;
+      --card-bg: rgba(16, 22, 38, 0.85);
+      --card-border: rgba(255, 209, 102, 0.25);
+      --text: #f0f4fc;
+      --gold: #ffd166;
+      --dim: #8c98b6;
+      --nav-bg: #0b0f1d;
+    }
+    body.light-mode {
+      --bg: #f4f6fa;
+      --card-bg: #ffffff;
+      --card-border: rgba(180, 140, 60, 0.35);
+      --text: #111626;
+      --gold: #d49514;
+      --dim: #55627e;
+      --nav-bg: #eaeef6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      padding: 40px 24px 80px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .header {
+      max-width: 1000px;
+      margin: 0 auto 36px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(255, 209, 102, 0.15);
+      border: 1px solid var(--gold);
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+    .title {
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .title span { color: var(--gold); }
+    .subtitle {
+      color: var(--dim);
+      font-size: 1.05rem;
+      max-width: 720px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+    .btn {
+      background: var(--card-bg);
+      color: var(--gold);
+      border: 1px solid var(--card-border);
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      background: var(--gold);
+      color: #070a12;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(255, 209, 102, 0.3);
+    }
+    
+    /* Hero Showcase */
+    .hero-showcase {
+      max-width: 900px;
+      margin: 0 auto 48px;
+      background: linear-gradient(180deg, rgba(255, 209, 102, 0.12), rgba(16, 22, 38, 0.95));
+      border: 2px solid var(--gold);
+      border-radius: 28px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 24px 50px rgba(0,0,0,0.6), 0 0 30px rgba(255,209,102,0.15);
+    }
+    .hero-logo-frame {
+      width: 200px;
+      height: 200px;
+      margin-bottom: 24px;
+    }
+    .hero-logo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 28px rgba(0,0,0,0.6));
+    }
+    .hero-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .hero-desc {
+      max-width: 620px;
+      color: var(--dim);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    
+    .grid {
+      max-width: 1240px;
+      margin: 0 auto 50px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 22px;
+      padding: 26px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.35);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255,209,102,0.15);
+    }
+    .card-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(255, 209, 102, 0.14);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .logo-frame {
+      width: 140px;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .logo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 16px rgba(0,0,0,0.4));
+    }
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .card-desc {
+      font-size: 0.83rem;
+      color: var(--dim);
+      text-align: center;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      flex-grow: 1;
+      padding: 0 6px;
+    }
+    .scales {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      width: 100%;
+    }
+    .scale-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .scale-item img {
+      border-radius: 6px;
+    }
+    .scale-label {
+      font-size: 0.65rem;
+      color: var(--dim);
+      font-weight: 600;
+    }
+
+    /* Simulation Bar */
+    .sim-section {
+      max-width: 1240px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 22px;
+      padding: 28px;
+    }
+    .sim-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .sim-header h2 {
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .sim-header p {
+      color: var(--dim);
+      font-size: 0.85rem;
+    }
+    .sim-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .nav-mock {
+      background: var(--nav-bg);
+      border: 1px solid rgba(255, 209, 102, 0.15);
+      border-radius: 12px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-mock img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+    }
+    .nav-mock-brand {
+      display: flex;
+      flex-direction: column;
+    }
+    .nav-mock-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+    .nav-mock-sub {
+      font-size: 0.65rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* Status Note */
+    .status-box {
+      max-width: 1240px;
+      margin: 40px auto 0;
+      padding: 20px 24px;
+      background: rgba(255, 209, 102, 0.08);
+      border: 1px solid var(--gold);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .status-label {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--gold);
+    }
+    .status-desc {
+      font-size: 0.88rem;
+      color: var(--dim);
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="badge">Selected Direction: Option 2 · D.4-A2</div>
+    <h1 class="title">Refining <span>Option 2 · D.4-A2</span></h1>
+    <p class="subtitle">
+      You picked Option 2! Here is the mathematically perfected master version alongside 3 micro-variations (Split Keycap, Interconnect Bus Trace, and Two-Tone Titanium & Gold).
+    </p>
+    <div class="controls">
+      <button class="btn" onclick="document.body.classList.toggle('light-mode')">🌓 Toggle Light / Dark Mode</button>
+    </div>
+  </div>
+
+  <!-- HERO SPOTLIGHT -->
+  <div class="hero-showcase">
+    <div class="hero-logo-frame">
+      <img src="d4a_v2_side_by_side.svg" alt="Option 2 Master">
+    </div>
+    <h2 class="hero-title">Option 2 · D.4-A2 (Master Edition)</h2>
+    <p class="hero-desc">
+      Mathematically aligned Swiss typography: Both [P] and [K] share the exact same 60px height (top cap-height flush at y=34, baseline flush at y=94), identical 8px stroke weight, and equal 28px width centered with a 12px optical gap.
+    </p>
+    <div class="scales" style="border:none; padding:0;">
+      <div class="scale-item"><img src="d4a_v2_side_by_side.svg" width="64" height="64"><span class="scale-label">64px</span></div>
+      <div class="scale-item"><img src="d4a_v2_side_by_side.svg" width="48" height="48"><span class="scale-label">48px</span></div>
+      <div class="scale-item"><img src="d4a_v2_side_by_side.svg" width="32" height="32"><span class="scale-label">32px</span></div>
+      <div class="scale-item"><img src="d4a_v2_side_by_side.svg" width="16" height="16"><span class="scale-label">16px</span></div>
+    </div>
+  </div>
+
+  <!-- MICRO-VARIATIONS GRID -->
+  <div class="grid">
+    <!-- Master -->
+    <div class="card">
+      <span class="card-badge">2A · Pure Master</span>
+      <div class="logo-frame">
+        <img src="d4a_v2_side_by_side.svg" alt="2A">
+      </div>
+      <h3 class="card-title">Pure Dual Legend</h3>
+      <p class="card-desc">
+        The clean, minimalist standard. Single recessed switch dish with corner registration brackets, centered P & K, and tactile home row notch.
+      </p>
+      <div class="scales">
+        <div class="scale-item"><img src="d4a_v2_side_by_side.svg" width="48" height="48"><span class="scale-label">48px</span></div>
+        <div class="scale-item"><img src="d4a_v2_side_by_side.svg" width="32" height="32"><span class="scale-label">32px</span></div>
+        <div class="scale-item"><img src="d4a_v2_side_by_side.svg" width="16" height="16"><span class="scale-label">16px</span></div>
+      </div>
+    </div>
+
+    <!-- Split Chamber -->
+    <div class="card">
+      <span class="card-badge">2B · Split Chamber</span>
+      <div class="logo-frame">
+        <img src="d4a_v2b_split_keycap.svg" alt="2B">
+      </div>
+      <h3 class="card-title">Split Dual Keycaps</h3>
+      <p class="card-desc">
+        Framed into two physical keycap chambers [P] and [K] with a subtle central mechanical divider groove. Feels like a custom 2-key macro pad.
+      </p>
+      <div class="scales">
+        <div class="scale-item"><img src="d4a_v2b_split_keycap.svg" width="48" height="48"><span class="scale-label">48px</span></div>
+        <div class="scale-item"><img src="d4a_v2b_split_keycap.svg" width="32" height="32"><span class="scale-label">32px</span></div>
+        <div class="scale-item"><img src="d4a_v2b_split_keycap.svg" width="16" height="16"><span class="scale-label">16px</span></div>
+      </div>
+    </div>
+
+    <!-- Bus Trace -->
+    <div class="card">
+      <span class="card-badge">2C · Connected Rail</span>
+      <div class="logo-frame">
+        <img src="d4a_v2c_circuit_rail.svg" alt="2C">
+      </div>
+      <h3 class="card-title">Mechanical Bus Trace</h3>
+      <p class="card-desc">
+        Features a subtle horizontal mechanical bus rail connecting the base of P and K at the baseline, tying them into a single interconnected unit.
+      </p>
+      <div class="scales">
+        <div class="scale-item"><img src="d4a_v2c_circuit_rail.svg" width="48" height="48"><span class="scale-label">48px</span></div>
+        <div class="scale-item"><img src="d4a_v2c_circuit_rail.svg" width="32" height="32"><span class="scale-label">32px</span></div>
+        <div class="scale-item"><img src="d4a_v2c_circuit_rail.svg" width="16" height="16"><span class="scale-label">16px</span></div>
+      </div>
+    </div>
+
+    <!-- Two-Tone -->
+    <div class="card">
+      <span class="card-badge">2D · Two-Tone</span>
+      <div class="logo-frame">
+        <img src="d4a_v2d_two_tone.svg" alt="2D">
+      </div>
+      <h3 class="card-title">Titanium & Gold</h3>
+      <p class="card-desc">
+        Titanium Ice White for [P] and Temple Gold for [K]. Represents dual languages (English & Khmer) in a high-contrast luxury aesthetic.
+      </p>
+      <div class="scales">
+        <div class="scale-item"><img src="d4a_v2d_two_tone.svg" width="48" height="48"><span class="scale-label">48px</span></div>
+        <div class="scale-item"><img src="d4a_v2d_two_tone.svg" width="32" height="32"><span class="scale-label">32px</span></div>
+        <div class="scale-item"><img src="d4a_v2d_two_tone.svg" width="16" height="16"><span class="scale-label">16px</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live Navbar Simulation -->
+  <div class="sim-section">
+    <div class="sim-header">
+      <h2>App Navbar Simulation (32px Live Size)</h2>
+      <p>How each variation sits in your top navigation header next to "PK Khmer Type"</p>
+    </div>
+    <div class="sim-grid">
+      <div class="nav-mock">
+        <img src="d4a_v2_side_by_side.svg" alt="2A">
+        <div class="nav-mock-brand">
+          <span class="nav-mock-name">PK Khmer Type</span>
+          <span class="nav-mock-sub">2A · Pure Master</span>
+        </div>
+      </div>
+      <div class="nav-mock">
+        <img src="d4a_v2b_split_keycap.svg" alt="2B">
+        <div class="nav-mock-brand">
+          <span class="nav-mock-name">PK Khmer Type</span>
+          <span class="nav-mock-sub">2B · Split Chamber</span>
+        </div>
+      </div>
+      <div class="nav-mock">
+        <img src="d4a_v2c_circuit_rail.svg" alt="2C">
+        <div class="nav-mock-brand">
+          <span class="nav-mock-name">PK Khmer Type</span>
+          <span class="nav-mock-sub">2C · Connected Rail</span>
+        </div>
+      </div>
+      <div class="nav-mock">
+        <img src="d4a_v2d_two_tone.svg" alt="2D">
+        <div class="nav-mock-brand">
+          <span class="nav-mock-name">PK Khmer Type</span>
+          <span class="nav-mock-sub">2D · Two-Tone</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="status-box">
+    <div class="status-label">Next Step:</div>
+    <div class="status-desc">
+      Whenever you're ready, just let me know if you want to <b>apply Option 2 to your live app</b> (updating <code>assets/logo.svg</code> and favicon), or if you'd like any other adjustments first!
+    </div>
+  </div>
+</body>
+</html>

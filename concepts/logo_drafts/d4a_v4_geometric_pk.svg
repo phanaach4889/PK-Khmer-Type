@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <!-- D.4-A4: Architectural Stencil — Modern Tech Monogram with Razor Precision -->
+  <!-- Dark Matte Obsidian Base -->
+  <rect width="128" height="128" rx="28" fill="#0a0d18"/>
+  <rect x="2" y="2" width="124" height="124" rx="26" stroke="#1c2438" stroke-width="2"/>
+
+  <!-- Minimalist Switch Well (Recessed Keycap Dish) -->
+  <rect x="16" y="16" width="96" height="96" rx="20" fill="#101526" stroke="#222c44" stroke-width="1.5"/>
+
+  <!-- Precision Corner Registration Brackets -->
+  <path d="M26 36 V26 H36" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M102 36 V26 H92" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M26 92 V102 H36" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M102 92 V102 H92" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Unified Architectural PK Geometry -->
+  <!-- Left P-Spine & Leg -->
+  <path d="M36 34 H60 C71 34 78 41 78 50 C78 59 71 66 60 66 H46 V94 H36 V34 Z" fill="#ffd166"/>
+  
+  <!-- P Negative Space Inner Window (Clean 10px tall cutout) -->
+  <path d="M46 43 H58 C63 43 67 46 67 50 C67 54 63 57 58 57 H46 V43 Z" fill="#101526"/>
+
+  <!-- K Diagonal Arms (Precision Offset Stencil Cut) -->
+  <!-- Upper K Arm (Starts from waist at x=58, sweeps up-right to x=92) -->
+  <path d="M66 52 L84 34 H95 L75 54 L66 52 Z" fill="#ffd166"/>
+  
+  <!-- Lower K Leg (Reaches down-right to x=94) -->
+  <path d="M60 66 L86 94 H97 L69 66 H60 Z" fill="#ffd166"/>
+
+  <!-- Center MX Tactile Dot / Switch Actuation Point -->
+  <circle cx="56" cy="66" r="2.5" fill="#101526"/>
+
+  <!-- Tactile Home Row Alignment Notch -->
+  <rect x="52" y="101" width="24" height="3" rx="1.5" fill="#ffd166" opacity="0.75"/>
+</svg>
+

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <!-- D.4-A1: Layered Interlock — P in Foreground, K Interlocking Behind -->
+  <!-- Dark Matte Obsidian Base -->
+  <rect width="128" height="128" rx="28" fill="#0a0d18"/>
+  <rect x="2" y="2" width="124" height="124" rx="26" stroke="#1c2438" stroke-width="2"/>
+
+  <!-- Minimalist Switch Well (Keycap Recessed Dish) -->
+  <rect x="16" y="16" width="96" height="96" rx="20" fill="#101526" stroke="#222c44" stroke-width="1.5"/>
+
+  <!-- Precision Corner Registration Brackets -->
+  <path d="M26 36 V26 H36" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M102 36 V26 H92" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M26 92 V102 H36" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M102 92 V102 H92" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- === LETTER K (BACKGROUND LAYER) === -->
+  <!-- Upper Diagonal of K: Reaching from waist up to top-right -->
+  <path d="M52 60 L86 34" stroke="#ffd166" stroke-width="9" stroke-linecap="round"/>
+  <!-- Lower Diagonal Leg of K: Reaching down to bottom-right -->
+  <path d="M52 64 L86 94" stroke="#ffd166" stroke-width="9" stroke-linecap="round"/>
+
+  <!-- === NEGATIVE SPACE MASK (Provides crisp 3.5px clearance around P) === -->
+  <path d="M38 34 H66 C75.94 34 84 42.06 84 52 C84 61.94 75.94 70 66 70 H47" 
+        stroke="#101526" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <rect x="33" y="30" width="18" height="68" rx="9" fill="#101526"/>
+
+  <!-- === LETTER P (FOREGROUND LAYER — 100% UNBROKEN & CRISP) === -->
+  <!-- P Vertical Stem -->
+  <rect x="38" y="34" width="9" height="60" rx="4.5" fill="#ffd166"/>
+  <!-- P Bold Closed Bowl -->
+  <path d="M47 34 H66 C75.94 34 84 42.06 84 52 C84 61.94 75.94 70 66 70 H47" 
+        stroke="#ffd166" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Tactile Home Row Alignment Notch -->
+  <rect x="52" y="100" width="24" height="3" rx="1.5" fill="#ffd166" opacity="0.75"/>
+</svg>
+

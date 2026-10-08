@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <!-- D.4: Bold Mechanical Switch Crosshair — Assertive, Clean, Pro Typist Identity -->
+  <rect width="128" height="128" rx="30" fill="#0c101c"/>
+  <rect x="2" y="2" width="124" height="124" rx="28" stroke="#1c2438" stroke-width="2"/>
+
+  <!-- Minimalist Switch Well -->
+  <rect x="18" y="18" width="92" height="92" rx="20" fill="#111626" stroke="#222c42" stroke-width="1.5"/>
+
+  <!-- Precision Mechanical Alignment Brackets (Subtle Industrial Detail) -->
+  <path d="M28 36 V28 H36" stroke="#ffd166" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+  <path d="M100 36 V28 H92" stroke="#ffd166" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+  <path d="M28 92 V100 H36" stroke="#ffd166" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+  <path d="M100 92 V100 H92" stroke="#ffd166" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- Bold Switch Stem PK Icon (Thick, confident, balanced 8px strokes) -->
+  <!-- Vertical backbone shared by P and mechanical switch axis -->
+  <rect x="42" y="36" width="9" height="56" rx="4.5" fill="#ffd166"/>
+
+  <!-- P Upper Loop (Clean geometric pill shape) -->
+  <path d="M51 36 H66 C75 36 81 41 81 49 C81 57 75 62 66 62 H51" 
+        stroke="#ffd166" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- K Diagonal Arms (Crisp 45° angles branching from center stem) -->
+  <path d="M64 62 L87 38" stroke="#ffd166" stroke-width="9" stroke-linecap="round"/>
+  <path d="M64 62 L88 92" stroke="#ffd166" stroke-width="9" stroke-linecap="round"/>
+
+  <!-- Center Tactile Axis Keypoint -->
+  <circle cx="64" cy="62" r="3.5" fill="#0c101c"/>
+</svg>
+

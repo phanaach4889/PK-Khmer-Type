@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <!-- Concept 4: Dual Keycap Duo (P | K) — Flat, Modern Software Identity -->
+  <rect width="128" height="128" rx="32" fill="#090d18"/>
+
+  <!-- Left Keycap [P] -->
+  <g>
+    <!-- Key Shadow / Base -->
+    <rect x="20" y="32" width="40" height="64" rx="12" fill="#141a2a" stroke="#232d44" stroke-width="2"/>
+    <!-- Key Top Face -->
+    <rect x="22" y="34" width="36" height="52" rx="9" fill="#1b2338"/>
+    <!-- Letter P -->
+    <text x="40" y="70" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="28" font-weight="700" fill="#ffd166" text-anchor="middle">P</text>
+  </g>
+
+  <!-- Right Keycap [K] (Highlighted Accent) -->
+  <g>
+    <!-- Key Shadow / Base -->
+    <rect x="68" y="32" width="40" height="64" rx="12" fill="#b8860b"/>
+    <!-- Key Top Face (Solid Gold Brand Punch) -->
+    <rect x="70" y="34" width="36" height="52" rx="9" fill="#ffd166"/>
+    <!-- Letter K (Inverted Contrast) -->
+    <text x="88" y="70" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="28" font-weight="800" fill="#101524" text-anchor="middle">K</text>
+  </g>
+
+  <!-- Tactile Home Row Registration Dots beneath keys -->
+  <circle cx="40" cy="104" r="2.5" fill="#ffd166" opacity="0.4"/>
+  <circle cx="88" cy="104" r="2.5" fill="#ffd166" opacity="0.9"/>
+</svg>
+

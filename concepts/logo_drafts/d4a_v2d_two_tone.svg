@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <!-- D.4-A2D: Two-Tone High Contrast (Titanium P + Temple Gold K) -->
+  <rect width="128" height="128" rx="28" fill="#0a0d18"/>
+  <rect x="2" y="2" width="124" height="124" rx="26" stroke="#1c2438" stroke-width="2"/>
+
+  <!-- Minimalist Switch Well -->
+  <rect x="14" y="14" width="100" height="100" rx="20" fill="#101526" stroke="#222c44" stroke-width="1.5"/>
+
+  <!-- Precision Corner Registration Brackets -->
+  <path d="M24 34 V24 H34" stroke="#e2e8f0" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
+  <path d="M104 34 V24 H94" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M24 94 V104 H34" stroke="#e2e8f0" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
+  <path d="M104 94 V104 H94" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- LETTER P (Crisp Titanium White) -->
+  <rect x="30" y="34" width="8" height="60" rx="4" fill="#e2e8f0"/>
+  <path d="M34 38 H48 C54 38 58 42.5 58 50 C58 57.5 54 62 48 62 H34" 
+        stroke="#e2e8f0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- LETTER K (Vibrant Temple Gold) -->
+  <rect x="70" y="34" width="8" height="60" rx="4" fill="#ffd166"/>
+  <path d="M74 62 L94 38" stroke="#ffd166" stroke-width="8" stroke-linecap="round"/>
+  <path d="M74 62 L94 90" stroke="#ffd166" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- Tactile Home Row Alignment Notch -->
+  <rect x="48" y="102" width="32" height="3" rx="1.5" fill="#ffd166" opacity="0.75"/>
+</svg>
+

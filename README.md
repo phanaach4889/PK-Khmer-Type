@@ -21,7 +21,7 @@
 
 ---
 
-## 🌐 Official Live Links
+## Official Live Links
 
 - **Launch PK Khmer Type (Web App):** [https://phanaach4889.github.io/PK-Khmer-Type/](https://phanaach4889.github.io/PK-Khmer-Type/)
 - **Official Documentation & Keyboard Layout Guide:** [https://phanaach4889.github.io/PK-Khmer-Type/Documents/](https://phanaach4889.github.io/PK-Khmer-Type/Documents/)
@@ -29,7 +29,7 @@
 
 ---
 
-## 🌟 Overview
+## Overview
 
 **PK Khmer Type (v2.2 Pro Studio Edition)** is a standalone, zero-dependency browser typing studio built specifically for mastering the Khmer abugida script (**Khmer Standard** and **Official Khmer NiDA**) alongside **English (US) QWERTY**.
 
@@ -43,7 +43,7 @@ Designed to run effortlessly both **online via any static server** and **100% of
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 | Feature | Description |
 | :--- | :--- |
@@ -66,7 +66,7 @@ Designed to run effortlessly both **online via any static server** and **100% of
 
 ---
 
-## ⚡ Zero-Lag Performance Mode
+## Zero-Lag Performance Mode
 
 PK Khmer Type prioritizes speed and responsiveness above all else:
 
@@ -80,7 +80,7 @@ PK Khmer Type prioritizes speed and responsiveness above all else:
 
 ---
 
-## 🎨 Studio Color Themes
+## Studio Color Themes
 
 PK Khmer Type features 8 handcrafted themes that apply consistently across all components:
 
@@ -95,7 +95,7 @@ PK Khmer Type features 8 handcrafted themes that apply consistently across all c
 
 ---
 
-## 🇰🇭 How Khmer Typing Works
+## How Khmer Typing Works
 
 Khmer is an **abugida** script where vowels and subscripts attach around a base consonant. Following these core principles makes typing natural:
 
@@ -129,7 +129,7 @@ Each keyboard layout supports up to 4 live layers that can be previewed by hover
 
 ---
 
-## 📚 Curriculum Breakdown
+## Curriculum Breakdown
 
 Each layout maintains independent progress, star ratings, WPM records, and unlock states:
 
@@ -142,7 +142,7 @@ Each layout maintains independent progress, star ratings, WPM records, and unloc
 
 ---
 
-## ⌨️ Keyboard Shortcuts
+## Keyboard Shortcuts
 
 | Shortcut | Action |
 | :--- | :--- |
@@ -159,7 +159,7 @@ Each layout maintains independent progress, star ratings, WPM records, and unloc
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Option 1: Open Directly (Offline / No Install)
 Simply double-click **`index.html`** in any modern web browser (Edge, Chrome, Brave, Firefox, Safari). All 218 lessons, procedural audio synthesizers, and themes work out of the box via `file:///`.
@@ -186,7 +186,7 @@ node scripts/bundle_curricula.js
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 .
@@ -238,6 +238,6 @@ node scripts/bundle_curricula.js
 
 ---
 
-## 👨‍💻 Credits & Author
+## Credits & Author
 
 Founded, designed, and built by **Phanna Kurosaki** to make Khmer and English typing education accessible, modern, elegant, and enjoyable for everyone.

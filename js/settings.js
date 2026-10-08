@@ -2163,20 +2163,111 @@ if (document.readyState === "loading") {
     } catch (e) {}
   }
 
+  var langHudTimer = null;
+  function showHolographicLangHud(isKm) {
+    try {
+      var hud = document.getElementById("pkLangHud");
+      if (!hud) {
+        hud = document.createElement("div");
+        hud.id = "pkLangHud";
+        hud.className = "pk-lang-hud";
+        hud.setAttribute("role", "status");
+        hud.setAttribute("aria-live", "polite");
+        document.body.appendChild(hud);
+      }
+
+      var sparkSvg = '<svg class="pk-icon pk-lang-hud-spark" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14"/></svg>';
+      var arrowSvg = '<svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+
+      hud.className = "pk-lang-hud " + (isKm ? "hud-km" : "hud-en");
+      hud.innerHTML = [
+        '<div class="pk-lang-hud-inner">',
+          '<div class="pk-lang-hud-visual">',
+            '<span class="pk-lang-hud-prev">' + (isKm ? 'EN' : 'KM') + '</span>',
+            '<span class="pk-lang-hud-arrow">' + arrowSvg + '</span>',
+            '<span class="pk-lang-hud-pill">' + (isKm ? 'ភាសាខ្មែរ' : 'English') + '</span>',
+            '<span class="pk-lang-hud-spark-wrap">' + sparkSvg + '</span>',
+          '</div>',
+          '<div class="pk-lang-hud-meta">',
+            '<span class="pk-lang-hud-title">' + (isKm ? 'បកប្រែជាភាសាខ្មែរ (Khmer Active)' : 'Translated to English') + '</span>',
+            '<span class="pk-lang-hud-hint"><kbd>Alt+L</kbd> ' + (isKm ? 'ប្តូរមកវិញ' : 'to switch back') + '</span>',
+          '</div>',
+        '</div>'
+      ].join('');
+
+      void hud.offsetWidth;
+      hud.classList.add("show");
+
+      if (langHudTimer) clearTimeout(langHudTimer);
+      langHudTimer = setTimeout(function () {
+        hud.classList.remove("show");
+      }, 1900);
+    } catch (e) {}
+  }
+
+  function playHolographicChime(isKm) {
+    try {
+      var ctx = window.audioCtx || (window.AudioContext ? new (window.AudioContext || window.webkitAudioContext)() : null);
+      if (!ctx) return;
+      if (ctx.state === "suspended") ctx.resume();
+      var now = ctx.currentTime;
+      var osc1 = ctx.createOscillator();
+      var osc2 = ctx.createOscillator();
+      var gain = ctx.createGain();
+
+      osc1.type = "sine";
+      osc2.type = "triangle";
+
+      if (isKm) {
+        osc1.frequency.setValueAtTime(523.25, now);
+        osc1.frequency.exponentialRampToValueAtTime(783.99, now + 0.11);
+        osc2.frequency.setValueAtTime(261.63, now);
+        osc2.frequency.exponentialRampToValueAtTime(392.00, now + 0.11);
+      } else {
+        osc1.frequency.setValueAtTime(783.99, now);
+        osc1.frequency.exponentialRampToValueAtTime(523.25, now + 0.11);
+        osc2.frequency.setValueAtTime(392.00, now);
+        osc2.frequency.exponentialRampToValueAtTime(261.63, now + 0.11);
+      }
+
+      gain.gain.setValueAtTime(0.065, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.20);
+
+      osc1.connect(gain);
+      osc2.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc1.start(now);
+      osc2.start(now);
+      osc1.stop(now + 0.22);
+      osc2.stop(now + 0.22);
+    } catch (e) {}
+  }
+
   function toggleSiteLanguage() {
     var next = document.documentElement.classList.contains("site-km-mode") ? "en" : "km";
     safeSetLang(LANG_KEY, next);
     applyLang(next);
+    var isNowKm = next === "km";
+
+    playHolographicChime(isNowKm);
+    showHolographicLangHud(isNowKm);
+
+    var topBtn = document.getElementById("topLangToggleBtn");
+    if (topBtn) {
+      topBtn.classList.add("lang-switch-flare");
+      setTimeout(function () { topBtn.classList.remove("lang-switch-flare"); }, 400);
+    }
+
     try {
       if (typeof showToast === "function") {
-        var isNowKm = next === "km";
         showToast(
           typeof pkIcon === "function" ? pkIcon("globe", 18) : "",
-          isNowKm ? "បកប្រែជាភាសាខ្មែរ 🇰🇭" : "Translated to English 🇺🇸",
+          isNowKm ? "បកប្រែជាភាសាខ្មែររួចរាល់" : "Translated to English",
           isNowKm ? "ចុច Alt+L ឬប៊ូតុងដើម្បីប្តូរមកភាសាអង់គ្លេសវិញ" : "Switched to English. Press Alt+L to translate to Khmer anytime."
         );
       }
-    } catch(e){}
+    } catch (e) {}
   }
 
   var startLang = safeGetLang(LANG_KEY, "en");

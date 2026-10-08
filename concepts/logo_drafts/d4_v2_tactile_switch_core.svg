@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <!-- D4.2: Integrated Switch Stem Plate + Bold PK Identity -->
+  <rect width="128" height="128" rx="28" fill="#090d18"/>
+  <rect x="2" y="2" width="124" height="124" rx="26" stroke="#1d263a" stroke-width="2"/>
+
+  <!-- Mechanical Switch Cross (+) Plate Background Silhouette -->
+  <path d="M52 24 H76 V52 H104 V76 H76 V104 H52 V76 H24 V52 H52 Z" 
+        fill="#131a2c" stroke="rgba(255,209,102,0.25)" stroke-width="1.5" rx="4"/>
+
+  <!-- Corner Industrial Registration Markers -->
+  <circle cx="28" cy="28" r="2.5" fill="#ffd166" opacity="0.4"/>
+  <circle cx="100" cy="28" r="2.5" fill="#ffd166" opacity="0.4"/>
+  <circle cx="28" cy="100" r="2.5" fill="#ffd166" opacity="0.4"/>
+  <circle cx="100" cy="100" r="2.5" fill="#ffd166" opacity="0.4"/>
+
+  <!-- Sculpted Gold PK Monogram with 45° Mechanical Chamfers -->
+  <!-- Vertical P Stem -->
+  <rect x="40" y="34" width="10" height="60" rx="5" fill="#ffd166"/>
+
+  <!-- P Upper Loop -->
+  <path d="M50 34 H66 C75 34 82 41 82 50 C82 59 75 66 66 66 H50" 
+        stroke="#ffd166" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- K Wings branching with precision -->
+  <path d="M62 60 L85 36" stroke="#ffd166" stroke-width="10" stroke-linecap="round"/>
+  <path d="M62 60 L86 94" stroke="#ffd166" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- Center Pin Crosshair Accent -->
+  <circle cx="64" cy="64" r="3.5" fill="#ffd166"/>
+</svg>
+

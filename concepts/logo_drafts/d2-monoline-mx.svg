@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <!-- D.2: Pure Switch Cross Ligature — Razor-sharp, Zero Awkwardness -->
+  <rect width="128" height="128" rx="28" fill="#0a0e1a"/>
+
+  <!-- Subtle Mechanical Keycap Dish Inset -->
+  <rect x="12" y="12" width="104" height="104" rx="20" fill="#111628" stroke="#1e273e" stroke-width="1.5"/>
+
+  <!-- Iconic Cross-Stem Guide Plate -->
+  <path d="M52 28 H76 V52 H100 V76 H76 V100 H52 V76 H28 V52 H52 Z" fill="#171e33" stroke="rgba(255,209,102,0.18)" stroke-width="1.5"/>
+
+  <!-- Bold Gold Monogram Formed Inside the Cross Stem -->
+  <!-- Left P -->
+  <path d="M42 86 V42 H60 C69 42 74 47 74 55 C74 63 69 68 60 68 H42" 
+        stroke="#ffd166" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Right K Diagonal Wings -->
+  <path d="M60 68 L86 42" stroke="#ffd166" stroke-width="8" stroke-linecap="round"/>
+  <path d="M60 68 L86 86" stroke="#ffd166" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- Mechanical Stem Center Pin Cutout (Gives Authentic Switch Look) -->
+  <rect x="60" y="60" width="8" height="8" rx="2" fill="#0a0e1a"/>
+</svg>
+

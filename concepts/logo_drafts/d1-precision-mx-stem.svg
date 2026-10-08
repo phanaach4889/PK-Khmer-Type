@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <!-- D.1: Precision MX Switch Stem — Clean Industrial Hardware Aesthetic -->
+  <!-- Outer Keycap/Switch Housing Base -->
+  <rect x="8" y="8" width="112" height="112" rx="24" fill="#0c101d" stroke="#1f283d" stroke-width="2"/>
+  
+  <!-- Switch Top Plate / Housing Silhouette -->
+  <rect x="18" y="18" width="92" height="92" rx="16" fill="#121727" stroke="rgba(255,209,102,0.15)" stroke-width="1.5"/>
+
+  <!-- North-facing LED / Switch Notch Accent -->
+  <rect x="52" y="18" width="24" height="6" rx="3" fill="#ffd166" opacity="0.4"/>
+
+  <!-- Center MX Cross-Stem Body in Solid Dark Graphite -->
+  <rect x="36" y="36" width="56" height="56" rx="10" fill="#182035" stroke="#2c3854" stroke-width="1.5"/>
+
+  <!-- Engineered PK Monogram (Balanced Uniform 7px Stroke) -->
+  <g stroke="#ffd166" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- P: Vertical stem from top to bottom, round upper bowl -->
+    <path d="M46 84 V44 H60 C68 44 72 49 72 56 C72 63 68 67 60 67 H46"/>
+    <!-- K: Upper diagonal reaching 45°, lower diagonal planted firm -->
+    <path d="M62 67 L80 44"/>
+    <path d="M62 67 L82 84"/>
+  </g>
+
+  <!-- Tactile Center Key Registration Dot -->
+  <circle cx="64" cy="98" r="2.5" fill="#ffd166" opacity="0.8"/>
+</svg>
+

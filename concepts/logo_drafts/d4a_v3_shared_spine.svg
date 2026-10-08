@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <!-- D.4-A3: Shared-Spine Offset — P Bowl Untouched, K Diagonals Branch from Outer Apex -->
+  <!-- Dark Matte Obsidian Base -->
+  <rect width="128" height="128" rx="28" fill="#0a0d18"/>
+  <rect x="2" y="2" width="124" height="124" rx="26" stroke="#1c2438" stroke-width="2"/>
+
+  <!-- Minimalist Switch Well (Keycap Dish) -->
+  <rect x="16" y="16" width="96" height="96" rx="20" fill="#101526" stroke="#222c44" stroke-width="1.5"/>
+
+  <!-- Precision Corner Registration Brackets -->
+  <path d="M26 36 V26 H36" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M102 36 V26 H92" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M26 92 V102 H36" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M102 92 V102 H92" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- === SHARED VERTICAL STEM === -->
+  <rect x="36" y="34" width="9" height="60" rx="4.5" fill="#ffd166"/>
+
+  <!-- === P BOWL (Clear, Open, Never Intersected) === -->
+  <path d="M45 34 H62 C71.5 34 78 41 78 50 C78 59 71.5 66 62 66 H45" 
+        stroke="#ffd166" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- === K DIAGONALS (Branching seamlessly from the outer waist) === -->
+  <!-- Upper K Branch: Ascending from P outer edge without cutting through the bowl -->
+  <path d="M68 50 L89 34" stroke="#ffd166" stroke-width="9" stroke-linecap="round"/>
+  <!-- Lower K Branch: Descending to the bottom-right corner -->
+  <path d="M62 66 L89 94" stroke="#ffd166" stroke-width="9" stroke-linecap="round"/>
+
+  <!-- Tactile Home Row Alignment Notch -->
+  <rect x="52" y="100" width="24" height="3" rx="1.5" fill="#ffd166" opacity="0.75"/>
+</svg>
+

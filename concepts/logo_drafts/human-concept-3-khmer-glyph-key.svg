@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <!-- Concept 3: Khmer "ក" (Ka) & Latin "PK" Unified Continuous Symbol -->
+  <!-- Outer Pill/Key Base -->
+  <rect x="12" y="12" width="104" height="104" rx="28" fill="#0d111d"/>
+  <rect x="12" y="12" width="104" height="104" rx="28" stroke="#1f273d" stroke-width="2"/>
+
+  <!-- Unified Stroke: Left stem of P, loops across like Khmer Ka crown, diagonals of K -->
+  <!-- Bold 9px stroke, pure flat gold, completely clean geometry -->
+  <path d="M42 90 V38 C42 38 52 34 64 34 C76 34 86 42 86 52 C86 64 74 68 62 68 H42" 
+        stroke="#ffd166" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  
+  <!-- Right dynamic branch of K / Khmer wing -->
+  <path d="M62 68 L86 90" stroke="#ffd166" stroke-width="9" stroke-linecap="round"/>
+  <path d="M64 52 L86 38" stroke="#ffd166" stroke-width="9" stroke-linecap="round"/>
+
+  <!-- Home row anchor dash (like the physical bump on the F and J keys) -->
+  <rect x="52" y="100" width="24" height="4" rx="2" fill="#ffd166" opacity="0.6"/>
+</svg>
+

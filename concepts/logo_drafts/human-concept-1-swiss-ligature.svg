@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <!-- Concept 1: Modern Swiss Geometric Ligature (Human Craft, Zero AI Fluff) -->
+  <!-- Keycap Silhouette -->
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="#0d111d" stroke="#ffd166" stroke-width="4"/>
+  
+  <!-- Subtle Inner Key Dish Guide -->
+  <rect x="18" y="18" width="92" height="92" rx="20" fill="#13192b"/>
+
+  <!-- Continuous Bold Monoline P + K Ligature (Uniform 8px stroke, 45-degree geometry) -->
+  <g stroke="#ffd166" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- P vertical stem & loop -->
+    <path d="M42 90 V38 H64 C74 38 82 45 82 55 C82 65 74 72 64 72 H42"/>
+    <!-- K diagonal branches branching seamlessly from the P waist -->
+    <path d="M64 72 L86 38"/>
+    <path d="M62 70 L86 90"/>
+  </g>
+
+  <!-- Single Distinctive Accent Dot (Tactile Homerow Nipple on K) -->
+  <circle cx="64" cy="100" r="3" fill="#ffd166"/>
+</svg>
+

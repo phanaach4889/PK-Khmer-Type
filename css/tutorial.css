@@ -405,9 +405,42 @@ html.site-km-mode .pk-tut-tlang-arrow {
   background: rgba(255, 255, 255, 0.08);
 }
 
-.pk-tut-seg-flag {
-  font-size: 0.88rem;
-  line-height: 1;
+.pk-tut-seg-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+}
+
+.pk-tut-seg-tag.en {
+  background: rgba(56, 189, 248, 0.18);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+}
+
+.pk-tut-seg-btn.active .pk-tut-seg-tag.en {
+  background: #38bdf8;
+  color: #070a12;
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.7);
+}
+
+.pk-tut-seg-tag.km {
+  background: rgba(255, 209, 102, 0.18);
+  color: #ffd166;
+  border: 1px solid rgba(255, 209, 102, 0.4);
+}
+
+.pk-tut-seg-btn.active .pk-tut-seg-tag.km {
+  background: #ffd166;
+  color: #070a12;
+  border-color: #ffd166;
+  box-shadow: 0 0 10px rgba(255, 209, 102, 0.7);
 }
 
 .pk-tut-crest-icon {

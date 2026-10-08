@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <!-- Concept 2: Mechanical Switch Stem + Monogram (Crisp, Flat, Iconic) -->
+  <rect x="10" y="10" width="108" height="108" rx="26" fill="#0f1424"/>
+  <rect x="10" y="10" width="108" height="108" rx="26" stroke="#252f48" stroke-width="2"/>
+
+  <!-- Mechanical Switch Housing Circle -->
+  <circle cx="64" cy="64" r="42" fill="#161e33" stroke="rgba(255,209,102,0.3)" stroke-width="2"/>
+
+  <!-- Geometric P (Left Half) -->
+  <path d="M38 86 V42 H56 C65 42 72 48 72 56 C72 64 65 70 56 70 H48 V86 H38 Z" fill="#ffd166"/>
+
+  <!-- Geometric K (Right Half) -->
+  <path d="M72 42 H83 L66 63 L85 86 H73 L58 68 L72 52 V42 Z" fill="#ffd166"/>
+
+  <!-- Precision Mechanical Stem Center Crosshair Cutout -->
+  <circle cx="64" cy="64" r="5" fill="#0f1424"/>
+</svg>
+

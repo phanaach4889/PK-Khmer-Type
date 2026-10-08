@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <!-- D4.4: Aerodynamic Mechanical Flow — Pure Continuous Geometry -->
+  <rect width="128" height="128" rx="28" fill="#0b0f1c"/>
+  <rect x="2" y="2" width="124" height="124" rx="26" stroke="#222d46" stroke-width="2"/>
+
+  <!-- Minimalist Housing Well -->
+  <rect x="16" y="16" width="96" height="96" rx="20" fill="#12182a" stroke="#283552" stroke-width="1.5"/>
+
+  <!-- Tech Crosshair Ticks -->
+  <line x1="64" y1="20" x2="64" y2="28" stroke="#ffd166" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <line x1="64" y1="100" x2="64" y2="108" stroke="#ffd166" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <line x1="20" y1="64" x2="28" y2="64" stroke="#ffd166" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <line x1="100" y1="64" x2="108" y2="64" stroke="#ffd166" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+
+  <!-- Ultra-Clean Flow Monogram (10px Uniform Solid Gold Line) -->
+  <!-- Solid Backbone -->
+  <rect x="38" y="34" width="10" height="60" rx="5" fill="#ffd166"/>
+
+  <!-- P Upper Loop with crisp 90° & 180° geometric curve -->
+  <path d="M48 34 H66 C76 34 83 41 83 50 C83 59 76 66 66 66 H48" 
+        stroke="#ffd166" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- K Chevron branching cleanly at 45° -->
+  <path d="M66 66 L86 40" stroke="#ffd166" stroke-width="10" stroke-linecap="round"/>
+  <path d="M64 64 L87 94" stroke="#ffd166" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- Center Axis Pivot Dot -->
+  <circle cx="65" cy="65" r="3" fill="#12182a"/>
+</svg>
+

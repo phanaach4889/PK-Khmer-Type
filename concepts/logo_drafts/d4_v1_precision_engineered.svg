@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <!-- D4.1: Precision Engineered — Seamless Junction, Mathematical Balance -->
+  <rect width="128" height="128" rx="28" fill="#0a0d18"/>
+  <rect x="2" y="2" width="124" height="124" rx="26" stroke="#1c2438" stroke-width="2"/>
+
+  <!-- Minimalist Switch Well (Recessed Keycap Dish) -->
+  <rect x="16" y="16" width="96" height="96" rx="20" fill="#101526" stroke="#222c44" stroke-width="1.5"/>
+
+  <!-- Precision Corner Registration Brackets -->
+  <path d="M26 36 V26 H36" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M102 36 V26 H92" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M26 92 V102 H36" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M102 92 V102 H92" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Main Monogram (Solid, Harmonious, Clean 9px Strokes) -->
+  <!-- Vertical Stem of P & Switch Axis -->
+  <rect x="38" y="34" width="9" height="60" rx="4.5" fill="#ffd166"/>
+
+  <!-- P Bowl (Rounded Right) -->
+  <path d="M47 34 H64 C73.94 34 82 42.06 82 52 C82 61.94 73.94 70 64 70 H47" 
+        stroke="#ffd166" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- K Diagonals: Branching directly and cleanly from the stem -->
+  <path d="M60 62 L84 38" stroke="#ffd166" stroke-width="9" stroke-linecap="round"/>
+  <path d="M60 62 L85 94" stroke="#ffd166" stroke-width="9" stroke-linecap="round"/>
+
+  <!-- Tactile Home Row Alignment Notch at the bottom -->
+  <rect x="52" y="100" width="24" height="3" rx="1.5" fill="#ffd166" opacity="0.75"/>
+</svg>
+

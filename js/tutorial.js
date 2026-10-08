@@ -286,10 +286,12 @@
           <div class="pk-tutorial-tooltip-header">
             <span class="pk-tutorial-step-badge" id="pkTutStepBadge">Step 1 of 4</span>
             <div class="pk-tut-tooltip-header-actions">
-              <button type="button" class="pk-tut-tooltip-lang-btn" id="pkTutTooltipLangBtn" aria-label="Translate tutorial language" title="Translate English ⇄ Khmer">
+              <button type="button" class="pk-tut-tooltip-lang-btn" id="pkTutTooltipLangBtn" aria-label="Translate tutorial language" title="Translate English ⇄ Khmer (Alt+L)">
                 <span class="pk-tut-tooltip-lang-capsule">
                   <span class="pk-tut-tlang-opt en active" id="pkTutTooltipLangEn">EN</span>
-                  <span class="pk-tut-tlang-arrow" aria-hidden="true">⇄</span>
+                  <span class="pk-tut-tlang-arrow" aria-hidden="true">
+                    <svg class="pk-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg>
+                  </span>
                   <span class="pk-tut-tlang-opt km" id="pkTutTooltipLangKm">ខ្មែរ</span>
                 </span>
               </button>
@@ -321,10 +323,10 @@
             </div>
             <div class="pk-tut-lang-segmented" id="pkTutModalLangSeg" role="group" aria-label="Translate tutorial language">
               <button type="button" class="pk-tut-seg-btn active" id="pkTutModalLangEn" data-tut-lang="en">
-                <span class="pk-tut-seg-flag">🇺🇸</span> <span>English</span>
+                <span class="pk-tut-seg-tag en">EN</span> <span>English</span>
               </button>
               <button type="button" class="pk-tut-seg-btn" id="pkTutModalLangKm" data-tut-lang="km">
-                <span class="pk-tut-seg-flag">🇰🇭</span> <span>ភាសាខ្មែរ</span>
+                <span class="pk-tut-seg-tag km">KM</span> <span>ភាសាខ្មែរ</span>
               </button>
             </div>
           </div>

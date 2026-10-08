@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <!-- Background Tech Glow -->
+    <radialGradient id="cyberAura" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#ffd166" stop-opacity="0.25"/>
+      <stop offset="45%" stop-color="#ff3b56" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#05070e" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Keycap Left Face Gradient (P) -->
+    <linearGradient id="keyPFace" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#222b40"/>
+      <stop offset="100%" stop-color="#121724"/>
+    </linearGradient>
+
+    <!-- Keycap Right Face Gradient (K) -->
+    <linearGradient id="keyKFace" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d3752"/>
+      <stop offset="100%" stop-color="#161c2c"/>
+    </linearGradient>
+
+    <!-- Glowing Neon Gold -->
+    <linearGradient id="neonGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#fff5cc"/>
+      <stop offset="50%" stop-color="#ffd166"/>
+      <stop offset="100%" stop-color="#ff9d2e"/>
+    </linearGradient>
+
+    <!-- Crimson Temple Accent Gradient -->
+    <linearGradient id="templeRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff6b81"/>
+      <stop offset="100%" stop-color="#ff3b56"/>
+    </linearGradient>
+
+    <!-- Drop Shadow for Keys -->
+    <filter id="keyShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="-4" dy="14" stdDeviation="16" flood-color="#000000" flood-opacity="0.8"/>
+    </filter>
+
+    <!-- Circuit Trace Neon Glow -->
+    <filter id="traceGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Dark Obsidian Container -->
+  <rect width="512" height="512" rx="116" fill="#070911"/>
+  <circle cx="256" cy="256" r="230" fill="url(#cyberAura)"/>
+
+  <!-- Outer Frame -->
+  <rect x="36" y="36" width="440" height="440" rx="96" fill="#0d111c" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <rect x="42" y="42" width="428" height="428" rx="90" fill="none" stroke="rgba(255,209,102,0.2)" stroke-width="1.5"/>
+
+  <!-- Circuit Traces Connecting Keys (Typing Flow) -->
+  <g opacity="0.6" stroke="url(#neonGold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#traceGlow)">
+    <path d="M72 256 H120 L144 280 H180"/>
+    <path d="M440 256 H392 L368 232 H332"/>
+    <circle cx="72" cy="256" r="4.5" fill="#ffd166"/>
+    <circle cx="440" cy="256" r="4.5" fill="#ffd166"/>
+    <!-- Inter-key synchronization bus -->
+    <path d="M228 320 L256 348 L284 320" stroke="url(#templeRed)" stroke-width="3"/>
+  </g>
+
+  <!-- Left Keycap "P" (Anchor ថ) -->
+  <g filter="url(#keyShadow)">
+    <!-- Base Skirt -->
+    <rect x="100" y="148" width="168" height="176" rx="28" fill="#0b0e18" stroke="rgba(255,209,102,0.3)" stroke-width="2"/>
+    <!-- Dish Top -->
+    <rect x="110" y="156" width="148" height="148" rx="22" fill="url(#keyPFace)" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"/>
+    <!-- Key P Specular Edge -->
+    <line x1="126" y1="168" x2="242" y2="168" stroke="rgba(255,255,255,0.25)" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Big Letter P -->
+    <text x="146" y="246" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="68" font-weight="800" fill="url(#neonGold)" filter="url(#traceGlow)">P</text>
+    <!-- Khmer Anchor Consonant "ថ" (F Key Anchor) -->
+    <text x="216" y="210" font-family="'Noto Sans Khmer', sans-serif" font-size="30" font-weight="700" fill="#ff6b81">ថ</text>
+    <!-- Finger Anchor Tactile Bar -->
+    <rect x="154" y="274" width="48" height="4" rx="2" fill="#ffd166" opacity="0.8"/>
+  </g>
+
+  <!-- Right Keycap "K" (Anchor ក) — Layered with slight overlap -->
+  <g filter="url(#keyShadow)">
+    <!-- Base Skirt -->
+    <rect x="244" y="188" width="168" height="176" rx="28" fill="#0f1422" stroke="url(#neonGold)" stroke-width="2.5"/>
+    <!-- Dish Top -->
+    <rect x="254" y="196" width="148" height="148" rx="22" fill="url(#keyKFace)" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
+    <!-- Key K Specular Edge -->
+    <line x1="270" y1="208" x2="386" y2="208" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Big Letter K -->
+    <text x="290" y="286" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="68" font-weight="800" fill="#ffffff">K</text>
+    <!-- Khmer Anchor Consonant "ក" (K Key Anchor) -->
+    <text x="360" y="250" font-family="'Noto Sans Khmer', sans-serif" font-size="32" font-weight="700" fill="url(#neonGold)">ក</text>
+    <!-- Finger Anchor Tactile Bar -->
+    <rect x="298" y="314" width="48" height="4" rx="2" fill="#fff" opacity="0.9"/>
+  </g>
+
+  <!-- Glowing Laser Connection Beam Between Keys -->
+  <line x1="240" y1="240" x2="272" y2="272" stroke="#fff" stroke-width="3" filter="url(#traceGlow)"/>
+  <circle cx="256" cy="256" r="6" fill="#ffd166" filter="url(#traceGlow)"/>
+
+  <!-- Lower Branding Badge -->
+  <g transform="translate(256, 420)">
+    <rect x="-110" y="-18" width="220" height="36" rx="18" fill="rgba(255,255,255,0.04)" stroke="rgba(255,209,102,0.3)" stroke-width="1.5"/>
+    <text x="0" y="6" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="14" font-weight="700" letter-spacing="4" fill="#ffd166" text-anchor="middle">
+      PK KHMER TYPE
+    </text>
+  </g>
+</svg>
+

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none">
+  <!-- D.4-A2B: Split-Chamber Dual Keycap (Subtle central divider groove) -->
+  <rect width="128" height="128" rx="28" fill="#0a0d18"/>
+  <rect x="2" y="2" width="124" height="124" rx="26" stroke="#1c2438" stroke-width="2"/>
+
+  <!-- Left Keycap Well (P Chamber) -->
+  <rect x="14" y="14" width="47" height="100" rx="16" fill="#101526" stroke="#222c44" stroke-width="1.5"/>
+  <!-- Right Keycap Well (K Chamber) -->
+  <rect x="67" y="14" width="47" height="100" rx="16" fill="#101526" stroke="#222c44" stroke-width="1.5"/>
+
+  <!-- Central Switch Groove Seam -->
+  <line x1="64" y1="20" x2="64" y2="108" stroke="#1c2438" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.6"/>
+
+  <!-- Corner Registration Brackets -->
+  <path d="M22 30 V22 H30" stroke="#ffd166" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <path d="M106 30 V22 H98" stroke="#ffd166" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <path d="M22 98 V106 H30" stroke="#ffd166" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <path d="M106 98 V106 H98" stroke="#ffd166" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- LETTER P -->
+  <rect x="26" y="34" width="8" height="60" rx="4" fill="#ffd166"/>
+  <path d="M30 38 H44 C50 38 54 42.5 54 50 C54 57.5 50 62 44 62 H30" 
+        stroke="#ffd166" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- LETTER K -->
+  <rect x="74" y="34" width="8" height="60" rx="4" fill="#ffd166"/>
+  <path d="M78 62 L98 38" stroke="#ffd166" stroke-width="8" stroke-linecap="round"/>
+  <path d="M78 62 L98 90" stroke="#ffd166" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- Tactile Home Row Alignment Notches on each key -->
+  <rect x="30" y="102" width="16" height="3" rx="1.5" fill="#ffd166" opacity="0.75"/>
+  <rect x="82" y="102" width="16" height="3" rx="1.5" fill="#ffd166" opacity="0.75"/>
+</svg>
+
