@@ -1275,9 +1275,11 @@ function updateNidaTestStatus(val){
   const hasKhmer = /[\u1780-\u17FF]/.test(val);
   const hasEnglish = /[a-zA-Z]/.test(val);
   if(hasKhmer){
-    statusEl.innerHTML = `<span class="nida-test-badge good">${isKm ? '✅ ជោគជ័យ! ក្តារចុច Khmer NiDA ត្រឹមត្រូវ' : '✅ Success! Khmer NiDA keyboard is active!'}</span>`;
+    const chkSvg = `<svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>`;
+    statusEl.innerHTML = `<span class="nida-test-badge good">${chkSvg} ${isKm ? 'ជោគជ័យ! ក្តារចុច Khmer NiDA ត្រឹមត្រូវ' : 'Success! Khmer NiDA keyboard is active!'}</span>`;
   } else if(hasEnglish){
-    statusEl.innerHTML = `<span class="nida-test-badge bad">${isKm ? '❌ ក្តារចុចនៅតែជាភាសាអង់គ្លេស។ សូមចុច Win + Space' : '❌ Keyboard is in English. Press Win + Space to switch!'}</span>`;
+    const errSvg = `<svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>`;
+    statusEl.innerHTML = `<span class="nida-test-badge bad">${errSvg} ${isKm ? 'ក្តារចុចនៅតែជាភាសាអង់គ្លេស។ សូមចុច Win + Space' : 'Keyboard is in English. Press Win + Space to switch!'}</span>`;
   } else {
     statusEl.innerHTML = `<span class="nida-test-badge neutral">${isKm ? 'កំពុងវាយ...' : 'Typing...'}</span>`;
   }

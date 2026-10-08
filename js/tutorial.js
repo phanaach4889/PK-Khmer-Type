@@ -49,11 +49,11 @@
       step3dTitle: 'Track your progress',
       step3dDesc: 'Your progress updates as you practice.',
 
-      pillActive: 'Onboarding active: complete this lesson to continue ✨',
+      pillActive: 'Onboarding active: complete this lesson to continue',
       pillPause: 'Pause',
 
-      firstDoneTitle: 'First lesson completed! 🎉',
-      firstDoneDesc: "Nice work. You've learned how a lesson works. Let's see how you can use the practice guide.",
+      firstDoneTitle: 'First lesson completed!',
+      firstDoneDesc: "Nice work. You've learned how a lesson works. Let's see how you can use the practice guide and studio controls.",
 
       stepQuickTitle: 'Step 3 — Your practice guide',
       stepQuickDesc: 'This panel helps you understand your progress, find the right finger positions, and practice keys that need more attention.',
@@ -73,12 +73,24 @@
       subscriptsTitle: 'Subscripts & Rules',
       subscriptsDesc: 'Consult this section when learning Khmer typing rules, Coeng subscripts, and punctuation.',
 
-      finishTitle: "You're ready to learn Khmer typing! 🚀",
+      stepCmdTitle: 'Step 4 — Studio Command Bar',
+      stepCmdDesc: 'Your top-right command dock gives you instant access to Focus Mode, Guide, Shortcuts, Khmer Translation, Statistics, Settings, and Account Sync.',
+
+      cmdFocusTitle: 'Focus Mode (Alt+F) & Quick Guide',
+      cmdFocusDesc: 'Press Alt+F or click Focus to hide surrounding panels for distraction-free typing, or toggle the Quick Guide sidebar anytime.',
+
+      cmdLangTitle: 'Shortcuts (?) & Translate to Khmer (Alt+L)',
+      cmdLangDesc: 'Open the full keyboard shortcuts reference with ? or switch the entire studio interface between English and Khmer with Alt+L.',
+
+      cmdStatsTitle: 'Statistics, Settings & Cloud Profile',
+      cmdStatsDesc: 'Inspect your 60-day WPM & accuracy analytics, customize mechanical switch sounds, themes, and 4K wallpapers, or sign in to sync progress.',
+
+      finishTitle: "You're ready to learn Khmer typing!",
       finishSubtitle: 'Here is your suggested learning path:',
       path1: 'Complete the next available lesson.',
       path2: 'Practice until you become comfortable with the keys.',
       path3: 'Check the Quick Guide when you need help.',
-      path4: 'Use Adaptive Practice to focus on keys that need more practice.',
+      path4: 'Use Adaptive Practice and Studio Controls to customize your training.',
       startNextLesson: 'Start Next Lesson',
       exploreAlone: 'Explore on My Own'
     },
@@ -116,11 +128,11 @@
       step3dTitle: 'តាមដានវឌ្ឍនភាពរបស់អ្នក',
       step3dDesc: 'វឌ្ឍនភាពរបស់អ្នកនឹងកើនឡើងនៅពេលអ្នកវាយ។',
 
-      pillActive: 'ការណែនាំកំពុងដំណើរការ៖ បញ្ចប់មេរៀននេះដើម្បីបន្ត ✨',
+      pillActive: 'ការណែនាំកំពុងដំណើរការ៖ បញ្ចប់មេរៀននេះដើម្បីបន្ត',
       pillPause: 'ផ្អាក',
 
-      firstDoneTitle: 'មេរៀនដំបូងត្រូវបានបញ្ចប់! 🎉',
-      firstDoneDesc: 'ធ្វើបានល្អណាស់! អ្នកបានយល់ពីដំណើរការនៃមេរៀនហើយ។ តោះទៅមើលពីរបៀបប្រើប្រាស់មគ្គុទ្ទេសក៍ហ្វឹកហាត់។',
+      firstDoneTitle: 'មេរៀនដំបូងត្រូវបានបញ្ចប់!',
+      firstDoneDesc: 'ធ្វើបានល្អណាស់! អ្នកបានយល់ពីដំណើរការនៃមេរៀនហើយ។ តោះទៅមើលពីរបៀបប្រើប្រាស់មគ្គុទ្ទេសក៍ហ្វឹកហាត់ និងរបារបញ្ជាស្ទូឌីយោ។',
 
       stepQuickTitle: 'ជំហានទី ៣ — មគ្គុទ្ទេសក៍ហ្វឹកហាត់របស់អ្នក',
       stepQuickDesc: 'ផ្ទាំងនេះជួយអ្នកតាមដានវឌ្ឍនភាព រកទីតាំងម្រាមដៃត្រឹមត្រូវ និងហ្វឹកហាត់គ្រាប់ចុចដែលត្រូវការការយកចិត្តទុកដាក់។',
@@ -140,15 +152,50 @@
       subscriptsTitle: 'ជើងអក្សរ & ក្បួនប្លង់',
       subscriptsDesc: 'ពិគ្រោះផ្នែកនេះនៅពេលរៀនក្បួនវាយជើងអក្សរខ្មែរ និងសញ្ញាផ្សេងៗ។',
 
-      finishTitle: 'អ្នកបានត្រៀមខ្លួនរួចរាល់ដើម្បីរៀនវាយអក្សរខ្មែរហើយ! 🚀',
+      stepCmdTitle: 'ជំហានទី ៤ — របារបញ្ជាស្ទូឌីយោ',
+      stepCmdDesc: 'របារបញ្ជានៅជ្រុងខាងលើស្តាំផ្តល់ឱ្យអ្នកនូវការចូលប្រើភ្លាមៗទៅកាន់ Focus Mode, Guide, Shortcuts, ការបកប្រែភាសាខ្មែរ, ស្ថិតិ, ការកំណត់ និងគណនី។',
+
+      cmdFocusTitle: 'មុខងារផ្ដោតអារម្មណ៍ (Alt+F) & ណែនាំ',
+      cmdFocusDesc: 'ចុច Alt+F ឬប៊ូតុង Focus ដើម្បីលាក់ផ្ទាំងជុំវិញសម្រាប់ការវាយអក្សរដោយគ្មានការរំខាន ឬបិទ/បើករបារ Quick Guide គ្រប់ពេល។',
+
+      cmdLangTitle: 'ផ្លូវកាត់ (?) & បកប្រែជាភាសាខ្មែរ (Alt+L)',
+      cmdLangDesc: 'បើកតារាងផ្លូវកាត់ក្តារចុចដោយចុច ? ឬប្តូរភាសាកម្មវិធីទាំងមូលរវាងភាសាអង់គ្លេស និងភាសាខ្មែរដោយចុច Alt+L។',
+
+      cmdStatsTitle: 'ស្ថិតិ ការកំណត់ & គណនី',
+      cmdStatsDesc: 'ពិនិត្យមើលស្ថិតិ WPM និងភាពត្រឹមត្រូវ ៦០ ថ្ងៃ កែសម្រួលសំឡេងគ្រាប់ចុច រចនាប័ទ្ម និងផ្ទាំងរូបភាព 4K ឬចូលគណនីដើម្បីរក្សាទុកទិន្នន័យ។',
+
+      finishTitle: 'អ្នកបានត្រៀមខ្លួនរួចរាល់ដើម្បីរៀនវាយអក្សរខ្មែរហើយ!',
       finishSubtitle: 'នេះជាគន្លងសិក្សាដែលបានណែនាំសម្រាប់អ្នក៖',
       path1: 'បញ្ចប់មេរៀនបន្ទាប់ដែលអាចចូលរៀនបាន។',
       path2: 'ហាត់រហូតដល់អ្នកមានអារម្មណ៍ស្ទាត់ជាមួយគ្រាប់ចុច។',
       path3: 'ពិនិត្យមើល Quick Guide នៅពេលអ្នកត្រូវការជំនួយ។',
-      path4: 'ប្រើ Adaptive Practice ដើម្បីផ្តោតលើគ្រាប់ចុចដែលត្រូវការហាត់បន្ថែម។',
+      path4: 'ប្រើ Adaptive Practice និងរបារបញ្ជាស្ទូឌីយោដើម្បីកែសម្រួលការហ្វឹកហាត់។',
       startNextLesson: 'ចាប់ផ្តើមមេរៀនបន្ទាប់',
       exploreAlone: 'ស្វែងយល់ដោយខ្លួនឯង'
     }
+  };
+
+  const TUT_ICONS = {
+    lessons: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>',
+    card: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>',
+    target: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+    key: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2.5"/><line x1="6" y1="8" x2="6.01" y2="8"/><line x1="10" y1="8" x2="10.01" y2="8"/><line x1="14" y1="8" x2="14.01" y2="8"/><line x1="18" y1="8" x2="18.01" y2="8"/><line x1="7" y1="16" x2="17" y2="16"/></svg>',
+    typing: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>',
+    progress: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>',
+    guide: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
+    radar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 12l4.5-4.5"/><circle cx="12" cy="12" r="3"/></svg>',
+    wpm: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>',
+    fingers: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>',
+    weak: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',
+    rules: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>',
+    cmdbar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M6 9h3"/><path d="M11 9h3"/><path d="M16 9h2"/><path d="M6 15h12"/></svg>',
+    focus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg>',
+    globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+    stats: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+    settings: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33 1.65 1.65 0 0 0 1.51-1V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
+    user: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+    trophy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>',
+    crown: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>'
   };
 
   class PKTutorialEngine {
@@ -234,13 +281,17 @@
 
         <div id="pkTutorialTooltip" class="pk-tutorial-tooltip" role="dialog" aria-modal="true" aria-labelledby="pkTutTitle">
           <div class="pk-tutorial-tooltip-header">
-            <span class="pk-tutorial-step-badge" id="pkTutStepBadge">Step 1 of 5</span>
+            <span class="pk-tutorial-step-badge" id="pkTutStepBadge">Step 1 of 4</span>
             <button type="button" class="pk-tutorial-close-btn" id="pkTutCloseBtn" aria-label="Close tutorial" title="Close tutorial">
               <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
           </div>
-          <h3 class="pk-tutorial-title" id="pkTutTitle">Step Title</h3>
+          <div class="pk-tutorial-title-row">
+            <span class="pk-tutorial-icon-box" id="pkTutStepIcon" aria-hidden="true">${TUT_ICONS.lessons}</span>
+            <h3 class="pk-tutorial-title" id="pkTutTitle">Step Title</h3>
+          </div>
           <p class="pk-tutorial-body" id="pkTutBody">Step explanation text goes here.</p>
+          <div id="pkTutExtraContent" class="pk-tut-extra-content" style="display:none;"></div>
           <div class="pk-tutorial-footer">
             <button type="button" class="pk-tutorial-skip-btn" id="pkTutSkipBtn">Skip Tutorial</button>
             <div class="pk-tutorial-btn-group">
@@ -259,10 +310,10 @@
           <p class="pk-tut-modal-subtitle" id="pkTutModalSubtitle">Learn to type Khmer step by step.</p>
           <div id="pkTutPathContainer" style="display:none;">
             <ul class="pk-tut-path-list">
-              <li class="pk-tut-path-item"><span class="pk-tut-path-num">1</span> <span id="pkTutPath1">Complete the next available lesson.</span></li>
-              <li class="pk-tut-path-item"><span class="pk-tut-path-num">2</span> <span id="pkTutPath2">Practice until you become comfortable with the keys.</span></li>
-              <li class="pk-tut-path-item"><span class="pk-tut-path-num">3</span> <span id="pkTutPath3">Check the Quick Guide when you need help.</span></li>
-              <li class="pk-tut-path-item"><span class="pk-tut-path-num">4</span> <span id="pkTutPath4">Use Adaptive Practice to focus on keys that need more practice.</span></li>
+              <li class="pk-tut-path-item"><span class="pk-tut-path-num">${TUT_ICONS.card}</span> <span id="pkTutPath1">Complete the next available lesson.</span></li>
+              <li class="pk-tut-path-item"><span class="pk-tut-path-num">${TUT_ICONS.key}</span> <span id="pkTutPath2">Practice until you become comfortable with the keys.</span></li>
+              <li class="pk-tut-path-item"><span class="pk-tut-path-num">${TUT_ICONS.guide}</span> <span id="pkTutPath3">Check the Quick Guide when you need help.</span></li>
+              <li class="pk-tut-path-item"><span class="pk-tut-path-num">${TUT_ICONS.cmdbar}</span> <span id="pkTutPath4">Use Adaptive Practice and Studio Controls to customize your training.</span></li>
             </ul>
           </div>
           <div class="pk-tut-modal-actions">
@@ -274,7 +325,8 @@
         <!-- Floating Non-Intrusive Practice Pill -->
         <div id="pkTutorialPracticePill" class="pk-tutorial-practice-pill" style="display:none;" aria-live="polite">
           <span class="pk-tut-pill-dot" aria-hidden="true"></span>
-          <span id="pkTutPillText">Onboarding active: complete this lesson to continue ✨</span>
+          <span class="pk-tut-pill-icon" aria-hidden="true">${TUT_ICONS.radar}</span>
+          <span id="pkTutPillText">Onboarding active: complete this lesson to continue</span>
           <button type="button" class="pk-tut-pill-btn" id="pkTutPillSkipBtn">Skip</button>
         </div>
       `;
@@ -389,6 +441,18 @@
         case 'quick-guide-rules':
           this.stepQuickGuideRules();
           break;
+        case 'top-command-bar':
+          this.stepTopCommandBar();
+          break;
+        case 'top-cmd-focus':
+          this.stepTopCmdFocus();
+          break;
+        case 'top-cmd-lang':
+          this.stepTopCmdLang();
+          break;
+        case 'top-cmd-stats':
+          this.stepTopCmdStats();
+          break;
         default:
           this.showFinish();
           break;
@@ -412,7 +476,8 @@
 
       const target = (strip && strip.querySelector('.lesson-strip-header')) || strip;
       this.spotlight(target, {
-        stepText: `${this.t('step')} 1 ${this.t('of')} 3`,
+        stepText: `${this.t('step')} 1 ${this.t('of')} 4`,
+        icon: TUT_ICONS.lessons,
         title: this.t('step1Title'),
         body: this.t('step1Desc'),
         nextText: this.t('next'),
@@ -446,7 +511,8 @@
       }
 
       this.spotlight(firstCard || strip, {
-        stepText: `${this.t('step')} 2 ${this.t('of')} 3`,
+        stepText: `${this.t('step')} 2 ${this.t('of')} 4`,
+        icon: TUT_ICONS.card,
         title: this.t('step2Title'),
         body: this.t('step2Desc'),
         nextText: this.t('continue'),
@@ -475,6 +541,7 @@
 
       this.spotlight(prompt, {
         stepText: `Lesson Guide (1/4)`,
+        icon: TUT_ICONS.target,
         title: this.t('step3aTitle'),
         body: this.t('step3aDesc'),
         nextText: this.t('next'),
@@ -492,6 +559,7 @@
 
       this.spotlight(targetKey, {
         stepText: `Lesson Guide (2/4)`,
+        icon: TUT_ICONS.key,
         title: this.t('step3bTitle'),
         body: this.t('step3bDesc'),
         nextText: this.t('next'),
@@ -515,6 +583,7 @@
 
       this.spotlight(typingArea, {
         stepText: `Lesson Guide (3/4)`,
+        icon: TUT_ICONS.typing,
         title: this.t('step3cTitle'),
         body: this.t('step3cDesc'),
         nextText: this.t('next'),
@@ -529,6 +598,7 @@
       const progressEl = document.querySelector('.lesson-progress-bar') || document.getElementById('lessonProgressFill') || document.getElementById('lessonPanel');
       this.spotlight(progressEl, {
         stepText: `Lesson Guide (4/4)`,
+        icon: TUT_ICONS.progress,
         title: this.t('step3dTitle'),
         body: this.t('step3dDesc'),
         nextText: this.t('startDrill'),
@@ -587,7 +657,7 @@
       maskSvg.style.display = 'none';
       pathBox.style.display = 'none';
 
-      document.getElementById('pkTutModalTitle').textContent = this.t('firstDoneTitle');
+      document.getElementById('pkTutModalTitle').innerHTML = `<span class="pk-tut-inline-icon" aria-hidden="true">${TUT_ICONS.trophy}</span> <span>${this.t('firstDoneTitle')}</span>`;
       document.getElementById('pkTutModalSubtitle').textContent = this.t('firstDoneDesc');
 
       const priBtn = document.getElementById('pkTutModalPriBtn');
@@ -625,7 +695,8 @@
       }
 
       this.spotlight(dock, {
-        stepText: `${this.t('step')} 3 ${this.t('of')} 3`,
+        stepText: `${this.t('step')} 3 ${this.t('of')} 4`,
+        icon: TUT_ICONS.guide,
         title: this.t('stepQuickTitle'),
         body: this.t('stepQuickDesc'),
         nextText: this.t('next'),
@@ -641,6 +712,7 @@
 
       this.spotlight(radar, {
         stepText: `Guide Feature (1/5)`,
+        icon: TUT_ICONS.radar,
         title: this.t('radarTitle'),
         body: this.t('radarDesc'),
         nextText: this.t('next'),
@@ -657,6 +729,7 @@
 
       this.spotlight(wpmGrid, {
         stepText: `Guide Feature (2/5)`,
+        icon: TUT_ICONS.wpm,
         title: this.t('wpmTitle'),
         body: this.t('wpmDesc'),
         nextText: this.t('next'),
@@ -673,6 +746,7 @@
 
       this.spotlight(fingerSec, {
         stepText: `Guide Feature (3/5)`,
+        icon: TUT_ICONS.fingers,
         title: this.t('fingerTitle'),
         body: this.t('fingerDesc'),
         nextText: this.t('next'),
@@ -689,6 +763,7 @@
 
       this.spotlight(weakSec, {
         stepText: `Guide Feature (4/5)`,
+        icon: TUT_ICONS.weak,
         title: this.t('weakTitle'),
         body: this.t('weakDesc'),
         nextText: this.t('next'),
@@ -705,16 +780,92 @@
 
       this.spotlight(rulesSec, {
         stepText: `Guide Feature (5/5)`,
+        icon: TUT_ICONS.rules,
         title: this.t('subscriptsTitle'),
         body: this.t('subscriptsDesc'),
         nextText: this.t('next'),
         showBack: true,
         onBack: () => this.goToStep('quick-guide-weak'),
+        onNext: () => this.goToStep('top-command-bar')
+      });
+    }
+
+    /* ---- Step 6: Top Studio Command Bar (.top-actions) ---- */
+    stepTopCommandBar(){
+      const cmdBar = document.querySelector('.top-actions') || document.getElementById('focusModeBtn');
+      if(cmdBar) window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      const isKm = document.documentElement.classList.contains('site-km-mode');
+      const extraHtml = `
+        <div class="pk-tut-cmd-grid">
+          <div class="pk-tut-cmd-chip">${TUT_ICONS.focus}<span>${isKm ? 'ផ្ដោត' : 'Focus'} <kbd>Alt+F</kbd></span></div>
+          <div class="pk-tut-cmd-chip">${TUT_ICONS.guide}<span>${isKm ? 'ណែនាំ' : 'Guide'}</span></div>
+          <div class="pk-tut-cmd-chip">${TUT_ICONS.key}<span>${isKm ? 'ផ្លូវកាត់' : 'Shortcuts'}</span></div>
+          <div class="pk-tut-cmd-chip">${TUT_ICONS.globe}<span>${isKm ? 'បកប្រែភាសា' : 'Translate'}</span></div>
+          <div class="pk-tut-cmd-chip">${TUT_ICONS.stats}<span>${isKm ? 'ស្ថិតិ' : 'Statistics'}</span></div>
+          <div class="pk-tut-cmd-chip">${TUT_ICONS.settings}<span>${isKm ? 'ការកំណត់' : 'Settings'}</span></div>
+        </div>
+      `;
+
+      this.spotlight(cmdBar, {
+        stepText: `${this.t('step')} 4 ${this.t('of')} 4`,
+        icon: TUT_ICONS.cmdbar,
+        title: this.t('stepCmdTitle'),
+        body: this.t('stepCmdDesc'),
+        extraHtml,
+        nextText: this.t('next'),
+        showBack: true,
+        onBack: () => this.goToStep('quick-guide-rules'),
+        onNext: () => this.goToStep('top-cmd-focus')
+      });
+    }
+
+    /* ---- 6A: Focus Mode & Guide Toggle ---- */
+    stepTopCmdFocus(){
+      const focusBtn = document.getElementById('focusModeBtn') || document.querySelector('.top-actions');
+      this.spotlight(focusBtn, {
+        stepText: `Command Bar (1/3)`,
+        icon: TUT_ICONS.focus,
+        title: this.t('cmdFocusTitle'),
+        body: this.t('cmdFocusDesc'),
+        nextText: this.t('next'),
+        showBack: true,
+        onBack: () => this.goToStep('top-command-bar'),
+        onNext: () => this.goToStep('top-cmd-lang')
+      });
+    }
+
+    /* ---- 6B: Shortcuts & Translate to Khmer ---- */
+    stepTopCmdLang(){
+      const langBtn = document.getElementById('topLangToggleBtn') || document.getElementById('shortcutsOpenBtn') || document.querySelector('.top-actions');
+      this.spotlight(langBtn, {
+        stepText: `Command Bar (2/3)`,
+        icon: TUT_ICONS.globe,
+        title: this.t('cmdLangTitle'),
+        body: this.t('cmdLangDesc'),
+        nextText: this.t('next'),
+        showBack: true,
+        onBack: () => this.goToStep('top-cmd-focus'),
+        onNext: () => this.goToStep('top-cmd-stats')
+      });
+    }
+
+    /* ---- 6C: Statistics, Settings & Account ---- */
+    stepTopCmdStats(){
+      const settingsBtn = document.getElementById('settingsOpenBtn') || document.getElementById('statsOpenBtn') || document.querySelector('.top-actions');
+      this.spotlight(settingsBtn, {
+        stepText: `Command Bar (3/3)`,
+        icon: TUT_ICONS.settings,
+        title: this.t('cmdStatsTitle'),
+        body: this.t('cmdStatsDesc'),
+        nextText: this.t('next'),
+        showBack: true,
+        onBack: () => this.goToStep('top-cmd-lang'),
         onNext: () => this.showFinish()
       });
     }
 
-    /* ---- Step 6: Finish Screen & Suggested Path ---- */
+    /* ---- Step 7: Finish Screen & Suggested Path ---- */
     showFinish(){
       this.ensureDOM();
       const overlay = document.getElementById('pkTutorialOverlay');
@@ -733,7 +884,7 @@
       maskSvg.style.display = 'none';
       pathBox.style.display = 'block';
 
-      document.getElementById('pkTutModalTitle').textContent = this.t('finishTitle');
+      document.getElementById('pkTutModalTitle').innerHTML = `<span class="pk-tut-inline-icon" aria-hidden="true">${TUT_ICONS.crown}</span> <span>${this.t('finishTitle')}</span>`;
       document.getElementById('pkTutModalSubtitle').textContent = this.t('finishSubtitle');
       document.getElementById('pkTutPath1').textContent = this.t('path1');
       document.getElementById('pkTutPath2').textContent = this.t('path2');
@@ -763,15 +914,27 @@
       const frame = document.getElementById('pkSpotlightFrame');
       const tooltip = document.getElementById('pkTutorialTooltip');
       const badge = document.getElementById('pkTutStepBadge');
+      const iconBox = document.getElementById('pkTutStepIcon');
       const title = document.getElementById('pkTutTitle');
       const body = document.getElementById('pkTutBody');
+      const extraBox = document.getElementById('pkTutExtraContent');
       const nextBtn = document.getElementById('pkTutNextBtn');
       const backBtn = document.getElementById('pkTutBackBtn');
       const skipBtn = document.getElementById('pkTutSkipBtn');
 
       badge.textContent = options.stepText || '';
+      if(iconBox) iconBox.innerHTML = options.icon || TUT_ICONS.lessons;
       title.textContent = options.title || '';
       body.textContent = options.body || '';
+      if(extraBox){
+        if(options.extraHtml){
+          extraBox.innerHTML = options.extraHtml;
+          extraBox.style.display = 'block';
+        } else {
+          extraBox.innerHTML = '';
+          extraBox.style.display = 'none';
+        }
+      }
       nextBtn.textContent = options.nextText || this.t('next');
       skipBtn.textContent = this.t('skip');
 
