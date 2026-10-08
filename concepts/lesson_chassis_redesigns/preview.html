@@ -1,0 +1,2182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PK Khmer Type — Lesson Runner &amp; Keyboard Chassis Redesign Concepts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Kantumruy+Pro:wght@400;500;600;700&family=Moul&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #07090e;
+      --bg-surface: #0e1320;
+      --bg-card: #141b2d;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(255, 209, 102, 0.35);
+      --gold-primary: #ffd166;
+      --gold-dim: #c79a32;
+      --cyan-neon: #38bdf8;
+      --emerald-neon: #34d399;
+      --rose-neon: #fb7185;
+      --violet-neon: #a78bfa;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --hands-opacity: 0.44;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --transition-smooth: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-deep);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 85% 30%, rgba(255, 209, 102, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 15% 70%, rgba(167, 139, 250, 0.05) 0%, transparent 40%);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      padding: 32px 24px 64px;
+      line-height: 1.5;
+    }
+
+    /* ZERO-EMOJI RULE: all icons are inline SVG */
+    .svg-icon {
+      display: inline-block;
+      width: 1.15em;
+      height: 1.15em;
+      vertical-align: -0.2em;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    /* Header & Navigation */
+    .header-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 32px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-logo-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(255, 209, 102, 0.2), rgba(56, 189, 248, 0.1));
+      border: 1px solid rgba(255, 209, 102, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-primary);
+      box-shadow: 0 8px 24px rgba(255, 209, 102, 0.15);
+    }
+
+    .brand-meta h1 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(90deg, #ffffff 40%, var(--gold-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-meta p {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tag-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tag-concept {
+      background: rgba(255, 209, 102, 0.12);
+      color: var(--gold-primary);
+      border: 1px solid rgba(255, 209, 102, 0.25);
+    }
+
+    .tag-live-default {
+      background: rgba(52, 211, 153, 0.12);
+      color: var(--emerald-neon);
+      border: 1px solid rgba(52, 211, 153, 0.25);
+    }
+
+    /* Master Controls toolbar */
+    .controls-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      background: rgba(14, 19, 32, 0.7);
+      backdrop-filter: blur(16px);
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .control-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .opacity-dial {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .opacity-dial input[type="range"] {
+      width: 100px;
+      accent-color: var(--gold-primary);
+      cursor: pointer;
+    }
+
+    .opacity-val-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold-primary);
+      min-width: 38px;
+    }
+
+    .sim-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .sim-toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .sim-toggle-btn.active {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--cyan-neon);
+      color: var(--cyan-neon);
+    }
+
+    /* Tab switcher for concepts */
+    .concept-nav-tabs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .concept-tab-btn {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 16px 20px;
+      background: rgba(14, 19, 32, 0.6);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-align: left;
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .concept-tab-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: transparent;
+      transition: var(--transition-smooth);
+    }
+
+    .concept-tab-btn:hover {
+      background: rgba(20, 27, 45, 0.8);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .concept-tab-btn.active {
+      background: rgba(20, 27, 45, 0.95);
+      border-color: var(--gold-primary);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 209, 102, 0.1);
+    }
+
+    .concept-tab-btn.active::before {
+      background: linear-gradient(90deg, var(--gold-primary), var(--cyan-neon));
+    }
+
+    .tab-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .tab-badge {
+      font-size: 11px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--gold-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tab-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .tab-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Concept Stage Presentation */
+    .concept-view-panel {
+      display: none;
+      animation: fadeInStage 0.35s ease forwards;
+    }
+
+    .concept-view-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeInStage {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Common Card Wrappers */
+    .stage-wrapper {
+      background: radial-gradient(circle at 50% 10%, rgba(20, 27, 45, 0.95), rgba(10, 13, 20, 0.98));
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      margin-bottom: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ======================================================================
+       CONCEPT 1: PRO STUDIO CYBER-DECK
+       Tactile Aeronautical Console, Dual-HUD Telemetry, Modular Manuscript
+       ====================================================================== */
+    .c1-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* C1 Top Mission Control Header */
+    .c1-deck-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: #0b0f19;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: var(--radius-md);
+      padding: 14px 20px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .c1-lesson-indicator {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .c1-index-stamp {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--cyan-neon);
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.08em;
+    }
+
+    .c1-lesson-text h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .c1-lesson-text p {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-family: 'Kantumruy Pro', sans-serif;
+    }
+
+    .c1-status-cluster {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .c1-status-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+      background: rgba(0, 0, 0, 0.4);
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .c1-live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--emerald-neon);
+      box-shadow: 0 0 8px var(--emerald-neon);
+      animation: pulseGlow 1.8s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.6; }
+    }
+
+    /* C1 Center Manuscript + Biometric Target Panel */
+    .c1-center-split {
+      display: grid;
+      grid-template-columns: 280px 1fr 240px;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    /* Target Key Module */
+    .c1-target-pod {
+      background: #0b0f19;
+      border: 1px solid rgba(255, 209, 102, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .c1-target-pod::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 209, 102, 0.15), transparent 70%);
+      pointer-events: none;
+    }
+
+    .c1-target-badge {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gold-primary);
+    }
+
+    .c1-sculpted-keycap {
+      width: 84px;
+      height: 84px;
+      background: linear-gradient(145deg, #182238, #0e1424);
+      border: 2px solid var(--gold-primary);
+      border-radius: 16px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 209, 102, 0.25), inset 0 2px 3px rgba(255, 255, 255, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .c1-sculpted-keycap:hover {
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    .c1-khmer-glyph {
+      font-family: 'Kantumruy Pro', sans-serif;
+      font-size: 38px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      text-shadow: 0 2px 10px rgba(255, 209, 102, 0.4);
+    }
+
+    .c1-latin-sub {
+      position: absolute;
+      bottom: 6px;
+      right: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--cyan-neon);
+    }
+
+    .c1-finger-route {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* Manuscript Tape Reader */
+    .c1-tape-pod {
+      background: #080c14;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    .c1-tape-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-dim);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 10px;
+      margin-bottom: 16px;
+    }
+
+    .c1-tape-stream {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      overflow-x: hidden;
+      padding: 12px 4px;
+      position: relative;
+    }
+
+    .c1-char-tile {
+      flex-shrink: 0;
+      width: 58px;
+      height: 64px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Kantumruy Pro', sans-serif;
+      font-size: 32px;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--text-dim);
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    .c1-char-tile.completed {
+      background: rgba(52, 211, 153, 0.1);
+      border-color: rgba(52, 211, 153, 0.3);
+      color: var(--emerald-neon);
+    }
+
+    .c1-char-tile.active {
+      width: 68px;
+      height: 76px;
+      background: linear-gradient(135deg, rgba(255, 209, 102, 0.25), rgba(56, 189, 248, 0.15));
+      border: 2px solid var(--gold-primary);
+      color: #fff;
+      font-size: 40px;
+      box-shadow: 0 0 24px rgba(255, 209, 102, 0.35);
+      transform: scale(1.06);
+      z-index: 2;
+    }
+
+    .c1-char-tile.space-tile {
+      font-size: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-dim);
+    }
+
+    /* Telemetry HUD Sidebar */
+    .c1-hud-pod {
+      background: #0b0f19;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .c1-stat-card {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .c1-stat-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .c1-stat-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .c1-stat-val.gold { color: var(--gold-primary); }
+    .c1-stat-val.green { color: var(--emerald-neon); }
+
+    .c1-progress-bar-wrap {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+
+    .c1-progress-fill {
+      height: 100%;
+      width: 38%;
+      background: linear-gradient(90deg, var(--gold-primary), var(--emerald-neon));
+      border-radius: 999px;
+      box-shadow: 0 0 10px rgba(255, 209, 102, 0.5);
+    }
+
+    /* Keyboard Chassis Mockup */
+    .keyboard-chassis-stage {
+      position: relative;
+      background: #060911;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 24px;
+      padding: 28px 24px 32px;
+      box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.7),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1),
+        inset 0 -2px 8px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: hidden;
+    }
+
+    .keyboard-top-lip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      margin-bottom: 6px;
+    }
+
+    .keyboard-model-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .keyboard-rows-cluster {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+    }
+
+    .kb-row {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .kb-key {
+      min-width: 48px;
+      height: 50px;
+      flex: 1;
+      max-width: 58px;
+      background: linear-gradient(180deg, #1a2236 0%, #111726 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 3px solid rgba(0, 0, 0, 0.6);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.15s ease;
+      cursor: default;
+      user-select: none;
+    }
+
+    .kb-key.wide-1-5 { max-width: 78px; }
+    .kb-key.wide-1-75 { max-width: 90px; }
+    .kb-key.wide-2 { max-width: 102px; }
+    .kb-key.wide-space { max-width: 320px; }
+
+    .kb-glyph-km {
+      font-family: 'Kantumruy Pro', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: #e2e8f0;
+      line-height: 1.1;
+    }
+
+    .kb-glyph-en {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    .kb-key.active-target {
+      background: linear-gradient(180deg, #2b395a 0%, #172440 100%);
+      border: 2px solid var(--gold-primary);
+      box-shadow: 0 0 20px rgba(255, 209, 102, 0.5), inset 0 0 10px rgba(255, 209, 102, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .kb-key.active-target .kb-glyph-km {
+      color: var(--gold-primary);
+      font-weight: 700;
+    }
+
+    /* Hands Simulation Overlay */
+    .hands-svg-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+      opacity: var(--hands-opacity);
+      transition: opacity 0.35s ease;
+    }
+
+    /* ======================================================================
+       CONCEPT 2: ANGKOR ROYAL OBSIDIAN
+       Dark Luxury Slate, Living Amber Flow, Gemstone Keycaps, Sculpted Pedestal
+       ====================================================================== */
+    .c2-container {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .c2-sanctuary-card {
+      background: linear-gradient(180deg, #0d121f 0%, #080b13 100%);
+      border: 1px solid rgba(255, 209, 102, 0.18);
+      border-radius: var(--radius-xl);
+      padding: 36px 32px;
+      box-shadow: 
+        0 30px 70px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(255, 209, 102, 0.05),
+        inset 0 1px 0 rgba(255, 209, 102, 0.3);
+      position: relative;
+    }
+
+    .c2-header-arch {
+      text-align: center;
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .c2-angkor-spire-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 999px;
+      background: rgba(255, 209, 102, 0.08);
+      border: 1px solid rgba(255, 209, 102, 0.25);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold-primary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .c2-lesson-title {
+      font-family: 'Moul', cursive;
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 6px;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
+    }
+
+    .c2-lesson-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-family: 'Kantumruy Pro', sans-serif;
+    }
+
+    /* Living Amber Glyph Altar */
+    .c2-altar-dock {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 209, 102, 0.08) 0%, transparent 70%);
+      padding: 24px 0 16px;
+      border-radius: var(--radius-lg);
+    }
+
+    .c2-active-rune-display {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .c2-gem-pedestal {
+      width: 110px;
+      height: 110px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #1f2942 0%, #0a0d17 100%);
+      border: 2px solid var(--gold-primary);
+      box-shadow: 
+        0 16px 36px rgba(0, 0, 0, 0.7),
+        0 0 35px rgba(255, 209, 102, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .c2-gem-pedestal .rune {
+      font-family: 'Kantumruy Pro', sans-serif;
+      font-size: 54px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      text-shadow: 0 0 20px rgba(255, 209, 102, 0.6);
+    }
+
+    .c2-finger-sigil {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .c2-finger-sigil .title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold-primary);
+      font-weight: 700;
+    }
+
+    .c2-finger-sigil .desc {
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .c2-finger-sigil .sub {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* Floating Rune Horizon */
+    .c2-rune-horizon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      width: 100%;
+      max-width: 720px;
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .c2-horizon-tile {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Kantumruy Pro', sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--text-dim);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: var(--transition-smooth);
+    }
+
+    .c2-horizon-tile.past {
+      color: var(--emerald-neon);
+      border-color: rgba(52, 211, 153, 0.3);
+      background: rgba(52, 211, 153, 0.08);
+    }
+
+    .c2-horizon-tile.current {
+      width: 64px;
+      height: 64px;
+      font-size: 34px;
+      color: #fff;
+      border: 2px solid var(--gold-primary);
+      background: linear-gradient(135deg, rgba(255, 209, 102, 0.3), rgba(0, 0, 0, 0.4));
+      box-shadow: 0 0 24px rgba(255, 209, 102, 0.4);
+    }
+
+    /* Telemetry Horizon Ribbon */
+    .c2-telemetry-ribbon {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 20px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      margin-top: 12px;
+    }
+
+    .c2-telemetry-item {
+      text-align: center;
+    }
+
+    .c2-telemetry-item .value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gold-primary);
+    }
+
+    .c2-telemetry-item .label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 2px;
+    }
+
+    /* ======================================================================
+       CONCEPT 3: THE FLOATING AERO-GLASS ISLAND (VisionOS Spatial Style)
+       Borderless Aerodynamic Glass, Specular Reflections, Magnetic Stream
+       ====================================================================== */
+    .c3-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .c3-spatial-stage {
+      background: rgba(14, 20, 35, 0.45);
+      backdrop-filter: blur(36px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 32px;
+      padding: 36px;
+      box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        inset 0 0 40px rgba(56, 189, 248, 0.05);
+      position: relative;
+    }
+
+    .c3-floating-dock {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .c3-glass-pod {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 24px;
+      backdrop-filter: blur(20px);
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .c3-glass-pod::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    }
+
+    .c3-pod-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .c3-pill {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--cyan-neon);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .c3-dynamic-stream {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 10px 4px;
+    }
+
+    .c3-bubble-char {
+      flex-shrink: 0;
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Kantumruy Pro', sans-serif;
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: var(--transition-smooth);
+    }
+
+    .c3-bubble-char.current {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.3), rgba(167, 139, 250, 0.2));
+      border: 2px solid #fff;
+      color: #fff;
+      box-shadow: 0 8px 30px rgba(56, 189, 248, 0.4);
+      transform: scale(1.08);
+    }
+
+    .c3-telemetry-chips {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .c3-chip {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 14px;
+      padding: 14px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .c3-chip-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .c3-chip-lbl {
+      font-size: 11px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+    }
+
+    /* Comparison & Evaluation Section */
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .analysis-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .analysis-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .analysis-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .feature-list li {
+      font-size: 13px;
+      color: var(--text-main);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .feature-list li .bullet {
+      color: var(--gold-primary);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Matrix Table */
+    .matrix-wrapper {
+      margin-top: 48px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      overflow-x: auto;
+    }
+
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .matrix-table th {
+      padding: 14px 18px;
+      color: var(--text-muted);
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 11px;
+    }
+
+    .matrix-table td {
+      padding: 16px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text-main);
+    }
+
+    .matrix-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .score-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 11px;
+    }
+
+    .score-high { background: rgba(52, 211, 153, 0.15); color: var(--emerald-neon); }
+    .score-mid { background: rgba(255, 209, 102, 0.15); color: var(--gold-primary); }
+    .score-low { background: rgba(251, 113, 133, 0.15); color: var(--rose-neon); }
+
+    /* Footer */
+    .preview-footer {
+      text-align: center;
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .c1-center-split {
+        grid-template-columns: 1fr;
+      }
+      .c3-floating-dock {
+        grid-template-columns: 1fr;
+      }
+      .kb-key {
+        min-width: 32px;
+        height: 42px;
+      }
+      .kb-glyph-km {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header with Branding & Zero-Emoji Vector Badges -->
+    <header class="header-bar">
+      <div class="brand-group">
+        <div class="brand-logo-badge">
+          <!-- Clean SVG Icon -->
+          <svg class="svg-icon" viewBox="0 0 24 24">
+            <rect x="2" y="4" width="20" height="16" rx="4"></rect>
+            <path d="M6 8h.01M10 8h.01M14 8h.01M18 8h.01M6 12h.01M18 12h.01M8 16h8"></path>
+          </svg>
+        </div>
+        <div class="brand-meta">
+          <h1>PK Khmer Type — Lesson Runner &amp; Keyboard Chassis Redesign</h1>
+          <p>
+            <span>Interactive Layout Architecture Lab</span>
+            <span class="tag-badge tag-concept">Concepts Preview Only</span>
+            <span class="tag-badge tag-live-default">Live App Hands Opacity: 44% Active</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Controls Toolbar -->
+      <div class="controls-strip">
+        <span class="control-label">3D Hands Opacity:</span>
+        <div class="opacity-dial">
+          <input type="range" id="masterOpacitySlider" min="15" max="100" value="44">
+          <span class="opacity-val-badge" id="masterOpacityDisplay">44%</span>
+        </div>
+
+        <button class="sim-toggle-btn active" id="simToggleBtn">
+          <svg class="svg-icon" viewBox="0 0 24 24">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <span id="simBtnText">Typing Simulation Active</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Concept Navigation Tabs -->
+    <nav class="concept-nav-tabs" role="tablist">
+      <button class="concept-tab-btn active" data-concept="c1">
+        <div class="tab-header">
+          <span class="tab-badge">Concept 1</span>
+          <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--cyan-neon)"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        </div>
+        <span class="tab-title">Pro Studio Cyber-Deck</span>
+        <span class="tab-subtitle">Precision aerospace chamfers, continuous high-velocity tape reader, biomechanical finger joint telemetry.</span>
+      </button>
+
+      <button class="concept-tab-btn" data-concept="c2">
+        <div class="tab-header">
+          <span class="tab-badge">Concept 2</span>
+          <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--gold-primary)"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24M14.83 14.83l4.24 4.24M14.83 9.17l4.24-4.24M4.93 19.07l4.24-4.24"></path></svg>
+        </div>
+        <span class="tab-title">Angkor Royal Obsidian</span>
+        <span class="tab-subtitle">Deepest obsidian slate, gold gemstone pedestal, living amber rune horizon, sacred temple ergonomics.</span>
+      </button>
+
+      <button class="concept-tab-btn" data-concept="c3">
+        <div class="tab-header">
+          <span class="tab-badge">Concept 3</span>
+          <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--violet-neon)"><rect x="3" y="3" width="18" height="18" rx="6"></rect><path d="M3 9h18M9 21V9"></path></svg>
+        </div>
+        <span class="tab-title">Floating Aero-Glass Island</span>
+        <span class="tab-subtitle">VisionOS spatial glass pods, specular light rims, dynamic fluid glyph stream, zero visual friction.</span>
+      </button>
+
+      <button class="concept-tab-btn" data-concept="matrix">
+        <div class="tab-header">
+          <span class="tab-badge">Matrix</span>
+          <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--emerald-neon)"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        </div>
+        <span class="tab-title">Side-by-Side Comparison</span>
+        <span class="tab-subtitle">Direct ergonomic analysis, eye travel metrics, cognitive load scoring, and production readiness.</span>
+      </button>
+    </nav>
+
+    <!-- ===================================================================
+         PANEL 1: CONCEPT 1 PRO STUDIO CYBER-DECK
+         =================================================================== -->
+    <section class="concept-view-panel active" id="panel-c1">
+      <div class="stage-wrapper">
+        <div class="c1-container">
+          
+          <!-- Top Telemetry Header -->
+          <div class="c1-deck-header">
+            <div class="c1-lesson-indicator">
+              <span class="c1-index-stamp">LESSON 01 / 77</span>
+              <div class="c1-lesson-text">
+                <h2>
+                  <span>Left Index Anchor ច (F)</span>
+                  <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--cyan-neon); width:18px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  <span style="font-size:14px; color:var(--text-dim); font-weight:500;">Unit 1: Beginner Foundation</span>
+                </h2>
+                <p>រៀនអក្សរ «ច» ដោយប្រើម្រាមចង្អុលដៃឆ្វេង (គន្លឹះ F) · ផ្តោតលើភាពជាក់លាក់នៃកាយវិការ</p>
+              </div>
+            </div>
+
+            <div class="c1-status-cluster">
+              <div class="c1-status-pill">
+                <span class="c1-live-dot"></span>
+                <span>HUD SYNCHRONIZED</span>
+              </div>
+              <div class="c1-status-pill">
+                <svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span id="c1TimerDisplay">00:42</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Center Manuscript Triple Split -->
+          <div class="c1-center-split">
+            <!-- Left: Target Key Biomechanics Pod -->
+            <div class="c1-target-pod">
+              <span class="c1-target-badge">Next Target Key</span>
+              
+              <div class="c1-sculpted-keycap">
+                <span class="c1-khmer-glyph" id="c1ActiveGlyph">ច</span>
+                <span class="c1-latin-sub">F</span>
+              </div>
+
+              <div class="c1-finger-route">
+                <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--cyan-neon)"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+                <span>Left Index · Home Row</span>
+              </div>
+            </div>
+
+            <!-- Middle: Continuous High-Velocity Tape -->
+            <div class="c1-tape-pod">
+              <div class="c1-tape-meta">
+                <span>MANUSCRIPT SEQUENCE TRACK</span>
+                <span>CURSOR: INDEX 04 / 32</span>
+              </div>
+
+              <div class="c1-tape-stream" id="c1TapeStream">
+                <div class="c1-char-tile completed">ច</div>
+                <div class="c1-char-tile completed">ច</div>
+                <div class="c1-char-tile completed space-tile">SPACE</div>
+                <div class="c1-char-tile completed">ច</div>
+                <div class="c1-char-tile active" id="c1CursorTile">ច</div>
+                <div class="c1-char-tile space-tile">SPACE</div>
+                <div class="c1-char-tile">ច</div>
+                <div class="c1-char-tile">ច</div>
+                <div class="c1-char-tile space-tile">SPACE</div>
+                <div class="c1-char-tile">ច</div>
+                <div class="c1-char-tile">ច</div>
+              </div>
+
+              <div class="c1-tape-meta" style="margin-bottom:0; padding-bottom:0; border:none; margin-top:12px;">
+                <span style="color:var(--emerald-neon)">Ready: Press [F] on your keyboard</span>
+                <span style="font-family:'JetBrains Mono'">ACCURACY THRESHOLD: 90%</span>
+              </div>
+            </div>
+
+            <!-- Right: Performance Telemetry HUD -->
+            <div class="c1-hud-pod">
+              <div class="c1-stat-card">
+                <div class="c1-stat-label">
+                  <span>Accuracy</span>
+                  <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--emerald-neon)"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <div class="c1-stat-val green" id="c1AccuracyVal">98.4%</div>
+              </div>
+
+              <div class="c1-stat-card">
+                <div class="c1-stat-label">
+                  <span>Typing Speed</span>
+                  <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--gold-primary)"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                </div>
+                <div class="c1-stat-val gold" id="c1WpmVal">34 WPM</div>
+              </div>
+
+              <div class="c1-stat-card">
+                <div class="c1-stat-label">
+                  <span>Progress</span>
+                  <span style="font-family:'JetBrains Mono'">38%</span>
+                </div>
+                <div class="c1-progress-bar-wrap">
+                  <div class="c1-progress-fill"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom: Ergonomic Keyboard Chassis with 44% Hand Guide -->
+          <div class="keyboard-chassis-stage">
+            <div class="keyboard-top-lip">
+              <div class="keyboard-model-badge">
+                <svg class="svg-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                <span>CHASSIS MK-IV · KHMER STANDARD (ANSI 104)</span>
+              </div>
+              <div class="keyboard-model-badge">
+                <span>3D KINEMATIC HANDS: <strong style="color:var(--gold-primary);">44% OPACITY</strong></span>
+              </div>
+            </div>
+
+            <!-- Virtual Keyboard Rows Mockup -->
+            <div class="keyboard-rows-cluster">
+              <!-- Number Row -->
+              <div class="kb-row">
+                <div class="kb-key"><span class="kb-glyph-km">«</span><span class="kb-glyph-en">`</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">១</span><span class="kb-glyph-en">1</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">២</span><span class="kb-glyph-en">2</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">៣</span><span class="kb-glyph-en">3</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">៤</span><span class="kb-glyph-en">4</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">៥</span><span class="kb-glyph-en">5</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">៦</span><span class="kb-glyph-en">6</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">៧</span><span class="kb-glyph-en">7</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">៨</span><span class="kb-glyph-en">8</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">៩</span><span class="kb-glyph-en">9</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">០</span><span class="kb-glyph-en">0</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ឥ</span><span class="kb-glyph-en">-</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ឲ</span><span class="kb-glyph-en">=</span></div>
+                <div class="kb-key wide-1-5"><span class="kb-glyph-km" style="font-size:12px;">Backspace</span></div>
+              </div>
+
+              <!-- Top Row -->
+              <div class="kb-row">
+                <div class="kb-key wide-1-5"><span class="kb-glyph-km" style="font-size:12px;">Tab</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ឆ</span><span class="kb-glyph-en">Q</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ដ</span><span class="kb-glyph-en">W</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ថ</span><span class="kb-glyph-en">E</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">រ</span><span class="kb-glyph-en">R</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ត</span><span class="kb-glyph-en">T</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">យ</span><span class="kb-glyph-en">Y</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ុ</span><span class="kb-glyph-en">U</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ិ</span><span class="kb-glyph-en">I</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ោ</span><span class="kb-glyph-en">O</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ផ</span><span class="kb-glyph-en">P</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ៀ</span><span class="kb-glyph-en">[</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ឪ</span><span class="kb-glyph-en">]</span></div>
+                <div class="kb-key wide-1-5"><span class="kb-glyph-km">\</span></div>
+              </div>
+
+              <!-- Home Row (with Target Key F -> ច) -->
+              <div class="kb-row">
+                <div class="kb-key wide-1-75"><span class="kb-glyph-km" style="font-size:12px;">Caps</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ា</span><span class="kb-glyph-en">A</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ស</span><span class="kb-glyph-en">S</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ដ</span><span class="kb-glyph-en">D</span></div>
+                <!-- ACTIVE TARGET KEYCAP -->
+                <div class="kb-key active-target" id="kbKeyF">
+                  <span class="kb-glyph-km">ច</span>
+                  <span class="kb-glyph-en" style="color:var(--gold-primary); font-weight:700;">F</span>
+                </div>
+                <div class="kb-key"><span class="kb-glyph-km">ង</span><span class="kb-glyph-en">G</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ហ</span><span class="kb-glyph-en">H</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">់</span><span class="kb-glyph-en">J</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ក</span><span class="kb-glyph-en">K</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ល</span><span class="kb-glyph-en">L</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ើ</span><span class="kb-glyph-en">;</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">់</span><span class="kb-glyph-en">'</span></div>
+                <div class="kb-key wide-2"><span class="kb-glyph-km" style="font-size:12px;">Enter</span></div>
+              </div>
+
+              <!-- Bottom Row -->
+              <div class="kb-row">
+                <div class="kb-key wide-2"><span class="kb-glyph-km" style="font-size:12px;">Shift</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ឋ</span><span class="kb-glyph-en">Z</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ខ</span><span class="kb-glyph-en">X</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ច</span><span class="kb-glyph-en">C</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">វ</span><span class="kb-glyph-en">V</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ប</span><span class="kb-glyph-en">B</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ន</span><span class="kb-glyph-en">N</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ម</span><span class="kb-glyph-en">M</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ុំ</span><span class="kb-glyph-en">,</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">។</span><span class="kb-glyph-en">.</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">៊</span><span class="kb-glyph-en">/</span></div>
+                <div class="kb-key wide-2"><span class="kb-glyph-km" style="font-size:12px;">Shift</span></div>
+              </div>
+
+              <!-- Spacebar Row -->
+              <div class="kb-row">
+                <div class="kb-key wide-1-5"><span class="kb-glyph-km" style="font-size:11px;">Ctrl</span></div>
+                <div class="kb-key"><span class="kb-glyph-km" style="font-size:11px;">Win</span></div>
+                <div class="kb-key wide-1-5"><span class="kb-glyph-km" style="font-size:11px;">Alt</span></div>
+                <div class="kb-key wide-space"><span class="kb-glyph-km" style="font-size:11px; color:#64748b;">Spacebar (ដកឃ្លា)</span></div>
+                <div class="kb-key wide-1-5"><span class="kb-glyph-km" style="font-size:11px;">AltGr</span></div>
+                <div class="kb-key"><span class="kb-glyph-km" style="font-size:11px;">Fn</span></div>
+                <div class="kb-key wide-1-5"><span class="kb-glyph-km" style="font-size:11px;">Ctrl</span></div>
+              </div>
+            </div>
+
+            <!-- Precision Rendered 3D Hands Overlay at 44% Default Opacity -->
+            <svg class="hands-svg-canvas" viewBox="0 0 1000 360" preserveAspectRatio="none">
+              <!-- Left Hand: Pinky, Ring, Middle, Index (Reaching to F) -->
+              <g class="hand-group-left" fill="rgba(56, 189, 248, 0.2)" stroke="#38bdf8" stroke-width="2">
+                <!-- Palm outline -->
+                <path d="M180,350 C180,260 210,220 250,210 C290,200 340,220 370,260 C390,290 390,350 390,350 Z" />
+                <!-- Left Pinky on A -->
+                <path d="M210,210 C200,180 190,150 185,130 C180,120 195,115 205,125 C215,145 225,175 230,205" fill="rgba(56, 189, 248, 0.25)" />
+                <!-- Left Ring on S -->
+                <path d="M240,205 C235,160 230,125 230,105 C230,95 245,95 250,105 C255,125 260,165 265,200" fill="rgba(56, 189, 248, 0.25)" />
+                <!-- Left Middle on D -->
+                <path d="M275,200 C275,150 280,110 280,90 C280,80 295,80 300,90 C305,115 305,155 305,200" fill="rgba(56, 189, 248, 0.25)" />
+                <!-- Left Index Reaching to F (ACTIVE EXTENSION) -->
+                <path d="M315,205 C320,160 340,125 350,110 C355,100 370,105 365,120 C355,140 340,175 335,215" fill="rgba(255, 209, 102, 0.4)" stroke="var(--gold-primary)" stroke-width="2.5" />
+                <!-- Left Thumb over Spacebar -->
+                <path d="M365,255 C390,230 420,220 440,225 C450,230 445,245 430,250 C405,255 380,270 370,285" fill="rgba(56, 189, 248, 0.2)" />
+                <!-- Finger tip pulse ring on target key F -->
+                <circle cx="360" cy="115" r="10" fill="none" stroke="var(--gold-primary)" stroke-width="2">
+                  <animate attributeName="r" values="6;16;6" dur="1.8s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="1;0;1" dur="1.8s" repeatCount="indefinite" />
+                </circle>
+              </g>
+
+              <!-- Right Hand resting on J, K, L, ; -->
+              <g class="hand-group-right" fill="rgba(244, 114, 182, 0.18)" stroke="#f472b6" stroke-width="2">
+                <!-- Palm outline -->
+                <path d="M820,350 C820,260 790,220 750,210 C710,200 660,220 630,260 C610,290 610,350 610,350 Z" />
+                <!-- Right Thumb over Spacebar -->
+                <path d="M635,255 C610,230 580,220 560,225 C550,230 555,245 570,250 C595,255 620,270 630,285" />
+                <!-- Right Index on J -->
+                <path d="M685,205 C680,160 670,125 660,110 C655,100 640,105 645,120 C655,140 670,175 675,215" />
+                <!-- Right Middle on K -->
+                <path d="M725,200 C725,150 720,110 720,90 C720,80 705,80 700,90 C695,115 695,155 695,200" />
+                <!-- Right Ring on L -->
+                <path d="M760,205 C765,160 770,125 770,105 C770,95 755,95 750,105 C745,125 740,165 735,200" />
+                <!-- Right Pinky on ; -->
+                <path d="M790,210 C800,180 810,150 815,130 C820,120 805,115 795,125 C785,145 775,175 770,205" />
+              </g>
+            </svg>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Architectural Breakdown for Concept 1 -->
+      <div class="analysis-grid">
+        <div class="analysis-card">
+          <h3>
+            <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--cyan-neon)"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+            <span>Aerospace Modular Rack</span>
+          </h3>
+          <p>Splits target key instruction, manuscript tape, and telemetry stats into distinct, non-competing visual chambers to eliminate cognitive friction.</p>
+          <ul class="feature-list">
+            <li><span class="bullet">▸</span> Dedicated Biomechanics Pod with finger joint guidance</li>
+            <li><span class="bullet">▸</span> Continuous horizontal tape cursor eliminates vertical head bobbing</li>
+            <li><span class="bullet">▸</span> Real-time WPM &amp; Accuracy telemetry clustered on the right flank</li>
+          </ul>
+        </div>
+
+        <div class="analysis-card">
+          <h3>
+            <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--gold-primary)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <span>Why 44% Opacity is the Golden Ratio</span>
+          </h3>
+          <p>Prior 85% opacity blocked 35% of the secondary legends on mechanical keys. At 44%, hand outlines remain 100% visible while all Khmer sub-glyphs shine through clearly.</p>
+          <ul class="feature-list">
+            <li><span class="bullet">▸</span> High contrast legibility of Shift, Coeng, and subscript glyphs</li>
+            <li><span class="bullet">▸</span> Zero occlusion when typing fast combos or complex clusters</li>
+            <li><span class="bullet">▸</span> Subtle glowing pulse on the active reaching finger</li>
+          </ul>
+        </div>
+
+        <div class="analysis-card">
+          <h3>
+            <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--emerald-neon)"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+            <span>Best Suited For</span>
+          </h3>
+          <p>Intermediate to power users, competitive typists, and students focusing on rapid muscle memory acquisition and data-driven improvement.</p>
+          <ul class="feature-list">
+            <li><span class="bullet">▸</span> Rapid visual acquisition of the next keystroke in &lt;60ms</li>
+            <li><span class="bullet">▸</span> Clear separation of prompt vs performance feedback</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PANEL 2: CONCEPT 2 ANGKOR ROYAL OBSIDIAN
+         =================================================================== -->
+    <section class="concept-view-panel" id="panel-c2">
+      <div class="stage-wrapper">
+        <div class="c2-container">
+          
+          <div class="c2-sanctuary-card">
+            <!-- Angkor Temple Arch Header -->
+            <div class="c2-header-arch">
+              <div class="c2-angkor-spire-badge">
+                <svg class="svg-icon" viewBox="0 0 24 24"><polygon points="12 2 15 8 21 9 17 14 18 20 12 17 6 20 7 14 3 9 9 8 12 2"></polygon></svg>
+                <span>Angkor Royal Foundation · Unit 1</span>
+              </div>
+              <h2 class="c2-lesson-title">មេរៀនទី ១ · អក្សរ «ច» ស្នូលដៃឆ្វេង (F)</h2>
+              <p class="c2-lesson-subtitle">Learn the foundational anchor glyph « ច » with the left index finger on the sacred home row.</p>
+            </div>
+
+            <!-- Altar Living Amber Dock -->
+            <div class="c2-altar-dock">
+              <div class="c2-active-rune-display">
+                <div class="c2-gem-pedestal">
+                  <span class="rune">ច</span>
+                </div>
+                <div class="c2-finger-sigil">
+                  <span class="title">Hand Biomechanics Sigil</span>
+                  <span class="desc">ម្រាមចង្អុលដៃឆ្វេង (Left Index)</span>
+                  <span class="sub">Keycap Position: Anchor [F] · No Shift Required</span>
+                </div>
+              </div>
+
+              <!-- Horizon of Floating Rune Stones -->
+              <div class="c2-rune-horizon">
+                <div class="c2-horizon-tile past">ច</div>
+                <div class="c2-horizon-tile past">ច</div>
+                <div class="c2-horizon-tile past" style="font-size:14px; font-family:'JetBrains Mono'">SPC</div>
+                <div class="c2-horizon-tile current">ច</div>
+                <div class="c2-horizon-tile">ច</div>
+                <div class="c2-horizon-tile" style="font-size:14px; font-family:'JetBrains Mono'">SPC</div>
+                <div class="c2-horizon-tile">ច</div>
+                <div class="c2-horizon-tile">ច</div>
+              </div>
+            </div>
+
+            <!-- Telemetry Horizon Ribbon -->
+            <div class="c2-telemetry-ribbon">
+              <div class="c2-telemetry-item">
+                <div class="value">100%</div>
+                <div class="label">Purity (Accuracy)</div>
+              </div>
+              <div class="c2-telemetry-item">
+                <div class="value">28 WPM</div>
+                <div class="label">Rhythm Tempo</div>
+              </div>
+              <div class="c2-telemetry-item">
+                <div class="value">12 / 30</div>
+                <div class="label">Sacred Runes Typed</div>
+              </div>
+              <div class="c2-telemetry-item">
+                <div class="value">00:25</div>
+                <div class="label">Practice Duration</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom: Keyboard Chassis with Soft Amber Bloom -->
+          <div class="keyboard-chassis-stage" style="border-color: rgba(255, 209, 102, 0.2); background:#06080e;">
+            <div class="keyboard-top-lip">
+              <div class="keyboard-model-badge" style="color:var(--gold-primary);">
+                <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                <span>OBSIDIAN SLATE ARCHITECTURE · HOME ROW ANCHOR</span>
+              </div>
+              <div class="keyboard-model-badge">
+                <span>HAND OPACITY: <strong>44% SILK GHOST</strong></span>
+              </div>
+            </div>
+
+            <!-- Identical keyboard key mapping with obsidian gold accents -->
+            <div class="keyboard-rows-cluster">
+              <div class="kb-row">
+                <div class="kb-key"><span class="kb-glyph-km">«</span><span class="kb-glyph-en">`</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">១</span><span class="kb-glyph-en">1</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">២</span><span class="kb-glyph-en">2</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">៣</span><span class="kb-glyph-en">3</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">៤</span><span class="kb-glyph-en">4</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">៥</span><span class="kb-glyph-en">5</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">៦</span><span class="kb-glyph-en">6</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">៧</span><span class="kb-glyph-en">7</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">៨</span><span class="kb-glyph-en">8</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">៩</span><span class="kb-glyph-en">9</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">០</span><span class="kb-glyph-en">0</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ឥ</span><span class="kb-glyph-en">-</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ឲ</span><span class="kb-glyph-en">=</span></div>
+                <div class="kb-key wide-1-5"><span class="kb-glyph-km" style="font-size:12px;">Backspace</span></div>
+              </div>
+              <div class="kb-row">
+                <div class="kb-key wide-1-5"><span class="kb-glyph-km" style="font-size:12px;">Tab</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ឆ</span><span class="kb-glyph-en">Q</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ដ</span><span class="kb-glyph-en">W</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ថ</span><span class="kb-glyph-en">E</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">រ</span><span class="kb-glyph-en">R</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ត</span><span class="kb-glyph-en">T</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">យ</span><span class="kb-glyph-en">Y</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ុ</span><span class="kb-glyph-en">U</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ិ</span><span class="kb-glyph-en">I</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ោ</span><span class="kb-glyph-en">O</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ផ</span><span class="kb-glyph-en">P</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ៀ</span><span class="kb-glyph-en">[</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ឪ</span><span class="kb-glyph-en">]</span></div>
+                <div class="kb-key wide-1-5"><span class="kb-glyph-km">\</span></div>
+              </div>
+              <div class="kb-row">
+                <div class="kb-key wide-1-75"><span class="kb-glyph-km" style="font-size:12px;">Caps</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ា</span><span class="kb-glyph-en">A</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ស</span><span class="kb-glyph-en">S</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ដ</span><span class="kb-glyph-en">D</span></div>
+                <div class="kb-key active-target" style="border-color:#ffd166; box-shadow: 0 0 24px rgba(255,209,102,0.6);">
+                  <span class="kb-glyph-km" style="color:#ffd166;">ច</span>
+                  <span class="kb-glyph-en" style="color:#ffd166; font-weight:700;">F</span>
+                </div>
+                <div class="kb-key"><span class="kb-glyph-km">ង</span><span class="kb-glyph-en">G</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ហ</span><span class="kb-glyph-en">H</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">់</span><span class="kb-glyph-en">J</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ក</span><span class="kb-glyph-en">K</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ល</span><span class="kb-glyph-en">L</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ើ</span><span class="kb-glyph-en">;</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">់</span><span class="kb-glyph-en">'</span></div>
+                <div class="kb-key wide-2"><span class="kb-glyph-km" style="font-size:12px;">Enter</span></div>
+              </div>
+              <div class="kb-row">
+                <div class="kb-key wide-2"><span class="kb-glyph-km" style="font-size:12px;">Shift</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ឋ</span><span class="kb-glyph-en">Z</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ខ</span><span class="kb-glyph-en">X</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ច</span><span class="kb-glyph-en">C</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">វ</span><span class="kb-glyph-en">V</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ប</span><span class="kb-glyph-en">B</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ន</span><span class="kb-glyph-en">N</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ម</span><span class="kb-glyph-en">M</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">ុំ</span><span class="kb-glyph-en">,</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">។</span><span class="kb-glyph-en">.</span></div>
+                <div class="kb-key"><span class="kb-glyph-km">៊</span><span class="kb-glyph-en">/</span></div>
+                <div class="kb-key wide-2"><span class="kb-glyph-km" style="font-size:12px;">Shift</span></div>
+              </div>
+              <div class="kb-row">
+                <div class="kb-key wide-1-5"><span class="kb-glyph-km" style="font-size:11px;">Ctrl</span></div>
+                <div class="kb-key"><span class="kb-glyph-km" style="font-size:11px;">Win</span></div>
+                <div class="kb-key wide-1-5"><span class="kb-glyph-km" style="font-size:11px;">Alt</span></div>
+                <div class="kb-key wide-space"><span class="kb-glyph-km" style="font-size:11px; color:#64748b;">Spacebar</span></div>
+                <div class="kb-key wide-1-5"><span class="kb-glyph-km" style="font-size:11px;">AltGr</span></div>
+                <div class="kb-key"><span class="kb-glyph-km" style="font-size:11px;">Fn</span></div>
+                <div class="kb-key wide-1-5"><span class="kb-glyph-km" style="font-size:11px;">Ctrl</span></div>
+              </div>
+            </div>
+
+            <!-- Hands overlay SVG at 44% -->
+            <svg class="hands-svg-canvas" viewBox="0 0 1000 360" preserveAspectRatio="none">
+              <g class="hand-group-left" fill="rgba(255, 209, 102, 0.2)" stroke="var(--gold-primary)" stroke-width="2">
+                <path d="M180,350 C180,260 210,220 250,210 C290,200 340,220 370,260 C390,290 390,350 390,350 Z" />
+                <path d="M210,210 C200,180 190,150 185,130 C180,120 195,115 205,125 C215,145 225,175 230,205" />
+                <path d="M240,205 C235,160 230,125 230,105 C230,95 245,95 250,105 C255,125 260,165 265,200" />
+                <path d="M275,200 C275,150 280,110 280,90 C280,80 295,80 300,90 C305,115 305,155 305,200" />
+                <path d="M315,205 C320,160 340,125 350,110 C355,100 370,105 365,120 C355,140 340,175 335,215" fill="rgba(255, 209, 102, 0.45)" stroke-width="3" />
+                <path d="M365,255 C390,230 420,220 440,225 C450,230 445,245 430,250 C405,255 380,270 370,285" />
+                <circle cx="360" cy="115" r="8" fill="var(--gold-primary)" opacity="0.8" />
+              </g>
+              <g class="hand-group-right" fill="rgba(255, 209, 102, 0.15)" stroke="var(--gold-primary)" stroke-width="1.8">
+                <path d="M820,350 C820,260 790,220 750,210 C710,200 660,220 630,260 C610,290 610,350 610,350 Z" />
+                <path d="M635,255 C610,230 580,220 560,225 C550,230 555,245 570,250 C595,255 620,270 630,285" />
+                <path d="M685,205 C680,160 670,125 660,110 C655,100 640,105 645,120 C655,140 670,175 675,215" />
+                <path d="M725,200 C725,150 720,110 720,90 C720,80 705,80 700,90 C695,115 695,155 695,200" />
+                <path d="M760,205 C765,160 770,125 770,105 C770,95 755,95 750,105 C745,125 740,165 735,200" />
+                <path d="M790,210 C800,180 810,150 815,130 C820,120 805,115 795,125 C785,145 775,175 770,205" />
+              </g>
+            </svg>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Architectural Breakdown for Concept 2 -->
+      <div class="analysis-grid">
+        <div class="analysis-card">
+          <h3>
+            <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--gold-primary)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+            <span>Cultural Reverence &amp; Luxury</span>
+          </h3>
+          <p>Combines ancient Khmer architectural grandeur with ultra-modern dark luxury UI design. Evokes the serene meditative atmosphere of Cambodia's heritage.</p>
+          <ul class="feature-list">
+            <li><span class="bullet">▸</span> Traditional Moul header calligraphy paired with clean Kantumruy Pro</li>
+            <li><span class="bullet">▸</span> Royal Gold (#ffd166) lighting accents with deep obsidian depth</li>
+            <li><span class="bullet">▸</span> Circular floating rune stones reflect natural stone carving</li>
+          </ul>
+        </div>
+
+        <div class="analysis-card">
+          <h3>
+            <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--cyan-neon)"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+            <span>Meditative Typing Rhythm</span>
+          </h3>
+          <p>Eliminates harsh technical alarms and replaces them with harmonic rhythm pacing, encouraging deep flow state and rhythmic finger cadence.</p>
+          <ul class="feature-list">
+            <li><span class="bullet">▸</span> Horizon rune alignment reduces rapid saccadic eye movements</li>
+            <li><span class="bullet">▸</span> 44% gold silk hand guides provide gentle biomechanic reassurance</li>
+          </ul>
+        </div>
+
+        <div class="analysis-card">
+          <h3>
+            <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--emerald-neon)"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+            <span>Best Suited For</span>
+          </h3>
+          <p>Cambodian language students, cultural organizations, typists who find technical game-like interfaces overwhelming and seek focus and calm.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PANEL 3: CONCEPT 3 FLOATING AERO-GLASS ISLAND
+         =================================================================== -->
+    <section class="concept-view-panel" id="panel-c3">
+      <div class="stage-wrapper">
+        <div class="c3-container">
+          
+          <div class="c3-spatial-stage">
+            <div class="c3-floating-dock">
+              <!-- Left Glass Pod: Holographic Target & Biometrics -->
+              <div class="c3-glass-pod">
+                <div class="c3-pod-header">
+                  <span class="c3-pill">Spatial Target Lens</span>
+                  <span style="font-size:12px; color:var(--text-dim); font-family:'JetBrains Mono'">[F] · L-INDEX</span>
+                </div>
+
+                <div style="display:flex; align-items:center; gap:20px;">
+                  <div style="width:76px; height:76px; border-radius:20px; background:linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 32px rgba(56,189,248,0.25);">
+                    <span style="font-family:'Kantumruy Pro'; font-size:42px; font-weight:700; color:#fff;">ច</span>
+                  </div>
+
+                  <div>
+                    <h3 style="font-size:16px; font-weight:700; color:#fff; margin-bottom:4px;">Left Index Home Strike</h3>
+                    <p style="font-size:13px; color:var(--text-muted); line-height:1.4;">Zero reach required. Natural resting posture on the tactile home nib.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Glass Pod: Dynamic Telemetry Chips -->
+              <div class="c3-glass-pod">
+                <div class="c3-pod-header">
+                  <span class="c3-pill" style="background:rgba(167,139,250,0.15); color:var(--violet-neon); border-color:rgba(167,139,250,0.3);">Telemetry Stream</span>
+                  <span style="font-size:12px; color:var(--emerald-neon);">Real-Time Sensor Active</span>
+                </div>
+
+                <div class="c3-telemetry-chips">
+                  <div class="c3-chip">
+                    <div class="c3-chip-val" style="color:var(--emerald-neon);">99%</div>
+                    <div class="c3-chip-lbl">Accuracy</div>
+                  </div>
+                  <div class="c3-chip">
+                    <div class="c3-chip-val" style="color:var(--cyan-neon);">36</div>
+                    <div class="c3-chip-lbl">WPM Speed</div>
+                  </div>
+                  <div class="c3-chip">
+                    <div class="c3-chip-val" style="color:var(--violet-neon);">0.2s</div>
+                    <div class="c3-chip-lbl">Keystroke Latency</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Full Width Fluid Glyph Stream -->
+            <div class="c3-glass-pod" style="margin-bottom:28px;">
+              <div class="c3-pod-header">
+                <span style="font-size:12px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em;">Magnetic Glyph Rail</span>
+                <span style="font-size:12px; color:var(--text-dim);">Smooth Linear Inertia</span>
+              </div>
+
+              <div class="c3-dynamic-stream">
+                <div class="c3-bubble-char" style="color:var(--emerald-neon); border-color:rgba(52,211,153,0.3);">ច</div>
+                <div class="c3-bubble-char" style="color:var(--emerald-neon); border-color:rgba(52,211,153,0.3);">ច</div>
+                <div class="c3-bubble-char current">ច</div>
+                <div class="c3-bubble-char">ច</div>
+                <div class="c3-bubble-char" style="font-size:13px; font-family:'JetBrains Mono'">SPC</div>
+                <div class="c3-bubble-char">ច</div>
+                <div class="c3-bubble-char">ច</div>
+                <div class="c3-bubble-char">ច</div>
+                <div class="c3-bubble-char">ច</div>
+              </div>
+            </div>
+
+            <!-- Spatial Floating Chassis with Glass Keys -->
+            <div class="keyboard-chassis-stage" style="background:rgba(10,14,24,0.7); backdrop-filter:blur(24px); border-color:rgba(255,255,255,0.12);">
+              <div class="keyboard-top-lip">
+                <div class="keyboard-model-badge">
+                  <svg class="svg-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v18M3 12h18"></path></svg>
+                  <span>SPATIAL AERO-GLASS ENGINE · 44% TRANSLUCENT GUIDES</span>
+                </div>
+              </div>
+
+              <div class="keyboard-rows-cluster">
+                <div class="kb-row">
+                  <div class="kb-key"><span class="kb-glyph-km">«</span><span class="kb-glyph-en">`</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">១</span><span class="kb-glyph-en">1</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">២</span><span class="kb-glyph-en">2</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">៣</span><span class="kb-glyph-en">3</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">៤</span><span class="kb-glyph-en">4</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">៥</span><span class="kb-glyph-en">5</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">៦</span><span class="kb-glyph-en">6</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">៧</span><span class="kb-glyph-en">7</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">៨</span><span class="kb-glyph-en">8</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">៩</span><span class="kb-glyph-en">9</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">០</span><span class="kb-glyph-en">0</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ឥ</span><span class="kb-glyph-en">-</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ឲ</span><span class="kb-glyph-en">=</span></div>
+                  <div class="kb-key wide-1-5"><span class="kb-glyph-km" style="font-size:12px;">Backspace</span></div>
+                </div>
+                <div class="kb-row">
+                  <div class="kb-key wide-1-5"><span class="kb-glyph-km" style="font-size:12px;">Tab</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ឆ</span><span class="kb-glyph-en">Q</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ដ</span><span class="kb-glyph-en">W</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ថ</span><span class="kb-glyph-en">E</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">រ</span><span class="kb-glyph-en">R</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ត</span><span class="kb-glyph-en">T</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">យ</span><span class="kb-glyph-en">Y</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ុ</span><span class="kb-glyph-en">U</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ិ</span><span class="kb-glyph-en">I</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ោ</span><span class="kb-glyph-en">O</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ផ</span><span class="kb-glyph-en">P</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ៀ</span><span class="kb-glyph-en">[</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ឪ</span><span class="kb-glyph-en">]</span></div>
+                  <div class="kb-key wide-1-5"><span class="kb-glyph-km">\</span></div>
+                </div>
+                <div class="kb-row">
+                  <div class="kb-key wide-1-75"><span class="kb-glyph-km" style="font-size:12px;">Caps</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ា</span><span class="kb-glyph-en">A</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ស</span><span class="kb-glyph-en">S</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ដ</span><span class="kb-glyph-en">D</span></div>
+                  <div class="kb-key active-target" style="border-color:#38bdf8; box-shadow:0 0 24px rgba(56,189,248,0.6);">
+                    <span class="kb-glyph-km" style="color:#38bdf8;">ច</span>
+                    <span class="kb-glyph-en" style="color:#38bdf8; font-weight:700;">F</span>
+                  </div>
+                  <div class="kb-key"><span class="kb-glyph-km">ង</span><span class="kb-glyph-en">G</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ហ</span><span class="kb-glyph-en">H</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">់</span><span class="kb-glyph-en">J</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ក</span><span class="kb-glyph-en">K</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ល</span><span class="kb-glyph-en">L</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ើ</span><span class="kb-glyph-en">;</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">់</span><span class="kb-glyph-en">'</span></div>
+                  <div class="kb-key wide-2"><span class="kb-glyph-km" style="font-size:12px;">Enter</span></div>
+                </div>
+                <div class="kb-row">
+                  <div class="kb-key wide-2"><span class="kb-glyph-km" style="font-size:12px;">Shift</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ឋ</span><span class="kb-glyph-en">Z</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ខ</span><span class="kb-glyph-en">X</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ច</span><span class="kb-glyph-en">C</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">វ</span><span class="kb-glyph-en">V</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ប</span><span class="kb-glyph-en">B</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ន</span><span class="kb-glyph-en">N</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ម</span><span class="kb-glyph-en">M</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">ុំ</span><span class="kb-glyph-en">,</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">។</span><span class="kb-glyph-en">.</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km">៊</span><span class="kb-glyph-en">/</span></div>
+                  <div class="kb-key wide-2"><span class="kb-glyph-km" style="font-size:12px;">Shift</span></div>
+                </div>
+                <div class="kb-row">
+                  <div class="kb-key wide-1-5"><span class="kb-glyph-km" style="font-size:11px;">Ctrl</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km" style="font-size:11px;">Win</span></div>
+                  <div class="kb-key wide-1-5"><span class="kb-glyph-km" style="font-size:11px;">Alt</span></div>
+                  <div class="kb-key wide-space"><span class="kb-glyph-km" style="font-size:11px; color:#64748b;">Spacebar</span></div>
+                  <div class="kb-key wide-1-5"><span class="kb-glyph-km" style="font-size:11px;">AltGr</span></div>
+                  <div class="kb-key"><span class="kb-glyph-km" style="font-size:11px;">Fn</span></div>
+                  <div class="kb-key wide-1-5"><span class="kb-glyph-km" style="font-size:11px;">Ctrl</span></div>
+                </div>
+              </div>
+
+              <!-- Hands overlay SVG at 44% -->
+              <svg class="hands-svg-canvas" viewBox="0 0 1000 360" preserveAspectRatio="none">
+                <g class="hand-group-left" fill="rgba(56, 189, 248, 0.18)" stroke="#38bdf8" stroke-width="2">
+                  <path d="M180,350 C180,260 210,220 250,210 C290,200 340,220 370,260 C390,290 390,350 390,350 Z" />
+                  <path d="M210,210 C200,180 190,150 185,130 C180,120 195,115 205,125 C215,145 225,175 230,205" />
+                  <path d="M240,205 C235,160 230,125 230,105 C230,95 245,95 250,105 C255,125 260,165 265,200" />
+                  <path d="M275,200 C275,150 280,110 280,90 C280,80 295,80 300,90 C305,115 305,155 305,200" />
+                  <path d="M315,205 C320,160 340,125 350,110 C355,100 370,105 365,120 C355,140 340,175 335,215" fill="rgba(56, 189, 248, 0.4)" stroke-width="2.5" />
+                  <path d="M365,255 C390,230 420,220 440,225 C450,230 445,245 430,250 C405,255 380,270 370,285" />
+                </g>
+                <g class="hand-group-right" fill="rgba(167, 139, 250, 0.18)" stroke="#a78bfa" stroke-width="2">
+                  <path d="M820,350 C820,260 790,220 750,210 C710,200 660,220 630,260 C610,290 610,350 610,350 Z" />
+                  <path d="M635,255 C610,230 580,220 560,225 C550,230 555,245 570,250 C595,255 620,270 630,285" />
+                  <path d="M685,205 C680,160 670,125 660,110 C655,100 640,105 645,120 C655,140 670,175 675,215" />
+                  <path d="M725,200 C725,150 720,110 720,90 C720,80 705,80 700,90 C695,115 695,155 695,200" />
+                  <path d="M760,205 C765,160 770,125 770,105 C770,95 755,95 750,105 C745,125 740,165 735,200" />
+                  <path d="M790,210 C800,180 810,150 815,130 C820,120 805,115 795,125 C785,145 775,175 770,205" />
+                </g>
+              </svg>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Architectural Breakdown for Concept 3 -->
+      <div class="analysis-grid">
+        <div class="analysis-card">
+          <h3>
+            <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--violet-neon)"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path></svg>
+            <span>Spatial Minimalist Design</span>
+          </h3>
+          <p>Inspired by next-gen spatial computing (VisionOS / modern frosted glass interfaces). Floating pods create depth without heavy visual borders.</p>
+          <ul class="feature-list">
+            <li><span class="bullet">▸</span> Frosted glass backdrops with specular white rim highlights</li>
+            <li><span class="bullet">▸</span> Fluid bubble characters with dynamic physics spring transitions</li>
+            <li><span class="bullet">▸</span> Zero clutter: only vital metrics exposed at any moment</li>
+          </ul>
+        </div>
+
+        <div class="analysis-card">
+          <h3>
+            <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--cyan-neon)"><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            <span>Seamless Multi-Monitor Flow</span>
+          </h3>
+          <p>Lightweight translucent chassis integrates natively into any desktop wallpaper, custom themes, or dynamic ambient lighting.</p>
+        </div>
+
+        <div class="analysis-card">
+          <h3>
+            <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--emerald-neon)"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Best Suited For</span>
+          </h3>
+          <p>Designers, Mac / modern web aesthetics enthusiasts, and users with high-resolution HDR displays wanting an airy, futuristic workspace.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PANEL 4: SIDE-BY-SIDE ERGONOMIC COMPARISON MATRIX
+         =================================================================== -->
+    <section class="concept-view-panel" id="panel-matrix">
+      <div class="matrix-wrapper">
+        <h2 style="font-size:20px; font-weight:800; margin-bottom:8px; display:flex; align-items:center; gap:10px;">
+          <span>Comprehensive Design Architecture Comparison</span>
+          <span class="tag-badge tag-concept">Comparative Benchmarks</span>
+        </h2>
+        <p style="color:var(--text-muted); font-size:13px; margin-bottom:24px;">Comparing the existing live lesson runner against the three proposed redesign paradigms across ergonomics, eye travel, and cognitive load.</p>
+
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th>Evaluation Dimension</th>
+              <th>Current Live App</th>
+              <th>Concept 1: Pro Cyber-Deck</th>
+              <th>Concept 2: Angkor Obsidian</th>
+              <th>Concept 3: Aero-Glass Island</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>3D Hand Guide Opacity</strong></td>
+              <td><span class="score-badge score-mid">44% (Now Live)</span></td>
+              <td><span class="score-badge score-high">44% Translucent Vector</span></td>
+              <td><span class="score-badge score-high">44% Gold Silk Overlay</span></td>
+              <td><span class="score-badge score-high">44% Refractive Frosted</span></td>
+            </tr>
+            <tr>
+              <td><strong>Eye Saccade Travel Distance</strong></td>
+              <td><span class="score-badge score-mid">180px Vertical Hop</span></td>
+              <td><span class="score-badge score-high">75px Compact Plane</span></td>
+              <td><span class="score-badge score-high">90px Circular Horizon</span></td>
+              <td><span class="score-badge score-high">60px Spatial Pod</span></td>
+            </tr>
+            <tr>
+              <td><strong>Khmer Script Readability</strong></td>
+              <td><span class="score-badge score-mid">Standard Tiles</span></td>
+              <td><span class="score-badge score-high">Sculpted 40px Display</span></td>
+              <td><span class="score-badge score-high">Moul + Kantumruy Altar</span></td>
+              <td><span class="score-badge score-high">Dynamic Fluid Glyphs</span></td>
+            </tr>
+            <tr>
+              <td><strong>Target Key Clarity (Subscripts/Shift)</strong></td>
+              <td><span class="score-badge score-low">Small Corner Badge</span></td>
+              <td><span class="score-badge score-high">Isolated Dual-Legend Pod</span></td>
+              <td><span class="score-badge score-high">Gemstone Cushion Cap</span></td>
+              <td><span class="score-badge score-mid">Spatial Float Chip</span></td>
+            </tr>
+            <tr>
+              <td><strong>Cognitive Clutter &amp; Distraction</strong></td>
+              <td><span class="score-badge score-mid">Medium (Scattered stats)</span></td>
+              <td><span class="score-badge score-high">Minimal (Modular rack)</span></td>
+              <td><span class="score-badge score-high">Ultra-Low (Meditative flow)</span></td>
+              <td><span class="score-badge score-high">Ultra-Low (Spatial zero-border)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Keyboard Occlusion</strong></td>
+              <td><span class="score-badge score-mid">Solved by 44% default</span></td>
+              <td><span class="score-badge score-high">Zero keycap blocking</span></td>
+              <td><span class="score-badge score-high">Zero keycap blocking</span></td>
+              <td><span class="score-badge score-high">Zero keycap blocking</span></td>
+            </tr>
+            <tr>
+              <td><strong>Implementation Complexity</strong></td>
+              <td><span class="score-badge score-high">Active in Production</span></td>
+              <td><span class="score-badge score-mid">Moderate (CSS Grid refactor)</span></td>
+              <td><span class="score-badge score-mid">Moderate (Font &amp; theme assets)</span></td>
+              <td><span class="score-badge score-low">Higher (Backdrop blur + GPU)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="preview-footer">
+      <p>PK Khmer Type Design Laboratory · Strictly follows the Zero-Emoji SVG Protocol · Default 3D Hand Opacity is active at 44% in your live project.</p>
+    </footer>
+  </div>
+
+  <!-- Interactive Logic for Preview Lab -->
+  <script>
+    // Tab Switching Logic
+    const tabBtns = document.querySelectorAll('.concept-tab-btn');
+    const panels = {
+      c1: document.getElementById('panel-c1'),
+      c2: document.getElementById('panel-c2'),
+      c3: document.getElementById('panel-c3'),
+      matrix: document.getElementById('panel-matrix')
+    };
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const concept = btn.dataset.concept;
+        Object.values(panels).forEach(p => p.classList.remove('active'));
+        if (panels[concept]) {
+          panels[concept].classList.add('active');
+        }
+      });
+    });
+
+    // Real-Time 3D Hand Opacity Dial
+    const masterSlider = document.getElementById('masterOpacitySlider');
+    const masterDisplay = document.getElementById('masterOpacityDisplay');
+
+    function updateOpacity(val) {
+      document.documentElement.style.setProperty('--hands-opacity', (val / 100).toFixed(2));
+      masterDisplay.textContent = val + '%';
+      masterSlider.value = val;
+    }
+
+    masterSlider.addEventListener('input', (e) => {
+      updateOpacity(e.target.value);
+    });
+
+    // Simulated Typing Rhythm in Concept 1
+    let simActive = true;
+    const simBtn = document.getElementById('simToggleBtn');
+    const simBtnText = document.getElementById('simBtnText');
+    const kbKeyF = document.getElementById('kbKeyF');
+    const c1CursorTile = document.getElementById('c1CursorTile');
+    const c1AccuracyVal = document.getElementById('c1AccuracyVal');
+    const c1WpmVal = document.getElementById('c1WpmVal');
+
+    simBtn.addEventListener('click', () => {
+      simActive = !simActive;
+      simBtn.classList.toggle('active', simActive);
+      simBtnText.textContent = simActive ? 'Typing Simulation Active' : 'Simulation Paused';
+    });
+
+    let simCycle = 0;
+    setInterval(() => {
+      if (!simActive) return;
+      simCycle++;
+
+      // Trigger momentary key press visual
+      if (kbKeyF) {
+        kbKeyF.style.transform = 'translateY(2px) scale(0.97)';
+        kbKeyF.style.boxShadow = '0 0 35px rgba(255, 209, 102, 0.8)';
+        setTimeout(() => {
+          kbKeyF.style.transform = 'translateY(-2px)';
+          kbKeyF.style.boxShadow = '0 0 20px rgba(255, 209, 102, 0.5)';
+        }, 180);
+      }
+
+      if (c1CursorTile) {
+        c1CursorTile.style.transform = 'scale(1.15)';
+        setTimeout(() => {
+          c1CursorTile.style.transform = 'scale(1.06)';
+        }, 200);
+      }
+
+      // Random micro-fluctuations in speed & accuracy to feel organic
+      if (simCycle % 3 === 0) {
+        const randomWpm = Math.floor(32 + Math.random() * 6);
+        const randomAcc = (98.2 + Math.random() * 1.5).toFixed(1);
+        if (c1WpmVal) c1WpmVal.textContent = randomWpm + ' WPM';
+        if (c1AccuracyVal) c1AccuracyVal.textContent = randomAcc + '%';
+      }
+    }, 1200);
+  </script>
+</body>
+</html>

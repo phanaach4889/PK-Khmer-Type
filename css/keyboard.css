@@ -216,7 +216,7 @@
     pointer-events:none;
     z-index:5;
     overflow:visible;
-    opacity:var(--hands-opacity, 0.85);
+    opacity:var(--hands-opacity, 0.44);
     transition:opacity .35s ease, visibility .35s ease;
   }
   .hands-overlay.hidden{
