@@ -2101,18 +2101,24 @@ if (document.readyState === "loading") {
     }
 
     if (toggleBtn) toggleBtn.setAttribute("aria-pressed", String(isKm));
-    if (toggleLabel) toggleLabel.textContent = isKm ? "English" : "ភាសាខ្មែរ";
-    if (toggleBtn) toggleBtn.setAttribute("aria-label", isKm ? "Switch site back to English" : "Translate site to Khmer");
+    if (toggleLabel) toggleLabel.textContent = isKm ? "Translate back to English" : "Translate to Khmer";
+    if (toggleBtn) toggleBtn.setAttribute("aria-label", isKm ? "Translate back to English" : "Translate site to Khmer");
 
     if (topToggleBtn) {
       topToggleBtn.setAttribute("aria-pressed", String(isKm));
-      topToggleBtn.setAttribute("aria-label", isKm ? "Switch back to English" : "Translate English to Khmer");
-      topToggleBtn.setAttribute("title", isKm ? "Switch back to English (Alt+L)" : "Translate English to Khmer (Alt+L)");
+      topToggleBtn.setAttribute("aria-label", isKm ? "Translate back to English" : "Translate English to Khmer");
+      topToggleBtn.setAttribute("title", isKm ? "Translate back to English (Alt+L)" : "Translate English to Khmer (Alt+L)");
       topToggleBtn.classList.toggle("active", isKm);
     }
     if (topToggleLabel) {
-      topToggleLabel.textContent = isKm ? "English" : "Translate to Khmer";
+      topToggleLabel.textContent = isKm ? "Translate to English" : "Translate to Khmer";
     }
+
+    var badgeEn = document.getElementById("topLangBadgeEn");
+    var badgeKm = document.getElementById("topLangBadgeKm");
+    if (badgeEn) badgeEn.classList.toggle("active", !isKm);
+    if (badgeKm) badgeKm.classList.toggle("active", isKm);
+
     var langChoiceBtns = document.querySelectorAll("#settingsLangChoice button");
     langChoiceBtns.forEach(function (b) {
       b.classList.toggle("active", b.dataset.langSet === (isKm ? "km" : "en"));
@@ -2150,6 +2156,10 @@ if (document.readyState === "loading") {
       if (typeof renderStats === "function" && typeof statsModal !== "undefined" && statsModal && !statsModal.hidden) {
         renderStats();
       }
+      if (window.PK_TUTORIAL && typeof window.PK_TUTORIAL.refreshLang === "function") {
+        window.PK_TUTORIAL.refreshLang();
+      }
+      window.dispatchEvent(new CustomEvent("pkLanguageChanged", { detail: { lang: lang, isKm: isKm } }));
     } catch (e) {}
   }
 
@@ -2157,6 +2167,16 @@ if (document.readyState === "loading") {
     var next = document.documentElement.classList.contains("site-km-mode") ? "en" : "km";
     safeSetLang(LANG_KEY, next);
     applyLang(next);
+    try {
+      if (typeof showToast === "function") {
+        var isNowKm = next === "km";
+        showToast(
+          typeof pkIcon === "function" ? pkIcon("globe", 18) : "",
+          isNowKm ? "បកប្រែជាភាសាខ្មែរ 🇰🇭" : "Translated to English 🇺🇸",
+          isNowKm ? "ចុច Alt+L ឬប៊ូតុងដើម្បីប្តូរមកភាសាអង់គ្លេសវិញ" : "Switched to English. Press Alt+L to translate to Khmer anytime."
+        );
+      }
+    } catch(e){}
   }
 
   var startLang = safeGetLang(LANG_KEY, "en");

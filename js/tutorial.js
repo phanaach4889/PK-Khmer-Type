@@ -92,7 +92,8 @@
       path3: 'Check the Quick Guide when you need help.',
       path4: 'Use Adaptive Practice and Studio Controls to customize your training.',
       startNextLesson: 'Start Next Lesson',
-      exploreAlone: 'Explore on My Own'
+      exploreAlone: 'Explore on My Own',
+      guideFeature: 'Guide Feature'
     },
     km: {
       welcomeTitle: 'សូមស្វាគមន៍មកកាន់ PK Khmer Type',
@@ -171,7 +172,8 @@
       path3: 'ពិនិត្យមើល Quick Guide នៅពេលអ្នកត្រូវការជំនួយ។',
       path4: 'ប្រើ Adaptive Practice និងរបារបញ្ជាស្ទូឌីយោដើម្បីកែសម្រួលការហ្វឹកហាត់។',
       startNextLesson: 'ចាប់ផ្តើមមេរៀនបន្ទាប់',
-      exploreAlone: 'ស្វែងយល់ដោយខ្លួនឯង'
+      exploreAlone: 'ស្វែងយល់ដោយខ្លួនឯង',
+      guideFeature: 'មុខងារមគ្គុទ្ទេសក៍'
     }
   };
 
@@ -206,6 +208,7 @@
       this.highlightEl = null;
       this.isWaitingForLessonComplete = false;
       this.elementsCreated = false;
+      this.currentModalMode = null;
       this.rafId = null;
 
       this.boundOnResize = this.onViewportChange.bind(this);
@@ -282,9 +285,18 @@
         <div id="pkTutorialTooltip" class="pk-tutorial-tooltip" role="dialog" aria-modal="true" aria-labelledby="pkTutTitle">
           <div class="pk-tutorial-tooltip-header">
             <span class="pk-tutorial-step-badge" id="pkTutStepBadge">Step 1 of 4</span>
-            <button type="button" class="pk-tutorial-close-btn" id="pkTutCloseBtn" aria-label="Close tutorial" title="Close tutorial">
-              <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </button>
+            <div class="pk-tut-tooltip-header-actions">
+              <button type="button" class="pk-tut-tooltip-lang-btn" id="pkTutTooltipLangBtn" aria-label="Translate tutorial language" title="Translate English ⇄ Khmer">
+                <span class="pk-tut-tooltip-lang-capsule">
+                  <span class="pk-tut-tlang-opt en active" id="pkTutTooltipLangEn">EN</span>
+                  <span class="pk-tut-tlang-arrow" aria-hidden="true">⇄</span>
+                  <span class="pk-tut-tlang-opt km" id="pkTutTooltipLangKm">ខ្មែរ</span>
+                </span>
+              </button>
+              <button type="button" class="pk-tutorial-close-btn" id="pkTutCloseBtn" aria-label="Close tutorial" title="Close tutorial">
+                <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
           </div>
           <div class="pk-tutorial-title-row">
             <span class="pk-tutorial-icon-box" id="pkTutStepIcon" aria-hidden="true">${TUT_ICONS.lessons}</span>
@@ -303,8 +315,18 @@
 
         <!-- Welcome / Finish Modal -->
         <div id="pkTutorialModalCard" class="pk-tutorial-modal-card" style="display:none;" role="dialog" aria-modal="true">
-          <div class="pk-tut-crest-icon">
-            <img src="logo.svg" alt="PK Logo">
+          <div class="pk-tut-modal-header-row">
+            <div class="pk-tut-crest-icon">
+              <img src="logo.svg" alt="PK Logo">
+            </div>
+            <div class="pk-tut-lang-segmented" id="pkTutModalLangSeg" role="group" aria-label="Translate tutorial language">
+              <button type="button" class="pk-tut-seg-btn active" id="pkTutModalLangEn" data-tut-lang="en">
+                <span class="pk-tut-seg-flag">🇺🇸</span> <span>English</span>
+              </button>
+              <button type="button" class="pk-tut-seg-btn" id="pkTutModalLangKm" data-tut-lang="km">
+                <span class="pk-tut-seg-flag">🇰🇭</span> <span>ភាសាខ្មែរ</span>
+              </button>
+            </div>
           </div>
           <h2 class="pk-tut-modal-title" id="pkTutModalTitle">Welcome to PK Khmer Type</h2>
           <p class="pk-tut-modal-subtitle" id="pkTutModalSubtitle">Learn to type Khmer step by step.</p>
@@ -337,11 +359,99 @@
       document.getElementById('pkTutCloseBtn').addEventListener('click', () => this.skip());
       document.getElementById('pkTutSkipBtn').addEventListener('click', () => this.skip());
       document.getElementById('pkTutPillSkipBtn').addEventListener('click', () => this.skip());
+
+      // Wire language switchers
+      const langEn = document.getElementById('pkTutModalLangEn');
+      const langKm = document.getElementById('pkTutModalLangKm');
+      const tipLang = document.getElementById('pkTutTooltipLangBtn');
+
+      if(langEn){
+        langEn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if(typeof window.applySiteLanguage === 'function'){
+            window.applySiteLanguage('en');
+          }
+        });
+      }
+      if(langKm){
+        langKm.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if(typeof window.applySiteLanguage === 'function'){
+            window.applySiteLanguage('km');
+          }
+        });
+      }
+      if(tipLang){
+        tipLang.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if(typeof window.toggleSiteLanguage === 'function'){
+            window.toggleSiteLanguage();
+          }
+        });
+      }
+
+      this.refreshLangUI();
+    }
+
+    refreshLangUI(){
+      if(!this.elementsCreated) return;
+      const isKm = document.documentElement.classList.contains('site-km-mode');
+
+      const modalEn = document.getElementById('pkTutModalLangEn');
+      const modalKm = document.getElementById('pkTutModalLangKm');
+      if(modalEn) modalEn.classList.toggle('active', !isKm);
+      if(modalKm) modalKm.classList.toggle('active', isKm);
+
+      const tipEn = document.getElementById('pkTutTooltipLangEn');
+      const tipKm = document.getElementById('pkTutTooltipLangKm');
+      if(tipEn) tipEn.classList.toggle('active', !isKm);
+      if(tipKm) tipKm.classList.toggle('active', isKm);
+    }
+
+    refreshLang(){
+      if(!this.elementsCreated) return;
+      this.refreshLangUI();
+
+      const skipBtn = document.getElementById('pkTutSkipBtn');
+      if(skipBtn) skipBtn.textContent = this.t('skip');
+
+      if(this.currentModalMode === 'welcome'){
+        document.getElementById('pkTutModalTitle').textContent = this.t('welcomeTitle');
+        document.getElementById('pkTutModalSubtitle').textContent = this.t('welcomeSubtitle');
+        document.getElementById('pkTutModalPriBtn').textContent = this.t('startLearning');
+        document.getElementById('pkTutModalSecBtn').textContent = this.t('skipTutorial');
+      } else if(this.currentModalMode === 'firstDone'){
+        document.getElementById('pkTutModalTitle').textContent = this.t('firstDoneTitle');
+        document.getElementById('pkTutModalSubtitle').textContent = this.t('firstDoneDesc');
+        document.getElementById('pkTutModalPriBtn').textContent = this.t('continueTutorial');
+        document.getElementById('pkTutModalSecBtn').textContent = this.t('practiceMore');
+      } else if(this.currentModalMode === 'finish'){
+        document.getElementById('pkTutModalTitle').textContent = this.t('finishTitle');
+        document.getElementById('pkTutModalSubtitle').textContent = this.t('finishSubtitle');
+        document.getElementById('pkTutPath1').textContent = this.t('path1');
+        document.getElementById('pkTutPath2').textContent = this.t('path2');
+        document.getElementById('pkTutPath3').textContent = this.t('path3');
+        document.getElementById('pkTutPath4').textContent = this.t('path4');
+        document.getElementById('pkTutModalPriBtn').textContent = this.t('startNextLesson');
+        document.getElementById('pkTutModalSecBtn').textContent = this.t('exploreAlone');
+      } else if(this.active && this.currentStepKey){
+        if(this.currentStepKey === 'waiting-practice'){
+          const pillText = document.getElementById('pkTutPillText');
+          const pillSkip = document.getElementById('pkTutPillSkipBtn');
+          if(pillText) pillText.textContent = this.t('pillActive');
+          if(pillSkip) pillSkip.textContent = this.t('skip');
+        } else {
+          this.goToStep(this.currentStepKey);
+        }
+      }
     }
 
     /* ---- Welcome Modal ---- */
     showWelcome(){
       this.ensureDOM();
+      this.currentModalMode = 'welcome';
+      this.refreshLangUI();
+
       const overlay = document.getElementById('pkTutorialOverlay');
       const modal = document.getElementById('pkTutorialModalCard');
       const tooltip = document.getElementById('pkTutorialTooltip');
@@ -365,6 +475,7 @@
       secBtn.textContent = this.t('skipTutorial');
 
       priBtn.onclick = () => {
+        this.currentModalMode = null;
         modal.style.display = 'none';
         maskSvg.style.display = 'block';
         tooltip.style.display = 'block';
@@ -382,6 +493,8 @@
     goToStep(stepKey){
       this.ensureDOM();
       this.active = true;
+      this.currentModalMode = null;
+      this.refreshLangUI();
       this.currentStepKey = stepKey;
       localStorage.setItem(LS_SAVED_STEP, stepKey);
 
@@ -643,6 +756,9 @@
     /* ---- Step 4: First Lesson Completed Modal ---- */
     showFirstLessonCompleted(){
       this.ensureDOM();
+      this.currentModalMode = 'firstDone';
+      this.refreshLangUI();
+
       const overlay = document.getElementById('pkTutorialOverlay');
       const modal = document.getElementById('pkTutorialModalCard');
       const tooltip = document.getElementById('pkTutorialTooltip');
@@ -666,6 +782,7 @@
       secBtn.textContent = this.t('practiceMore');
 
       priBtn.onclick = () => {
+        this.currentModalMode = null;
         modal.style.display = 'none';
         maskSvg.style.display = 'block';
         tooltip.style.display = 'block';
@@ -711,7 +828,7 @@
       if(radar) radar.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
       this.spotlight(radar, {
-        stepText: `Guide Feature (1/5)`,
+        stepText: `${this.t('guideFeature')} (1/5)`,
         icon: TUT_ICONS.radar,
         title: this.t('radarTitle'),
         body: this.t('radarDesc'),
@@ -728,7 +845,7 @@
       if(wpmGrid) wpmGrid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
       this.spotlight(wpmGrid, {
-        stepText: `Guide Feature (2/5)`,
+        stepText: `${this.t('guideFeature')} (2/5)`,
         icon: TUT_ICONS.wpm,
         title: this.t('wpmTitle'),
         body: this.t('wpmDesc'),
@@ -745,7 +862,7 @@
       if(fingerSec) fingerSec.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
       this.spotlight(fingerSec, {
-        stepText: `Guide Feature (3/5)`,
+        stepText: `${this.t('guideFeature')} (3/5)`,
         icon: TUT_ICONS.fingers,
         title: this.t('fingerTitle'),
         body: this.t('fingerDesc'),
@@ -762,7 +879,7 @@
       if(weakSec) weakSec.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
       this.spotlight(weakSec, {
-        stepText: `Guide Feature (4/5)`,
+        stepText: `${this.t('guideFeature')} (4/5)`,
         icon: TUT_ICONS.weak,
         title: this.t('weakTitle'),
         body: this.t('weakDesc'),
@@ -779,7 +896,7 @@
       if(rulesSec) rulesSec.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
       this.spotlight(rulesSec, {
-        stepText: `Guide Feature (5/5)`,
+        stepText: `${this.t('guideFeature')} (5/5)`,
         icon: TUT_ICONS.rules,
         title: this.t('subscriptsTitle'),
         body: this.t('subscriptsDesc'),
@@ -868,6 +985,9 @@
     /* ---- Step 7: Finish Screen & Suggested Path ---- */
     showFinish(){
       this.ensureDOM();
+      this.currentModalMode = 'finish';
+      this.refreshLangUI();
+
       const overlay = document.getElementById('pkTutorialOverlay');
       const modal = document.getElementById('pkTutorialModalCard');
       const tooltip = document.getElementById('pkTutorialTooltip');
@@ -897,10 +1017,12 @@
       secBtn.textContent = this.t('exploreAlone');
 
       priBtn.onclick = () => {
+        this.currentModalMode = null;
         this.finish(true);
       };
 
       secBtn.onclick = () => {
+        this.currentModalMode = null;
         this.finish(false);
       };
     }
@@ -1059,6 +1181,7 @@
       this.active = false;
       this.isWaitingForLessonComplete = false;
       this.highlightEl = null;
+      this.currentModalMode = null;
 
       const overlay = document.getElementById('pkTutorialOverlay');
       if(overlay) overlay.hidden = true;

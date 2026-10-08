@@ -86,6 +86,63 @@
   margin-bottom: 10px;
 }
 
+.pk-tut-tooltip-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pk-tut-tooltip-lang-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 209, 102, 0.3);
+  border-radius: 999px;
+  padding: 2px 7px;
+  color: #cbd5e1;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.9, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  font-family: inherit;
+}
+
+.pk-tut-tooltip-lang-btn:hover {
+  border-color: rgba(255, 209, 102, 0.75);
+  background: rgba(255, 209, 102, 0.14);
+  box-shadow: 0 0 12px rgba(255, 209, 102, 0.3);
+  transform: translateY(-1px);
+}
+
+.pk-tut-tooltip-lang-capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+  user-select: none;
+}
+
+.pk-tut-tlang-opt {
+  padding: 1px 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.pk-tut-tlang-opt.active {
+  color: #070a12;
+  background: #ffd166;
+  box-shadow: 0 0 8px rgba(255, 209, 102, 0.55);
+}
+
+.pk-tut-tlang-arrow {
+  color: #ffd166;
+  font-size: 0.7rem;
+  transition: transform 0.25s ease;
+}
+
+html.site-km-mode .pk-tut-tlang-arrow {
+  transform: rotate(180deg);
+}
+
 .pk-tutorial-step-badge {
   font-size: 0.72rem;
   font-weight: 700;
@@ -295,9 +352,67 @@
   to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 
+.pk-tut-modal-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.pk-tut-modal-header-row .pk-tut-crest-icon {
+  margin: 0;
+}
+
+.pk-tut-lang-segmented {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(14, 20, 36, 0.9);
+  border: 1px solid rgba(255, 209, 102, 0.35);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 3px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.pk-tut-seg-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.9, 0.3, 1);
+  font-family: inherit;
+}
+
+.pk-tut-seg-btn.active {
+  background: linear-gradient(135deg, rgba(255, 209, 102, 0.28), rgba(255, 209, 102, 0.12));
+  border: 1px solid rgba(255, 209, 102, 0.6);
+  color: #ffd166;
+  font-weight: 700;
+  box-shadow: 0 0 14px rgba(255, 209, 102, 0.35);
+}
+
+.pk-tut-seg-btn:hover:not(.active) {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pk-tut-seg-flag {
+  font-size: 0.88rem;
+  line-height: 1;
+}
+
 .pk-tut-crest-icon {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   margin: 0 auto 16px;
   display: flex;
   align-items: center;
@@ -510,3 +625,4 @@ html.reduced-motion .pk-tutorial-modal-card,
 html.anim-mode-minimal .pk-tutorial-modal-card {
   animation: none !important;
 }
+
