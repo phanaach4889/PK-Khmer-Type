@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PK Khmer Type — Compact Lesson Runner &amp; Keyboard Chassis Redesign</title>
+  <title>PK Khmer Type — Useful Keyboard Features &amp; Compact Chassis Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Kantumruy+Pro:wght@400;600;700&family=Moul&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -13,9 +13,8 @@
       --bg-surface: #0c101a;
       --bg-card: #121827;
       --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-gold: rgba(255, 209, 102, 0.3);
+      --border-gold: rgba(255, 209, 102, 0.35);
       --gold-bright: #ffd166;
-      --gold-dim: #c79a32;
       --cyan-bright: #38bdf8;
       --emerald-bright: #34d399;
       --rose-bright: #fb7185;
@@ -24,8 +23,6 @@
       --text-muted: #94a3b8;
       --text-dim: #64748b;
       --hands-opacity: 0.44;
-      --hand-l-hex: #38bdf8;
-      --hand-r-hex: #f472b6;
       --radius-sm: 6px;
       --radius-md: 10px;
       --radius-lg: 14px;
@@ -40,16 +37,16 @@
     body {
       background-color: var(--bg-deep);
       background-image: 
-        radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.07) 0%, transparent 45%),
-        radial-gradient(circle at 80% 20%, rgba(255, 209, 102, 0.05) 0%, transparent 35%);
+        radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 85% 15%, rgba(255, 209, 102, 0.05) 0%, transparent 35%);
       color: var(--text-main);
       font-family: 'Inter', -apple-system, sans-serif;
       min-height: 100vh;
-      padding: 16px 16px 40px;
-      line-height: 1.45;
+      padding: 14px 14px 40px;
+      line-height: 1.4;
     }
 
-    /* Zero-Emoji: Clean SVG Vector Icons */
+    /* Zero-Emoji Policy: All icons are SVG */
     .svg-icon {
       display: inline-block;
       width: 14px;
@@ -62,23 +59,22 @@
       stroke-linejoin: round;
     }
 
-    /* Compact App Shell (Fits comfortably on normal desktop screens) */
     .app-shell {
-      max-width: 900px;
+      max-width: 920px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
 
-    /* Slim Header Bar */
+    /* Header Bar */
     .app-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
       padding: 8px 14px;
-      background: rgba(12, 16, 26, 0.8);
+      background: rgba(12, 16, 26, 0.85);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       backdrop-filter: blur(12px);
@@ -105,7 +101,6 @@
     .brand-text h1 {
       font-size: 14px;
       font-weight: 700;
-      letter-spacing: -0.01em;
       color: #fff;
     }
 
@@ -114,557 +109,467 @@
       color: var(--text-dim);
     }
 
-    .header-controls {
+    .header-tools {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
-    .opacity-control {
+    .slider-pill {
       display: flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 4px 10px;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 3px 10px;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    .opacity-label {
-      font-size: 11px;
+    .slider-label {
+      font-size: 10px;
       font-weight: 600;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
 
-    .opacity-control input[type="range"] {
-      width: 75px;
+    .slider-pill input[type="range"] {
+      width: 70px;
       height: 4px;
       accent-color: var(--gold-bright);
       cursor: pointer;
     }
 
-    .opacity-badge {
+    .slider-val {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       font-weight: 700;
       color: var(--gold-bright);
-      min-width: 32px;
+      min-width: 30px;
     }
 
-    .sim-btn {
-      display: inline-flex;
+    /* USEFUL FEATURE BAR #1: INTERACTIVE KEY FINDER & RECIPE HUD */
+    .finder-strip {
+      display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      gap: 5px;
-      font-size: 11px;
-      font-weight: 600;
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-muted);
-      cursor: pointer;
+      justify-content: space-between;
+      gap: 8px;
+      background: linear-gradient(90deg, #101625 0%, #0d121e 100%);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: var(--radius-md);
+      padding: 8px 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    .finder-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 4px 10px;
+      flex: 1;
+      max-width: 360px;
       transition: all 0.15s ease;
     }
 
-    .sim-btn:hover {
-      background: rgba(255, 255, 255, 0.1);
+    .finder-input-wrap:focus-within {
+      border-color: var(--gold-bright);
+      box-shadow: 0 0 10px rgba(255, 209, 102, 0.25);
+    }
+
+    .finder-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-family: 'Kantumruy Pro', 'Inter', sans-serif;
+      font-size: 12px;
+      width: 100%;
+    }
+
+    .finder-input::placeholder {
+      color: var(--text-dim);
+      font-size: 11px;
+    }
+
+    .quick-chips-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .quick-chip-lbl {
+      font-size: 10px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .find-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 4px;
+      padding: 2px 7px;
+      color: var(--text-main);
+      font-family: 'Kantumruy Pro', sans-serif;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.12s ease;
+    }
+
+    .find-chip:hover {
+      background: rgba(255, 209, 102, 0.15);
+      border-color: var(--gold-bright);
+      color: var(--gold-bright);
+      transform: translateY(-1px);
+    }
+
+    /* RECIPE RESULT POPOVER (Appears when key searched) */
+    .recipe-callout {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: linear-gradient(135deg, rgba(255, 209, 102, 0.12), rgba(56, 189, 248, 0.08));
+      border: 1px solid var(--gold-bright);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      animation: fadeIn 0.2s ease forwards;
+    }
+
+    .recipe-callout.show { display: flex; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .recipe-meta-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .recipe-big-glyph {
+      font-family: 'Kantumruy Pro', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--gold-bright);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .recipe-details h3 {
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .recipe-details p {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .recipe-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 3px;
+      background: rgba(56, 189, 248, 0.2);
+      color: var(--cyan-bright);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+    }
+
+    .recipe-copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.12s ease;
+    }
+
+    .recipe-copy-btn:hover {
+      background: var(--gold-bright);
+      color: #000;
+    }
+
+    /* COMPACT MANUSCRIPT HUD (Typing Target & Live Test) */
+    .manuscript-card {
+      background: linear-gradient(180deg, #101524 0%, #0a0d16 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .manuscript-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 6px;
+    }
+
+    .stream-row {
+      display: grid;
+      grid-template-columns: 90px 1fr 140px;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .target-key-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-gold);
+      border-radius: 6px;
+      padding: 4px 6px;
+    }
+
+    .target-key-cap {
+      width: 32px;
+      height: 34px;
+      background: linear-gradient(180deg, #1c263c, #101726);
+      border: 1.5px solid var(--gold-bright);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Kantumruy Pro', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
       color: #fff;
     }
 
-    .sim-btn.active {
+    .target-info {
+      font-size: 10px;
+      color: var(--text-dim);
+      line-height: 1.2;
+    }
+
+    .target-info b {
+      color: #fff;
+      display: block;
+      font-size: 11px;
+    }
+
+    .tape-track {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      padding: 5px 8px;
+      overflow-x: hidden;
+    }
+
+    .tape-char {
+      width: 32px;
+      height: 34px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Kantumruy Pro', sans-serif;
+      font-size: 18px;
+      color: var(--text-dim);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      flex-shrink: 0;
+    }
+
+    .tape-char.done {
+      color: var(--emerald-bright);
+      background: rgba(52, 211, 153, 0.08);
+      border-color: rgba(52, 211, 153, 0.25);
+    }
+
+    .tape-char.active {
+      width: 38px;
+      height: 38px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 700;
+      background: linear-gradient(135deg, rgba(255, 209, 102, 0.25), rgba(56, 189, 248, 0.15));
+      border: 1.5px solid var(--gold-bright);
+      box-shadow: 0 0 12px rgba(255, 209, 102, 0.4);
+      transform: scale(1.05);
+    }
+
+    .stats-trio {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 6px;
+      padding: 5px 6px;
+    }
+
+    .stat-node {
+      text-align: center;
+    }
+
+    .stat-node .val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      display: block;
+    }
+
+    .stat-node .lbl {
+      font-size: 8px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* USEFUL FEATURE BAR #2: KEYBOARD CHASSIS INTEGRATED ACTION DOCK */
+    .chassis-deck-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 6px 4px 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 8px;
+    }
+
+    .deck-left-cluster {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .layer-selector {
+      display: inline-flex;
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 2px;
+      gap: 2px;
+    }
+
+    .layer-btn {
+      background: transparent;
+      border: none;
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-dim);
+      cursor: pointer;
+      transition: all 0.12s ease;
+    }
+
+    .layer-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .layer-btn.active {
+      background: rgba(255, 209, 102, 0.18);
+      color: var(--gold-bright);
+      font-weight: 700;
+    }
+
+    .deck-right-cluster {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .deck-tool-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.12s ease;
+    }
+
+    .deck-tool-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .deck-tool-btn.active {
       background: rgba(56, 189, 248, 0.15);
       border-color: rgba(56, 189, 248, 0.4);
       color: var(--cyan-bright);
     }
 
-    /* Concept Selector Segmented Tabs */
-    .concept-switch-bar {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
-      background: rgba(8, 11, 18, 0.7);
-      padding: 4px;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-subtle);
+    .deck-tool-btn.active.heatmap-on {
+      background: rgba(251, 113, 133, 0.15);
+      border-color: rgba(251, 113, 133, 0.4);
+      color: var(--rose-bright);
     }
 
-    .concept-tab-btn {
-      background: transparent;
-      border: 1px solid transparent;
-      border-radius: var(--radius-sm);
-      padding: 8px 10px;
+    .deck-tool-btn.active.zones-on {
+      background: rgba(167, 139, 250, 0.15);
+      border-color: rgba(167, 139, 250, 0.4);
+      color: var(--violet-bright);
+    }
+
+    .switch-sound-select {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      color: var(--text-main);
+      font-size: 11px;
+      padding: 4px 6px;
+      outline: none;
       cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 2px;
-      transition: all 0.15s ease;
-      color: var(--text-dim);
     }
 
-    .concept-tab-btn:hover {
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--text-muted);
-    }
-
-    .concept-tab-btn.active {
-      background: var(--bg-card);
-      border-color: rgba(255, 209, 102, 0.3);
-      color: #fff;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    }
-
-    .tab-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--gold-bright);
-    }
-
-    .tab-name {
-      font-size: 12px;
-      font-weight: 600;
-    }
-
-    /* Dynamic Stage Container */
-    .stage-card {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    /* =========================================================================
-       CONCEPT 1: PRO STUDIO CYBER-DECK (Low Profile, Modular, High-Density)
-       ========================================================================= */
-    .c1-manuscript-card {
-      background: linear-gradient(180deg, #101625 0%, #0a0d16 100%);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      border-radius: var(--radius-lg);
-      padding: 12px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    /* KEYBOARD CHASSIS STAGE */
+    .board-stage {
       position: relative;
-    }
-
-    .c1-card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      padding-bottom: 8px;
-    }
-
-    .c1-lesson-badge {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--cyan-bright);
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 2px 7px;
-      border-radius: 4px;
-    }
-
-    .c1-lesson-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .c1-lesson-sub {
-      font-size: 11px;
-      color: var(--text-dim);
-      font-family: 'Kantumruy Pro', sans-serif;
-    }
-
-    .c1-stream-row {
-      display: grid;
-      grid-template-columns: 100px 1fr 140px;
-      gap: 12px;
-      align-items: center;
-    }
-
-    /* Target key micro-box */
-    .c1-target-box {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(255, 209, 102, 0.25);
-      border-radius: 8px;
-      padding: 6px 8px;
-    }
-
-    .c1-keycap-thumb {
-      width: 36px;
-      height: 38px;
-      background: linear-gradient(180deg, #1b2438, #101524);
-      border: 1.5px solid var(--gold-bright);
-      border-radius: 6px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 10px rgba(255, 209, 102, 0.3);
-    }
-
-    .c1-thumb-km {
-      font-family: 'Kantumruy Pro', sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      color: #fff;
-      line-height: 1;
-    }
-
-    .c1-thumb-en {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      color: var(--gold-bright);
-      font-weight: 700;
-    }
-
-    .c1-finger-label {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
-
-    .c1-finger-name {
-      font-size: 11px;
-      font-weight: 600;
-      color: #fff;
-    }
-
-    .c1-finger-pos {
-      font-size: 9px;
-      color: var(--text-dim);
-      text-transform: uppercase;
-    }
-
-    /* Horizontal Character Stream */
-    .c1-tape-track {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
-      padding: 6px 10px;
-      overflow-x: hidden;
-    }
-
-    .c1-tile {
-      flex-shrink: 0;
-      width: 38px;
-      height: 40px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Kantumruy Pro', sans-serif;
-      font-size: 22px;
-      font-weight: 600;
-      color: var(--text-dim);
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: all 0.15s ease;
-    }
-
-    .c1-tile.done {
-      color: var(--emerald-bright);
-      background: rgba(52, 211, 153, 0.1);
-      border-color: rgba(52, 211, 153, 0.25);
-    }
-
-    .c1-tile.active {
-      width: 44px;
-      height: 44px;
-      color: #fff;
-      font-size: 26px;
-      font-weight: 700;
-      background: linear-gradient(135deg, rgba(255, 209, 102, 0.25), rgba(56, 189, 248, 0.15));
-      border: 2px solid var(--gold-bright);
-      box-shadow: 0 0 14px rgba(255, 209, 102, 0.4);
-      transform: scale(1.05);
-    }
-
-    .c1-tile.space-tile {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: var(--text-dim);
-    }
-
-    /* Telemetry micro-stats */
-    .c1-stats-strip {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      background: rgba(0, 0, 0, 0.4);
-      border-radius: 8px;
-      padding: 6px 8px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .c1-stat-col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1px;
-    }
-
-    .c1-stat-val {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
-      font-weight: 700;
-      color: #fff;
-    }
-
-    .c1-stat-lbl {
-      font-size: 9px;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    /* =========================================================================
-       CONCEPT 2: ANGKOR ROYAL OBSIDIAN (Jeweled Gold, Organic Altar Flow)
-       ========================================================================= */
-    .c2-manuscript-card {
-      background: linear-gradient(180deg, #0d111c 0%, #070910 100%);
-      border: 1px solid rgba(255, 209, 102, 0.25);
-      border-radius: var(--radius-lg);
-      padding: 12px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 209, 102, 0.05);
-    }
-
-    .c2-card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(255, 209, 102, 0.15);
-      padding-bottom: 6px;
-    }
-
-    .c2-royal-title {
-      font-family: 'Moul', cursive;
-      font-size: 14px;
-      color: var(--gold-bright);
-      letter-spacing: 0.02em;
-    }
-
-    .c2-flow-cluster {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-    }
-
-    .c2-gem-target {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .c2-gem-pill {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #222b40, #0c101c);
-      border: 2px solid var(--gold-bright);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Kantumruy Pro', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: #fff;
-      box-shadow: 0 0 16px rgba(255, 209, 102, 0.35);
-    }
-
-    .c2-rune-line {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 5px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .c2-rune-dot {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Kantumruy Pro', sans-serif;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text-dim);
-    }
-
-    .c2-rune-dot.past {
-      color: var(--emerald-bright);
-      background: rgba(52, 211, 153, 0.1);
-    }
-
-    .c2-rune-dot.active {
-      width: 36px;
-      height: 36px;
-      color: #fff;
-      font-size: 20px;
-      border: 1.5px solid var(--gold-bright);
-      background: rgba(255, 209, 102, 0.2);
-      box-shadow: 0 0 12px rgba(255, 209, 102, 0.4);
-    }
-
-    .c2-tempo-stats {
-      display: flex;
-      gap: 14px;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .c2-tempo-stats b {
-      color: var(--gold-bright);
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    /* =========================================================================
-       CONCEPT 3: SPATIAL AERO-GLASS (VisionOS Frosted Glass Pill)
-       ========================================================================= */
-    .c3-manuscript-card {
-      background: rgba(18, 24, 38, 0.65);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: var(--radius-lg);
-      padding: 12px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    }
-
-    .c3-target-pod {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .c3-glass-orb {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1.5px solid rgba(255, 255, 255, 0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Kantumruy Pro', sans-serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: #fff;
-      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.25);
-    }
-
-    .c3-stream-pill {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(0, 0, 0, 0.25);
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .c3-pill-tile {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Kantumruy Pro', sans-serif;
-      font-size: 16px;
-      color: var(--text-dim);
-    }
-
-    .c3-pill-tile.active {
-      width: 36px;
-      height: 36px;
-      color: #fff;
-      font-size: 20px;
-      background: rgba(56, 189, 248, 0.25);
-      border: 1.5px solid #fff;
-      box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
-    }
-
-    .c3-metrics-capsule {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-    }
-
-    /* =========================================================================
-       MECHANICAL KEYBOARD CHASSIS WITH REAL KINEMATIC HANDS ENGINE
-       ========================================================================= */
-    .board-wrap {
-      position: relative;
-      background: #090c14;
+      background: #080b12;
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
       padding: 10px 10px 14px;
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
       user-select: none;
     }
 
-    .chassis-status-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 4px 6px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      margin-bottom: 8px;
-    }
-
-    .chassis-id {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      color: var(--text-dim);
-      letter-spacing: 0.08em;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .led-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--emerald-bright);
-      box-shadow: 0 0 6px var(--emerald-bright);
-    }
-
-    /* Keyboard Rows */
-    .keyboard-grid {
+    .keyboard-rows {
       display: flex;
       flex-direction: column;
       gap: 5px;
@@ -683,7 +588,7 @@
       max-width: 52px;
       background: linear-gradient(180deg, #181f30 0%, #101522 100%);
       border: 1px solid rgba(255, 255, 255, 0.07);
-      border-bottom: 2.5px solid rgba(0, 0, 0, 0.55);
+      border-bottom: 2.5px solid rgba(0, 0, 0, 0.6);
       border-radius: 6px;
       display: flex;
       flex-direction: column;
@@ -692,7 +597,12 @@
       position: relative;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
       transition: all 0.12s ease;
-      cursor: default;
+      cursor: pointer;
+    }
+
+    .key:hover {
+      background: linear-gradient(180deg, #222b40 0%, #141b2b 100%);
+      border-color: rgba(255, 255, 255, 0.18);
     }
 
     .key.w-12 { max-width: 64px; }
@@ -701,15 +611,16 @@
     .key.w-20 { max-width: 98px; }
     .key.w-space { max-width: 290px; }
 
-    .glyph-km {
+    .glyph-main {
       font-family: 'Kantumruy Pro', sans-serif;
       font-size: 15px;
       font-weight: 600;
       color: #e2e8f0;
       line-height: 1;
+      transition: all 0.12s ease;
     }
 
-    .glyph-en {
+    .glyph-sub {
       font-family: 'JetBrains Mono', monospace;
       font-size: 9px;
       color: #64748b;
@@ -717,22 +628,56 @@
       font-weight: 500;
     }
 
-    .key.active-target {
-      background: linear-gradient(180deg, #25334d 0%, #162035 100%);
-      border-color: var(--gold-bright);
-      box-shadow: 0 0 16px rgba(255, 209, 102, 0.45), inset 0 0 8px rgba(255, 209, 102, 0.25);
-      transform: translateY(-1.5px);
+    /* Subscript Coeng Mode keycap style */
+    .board-stage.mode-coeng .glyph-main {
+      color: var(--cyan-bright);
+      font-size: 17px;
+      font-weight: 700;
     }
 
-    .key.active-target .glyph-km {
-      color: var(--gold-bright);
+    /* Heatmap styling */
+    .key.heat-green { background: linear-gradient(180deg, #093322 0%, #062418 100%) !important; border-color: rgba(52, 211, 153, 0.5) !important; }
+    .key.heat-amber { background: linear-gradient(180deg, #3d2f09 0%, #291f05 100%) !important; border-color: rgba(255, 209, 102, 0.5) !important; }
+    .key.heat-red   { background: linear-gradient(180deg, #3b0e17 0%, #28080f 100%) !important; border-color: rgba(251, 113, 133, 0.6) !important; }
+    
+    .heat-badge {
+      position: absolute;
+      top: 2px;
+      right: 3px;
+      font-size: 8px;
+      font-family: 'JetBrains Mono', monospace;
       font-weight: 700;
+      opacity: 0.85;
+    }
+
+    /* Finger Zones styling */
+    .board-stage.mode-zones .zone-lp { background: rgba(244, 114, 182, 0.12) !important; border-color: rgba(244, 114, 182, 0.35) !important; }
+    .board-stage.mode-zones .zone-lr { background: rgba(167, 139, 250, 0.12) !important; border-color: rgba(167, 139, 250, 0.35) !important; }
+    .board-stage.mode-zones .zone-lm { background: rgba(56, 189, 248, 0.12) !important; border-color: rgba(56, 189, 248, 0.35) !important; }
+    .board-stage.mode-zones .zone-li { background: rgba(52, 211, 153, 0.12) !important; border-color: rgba(52, 211, 153, 0.35) !important; }
+    .board-stage.mode-zones .zone-ri { background: rgba(255, 209, 102, 0.12) !important; border-color: rgba(255, 209, 102, 0.35) !important; }
+    .board-stage.mode-zones .zone-rm { background: rgba(56, 189, 248, 0.12) !important; border-color: rgba(56, 189, 248, 0.35) !important; }
+    .board-stage.mode-zones .zone-rr { background: rgba(167, 139, 250, 0.12) !important; border-color: rgba(167, 139, 250, 0.35) !important; }
+    .board-stage.mode-zones .zone-rp { background: rgba(244, 114, 182, 0.12) !important; border-color: rgba(244, 114, 182, 0.35) !important; }
+
+    /* Active Search Spotlight */
+    .key.search-spotlight {
+      background: linear-gradient(180deg, #3d300e 0%, #261d06 100%) !important;
+      border: 2px solid var(--gold-bright) !important;
+      box-shadow: 0 0 20px rgba(255, 209, 102, 0.8), inset 0 0 10px rgba(255, 209, 102, 0.5) !important;
+      transform: translateY(-2px) scale(1.06) !important;
+      z-index: 5;
+    }
+
+    .key.search-spotlight .glyph-main {
+      color: var(--gold-bright) !important;
+      font-weight: 700 !important;
     }
 
     .key.pressed {
       transform: translateY(1.5px) !important;
       border-bottom-width: 1px !important;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
     }
 
     /* REAL KINEMATIC SVG HANDS OVERLAY */
@@ -851,7 +796,6 @@
       fill: rgba(244, 114, 182, 0.6);
     }
 
-    /* Active reaching finger glow */
     .hands-overlay .finger.active-reach .finger-shape {
       fill: url(#fingerGradActive);
       stroke: var(--gold-bright);
@@ -859,57 +803,12 @@
       filter: drop-shadow(0 0 10px rgba(255, 209, 102, 0.6));
     }
 
-    /* Matrix Table Panel */
-    .matrix-panel {
-      display: none;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 16px;
-    }
-
-    .matrix-panel.active { display: block; }
-
-    .matrix-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12px;
-    }
-
-    .matrix-table th {
-      text-align: left;
-      padding: 8px 10px;
-      color: var(--text-dim);
-      font-weight: 600;
-      border-bottom: 1px solid var(--border-subtle);
-      text-transform: uppercase;
-      font-size: 10px;
-    }
-
-    .matrix-table td {
-      padding: 10px 10px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      color: var(--text-main);
-    }
-
-    .badge-pill {
-      display: inline-block;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-size: 10px;
-      font-weight: 700;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .badge-pill.green { background: rgba(52, 211, 153, 0.15); color: var(--emerald-bright); }
-    .badge-pill.gold { background: rgba(255, 209, 102, 0.15); color: var(--gold-bright); }
-
-    /* Footer */
+    /* Footer Note */
     .app-footer {
       text-align: center;
       font-size: 11px;
       color: var(--text-dim);
-      padding-top: 12px;
+      padding-top: 10px;
       border-top: 1px solid var(--border-subtle);
     }
   </style>
@@ -917,8 +816,8 @@
 <body>
 
   <div class="app-shell">
-    
-    <!-- Top Header -->
+
+    <!-- Top Master Bar -->
     <header class="app-header">
       <div class="brand-group">
         <div class="brand-icon-box">
@@ -928,372 +827,292 @@
           </svg>
         </div>
         <div class="brand-text">
-          <h1>PK Khmer Type · Redesign Studio</h1>
-          <p>Compact Manuscript &amp; Real Kinematic 3D Hands Preview</p>
+          <h1>PK Khmer Type · Keyboard Feature Lab</h1>
+          <p>Find Key, Subscript Coeng Mode, Accuracy Heatmap &amp; Real 44% Kinematic Hands</p>
         </div>
       </div>
 
-      <div class="header-controls">
-        <div class="opacity-control" title="Adjust 3D Hand Opacity">
-          <span class="opacity-label">Hands:</span>
+      <div class="header-tools">
+        <div class="slider-pill" title="Control 3D Hand Opacity">
+          <span class="slider-label">Hands:</span>
           <input type="range" id="handsOpacitySlider" min="15" max="100" value="44">
-          <span class="opacity-badge" id="handsOpacityBadge">44%</span>
+          <span class="slider-val" id="handsOpacityDisplay">44%</span>
         </div>
-
-        <button class="sim-btn active" id="simToggleBtn" type="button">
-          <svg class="svg-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-          <span id="simBtnLabel">Typing Live</span>
-        </button>
       </div>
     </header>
 
-    <!-- Concept Segmented Tabs -->
-    <nav class="concept-switch-bar" role="tablist">
-      <button class="concept-tab-btn active" data-concept="c1" type="button">
-        <span class="tab-tag">Option A</span>
-        <span class="tab-name">Cyber-Deck Pro</span>
-      </button>
-
-      <button class="concept-tab-btn" data-concept="c2" type="button">
-        <span class="tab-tag">Option B</span>
-        <span class="tab-name">Angkor Obsidian</span>
-      </button>
-
-      <button class="concept-tab-btn" data-concept="c3" type="button">
-        <span class="tab-tag">Option C</span>
-        <span class="tab-name">Spatial Aero-Glass</span>
-      </button>
-
-      <button class="concept-tab-btn" data-concept="matrix" type="button">
-        <span class="tab-tag">Benchmark</span>
-        <span class="tab-name">Side-by-Side</span>
-      </button>
-    </nav>
-
-    <!-- Interactive Stage (Holds the Manuscript & Keyboard) -->
-    <main class="stage-card" id="stageCard">
-      
-      <!-- CONCEPT 1 MANUSCRIPT CARD -->
-      <section class="c1-manuscript-card" id="c1Card">
-        <div class="c1-card-top">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <span class="c1-lesson-badge">LESSON 01 / 77</span>
-            <span class="c1-lesson-title">Left Index Anchor ថ (F)</span>
-          </div>
-          <span class="c1-lesson-sub">រៀនអក្សរ «ថ» ដោយប្រើម្រាមចង្អុលដៃឆ្វេង (Home Row)</span>
-        </div>
-
-        <div class="c1-stream-row">
-          <!-- Target Key Micro-Box -->
-          <div class="c1-target-box">
-            <div class="c1-keycap-thumb">
-              <span class="c1-thumb-km">ថ</span>
-              <span class="c1-thumb-en">F</span>
-            </div>
-            <div class="c1-finger-label">
-              <span class="c1-finger-name">Left Index</span>
-              <span class="c1-finger-pos">Home Row</span>
-            </div>
-          </div>
-
-          <!-- Character Ribbon Tape -->
-          <div class="c1-tape-track" id="charTapeTrack">
-            <div class="c1-tile done">ថ</div>
-            <div class="c1-tile done">ថ</div>
-            <div class="c1-tile done space-tile">SPC</div>
-            <div class="c1-tile active" id="cursorTile">ថ</div>
-            <div class="c1-tile">ថ</div>
-            <div class="c1-tile space-tile">SPC</div>
-            <div class="c1-tile">ថ</div>
-            <div class="c1-tile">ថ</div>
-            <div class="c1-tile space-tile">SPC</div>
-            <div class="c1-tile">ថ</div>
-            <div class="c1-tile">ថ</div>
-          </div>
-
-          <!-- Inline Telemetry -->
-          <div class="c1-stats-strip">
-            <div class="c1-stat-col">
-              <span class="c1-stat-val" id="accVal" style="color:var(--emerald-bright);">98%</span>
-              <span class="c1-stat-lbl">Accuracy</span>
-            </div>
-            <div class="c1-stat-col">
-              <span class="c1-stat-val" id="wpmVal" style="color:var(--gold-bright);">34</span>
-              <span class="c1-stat-lbl">WPM</span>
-            </div>
-            <div class="c1-stat-col">
-              <span class="c1-stat-val" id="progVal">40%</span>
-              <span class="c1-stat-lbl">Progress</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONCEPT 2 MANUSCRIPT CARD (Hidden initially) -->
-      <section class="c2-manuscript-card" id="c2Card" style="display:none;">
-        <div class="c2-card-top">
-          <span class="c2-royal-title">មេរៀនទី ១ · អក្សរ «ថ» ស្នូលម្រាមដៃឆ្វេង (F)</span>
-          <span style="font-size:11px; color:var(--text-dim); font-family:'JetBrains Mono';">UNIT 1 : ANCHOR</span>
-        </div>
-
-        <div class="c2-flow-cluster">
-          <div class="c2-gem-target">
-            <div class="c2-gem-pill">ថ</div>
-            <div>
-              <div style="font-size:12px; font-weight:700; color:#fff;">Left Index [F]</div>
-              <div style="font-size:10px; color:var(--text-dim);">Sacred Home Anchor</div>
-            </div>
-          </div>
-
-          <div class="c2-rune-line">
-            <div class="c2-rune-dot past">ថ</div>
-            <div class="c2-rune-dot past">ថ</div>
-            <div class="c2-rune-dot active">ថ</div>
-            <div class="c2-rune-dot">ថ</div>
-            <div class="c2-rune-dot" style="font-size:10px; font-family:'JetBrains Mono';">SPC</div>
-            <div class="c2-rune-dot">ថ</div>
-            <div class="c2-rune-dot">ថ</div>
-          </div>
-
-          <div class="c2-tempo-stats">
-            <span>Purity: <b>100%</b></span>
-            <span>Tempo: <b>32 WPM</b></span>
-            <span>Runes: <b>14/30</b></span>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONCEPT 3 MANUSCRIPT CARD (Hidden initially) -->
-      <section class="c3-manuscript-card" id="c3Card" style="display:none;">
-        <div class="c3-target-pod">
-          <div class="c3-glass-orb">ថ</div>
-          <div>
-            <div style="font-size:13px; font-weight:700; color:#fff;">Spatial Target ថ (F)</div>
-            <div style="font-size:11px; color:var(--text-muted);">Left index resting posture · Zero lateral stretch</div>
-          </div>
-        </div>
-
-        <div class="c3-stream-pill">
-          <div class="c3-pill-tile" style="color:var(--emerald-bright);">ថ</div>
-          <div class="c3-pill-tile active">ថ</div>
-          <div class="c3-pill-tile">ថ</div>
-          <div class="c3-pill-tile" style="font-size:10px; font-family:'JetBrains Mono';">SPC</div>
-          <div class="c3-pill-tile">ថ</div>
-          <div class="c3-pill-tile">ថ</div>
-        </div>
-
-        <div class="c3-metrics-capsule">
-          <span style="color:var(--emerald-bright);">99% ACC</span>
-          <span style="color:var(--cyan-bright);">36 WPM</span>
-          <span style="color:var(--text-dim);">00:28</span>
-        </div>
-      </section>
-
-      <!-- COMPARISON MATRIX PANEL (Hidden initially) -->
-      <section class="matrix-panel" id="matrixCard">
-        <table class="matrix-table">
-          <thead>
-            <tr>
-              <th>Design Dimension</th>
-              <th>Option A (Cyber-Deck)</th>
-              <th>Option B (Angkor Obsidian)</th>
-              <th>Option C (Aero-Glass)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Vertical Footprint</strong></td>
-              <td><span class="badge-pill green">94px Compact</span></td>
-              <td><span class="badge-pill green">92px Compact</span></td>
-              <td><span class="badge-pill green">86px Ultra-Low</span></td>
-            </tr>
-            <tr>
-              <td><strong>Target Key Clarity</strong></td>
-              <td><span class="badge-pill gold">Dual-legend Microcap</span></td>
-              <td><span class="badge-pill gold">Jeweled Cushion Cap</span></td>
-              <td><span class="badge-pill gold">Floating Specular Orb</span></td>
-            </tr>
-            <tr>
-              <td><strong>Hand Guide Occlusion</strong></td>
-              <td><span class="badge-pill green">Zero (44% Translucent)</span></td>
-              <td><span class="badge-pill green">Zero (44% Gold-Silk)</span></td>
-              <td><span class="badge-pill green">Zero (44% Frosted)</span></td>
-            </tr>
-            <tr>
-              <td><strong>Khmer Script Readability</strong></td>
-              <td><span class="badge-pill green">Sculpted High-Contrast</span></td>
-              <td><span class="badge-pill green">Moul Calligraphy + Rune</span></td>
-              <td><span class="badge-pill green">Fluid Minimalist Pills</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <!-- COMPACT MECHANICAL KEYBOARD CHASSIS WITH REAL KINEMATIC HANDS -->
-      <div class="board-wrap" id="boardWrap">
-        
-        <div class="chassis-status-bar">
-          <div class="chassis-id">
-            <span class="led-dot"></span>
-            <span>PK-KHMER / STANDARD LAYOUT (ANSI 104)</span>
-          </div>
-          <div class="chassis-id">
-            <span>KINEMATIC HAND OVERLAY: <strong style="color:var(--gold-bright);">44% OPACITY</strong></span>
-          </div>
-        </div>
-
-        <!-- Real Keycaps Grid -->
-        <div class="keyboard-grid" id="keyboardGrid">
-          
-          <!-- Row 1: Number Row -->
-          <div class="kb-row" id="row1">
-            <div class="key" data-key="grave"><span class="glyph-km">«</span><span class="glyph-en">`</span></div>
-            <div class="key" data-key="k1"><span class="glyph-km">១</span><span class="glyph-en">1</span></div>
-            <div class="key" data-key="k2"><span class="glyph-km">២</span><span class="glyph-en">2</span></div>
-            <div class="key" data-key="k3"><span class="glyph-km">៣</span><span class="glyph-en">3</span></div>
-            <div class="key" data-key="k4"><span class="glyph-km">៤</span><span class="glyph-en">4</span></div>
-            <div class="key" data-key="k5"><span class="glyph-km">៥</span><span class="glyph-en">5</span></div>
-            <div class="key" data-key="k6"><span class="glyph-km">៦</span><span class="glyph-en">6</span></div>
-            <div class="key" data-key="k7"><span class="glyph-km">៧</span><span class="glyph-en">7</span></div>
-            <div class="key" data-key="k8"><span class="glyph-km">៨</span><span class="glyph-en">8</span></div>
-            <div class="key" data-key="k9"><span class="glyph-km">៩</span><span class="glyph-en">9</span></div>
-            <div class="key" data-key="k0"><span class="glyph-km">០</span><span class="glyph-en">0</span></div>
-            <div class="key" data-key="minus"><span class="glyph-km">ឥ</span><span class="glyph-en">-</span></div>
-            <div class="key" data-key="equal"><span class="glyph-km">ឲ</span><span class="glyph-en">=</span></div>
-            <div class="key w-15" data-key="backspace"><span class="glyph-en" style="font-size:10px;">Backspace</span></div>
-          </div>
-
-          <!-- Row 2: Top Row -->
-          <div class="kb-row" id="row2">
-            <div class="key w-12" data-key="tab"><span class="glyph-en" style="font-size:10px;">Tab</span></div>
-            <div class="key" data-key="q"><span class="glyph-km">ឆ</span><span class="glyph-en">Q</span></div>
-            <div class="key" data-key="w"><span class="glyph-km">ឹ</span><span class="glyph-en">W</span></div>
-            <div class="key" data-key="e"><span class="glyph-km">េ</span><span class="glyph-en">E</span></div>
-            <div class="key" data-key="r"><span class="glyph-km">រ</span><span class="glyph-en">R</span></div>
-            <div class="key" data-key="t"><span class="glyph-km">ត</span><span class="glyph-en">T</span></div>
-            <div class="key" data-key="y"><span class="glyph-km">យ</span><span class="glyph-en">Y</span></div>
-            <div class="key" data-key="u"><span class="glyph-km">ុ</span><span class="glyph-en">U</span></div>
-            <div class="key" data-key="i"><span class="glyph-km">ិ</span><span class="glyph-en">I</span></div>
-            <div class="key" data-key="o"><span class="glyph-km">ោ</span><span class="glyph-en">O</span></div>
-            <div class="key" data-key="p"><span class="glyph-km">ផ</span><span class="glyph-en">P</span></div>
-            <div class="key" data-key="bracketL"><span class="glyph-km">ៀ</span><span class="glyph-en">[</span></div>
-            <div class="key" data-key="bracketR"><span class="glyph-km">ឪ</span><span class="glyph-en">]</span></div>
-            <div class="key w-12" data-key="backslash"><span class="glyph-km">\</span></div>
-          </div>
-
-          <!-- Row 3: Home Row (Anchors A, S, D, F, J, K, L, ;) -->
-          <div class="kb-row" id="row3">
-            <div class="key w-15" data-key="caps"><span class="glyph-en" style="font-size:10px;">Caps</span></div>
-            <div class="key" data-key="a"><span class="glyph-km">ា</span><span class="glyph-en">A</span></div>
-            <div class="key" data-key="s"><span class="glyph-km">ស</span><span class="glyph-en">S</span></div>
-            <div class="key" data-key="d"><span class="glyph-km">ដ</span><span class="glyph-en">D</span></div>
-            <!-- TARGET KEY F -> ថ -->
-            <div class="key active-target" data-key="f" id="keyF">
-              <span class="glyph-km">ថ</span>
-              <span class="glyph-en" style="color:var(--gold-bright); font-weight:700;">F</span>
-            </div>
-            <div class="key" data-key="g"><span class="glyph-km">ង</span><span class="glyph-en">G</span></div>
-            <div class="key" data-key="h"><span class="glyph-km">ហ</span><span class="glyph-en">H</span></div>
-            <div class="key" data-key="j"><span class="glyph-km">ញ</span><span class="glyph-en">J</span></div>
-            <div class="key" data-key="k"><span class="glyph-km">ក</span><span class="glyph-en">K</span></div>
-            <div class="key" data-key="l"><span class="glyph-km">ល</span><span class="glyph-en">L</span></div>
-            <div class="key" data-key="semicolon"><span class="glyph-km">ះ</span><span class="glyph-en">;</span></div>
-            <div class="key" data-key="quote"><span class="glyph-km">់</span><span class="glyph-en">'</span></div>
-            <div class="key w-175" data-key="enter"><span class="glyph-en" style="font-size:10px;">Enter</span></div>
-          </div>
-
-          <!-- Row 4: Bottom Row -->
-          <div class="kb-row" id="row4">
-            <div class="key w-20" data-key="shiftL"><span class="glyph-en" style="font-size:10px;">Shift</span></div>
-            <div class="key" data-key="z"><span class="glyph-km">ឋ</span><span class="glyph-en">Z</span></div>
-            <div class="key" data-key="x"><span class="glyph-km">ខ</span><span class="glyph-en">X</span></div>
-            <div class="key" data-key="c"><span class="glyph-km">ច</span><span class="glyph-en">C</span></div>
-            <div class="key" data-key="v"><span class="glyph-km">វ</span><span class="glyph-en">V</span></div>
-            <div class="key" data-key="b"><span class="glyph-km">ប</span><span class="glyph-en">B</span></div>
-            <div class="key" data-key="n"><span class="glyph-km">ន</span><span class="glyph-en">N</span></div>
-            <div class="key" data-key="m"><span class="glyph-km">ម</span><span class="glyph-en">M</span></div>
-            <div class="key" data-key="comma"><span class="glyph-km">អ</span><span class="glyph-en">,</span></div>
-            <div class="key" data-key="period"><span class="glyph-km">។</span><span class="glyph-en">.</span></div>
-            <div class="key" data-key="slash"><span class="glyph-km">?</span><span class="glyph-en">/</span></div>
-            <div class="key w-20" data-key="shiftR"><span class="glyph-en" style="font-size:10px;">Shift</span></div>
-          </div>
-
-          <!-- Row 5: Spacebar Row -->
-          <div class="kb-row" id="row5">
-            <div class="key w-12" data-key="ctrlL"><span class="glyph-en" style="font-size:10px;">Ctrl</span></div>
-            <div class="key" data-key="alt"><span class="glyph-en" style="font-size:10px;">Alt</span></div>
-            <div class="key w-space" data-key="space" id="keySpace"><span class="glyph-km" style="font-size:10px; color:#64748b;">Spacebar (ដកឃ្លា)</span></div>
-            <div class="key" data-key="altgr"><span class="glyph-en" style="font-size:10px;">AltGr</span></div>
-            <div class="key w-12" data-key="ctrlR"><span class="glyph-en" style="font-size:10px;">Ctrl</span></div>
-          </div>
-        </div>
-
-        <!-- Real Kinematic Hands Overlay SVG Generated Mathematically -->
-        <svg class="hands-overlay" id="handsOverlay">
-          <defs id="handsDefs">
-            <linearGradient id="fingerGrad" x1="0" y1="1" x2="0.3" y2="0">
-              <stop offset="0%" stop-color="#0b2942" stop-opacity="0.8"/>
-              <stop offset="40%" stop-color="#144e7e" stop-opacity="0.85"/>
-              <stop offset="80%" stop-color="#38bdf8" stop-opacity="0.95"/>
-              <stop offset="100%" stop-color="#bae6fd" stop-opacity="1"/>
-            </linearGradient>
-            <linearGradient id="fingerGradR" x1="0" y1="1" x2="0.3" y2="0">
-              <stop offset="0%" stop-color="#420b29" stop-opacity="0.8"/>
-              <stop offset="40%" stop-color="#831843" stop-opacity="0.85"/>
-              <stop offset="80%" stop-color="#f472b6" stop-opacity="0.95"/>
-              <stop offset="100%" stop-color="#fbcfe8" stop-opacity="1"/>
-            </linearGradient>
-            <linearGradient id="fingerGradActive" x1="0" y1="1" x2="0.3" y2="0">
-              <stop offset="0%" stop-color="#144e7e" stop-opacity="0.9"/>
-              <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.95"/>
-              <stop offset="85%" stop-color="#ffd166" stop-opacity="1"/>
-              <stop offset="100%" stop-color="#ffffff" stop-opacity="1"/>
-            </linearGradient>
-            <linearGradient id="palmGrad" x1="0" y1="1" x2="0.25" y2="0">
-              <stop offset="0%" stop-color="#07192a" stop-opacity="0.75"/>
-              <stop offset="50%" stop-color="#0f3b5f" stop-opacity="0.8"/>
-              <stop offset="100%" stop-color="#1e6b9e" stop-opacity="0.85"/>
-            </linearGradient>
-            <linearGradient id="palmGradR" x1="0" y1="1" x2="0.25" y2="0">
-              <stop offset="0%" stop-color="#2a0719" stop-opacity="0.75"/>
-              <stop offset="50%" stop-color="#5f0f3b" stop-opacity="0.8"/>
-              <stop offset="100%" stop-color="#9e1e6b" stop-opacity="0.85"/>
-            </linearGradient>
-            <radialGradient id="palmHighlight" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.6"/>
-              <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
-            </radialGradient>
-            <radialGradient id="palmHighlightR" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#f472b6" stop-opacity="0.6"/>
-              <stop offset="100%" stop-color="#f472b6" stop-opacity="0"/>
-            </radialGradient>
-            <filter id="handShadow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0284c7" flood-opacity="0.3"/>
-            </filter>
-            <filter id="handShadowR" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#db2777" flood-opacity="0.3"/>
-            </filter>
-          </defs>
-          <g class="hand-group side-l" id="handGroupL"></g>
-          <g class="hand-group side-r" id="handGroupR"></g>
+    <!-- USEFUL FEATURE #1: LIVE KEY FINDER & RECIPE DETECTOR -->
+    <section class="finder-strip">
+      <div class="finder-input-wrap">
+        <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--gold-bright);">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
+        <input type="text" id="keySearchInput" class="finder-input" placeholder="Find key or character... (e.g. ឈ, ឫ, ្ក, ៛, F)">
+      </div>
+
+      <div class="quick-chips-group">
+        <span class="quick-chip-lbl">Try:</span>
+        <button class="find-chip" data-query="ឈ" type="button">ឈ (Chho)</button>
+        <button class="find-chip" data-query="្ក" type="button">្ក (Coeng Ka)</button>
+        <button class="find-chip" data-query="ឫ" type="button">ឫ (Rue)</button>
+        <button class="find-chip" data-query="៛" type="button">៛ (Riel)</button>
+        <button class="find-chip" data-query="ថ" type="button">ថ (Tho · F)</button>
+        <button class="find-chip" data-query="Clear" type="button" style="color:var(--rose-bright);">Reset</button>
+      </div>
+    </section>
+
+    <!-- RECIPE RESULT POPOVER -->
+    <div class="recipe-callout" id="recipeCallout">
+      <div class="recipe-meta-left">
+        <div class="recipe-big-glyph" id="recipeGlyph">ឈ</div>
+        <div class="recipe-details">
+          <h3 id="recipeTitle">
+            <span>Character ឈ (Chho)</span>
+            <span class="recipe-badge" id="recipeKeyBadge">Shift + Q</span>
+          </h3>
+          <p id="recipeDesc">Position: Key [Q], Row 2 · Finger: Left Pinky · Khmer Consonant Series 2</p>
+        </div>
+      </div>
+      <button class="recipe-copy-btn" id="recipeCopyBtn" type="button">
+        <svg class="svg-icon" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        <span id="copyBtnText">Copy Glyph</span>
+      </button>
+    </div>
+
+    <!-- COMPACT LESSON & PRACTICE MANUSCRIPT -->
+    <section class="manuscript-card">
+      <div class="manuscript-top">
+        <span style="font-size:11px; font-weight:700; color:var(--cyan-bright); font-family:'JetBrains Mono';">PRACTICE MANUSCRIPT · LESSON 01</span>
+        <span style="font-size:11px; color:var(--text-dim);">Click any key on the board or type on your physical keyboard</span>
+      </div>
+
+      <div class="stream-row">
+        <!-- Target Key Chip -->
+        <div class="target-key-chip">
+          <div class="target-key-cap" id="targetDisplayCap">ថ</div>
+          <div class="target-info">
+            <b>Target: ថ</b>
+            <span>Key [F] · Left Index</span>
+          </div>
+        </div>
+
+        <!-- Live Sequence Ribbon -->
+        <div class="tape-track" id="tapeTrack">
+          <div class="tape-char done">ថ</div>
+          <div class="tape-char done">ថ</div>
+          <div class="tape-char done" style="font-size:10px; font-family:'JetBrains Mono';">SPC</div>
+          <div class="tape-char active" id="tapeActiveChar">ថ</div>
+          <div class="tape-char">ថ</div>
+          <div class="tape-char" style="font-size:10px; font-family:'JetBrains Mono';">SPC</div>
+          <div class="tape-char">ថ</div>
+          <div class="tape-char">ថ</div>
+          <div class="tape-char" style="font-size:10px; font-family:'JetBrains Mono';">SPC</div>
+          <div class="tape-char">ថ</div>
+        </div>
+
+        <!-- Telemetry -->
+        <div class="stats-trio">
+          <div class="stat-node">
+            <span class="val" style="color:var(--emerald-bright);" id="statAcc">99%</span>
+            <span class="lbl">Accuracy</span>
+          </div>
+          <div class="stat-node">
+            <span class="val" style="color:var(--gold-bright);" id="statWpm">38</span>
+            <span class="lbl">WPM</span>
+          </div>
+          <div class="stat-node">
+            <span class="val" id="statTyped">18</span>
+            <span class="lbl">Typed</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEYBOARD CHASSIS WITH INTEGRATED ACTION DOCK -->
+    <div class="board-stage" id="boardStage">
+      
+      <!-- USEFUL FEATURE BAR #2: LAYER SWITCHER, HEATMAP, FINGER ZONES, SOUND -->
+      <div class="chassis-deck-bar">
+        <div class="deck-left-cluster">
+          <span style="font-size:10px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em;">Layer:</span>
+          <div class="layer-selector" role="radiogroup">
+            <button class="layer-btn active" data-layer="base" type="button">Base</button>
+            <button class="layer-btn" data-layer="shift" type="button">Shift (⇧)</button>
+            <button class="layer-btn" data-layer="altgr" type="button">AltGr (⌥)</button>
+            <button class="layer-btn" data-layer="coeng" type="button" style="color:var(--cyan-bright);" title="Subscript Conjoined Consonants">Coeng (្)</button>
+          </div>
+        </div>
+
+        <div class="deck-right-cluster">
+          <!-- Heatmap Toggle -->
+          <button class="deck-tool-btn" id="heatmapToggleBtn" type="button" title="View Typing Accuracy Heatmap">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2c1.5 3 4 5 4 9a6 6 0 1 1-12 0c0-4 2.5-6 4-9 1 2 2 3 4 0z"></path></svg>
+            <span>Heatmap</span>
+          </button>
+
+          <!-- Finger Zones Toggle -->
+          <button class="deck-tool-btn" id="zonesToggleBtn" type="button" title="Color Keys by 8 Finger Zones">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v3M14 9V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v7M10 11V5a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v9M10 19H4a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h2"></path></svg>
+            <span>Finger Zones</span>
+          </button>
+
+          <!-- Mechanical Audio Switch Audition -->
+          <select class="switch-sound-select" id="switchSoundSelect" title="Select Mechanical Switch Acoustic">
+            <option value="brown">Tactile Brown</option>
+            <option value="blue">Clicky Blue</option>
+            <option value="red">Thocky Red</option>
+            <option value="typewriter">Typewriter</option>
+            <option value="silent">Silent</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Virtual Keyboard Grid (ANSI 104 with Complete Khmer Standard Key Data) -->
+      <div class="keyboard-rows" id="keyboardRows">
+        
+        <!-- Row 1: Number Row -->
+        <div class="kb-row">
+          <div class="key zone-lp" data-key="grave" data-base="«" data-shift="»" data-altgr="◎" data-coeng=""><span class="glyph-main">«</span><span class="glyph-sub">`</span></div>
+          <div class="key zone-lp" data-key="k1" data-base="១" data-shift="!" data-altgr="1" data-coeng=""><span class="glyph-main">១</span><span class="glyph-sub">1</span></div>
+          <div class="key zone-lr" data-key="k2" data-base="២" data-shift="ៗ" data-altgr="2" data-coeng=""><span class="glyph-main">២</span><span class="glyph-sub">2</span></div>
+          <div class="key zone-lm" data-key="k3" data-base="៣" data-shift='"' data-altgr="3" data-coeng=""><span class="glyph-main">៣</span><span class="glyph-sub">3</span></div>
+          <div class="key zone-li" data-key="k4" data-base="៤" data-shift="៛" data-altgr="4" data-coeng=""><span class="glyph-main">៤</span><span class="glyph-sub">4</span></div>
+          <div class="key zone-li" data-key="k5" data-base="៥" data-shift="%" data-altgr="5" data-coeng=""><span class="glyph-main">៥</span><span class="glyph-sub">5</span></div>
+          <div class="key zone-ri" data-key="k6" data-base="៦" data-shift="៍" data-altgr="6" data-coeng=""><span class="glyph-main">៦</span><span class="glyph-sub">6</span></div>
+          <div class="key zone-ri" data-key="k7" data-base="៧" data-shift="័" data-altgr="7" data-coeng=""><span class="glyph-main">៧</span><span class="glyph-sub">7</span></div>
+          <div class="key zone-rm" data-key="k8" data-base="៨" data-shift="៏" data-altgr="8" data-coeng=""><span class="glyph-main">៨</span><span class="glyph-sub">8</span></div>
+          <div class="key zone-rr" data-key="k9" data-base="៩" data-shift="៎" data-altgr="9" data-coeng=""><span class="glyph-main">៩</span><span class="glyph-sub">9</span></div>
+          <div class="key zone-rp" data-key="k0" data-base="០" data-shift="៌" data-altgr="0" data-coeng=""><span class="glyph-main">០</span><span class="glyph-sub">0</span></div>
+          <div class="key zone-rp" data-key="minus" data-base="-" data-shift="_" data-altgr="{" data-coeng=""><span class="glyph-main">-</span><span class="glyph-sub">-</span></div>
+          <div class="key zone-rp" data-key="equal" data-base="=" data-shift="+" data-altgr="}" data-coeng=""><span class="glyph-main">=</span><span class="glyph-sub">=</span></div>
+          <div class="key w-15 zone-rp" data-key="backspace"><span class="glyph-sub" style="font-size:10px;">Backsp.</span></div>
+        </div>
+
+        <!-- Row 2: Top Row -->
+        <div class="kb-row">
+          <div class="key w-12 zone-lp" data-key="tab"><span class="glyph-sub" style="font-size:10px;">Tab</span></div>
+          <div class="key zone-lp" data-key="q" data-base="ឆ" data-shift="ឈ" data-altgr="*" data-coeng="្ឆ"><span class="glyph-main">ឆ</span><span class="glyph-sub">Q</span></div>
+          <div class="key zone-lr" data-key="w" data-base="ឹ" data-shift="ឺ" data-altgr="" data-coeng=""><span class="glyph-main">ឹ</span><span class="glyph-sub">W</span></div>
+          <div class="key zone-lm" data-key="e" data-base="េ" data-shift="ែ" data-altgr="ឯ" data-coeng=""><span class="glyph-main">េ</span><span class="glyph-sub">E</span></div>
+          <div class="key zone-li" data-key="r" data-base="រ" data-shift="ឬ" data-altgr="ឫ" data-coeng="្រ"><span class="glyph-main">រ</span><span class="glyph-sub">R</span></div>
+          <div class="key zone-li" data-key="t" data-base="ត" data-shift="ទ" data-altgr="ឦ" data-coeng="្ត"><span class="glyph-main">ត</span><span class="glyph-sub">T</span></div>
+          <div class="key zone-ri" data-key="y" data-base="យ" data-shift="ួ" data-altgr="" data-coeng="្យ"><span class="glyph-main">យ</span><span class="glyph-sub">Y</span></div>
+          <div class="key zone-ri" data-key="u" data-base="ុ" data-shift="ូ" data-altgr="ឧ" data-coeng=""><span class="glyph-main">ុ</span><span class="glyph-sub">U</span></div>
+          <div class="key zone-rm" data-key="i" data-base="ិ" data-shift="ី" data-altgr="ឥ" data-coeng=""><span class="glyph-main">ិ</span><span class="glyph-sub">I</span></div>
+          <div class="key zone-rr" data-key="o" data-base="ោ" data-shift="ៅ" data-altgr="ឱ" data-coeng=""><span class="glyph-main">ោ</span><span class="glyph-sub">O</span></div>
+          <div class="key zone-rp" data-key="p" data-base="ផ" data-shift="ភ" data-altgr="ឳ" data-coeng="្ផ"><span class="glyph-main">ផ</span><span class="glyph-sub">P</span></div>
+          <div class="key zone-rp" data-key="bracketL" data-base="ើ" data-shift="ោះ" data-altgr="[" data-coeng=""><span class="glyph-main">ើ</span><span class="glyph-sub">[</span></div>
+          <div class="key zone-rp" data-key="bracketR" data-base="ឿ" data-shift="ៀ" data-altgr="]" data-coeng=""><span class="glyph-main">ឿ</span><span class="glyph-sub">]</span></div>
+          <div class="key w-12 zone-rp" data-key="backslash" data-base="\" data-shift="/" data-altgr="៚" data-coeng=""><span class="glyph-main">\</span></div>
+        </div>
+
+        <!-- Row 3: Home Row -->
+        <div class="kb-row">
+          <div class="key w-15 zone-lp" data-key="caps"><span class="glyph-sub" style="font-size:10px;">Caps</span></div>
+          <div class="key zone-lp" data-key="a" data-base="ា" data-shift="ៃ" data-altgr="ឩ" data-coeng=""><span class="glyph-main">ា</span><span class="glyph-sub">A</span></div>
+          <div class="key zone-lr" data-key="s" data-base="ស" data-shift="ាំ" data-altgr="ឪ" data-coeng="្ស"><span class="glyph-main">ស</span><span class="glyph-sub">S</span></div>
+          <div class="key zone-lm" data-key="d" data-base="ដ" data-shift="ឌ" data-altgr="" data-coeng="្ដ"><span class="glyph-main">ដ</span><span class="glyph-sub">D</span></div>
+          <!-- Target Key F -->
+          <div class="key zone-li" data-key="f" data-base="ថ" data-shift="ធ" data-altgr="" data-coeng="្ថ" id="keyF"><span class="glyph-main">ថ</span><span class="glyph-sub">F</span></div>
+          <div class="key zone-li" data-key="g" data-base="ង" data-shift="ុះ" data-altgr="" data-coeng="្ង"><span class="glyph-main">ង</span><span class="glyph-sub">G</span></div>
+          <div class="key zone-ri" data-key="h" data-base="ហ" data-shift="៏" data-altgr="" data-coeng="្ហ"><span class="glyph-main">ហ</span><span class="glyph-sub">H</span></div>
+          <div class="key zone-ri" data-key="j" data-base="ញ" data-shift="ុំ" data-altgr="ឮ" data-coeng="្ញ"><span class="glyph-main">ញ</span><span class="glyph-sub">J</span></div>
+          <div class="key zone-rm" data-key="k" data-base="ក" data-shift="គ" data-altgr="ឭ" data-coeng="្ក"><span class="glyph-main">ក</span><span class="glyph-sub">K</span></div>
+          <div class="key zone-rr" data-key="l" data-base="ល" data-shift="ឡ" data-altgr="ឰ" data-coeng="្ល"><span class="glyph-main">ល</span><span class="glyph-sub">L</span></div>
+          <div class="key zone-rp" data-key="semicolon" data-base="ះ" data-shift="៖" data-altgr=";" data-coeng=""><span class="glyph-main">ះ</span><span class="glyph-sub">;</span></div>
+          <div class="key zone-rp" data-key="quote" data-base="់" data-shift="៉" data-altgr="«" data-coeng=""><span class="glyph-main">់</span><span class="glyph-sub">'</span></div>
+          <div class="key w-175 zone-rp" data-key="enter"><span class="glyph-sub" style="font-size:10px;">Enter</span></div>
+        </div>
+
+        <!-- Row 4: Bottom Row -->
+        <div class="kb-row">
+          <div class="key w-20 zone-lp" data-key="shiftL"><span class="glyph-sub" style="font-size:10px;">Shift</span></div>
+          <div class="key zone-lp" data-key="z" data-base="ឋ" data-shift="ឍ" data-altgr="#" data-coeng="្ឋ"><span class="glyph-main">ឋ</span><span class="glyph-sub">Z</span></div>
+          <div class="key zone-lr" data-key="x" data-base="ខ" data-shift="ឃ" data-altgr="@" data-coeng="្ខ"><span class="glyph-main">ខ</span><span class="glyph-sub">X</span></div>
+          <div class="key zone-lm" data-key="c" data-base="ច" data-shift="ជ" data-altgr="&amp;" data-coeng="្ច"><span class="glyph-main">ច</span><span class="glyph-sub">C</span></div>
+          <div class="key zone-li" data-key="v" data-base="វ" data-shift="េះ" data-altgr="$" data-coeng="្វ"><span class="glyph-main">វ</span><span class="glyph-sub">V</span></div>
+          <div class="key zone-li" data-key="b" data-base="ប" data-shift="ព" data-altgr="%" data-coeng="្ប"><span class="glyph-main">ប</span><span class="glyph-sub">B</span></div>
+          <div class="key zone-ri" data-key="n" data-base="ន" data-shift="ណ" data-altgr="(" data-coeng="្ន"><span class="glyph-main">ន</span><span class="glyph-sub">N</span></div>
+          <div class="key zone-ri" data-key="m" data-base="ម" data-shift="ំ" data-altgr=")" data-coeng="្ម"><span class="glyph-main">ម</span><span class="glyph-sub">M</span></div>
+          <div class="key zone-rm" data-key="comma" data-base="អ" data-shift="," data-altgr="<" data-coeng=""><span class="glyph-main">អ</span><span class="glyph-sub">,</span></div>
+          <div class="key zone-rr" data-key="period" data-base="។" data-shift="." data-altgr=">" data-coeng=""><span class="glyph-main">។</span><span class="glyph-sub">.</span></div>
+          <div class="key zone-rp" data-key="slash" data-base="?" data-shift="/" data-altgr="៕" data-coeng=""><span class="glyph-main">?</span><span class="glyph-sub">/</span></div>
+          <div class="key w-20 zone-rp" data-key="shiftR"><span class="glyph-sub" style="font-size:10px;">Shift</span></div>
+        </div>
+
+        <!-- Row 5: Spacebar Row -->
+        <div class="kb-row">
+          <div class="key w-12 zone-lp" data-key="ctrlL"><span class="glyph-sub" style="font-size:10px;">Ctrl</span></div>
+          <div class="key zone-lp" data-key="alt"><span class="glyph-sub" style="font-size:10px;">Alt</span></div>
+          <div class="key w-space" data-key="space" id="keySpace"><span class="glyph-main" style="font-size:10px; color:#64748b;">Spacebar (ដកឃ្លា)</span></div>
+          <div class="key zone-rp" data-key="altgr"><span class="glyph-sub" style="font-size:10px;">AltGr</span></div>
+          <div class="key w-12 zone-rp" data-key="ctrlR"><span class="glyph-sub" style="font-size:10px;">Ctrl</span></div>
+        </div>
 
       </div>
-    </main>
+
+      <!-- Real Kinematic Hands Overlay (44% Opacity) -->
+      <svg class="hands-overlay" id="handsOverlay">
+        <defs id="handsDefs">
+          <linearGradient id="fingerGrad" x1="0" y1="1" x2="0.3" y2="0">
+            <stop offset="0%" stop-color="#0b2942" stop-opacity="0.8"/>
+            <stop offset="40%" stop-color="#144e7e" stop-opacity="0.85"/>
+            <stop offset="80%" stop-color="#38bdf8" stop-opacity="0.95"/>
+            <stop offset="100%" stop-color="#bae6fd" stop-opacity="1"/>
+          </linearGradient>
+          <linearGradient id="fingerGradR" x1="0" y1="1" x2="0.3" y2="0">
+            <stop offset="0%" stop-color="#420b29" stop-opacity="0.8"/>
+            <stop offset="40%" stop-color="#831843" stop-opacity="0.85"/>
+            <stop offset="80%" stop-color="#f472b6" stop-opacity="0.95"/>
+            <stop offset="100%" stop-color="#fbcfe8" stop-opacity="1"/>
+          </linearGradient>
+          <linearGradient id="fingerGradActive" x1="0" y1="1" x2="0.3" y2="0">
+            <stop offset="0%" stop-color="#144e7e" stop-opacity="0.9"/>
+            <stop offset="50%" stop-color="#38bdf8" stop-opacity="0.95"/>
+            <stop offset="85%" stop-color="#ffd166" stop-opacity="1"/>
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="1"/>
+          </linearGradient>
+          <linearGradient id="palmGrad" x1="0" y1="1" x2="0.25" y2="0">
+            <stop offset="0%" stop-color="#07192a" stop-opacity="0.75"/>
+            <stop offset="50%" stop-color="#0f3b5f" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#1e6b9e" stop-opacity="0.85"/>
+          </linearGradient>
+          <linearGradient id="palmGradR" x1="0" y1="1" x2="0.25" y2="0">
+            <stop offset="0%" stop-color="#2a0719" stop-opacity="0.75"/>
+            <stop offset="50%" stop-color="#5f0f3b" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#9e1e6b" stop-opacity="0.85"/>
+          </linearGradient>
+          <radialGradient id="palmHighlight" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="palmHighlightR" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#f472b6" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#f472b6" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="handShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0284c7" flood-opacity="0.3"/>
+          </filter>
+          <filter id="handShadowR" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#db2777" flood-opacity="0.3"/>
+          </filter>
+        </defs>
+        <g class="hand-group side-l" id="handGroupL"></g>
+        <g class="hand-group side-r" id="handGroupR"></g>
+      </svg>
+    </div>
 
     <!-- Footer Note -->
     <footer class="app-footer">
-      <p>PK Khmer Type Design Lab · Zero-Emoji Compliant · Live Default Hand Opacity: 44%</p>
+      <p>PK Khmer Type Keyboard Engine · Strictly Zero-Emoji SVG Protocol · 44% Default Hand Opacity</p>
     </footer>
 
   </div>
 
-  <!-- Real Kinematic Hands Engine + Interactive Logic -->
   <script>
     /* =========================================================================
        1. REAL KINEMATIC GEOMETRY ENGINE (Direct from js/keyboard.js)
-       Computes anatomical fingers, knuckle joints, palm polygon, nails, and creases
-       based on the real rendered bounding boxes of keycaps!
        ========================================================================= */
     const SVGNS = 'http://www.w3.org/2000/svg';
 
@@ -1375,8 +1194,7 @@
       return `M ${lx.toFixed(1)} ${ly.toFixed(1)} Q ${mx.toFixed(1)} ${my.toFixed(1)} ${rx.toFixed(1)} ${ry.toFixed(1)}`;
     }
 
-    // Build DOM elements for hands
-    const boardWrap = document.getElementById('boardWrap');
+    const boardStage = document.getElementById('boardStage');
     const handsOverlay = document.getElementById('handsOverlay');
     const handGroupL = document.getElementById('handGroupL');
     const handGroupR = document.getElementById('handGroupR');
@@ -1414,9 +1232,9 @@
       return { x: r.left + r.width/2 - wrapRect.left, y: r.top + r.height/2 - wrapRect.top };
     }
 
-    function renderRealKinematicHands(activeFingerId = 'li') {
-      if (!boardWrap || !handsOverlay) return;
-      const wrapRect = boardWrap.getBoundingClientRect();
+    function renderKinematicHands(activeFingerId = 'li') {
+      if (!boardStage || !handsOverlay) return;
+      const wrapRect = boardStage.getBoundingClientRect();
       handsOverlay.setAttribute('viewBox', `0 0 ${wrapRect.width} ${wrapRect.height}`);
       handsOverlay.setAttribute('width', wrapRect.width);
       handsOverlay.setAttribute('height', wrapRect.height);
@@ -1442,7 +1260,6 @@
         const order = ['pinky','ring','middle','index'].map(k => fingers.find(f => f.kind === k));
         if (order.some(f => !f || !homes[f.id])) return;
 
-        // Knuckles positioning
         const baseKnuckles = {};
         order.forEach(f => {
           const h = homes[f.id];
@@ -1457,12 +1274,10 @@
         const indexBase = knucklePts[3];
         const pinkyBase = knucklePts[0];
 
-        // Thumb knuckle
         const thumbF = fingers.find(f => f.kind === 'thumb');
         const thumbBase = { x: indexBase.x + inward * 18, y: indexBase.y + 10 };
         baseKnuckles[thumbF.id] = thumbBase;
 
-        // Palm contour
         const palmHeight = 58;
         const maxKnuckleY = Math.max(...knucklePts.map(p => p.y));
         const wristCenter = {
@@ -1504,7 +1319,6 @@
           palmHiR.setAttribute('rx', 20); palmHiR.setAttribute('ry', 10);
         }
 
-        // Render each finger
         fingers.forEach(f => {
           const origin = baseKnuckles[f.id];
           const tip = homes[f.id];
@@ -1526,7 +1340,6 @@
           elObj.crease1.setAttribute('d', creaseAt(frame, 0.45));
           elObj.crease2.setAttribute('d', creaseAt(frame, 0.72));
 
-          // Nail & tip
           elObj.nail.setAttribute('cx', tip.x);
           elObj.nail.setAttribute('cy', tip.y - 1);
           elObj.nail.setAttribute('rx', (f.tipW/2.4).toFixed(1));
@@ -1534,7 +1347,6 @@
           elObj.tip.setAttribute('cx', tip.x);
           elObj.tip.setAttribute('cy', tip.y);
 
-          // Shine highlight
           const sl = frame.left[Math.round(0.6 * (frame.left.length-1))];
           const st = frame.left[Math.round(0.85 * (frame.left.length-1))];
           elObj.shine.setAttribute('d', `M ${sl.x.toFixed(1)} ${sl.y.toFixed(1)} L ${st.x.toFixed(1)} ${st.y.toFixed(1)}`);
@@ -1542,87 +1354,309 @@
       });
     }
 
-    // Initialize hands layout on load & resize
-    window.addEventListener('load', () => renderRealKinematicHands('li'));
-    window.addEventListener('resize', () => renderRealKinematicHands('li'));
+    window.addEventListener('load', () => renderKinematicHands('li'));
+    window.addEventListener('resize', () => renderKinematicHands('li'));
 
     /* =========================================================================
-       2. INTERACTIVE CONTROLS & CONCEPT SWITCHING
+       2. PROCEDURAL WEB AUDIO MECHANICAL SWITCH SYNTHESIS
        ========================================================================= */
-    const tabBtns = document.querySelectorAll('.concept-tab-btn');
-    const c1Card = document.getElementById('c1Card');
-    const c2Card = document.getElementById('c2Card');
-    const c3Card = document.getElementById('c3Card');
-    const matrixCard = document.getElementById('matrixCard');
-    const boardWrapEl = document.getElementById('boardWrap');
+    let audioCtx = null;
+    function playSwitchSound(profile = 'brown') {
+      if (profile === 'silent') return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
 
-    tabBtns.forEach(btn => {
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        if (profile === 'blue') {
+          // Clicky blue crisp snap
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(1400, now);
+          osc.frequency.exponentialRampToValueAtTime(320, now + 0.035);
+          gain.gain.setValueAtTime(0.25, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+        } else if (profile === 'red') {
+          // Thocky linear deep thud
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(260, now);
+          osc.frequency.exponentialRampToValueAtTime(70, now + 0.05);
+          gain.gain.setValueAtTime(0.35, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.055);
+        } else if (profile === 'typewriter') {
+          // Vintage typewriter metallic strike
+          osc.type = 'square';
+          osc.frequency.setValueAtTime(2200, now);
+          osc.frequency.exponentialRampToValueAtTime(180, now + 0.045);
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+        } else {
+          // Tactile brown balanced mechanical bump
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(680, now);
+          osc.frequency.exponentialRampToValueAtTime(140, now + 0.04);
+          gain.gain.setValueAtTime(0.28, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.045);
+        }
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.06);
+      } catch (e) {}
+    }
+
+    /* =========================================================================
+       3. INTERACTIVE KEY FINDER & RECIPE ENGINE
+       ========================================================================= */
+    const keySearchInput = document.getElementById('keySearchInput');
+    const recipeCallout = document.getElementById('recipeCallout');
+    const recipeGlyph = document.getElementById('recipeGlyph');
+    const recipeTitle = document.getElementById('recipeTitle');
+    const recipeKeyBadge = document.getElementById('recipeKeyBadge');
+    const recipeDesc = document.getElementById('recipeDesc');
+    const recipeCopyBtn = document.getElementById('recipeCopyBtn');
+    const copyBtnText = document.getElementById('copyBtnText');
+
+    let currentRecipeChar = '';
+
+    const KHMER_FINGER_MAP = {
+      q:'Left Pinky', w:'Left Ring', e:'Left Middle', r:'Left Index', t:'Left Index',
+      a:'Left Pinky', s:'Left Ring', d:'Left Middle', f:'Left Index', g:'Left Index',
+      z:'Left Pinky', x:'Left Ring', c:'Left Middle', v:'Left Index', b:'Left Index',
+      y:'Right Index', u:'Right Index', i:'Right Middle', o:'Right Ring', p:'Right Pinky',
+      h:'Right Index', j:'Right Index', k:'Right Middle', l:'Right Ring', semicolon:'Right Pinky',
+      n:'Right Index', m:'Right Index', comma:'Right Middle', period:'Right Ring', slash:'Right Pinky'
+    };
+
+    function spotlightKey(query) {
+      document.querySelectorAll('.key').forEach(k => k.classList.remove('search-spotlight'));
+
+      if (!query || query.trim() === '') {
+        recipeCallout.classList.remove('show');
+        return;
+      }
+
+      const q = query.trim().toLowerCase();
+      let foundKey = null;
+      let matchedLayer = 'base';
+      let characterFound = '';
+
+      // Check all keys
+      document.querySelectorAll('.key').forEach(k => {
+        if (foundKey) return;
+        const keyId = k.dataset.key ? k.dataset.key.toLowerCase() : '';
+        const b = (k.dataset.base || '').toLowerCase();
+        const s = (k.dataset.shift || '').toLowerCase();
+        const a = (k.dataset.altgr || '').toLowerCase();
+        const c = (k.dataset.coeng || '').toLowerCase();
+
+        if (q === keyId || q === b) {
+          foundKey = k; matchedLayer = 'Base Layer'; characterFound = k.dataset.base || keyId;
+        } else if (q === s) {
+          foundKey = k; matchedLayer = 'Shift + ' + keyId.toUpperCase(); characterFound = k.dataset.shift;
+        } else if (q === a) {
+          foundKey = k; matchedLayer = 'AltGr + ' + keyId.toUpperCase(); characterFound = k.dataset.altgr;
+        } else if (q === c || q === ('j' + keyId)) {
+          foundKey = k; matchedLayer = 'j + ' + keyId.toUpperCase() + ' (Coeng)'; characterFound = k.dataset.coeng;
+        }
+      });
+
+      if (foundKey) {
+        foundKey.classList.add('search-spotlight');
+        const keyId = foundKey.dataset.key;
+        const fingerName = KHMER_FINGER_MAP[keyId] || 'Assigned Finger';
+
+        currentRecipeChar = characterFound || foundKey.dataset.base || keyId.toUpperCase();
+        recipeGlyph.textContent = currentRecipeChar;
+        recipeKeyBadge.textContent = matchedLayer;
+        recipeTitle.innerHTML = `<span>Character: « ${currentRecipeChar} »</span> <span class="recipe-badge">${matchedLayer}</span>`;
+        recipeDesc.textContent = `Physical Key: [${keyId.toUpperCase()}] · Touch Finger: ${fingerName} · Position on Board`;
+        recipeCallout.classList.add('show');
+
+        // Animate corresponding kinematic finger reach
+        const fingerObj = FINGERS.find(f => f.home === keyId || (keyId === 'f' && f.id === 'li'));
+        if (fingerObj) renderKinematicHands(fingerObj.id);
+
+        const currentProfile = document.getElementById('switchSoundSelect').value;
+        playSwitchSound(currentProfile);
+      } else {
+        recipeCallout.classList.remove('show');
+      }
+    }
+
+    keySearchInput.addEventListener('input', (e) => spotlightKey(e.target.value));
+
+    document.querySelectorAll('.find-chip').forEach(btn => {
       btn.addEventListener('click', () => {
-        tabBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const concept = btn.dataset.concept;
-        c1Card.style.display = (concept === 'c1') ? 'flex' : 'none';
-        c2Card.style.display = (concept === 'c2') ? 'flex' : 'none';
-        c3Card.style.display = (concept === 'c3') ? 'flex' : 'none';
-        matrixCard.style.display = (concept === 'matrix') ? 'block' : 'none';
-        boardWrapEl.style.display = (concept === 'matrix') ? 'none' : 'block';
-
-        if (concept !== 'matrix') {
-          setTimeout(() => renderRealKinematicHands('li'), 20);
+        const q = btn.dataset.query;
+        if (q === 'Clear') {
+          keySearchInput.value = '';
+          spotlightKey('');
+        } else {
+          keySearchInput.value = q;
+          spotlightKey(q);
         }
       });
     });
 
-    // 3D Hands Opacity Slider (Defaults to 44%)
-    const opacitySlider = document.getElementById('handsOpacitySlider');
-    const opacityBadge = document.getElementById('handsOpacityBadge');
+    recipeCopyBtn.addEventListener('click', () => {
+      if (!currentRecipeChar) return;
+      navigator.clipboard.writeText(currentRecipeChar).then(() => {
+        copyBtnText.textContent = 'Copied!';
+        setTimeout(() => copyBtnText.textContent = 'Copy Glyph', 1500);
+      });
+    });
 
-    opacitySlider.addEventListener('input', (e) => {
+    /* =========================================================================
+       4. INTERACTIVE LAYER DECK (Base, Shift, AltGr, Coeng)
+       ========================================================================= */
+    const layerBtns = document.querySelectorAll('.layer-btn');
+    let currentActiveLayer = 'base';
+
+    function switchKeyboardLayer(layerName) {
+      currentActiveLayer = layerName;
+      layerBtns.forEach(b => b.classList.toggle('active', b.dataset.layer === layerName));
+
+      boardStage.classList.toggle('mode-coeng', layerName === 'coeng');
+
+      document.querySelectorAll('.key').forEach(k => {
+        const glyphEl = k.querySelector('.glyph-main');
+        if (!glyphEl) return;
+
+        if (layerName === 'shift') {
+          glyphEl.textContent = k.dataset.shift || k.dataset.base || '';
+        } else if (layerName === 'altgr') {
+          glyphEl.textContent = k.dataset.altgr || k.dataset.base || '';
+        } else if (layerName === 'coeng') {
+          glyphEl.textContent = k.dataset.coeng || k.dataset.base || '';
+        } else {
+          glyphEl.textContent = k.dataset.base || '';
+        }
+      });
+
+      playSwitchSound(document.getElementById('switchSoundSelect').value);
+    }
+
+    layerBtns.forEach(b => {
+      b.addEventListener('click', () => switchKeyboardLayer(b.dataset.layer));
+    });
+
+    /* =========================================================================
+       5. ACCURACY HEATMAP & FINGER ZONES TOGGLES
+       ========================================================================= */
+    let heatmapActive = false;
+    const heatmapToggleBtn = document.getElementById('heatmapToggleBtn');
+
+    // Simulated historical accuracy map
+    const KEY_ACCURACY_SIM = {
+      f: 99, d: 96, s: 94, a: 88, j: 98, k: 95, l: 92, semicolon: 78,
+      r: 96, t: 95, e: 91, w: 82, q: 72, y: 92, u: 94, i: 96, o: 89, p: 74,
+      v: 95, c: 92, x: 80, z: 68, b: 90, n: 94, m: 92, comma: 84
+    };
+
+    heatmapToggleBtn.addEventListener('click', () => {
+      heatmapActive = !heatmapActive;
+      heatmapToggleBtn.classList.toggle('active', heatmapActive);
+      heatmapToggleBtn.classList.toggle('heatmap-on', heatmapActive);
+
+      document.querySelectorAll('.key').forEach(k => {
+        k.classList.remove('heat-green', 'heat-amber', 'heat-red');
+        const existingBadge = k.querySelector('.heat-badge');
+        if (existingBadge) existingBadge.remove();
+
+        if (heatmapActive && k.dataset.key) {
+          const acc = KEY_ACCURACY_SIM[k.dataset.key];
+          if (acc) {
+            const badge = document.createElement('span');
+            badge.className = 'heat-badge';
+            badge.textContent = acc + '%';
+
+            if (acc >= 95) {
+              k.classList.add('heat-green');
+              badge.style.color = '#34d399';
+            } else if (acc >= 85) {
+              k.classList.add('heat-amber');
+              badge.style.color = '#ffd166';
+            } else {
+              k.classList.add('heat-red');
+              badge.style.color = '#fb7185';
+            }
+            k.appendChild(badge);
+          }
+        }
+      });
+    });
+
+    let zonesActive = false;
+    const zonesToggleBtn = document.getElementById('zonesToggleBtn');
+    zonesToggleBtn.addEventListener('click', () => {
+      zonesActive = !zonesActive;
+      zonesToggleBtn.classList.toggle('active', zonesActive);
+      zonesToggleBtn.classList.toggle('zones-on', zonesActive);
+      boardStage.classList.toggle('mode-zones', zonesActive);
+    });
+
+    /* =========================================================================
+       6. CLICK-TO-TYPE & PHYSICAL KEYBOARD LIVE PLAYGROUND
+       ========================================================================= */
+    const tapeTrack = document.getElementById('tapeTrack');
+    const statTyped = document.getElementById('statTyped');
+    let typedCount = 18;
+
+    function handleKeyPress(keyId, keyEl) {
+      if (!keyEl) keyEl = document.querySelector(`.key[data-key="${keyId}"]`);
+      if (keyEl) {
+        keyEl.classList.add('pressed');
+        setTimeout(() => keyEl.classList.remove('pressed'), 120);
+      }
+
+      const activeSound = document.getElementById('switchSoundSelect').value;
+      playSwitchSound(activeSound);
+
+      // Trigger finger kinematic reach
+      const fObj = FINGERS.find(f => f.home === keyId || (keyId === 'space' && f.kind === 'thumb'));
+      if (fObj) renderKinematicHands(fObj.id);
+
+      // Add character to tape
+      const char = keyEl ? (keyEl.querySelector('.glyph-main') ? keyEl.querySelector('.glyph-main').textContent : '') : '';
+      if (char && char !== 'Spacebar (ដកឃ្លា)') {
+        typedCount++;
+        statTyped.textContent = typedCount;
+
+        const tile = document.createElement('div');
+        tile.className = 'tape-char done';
+        tile.textContent = char;
+        tapeTrack.insertBefore(tile, document.getElementById('tapeActiveChar'));
+        if (tapeTrack.children.length > 12) tapeTrack.removeChild(tapeTrack.firstChild);
+      }
+    }
+
+    document.querySelectorAll('.key').forEach(k => {
+      k.addEventListener('click', () => handleKeyPress(k.dataset.key, k));
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (document.activeElement === keySearchInput) return;
+      const keyIdMap = {
+        f:'f', d:'d', s:'s', a:'a', j:'j', k:'k', l:'l', ';':'semicolon',
+        r:'r', t:'t', e:'e', w:'w', q:'q', y:'y', u:'u', i:'i', o:'o', p:'p',
+        v:'v', c:'c', x:'x', z:'z', b:'b', n:'n', m:'m', ' ':'space'
+      };
+      const mapped = keyIdMap[e.key.toLowerCase()];
+      if (mapped) handleKeyPress(mapped);
+    });
+
+    /* 3D Hands Opacity Dial */
+    const handsOpacitySlider = document.getElementById('handsOpacitySlider');
+    const handsOpacityDisplay = document.getElementById('handsOpacityDisplay');
+    handsOpacitySlider.addEventListener('input', (e) => {
       const val = e.target.value;
       document.documentElement.style.setProperty('--hands-opacity', (val / 100).toFixed(2));
-      opacityBadge.textContent = val + '%';
+      handsOpacityDisplay.textContent = val + '%';
     });
-
-    // Simulated Typing Animation (Realistic finger keystroke loop)
-    let isSimulating = true;
-    const simBtn = document.getElementById('simToggleBtn');
-    const simLabel = document.getElementById('simBtnLabel');
-    const keyF = document.getElementById('keyF');
-    const keySpace = document.getElementById('keySpace');
-    const cursorTile = document.getElementById('cursorTile');
-
-    simBtn.addEventListener('click', () => {
-      isSimulating = !isSimulating;
-      simBtn.classList.toggle('active', isSimulating);
-      simLabel.textContent = isSimulating ? 'Typing Live' : 'Paused';
-    });
-
-    let beat = 0;
-    setInterval(() => {
-      if (!isSimulating) return;
-      beat++;
-
-      if (beat % 2 === 1) {
-        // Press target key F with Left Index
-        renderRealKinematicHands('li');
-        if (keyF) keyF.classList.add('pressed');
-        if (cursorTile) cursorTile.style.transform = 'scale(1.12)';
-
-        setTimeout(() => {
-          if (keyF) keyF.classList.remove('pressed');
-          if (cursorTile) cursorTile.style.transform = 'scale(1.05)';
-        }, 160);
-      } else {
-        // Press spacebar with Left Thumb
-        renderRealKinematicHands('lt');
-        if (keySpace) keySpace.classList.add('pressed');
-
-        setTimeout(() => {
-          if (keySpace) keySpace.classList.remove('pressed');
-        }, 160);
-      }
-    }, 900);
   </script>
 </body>
 </html>
