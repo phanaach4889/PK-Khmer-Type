@@ -2000,24 +2000,91 @@
 
 <div class="lesson-panel" id="lessonPanel" hidden>
   <div class="lesson-top">
-    <span id="lessonTitle" class="i18n-t" data-en="Lesson" data-km="មេរៀន">Lesson</span>
-    <span><b id="lessonProgressVal">0</b>/<span id="lessonTotalVal">0</span></span>
+    <div class="lesson-top-left">
+      <span class="lesson-live-indicator" aria-hidden="true">
+        <span class="lli-dot"></span>
+        <span class="lli-text">LIVE DRILL</span>
+      </span>
+      <span id="lessonTitle" class="lesson-deck-title i18n-t" data-en="Lesson" data-km="មេរៀន">Lesson</span>
+    </div>
+    <div class="lesson-top-right">
+      <button type="button" class="lesson-quick-btn" id="lessonAudioQuickBtn" title="Toggle Keyboard Click Sound" aria-label="Toggle Sound">
+        <svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        <span id="lessonAudioQuickLabel" class="i18n-t" data-en="Sound" data-km="សំឡេង">Sound</span>
+      </button>
+      <button type="button" class="lesson-quick-btn lesson-restart-btn" id="lessonQuickRestartBtn" title="Restart Current Drill (Tab + Enter)" aria-label="Restart Drill">
+        <svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+        <span class="i18n-t" data-en="Restart" data-km="សារឡើងវិញ">Restart</span>
+        <span class="lqb-badge">Tab+↵</span>
+      </button>
+      <div class="lesson-counter-capsule" title="Drill Progress">
+        <b id="lessonProgressVal">0</b><span class="lcc-sep">/</span><span id="lessonTotalVal">0</span>
+      </div>
+    </div>
   </div>
   <div class="lesson-meta-row">
     <span class="lesson-meta-badge" id="lessonMetaBadge">Level 1</span>
     <span class="lesson-meta-best" id="lessonMetaBest"></span>
   </div>
+
+  <!-- Dynamic Flow & Combo Gauge -->
+  <div class="lesson-flow-banner" id="lessonFlowBanner" data-flow="ready">
+    <div class="lfb-track"><div class="lfb-bar" id="lessonFlowFill"></div></div>
+    <div class="lfb-info">
+      <span class="lfb-badge" id="lessonFlowBadge">
+        <svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span id="lessonFlowText">READY TO TYPE</span>
+      </span>
+      <span class="lfb-sub" id="lessonFlowSub">Maintain rhythm for Flow Multiplier</span>
+    </div>
+  </div>
+
   <div class="lesson-newkeys" id="lessonNewKeys" hidden></div>
-  <div class="lesson-progress-bar"><div class="lesson-progress-fill" id="lessonProgressFill"></div></div>
+  <div class="lesson-progress-bar"><div class="lesson-progress-fill" id="lessonProgressFill"><span class="lpf-glow-tip"></span></div></div>
   <div class="lesson-char-row" id="lessonCharRow"></div>
   <div class="lesson-live-hint" id="lessonLiveHint" hidden></div>
+
+  <!-- Tactical HUD Telemetry Pods -->
   <div class="lesson-stats">
-    <span><span class="i18n-t" data-en="Accuracy" data-km="ភាពសុក្រឹត">Accuracy</span> <b id="lessonAccVal">100%</b></span>
-    <span id="lessonWpmWrap"><span class="i18n-t" data-en="WPM" data-km="WPM">WPM</span> <b id="lessonWpmVal">0</b></span>
-    <span id="lessonStreakWrap"><span class="i18n-t" data-en="Streak" data-km="ពិន្ទុបន្ត">Streak</span> <b id="lessonStreakVal">0</b></span>
-    <span><span class="i18n-t" data-en="Mistakes" data-km="កំហុស">Mistakes</span> <b id="lessonMistakesVal">0</b></span>
-    <span id="lessonBackspacesWrap"><span class="i18n-t" data-en="Fixes" data-km="កែ">Fixes</span> <b id="lessonBackspacesVal">0</b></span>
-    <button id="lessonExitBtn" class="i18n-t" data-en="Exit Lesson" data-km="ចាកចេញពីមេរៀន">Exit Lesson</button>
+    <div class="stat-pod stat-pod-acc" title="Current Typing Accuracy">
+      <svg class="stat-pod-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+      <div class="stat-pod-body">
+        <span class="stat-pod-title i18n-t" data-en="Accuracy" data-km="ភាពសុក្រឹត">Accuracy</span>
+        <b id="lessonAccVal" class="stat-pod-num">100%</b>
+      </div>
+    </div>
+    <div class="stat-pod stat-pod-wpm" id="lessonWpmWrap" title="Typing Speed (Words Per Minute)">
+      <svg class="stat-pod-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+      <div class="stat-pod-body">
+        <span class="stat-pod-title i18n-t" data-en="WPM" data-km="WPM">WPM</span>
+        <b id="lessonWpmVal" class="stat-pod-num">0</b>
+      </div>
+    </div>
+    <div class="stat-pod stat-pod-streak" id="lessonStreakWrap" title="Consecutive Flawless Keystrokes">
+      <svg class="stat-pod-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      <div class="stat-pod-body">
+        <span class="stat-pod-title i18n-t" data-en="Streak" data-km="ពិន្ទុបន្ត">Streak</span>
+        <b id="lessonStreakVal" class="stat-pod-num">0</b>
+      </div>
+    </div>
+    <div class="stat-pod stat-pod-err" title="Uncorrected Mistakes">
+      <svg class="stat-pod-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <div class="stat-pod-body">
+        <span class="stat-pod-title i18n-t" data-en="Mistakes" data-km="កំហុស">Mistakes</span>
+        <b id="lessonMistakesVal" class="stat-pod-num">0</b>
+      </div>
+    </div>
+    <div class="stat-pod stat-pod-fix" id="lessonBackspacesWrap" title="Backspace Fixes">
+      <svg class="stat-pod-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><line x1="18" y1="9" x2="12" y2="15"/><line x1="12" y1="9" x2="18" y2="15"/></svg>
+      <div class="stat-pod-body">
+        <span class="stat-pod-title i18n-t" data-en="Fixes" data-km="កែ">Fixes</span>
+        <b id="lessonBackspacesVal" class="stat-pod-num">0</b>
+      </div>
+    </div>
+    <button id="lessonExitBtn" class="lesson-exit-tactical-btn i18n-t" data-en="Exit Lesson" data-km="ចាកចេញពីមេរៀន" title="Exit Drill (Esc)">
+      <svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <span>Exit Lesson</span>
+    </button>
   </div>
 </div>
 

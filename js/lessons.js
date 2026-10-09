@@ -1959,13 +1959,25 @@ function renderLessonMeta(def){
   if(def.newIds && def.newIds.length){
     lessonNewKeysEl.hidden = false;
     const targetLabel = isKm ? 'គ្រាប់ចុចគោលដៅ' : 'Target Keys';
-    lessonNewKeysEl.innerHTML = `<span class="lesson-newkeys-label">${targetLabel}</span>` + def.newIds.map(id=>{
+    const targetIconSvg = '<svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>';
+    lessonNewKeysEl.innerHTML = `<div class="lesson-newkeys-header"><span class="lesson-newkeys-label">${targetIconSvg} ${targetLabel}</span></div><div class="lesson-newkeys-grid">` + def.newIds.map(id=>{
       const layer = def.newLayer || def.layer || 'base';
       let ch = (def.newChars && def.newChars[id]) || charFor(id, layer);
       if(!ch) ch = charFor(id, 'base') || charFor(id, 'shift') || '';
       const displayChar = formatDisplayGlyph(ch) || keyLabel(id);
-      return `<span class="lesson-newkey-chip"><span class="nk-char">${displayChar}</span><span class="nk-sub">${keyLabel(id)} · ${fingerLabel(id)}</span></span>`;
-    }).join('');
+      const fid = (typeof KEY_FINGER !== 'undefined' && KEY_FINGER[id]) ? KEY_FINGER[id] : '';
+      const isAnchorKey = (id === 'f' || id === 'j');
+      return `<div class="lesson-newkey-chip" data-finger="${fid}" title="${keyLabel(id)} — ${fingerLabel(id)}">
+        <div class="nk-keycap">
+          <span class="nk-char">${displayChar}</span>
+          ${isAnchorKey ? '<span class="nk-homing-bump" title="Tactile Homing Bar"></span>' : ''}
+        </div>
+        <div class="nk-key-details">
+          <span class="nk-keyid">${keyLabel(id)}</span>
+          <span class="nk-finger-badge finger-${fid}">${fingerLabel(id)}</span>
+        </div>
+      </div>`;
+    }).join('') + `</div>`;
   } else {
     lessonNewKeysEl.hidden = true;
     lessonNewKeysEl.innerHTML = '';
@@ -2074,6 +2086,14 @@ function updateLessonProgress(){
   lessonAccValEl.textContent = accuracy + '%';
   lessonMistakesValEl.textContent = lessonMistakes;
 
+  // Visual grade styling for accuracy pod
+  if(lessonAccValEl){
+    lessonAccValEl.classList.remove('grade-emerald', 'grade-gold', 'grade-rose');
+    if(accuracy >= 98) lessonAccValEl.classList.add('grade-emerald');
+    else if(accuracy >= 90) lessonAccValEl.classList.add('grade-gold');
+    else lessonAccValEl.classList.add('grade-rose');
+  }
+
   // Real-time tracking & learner feedback updates
   if(typeof PK_TRACKER !== 'undefined' && typeof PK_TRACKER.getLiveLessonMetrics === 'function'){
     const live = PK_TRACKER.getLiveLessonMetrics();
@@ -2095,6 +2115,42 @@ function updateLessonProgress(){
           lessonLiveHintEl.hidden = true;
         }
       }
+    }
+  }
+
+  // Dynamic Flow / Combo Gauge updates
+  const flowBanner = document.getElementById('lessonFlowBanner');
+  const flowFill = document.getElementById('lessonFlowFill');
+  const flowText = document.getElementById('lessonFlowText');
+  const flowSub = document.getElementById('lessonFlowSub');
+  if(flowBanner && flowFill && flowText){
+    const streak = parseInt((lessonStreakValEl ? lessonStreakValEl.textContent : '0') || '0', 10);
+    const isKm = document.documentElement.classList.contains('site-km-mode');
+    if(streak >= 35){
+      flowBanner.setAttribute('data-flow', 'transcendent');
+      flowFill.style.width = '100%';
+      flowText.textContent = isKm ? `ត្រាស់ដឹង x${streak}` : `TRANSCENDENT x${streak}`;
+      if(flowSub) flowSub.textContent = isKm ? 'ភាពស្ទាត់ជំនាញកំពូល! រលូនឥតខ្ចោះ' : 'Sacred mastery achieved! Flawless rhythm.';
+    } else if(streak >= 20){
+      flowBanner.setAttribute('data-flow', 'gold');
+      flowFill.style.width = '85%';
+      flowText.textContent = isKm ? `ចូលដល់កម្រិតខ្ពស់ x${streak}` : `IN THE ZONE x${streak}`;
+      if(flowSub) flowSub.textContent = isKm ? 'ល្បឿន និងភាពសុក្រឹតអស្ចារ្យ!' : 'Blazing speed & surgical accuracy!';
+    } else if(streak >= 10){
+      flowBanner.setAttribute('data-flow', 'cyan');
+      flowFill.style.width = '60%';
+      flowText.textContent = isKm ? `រលូនឥតខ្ចោះ x${streak}` : `FLOWING x${streak}`;
+      if(flowSub) flowSub.textContent = isKm ? 'ការចងចាំសាច់ដុំកំពុងដំណើរការ!' : 'Muscle memory unlocked! Keep rhythm.';
+    } else if(streak >= 5){
+      flowBanner.setAttribute('data-flow', 'bronze');
+      flowFill.style.width = '35%';
+      flowText.textContent = isKm ? `បន្តបន្ទាប់ x${streak}` : `COMBO x${streak}`;
+      if(flowSub) flowSub.textContent = isKm ? 'ចង្វាក់ល្អ! បន្តទៅមុខទៀត' : 'Steady rhythm! Keep the combo alive.';
+    } else {
+      flowBanner.setAttribute('data-flow', 'ready');
+      flowFill.style.width = (attempts > 0 ? '12%' : '0%');
+      flowText.textContent = isKm ? 'រួចរាល់សម្រាប់វាយ' : 'READY TO TYPE';
+      if(flowSub) flowSub.textContent = isKm ? 'រក្សាចង្វាក់ដើម្បីបង្កើន Flow Multiplier' : 'Maintain rhythm for Flow Multiplier';
     }
   }
 }
@@ -2183,6 +2239,11 @@ function startLesson(idOrDef){
   clearText();
   renderLessonChars();
   updateLessonProgress();
+  const audioBtn = document.getElementById('lessonAudioQuickBtn');
+  const mainSound = document.getElementById('soundToggle');
+  if(audioBtn && mainSound){
+    audioBtn.classList.toggle('active', mainSound.classList.contains('on'));
+  }
   saveActiveLessonSession();
 
   requestAnimationFrame(()=>{
@@ -2331,6 +2392,31 @@ try {
   Object.defineProperty(window, 'currentLesson', { get: () => currentLesson, set: (v) => { currentLesson = v; }, configurable: true });
 } catch(e){}
 lessonExitBtn.addEventListener('click', ()=> exitLesson(false));
+
+const lessonQuickRestartBtn = document.getElementById('lessonQuickRestartBtn');
+if(lessonQuickRestartBtn){
+  lessonQuickRestartBtn.addEventListener('click', () => {
+    if(typeof currentLesson !== 'undefined' && currentLesson){
+      startLesson(currentLesson);
+      if(typeof showToast === 'function'){
+        const iconSvg = typeof pkIcon === 'function' ? pkIcon('reset', 16) : '';
+        showToast(iconSvg, 'Drill Restarted', 'Restarted lesson from beginning.');
+      }
+    }
+  });
+}
+
+const lessonAudioQuickBtn = document.getElementById('lessonAudioQuickBtn');
+if(lessonAudioQuickBtn){
+  lessonAudioQuickBtn.addEventListener('click', () => {
+    const mainSoundToggle = document.getElementById('soundToggle');
+    if(mainSoundToggle){
+      mainSoundToggle.click();
+      const isSoundOn = mainSoundToggle.classList.contains('on');
+      lessonAudioQuickBtn.classList.toggle('active', isSoundOn);
+    }
+  });
+}
 
 /* Adaptive difficulty: mistake tracking without jarring mid-lesson duplicate spam.
    Mistakes are tracked in lessonMistakeChars and fed directly into the dedicated,
