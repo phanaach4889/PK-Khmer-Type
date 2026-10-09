@@ -12,10 +12,10 @@ permissions:
   pages: write
   id-token: write
 
-# Allow one concurrent deployment
+# Allow one concurrent deployment, superseding older in-progress runs on new push
 concurrency:
   group: 'pages'
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   validate:
@@ -33,10 +33,10 @@ jobs:
       - name: Validate JavaScript Syntax
         run: |
           echo "Checking JavaScript files for syntax errors..."
-          for file in js/*.js; do
-            node --check "$file"
+          for file in js/*.js launch/*.js; do
+            [ -f "$file" ] && node --check "$file"
           done
-          echo "All core JS files passed syntax validation."
+          echo "All core and launch JS files passed syntax validation."
 
       - name: Validate Curriculum Integrity
         run: |
@@ -59,12 +59,12 @@ jobs:
       - name: Build and stage static web assets
         run: |
           mkdir -p _site
-          # Copy core web application and SEO/AI visibility assets into staging directory
-          cp index.html manifest.json logo.svg robots.txt sitemap.xml llms.txt .nojekyll _site/
+          # Copy core web application pages and SEO/AI visibility assets into staging directory
+          cp index.html dashboard.html manifest.json logo.svg robots.txt sitemap.xml llms.txt .nojekyll _site/
+          [ -f BingSiteAuth.xml ] && cp BingSiteAuth.xml _site/
           cp google*.html _site/ 2>/dev/null || true
           cp icon-*.png _site/
-          cp -r css js data Documents docs assets _site/
-          cp -r launch _site/
+          cp -r css js data Documents docs assets launch _site/
           
           # Copy optional documentation if present
           [ -f README.md ] && cp README.md _site/
