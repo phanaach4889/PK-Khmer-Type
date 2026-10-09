@@ -36,7 +36,7 @@ const ROW2 = [
   KEY('p','ផ','','ឳ','ភ'),
   KEY('bracketL','ើ','','[','ោះ'),
   KEY('bracketR','ឿ','',']','ៀ'),
-  {id:'enter', kind:'mod', label:'Enter', wide:1.5},
+  {...KEY('backslash','\\','/','៚','/'), wide:1.5},
 ];
 
 const ROW3 = [
@@ -52,7 +52,7 @@ const ROW3 = [
   KEY('l','ល','','ឰ','ឡ'),
   KEY('semicolon','ះ',':',';','៖'),
   KEY('quote','់','«','៝','៉'),
-  {...KEY('backslash','\\','/','៚','/'), wide:2.25},
+  {id:'enter', kind:'mod', label:'Enter', wide:2.25},
 ];
 
 const ROW4 = [
@@ -111,7 +111,7 @@ const ROW2_NIDA = [
   KEY('p','ផ','','ឰ','ភ'),
   KEY('bracketL','ៀ','','ឩ','ឿ'),
   KEY('bracketR','ឪ','','ឳ','ឧ'),
-  {id:'enter', kind:'mod', label:'Enter', wide:1.5},
+  {...KEY('backslash','ឮ','','\\','ឭ'), wide:1.5},
 ];
 
 const ROW3_NIDA = [
@@ -127,7 +127,7 @@ const ROW3_NIDA = [
   KEY('l','ល','','','ឡ'),
   KEY('semicolon','ើ','','៖','ោះ'),
   KEY('quote','់','','ៈ','៉'),
-  {...KEY('backslash','ឮ','','\\','ឭ'), wide:2.25},
+  {id:'enter', kind:'mod', label:'Enter', wide:2.25},
 ];
 
 const ROW4_NIDA = [
@@ -186,7 +186,7 @@ const ROW2_EN = [
   KEY('p','p','','','P'),
   KEY('bracketL','[','','','{'),
   KEY('bracketR',']','','','}'),
-  {id:'enter', kind:'mod', label:'Enter', wide:1.5},
+  {...KEY('backslash','\\','','','|'), wide:1.5},
 ];
 
 const ROW3_EN = [
@@ -202,7 +202,7 @@ const ROW3_EN = [
   KEY('l','l','','','L'),
   KEY('semicolon',';','','',':'),
   KEY('quote','\'','','','"'),
-  {...KEY('backslash','\\','','','|'), wide:2.25},
+  {id:'enter', kind:'mod', label:'Enter', wide:2.25},
 ];
 
 const ROW4_EN = [
