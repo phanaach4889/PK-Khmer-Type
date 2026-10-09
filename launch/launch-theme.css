@@ -466,22 +466,306 @@ body::before {
 }
 
 .key.space {
+  flex-grow: 8;
+  cursor: pointer;
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
-.key .space-glyph {
-  font-size: 1.1rem;
+.key.space .space-glyph {
+  font-family: var(--font-khmer);
+  font-size: 1.3rem;
+  font-weight: 700;
   color: var(--gold-bright, #ffd166);
   line-height: 1;
+  text-shadow: 0 0 8px rgba(255, 209, 102, 0.35);
 }
 
-.key .space-label {
-  font-family: var(--font-sans);
-  font-size: 0.68rem;
-  letter-spacing: 0.04em;
-  color: #92a4ba;
+.key.space .space-label {
+  font-family: var(--font-khmer);
+  font-size: 0.74rem;
+  letter-spacing: 0.03em;
+  color: #b7c7dc;
+  opacity: 0.88;
+}
+
+.key.space:hover .space-label {
+  color: #ffffff;
+  opacity: 1;
+}
+
+/* ---------- Temple Torches ---------- */
+.torch {
+  position: absolute;
+  top: -12px;
+  width: 14px;
+  height: 48px;
+  pointer-events: none;
+  z-index: 3;
+}
+.torch.left { left: 16px; }
+.torch.right { right: 16px; }
+.torch .glow {
+  position: absolute;
+  top: -8px; left: -14px;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 209, 102, 0.35) 0%, transparent 70%);
+  animation: torch-glow 2.4s ease-in-out infinite alternate;
+}
+.torch .flame {
+  position: absolute;
+  top: 0; left: 3px;
+  width: 8px; height: 16px;
+  border-radius: 50% 50% 30% 30%;
+  background: linear-gradient(180deg, #fff7d6, #ffb830 55%, #ff4d00);
+  box-shadow: 0 0 10px rgba(255, 184, 48, 0.8);
+  animation: torch-flicker 1.8s ease-in-out infinite alternate;
+}
+.torch .stick {
+  position: absolute;
+  top: 15px; left: 5px;
+  width: 4px; height: 26px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #5c4424, #2a1e0f);
+}
+@keyframes torch-glow {
+  0% { opacity: 0.6; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1.15); }
+}
+@keyframes torch-flicker {
+  0% { transform: scaleY(1) rotate(-2deg); opacity: 0.9; }
+  50% { transform: scaleY(1.15) rotate(2deg); opacity: 1; }
+  100% { transform: scaleY(0.95) rotate(-1deg); opacity: 0.85; }
+}
+
+/* ---------- Hand Color Swatch Duo ---------- */
+.hand-color-swatch-duo {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.hand-color-swatch-duo span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+  display: inline-block;
+}
+
+/* ---------- 3D Kinematic Hands Stage & Overlay (44% Default Opacity) ---------- */
+.keyboard-stage {
+  position: relative;
+}
+
+.hands-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+  overflow: visible;
+  opacity: var(--hands-opacity, 0.44);
+  transition: opacity .35s ease, visibility .35s ease;
+}
+
+.hands-overlay.hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.hands-overlay .hand-group {
+  filter: url(#handShadow);
+  transition: transform .28s cubic-bezier(.22, 1, .36, 1);
+  animation: hand-resting-breath 2.6s ease-in-out infinite alternate;
+}
+
+.hands-overlay .hand-group.side-r {
+  filter: url(#handShadowR);
+  animation-delay: -1.3s;
+}
+
+@keyframes hand-resting-breath {
+  0% { transform: translateY(0px) scale(1); }
+  100% { transform: translateY(-3.5px) scale(1.008); }
+}
+
+.hands-overlay .palm-shape {
+  fill: url(#palmGrad);
+  stroke: var(--hand-l-stroke, rgba(56, 189, 248, 0.4));
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 2px 8px var(--hand-l-shadow, rgba(2, 132, 199, 0.25)));
+  transition: d .28s cubic-bezier(.22, 1, .36, 1), opacity .25s ease;
+}
+
+.hands-overlay .hand-group.side-r .palm-shape {
+  fill: url(#palmGradR);
+  stroke: var(--hand-r-stroke, rgba(244, 114, 182, 0.4));
+  filter: drop-shadow(0 2px 8px var(--hand-r-shadow, rgba(192, 38, 211, 0.25)));
+}
+
+.hands-overlay .palm-shade {
+  fill: rgba(0, 0, 0, 0.22);
+  transition: d .28s cubic-bezier(.22, 1, .36, 1);
+  mix-blend-mode: multiply;
+}
+
+.hands-overlay .palm-highlight {
+  fill: url(#palmHighlight);
+  opacity: 0.6;
+  mix-blend-mode: screen;
+  transition: cx .28s cubic-bezier(.22, 1, .36, 1), cy .28s cubic-bezier(.22, 1, .36, 1);
+}
+
+.hands-overlay .hand-group.side-r .palm-highlight {
+  fill: url(#palmHighlightR);
+}
+
+.hands-overlay .palm-core {
+  display: none !important;
+}
+
+.hands-overlay .finger-shape {
+  fill: url(#fingerGrad);
+  stroke: var(--hand-l-stroke, rgba(56, 189, 248, 0.5));
+  stroke-width: 1.1;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 2px 6px var(--hand-l-shadow, rgba(2, 132, 199, 0.3)));
+  transition: fill .25s ease, stroke .25s ease, opacity .25s ease, filter .25s ease, d .28s cubic-bezier(.22, 1, .36, 1);
+}
+
+.hands-overlay .hand-group.side-r .finger-shape {
+  fill: url(#fingerGradR);
+  stroke: var(--hand-r-stroke, rgba(244, 114, 182, 0.5));
+  filter: drop-shadow(0 2px 6px var(--hand-r-shadow, rgba(192, 38, 211, 0.3)));
+}
+
+.hands-overlay .finger-shine {
+  fill: none;
+  stroke: var(--hand-l-shine, rgba(186, 230, 253, 0.55));
+  stroke-width: 1;
+  stroke-linecap: round;
+  transition: opacity .25s ease, d .28s cubic-bezier(.22, 1, .36, 1);
+}
+
+.hands-overlay .hand-group.side-r .finger-shine {
+  stroke: var(--hand-r-shine, rgba(251, 207, 232, 0.55));
+}
+
+.hands-overlay .finger-shine2,
+.hands-overlay .finger-energy,
+.hands-overlay .target-reticle,
+.hands-overlay .impact-sparks,
+.hands-overlay .impact-ring,
+.hands-overlay .impact-ring-2 {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.hands-overlay .finger-crease {
+  fill: none;
+  stroke: var(--hand-l-crease, rgba(56, 189, 248, 0.55));
+  stroke-width: 0.8;
+  stroke-linecap: round;
+  opacity: 0.65;
+  transition: opacity .25s ease, stroke .25s ease, d .28s cubic-bezier(.22, 1, .36, 1);
+}
+
+.hands-overlay .hand-group.side-r .finger-crease {
+  stroke: var(--hand-r-crease, rgba(244, 114, 182, 0.55));
+}
+
+.hands-overlay .finger-joint {
+  fill: url(#jointGlow);
+  opacity: 0.65;
+  filter: drop-shadow(0 0 4px var(--hand-l-glow, rgba(56, 189, 248, 0.7)));
+  transition: cx .28s cubic-bezier(.22, 1, .36, 1), cy .28s cubic-bezier(.22, 1, .36, 1);
+}
+
+.hands-overlay .hand-group.side-r .finger-joint {
+  fill: url(#jointGlowR);
+  filter: drop-shadow(0 0 4px var(--hand-r-glow, rgba(244, 114, 182, 0.7)));
+}
+
+.hands-overlay .finger-nail {
+  fill: var(--hand-l-nail-fill, rgba(56, 189, 248, 0.35));
+  stroke: var(--hand-l-nail-stroke, rgba(186, 230, 253, 0.65));
+  stroke-width: 0.6;
+  opacity: 0.75;
+  transition: opacity .25s ease, transform .28s cubic-bezier(.22, 1, .36, 1);
+}
+
+.hands-overlay .hand-group.side-r .finger-nail {
+  fill: var(--hand-r-nail-fill, rgba(244, 114, 182, 0.35));
+  stroke: var(--hand-r-nail-stroke, rgba(251, 207, 232, 0.65));
+}
+
+.hands-overlay .finger-tip {
+  fill: var(--hand-l-tip-fill, rgba(56, 189, 248, 0.6));
+  stroke: var(--hand-l-tip-stroke, rgba(224, 242, 254, 0.85));
+  stroke-width: 1;
+  r: 4;
+  filter: drop-shadow(0 0 6px var(--hand-l-glow, rgba(56, 189, 248, 0.8)));
+  transition: cx .28s cubic-bezier(.22, 1, .36, 1), cy .28s cubic-bezier(.22, 1, .36, 1), fill .25s ease, r .25s ease, opacity .25s ease;
+}
+
+.hands-overlay .hand-group.side-r .finger-tip {
+  fill: var(--hand-r-tip-fill, rgba(244, 114, 182, 0.6));
+  stroke: var(--hand-r-tip-stroke, rgba(253, 242, 248, 0.85));
+  filter: drop-shadow(0 0 6px var(--hand-r-glow, rgba(244, 114, 182, 0.8)));
+}
+
+.hands-overlay .finger.active .finger-shape {
+  fill: url(#fingerGradActive);
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 12px var(--hand-l-glow, rgba(56, 189, 248, 0.95))) drop-shadow(0 0 24px rgba(255, 209, 102, 0.7));
+}
+
+.hands-overlay .hand-group.side-r .finger.active .finger-shape {
+  fill: url(#fingerGradActiveR);
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 12px var(--hand-r-glow, rgba(244, 114, 182, 0.95))) drop-shadow(0 0 24px rgba(255, 209, 102, 0.7));
+}
+
+.hands-overlay .finger.active .finger-shine { stroke: #ffffff; opacity: 0.8; }
+.hands-overlay .finger.active .finger-crease { stroke: #ffffff; opacity: 0.8; }
+.hands-overlay .finger.active .finger-joint { opacity: 1; filter: drop-shadow(0 0 6px #ffffff); }
+.hands-overlay .finger.active .finger-nail { fill: #ffffff; opacity: 0.95; }
+
+.hands-overlay .finger.active .finger-tip,
+.hands-overlay .hand-group.side-r .finger.active .finger-tip {
+  fill: #ffd166;
+  stroke: #ffffff;
+  stroke-width: 1.4;
+  r: 6;
+  filter: drop-shadow(0 0 10px #ffffff) drop-shadow(0 0 20px var(--hand-l-glow, rgba(56, 189, 248, 0.95)));
+  animation: active-finger-beacon 1.25s ease-in-out infinite alternate;
+}
+
+@keyframes active-finger-beacon {
+  0% { r: 6; stroke-width: 1.4; }
+  100% { r: 8.5; stroke-width: 2.4; }
+}
+
+.hands-overlay .finger.struck {
+  animation: finger-strike-impact 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28) both;
+  transform-origin: 50% 100%;
+}
+
+@keyframes finger-strike-impact {
+  0% { transform: translateY(0) scale(1); }
+  30% { transform: translateY(4.5px) scale(0.93); }
+  70% { transform: translateY(-2px) scale(1.05); }
+  100% { transform: translateY(0) scale(1); }
 }
 
 .key-ripple {

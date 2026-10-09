@@ -197,6 +197,14 @@
             <button type="button" class="layer-tab" data-layer="ctrl" aria-pressed="false">Ctrl</button>
             <button type="button" class="layer-tab" data-layer="altgr" aria-pressed="false">AltGr</button>
           </div>
+          <button type="button" class="sound-toggle-btn is-active" id="handsToggle" aria-pressed="true" title="Toggle 3D Kinematic Finger Guide (44% Opacity)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+            <span>Finger Guide</span>
+          </button>
+          <button type="button" class="sound-toggle-btn hands-color-quick-btn" id="handsColorQuickBtn" title="Cycle 3D Hand Color Presets" aria-label="Change Hand Colors">
+            <span class="hand-color-swatch-duo"><span class="swatch-quick-l" id="quickSwatchL" style="background:#38bdf8"></span><span class="swatch-quick-r" id="quickSwatchR" style="background:#f472b6"></span></span>
+            <span>Hand Theme</span>
+          </button>
           <button type="button" class="sound-toggle-btn is-active" id="soundToggle" aria-pressed="true" title="Toggle Mechanical Switch Sound">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
             <span>Key Sound</span>
@@ -206,6 +214,8 @@
 
       <!-- Authentic Board Wrap -->
       <div class="board-wrap notranslate" id="boardWrap" translate="no">
+        <div class="torch left"><div class="glow"></div><div class="flame"></div><div class="stick"></div></div>
+        <div class="torch right"><div class="glow"></div><div class="flame"></div><div class="stick"></div></div>
         <div class="board-chassis-bar" id="boardChassisBar">
           <div class="chassis-deck-id">
             <span class="chassis-led-dot" id="chassisLedDot" aria-hidden="true"></span>
@@ -233,8 +243,11 @@
           </div>
         </div>
 
-        <!-- Dynamic Keyboard Surface -->
-        <div class="keyboard notranslate" id="keyboard" translate="no" aria-label="Interactive Virtual Keyboard Deck"></div>
+        <!-- Dynamic Keyboard Surface & 3D Kinematic Hands Overlay -->
+        <div class="keyboard-stage" id="keyboardStage">
+          <div class="keyboard notranslate" id="keyboard" translate="no" aria-label="Interactive Virtual Keyboard Deck"></div>
+          <svg class="hands-overlay" id="handsOverlay" aria-hidden="true"></svg>
+        </div>
 
         <!-- Key Telemetry Inspector HUD -->
         <div class="key-inspector-hud" aria-live="polite" aria-atomic="true">
