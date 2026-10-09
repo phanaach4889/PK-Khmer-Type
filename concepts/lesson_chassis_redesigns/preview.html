@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PK Khmer Type — Useful Keyboard Features &amp; Compact Chassis Studio</title>
+  <title>PK Khmer Type — 3 Actually Useful Keyboard Studios</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Kantumruy+Pro:wght@400;600;700&family=Moul&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -28,11 +28,7 @@
       --radius-lg: 14px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background-color: var(--bg-deep);
@@ -60,11 +56,11 @@
     }
 
     .app-shell {
-      max-width: 920px;
+      max-width: 930px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
 
     /* Header Bar */
@@ -98,22 +94,10 @@
       color: var(--gold-bright);
     }
 
-    .brand-text h1 {
-      font-size: 14px;
-      font-weight: 700;
-      color: #fff;
-    }
+    .brand-text h1 { font-size: 14px; font-weight: 700; color: #fff; }
+    .brand-text p { font-size: 11px; color: var(--text-dim); }
 
-    .brand-text p {
-      font-size: 11px;
-      color: var(--text-dim);
-    }
-
-    .header-tools {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .header-tools { display: flex; align-items: center; gap: 10px; }
 
     .slider-pill {
       display: flex;
@@ -148,417 +132,414 @@
       min-width: 30px;
     }
 
-    /* USEFUL FEATURE BAR #1: INTERACTIVE KEY FINDER & RECIPE HUD */
-    .finder-strip {
+    /* 3 MASTER KEYBOARD TABS */
+    .master-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr) 110px;
+      gap: 6px;
+      background: rgba(8, 11, 18, 0.7);
+      padding: 4px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .master-tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+      cursor: pointer;
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      background: linear-gradient(90deg, #101625 0%, #0d121e 100%);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      transition: all 0.15s ease;
+      color: var(--text-dim);
+      text-align: left;
+    }
+
+    .master-tab-btn:hover {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-muted);
+    }
+
+    .master-tab-btn.active {
+      background: var(--bg-card);
+      border-color: rgba(255, 209, 102, 0.3);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .tab-k-id {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--gold-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .tab-k-title { font-size: 12px; font-weight: 700; color: #fff; }
+    .tab-k-feature { font-size: 10px; color: var(--text-dim); line-height: 1.2; }
+
+    /* =========================================================================
+       KEYBOARD 1 UNIQUE FEATURES: COENG & LIGATURE STUDIO
+       ========================================================================= */
+    .kb1-feature-dock {
+      background: linear-gradient(180deg, #101625 0%, #0a0e18 100%);
       border: 1px solid rgba(56, 189, 248, 0.25);
       border-radius: var(--radius-md);
-      padding: 8px 12px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    .finder-input-wrap {
+    .kb1-top-row {
       display: flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(0, 0, 0, 0.45);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
-      padding: 4px 10px;
-      flex: 1;
-      max-width: 360px;
-      transition: all 0.15s ease;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 8px;
     }
 
-    .finder-input-wrap:focus-within {
-      border-color: var(--gold-bright);
-      box-shadow: 0 0 10px rgba(255, 209, 102, 0.25);
-    }
-
-    .finder-input {
-      background: transparent;
-      border: none;
-      outline: none;
-      color: #fff;
-      font-family: 'Kantumruy Pro', 'Inter', sans-serif;
-      font-size: 12px;
-      width: 100%;
-    }
-
-    .finder-input::placeholder {
-      color: var(--text-dim);
-      font-size: 11px;
-    }
-
-    .quick-chips-group {
+    .vowel-shelf-wrap {
       display: flex;
       align-items: center;
       gap: 6px;
       flex-wrap: wrap;
     }
 
-    .quick-chip-lbl {
+    .shelf-label {
       font-size: 10px;
-      color: var(--text-dim);
+      font-weight: 700;
+      color: var(--gold-bright);
       text-transform: uppercase;
-      font-weight: 600;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
     }
 
-    .find-chip {
+    .vowel-chip {
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 4px;
       padding: 2px 7px;
-      color: var(--text-main);
       font-family: 'Kantumruy Pro', sans-serif;
-      font-size: 12px;
+      font-size: 13px;
+      color: #fff;
       cursor: pointer;
       transition: all 0.12s ease;
     }
 
-    .find-chip:hover {
+    .vowel-chip:hover {
       background: rgba(255, 209, 102, 0.15);
       border-color: var(--gold-bright);
       color: var(--gold-bright);
       transform: translateY(-1px);
     }
 
-    /* RECIPE RESULT POPOVER (Appears when key searched) */
-    .recipe-callout {
-      display: none;
+    .ligature-builder-strip {
+      display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      background: linear-gradient(135deg, rgba(255, 209, 102, 0.12), rgba(56, 189, 248, 0.08));
-      border: 1px solid var(--gold-bright);
-      border-radius: var(--radius-sm);
-      padding: 8px 12px;
-      animation: fadeIn 0.2s ease forwards;
-    }
-
-    .recipe-callout.show { display: flex; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .recipe-meta-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .recipe-big-glyph {
-      font-family: 'Kantumruy Pro', sans-serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: #fff;
-      line-height: 1;
-      width: 36px;
-      height: 36px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 8px;
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid var(--gold-bright);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 8px 12px;
     }
 
-    .recipe-details h3 {
-      font-size: 12px;
-      font-weight: 700;
-      color: #fff;
+    .spell-cluster {
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
-    .recipe-details p {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .recipe-badge {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px;
-      font-weight: 700;
-      padding: 1px 6px;
-      border-radius: 3px;
-      background: rgba(56, 189, 248, 0.2);
-      color: var(--cyan-bright);
-      border: 1px solid rgba(56, 189, 248, 0.35);
-    }
-
-    .recipe-copy-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px 10px;
-      border-radius: 4px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.12s ease;
-    }
-
-    .recipe-copy-btn:hover {
-      background: var(--gold-bright);
-      color: #000;
-    }
-
-    /* COMPACT MANUSCRIPT HUD (Typing Target & Live Test) */
-    .manuscript-card {
-      background: linear-gradient(180deg, #101524 0%, #0a0d16 100%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: var(--radius-md);
-      padding: 10px 14px;
+    .spell-node {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      align-items: center;
+      gap: 2px;
     }
 
-    .manuscript-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      padding-bottom: 6px;
-    }
-
-    .stream-row {
-      display: grid;
-      grid-template-columns: 90px 1fr 140px;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .target-key-chip {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid var(--border-gold);
+    .spell-box {
+      width: 36px;
+      height: 38px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 6px;
-      padding: 4px 6px;
-    }
-
-    .target-key-cap {
-      width: 32px;
-      height: 34px;
-      background: linear-gradient(180deg, #1c263c, #101726);
-      border: 1.5px solid var(--gold-bright);
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Kantumruy Pro', sans-serif;
-      font-size: 17px;
-      font-weight: 700;
-      color: #fff;
-    }
-
-    .target-info {
-      font-size: 10px;
-      color: var(--text-dim);
-      line-height: 1.2;
-    }
-
-    .target-info b {
-      color: #fff;
-      display: block;
-      font-size: 11px;
-    }
-
-    .tape-track {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 6px;
-      padding: 5px 8px;
-      overflow-x: hidden;
-    }
-
-    .tape-char {
-      width: 32px;
-      height: 34px;
-      border-radius: 5px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Kantumruy Pro', sans-serif;
       font-size: 18px;
-      color: var(--text-dim);
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      flex-shrink: 0;
-    }
-
-    .tape-char.done {
-      color: var(--emerald-bright);
-      background: rgba(52, 211, 153, 0.08);
-      border-color: rgba(52, 211, 153, 0.25);
-    }
-
-    .tape-char.active {
-      width: 38px;
-      height: 38px;
       color: #fff;
-      font-size: 22px;
       font-weight: 700;
-      background: linear-gradient(135deg, rgba(255, 209, 102, 0.25), rgba(56, 189, 248, 0.15));
-      border: 1.5px solid var(--gold-bright);
-      box-shadow: 0 0 12px rgba(255, 209, 102, 0.4);
-      transform: scale(1.05);
     }
 
-    .stats-trio {
+    .spell-box.active {
+      border-color: var(--gold-bright);
+      background: rgba(255, 209, 102, 0.18);
+      color: var(--gold-bright);
+      box-shadow: 0 0 10px rgba(255, 209, 102, 0.3);
+    }
+
+    .spell-lbl { font-size: 9px; color: var(--text-dim); text-transform: uppercase; }
+
+    .spell-arrow {
+      color: var(--cyan-bright);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .ligature-result-card {
       display: flex;
       align-items: center;
-      justify-content: space-around;
-      background: rgba(0, 0, 0, 0.35);
-      border-radius: 6px;
-      padding: 5px 6px;
+      gap: 10px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(255, 209, 102, 0.1));
+      border: 1px solid var(--cyan-bright);
+      border-radius: 8px;
+      padding: 6px 12px;
     }
 
-    .stat-node {
+    .ligature-glyph {
+      font-family: 'Kantumruy Pro', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .ligature-recipe-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    .ortho-safety-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      color: var(--emerald-bright);
+      background: rgba(52, 211, 153, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    /* =========================================================================
+       KEYBOARD 2 UNIQUE FEATURES: PRO SPEED & TELEMETRY DECK
+       ========================================================================= */
+    .kb2-feature-dock {
+      background: linear-gradient(180deg, #12101e 0%, #0c0816 100%);
+      border: 1px solid rgba(251, 113, 133, 0.25);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .kb2-top-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr) 140px;
+      gap: 8px;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 8px;
+    }
+
+    .speed-card {
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 6px;
+      padding: 6px 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
       text-align: center;
     }
 
-    .stat-node .val {
+    .speed-val {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
+      font-size: 16px;
       font-weight: 700;
       color: #fff;
       display: block;
     }
 
-    .stat-node .lbl {
-      font-size: 8px;
+    .speed-lbl {
+      font-size: 9px;
       color: var(--text-dim);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
     }
 
-    /* USEFUL FEATURE BAR #2: KEYBOARD CHASSIS INTEGRATED ACTION DOCK */
-    .chassis-deck-bar {
+    .drill-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: linear-gradient(135deg, rgba(251, 113, 133, 0.25), rgba(255, 209, 102, 0.15));
+      border: 1px solid var(--rose-bright);
+      border-radius: 6px;
+      padding: 8px 10px;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .drill-btn:hover {
+      background: var(--rose-bright);
+      color: #000;
+      transform: translateY(-1px);
+    }
+
+    .finger-balance-gauge {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 4px;
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 6px;
+      padding: 6px 10px;
+    }
+
+    .gauge-header {
+      display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
-      padding: 6px 4px 8px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      margin-bottom: 8px;
+      font-size: 10px;
+      color: var(--text-dim);
+      font-weight: 600;
+      text-transform: uppercase;
     }
 
-    .deck-left-cluster {
+    .balance-bars {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 6px;
+    }
+
+    .balance-col {
       display: flex;
+      flex-direction: column;
+      gap: 3px;
       align-items: center;
+    }
+
+    .col-bar-wrap {
+      width: 100%;
+      height: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 3px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .col-bar-fill {
+      width: 100%;
+      background: var(--cyan-bright);
+      border-radius: 3px;
+      transition: height 0.25s ease;
+    }
+
+    .col-bar-fill.overload { background: var(--rose-bright); }
+
+    .col-name { font-size: 8px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+
+    /* =========================================================================
+       KEYBOARD 3 UNIQUE FEATURES: SMART PREDICTOR & BILINGUAL TRANSCRIBER
+       ========================================================================= */
+    .kb3-feature-dock {
+      background: linear-gradient(180deg, #101c18 0%, #091210 100%);
+      border: 1px solid rgba(52, 211, 153, 0.25);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      display: none;
+      flex-direction: column;
       gap: 10px;
     }
 
-    .layer-selector {
-      display: inline-flex;
-      background: rgba(0, 0, 0, 0.45);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
-      padding: 2px;
-      gap: 2px;
-    }
-
-    .layer-btn {
-      background: transparent;
-      border: none;
-      border-radius: 4px;
-      padding: 3px 8px;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-dim);
-      cursor: pointer;
-      transition: all 0.12s ease;
-    }
-
-    .layer-btn:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .layer-btn.active {
-      background: rgba(255, 209, 102, 0.18);
-      color: var(--gold-bright);
-      font-weight: 700;
-    }
-
-    .deck-right-cluster {
-      display: flex;
+    .transcribe-bridge-row {
+      display: grid;
+      grid-template-columns: 1fr 28px 1fr;
+      gap: 10px;
       align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
     }
 
-    .deck-tool-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 4px 8px;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: var(--text-muted);
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.12s ease;
-    }
-
-    .deck-tool-btn:hover {
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
-    }
-
-    .deck-tool-btn.active {
-      background: rgba(56, 189, 248, 0.15);
-      border-color: rgba(56, 189, 248, 0.4);
-      color: var(--cyan-bright);
-    }
-
-    .deck-tool-btn.active.heatmap-on {
-      background: rgba(251, 113, 133, 0.15);
-      border-color: rgba(251, 113, 133, 0.4);
-      color: var(--rose-bright);
-    }
-
-    .deck-tool-btn.active.zones-on {
-      background: rgba(167, 139, 250, 0.15);
-      border-color: rgba(167, 139, 250, 0.4);
-      color: var(--violet-bright);
-    }
-
-    .switch-sound-select {
+    .transcribe-box {
       background: rgba(0, 0, 0, 0.4);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 6px;
-      color: var(--text-main);
-      font-size: 11px;
-      padding: 4px 6px;
-      outline: none;
-      cursor: pointer;
+      padding: 6px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
     }
 
-    /* KEYBOARD CHASSIS STAGE */
+    .transcribe-lbl {
+      font-size: 9px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .transcribe-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .transcribe-result {
+      font-family: 'Kantumruy Pro', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--emerald-bright);
+    }
+
+    .punctuation-shelf {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 6px;
+      padding: 6px 10px;
+    }
+
+    .punc-tray {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .punc-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-family: 'Kantumruy Pro', sans-serif;
+      font-size: 14px;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.12s ease;
+    }
+
+    .punc-chip:hover {
+      background: rgba(52, 211, 153, 0.2);
+      border-color: var(--emerald-bright);
+      color: var(--emerald-bright);
+      transform: translateY(-1px);
+    }
+
+    /* COMMON KEYBOARD CHASSIS STAGE */
     .board-stage {
       position: relative;
       background: #080b12;
@@ -567,6 +548,33 @@
       padding: 10px 10px 14px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
       user-select: none;
+    }
+
+    .chassis-deck-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 2px 4px 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 8px;
+    }
+
+    .chassis-id {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .led-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold-bright);
+      box-shadow: 0 0 6px var(--gold-bright);
     }
 
     .keyboard-rows {
@@ -617,7 +625,6 @@
       font-weight: 600;
       color: #e2e8f0;
       line-height: 1;
-      transition: all 0.12s ease;
     }
 
     .glyph-sub {
@@ -628,50 +635,27 @@
       font-weight: 500;
     }
 
-    /* Subscript Coeng Mode keycap style */
-    .board-stage.mode-coeng .glyph-main {
-      color: var(--cyan-bright);
-      font-size: 17px;
-      font-weight: 700;
+    .key.highlight-coeng {
+      background: linear-gradient(180deg, #093322 0%, #062418 100%) !important;
+      border-color: var(--emerald-bright) !important;
+      box-shadow: 0 0 14px rgba(52, 211, 153, 0.5) !important;
     }
 
-    /* Heatmap styling */
-    .key.heat-green { background: linear-gradient(180deg, #093322 0%, #062418 100%) !important; border-color: rgba(52, 211, 153, 0.5) !important; }
-    .key.heat-amber { background: linear-gradient(180deg, #3d2f09 0%, #291f05 100%) !important; border-color: rgba(255, 209, 102, 0.5) !important; }
-    .key.heat-red   { background: linear-gradient(180deg, #3b0e17 0%, #28080f 100%) !important; border-color: rgba(251, 113, 133, 0.6) !important; }
-    
-    .heat-badge {
+    .key.highlight-coeng .glyph-main { color: var(--emerald-bright) !important; font-weight: 700; }
+
+    .key.speed-latency-hot {
+      background: linear-gradient(180deg, #38101a 0%, #22080f 100%) !important;
+      border-color: var(--rose-bright) !important;
+    }
+
+    .latency-badge {
       position: absolute;
       top: 2px;
       right: 3px;
-      font-size: 8px;
       font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
       font-weight: 700;
-      opacity: 0.85;
-    }
-
-    /* Finger Zones styling */
-    .board-stage.mode-zones .zone-lp { background: rgba(244, 114, 182, 0.12) !important; border-color: rgba(244, 114, 182, 0.35) !important; }
-    .board-stage.mode-zones .zone-lr { background: rgba(167, 139, 250, 0.12) !important; border-color: rgba(167, 139, 250, 0.35) !important; }
-    .board-stage.mode-zones .zone-lm { background: rgba(56, 189, 248, 0.12) !important; border-color: rgba(56, 189, 248, 0.35) !important; }
-    .board-stage.mode-zones .zone-li { background: rgba(52, 211, 153, 0.12) !important; border-color: rgba(52, 211, 153, 0.35) !important; }
-    .board-stage.mode-zones .zone-ri { background: rgba(255, 209, 102, 0.12) !important; border-color: rgba(255, 209, 102, 0.35) !important; }
-    .board-stage.mode-zones .zone-rm { background: rgba(56, 189, 248, 0.12) !important; border-color: rgba(56, 189, 248, 0.35) !important; }
-    .board-stage.mode-zones .zone-rr { background: rgba(167, 139, 250, 0.12) !important; border-color: rgba(167, 139, 250, 0.35) !important; }
-    .board-stage.mode-zones .zone-rp { background: rgba(244, 114, 182, 0.12) !important; border-color: rgba(244, 114, 182, 0.35) !important; }
-
-    /* Active Search Spotlight */
-    .key.search-spotlight {
-      background: linear-gradient(180deg, #3d300e 0%, #261d06 100%) !important;
-      border: 2px solid var(--gold-bright) !important;
-      box-shadow: 0 0 20px rgba(255, 209, 102, 0.8), inset 0 0 10px rgba(255, 209, 102, 0.5) !important;
-      transform: translateY(-2px) scale(1.06) !important;
-      z-index: 5;
-    }
-
-    .key.search-spotlight .glyph-main {
-      color: var(--gold-bright) !important;
-      font-weight: 700 !important;
+      color: var(--rose-bright);
     }
 
     .key.pressed {
@@ -723,10 +707,7 @@
       filter: drop-shadow(0 2px 6px rgba(192, 38, 211, 0.25));
     }
 
-    .hands-overlay .palm-shade {
-      fill: rgba(0, 0, 0, 0.22);
-      mix-blend-mode: multiply;
-    }
+    .hands-overlay .palm-shade { fill: rgba(0, 0, 0, 0.22); mix-blend-mode: multiply; }
 
     .hands-overlay .palm-highlight {
       fill: url(#palmHighlight);
@@ -734,9 +715,7 @@
       mix-blend-mode: screen;
     }
 
-    .hands-overlay .hand-group.side-r .palm-highlight {
-      fill: url(#palmHighlightR);
-    }
+    .hands-overlay .hand-group.side-r .palm-highlight { fill: url(#palmHighlightR); }
 
     .hands-overlay .finger-shape {
       fill: url(#fingerGrad);
@@ -759,9 +738,7 @@
       stroke-linecap: round;
     }
 
-    .hands-overlay .hand-group.side-r .finger-shine {
-      stroke: rgba(251, 207, 232, 0.55);
-    }
+    .hands-overlay .hand-group.side-r .finger-shine { stroke: rgba(251, 207, 232, 0.55); }
 
     .hands-overlay .finger-crease {
       fill: none;
@@ -771,9 +748,7 @@
       opacity: 0.8;
     }
 
-    .hands-overlay .hand-group.side-r .finger-crease {
-      stroke: rgba(244, 114, 182, 0.45);
-    }
+    .hands-overlay .hand-group.side-r .finger-crease { stroke: rgba(244, 114, 182, 0.45); }
 
     .hands-overlay .finger-nail {
       fill: rgba(56, 189, 248, 0.35);
@@ -792,9 +767,7 @@
       stroke-width: 1;
     }
 
-    .hands-overlay .hand-group.side-r .finger-tip {
-      fill: rgba(244, 114, 182, 0.6);
-    }
+    .hands-overlay .hand-group.side-r .finger-tip { fill: rgba(244, 114, 182, 0.6); }
 
     .hands-overlay .finger.active-reach .finger-shape {
       fill: url(#fingerGradActive);
@@ -803,7 +776,50 @@
       filter: drop-shadow(0 0 10px rgba(255, 209, 102, 0.6));
     }
 
-    /* Footer Note */
+    /* COMPARISON MATRIX MODAL */
+    .matrix-view {
+      display: none;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+
+    .matrix-view.show { display: block; }
+
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .matrix-table th {
+      text-align: left;
+      padding: 8px 10px;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .matrix-table td {
+      padding: 10px 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text-main);
+    }
+
+    .pill-score {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .pill-score.g { background: rgba(52, 211, 153, 0.15); color: var(--emerald-bright); }
+    .pill-score.y { background: rgba(255, 209, 102, 0.15); color: var(--gold-bright); }
+
     .app-footer {
       text-align: center;
       font-size: 11px;
@@ -817,7 +833,7 @@
 
   <div class="app-shell">
 
-    <!-- Top Master Bar -->
+    <!-- Header Bar -->
     <header class="app-header">
       <div class="brand-group">
         <div class="brand-icon-box">
@@ -827,8 +843,8 @@
           </svg>
         </div>
         <div class="brand-text">
-          <h1>PK Khmer Type · Keyboard Feature Lab</h1>
-          <p>Find Key, Subscript Coeng Mode, Accuracy Heatmap &amp; Real 44% Kinematic Hands</p>
+          <h1>PK Khmer Type · Keyboard Feature Studios</h1>
+          <p>Choose between 3 distinct, actually useful keyboards for your workflow</p>
         </div>
       </div>
 
@@ -841,213 +857,301 @@
       </div>
     </header>
 
-    <!-- USEFUL FEATURE #1: LIVE KEY FINDER & RECIPE DETECTOR -->
-    <section class="finder-strip">
-      <div class="finder-input-wrap">
-        <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--gold-bright);">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-        <input type="text" id="keySearchInput" class="finder-input" placeholder="Find key or character... (e.g. ឈ, ឫ, ្ក, ៛, F)">
-      </div>
-
-      <div class="quick-chips-group">
-        <span class="quick-chip-lbl">Try:</span>
-        <button class="find-chip" data-query="ឈ" type="button">ឈ (Chho)</button>
-        <button class="find-chip" data-query="្ក" type="button">្ក (Coeng Ka)</button>
-        <button class="find-chip" data-query="ឫ" type="button">ឫ (Rue)</button>
-        <button class="find-chip" data-query="៛" type="button">៛ (Riel)</button>
-        <button class="find-chip" data-query="ថ" type="button">ថ (Tho · F)</button>
-        <button class="find-chip" data-query="Clear" type="button" style="color:var(--rose-bright);">Reset</button>
-      </div>
-    </section>
-
-    <!-- RECIPE RESULT POPOVER -->
-    <div class="recipe-callout" id="recipeCallout">
-      <div class="recipe-meta-left">
-        <div class="recipe-big-glyph" id="recipeGlyph">ឈ</div>
-        <div class="recipe-details">
-          <h3 id="recipeTitle">
-            <span>Character ឈ (Chho)</span>
-            <span class="recipe-badge" id="recipeKeyBadge">Shift + Q</span>
-          </h3>
-          <p id="recipeDesc">Position: Key [Q], Row 2 · Finger: Left Pinky · Khmer Consonant Series 2</p>
-        </div>
-      </div>
-      <button class="recipe-copy-btn" id="recipeCopyBtn" type="button">
-        <svg class="svg-icon" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-        <span id="copyBtnText">Copy Glyph</span>
+    <!-- MASTER KEYBOARD SELECTION TABS -->
+    <nav class="master-tabs" role="tablist">
+      
+      <!-- TAB 1 -->
+      <button class="master-tab-btn active" data-target="kb1" type="button">
+        <span class="tab-k-id">Keyboard 1</span>
+        <span class="tab-k-title">Coeng &amp; Ligature Studio</span>
+        <span class="tab-k-feature">Subscript spell builder, independent vowel shelf, orthography sequence radar.</span>
       </button>
-    </div>
 
-    <!-- COMPACT LESSON & PRACTICE MANUSCRIPT -->
-    <section class="manuscript-card">
-      <div class="manuscript-top">
-        <span style="font-size:11px; font-weight:700; color:var(--cyan-bright); font-family:'JetBrains Mono';">PRACTICE MANUSCRIPT · LESSON 01</span>
-        <span style="font-size:11px; color:var(--text-dim);">Click any key on the board or type on your physical keyboard</span>
+      <!-- TAB 2 -->
+      <button class="master-tab-btn" data-target="kb2" type="button">
+        <span class="tab-k-id">Keyboard 2</span>
+        <span class="tab-k-title">Pro Speed &amp; Telemetry Deck</span>
+        <span class="tab-k-feature">8-finger balance gauge, per-key latency heatmap, instant weak-key drill generator.</span>
+      </button>
+
+      <!-- TAB 3 -->
+      <button class="master-tab-btn" data-target="kb3" type="button">
+        <span class="tab-k-id">Keyboard 3</span>
+        <span class="tab-k-title">Smart Predictor &amp; Transcriber</span>
+        <span class="tab-k-feature">Latin-to-Khmer phonetic bridge, 1-click currency/punctuation tray, bilingual mirror.</span>
+      </button>
+
+      <!-- MATRIX TAB -->
+      <button class="master-tab-btn" data-target="matrix" type="button">
+        <span class="tab-k-id">Compare</span>
+        <span class="tab-k-title">Matrix</span>
+        <span class="tab-k-feature">Side-by-side analysis.</span>
+      </button>
+
+    </nav>
+
+    <!-- KEYBOARD 1 UNIQUE DOCK: COENG & LIGATURE STUDIO -->
+    <section class="kb1-feature-dock" id="kb1Dock">
+      <div class="kb1-top-row">
+        <div class="vowel-shelf-wrap">
+          <span class="shelf-label">Independent Vowel Shelf:</span>
+          <button class="vowel-chip" data-vowel="ឦ" data-key="t" data-mod="AltGr+T" type="button">ឦ</button>
+          <button class="vowel-chip" data-vowel="ឧ" data-key="u" data-mod="AltGr+U" type="button">ឧ</button>
+          <button class="vowel-chip" data-vowel="ឩ" data-key="a" data-mod="AltGr+A" type="button">ឩ</button>
+          <button class="vowel-chip" data-vowel="ឪ" data-key="bracketR" data-mod="AltGr+]" type="button">ឪ</button>
+          <button class="vowel-chip" data-vowel="ឫ" data-key="r" data-mod="AltGr+R" type="button">ឫ</button>
+          <button class="vowel-chip" data-vowel="ឬ" data-key="r" data-mod="Shift+R" type="button">ឬ</button>
+          <button class="vowel-chip" data-vowel="ឯ" data-key="e" data-mod="AltGr+E" type="button">ឯ</button>
+          <button class="vowel-chip" data-vowel="ឱ" data-key="o" data-mod="AltGr+O" type="button">ឱ</button>
+          <button class="vowel-chip" data-vowel="ឳ" data-key="p" data-mod="AltGr+P" type="button">ឳ</button>
+        </div>
+        <div class="ortho-safety-badge">
+          <svg class="svg-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>Orthography Guard Active</span>
+        </div>
       </div>
 
-      <div class="stream-row">
-        <!-- Target Key Chip -->
-        <div class="target-key-chip">
-          <div class="target-key-cap" id="targetDisplayCap">ថ</div>
-          <div class="target-info">
-            <b>Target: ថ</b>
-            <span>Key [F] · Left Index</span>
+      <!-- Ligature Deconstructor Bar -->
+      <div class="ligature-builder-strip">
+        <div class="spell-cluster">
+          <div class="spell-node">
+            <div class="spell-box active" id="leadConsBox">ស</div>
+            <span class="spell-lbl">Lead Consonant</span>
           </div>
+          <span class="spell-arrow">+</span>
+          <div class="spell-node">
+            <div class="spell-box" style="color:var(--gold-bright);">្ (J)</div>
+            <span class="spell-lbl">Coeng Trigger</span>
+          </div>
+          <span class="spell-arrow">+</span>
+          <div class="spell-node">
+            <div class="spell-box" id="subConsBox" style="color:var(--cyan-bright);">ថ (F)</div>
+            <span class="spell-lbl">Sub-Consonant</span>
+          </div>
+          <span class="spell-arrow">=</span>
         </div>
 
-        <!-- Live Sequence Ribbon -->
-        <div class="tape-track" id="tapeTrack">
-          <div class="tape-char done">ថ</div>
-          <div class="tape-char done">ថ</div>
-          <div class="tape-char done" style="font-size:10px; font-family:'JetBrains Mono';">SPC</div>
-          <div class="tape-char active" id="tapeActiveChar">ថ</div>
-          <div class="tape-char">ថ</div>
-          <div class="tape-char" style="font-size:10px; font-family:'JetBrains Mono';">SPC</div>
-          <div class="tape-char">ថ</div>
-          <div class="tape-char">ថ</div>
-          <div class="tape-char" style="font-size:10px; font-family:'JetBrains Mono';">SPC</div>
-          <div class="tape-char">ថ</div>
-        </div>
-
-        <!-- Telemetry -->
-        <div class="stats-trio">
-          <div class="stat-node">
-            <span class="val" style="color:var(--emerald-bright);" id="statAcc">99%</span>
-            <span class="lbl">Accuracy</span>
-          </div>
-          <div class="stat-node">
-            <span class="val" style="color:var(--gold-bright);" id="statWpm">38</span>
-            <span class="lbl">WPM</span>
-          </div>
-          <div class="stat-node">
-            <span class="val" id="statTyped">18</span>
-            <span class="lbl">Typed</span>
+        <div class="ligature-result-card">
+          <div class="ligature-glyph" id="ligResultGlyph">ស្ថ</div>
+          <div class="ligature-recipe-desc">
+            <b style="color:#fff;" id="ligRecipeTitle">Recipe: « ស » + [ J ] + [ F ]</b>
+            <div>Grammatically valid conjoined cluster · Key [F] highlighted on board</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- KEYBOARD CHASSIS WITH INTEGRATED ACTION DOCK -->
+    <!-- KEYBOARD 2 UNIQUE DOCK: PRO SPEED & TELEMETRY DECK -->
+    <section class="kb2-feature-dock" id="kb2Dock">
+      <div class="kb2-top-stats">
+        <div class="speed-card">
+          <span class="speed-val" style="color:var(--emerald-bright);">48 WPM</span>
+          <span class="speed-lbl">Burst Pace</span>
+        </div>
+        <div class="speed-card">
+          <span class="speed-val" style="color:var(--gold-bright);">98.4%</span>
+          <span class="speed-lbl">Accuracy</span>
+        </div>
+        <div class="speed-card">
+          <span class="speed-val" style="color:var(--cyan-bright);">135ms</span>
+          <span class="speed-lbl">Mean Latency</span>
+        </div>
+        <div class="speed-card">
+          <span class="speed-val" style="color:var(--rose-bright);">P, Z, ឈ</span>
+          <span class="speed-lbl">Weakest Keys</span>
+        </div>
+        <button class="drill-btn" id="weakDrillBtn" type="button">
+          <svg class="svg-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <span>Drill 3 Weak Keys</span>
+        </button>
+      </div>
+
+      <!-- Real-time 8-Finger Balance Gauge -->
+      <div class="finger-balance-gauge">
+        <div class="gauge-header">
+          <span>8-Finger Workload Distribution (Ergonomic Balance Monitor)</span>
+          <span style="color:var(--emerald-bright);">Ideal Balance: No Strain Detected</span>
+        </div>
+        <div class="balance-bars">
+          <div class="balance-col"><div class="col-bar-wrap"><div class="col-bar-fill" style="height:35%;"></div></div><span class="col-name">L-Pinky</span></div>
+          <div class="balance-col"><div class="col-bar-wrap"><div class="col-bar-fill" style="height:55%;"></div></div><span class="col-name">L-Ring</span></div>
+          <div class="balance-col"><div class="col-bar-wrap"><div class="col-bar-fill" style="height:70%;"></div></div><span class="col-name">L-Mid</span></div>
+          <div class="balance-col"><div class="col-bar-wrap"><div class="col-bar-fill overload" style="height:90%;"></div></div><span class="col-name">L-Idx</span></div>
+          <div class="balance-col"><div class="col-bar-wrap"><div class="col-bar-fill" style="height:80%;"></div></div><span class="col-name">R-Idx</span></div>
+          <div class="balance-col"><div class="col-bar-wrap"><div class="col-bar-fill" style="height:65%;"></div></div><span class="col-name">R-Mid</span></div>
+          <div class="balance-col"><div class="col-bar-wrap"><div class="col-bar-fill" style="height:45%;"></div></div><span class="col-name">R-Ring</span></div>
+          <div class="balance-col"><div class="col-bar-wrap"><div class="col-bar-fill" style="height:30%;"></div></div><span class="col-name">R-Pinky</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEYBOARD 3 UNIQUE DOCK: SMART PREDICTOR & BILINGUAL TRANSCRIBER -->
+    <section class="kb3-feature-dock" id="kb3Dock">
+      <div class="transcribe-bridge-row">
+        <div class="transcribe-box">
+          <span class="transcribe-lbl">Type Latin Sound (Phonetic English):</span>
+          <input type="text" class="transcribe-input" id="latinInput" value="knhom" placeholder="Type (e.g. angkor, sok san)...">
+        </div>
+        <div style="text-align:center; color:var(--emerald-bright); font-weight:700;">→</div>
+        <div class="transcribe-box" style="border-color:rgba(52,211,153,0.3);">
+          <span class="transcribe-lbl">Khmer Script &amp; Keystroke Recipe:</span>
+          <div class="transcribe-result" id="khmerPredictResult">ខ្ញុំ · [ X + J + N + U + M ]</div>
+        </div>
+      </div>
+
+      <!-- One-Touch Khmer Punctuation & Currency Shelf -->
+      <div class="punctuation-shelf">
+        <span style="font-size:10px; font-weight:700; color:var(--emerald-bright); text-transform:uppercase;">1-Touch Khmer Symbols:</span>
+        <div class="punc-tray">
+          <button class="punc-chip" data-sym="៛" title="Riel Currency" type="button">៛ (Riel)</button>
+          <button class="punc-chip" data-sym="។" title="Khan Period" type="button">។ (Khan)</button>
+          <button class="punc-chip" data-sym="៕" title="Bariyoosan Full Stop" type="button">៕ (Bariyoosan)</button>
+          <button class="punc-chip" data-sym="ៗ" title="Lek Tho Repetition" type="button">ៗ (Repeat)</button>
+          <button class="punc-chip" data-sym="« »" title="Khmer Quotes" type="button">« » (Quotes)</button>
+          <button class="punc-chip" data-sym="៙" title="Phneik Muan Poetry Head" type="button">៙ (Poem Head)</button>
+          <button class="punc-chip" data-sym="៚" title="Koul Poetic Tail" type="button">៚ (Poem Tail)</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIDE-BY-SIDE MATRIX VIEW (Shown when matrix tab clicked) -->
+    <section class="matrix-view" id="matrixView">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Unique Feature Suite</th>
+            <th>Keyboard 1 · Coeng Studio</th>
+            <th>Keyboard 2 · Speed Telemetry</th>
+            <th>Keyboard 3 · Smart Predictor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Primary Target Typist</strong></td>
+            <td>Khmer language learners &amp; orthography students</td>
+            <td>Fast competitive typists &amp; muscle-memory grinders</td>
+            <td>Writers, translators &amp; bilingual daily workers</td>
+          </tr>
+          <tr>
+            <td><strong>Core Killer Utility</strong></td>
+            <td><span class="pill-score g">Ligature Spell-Builder + Diacritic Radar</span></td>
+            <td><span class="pill-score g">Per-Key Latency + 8-Finger Gauge</span></td>
+            <td><span class="pill-score g">Latin Phonetic Bridge + 1-Click Symbols</span></td>
+          </tr>
+          <tr>
+            <td><strong>Subscript (Coeng) Support</strong></td>
+            <td><span class="pill-score g">Visual Subscript Stacking Assistant</span></td>
+            <td><span class="pill-score y">Standard Key Sequence</span></td>
+            <td><span class="pill-score g">Phonetic Auto-Deconstructor</span></td>
+          </tr>
+          <tr>
+            <td><strong>Visual Feedback Style</strong></td>
+            <td>Orthography valid sequence illumination</td>
+            <td>Real-time latency ms &amp; fatigue heatmap</td>
+            <td>Dual bilingual side-by-side translation</td>
+          </tr>
+          <tr>
+            <td><strong>Kinematic 3D Hands</strong></td>
+            <td>44% Translucent with finger reach arc</td>
+            <td>44% Translucent with workload pressure rings</td>
+            <td>44% Translucent with symbol macro reach</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- COMMON PHYSICAL KEYBOARD CHASSIS STAGE (ANSI 104) -->
     <div class="board-stage" id="boardStage">
       
-      <!-- USEFUL FEATURE BAR #2: LAYER SWITCHER, HEATMAP, FINGER ZONES, SOUND -->
       <div class="chassis-deck-bar">
-        <div class="deck-left-cluster">
-          <span style="font-size:10px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em;">Layer:</span>
-          <div class="layer-selector" role="radiogroup">
-            <button class="layer-btn active" data-layer="base" type="button">Base</button>
-            <button class="layer-btn" data-layer="shift" type="button">Shift (⇧)</button>
-            <button class="layer-btn" data-layer="altgr" type="button">AltGr (⌥)</button>
-            <button class="layer-btn" data-layer="coeng" type="button" style="color:var(--cyan-bright);" title="Subscript Conjoined Consonants">Coeng (្)</button>
-          </div>
+        <div class="chassis-id">
+          <span class="led-dot"></span>
+          <span id="activeDeckName">KEYBOARD 1 · COENG &amp; LIGATURE STUDIO (ANSI 104)</span>
         </div>
-
-        <div class="deck-right-cluster">
-          <!-- Heatmap Toggle -->
-          <button class="deck-tool-btn" id="heatmapToggleBtn" type="button" title="View Typing Accuracy Heatmap">
-            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2c1.5 3 4 5 4 9a6 6 0 1 1-12 0c0-4 2.5-6 4-9 1 2 2 3 4 0z"></path></svg>
-            <span>Heatmap</span>
-          </button>
-
-          <!-- Finger Zones Toggle -->
-          <button class="deck-tool-btn" id="zonesToggleBtn" type="button" title="Color Keys by 8 Finger Zones">
-            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v3M14 9V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v7M10 11V5a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v9M10 19H4a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h2"></path></svg>
-            <span>Finger Zones</span>
-          </button>
-
-          <!-- Mechanical Audio Switch Audition -->
-          <select class="switch-sound-select" id="switchSoundSelect" title="Select Mechanical Switch Acoustic">
-            <option value="brown">Tactile Brown</option>
-            <option value="blue">Clicky Blue</option>
-            <option value="red">Thocky Red</option>
-            <option value="typewriter">Typewriter</option>
-            <option value="silent">Silent</option>
-          </select>
+        <div class="chassis-id">
+          <span>3D HANDS: <strong style="color:var(--gold-bright);">44% OPACITY</strong></span>
         </div>
       </div>
 
-      <!-- Virtual Keyboard Grid (ANSI 104 with Complete Khmer Standard Key Data) -->
+      <!-- Real Keycaps Grid -->
       <div class="keyboard-rows" id="keyboardRows">
         
         <!-- Row 1: Number Row -->
         <div class="kb-row">
-          <div class="key zone-lp" data-key="grave" data-base="«" data-shift="»" data-altgr="◎" data-coeng=""><span class="glyph-main">«</span><span class="glyph-sub">`</span></div>
-          <div class="key zone-lp" data-key="k1" data-base="១" data-shift="!" data-altgr="1" data-coeng=""><span class="glyph-main">១</span><span class="glyph-sub">1</span></div>
-          <div class="key zone-lr" data-key="k2" data-base="២" data-shift="ៗ" data-altgr="2" data-coeng=""><span class="glyph-main">២</span><span class="glyph-sub">2</span></div>
-          <div class="key zone-lm" data-key="k3" data-base="៣" data-shift='"' data-altgr="3" data-coeng=""><span class="glyph-main">៣</span><span class="glyph-sub">3</span></div>
-          <div class="key zone-li" data-key="k4" data-base="៤" data-shift="៛" data-altgr="4" data-coeng=""><span class="glyph-main">៤</span><span class="glyph-sub">4</span></div>
-          <div class="key zone-li" data-key="k5" data-base="៥" data-shift="%" data-altgr="5" data-coeng=""><span class="glyph-main">៥</span><span class="glyph-sub">5</span></div>
-          <div class="key zone-ri" data-key="k6" data-base="៦" data-shift="៍" data-altgr="6" data-coeng=""><span class="glyph-main">៦</span><span class="glyph-sub">6</span></div>
-          <div class="key zone-ri" data-key="k7" data-base="៧" data-shift="័" data-altgr="7" data-coeng=""><span class="glyph-main">៧</span><span class="glyph-sub">7</span></div>
-          <div class="key zone-rm" data-key="k8" data-base="៨" data-shift="៏" data-altgr="8" data-coeng=""><span class="glyph-main">៨</span><span class="glyph-sub">8</span></div>
-          <div class="key zone-rr" data-key="k9" data-base="៩" data-shift="៎" data-altgr="9" data-coeng=""><span class="glyph-main">៩</span><span class="glyph-sub">9</span></div>
-          <div class="key zone-rp" data-key="k0" data-base="០" data-shift="៌" data-altgr="0" data-coeng=""><span class="glyph-main">០</span><span class="glyph-sub">0</span></div>
-          <div class="key zone-rp" data-key="minus" data-base="-" data-shift="_" data-altgr="{" data-coeng=""><span class="glyph-main">-</span><span class="glyph-sub">-</span></div>
-          <div class="key zone-rp" data-key="equal" data-base="=" data-shift="+" data-altgr="}" data-coeng=""><span class="glyph-main">=</span><span class="glyph-sub">=</span></div>
-          <div class="key w-15 zone-rp" data-key="backspace"><span class="glyph-sub" style="font-size:10px;">Backsp.</span></div>
+          <div class="key" data-key="grave" data-base="«" data-shift="»"><span class="glyph-main">«</span><span class="glyph-sub">`</span></div>
+          <div class="key" data-key="k1" data-base="១" data-shift="!"><span class="glyph-main">១</span><span class="glyph-sub">1</span></div>
+          <div class="key" data-key="k2" data-base="២" data-shift="ៗ"><span class="glyph-main">២</span><span class="glyph-sub">2</span></div>
+          <div class="key" data-key="k3" data-base="៣" data-shift='""><span class="glyph-main">៣</span><span class="glyph-sub">3</span></div>
+          <div class="key" data-key="k4" data-base="៤" data-shift="៛"><span class="glyph-main">៤</span><span class="glyph-sub">4</span></div>
+          <div class="key" data-key="k5" data-base="៥" data-shift="%"><span class="glyph-main">៥</span><span class="glyph-sub">5</span></div>
+          <div class="key" data-key="k6" data-base="៦" data-shift="៍"><span class="glyph-main">៦</span><span class="glyph-sub">6</span></div>
+          <div class="key" data-key="k7" data-base="៧" data-shift="័"><span class="glyph-main">៧</span><span class="glyph-sub">7</span></div>
+          <div class="key" data-key="k8" data-base="៨" data-shift="៏"><span class="glyph-main">៨</span><span class="glyph-sub">8</span></div>
+          <div class="key" data-key="k9" data-base="៩" data-shift="៎"><span class="glyph-main">៩</span><span class="glyph-sub">9</span></div>
+          <div class="key" data-key="k0" data-base="០" data-shift="៌"><span class="glyph-main">០</span><span class="glyph-sub">0</span></div>
+          <div class="key" data-key="minus" data-base="-" data-shift="_"><span class="glyph-main">-</span><span class="glyph-sub">-</span></div>
+          <div class="key" data-key="equal" data-base="=" data-shift="+"><span class="glyph-main">=</span><span class="glyph-sub">=</span></div>
+          <div class="key w-15" data-key="backspace"><span class="glyph-sub" style="font-size:10px;">Backsp.</span></div>
         </div>
 
         <!-- Row 2: Top Row -->
         <div class="kb-row">
-          <div class="key w-12 zone-lp" data-key="tab"><span class="glyph-sub" style="font-size:10px;">Tab</span></div>
-          <div class="key zone-lp" data-key="q" data-base="ឆ" data-shift="ឈ" data-altgr="*" data-coeng="្ឆ"><span class="glyph-main">ឆ</span><span class="glyph-sub">Q</span></div>
-          <div class="key zone-lr" data-key="w" data-base="ឹ" data-shift="ឺ" data-altgr="" data-coeng=""><span class="glyph-main">ឹ</span><span class="glyph-sub">W</span></div>
-          <div class="key zone-lm" data-key="e" data-base="េ" data-shift="ែ" data-altgr="ឯ" data-coeng=""><span class="glyph-main">េ</span><span class="glyph-sub">E</span></div>
-          <div class="key zone-li" data-key="r" data-base="រ" data-shift="ឬ" data-altgr="ឫ" data-coeng="្រ"><span class="glyph-main">រ</span><span class="glyph-sub">R</span></div>
-          <div class="key zone-li" data-key="t" data-base="ត" data-shift="ទ" data-altgr="ឦ" data-coeng="្ត"><span class="glyph-main">ត</span><span class="glyph-sub">T</span></div>
-          <div class="key zone-ri" data-key="y" data-base="យ" data-shift="ួ" data-altgr="" data-coeng="្យ"><span class="glyph-main">យ</span><span class="glyph-sub">Y</span></div>
-          <div class="key zone-ri" data-key="u" data-base="ុ" data-shift="ូ" data-altgr="ឧ" data-coeng=""><span class="glyph-main">ុ</span><span class="glyph-sub">U</span></div>
-          <div class="key zone-rm" data-key="i" data-base="ិ" data-shift="ី" data-altgr="ឥ" data-coeng=""><span class="glyph-main">ិ</span><span class="glyph-sub">I</span></div>
-          <div class="key zone-rr" data-key="o" data-base="ោ" data-shift="ៅ" data-altgr="ឱ" data-coeng=""><span class="glyph-main">ោ</span><span class="glyph-sub">O</span></div>
-          <div class="key zone-rp" data-key="p" data-base="ផ" data-shift="ភ" data-altgr="ឳ" data-coeng="្ផ"><span class="glyph-main">ផ</span><span class="glyph-sub">P</span></div>
-          <div class="key zone-rp" data-key="bracketL" data-base="ើ" data-shift="ោះ" data-altgr="[" data-coeng=""><span class="glyph-main">ើ</span><span class="glyph-sub">[</span></div>
-          <div class="key zone-rp" data-key="bracketR" data-base="ឿ" data-shift="ៀ" data-altgr="]" data-coeng=""><span class="glyph-main">ឿ</span><span class="glyph-sub">]</span></div>
-          <div class="key w-12 zone-rp" data-key="backslash" data-base="\" data-shift="/" data-altgr="៚" data-coeng=""><span class="glyph-main">\</span></div>
+          <div class="key w-12" data-key="tab"><span class="glyph-sub" style="font-size:10px;">Tab</span></div>
+          <div class="key" data-key="q" data-base="ឆ" data-shift="ឈ" data-coeng="្ឆ"><span class="glyph-main">ឆ</span><span class="glyph-sub">Q</span></div>
+          <div class="key" data-key="w" data-base="ឹ" data-shift="ឺ"><span class="glyph-main">ឹ</span><span class="glyph-sub">W</span></div>
+          <div class="key" data-key="e" data-base="េ" data-shift="ែ"><span class="glyph-main">េ</span><span class="glyph-sub">E</span></div>
+          <div class="key" data-key="r" data-base="រ" data-shift="ឬ" data-coeng="្រ"><span class="glyph-main">រ</span><span class="glyph-sub">R</span></div>
+          <div class="key" data-key="t" data-base="ត" data-shift="ទ" data-coeng="្ត"><span class="glyph-main">ត</span><span class="glyph-sub">T</span></div>
+          <div class="key" data-key="y" data-base="យ" data-shift="ួ" data-coeng="្យ"><span class="glyph-main">យ</span><span class="glyph-sub">Y</span></div>
+          <div class="key" data-key="u" data-base="ុ" data-shift="ូ"><span class="glyph-main">ុ</span><span class="glyph-sub">U</span></div>
+          <div class="key" data-key="i" data-base="ិ" data-shift="ី"><span class="glyph-main">ិ</span><span class="glyph-sub">I</span></div>
+          <div class="key" data-key="o" data-base="ោ" data-shift="ៅ"><span class="glyph-main">ោ</span><span class="glyph-sub">O</span></div>
+          <div class="key" data-key="p" data-base="ផ" data-shift="ភ" data-coeng="្ផ"><span class="glyph-main">ផ</span><span class="glyph-sub">P</span></div>
+          <div class="key" data-key="bracketL" data-base="ើ" data-shift="ោះ"><span class="glyph-main">ើ</span><span class="glyph-sub">[</span></div>
+          <div class="key" data-key="bracketR" data-base="ឿ" data-shift="ៀ"><span class="glyph-main">ឿ</span><span class="glyph-sub">]</span></div>
+          <div class="key w-12" data-key="backslash" data-base="\" data-shift="/"><span class="glyph-main">\</span></div>
         </div>
 
         <!-- Row 3: Home Row -->
         <div class="kb-row">
-          <div class="key w-15 zone-lp" data-key="caps"><span class="glyph-sub" style="font-size:10px;">Caps</span></div>
-          <div class="key zone-lp" data-key="a" data-base="ា" data-shift="ៃ" data-altgr="ឩ" data-coeng=""><span class="glyph-main">ា</span><span class="glyph-sub">A</span></div>
-          <div class="key zone-lr" data-key="s" data-base="ស" data-shift="ាំ" data-altgr="ឪ" data-coeng="្ស"><span class="glyph-main">ស</span><span class="glyph-sub">S</span></div>
-          <div class="key zone-lm" data-key="d" data-base="ដ" data-shift="ឌ" data-altgr="" data-coeng="្ដ"><span class="glyph-main">ដ</span><span class="glyph-sub">D</span></div>
-          <!-- Target Key F -->
-          <div class="key zone-li" data-key="f" data-base="ថ" data-shift="ធ" data-altgr="" data-coeng="្ថ" id="keyF"><span class="glyph-main">ថ</span><span class="glyph-sub">F</span></div>
-          <div class="key zone-li" data-key="g" data-base="ង" data-shift="ុះ" data-altgr="" data-coeng="្ង"><span class="glyph-main">ង</span><span class="glyph-sub">G</span></div>
-          <div class="key zone-ri" data-key="h" data-base="ហ" data-shift="៏" data-altgr="" data-coeng="្ហ"><span class="glyph-main">ហ</span><span class="glyph-sub">H</span></div>
-          <div class="key zone-ri" data-key="j" data-base="ញ" data-shift="ុំ" data-altgr="ឮ" data-coeng="្ញ"><span class="glyph-main">ញ</span><span class="glyph-sub">J</span></div>
-          <div class="key zone-rm" data-key="k" data-base="ក" data-shift="គ" data-altgr="ឭ" data-coeng="្ក"><span class="glyph-main">ក</span><span class="glyph-sub">K</span></div>
-          <div class="key zone-rr" data-key="l" data-base="ល" data-shift="ឡ" data-altgr="ឰ" data-coeng="្ល"><span class="glyph-main">ល</span><span class="glyph-sub">L</span></div>
-          <div class="key zone-rp" data-key="semicolon" data-base="ះ" data-shift="៖" data-altgr=";" data-coeng=""><span class="glyph-main">ះ</span><span class="glyph-sub">;</span></div>
-          <div class="key zone-rp" data-key="quote" data-base="់" data-shift="៉" data-altgr="«" data-coeng=""><span class="glyph-main">់</span><span class="glyph-sub">'</span></div>
-          <div class="key w-175 zone-rp" data-key="enter"><span class="glyph-sub" style="font-size:10px;">Enter</span></div>
+          <div class="key w-15" data-key="caps"><span class="glyph-sub" style="font-size:10px;">Caps</span></div>
+          <div class="key" data-key="a" data-base="ា" data-shift="ៃ"><span class="glyph-main">ា</span><span class="glyph-sub">A</span></div>
+          <div class="key" data-key="s" data-base="ស" data-shift="ាំ" data-coeng="្ស"><span class="glyph-main">ស</span><span class="glyph-sub">S</span></div>
+          <div class="key" data-key="d" data-base="ដ" data-shift="ឌ" data-coeng="្ដ"><span class="glyph-main">ដ</span><span class="glyph-sub">D</span></div>
+          <div class="key highlight-coeng" data-key="f" data-base="ថ" data-shift="ធ" data-coeng="្ថ" id="keyF"><span class="glyph-main">ថ</span><span class="glyph-sub">F</span></div>
+          <div class="key" data-key="g" data-base="ង" data-shift="ុះ" data-coeng="្ង"><span class="glyph-main">ង</span><span class="glyph-sub">G</span></div>
+          <div class="key" data-key="h" data-base="ហ" data-shift="៏" data-coeng="្ហ"><span class="glyph-main">ហ</span><span class="glyph-sub">H</span></div>
+          <div class="key" data-key="j" data-base="ញ" data-shift="ុំ" data-coeng="្ញ" id="keyJ"><span class="glyph-main">ញ</span><span class="glyph-sub">J</span></div>
+          <div class="key" data-key="k" data-base="ក" data-shift="គ" data-coeng="្ក"><span class="glyph-main">ក</span><span class="glyph-sub">K</span></div>
+          <div class="key" data-key="l" data-base="ល" data-shift="ឡ" data-coeng="្ល"><span class="glyph-main">ល</span><span class="glyph-sub">L</span></div>
+          <div class="key" data-key="semicolon" data-base="ះ" data-shift="៖"><span class="glyph-main">ះ</span><span class="glyph-sub">;</span></div>
+          <div class="key" data-key="quote" data-base="់" data-shift="៉"><span class="glyph-main">់</span><span class="glyph-sub">'</span></div>
+          <div class="key w-175" data-key="enter"><span class="glyph-sub" style="font-size:10px;">Enter</span></div>
         </div>
 
         <!-- Row 4: Bottom Row -->
         <div class="kb-row">
-          <div class="key w-20 zone-lp" data-key="shiftL"><span class="glyph-sub" style="font-size:10px;">Shift</span></div>
-          <div class="key zone-lp" data-key="z" data-base="ឋ" data-shift="ឍ" data-altgr="#" data-coeng="្ឋ"><span class="glyph-main">ឋ</span><span class="glyph-sub">Z</span></div>
-          <div class="key zone-lr" data-key="x" data-base="ខ" data-shift="ឃ" data-altgr="@" data-coeng="្ខ"><span class="glyph-main">ខ</span><span class="glyph-sub">X</span></div>
-          <div class="key zone-lm" data-key="c" data-base="ច" data-shift="ជ" data-altgr="&amp;" data-coeng="្ច"><span class="glyph-main">ច</span><span class="glyph-sub">C</span></div>
-          <div class="key zone-li" data-key="v" data-base="វ" data-shift="េះ" data-altgr="$" data-coeng="្វ"><span class="glyph-main">វ</span><span class="glyph-sub">V</span></div>
-          <div class="key zone-li" data-key="b" data-base="ប" data-shift="ព" data-altgr="%" data-coeng="្ប"><span class="glyph-main">ប</span><span class="glyph-sub">B</span></div>
-          <div class="key zone-ri" data-key="n" data-base="ន" data-shift="ណ" data-altgr="(" data-coeng="្ន"><span class="glyph-main">ន</span><span class="glyph-sub">N</span></div>
-          <div class="key zone-ri" data-key="m" data-base="ម" data-shift="ំ" data-altgr=")" data-coeng="្ម"><span class="glyph-main">ម</span><span class="glyph-sub">M</span></div>
-          <div class="key zone-rm" data-key="comma" data-base="អ" data-shift="," data-altgr="<" data-coeng=""><span class="glyph-main">អ</span><span class="glyph-sub">,</span></div>
-          <div class="key zone-rr" data-key="period" data-base="។" data-shift="." data-altgr=">" data-coeng=""><span class="glyph-main">។</span><span class="glyph-sub">.</span></div>
-          <div class="key zone-rp" data-key="slash" data-base="?" data-shift="/" data-altgr="៕" data-coeng=""><span class="glyph-main">?</span><span class="glyph-sub">/</span></div>
-          <div class="key w-20 zone-rp" data-key="shiftR"><span class="glyph-sub" style="font-size:10px;">Shift</span></div>
+          <div class="key w-20" data-key="shiftL"><span class="glyph-sub" style="font-size:10px;">Shift</span></div>
+          <div class="key" data-key="z" data-base="ឋ" data-shift="ឍ" data-coeng="្ឋ"><span class="glyph-main">ឋ</span><span class="glyph-sub">Z</span></div>
+          <div class="key" data-key="x" data-base="ខ" data-shift="ឃ" data-coeng="្ខ"><span class="glyph-main">ខ</span><span class="glyph-sub">X</span></div>
+          <div class="key" data-key="c" data-base="ច" data-shift="ជ" data-coeng="្ច"><span class="glyph-main">ច</span><span class="glyph-sub">C</span></div>
+          <div class="key" data-key="v" data-base="វ" data-shift="េះ" data-coeng="្វ"><span class="glyph-main">វ</span><span class="glyph-sub">V</span></div>
+          <div class="key" data-key="b" data-base="ប" data-shift="ព" data-coeng="្ប"><span class="glyph-main">ប</span><span class="glyph-sub">B</span></div>
+          <div class="key" data-key="n" data-base="ន" data-shift="ណ" data-coeng="្ន"><span class="glyph-main">ន</span><span class="glyph-sub">N</span></div>
+          <div class="key" data-key="m" data-base="ម" data-shift="ំ" data-coeng="្ម"><span class="glyph-main">ម</span><span class="glyph-sub">M</span></div>
+          <div class="key" data-key="comma" data-base="អ" data-shift=","><span class="glyph-main">អ</span><span class="glyph-sub">,</span></div>
+          <div class="key" data-key="period" data-base="។" data-shift="."><span class="glyph-main">។</span><span class="glyph-sub">.</span></div>
+          <div class="key" data-key="slash" data-base="?" data-shift="/"><span class="glyph-main">?</span><span class="glyph-sub">/</span></div>
+          <div class="key w-20" data-key="shiftR"><span class="glyph-sub" style="font-size:10px;">Shift</span></div>
         </div>
 
         <!-- Row 5: Spacebar Row -->
         <div class="kb-row">
-          <div class="key w-12 zone-lp" data-key="ctrlL"><span class="glyph-sub" style="font-size:10px;">Ctrl</span></div>
-          <div class="key zone-lp" data-key="alt"><span class="glyph-sub" style="font-size:10px;">Alt</span></div>
+          <div class="key w-12" data-key="ctrlL"><span class="glyph-sub" style="font-size:10px;">Ctrl</span></div>
+          <div class="key" data-key="alt"><span class="glyph-sub" style="font-size:10px;">Alt</span></div>
           <div class="key w-space" data-key="space" id="keySpace"><span class="glyph-main" style="font-size:10px; color:#64748b;">Spacebar (ដកឃ្លា)</span></div>
-          <div class="key zone-rp" data-key="altgr"><span class="glyph-sub" style="font-size:10px;">AltGr</span></div>
-          <div class="key w-12 zone-rp" data-key="ctrlR"><span class="glyph-sub" style="font-size:10px;">Ctrl</span></div>
+          <div class="key" data-key="altgr"><span class="glyph-sub" style="font-size:10px;">AltGr</span></div>
+          <div class="key w-12" data-key="ctrlR"><span class="glyph-sub" style="font-size:10px;">Ctrl</span></div>
         </div>
 
       </div>
@@ -1105,7 +1209,7 @@
 
     <!-- Footer Note -->
     <footer class="app-footer">
-      <p>PK Khmer Type Keyboard Engine · Strictly Zero-Emoji SVG Protocol · 44% Default Hand Opacity</p>
+      <p>PK Khmer Type Architectural Lab · Zero-Emoji Compliant · Live Default Hand Opacity: 44%</p>
     </footer>
 
   </div>
@@ -1358,295 +1462,194 @@
     window.addEventListener('resize', () => renderKinematicHands('li'));
 
     /* =========================================================================
-       2. PROCEDURAL WEB AUDIO MECHANICAL SWITCH SYNTHESIS
+       2. PROCEDURAL SOUND ENGINE
        ========================================================================= */
     let audioCtx = null;
-    function playSwitchSound(profile = 'brown') {
-      if (profile === 'silent') return;
+    function playClick() {
       try {
         if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         if (audioCtx.state === 'suspended') audioCtx.resume();
-
         const now = audioCtx.currentTime;
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
-
-        if (profile === 'blue') {
-          // Clicky blue crisp snap
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(1400, now);
-          osc.frequency.exponentialRampToValueAtTime(320, now + 0.035);
-          gain.gain.setValueAtTime(0.25, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
-        } else if (profile === 'red') {
-          // Thocky linear deep thud
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(260, now);
-          osc.frequency.exponentialRampToValueAtTime(70, now + 0.05);
-          gain.gain.setValueAtTime(0.35, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.055);
-        } else if (profile === 'typewriter') {
-          // Vintage typewriter metallic strike
-          osc.type = 'square';
-          osc.frequency.setValueAtTime(2200, now);
-          osc.frequency.exponentialRampToValueAtTime(180, now + 0.045);
-          gain.gain.setValueAtTime(0.2, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
-        } else {
-          // Tactile brown balanced mechanical bump
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(680, now);
-          osc.frequency.exponentialRampToValueAtTime(140, now + 0.04);
-          gain.gain.setValueAtTime(0.28, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.045);
-        }
-
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(680, now);
+        osc.frequency.exponentialRampToValueAtTime(140, now + 0.04);
+        gain.gain.setValueAtTime(0.25, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.045);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
         osc.start(now);
-        osc.stop(now + 0.06);
+        osc.stop(now + 0.05);
       } catch (e) {}
     }
 
     /* =========================================================================
-       3. INTERACTIVE KEY FINDER & RECIPE ENGINE
+       3. MASTER KEYBOARD SWITCHER LOGIC
        ========================================================================= */
-    const keySearchInput = document.getElementById('keySearchInput');
-    const recipeCallout = document.getElementById('recipeCallout');
-    const recipeGlyph = document.getElementById('recipeGlyph');
-    const recipeTitle = document.getElementById('recipeTitle');
-    const recipeKeyBadge = document.getElementById('recipeKeyBadge');
-    const recipeDesc = document.getElementById('recipeDesc');
-    const recipeCopyBtn = document.getElementById('recipeCopyBtn');
-    const copyBtnText = document.getElementById('copyBtnText');
+    const masterTabs = document.querySelectorAll('.master-tab-btn');
+    const kb1Dock = document.getElementById('kb1Dock');
+    const kb2Dock = document.getElementById('kb2Dock');
+    const kb3Dock = document.getElementById('kb3Dock');
+    const matrixView = document.getElementById('matrixView');
+    const boardStageEl = document.getElementById('boardStage');
+    const activeDeckName = document.getElementById('activeDeckName');
 
-    let currentRecipeChar = '';
-
-    const KHMER_FINGER_MAP = {
-      q:'Left Pinky', w:'Left Ring', e:'Left Middle', r:'Left Index', t:'Left Index',
-      a:'Left Pinky', s:'Left Ring', d:'Left Middle', f:'Left Index', g:'Left Index',
-      z:'Left Pinky', x:'Left Ring', c:'Left Middle', v:'Left Index', b:'Left Index',
-      y:'Right Index', u:'Right Index', i:'Right Middle', o:'Right Ring', p:'Right Pinky',
-      h:'Right Index', j:'Right Index', k:'Right Middle', l:'Right Ring', semicolon:'Right Pinky',
-      n:'Right Index', m:'Right Index', comma:'Right Middle', period:'Right Ring', slash:'Right Pinky'
-    };
-
-    function spotlightKey(query) {
-      document.querySelectorAll('.key').forEach(k => k.classList.remove('search-spotlight'));
-
-      if (!query || query.trim() === '') {
-        recipeCallout.classList.remove('show');
-        return;
-      }
-
-      const q = query.trim().toLowerCase();
-      let foundKey = null;
-      let matchedLayer = 'base';
-      let characterFound = '';
-
-      // Check all keys
-      document.querySelectorAll('.key').forEach(k => {
-        if (foundKey) return;
-        const keyId = k.dataset.key ? k.dataset.key.toLowerCase() : '';
-        const b = (k.dataset.base || '').toLowerCase();
-        const s = (k.dataset.shift || '').toLowerCase();
-        const a = (k.dataset.altgr || '').toLowerCase();
-        const c = (k.dataset.coeng || '').toLowerCase();
-
-        if (q === keyId || q === b) {
-          foundKey = k; matchedLayer = 'Base Layer'; characterFound = k.dataset.base || keyId;
-        } else if (q === s) {
-          foundKey = k; matchedLayer = 'Shift + ' + keyId.toUpperCase(); characterFound = k.dataset.shift;
-        } else if (q === a) {
-          foundKey = k; matchedLayer = 'AltGr + ' + keyId.toUpperCase(); characterFound = k.dataset.altgr;
-        } else if (q === c || q === ('j' + keyId)) {
-          foundKey = k; matchedLayer = 'j + ' + keyId.toUpperCase() + ' (Coeng)'; characterFound = k.dataset.coeng;
-        }
-      });
-
-      if (foundKey) {
-        foundKey.classList.add('search-spotlight');
-        const keyId = foundKey.dataset.key;
-        const fingerName = KHMER_FINGER_MAP[keyId] || 'Assigned Finger';
-
-        currentRecipeChar = characterFound || foundKey.dataset.base || keyId.toUpperCase();
-        recipeGlyph.textContent = currentRecipeChar;
-        recipeKeyBadge.textContent = matchedLayer;
-        recipeTitle.innerHTML = `<span>Character: « ${currentRecipeChar} »</span> <span class="recipe-badge">${matchedLayer}</span>`;
-        recipeDesc.textContent = `Physical Key: [${keyId.toUpperCase()}] · Touch Finger: ${fingerName} · Position on Board`;
-        recipeCallout.classList.add('show');
-
-        // Animate corresponding kinematic finger reach
-        const fingerObj = FINGERS.find(f => f.home === keyId || (keyId === 'f' && f.id === 'li'));
-        if (fingerObj) renderKinematicHands(fingerObj.id);
-
-        const currentProfile = document.getElementById('switchSoundSelect').value;
-        playSwitchSound(currentProfile);
-      } else {
-        recipeCallout.classList.remove('show');
-      }
-    }
-
-    keySearchInput.addEventListener('input', (e) => spotlightKey(e.target.value));
-
-    document.querySelectorAll('.find-chip').forEach(btn => {
+    masterTabs.forEach(btn => {
       btn.addEventListener('click', () => {
-        const q = btn.dataset.query;
-        if (q === 'Clear') {
-          keySearchInput.value = '';
-          spotlightKey('');
-        } else {
-          keySearchInput.value = q;
-          spotlightKey(q);
+        masterTabs.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const target = btn.dataset.target;
+        kb1Dock.style.display = (target === 'kb1') ? 'flex' : 'none';
+        kb2Dock.style.display = (target === 'kb2') ? 'flex' : 'none';
+        kb3Dock.style.display = (target === 'kb3') ? 'flex' : 'none';
+        matrixView.classList.toggle('show', target === 'matrix');
+        boardStageEl.style.display = (target === 'matrix') ? 'none' : 'block';
+
+        // Clear special styling states
+        document.querySelectorAll('.key').forEach(k => {
+          k.classList.remove('highlight-coeng', 'speed-latency-hot');
+          const badge = k.querySelector('.latency-badge');
+          if (badge) badge.remove();
+        });
+
+        if (target === 'kb1') {
+          activeDeckName.textContent = 'KEYBOARD 1 · COENG & LIGATURE STUDIO (ANSI 104)';
+          const kF = document.getElementById('keyF');
+          if (kF) kF.classList.add('highlight-coeng');
+          setTimeout(() => renderKinematicHands('li'), 30);
+        } else if (target === 'kb2') {
+          activeDeckName.textContent = 'KEYBOARD 2 · PRO SPEED & TELEMETRY DECK (LATENCY RADAR)';
+          // Add latency badges
+          const latencies = { p: '340ms', z: '290ms', q: '310ms', f: '130ms', j: '140ms' };
+          Object.keys(latencies).forEach(kid => {
+            const el = document.querySelector(`.key[data-key="${kid}"]`);
+            if (el) {
+              if (['p', 'z', 'q'].includes(kid)) el.classList.add('speed-latency-hot');
+              const b = document.createElement('span');
+              b.className = 'latency-badge';
+              b.textContent = latencies[kid];
+              el.appendChild(b);
+            }
+          });
+          setTimeout(() => renderKinematicHands('ri'), 30);
+        } else if (target === 'kb3') {
+          activeDeckName.textContent = 'KEYBOARD 3 · SMART PREDICTOR & BILINGUAL TRANSCRIBER';
+          setTimeout(() => renderKinematicHands('lt'), 30);
         }
       });
     });
 
-    recipeCopyBtn.addEventListener('click', () => {
-      if (!currentRecipeChar) return;
-      navigator.clipboard.writeText(currentRecipeChar).then(() => {
-        copyBtnText.textContent = 'Copied!';
-        setTimeout(() => copyBtnText.textContent = 'Copy Glyph', 1500);
-      });
-    });
-
     /* =========================================================================
-       4. INTERACTIVE LAYER DECK (Base, Shift, AltGr, Coeng)
+       4. KEYBOARD 1: COENG SPELL-BUILDER INTERACTION
        ========================================================================= */
-    const layerBtns = document.querySelectorAll('.layer-btn');
-    let currentActiveLayer = 'base';
-
-    function switchKeyboardLayer(layerName) {
-      currentActiveLayer = layerName;
-      layerBtns.forEach(b => b.classList.toggle('active', b.dataset.layer === layerName));
-
-      boardStage.classList.toggle('mode-coeng', layerName === 'coeng');
-
-      document.querySelectorAll('.key').forEach(k => {
-        const glyphEl = k.querySelector('.glyph-main');
-        if (!glyphEl) return;
-
-        if (layerName === 'shift') {
-          glyphEl.textContent = k.dataset.shift || k.dataset.base || '';
-        } else if (layerName === 'altgr') {
-          glyphEl.textContent = k.dataset.altgr || k.dataset.base || '';
-        } else if (layerName === 'coeng') {
-          glyphEl.textContent = k.dataset.coeng || k.dataset.base || '';
-        } else {
-          glyphEl.textContent = k.dataset.base || '';
-        }
-      });
-
-      playSwitchSound(document.getElementById('switchSoundSelect').value);
-    }
-
-    layerBtns.forEach(b => {
-      b.addEventListener('click', () => switchKeyboardLayer(b.dataset.layer));
-    });
-
-    /* =========================================================================
-       5. ACCURACY HEATMAP & FINGER ZONES TOGGLES
-       ========================================================================= */
-    let heatmapActive = false;
-    const heatmapToggleBtn = document.getElementById('heatmapToggleBtn');
-
-    // Simulated historical accuracy map
-    const KEY_ACCURACY_SIM = {
-      f: 99, d: 96, s: 94, a: 88, j: 98, k: 95, l: 92, semicolon: 78,
-      r: 96, t: 95, e: 91, w: 82, q: 72, y: 92, u: 94, i: 96, o: 89, p: 74,
-      v: 95, c: 92, x: 80, z: 68, b: 90, n: 94, m: 92, comma: 84
+    const COENG_RECIPES = {
+      'ថ': { glyph: 'ស្ថ', lead: 'ស', sub: 'ថ (F)', key: 'f', desc: 'Recipe: « ស » + [ J ] + [ F ] = ស្ថ · Home row index reach' },
+      'ក': { glyph: 'ស្ក', lead: 'ស', sub: 'ក (K)', key: 'k', desc: 'Recipe: « ស » + [ J ] + [ K ] = ស្ក · Right middle finger reach' },
+      'ដ': { glyph: 'ស្ដ', lead: 'ស', sub: 'ដ (D)', key: 'd', desc: 'Recipe: « ស » + [ J ] + [ D ] = ស្ដ · Left middle finger reach' },
+      'ង': { glyph: 'ស្ង', lead: 'ស', sub: 'ង (G)', key: 'g', desc: 'Recipe: « ស » + [ J ] + [ G ] = ស្ង · Left index inner reach' },
+      'ម': { glyph: 'ស្ម', lead: 'ស', sub: 'ម (M)', key: 'm', desc: 'Recipe: « ស » + [ J ] + [ M ] = ស្ម · Right index bottom reach' }
     };
 
-    heatmapToggleBtn.addEventListener('click', () => {
-      heatmapActive = !heatmapActive;
-      heatmapToggleBtn.classList.toggle('active', heatmapActive);
-      heatmapToggleBtn.classList.toggle('heatmap-on', heatmapActive);
+    function updateLigatureDisplay(subChar) {
+      const rec = COENG_RECIPES[subChar] || COENG_RECIPES['ថ'];
+      document.getElementById('leadConsBox').textContent = rec.lead;
+      document.getElementById('subConsBox').textContent = rec.sub;
+      document.getElementById('ligResultGlyph').textContent = rec.glyph;
+      document.getElementById('ligRecipeTitle').textContent = `Recipe: « ${rec.lead} » + [ J ] + [ ${rec.key.toUpperCase()} ]`;
 
-      document.querySelectorAll('.key').forEach(k => {
-        k.classList.remove('heat-green', 'heat-amber', 'heat-red');
-        const existingBadge = k.querySelector('.heat-badge');
-        if (existingBadge) existingBadge.remove();
+      document.querySelectorAll('.key').forEach(k => k.classList.remove('highlight-coeng'));
+      const targetEl = document.querySelector(`.key[data-key="${rec.key}"]`);
+      if (targetEl) targetEl.classList.add('highlight-coeng');
 
-        if (heatmapActive && k.dataset.key) {
-          const acc = KEY_ACCURACY_SIM[k.dataset.key];
-          if (acc) {
-            const badge = document.createElement('span');
-            badge.className = 'heat-badge';
-            badge.textContent = acc + '%';
+      const fObj = FINGERS.find(f => f.home === rec.key);
+      if (fObj) renderKinematicHands(fObj.id);
+      playClick();
+    }
 
-            if (acc >= 95) {
-              k.classList.add('heat-green');
-              badge.style.color = '#34d399';
-            } else if (acc >= 85) {
-              k.classList.add('heat-amber');
-              badge.style.color = '#ffd166';
-            } else {
-              k.classList.add('heat-red');
-              badge.style.color = '#fb7185';
-            }
-            k.appendChild(badge);
-          }
-        }
+    // Independent Vowel Shelf clicks
+    document.querySelectorAll('.vowel-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.vowel;
+        const k = btn.dataset.key;
+        const mod = btn.dataset.mod;
+
+        document.querySelectorAll('.key').forEach(keyEl => keyEl.classList.remove('highlight-coeng'));
+        const el = document.querySelector(`.key[data-key="${k}"]`);
+        if (el) el.classList.add('highlight-coeng');
+
+        document.getElementById('ligResultGlyph').textContent = v;
+        document.getElementById('ligRecipeTitle').textContent = `Independent Vowel « ${v} » · Press [ ${mod} ]`;
+
+        const fObj = FINGERS.find(f => f.home === k);
+        if (fObj) renderKinematicHands(fObj.id);
+        playClick();
       });
     });
 
-    let zonesActive = false;
-    const zonesToggleBtn = document.getElementById('zonesToggleBtn');
-    zonesToggleBtn.addEventListener('click', () => {
-      zonesActive = !zonesActive;
-      zonesToggleBtn.classList.toggle('active', zonesActive);
-      zonesToggleBtn.classList.toggle('zones-on', zonesActive);
-      boardStage.classList.toggle('mode-zones', zonesActive);
+    /* =========================================================================
+       5. KEYBOARD 2: WEAK KEY DRILL GENERATOR
+       ========================================================================= */
+    const weakDrillBtn = document.getElementById('weakDrillBtn');
+    weakDrillBtn.addEventListener('click', () => {
+      alert("Custom Weak-Key Practice generated!\nDrilling slowest keys: [P] ផ, [Z] ឋ, [Q] ឈ\nFocus: Reaching top and bottom rows with left & right pinkies.");
+      playClick();
     });
 
     /* =========================================================================
-       6. CLICK-TO-TYPE & PHYSICAL KEYBOARD LIVE PLAYGROUND
+       6. KEYBOARD 3: PHONETIC LATIN-TO-KHMER BRIDGE
        ========================================================================= */
-    const tapeTrack = document.getElementById('tapeTrack');
-    const statTyped = document.getElementById('statTyped');
-    let typedCount = 18;
+    const latinInput = document.getElementById('latinInput');
+    const khmerPredictResult = document.getElementById('khmerPredictResult');
 
-    function handleKeyPress(keyId, keyEl) {
-      if (!keyEl) keyEl = document.querySelector(`.key[data-key="${keyId}"]`);
-      if (keyEl) {
-        keyEl.classList.add('pressed');
-        setTimeout(() => keyEl.classList.remove('pressed'), 120);
+    const PHONETIC_DICT = {
+      'knhom': 'ខ្ញុំ · [ X + J + N + U + M ]',
+      'angkor': 'អង្គរ · [ , + N + J + K + R ]',
+      'sok san': 'សុខសាន្ត · [ S + U + X + S + A + N + J + T + 6 ]',
+      'kampuchea': 'កម្ពុជា · [ K + M + J + P + U + J + C + A ]',
+      'orkun': 'អរគុណ · [ , + R + K + U + N (Shift) ]'
+    };
+
+    latinInput.addEventListener('input', (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      const match = PHONETIC_DICT[q];
+      if (match) {
+        khmerPredictResult.textContent = match;
+        khmerPredictResult.style.color = 'var(--emerald-bright)';
+      } else {
+        khmerPredictResult.textContent = q ? `« ${q} » · Searching Khmer spelling...` : 'Type above...';
+        khmerPredictResult.style.color = 'var(--text-muted)';
       }
-
-      const activeSound = document.getElementById('switchSoundSelect').value;
-      playSwitchSound(activeSound);
-
-      // Trigger finger kinematic reach
-      const fObj = FINGERS.find(f => f.home === keyId || (keyId === 'space' && f.kind === 'thumb'));
-      if (fObj) renderKinematicHands(fObj.id);
-
-      // Add character to tape
-      const char = keyEl ? (keyEl.querySelector('.glyph-main') ? keyEl.querySelector('.glyph-main').textContent : '') : '';
-      if (char && char !== 'Spacebar (ដកឃ្លា)') {
-        typedCount++;
-        statTyped.textContent = typedCount;
-
-        const tile = document.createElement('div');
-        tile.className = 'tape-char done';
-        tile.textContent = char;
-        tapeTrack.insertBefore(tile, document.getElementById('tapeActiveChar'));
-        if (tapeTrack.children.length > 12) tapeTrack.removeChild(tapeTrack.firstChild);
-      }
-    }
-
-    document.querySelectorAll('.key').forEach(k => {
-      k.addEventListener('click', () => handleKeyPress(k.dataset.key, k));
     });
 
-    window.addEventListener('keydown', (e) => {
-      if (document.activeElement === keySearchInput) return;
-      const keyIdMap = {
-        f:'f', d:'d', s:'s', a:'a', j:'j', k:'k', l:'l', ';':'semicolon',
-        r:'r', t:'t', e:'e', w:'w', q:'q', y:'y', u:'u', i:'i', o:'o', p:'p',
-        v:'v', c:'c', x:'x', z:'z', b:'b', n:'n', m:'m', ' ':'space'
-      };
-      const mapped = keyIdMap[e.key.toLowerCase()];
-      if (mapped) handleKeyPress(mapped);
+    // Punctuation 1-touch chips
+    document.querySelectorAll('.punc-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const sym = btn.dataset.sym;
+        navigator.clipboard.writeText(sym).then(() => {
+          btn.style.borderColor = 'var(--emerald-bright)';
+          setTimeout(() => btn.style.borderColor = '', 800);
+        });
+        playClick();
+      });
+    });
+
+    /* Key Clicking Interaction */
+    document.querySelectorAll('.key').forEach(k => {
+      k.addEventListener('click', () => {
+        k.classList.add('pressed');
+        setTimeout(() => k.classList.remove('pressed'), 120);
+        playClick();
+
+        const baseChar = k.dataset.base;
+        if (COENG_RECIPES[baseChar]) {
+          updateLigatureDisplay(baseChar);
+        }
+
+        const fObj = FINGERS.find(f => f.home === k.dataset.key || (k.dataset.key === 'space' && f.kind === 'thumb'));
+        if (fObj) renderKinematicHands(fObj.id);
+      });
     });
 
     /* 3D Hands Opacity Dial */
