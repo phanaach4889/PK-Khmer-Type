@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5f1">
+  <meta name="description" content="Learn Khmer Standard, Khmer NiDA and English typing step by step with PK Khmer Type’s interactive keyboard, guided lessons and adaptive practice.">
+  <link rel="canonical" href="https://phanaach4889.github.io/PK-Khmer-Type/launch/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PK Khmer Type — Learn to type, one key at a time">
+  <meta property="og:description" content="Explore Khmer Standard, Khmer NiDA and English typing through real keyboard layouts and beginner-friendly practice.">
+  <meta property="og:image" content="https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon-32.png" sizes="32x32">
+  <link rel="stylesheet" href="launch.css">
+  <title>PK Khmer Type — Learn to type, one key at a time</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="PK Khmer Type launch page home">
+      <img src="../assets/logo.svg" width="42" height="42" alt="">
+      <span>PK <span class="brand-khmer">ខ្មែរ</span> Type</span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#experience">Explore</a>
+      <a href="#learning">How it works</a>
+      <a href="../Documents/">Keyboard guide</a>
+    </nav>
+    <a class="nav-cta" href="../index.html#lessonStrip">Start learning <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="main">
+    <section class="hero section-shell" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span> A typing studio for Khmer &amp; English</p>
+        <h1 id="hero-title">Learn the layout.<br><span>Let your fingers</span><br>remember.</h1>
+        <p class="hero-lede">A more thoughtful way to learn Khmer typing. Find your keys, follow short guided lessons, and build fluency one practice at a time.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="../index.html#lessonStrip">Start learning <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="#experience">Explore the experience <span aria-hidden="true">↓</span></a>
+        </div>
+        <p class="hero-note"><span aria-hidden="true">⌘</span> Khmer Standard · Khmer NiDA · English QWERTY</p>
+      </div>
+      <figure class="hero-visual reveal">
+        <div class="visual-topline"><span>THE PK TYPING STUDIO</span><span>KHMER · ENGLISH</span></div>
+        <div class="hero-image-wrap">
+          <img class="hero-image" src="../assets/pk-khmer-type-khmer-typing-trainer.png" alt="Real PK Khmer Type typing studio with Khmer keyboard layout and 3D finger-position guides" width="1200" height="675" fetchpriority="high">
+          <div class="image-caption"><span class="caption-dot" aria-hidden="true"></span><span>Made for the way Khmer is typed</span></div>
+        </div>
+        <figcaption class="visual-caption"><span>KHMER STANDARD</span><span>NIÐA</span><span>ENGLISH (US)</span></figcaption>
+      </figure>
+      <a class="scroll-cue" href="#experience"><span aria-hidden="true">↓</span> A closer look</a>
+    </section>
+
+    <section class="intro-band" id="experience">
+      <div class="section-shell intro-grid">
+        <p class="eyebrow reveal">A good place to begin</p>
+        <div class="intro-main reveal">
+          <h2>Three layouts.<br><span>One place to learn.</span></h2>
+          <p>Explore the real keys, then practise them in the same studio. Start with Khmer Standard, discover the official NiDA layout, or build your English QWERTY touch typing.</p>
+        </div>
+        <p class="intro-aside reveal">Not sure where to start?<br><strong>Begin with a layout you want to learn.</strong></p>
+      </div>
+    </section>
+
+    <section class="keyboard-section section-shell" aria-labelledby="keyboard-title">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Try the keys</p>
+        <h2 id="keyboard-title">Meet your keyboard.</h2>
+        <p>Switch layouts, choose a layer, then select a key. Each character comes from PK Khmer Type’s actual keyboard map.</p>
+      </div>
+      <div class="layout-tabs" role="group" aria-label="Choose keyboard layout">
+        <button type="button" class="layout-tab is-active" data-layout="standard" aria-pressed="true">Khmer Standard</button>
+        <button type="button" class="layout-tab" data-layout="nida" aria-pressed="false">Khmer NiDA</button>
+        <button type="button" class="layout-tab" data-layout="english" aria-pressed="false">English (US)</button>
+      </div>
+      <div class="keyboard-workbench">
+        <div class="keyboard-topline"><span id="layout-label">Khmer Keyboard Layout</span><span class="live-state"><i aria-hidden="true"></i> INTERACTIVE MAP</span></div>
+        <div class="layer-tabs" role="group" aria-label="Choose character layer">
+          <button type="button" class="layer-tab is-active" data-layer="base" aria-pressed="true">Base</button>
+          <button type="button" class="layer-tab" data-layer="shift" aria-pressed="false">Shift</button>
+          <button type="button" class="layer-tab" data-layer="ctrl" aria-pressed="false">Ctrl</button>
+          <button type="button" class="layer-tab" data-layer="altgr" aria-pressed="false">AltGr</button>
+        </div>
+        <div class="keyboard-frame" id="keyboard" aria-label="Interactive virtual keyboard"></div>
+        <div class="key-inspector" aria-live="polite" aria-atomic="true">
+          <span class="inspector-label">SELECT A KEY</span>
+          <span class="inspector-glyph" id="inspector-glyph">·</span>
+          <span class="inspector-meta" id="inspector-meta">Choose any mapped key to see its character.</span>
+        </div>
+        <p class="keyboard-footnote">The on-screen map reflects the layout data in the typing studio. Blank positions are intentionally left blank.</p>
+      </div>
+      <div class="layout-photo-row reveal" aria-label="Official keyboard layout previews">
+        <figure><img src="../assets/pk-khmer-type-standard-khmer-keyboard-layout.png" alt="PK Khmer Type Khmer Standard layout preview" loading="lazy" width="826" height="354"><figcaption>Khmer Standard</figcaption></figure>
+        <figure><img src="../assets/pk-khmer-type-khmer-nida-keyboard-layout.png" alt="PK Khmer Type Khmer NiDA layout preview" loading="lazy" width="827" height="366"><figcaption>Khmer NiDA</figcaption></figure>
+        <figure><img src="../assets/pk-khmer-type-english-qwerty-keyboard-layout.png" alt="PK Khmer Type English QWERTY layout preview" loading="lazy" width="829" height="343"><figcaption>English QWERTY</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="feature-section" aria-labelledby="features-title">
+      <div class="section-shell">
+        <div class="feature-intro reveal"><p class="eyebrow">Built around practice</p><h2 id="features-title">A little more confidence<br>with every lesson.</h2></div>
+        <article class="feature-row reveal">
+          <div class="feature-number">01 <span>LAYOUTS</span></div>
+          <div class="feature-copy"><h3>Learn the map you’ll use.</h3><p>See Khmer Standard, official Khmer NiDA and English (US) QWERTY as separate layouts. Explore the on-screen keys and their modifier layers before you practise.</p><a href="../Documents/" class="inline-link">Explore the keyboard guide <span aria-hidden="true">↗</span></a></div>
+          <figure class="feature-image feature-layout"><img src="../assets/pk-khmer-type-khmer-nida-keyboard-layout.png" alt="The real Khmer NiDA layout as shown in PK Khmer Type" loading="lazy" width="827" height="366"><figcaption>NIÐA · REAL KEY MAP</figcaption></figure>
+        </article>
+        <article class="feature-row feature-row-reverse reveal">
+          <div class="feature-number">02 <span>GUIDED LESSONS</span></div>
+          <div class="feature-copy"><h3>Begin with one key.</h3><p>Short exercises introduce a few characters at a time and build into lessons across the keyboard. Choose a track, start with an unlocked lesson, and follow the prompt.</p><a href="../index.html#lessonStrip" class="inline-link">Find your first lesson <span aria-hidden="true">↗</span></a></div>
+          <figure class="feature-image"><img src="../assets/pk-khmer-type-khmer-typing-trainer.png" alt="A real screenshot of PK Khmer Type, including its typing keyboard and finger guide" loading="lazy" width="1200" height="675"><figcaption>THE ACTUAL PK KHMER TYPE STUDIO</figcaption></figure>
+        </article>
+        <article class="feature-row reveal">
+          <div class="feature-number">03 <span>YOUR RHYTHM</span></div>
+          <div class="feature-copy"><h3>Let practice meet you where you are.</h3><p>Review common mistakes with adaptive drills, notice per-key progress, or change the pace in Focus Mode. When you’re ready, take on a timed Temple Trial or a race against an adaptive pacer.</p><a href="../index.html#adaptivePanel" class="inline-link">Explore practice in the studio <span aria-hidden="true">↗</span></a></div>
+          <div class="feature-tiles" aria-label="Practice tools available in the studio"><div class="practice-tile"><span class="tile-icon" aria-hidden="true">⌖</span><strong>Adaptive practice</strong><span>Weak-key review</span></div><div class="practice-tile"><span class="tile-icon" aria-hidden="true">⏱</span><strong>Typing races</strong><span>Adaptive pacers</span></div><div class="practice-tile"><span class="tile-icon" aria-hidden="true">↗</span><strong>Progress</strong><span>Per-key mastery</span></div><div class="practice-tile"><span class="tile-icon" aria-hidden="true">⤢</span><strong>Focus Mode</strong><span>Fewer distractions</span></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="learning-section section-shell" id="learning" aria-labelledby="learning-title">
+      <div class="learning-copy reveal"><p class="eyebrow">A clear next step</p><h2 id="learning-title">From first key<br>to familiar hands.</h2><p>Starting is simple. Choose a track and PK Khmer Type will put the next step in front of you.</p><a class="button button-dark" href="../index.html#lessonStrip">Choose your first lesson <span aria-hidden="true">↗</span></a></div>
+      <ol class="learning-steps">
+        <li class="learning-step reveal"><span class="step-index">01</span><div><h3>Choose a keyboard layout</h3><p>Khmer Standard, Khmer NiDA or English (US).</p></div><span class="step-check" aria-hidden="true">→</span></li>
+        <li class="learning-step reveal"><span class="step-index">02</span><div><h3>Start a short first lesson</h3><p>Open the lessons and begin with the first unlocked exercise.</p></div><span class="step-check" aria-hidden="true">→</span></li>
+        <li class="learning-step reveal"><span class="step-index">03</span><div><h3>Practise the characters shown</h3><p>Follow the prompt and find each key on the displayed layout.</p></div><span class="step-check" aria-hidden="true">→</span></li>
+        <li class="learning-step reveal"><span class="step-index">04</span><div><h3>See how you did</h3><p>Review accuracy and exercise feedback when you finish.</p></div><span class="step-check" aria-hidden="true">→</span></li>
+        <li class="learning-step reveal"><span class="step-index">05</span><div><h3>Continue at your pace</h3><p>Progress through lessons as your skills improve.</p></div><span class="step-check" aria-hidden="true">✓</span></li>
+      </ol>
+    </section>
+
+    <section class="practice-section" aria-labelledby="practice-title">
+      <div class="section-shell practice-grid">
+        <div class="practice-copy reveal"><p class="eyebrow">Your first few strokes</p><h2 id="practice-title">Try a tiny lesson.</h2><p>A short starter drill from the real curriculum. Use your keyboard, or click the highlighted on-screen key. The live feedback below counts only this demo.</p><div class="practice-layouts" role="group" aria-label="Select layout for the starter drill"><button class="practice-layout is-active" type="button" data-practice-layout="standard" aria-pressed="true">Khmer Standard</button><button class="practice-layout" type="button" data-practice-layout="nida" aria-pressed="false">NiDA</button><button class="practice-layout" type="button" data-practice-layout="english" aria-pressed="false">English</button></div></div>
+        <div class="practice-card reveal">
+          <div class="practice-card-top"><span>STARTER EXERCISE</span><span id="practice-progress-label">0 / 10</span></div>
+          <p class="prompt-label">Type the characters shown</p>
+          <div class="exercise-prompt" id="exercise-prompt" aria-label="Typing exercise prompt"></div>
+          <div class="exercise-entry" id="exercise-entry" tabindex="0" role="button" aria-label="Typing practice area. Press Enter or Space to focus, then type the prompt."><span class="entry-placeholder">Click here, then type…</span></div>
+          <div class="exercise-feedback" aria-live="polite"><span id="practice-message">The highlighted key shows what comes next.</span><span id="practice-accuracy">—</span></div>
+          <div class="exercise-actions"><button class="reset-button" type="button" id="reset-practice">Start over <span aria-hidden="true">↺</span></button><a href="../index.html#lessonStrip" class="practice-next">Open full lessons <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="comparison-section section-shell" aria-labelledby="comparison-title">
+      <div class="comparison-heading reveal"><p class="eyebrow">A fair comparison</p><h2 id="comparison-title">Learning, in context.</h2><p>Traditional independent practice can suit many learners. Here’s how PK Khmer Type approaches the same parts of learning.</p></div>
+      <div class="comparison-wrap reveal"><table class="comparison-table"><thead><tr><th scope="col">Learning support</th><th scope="col">PK Khmer Type</th><th scope="col">Traditional self-guided practice</th></tr></thead><tbody><tr><th scope="row">Khmer keyboard layouts</th><td><span class="table-mark">●</span> Standard &amp; NiDA interactive maps</td><td>Depends on the materials you choose</td></tr><tr><th scope="row">English typing practice</th><td><span class="table-mark">●</span> English (US) QWERTY course</td><td>Depends on the materials you choose</td></tr><tr><th scope="row">Structured lessons</th><td><span class="table-mark">●</span> Progressive exercises</td><td>Often self-arranged</td></tr><tr><th scope="row">Adaptive practice</th><td><span class="table-mark">●</span> Weak-key review &amp; remedial drills</td><td>May require manual review</td></tr><tr><th scope="row">Progress feedback</th><td><span class="table-mark">●</span> Accuracy &amp; per-key progress</td><td>Varies with the chosen method</td></tr><tr><th scope="row">Beginner guidance</th><td><span class="table-mark">●</span> Guided beginner lessons</td><td>Varies with the chosen method</td></tr></tbody></table></div>
+      <p class="comparison-note">“Traditional self-guided practice” describes common approaches, not a specific product; available tools vary.</p>
+    </section>
+
+    <section class="philosophy-section" aria-labelledby="philosophy-title">
+      <div class="section-shell philosophy-grid"><p class="eyebrow reveal">Made for learners</p><div class="philosophy-copy reveal"><h2 id="philosophy-title">No shortcuts.<br><span>Just a better way to practise.</span></h2><p>Good typing starts with understanding where the keys are. PK Khmer Type brings layouts, progressive lessons, and practice feedback together in one studio, for learners starting from the home row and those refining the way they type.</p><p class="philosophy-note">Build familiarity. Strengthen accuracy. Keep going when it feels right.</p></div><figure class="philosophy-mark reveal"><img src="../assets/logo.svg" width="112" height="112" alt="PK Khmer Type official PK crest logo"><figcaption>LEARN BY DOING</figcaption></figure></div>
+    </section>
+
+    <section class="final-cta section-shell" aria-labelledby="final-title"><div class="final-inner reveal"><p class="eyebrow">One key at a time</p><h2 id="final-title">Your Khmer typing<br>journey starts here.</h2><p>Begin with a simple lesson, learn at your own pace, and build your typing skills step by step.</p><div class="final-actions"><a class="button button-light" href="../index.html#lessonStrip">Start learning <span aria-hidden="true">↗</span></a><a class="final-secondary" href="../Documents/">Explore PK Khmer Type <span aria-hidden="true">↗</span></a></div></div><div class="final-glyph" aria-hidden="true">ក ខ គ</div></section>
+  </main>
+
+  <footer class="page-footer section-shell"><a class="brand footer-brand" href="#top"><img src="../assets/logo.svg" width="34" height="34" alt=""><span>PK Khmer Type</span></a><p>Built by Phanna Kurosaki · Khmer Standard, Khmer NiDA &amp; English (US)</p><div class="footer-links"><a href="../index.html">Open the typing studio</a><a href="../Documents/">Keyboard guide</a><a href="https://github.com/phanaach4889/PK-Khmer-Type" target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a></div></footer>
+  <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false" title="Turn nonessential animations off">Motion: on</button>
+  <script src="launch.js" defer></script>
+</body>
+</html>

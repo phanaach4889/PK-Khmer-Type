@@ -24,6 +24,7 @@
 ## Official Live Links
 
 - **Launch PK Khmer Type (Web App):** [https://phanaach4889.github.io/PK-Khmer-Type/](https://phanaach4889.github.io/PK-Khmer-Type/)
+- **Discover PK Khmer Type:** [Product launch & learning experience](https://phanaach4889.github.io/PK-Khmer-Type/launch/)
 - **Official Documentation & Keyboard Layout Guide:** [https://phanaach4889.github.io/PK-Khmer-Type/Documents/](https://phanaach4889.github.io/PK-Khmer-Type/Documents/)
 - **Author & Developer:** **Phanna Kurosaki** ([Facebook](https://web.facebook.com/Wphanakurasaki/))
 

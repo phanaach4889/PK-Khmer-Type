@@ -64,6 +64,7 @@ jobs:
           cp google*.html _site/ 2>/dev/null || true
           cp icon-*.png _site/
           cp -r css js data Documents docs assets _site/
+          cp -r launch _site/
           
           # Copy optional documentation if present
           [ -f README.md ] && cp README.md _site/

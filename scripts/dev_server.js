@@ -35,22 +35,25 @@ const server = http.createServer((req, res) => {
   }
 
   fs.stat(filePath, (err, stats) => {
-    if (err || !stats.isFile()) {
-      res.writeHead(404, { 'Content-Type': 'text/plain' });
-      return res.end('Not Found');
-    }
+    const resolvedPath = !err && stats.isDirectory() ? path.join(filePath, 'index.html') : filePath;
+    fs.stat(resolvedPath, (resolvedError, resolvedStats) => {
+      if (resolvedError || !resolvedStats.isFile()) {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        return res.end('Not Found');
+      }
 
-    const ext = path.extname(filePath).toLowerCase();
-    const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+      const ext = path.extname(resolvedPath).toLowerCase();
+      const contentType = MIME_TYPES[ext] || 'application/octet-stream';
 
-    res.writeHead(200, {
-      'Content-Type': contentType,
-      'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
-      'Access-Control-Allow-Origin': '*'
+      res.writeHead(200, {
+        'Content-Type': contentType,
+        'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0',
+        'Access-Control-Allow-Origin': '*'
+      });
+
+      const stream = fs.createReadStream(resolvedPath);
+      stream.pipe(res);
     });
-
-    const stream = fs.createReadStream(filePath);
-    stream.pipe(res);
   });
 });
 

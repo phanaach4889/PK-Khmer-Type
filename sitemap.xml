@@ -70,4 +70,20 @@
     </image:image>
   </url>
 
+
+  <!-- PK Khmer Type product launch and learning experience -->
+  <url>
+    <loc>https://phanaach4889.github.io/PK-Khmer-Type/launch/</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://phanaach4889.github.io/PK-Khmer-Type/launch/" />
+    <xhtml:link rel="alternate" hreflang="km" href="https://phanaach4889.github.io/PK-Khmer-Type/launch/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://phanaach4889.github.io/PK-Khmer-Type/launch/" />
+    <image:image>
+      <image:loc>https://phanaach4889.github.io/PK-Khmer-Type/assets/pk-khmer-type-og-preview.png</image:loc>
+      <image:title>PK Khmer Type — Learn to type, one key at a time</image:title>
+      <image:caption>Discover Khmer Standard, Khmer NiDA, and English typing lessons in PK Khmer Type.</image:caption>
+    </image:image>
+  </url>
 </urlset>
