@@ -11,13 +11,16 @@
   }
 
   .row{
+    --key-gap:7px;
     display:flex;
-    gap:7px;
+    width:100%;
+    gap:var(--key-gap);
   }
 
   .key{
+    --u:1;
     position:relative;
-    flex:1 1 0;
+    flex:var(--u, 1) 1 calc((var(--u, 1) - 1) * var(--key-gap, 7px));
     min-width:0;
     height:52px;
     display:flex;
@@ -514,7 +517,8 @@
   }
 
   .key.space{
-    flex-grow:8;
+    --u:9;
+    flex-grow:9;
     cursor:pointer;
     display:flex;
     align-items:center;

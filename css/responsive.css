@@ -106,7 +106,7 @@
   @media (max-width: 640px){
     .keyboard{ width:94vw; gap:5px;}
     .manuscript{ width:94vw;}
-    .row{ gap:5px;}
+    .row{ --key-gap:5px; gap:5px;}
     .key{ height:40px; font-size:0.85rem; border-radius:7px;}
     .key.mod, .key.label-key{ font-size:0.6rem;}
     h1{ font-size:1.9rem;}

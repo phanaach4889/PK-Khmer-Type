@@ -52,7 +52,7 @@ const ROW3 = [
   KEY('l','ល','','ឰ','ឡ'),
   KEY('semicolon','ះ',':',';','៖'),
   KEY('quote','់','«','៝','៉'),
-  KEY('backslash','\\','/','៚','/'),
+  {...KEY('backslash','\\','/','៚','/'), wide:2.25},
 ];
 
 const ROW4 = [
@@ -74,7 +74,7 @@ const ROW4 = [
 const ROW5 = [
   {id:'ctrlL', kind:'mod', label:'Ctrl', cls:'key-ctrl', wide:1.5},
   {id:'alt', kind:'mod', label:'Alt', wide:1.5},
-  {id:'space', kind:'mod', label:'', cls:'space'},
+  {id:'space', kind:'mod', label:'', cls:'space', wide:9},
   {id:'altgr', kind:'mod', label:'AltGr', cls:'key-altgr', wide:1.5},
   {id:'ctrlR', kind:'mod', label:'Ctrl', cls:'key-ctrl', wide:1.5},
 ];
@@ -127,7 +127,7 @@ const ROW3_NIDA = [
   KEY('l','ល','','','ឡ'),
   KEY('semicolon','ើ','','៖','ោះ'),
   KEY('quote','់','','ៈ','៉'),
-  KEY('backslash','ឮ','','\\','ឭ'),
+  {...KEY('backslash','ឮ','','\\','ឭ'), wide:2.25},
 ];
 
 const ROW4_NIDA = [
@@ -149,7 +149,7 @@ const ROW4_NIDA = [
 const ROW5_NIDA = [
   {id:'ctrlL', kind:'mod', label:'Ctrl', cls:'key-ctrl', wide:1.5},
   {id:'alt', kind:'mod', label:'Alt', wide:1.5},
-  {id:'space', kind:'mod', label:'', cls:'space'},
+  {id:'space', kind:'mod', label:'', cls:'space', wide:9},
   {id:'altgr', kind:'mod', label:'AltGr', cls:'key-altgr', wide:1.5},
   {id:'ctrlR', kind:'mod', label:'Ctrl', cls:'key-ctrl', wide:1.5},
 ];
@@ -202,7 +202,7 @@ const ROW3_EN = [
   KEY('l','l','','','L'),
   KEY('semicolon',';','','',':'),
   KEY('quote','\'','','','"'),
-  KEY('backslash','\\','','','|'),
+  {...KEY('backslash','\\','','','|'), wide:2.25},
 ];
 
 const ROW4_EN = [
@@ -224,7 +224,7 @@ const ROW4_EN = [
 const ROW5_EN = [
   {id:'ctrlL', kind:'mod', label:'Ctrl', cls:'key-ctrl', wide:1.5},
   {id:'alt', kind:'mod', label:'Alt', wide:1.5},
-  {id:'space', kind:'mod', label:'', cls:'space'},
+  {id:'space', kind:'mod', label:'', cls:'space', wide:9},
   {id:'altgr', kind:'mod', label:'AltGr', cls:'key-altgr', wide:1.5},
   {id:'ctrlR', kind:'mod', label:'Ctrl', cls:'key-ctrl', wide:1.5},
 ];
@@ -337,7 +337,9 @@ ALL_ROWS.forEach(rowDef=>{
     el.setAttribute('translate', 'no');
     el.dataset.key = k.id;
     if(KEY_FINGER[k.id]) el.dataset.finger = KEY_FINGER[k.id];
-    if(k.wide) el.style.flexGrow = k.wide;
+    const u = k.wide || 1;
+    el.style.setProperty('--u', u);
+    el.style.flexGrow = u;
     if(k.cls) el.classList.add(k.cls);
     keyEls[k.id] = el;
 
