@@ -1613,6 +1613,7 @@
       if (lessonPanel) lessonPanel.hidden = true;
       if (manuscript) manuscript.hidden = true;
       if (panel) panel.hidden = false;
+      document.documentElement.classList.add('lesson-stage-active');
 
       const isKm = document.documentElement.classList.contains('site-km-mode');
 
@@ -1650,15 +1651,28 @@
 
       if (typeof clearText === 'function') clearText();
 
-      // Scroll board into view if newly starting (not on auto-advance between rounds)
+      // Scroll stage into view if newly starting (keeping full keyboard visible)
       if (!options || !options.isAutoAdvance) {
         if (typeof requestAnimationFrame === 'function') {
           requestAnimationFrame(() => {
-            if (panel && !panel.hidden) {
+            const bWrap = document.getElementById('boardWrap');
+            if (panel && !panel.hidden && bWrap) {
               const panelRect = panel.getBoundingClientRect();
+              const boardRect = bWrap.getBoundingClientRect();
               const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
-              const targetY = currentScrollY + panelRect.top - 65;
-              window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+              const stageTop = currentScrollY + panelRect.top;
+              const stageBottom = currentScrollY + boardRect.bottom;
+              const stageHeight = stageBottom - stageTop;
+              const vh = window.innerHeight || document.documentElement.clientHeight;
+              let targetY = 0;
+              if (stageBottom <= vh - 8) {
+                targetY = 0;
+              } else if (stageHeight + 16 <= vh) {
+                targetY = Math.max(0, stageTop - Math.floor((vh - stageHeight) / 2));
+              } else {
+                targetY = Math.max(0, stageBottom - vh + 12);
+              }
+              window.scrollTo({ top: targetY, behavior: 'smooth' });
             }
           });
         }
@@ -1880,6 +1894,9 @@
       const panel = document.getElementById('adaptivePanel');
       const manuscript = document.getElementById('manuscript');
       if (panel) panel.hidden = true;
+      if (typeof lessonActive === 'undefined' || !lessonActive) {
+        document.documentElement.classList.remove('lesson-stage-active');
+      }
       if (manuscript) manuscript.hidden = false;
 
       if (!keepSummary) {

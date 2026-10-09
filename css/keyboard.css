@@ -220,14 +220,13 @@
   .key[data-key="j"]::after{
     content:"";
     position:absolute;
-    bottom:5px;
-    left:50%;
+    inset:auto auto 5px 50% !important;
     transform:translateX(-50%);
     width:14px;
     height:2.5px;
     border-radius:999px;
     background:currentColor;
-    opacity:0.48;
+    opacity:0.55;
     pointer-events:none;
   }
 

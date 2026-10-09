@@ -1478,6 +1478,7 @@ function restoreSavedLessonSession(){
   if(lessonTitleEl) lessonTitleEl.textContent = def.title;
   renderLessonMeta(def);
   if(lessonPanel) lessonPanel.hidden = false;
+  document.documentElement.classList.add('lesson-stage-active');
   const mElSaved = document.getElementById('manuscript'); if(mElSaved) mElSaved.hidden = true;
   if(lessonStrip){
     lessonStrip.hidden = false;
@@ -2234,6 +2235,7 @@ function startLesson(idOrDef){
   lessonTitleEl.textContent = def.title;
   renderLessonMeta(def);
   lessonPanel.hidden = false;
+  document.documentElement.classList.add('lesson-stage-active');
   const mEl = document.getElementById('manuscript'); if(mEl) mEl.hidden = true;
   if(lessonStrip){
     lessonStrip.hidden = false;
@@ -2252,16 +2254,21 @@ function startLesson(idOrDef){
   requestAnimationFrame(()=>{
     if(lessonPanel && !lessonPanel.hidden && boardWrap){
       const panelRect = lessonPanel.getBoundingClientRect();
+      const boardRect = boardWrap.getBoundingClientRect();
       const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
-      const targetY = currentScrollY + panelRect.top - 65;
-      window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
-    } else if(lessonPanel && !lessonPanel.hidden){
-      const rect = lessonPanel.getBoundingClientRect();
-      const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
-      const targetY = currentScrollY + rect.top - 65;
-      window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
-    } else if(boardWrap){
-      boardWrap.scrollIntoView({ behavior:'smooth', block:'center' });
+      const stageTop = currentScrollY + panelRect.top;
+      const stageBottom = currentScrollY + boardRect.bottom;
+      const stageHeight = stageBottom - stageTop;
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      let targetY = 0;
+      if(stageBottom <= vh - 8){
+        targetY = 0;
+      } else if(stageHeight + 16 <= vh){
+        targetY = Math.max(0, stageTop - Math.floor((vh - stageHeight) / 2));
+      } else {
+        targetY = Math.max(0, stageBottom - vh + 12);
+      }
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
     }
   });
 }
@@ -2283,6 +2290,9 @@ function executeLessonExit(){
   remedialActive = false;
   lessonAcceptedUnits = [];
   lessonPanel.hidden = true;
+  if(!window.adaptiveActive){
+    document.documentElement.classList.remove('lesson-stage-active');
+  }
   const mElExit = document.getElementById('manuscript'); if(mElExit) mElExit.hidden = false;
   if(lessonStrip) lessonStrip.hidden = false;
   lockedLayer = null;
@@ -2296,11 +2306,6 @@ function executeLessonExit(){
   }
   highlightedModifierKeyId = null;
   renderLessonStrip();
-  requestAnimationFrame(()=>{
-    if(boardWrap){
-      boardWrap.scrollIntoView({ behavior:'smooth', block:'center' });
-    }
-  });
 }
 
 function showIncompleteLesson(){

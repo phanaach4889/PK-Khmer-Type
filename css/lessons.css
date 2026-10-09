@@ -1211,13 +1211,58 @@
     margin-left:auto;
   }
 
+  /* Single-screen lesson stage: keep full keyboard + lesson deck visible together without scrolling */
+  html:has(#lessonPanel:not([hidden])) .site-crest-icon,
+  html:has(#lessonPanel:not([hidden])) .subtitle,
+  html:has(#lessonPanel:not([hidden])) .founder-byline,
+  html:has(#lessonPanel:not([hidden])) .session-bar,
+  html:has(#adaptivePanel:not([hidden])) .site-crest-icon,
+  html:has(#adaptivePanel:not([hidden])) .subtitle,
+  html:has(#adaptivePanel:not([hidden])) .founder-byline,
+  html:has(#adaptivePanel:not([hidden])) .session-bar,
+  html.lesson-stage-active .site-crest-icon,
+  html.lesson-stage-active .subtitle,
+  html.lesson-stage-active .founder-byline,
+  html.lesson-stage-active .session-bar{
+    display:none !important;
+  }
+  html:has(#lessonPanel:not([hidden])) body,
+  html:has(#adaptivePanel:not([hidden])) body,
+  html.lesson-stage-active body{
+    padding-top:10px !important;
+    padding-bottom:10px !important;
+  }
+  html:has(#lessonPanel:not([hidden])) h1,
+  html:has(#adaptivePanel:not([hidden])) h1,
+  html.lesson-stage-active h1{
+    font-size:clamp(1.25rem, 2.2vw, 1.55rem) !important;
+    margin:0 0 6px !important;
+  }
+  html:has(#lessonPanel:not([hidden])) .layout-bar,
+  html:has(#adaptivePanel:not([hidden])) .layout-bar,
+  html.lesson-stage-active .layout-bar{
+    margin-bottom:4px !important;
+  }
+  html:has(#lessonPanel:not([hidden])) .layer-strip,
+  html:has(#adaptivePanel:not([hidden])) .layer-strip,
+  html.lesson-stage-active .layer-strip{
+    margin:4px auto 8px !important;
+    padding:3px 5px !important;
+  }
+  .lesson-flow-banner,
+  .lesson-newkeys,
+  .lesson-examples-banner,
+  .lesson-live-hint{
+    display:none !important;
+  }
+
   .lesson-panel{
     position:relative;
     z-index:10;
-    width:min(92vw, 860px);
-    margin:44px auto 14px;
-    padding:18px 24px 16px;
-    border-radius:20px;
+    width:min(86vw, 780px);
+    margin:6px auto 10px;
+    padding:12px 18px 11px;
+    border-radius:18px;
     background:
       radial-gradient(120% 120% at 50% 0%, rgba(30, 38, 62, 0.5) 0%, transparent 65%),
       linear-gradient(180deg, rgba(16, 21, 36, 0.96) 0%, rgba(9, 12, 22, 0.98) 100%);
@@ -1225,8 +1270,8 @@
     -webkit-backdrop-filter:blur(20px);
     border:1px solid rgba(255, 209, 102, 0.28);
     box-shadow:
-      0 24px 64px rgba(0,0,0,0.85),
-      0 0 32px rgba(255,209,102,0.1),
+      0 18px 44px rgba(0,0,0,0.75),
+      0 0 24px rgba(255,209,102,0.08),
       inset 0 1px 0 rgba(255,255,255,0.14),
       inset 0 0 20px rgba(0,0,0,0.4);
     animation:panel-in .38s cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -1234,12 +1279,12 @@
   @keyframes panel-in{
     0%{
       opacity:0;
-      transform:perspective(800px) translateY(-26px) scale(0.95);
+      transform:perspective(800px) translateY(-16px) scale(0.97);
       filter:brightness(1.25);
     }
     65%{
       opacity:1;
-      transform:perspective(800px) translateY(3px) scale(1.012);
+      transform:perspective(800px) translateY(2px) scale(1.006);
       filter:brightness(1.08);
     }
     100%{
@@ -1255,9 +1300,9 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:14px;
-    margin-bottom:12px;
-    padding-bottom:10px;
+    gap:12px;
+    margin-bottom:8px;
+    padding-bottom:7px;
     border-bottom:1px solid rgba(255,255,255,0.08);
   }
   .lesson-top-left{
@@ -1676,12 +1721,12 @@
     transform:translateY(-1px);
   }
   .lesson-progress-bar{
-    height:7px;
+    height:6px;
     border-radius:4px;
     background:rgba(255,255,255,0.08);
     border:1px solid rgba(255,255,255,0.1);
     overflow:hidden;
-    margin-bottom:16px;
+    margin-bottom:10px;
   }
   .lesson-progress-fill{
     height:100%;
@@ -1696,7 +1741,7 @@
     0%{ background-position:200% 0; }
     100%{ background-position:-200% 0; }
   }
-    .lesson-char-row{
+  .lesson-char-row{
     display:flex;
     gap:10px;
     justify-content:center;
@@ -1704,13 +1749,13 @@
     flex-wrap:nowrap;
     white-space:nowrap;
     overflow:hidden;
-    min-height:3.6em;
-    height:3.6em;
-    padding:8px 20px;
+    min-height:2.85em;
+    height:2.85em;
+    padding:6px 16px;
     font-family:'Kantumruy Pro', 'Khmer OS Battambang', 'Khmer OS Siemreap', 'Noto Sans Khmer', sans-serif;
-    font-size:2.45rem;
+    font-size:2.1rem;
     line-height:1;
-    margin-bottom:16px;
+    margin-bottom:10px;
     background:rgba(7, 10, 20, 0.62);
     border:1.5px solid rgba(255, 255, 255, 0.14);
     border-radius:14px;
