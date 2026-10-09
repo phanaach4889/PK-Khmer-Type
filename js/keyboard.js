@@ -634,16 +634,16 @@ window.render = render;
 window.LAYOUTS = LAYOUTS;
 window.glyphData = glyphData;
 const FINGERS = [
-  {id:'lp', hand:'L', home:'a', kind:'pinky',  baseW:12.5, tipW:7.5, kDist:68, restLen:52, restAng:-0.10},
-  {id:'lr', hand:'L', home:'s', kind:'ring',   baseW:14.5, tipW:9.0, kDist:60, restLen:56, restAng:-0.04},
-  {id:'lm', hand:'L', home:'d', kind:'middle', baseW:15.5, tipW:9.5, kDist:54, restLen:60, restAng:0.0},
-  {id:'li', hand:'L', home:'f', kind:'index',  baseW:15.0, tipW:9.0, kDist:58, restLen:56, restAng:0.06},
-  {id:'lt', hand:'L', home:'space', kind:'thumb', baseW:18.5, tipW:11.5, kDist:42, restLen:42, restAng:0.42},
-  {id:'rt', hand:'R', home:'space', kind:'thumb', baseW:18.5, tipW:11.5, kDist:42, restLen:42, restAng:-0.42},
-  {id:'ri', hand:'R', home:'j', kind:'index',  baseW:15.0, tipW:9.0, kDist:58, restLen:56, restAng:-0.06},
-  {id:'rm', hand:'R', home:'k', kind:'middle', baseW:15.5, tipW:9.5, kDist:54, restLen:60, restAng:0.0},
-  {id:'rr', hand:'R', home:'l', kind:'ring',   baseW:14.5, tipW:9.0, kDist:60, restLen:56, restAng:0.04},
-  {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:12.5, tipW:7.5, kDist:68, restLen:52, restAng:0.10},
+  {id:'lp', hand:'L', home:'a', kind:'pinky',  baseW:13.0, tipW:8.5,  kDist:64, restLen:52, restAng:-0.09},
+  {id:'lr', hand:'L', home:'s', kind:'ring',   baseW:14.8, tipW:9.6,  kDist:58, restLen:56, restAng:-0.03},
+  {id:'lm', hand:'L', home:'d', kind:'middle', baseW:15.8, tipW:10.2, kDist:53, restLen:60, restAng:0.0},
+  {id:'li', hand:'L', home:'f', kind:'index',  baseW:15.2, tipW:9.8,  kDist:56, restLen:56, restAng:0.05},
+  {id:'lt', hand:'L', home:'space', kind:'thumb', baseW:18.5, tipW:12.4, kDist:46, restLen:46, restAng:0.52},
+  {id:'rt', hand:'R', home:'space', kind:'thumb', baseW:18.5, tipW:12.4, kDist:46, restLen:46, restAng:-0.52},
+  {id:'ri', hand:'R', home:'j', kind:'index',  baseW:15.2, tipW:9.8,  kDist:56, restLen:56, restAng:-0.05},
+  {id:'rm', hand:'R', home:'k', kind:'middle', baseW:15.8, tipW:10.2, kDist:53, restLen:60, restAng:0.0},
+  {id:'rr', hand:'R', home:'l', kind:'ring',   baseW:14.8, tipW:9.6,  kDist:58, restLen:56, restAng:0.03},
+  {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:13.0, tipW:8.5, kDist:64, restLen:52, restAng:0.09},
 ];
 window.FINGERS = FINGERS;
 
@@ -686,7 +686,7 @@ function roundedPolyPath(pts, r){
 function qPoint(o,c,t,s){ const m=1-s; return { x:m*m*o.x+2*m*s*c.x+s*s*t.x, y:m*m*o.y+2*m*s*c.y+s*s*t.y }; }
 function qTangent(o,c,t,s){ const m=1-s; return { x:2*m*(c.x-o.x)+2*s*(t.x-c.x), y:2*m*(c.y-o.y)+2*s*(t.y-c.y) }; }
 
-/* build a smooth tapered, rounded-cap finger silhouette between origin and tip */
+/* build a smooth tapered, rounded-cap human finger silhouette between origin and tip */
 function fingerFrame(origin, ctrl, tip, baseW, tipW){
   const N = 18, left = [], right = [];
   for(let i=0;i<=N;i++){
@@ -694,8 +694,10 @@ function fingerFrame(origin, ctrl, tip, baseW, tipW){
     const p = qPoint(origin, ctrl, tip, s);
     const tan = qTangent(origin, ctrl, tip, s);
     const l = Math.hypot(tan.x,tan.y) || 1;
-    const nx = -tan.y/l, ny = tan.x/l;
-    const w = (baseW + (tipW-baseW) * Math.pow(s, 1.35)) / 2;
+    // Left-hand normal in screen coordinates (+X right, +Y down) so left[] is true left of finger vector
+    const nx = tan.y/l, ny = -tan.x/l;
+    const phalanxContour = Math.sin(s * Math.PI) * 0.55;
+    const w = (baseW + (tipW - baseW) * Math.pow(s, 1.22) + phalanxContour) / 2;
     left.push({x:p.x+nx*w, y:p.y+ny*w});
     right.push({x:p.x-nx*w, y:p.y-ny*w});
   }
@@ -716,10 +718,10 @@ function frameToPath(frame, baseW, tipW){
 function creaseAt(frame, s){
   const i = Math.round(s * (frame.left.length-1));
   const l = frame.left[i], r = frame.right[i];
-  const mx=(l.x+r.x)/2, my=(l.y+r.y)/2;
-  const lx = l.x + (l.x-mx)*0.65, ly = l.y + (l.y-my)*0.65;
-  const rx = r.x + (r.x-mx)*0.65, ry = r.y + (r.y-my)*0.65;
-  return `M ${lx.toFixed(1)} ${ly.toFixed(1)} Q ${mx.toFixed(1)} ${my.toFixed(1)} ${rx.toFixed(1)} ${ry.toFixed(1)}`;
+  const mx = (l.x+r.x)/2, my = (l.y+r.y)/2;
+  const lx = mx + (l.x-mx)*0.56, ly = my + (l.y-my)*0.56;
+  const rx = mx + (r.x-mx)*0.56, ry = my + (r.y-my)*0.56;
+  return `M ${lx.toFixed(1)} ${ly.toFixed(1)} Q ${mx.toFixed(1)} ${(my - 1.2).toFixed(1)} ${rx.toFixed(1)} ${ry.toFixed(1)}`;
 }
 function pointAtFrame(frame, s){
   const i = Math.round(s * (frame.left.length-1));
@@ -1105,32 +1107,52 @@ function buildHand(hand, fingers, wrapRect, activeF, targetKey){
   const indexBase = knucklePts[3];
   const pinkyBase = knucklePts[0];
 
-  // Natural thumb base seated on the inner palm
+  // Anatomical thumb base seated on the lower-inner palm (thenar eminence) below Spacebar level
   const thumbF = fingers.find(f=>f.kind==='thumb');
-  const thumbBase = { x: indexBase.x + inward * 22, y: indexBase.y + 12 };
+  const spaceElForHand = keyEls['space'];
+  let spaceMidY = indexBase.y + 28;
+  if(spaceElForHand){
+    const sr = spaceElForHand.getBoundingClientRect();
+    if(sr.height > 0){
+      spaceMidY = (sr.top + sr.height * 0.46) - wrapRect.top;
+    }
+  }
+  const thumbBase = {
+    x: indexBase.x + inward * 12,
+    y: Math.min(wrapRect.height - 12, Math.max(indexBase.y + 42, spaceMidY + 20 + shiftY * 0.35))
+  };
   baseKnuckles[thumbF.id] = thumbBase;
 
-  // Ergonomic palm contour
-  const palmHeight = 72;
+  // Ergonomic human palm contour encompassing all 4 MCP knuckles + inner thenar thumb pad
+  const palmHeight = 68;
   const maxKnuckleY = Math.max(...knucklePts.map(p=>p.y));
   const wristCenter = {
-    x: (knucklePts[1].x + knucklePts[2].x)/2 + outward * 4,
-    y: Math.min(wrapRect.height - 8, maxKnuckleY + palmHeight)
+    x: (knucklePts[1].x + knucklePts[2].x)/2 + outward * 2,
+    y: Math.min(wrapRect.height - 6, Math.max(maxKnuckleY + palmHeight, thumbBase.y + 14))
   };
-  const wristWidth = 66;
-  const wristOuter = { x: wristCenter.x + outward * (wristWidth * 0.52), y: wristCenter.y };
-  const wristInner = { x: wristCenter.x + inward * (wristWidth * 0.48), y: wristCenter.y };
+  const wristWidth = 68;
+  const wristOuter = { x: wristCenter.x + outward * (wristWidth * 0.50), y: wristCenter.y };
+  const wristInner = { x: wristCenter.x + inward * (wristWidth * 0.46), y: wristCenter.y };
 
-  const topOuter = { x: pinkyBase.x + outward * 12, y: pinkyBase.y - 2 };
-  const innerCurve = { x: thumbBase.x + inward * 3, y: thumbBase.y + 22 };
+  const topOuter = { x: pinkyBase.x + outward * 9, y: pinkyBase.y + 1 };
+  const k0 = { x: pinkyBase.x, y: pinkyBase.y - 5 };
+  const k1 = { x: knucklePts[1].x, y: knucklePts[1].y - 6 };
+  const k2 = { x: knucklePts[2].x, y: knucklePts[2].y - 6 };
+  const k3 = { x: indexBase.x, y: indexBase.y - 5 };
+  const topInner = { x: indexBase.x + inward * 9, y: indexBase.y + 3 };
+  const thenarUpper = { x: thumbBase.x + inward * 9, y: thumbBase.y - 8 };
+  const thenarLower = { x: thumbBase.x + inward * 6, y: thumbBase.y + 9 };
+  const hypothenar = { x: topOuter.x + outward * 3, y: (topOuter.y + wristOuter.y) * 0.54 };
 
-  const arch = (a,b)=> ({ x:(a.x+b.x)/2, y:(a.y+b.y)/2 - 4 });
   const outline = [
     topOuter,
-    arch(topOuter, knucklePts[1]), knucklePts[1],
-    arch(knucklePts[1], knucklePts[2]), knucklePts[2],
-    arch(knucklePts[2], indexBase), indexBase,
-    innerCurve, wristInner, wristOuter
+    k0, k1, k2, k3,
+    topInner,
+    thenarUpper,
+    thenarLower,
+    wristInner,
+    wristOuter,
+    hypothenar
   ];
   const palmPath = roundedPolyPath(outline, 16);
 
@@ -1140,7 +1162,7 @@ function buildHand(hand, fingers, wrapRect, activeF, targetKey){
 
   const highlight = {
     cx: (topOuter.x + knucklePts[1].x)/2 + outward*3,
-    cy: topOuter.y + 8,
+    cy: topOuter.y + 10,
     rx: 26, ry: 14
   };
 
@@ -1164,11 +1186,11 @@ function updateHandsOverlay(){
 
   // Resilient safeguards: guarantee right pinky is always present in FINGERS and DOM
   if(!FINGERS.some(f => f.id === 'rp')){
-    const rpDef = {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:12.5, tipW:7.5, kDist:68, restLen:52, restAng:0.10};
+    const rpDef = {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:13.0, tipW:8.5, kDist:64, restLen:52, restAng:0.09};
     FINGERS.push(rpDef);
   }
   if(!fingerEls['rp']){
-    const rpDef = FINGERS.find(f => f.id === 'rp') || {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:12.5, tipW:7.5, kDist:68, restLen:52, restAng:0.10};
+    const rpDef = FINGERS.find(f => f.id === 'rp') || {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:13.0, tipW:8.5, kDist:64, restLen:52, restAng:0.09};
     createFingerElement(rpDef);
   }
 
@@ -1219,23 +1241,30 @@ function updateHandsOverlay(){
           const spaceEl = keyEls['space'];
           if(spaceEl){
             const r = spaceEl.getBoundingClientRect();
-            const frac = f.hand === 'L' ? 0.38 : 0.62;
-            tip = { x: r.left + r.width * frac - wrapRect.left, y: tip.y };
+            const frac = f.hand === 'L' ? 0.36 : 0.64;
+            const rawX = r.left + r.width * frac - wrapRect.left;
+            const rawY = r.top + r.height * 0.44 - wrapRect.top;
+            tip = {
+              x: f.hand === 'L' ? Math.max(origin.x + 28, rawX) : Math.min(origin.x - 28, rawX),
+              y: Math.min(origin.y - 18, rawY)
+            };
           }
         }
       } else {
-        // Natural relaxed resting thumb: rests on spacebar only when hand is at rest; floats with hand when in motion
+        // Natural relaxed human thumb: angles upward and inward from the lower-inner palm onto the Spacebar
         const isHandMoving = Math.abs(hb.shiftX) > 4 || Math.abs(hb.shiftY) > 4;
         const spaceEl = keyEls['space'];
         if(!isHandMoving && spaceEl){
           const r = spaceEl.getBoundingClientRect();
-          const frac = f.hand === 'L' ? 0.38 : 0.62;
+          const frac = f.hand === 'L' ? 0.36 : 0.64;
+          const rawX = r.left + r.width * frac - wrapRect.left;
+          const rawY = r.top + r.height * 0.46 - wrapRect.top;
           tip = {
-            x: r.left + r.width * frac - wrapRect.left,
-            y: r.top + r.height * 0.45 - wrapRect.top
+            x: f.hand === 'L' ? Math.max(origin.x + 28, rawX) : Math.min(origin.x - 28, rawX),
+            y: Math.min(origin.y - 18, rawY)
           };
         } else {
-          tip = { x: origin.x + inward * 16, y: origin.y + 24 };
+          tip = { x: origin.x + inward * 28, y: origin.y - 22 };
         }
       }
     } else {
@@ -1263,44 +1292,69 @@ function updateHandsOverlay(){
     if(!tip) return;
 
     // Strict physiological maximum reach: human fingers cannot stretch beyond their bone length
-    const maxLen = f.kind === 'thumb' ? 62 : (f.kind === 'pinky' ? 74 : (f.kind === 'middle' ? 95 : 88));
+    const maxLen = f.kind === 'thumb' ? 56 : (f.kind === 'pinky' ? 74 : (f.kind === 'middle' ? 95 : 88));
     const d = dist(origin, tip);
     if(d > maxLen){
       const scale = maxLen / d;
       tip = { x: origin.x + (tip.x - origin.x) * scale, y: origin.y + (tip.y - origin.y) * scale };
     }
-    const bow = Math.min(18, d * 0.14);
-    const mid = { x:(origin.x+tip.x)/2, y:(origin.y+tip.y)/2 - bow };
+    let mid;
+    if(f.kind === 'thumb'){
+      mid = {
+        x: (origin.x + tip.x) * 0.5 - inward * 3.5,
+        y: (origin.y + tip.y) * 0.5 - 4.5
+      };
+    } else {
+      const bow = Math.min(14, d * 0.11);
+      mid = { x: (origin.x + tip.x) * 0.5, y: (origin.y + tip.y) * 0.5 - bow };
+    }
 
     const frame = fingerFrame(origin, mid, tip, f.baseW, f.tipW);
     fe.shape.setAttribute('d', frameToPath(frame, f.baseW, f.tipW));
-    fe.crease1.setAttribute('d', creaseAt(frame, 0.42));
-    fe.crease2.setAttribute('d', creaseAt(frame, 0.72));
-    fe.shine.setAttribute('d', `M ${frame.left[1].x.toFixed(1)} ${frame.left[1].y.toFixed(1)} Q ${mid.x.toFixed(1)} ${mid.y.toFixed(1)} ${(tip.x + (frame.left[frame.left.length-1].x-tip.x)*0.3).toFixed(1)} ${(tip.y + (frame.left[frame.left.length-1].y-tip.y)*0.3).toFixed(1)}`);
-    fe.shine2.setAttribute('d', `M ${frame.right[1].x.toFixed(1)} ${frame.right[1].y.toFixed(1)} Q ${mid.x.toFixed(1)} ${mid.y.toFixed(1)} ${(tip.x + (frame.right[frame.right.length-1].x-tip.x)*0.3).toFixed(1)} ${(tip.y + (frame.right[frame.right.length-1].y-tip.y)*0.3).toFixed(1)}`);
+
+    if(f.kind === 'thumb'){
+      // Human thumb has 1 interphalangeal (IP) joint along the free shaft
+      fe.crease1.setAttribute('d', creaseAt(frame, 0.52));
+      fe.crease2.setAttribute('d', '');
+      const j1 = pointAtFrame(frame, 0.52);
+      fe.joint1.setAttribute('cx', j1.x); fe.joint1.setAttribute('cy', j1.y);
+      fe.joint1.setAttribute('r', Math.max(1.5, f.baseW * 0.14));
+      fe.joint2.setAttribute('r', '0');
+    } else {
+      fe.crease1.setAttribute('d', creaseAt(frame, 0.42));
+      fe.crease2.setAttribute('d', creaseAt(frame, 0.72));
+      const j1 = pointAtFrame(frame, 0.42), j2 = pointAtFrame(frame, 0.72);
+      fe.joint1.setAttribute('cx', j1.x); fe.joint1.setAttribute('cy', j1.y);
+      fe.joint1.setAttribute('r', Math.max(1.5, f.baseW * 0.15));
+      fe.joint2.setAttribute('cx', j2.x); fe.joint2.setAttribute('cy', j2.y);
+      fe.joint2.setAttribute('r', Math.max(1.2, f.tipW * 0.15));
+    }
+
+    // Soft anatomical edge highlight along the dorsal ridge (not cutting across the center)
+    const sStart = 3, sMid = 9, sEnd = 14;
+    const cStart = pointAtFrame(frame, sStart / 18), cMid = pointAtFrame(frame, sMid / 18), cEnd = pointAtFrame(frame, sEnd / 18);
+    const sh1 = { x: cStart.x + (frame.left[sStart].x - cStart.x) * 0.62, y: cStart.y + (frame.left[sStart].y - cStart.y) * 0.62 };
+    const sh2 = { x: cMid.x + (frame.left[sMid].x - cMid.x) * 0.62, y: cMid.y + (frame.left[sMid].y - cMid.y) * 0.62 };
+    const sh3 = { x: cEnd.x + (frame.left[sEnd].x - cEnd.x) * 0.62, y: cEnd.y + (frame.left[sEnd].y - cEnd.y) * 0.62 };
+    fe.shine.setAttribute('d', `M ${sh1.x.toFixed(1)} ${sh1.y.toFixed(1)} Q ${sh2.x.toFixed(1)} ${sh2.y.toFixed(1)} ${sh3.x.toFixed(1)} ${sh3.y.toFixed(1)}`);
+    fe.shine2.setAttribute('d', '');
     fe.energy.setAttribute('d', `M ${origin.x.toFixed(1)} ${origin.y.toFixed(1)} Q ${mid.x.toFixed(1)} ${mid.y.toFixed(1)} ${tip.x.toFixed(1)} ${tip.y.toFixed(1)}`);
 
-    const j1 = pointAtFrame(frame, 0.42), j2 = pointAtFrame(frame, 0.72);
-    fe.joint1.setAttribute('cx', j1.x); fe.joint1.setAttribute('cy', j1.y);
-    fe.joint1.setAttribute('r', Math.max(1.6, f.baseW*0.16));
-    fe.joint2.setAttribute('cx', j2.x); fe.joint2.setAttribute('cy', j2.y);
-    fe.joint2.setAttribute('r', Math.max(1.3, f.tipW*0.16));
-
-    const nailPt = qPoint(origin, mid, tip, 0.9);
-    const tan = qTangent(origin, mid, tip, 0.9);
+    const nailPt = qPoint(origin, mid, tip, 0.88);
+    const tan = qTangent(origin, mid, tip, 0.88);
     const ang = Math.atan2(tan.y, tan.x) * 180/Math.PI + 90;
     fe.nail.setAttribute('cx', nailPt.x); fe.nail.setAttribute('cy', nailPt.y);
-    fe.nail.setAttribute('rx', Math.max(2.2, f.tipW*0.28)); fe.nail.setAttribute('ry', Math.max(2.8, f.tipW*0.38));
+    fe.nail.setAttribute('rx', Math.max(2.6, f.tipW * 0.32)); fe.nail.setAttribute('ry', Math.max(3.0, f.tipW * 0.36));
     fe.nail.setAttribute('transform', `rotate(${ang.toFixed(1)} ${nailPt.x.toFixed(1)} ${nailPt.y.toFixed(1)})`);
 
-    fe.tip.setAttribute('cx', tip.x);
-    fe.tip.setAttribute('cy', tip.y);
-    fe.impactRing.setAttribute('cx', tip.x);
-    fe.impactRing.setAttribute('cy', tip.y);
-    fe.impactRing2.setAttribute('cx', tip.x);
-    fe.impactRing2.setAttribute('cy', tip.y);
-    fe.impactSparks.setAttribute('transform', `translate(${tip.x.toFixed(1)} ${tip.y.toFixed(1)})`);
-    fe.reticle.setAttribute('transform', `translate(${tip.x.toFixed(1)} ${tip.y.toFixed(1)})`);
+    fe.tip.setAttribute('cx', nailPt.x);
+    fe.tip.setAttribute('cy', nailPt.y);
+    fe.impactRing.setAttribute('cx', nailPt.x);
+    fe.impactRing.setAttribute('cy', nailPt.y);
+    fe.impactRing2.setAttribute('cx', nailPt.x);
+    fe.impactRing2.setAttribute('cy', nailPt.y);
+    fe.impactSparks.setAttribute('transform', `translate(${nailPt.x.toFixed(1)} ${nailPt.y.toFixed(1)})`);
+    fe.reticle.setAttribute('transform', `translate(${nailPt.x.toFixed(1)} ${nailPt.y.toFixed(1)})`);
     fe.g.classList.toggle('active', isActive);
   });
 }
