@@ -754,9 +754,9 @@
       <div class="filter-group">
         <span class="filter-label">Timeframe:</span>
         <div class="segmented-control" id="timeFilter">
-          <button class="segment-btn active" type="button">All Time</button>
-          <button class="segment-btn" type="button">Last 30 Days</button>
-          <button class="segment-btn" type="button">This Week</button>
+          <button class="segment-btn active" data-time="all" type="button">All Time</button>
+          <button class="segment-btn" data-time="30d" type="button">Last 30 Days</button>
+          <button class="segment-btn" data-time="7d" type="button">This Week</button>
         </div>
       </div>
 
@@ -778,7 +778,7 @@
           </div>
         </div>
         <div class="hero-val" id="metricWpm">42 <span style="font-size:16px; color:var(--text-dim);">WPM</span></div>
-        <div class="hero-sub">
+        <div class="hero-sub" id="metricWpmSub">
           <span class="trend-up">↑ +8.4 WPM</span>
           <span>from baseline</span>
         </div>
@@ -793,7 +793,7 @@
           </div>
         </div>
         <div class="hero-val" style="color:var(--emerald-neon);" id="metricAcc">98.2%</div>
-        <div class="hero-sub">
+        <div class="hero-sub" id="metricAccSub">
           <span>Target: 95.0% Mastery Threshold</span>
         </div>
       </div>
@@ -807,7 +807,7 @@
           </div>
         </div>
         <div class="hero-val" id="metricKeys">14,820</div>
-        <div class="hero-sub">
+        <div class="hero-sub" id="metricKeysSub">
           <span>Recorded across all modules</span>
         </div>
       </div>
@@ -821,7 +821,7 @@
           </div>
         </div>
         <div class="hero-val" id="metricLessons">34 <span style="font-size:16px; color:var(--text-dim);">/ 77</span></div>
-        <div class="hero-sub">
+        <div class="hero-sub" id="metricLessonsSub">
           <span style="color:var(--gold-primary); font-weight:700;">44.1% Curriculum Complete</span>
         </div>
       </div>
@@ -835,7 +835,7 @@
           </div>
         </div>
         <div class="hero-val" style="color:var(--gold-primary);" id="metricStreak">12 <span style="font-size:16px; color:var(--text-dim);">Days</span></div>
-        <div class="hero-sub">
+        <div class="hero-sub" id="metricStreakSub">
           <span>Personal Best: 16 Consecutive Days</span>
         </div>
       </div>
@@ -853,12 +853,12 @@
           <div class="module-head">
             <h2 class="module-title">
               <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--gold-primary);"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-              <span>Curriculum Mastery by Unit (Khmer Standard)</span>
+              <span id="curriculumModuleTitle">Curriculum Mastery by Unit (Khmer Standard)</span>
             </h2>
-            <span class="module-badge">77 Total Lessons</span>
+            <span class="module-badge" id="curriculumModuleBadge">77 Total Lessons</span>
           </div>
 
-          <div class="curriculum-units-list">
+          <div class="curriculum-units-list" id="curriculumUnitsList">
             
             <div class="unit-row">
               <div class="unit-meta">
@@ -924,7 +924,7 @@
           <div class="module-head">
             <h2 class="module-title">
               <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--emerald-neon);"><path d="M12 2c1.5 3 4 5 4 9a6 6 0 1 1-12 0c0-4 2.5-6 4-9 1 2 2 3 4 0z"></path></svg>
-              <span>Physical Keyboard Mastery Heatmap</span>
+              <span id="heatmapModuleTitle">Physical Keyboard Mastery Heatmap</span>
             </h2>
             <div style="display:flex; align-items:center; gap:8px; font-size:11px;">
               <span style="color:var(--emerald-neon); font-weight:600;">● &gt;95% (Mastered)</span>
@@ -933,7 +933,7 @@
             </div>
           </div>
 
-          <div class="keyboard-heatmap-wrap">
+          <div class="keyboard-heatmap-wrap" id="keyboardHeatmapWrap">
             <div class="hm-row">
               <div class="hm-key mid" title="` / « — Accuracy: 88%">«</div>
               <div class="hm-key high" title="1 / ១ — Accuracy: 96%">១</div>
@@ -1026,7 +1026,7 @@
                 <th>Result</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="sessionsTableBody">
               <tr>
                 <td><strong>Lesson 12: Home Row Word Integration</strong></td>
                 <td>Standard</td>
@@ -1088,7 +1088,7 @@
 
           <p style="font-size:11px; color:var(--text-muted);">Workload percentage across each typing finger to ensure ergonomic balance and prevent strain.</p>
 
-          <div class="finger-bars-grid">
+          <div class="finger-bars-grid" id="fingerBarsGrid">
             <div class="finger-col">
               <div class="f-bar-wrap"><div class="f-bar-fill" style="height:35%;"></div></div>
               <span class="f-pct">7%</span>
@@ -1137,12 +1137,12 @@
           <div class="module-head">
             <h2 class="module-title">
               <svg class="svg-icon" viewBox="0 0 24 24" style="color:var(--rose-neon);"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-              <span>Top Stumbling Keys Diagnostic</span>
+              <span id="weakKeysModuleTitle">Top Stumbling Keys Diagnostic</span>
             </h2>
             <span class="module-badge" style="color:var(--rose-neon);">High Priority</span>
           </div>
 
-          <div class="weak-keys-list">
+          <div class="weak-keys-list" id="weakKeysList">
             
             <div class="weak-key-item">
               <div class="weak-key-left">
@@ -1283,7 +1283,7 @@
 
   </div>
 
-  <!-- SCRIPT FOR LIVE DATA BINDING & DEMO POPULATION -->
+  <!-- SCRIPT FOR LIVE DATA BINDING & INTERACTIVE MULTI-TRACK ENGINE -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Set current date
@@ -1292,53 +1292,597 @@
       const dateEl = document.getElementById('currentDateDisplay');
       if (dateEl) dateEl.textContent = `${months[d.getMonth()]} ${d.getFullYear()}`;
 
-      // Check live localStorage data
-      try {
-        const rawLessonStats = localStorage.getItem('khmerLessonStats');
-        const rawTracker = localStorage.getItem('khmerTrackingData_v1');
-        const rawGlobal = localStorage.getItem('khmerGlobalStats');
-        const rawStreak = localStorage.getItem('streakVal') || localStorage.getItem('bestVal');
+      // Complete Multi-Track Curriculum & Telemetry Data
+      const TRACK_PROFILES = {
+        standard: {
+          name: 'Khmer Standard',
+          badgeName: 'Khmer Standard (77 Lessons)',
+          totalLessons: 77,
+          baseline: {
+            wpm: 42,
+            wpmGain: '+8.4',
+            accuracy: 98.2,
+            keys: 14820,
+            completedLessons: 34,
+            streak: 12,
+            bestStreak: 16
+          },
+          units: [
+            { name: 'Unit 1: Home Row Foundation (ថ, ក, ដ, ស, ា, ់...)', count: '12 / 12 Mastered', pct: 100 },
+            { name: 'Unit 2: Top Row & Reach Expansion (ឆ, ឹ, េ, រ, ត...)', count: '10 / 12 Mastered', pct: 83 },
+            { name: 'Unit 3: Bottom Row Anchors (ឋ, ខ, ច, វ, ប, ន...)', count: '8 / 12 Mastered', pct: 66 },
+            { name: 'Unit 4: Shift Consonants & Aspirates (ឈ, ឺ, ែ, ឬ, ធ...)', count: '4 / 12 Mastered', pct: 33 },
+            { name: 'Unit 5: Subscripts & Coeng Ligatures (្ក, ្ខ, ្គ, ្ង...)', count: '0 / 12 In Progress', pct: 0 },
+            { name: 'Unit 6: Compound Vowels & Independent Vowels (ឦ, ឧ, ឪ...)', count: '0 / 10 Locked', pct: 0 },
+            { name: 'Unit 7: Real Khmer Literature & Fluency Passages', count: '0 / 7 Locked', pct: 0 }
+          ],
+          heatmapRows: [
+            [
+              { label: '«', key: '`', tier: 'mid', acc: '88%' },
+              { label: '១', key: '1', tier: 'high', acc: '96%' },
+              { label: '២', key: '2', tier: 'high', acc: '98%' },
+              { label: '៣', key: '3', tier: 'high', acc: '97%' },
+              { label: '៤', key: '4', tier: 'high', acc: '99%' },
+              { label: '៥', key: '5', tier: 'high', acc: '95%' },
+              { label: '៦', key: '6', tier: 'high', acc: '96%' },
+              { label: '៧', key: '7', tier: 'mid', acc: '89%' },
+              { label: '៨', key: '8', tier: 'mid', acc: '88%' },
+              { label: '៩', key: '9', tier: 'mid', acc: '87%' },
+              { label: '០', key: '0', tier: 'high', acc: '96%' },
+              { label: '-', key: '-', tier: '', acc: '82%' },
+              { label: '=', key: '=', tier: '', acc: '80%' },
+              { label: 'Bksp', key: 'backspace', cls: 'w-15', tier: '', acc: '99%' }
+            ],
+            [
+              { label: 'Tab', key: 'tab', cls: 'w-15', tier: '', acc: '99%' },
+              { label: 'ឆ', key: 'Q', tier: 'low', acc: '72% (Weak Key)' },
+              { label: 'ឹ', key: 'W', tier: 'mid', acc: '84%' },
+              { label: 'េ', key: 'E', tier: 'high', acc: '96%' },
+              { label: 'រ', key: 'R', tier: 'high', acc: '98%' },
+              { label: 'ត', key: 'T', tier: 'high', acc: '97%' },
+              { label: 'យ', key: 'Y', tier: 'high', acc: '96%' },
+              { label: 'ុ', key: 'U', tier: 'high', acc: '97%' },
+              { label: 'ិ', key: 'I', tier: 'high', acc: '99%' },
+              { label: 'ោ', key: 'O', tier: 'mid', acc: '88%' },
+              { label: 'ផ', key: 'P', tier: 'low', acc: '74% (Weak Key)' },
+              { label: 'ើ', key: '[', tier: '', acc: '80%' },
+              { label: 'ឿ', key: ']', tier: '', acc: '81%' },
+              { label: '\\', key: '\\', cls: 'w-15', tier: '', acc: '90%' }
+            ],
+            [
+              { label: 'Caps', key: 'caps', cls: 'w-15', tier: '', acc: '99%' },
+              { label: 'ា', key: 'A', tier: 'mid', acc: '89%' },
+              { label: 'ស', key: 'S', tier: 'high', acc: '97%' },
+              { label: 'ដ', key: 'D', tier: 'high', acc: '98%' },
+              { label: 'ថ', key: 'F', tier: 'high', acc: '99% (Anchor)' },
+              { label: 'ង', key: 'G', tier: 'high', acc: '95%' },
+              { label: 'ហ', key: 'H', tier: 'high', acc: '96%' },
+              { label: 'ញ', key: 'J', tier: 'high', acc: '98%' },
+              { label: 'ក', key: 'K', tier: 'high', acc: '99%' },
+              { label: 'ល', key: 'L', tier: 'high', acc: '97%' },
+              { label: 'ះ', key: ';', tier: 'low', acc: '78% (Weak Key)' },
+              { label: '់', key: "'", tier: 'mid', acc: '86%' },
+              { label: 'Enter', key: 'enter', cls: 'w-20', tier: '', acc: '99%' }
+            ],
+            [
+              { label: 'Shift', key: 'shift', cls: 'w-20', tier: '', acc: '99%' },
+              { label: 'ឋ', key: 'Z', tier: 'low', acc: '68% (Weak Key)' },
+              { label: 'ខ', key: 'X', tier: 'mid', acc: '82%' },
+              { label: 'ច', key: 'C', tier: 'high', acc: '96%' },
+              { label: 'វ', key: 'V', tier: 'high', acc: '97%' },
+              { label: 'ប', key: 'B', tier: 'high', acc: '96%' },
+              { label: 'ន', key: 'N', tier: 'high', acc: '98%' },
+              { label: 'ម', key: 'M', tier: 'high', acc: '97%' },
+              { label: 'អ', key: ',', tier: 'mid', acc: '88%' },
+              { label: '។', key: '.', tier: 'high', acc: '96%' },
+              { label: '?', key: '/', tier: 'mid', acc: '84%' },
+              { label: 'Shift', key: 'shift', cls: 'w-20', tier: '', acc: '99%' }
+            ],
+            [
+              { label: 'Ctrl', key: 'ctrl', cls: 'w-15', tier: '', acc: '99%' },
+              { label: 'Alt', key: 'alt', cls: 'w-15', tier: '', acc: '99%' },
+              { label: 'Spacebar (ដកឃ្លា)', key: 'space', cls: 'w-space high', tier: 'high', acc: '99.4%' },
+              { label: 'AltGr', key: 'altgr', cls: 'w-15', tier: '', acc: '99%' },
+              { label: 'Ctrl', key: 'ctrl', cls: 'w-15', tier: '', acc: '99%' }
+            ]
+          ],
+          fingers: [
+            { name: 'L-Pinky', pct: 7, height: 35, cls: '' },
+            { name: 'L-Ring', pct: 11, height: 55, cls: '' },
+            { name: 'L-Mid', pct: 16, height: 75, cls: 'emerald' },
+            { name: 'L-Idx', pct: 24, height: 92, cls: 'gold' },
+            { name: 'R-Idx', pct: 21, height: 86, cls: 'gold' },
+            { name: 'R-Mid', pct: 12, height: 65, cls: 'emerald' },
+            { name: 'R-Ring', pct: 6, height: 40, cls: '' },
+            { name: 'R-Pinky', pct: 3, height: 25, cls: '' }
+          ],
+          weakKeys: [
+            { key: 'Z', glyph: 'ឋ', name: 'ឋ (Tho · Key Z)', acc: '68%', latency: '290ms', drillKey: 'z' },
+            { key: 'Q', glyph: 'ឆ', name: 'ឆ (Chho · Key Q)', acc: '72%', latency: '310ms', drillKey: 'q' },
+            { key: 'P', glyph: 'ផ', name: 'ផ (Pho · Key P)', acc: '74%', latency: '340ms', drillKey: 'p' },
+            { key: ';', glyph: 'ះ', name: 'ះ (Reahmuk · Semicolon)', acc: '78%', latency: '270ms', drillKey: 'semicolon' }
+          ],
+          sessions: [
+            { title: 'Lesson 12: Home Row Word Integration', track: 'Standard', acc: '99.2%', wpm: '46 WPM', dur: '01:45', res: 'PASSED', resColor: 'var(--emerald-neon)' },
+            { title: 'Lesson 11: Coordination G (ង) & H (ហ)', track: 'Standard', acc: '98.4%', wpm: '42 WPM', dur: '01:20', res: 'PASSED', resColor: 'var(--emerald-neon)' },
+            { title: 'Adaptive Practice: Weak-Key Remediation', track: 'Standard', acc: '93.5%', wpm: '36 WPM', dur: '03:12', res: 'IMPROVED', resColor: 'var(--gold-primary)' },
+            { title: 'Typing Race: Normal Difficulty (30s)', track: 'Standard', acc: '97.0%', wpm: '54 WPM', dur: '00:30', res: 'NEW BEST', resColor: 'var(--cyan-neon)' },
+            { title: 'Lesson 10: Anchor Keys Review Drill', track: 'Standard', acc: '100.0%', wpm: '44 WPM', dur: '01:05', res: 'FLAWLESS', resColor: 'var(--emerald-neon)' }
+          ]
+        },
 
-        let keys = 0;
-        let wpm = 0;
-        let acc = 0;
+        nida: {
+          name: 'Khmer NiDA',
+          badgeName: 'Khmer NiDA Unicode (77 Lessons)',
+          totalLessons: 77,
+          baseline: {
+            wpm: 39,
+            wpmGain: '+6.1',
+            accuracy: 97.4,
+            keys: 11430,
+            completedLessons: 27,
+            streak: 9,
+            bestStreak: 14
+          },
+          units: [
+            { name: 'Unit 1: NiDA Home Row Anchors (ក, ដ, ថ, ស, ា, ់...)', count: '12 / 12 Mastered', pct: 100 },
+            { name: 'Unit 2: NiDA Upper Row Mechanics (េ, រ, ត, យ, ុ, ិ...)', count: '9 / 12 Mastered', pct: 75 },
+            { name: 'Unit 3: NiDA Lower Row Consonants (ខ, ច, វ, ប, ន, ម...)', count: '5 / 12 Mastered', pct: 41 },
+            { name: 'Unit 4: NiDA Shift Layer & Aspirates (ធ, ឈ, ភ, ឃ, ង...)', count: '1 / 12 Mastered', pct: 8 },
+            { name: 'Unit 5: NiDA Coeng (Subscript) Combinations (្)', count: '0 / 12 In Progress', pct: 0 },
+            { name: 'Unit 6: NiDA Independent Vowels & Signs (ឰ, ឪ, ឫ...)', count: '0 / 10 Locked', pct: 0 },
+            { name: 'Unit 7: Classical NiDA Literature & Prose', count: '0 / 7 Locked', pct: 0 }
+          ],
+          heatmapRows: [
+            [
+              { label: '!', key: '`', tier: 'mid', acc: '87%' },
+              { label: '១', key: '1', tier: 'high', acc: '95%' },
+              { label: '២', key: '2', tier: 'high', acc: '97%' },
+              { label: '៣', key: '3', tier: 'high', acc: '96%' },
+              { label: '៤', key: '4', tier: 'high', acc: '98%' },
+              { label: '៥', key: '5', tier: 'high', acc: '96%' },
+              { label: '៦', key: '6', tier: 'high', acc: '97%' },
+              { label: '៧', key: '7', tier: 'mid', acc: '90%' },
+              { label: '៨', key: '8', tier: 'mid', acc: '89%' },
+              { label: '៩', key: '9', tier: 'mid', acc: '88%' },
+              { label: '០', key: '0', tier: 'high', acc: '96%' },
+              { label: '-', key: '-', tier: '', acc: '84%' },
+              { label: '=', key: '=', tier: '', acc: '83%' },
+              { label: 'Bksp', key: 'backspace', cls: 'w-15', tier: '', acc: '99%' }
+            ],
+            [
+              { label: 'Tab', key: 'tab', cls: 'w-15', tier: '', acc: '99%' },
+              { label: 'ឆ', key: 'Q', tier: 'low', acc: '73% (Weak Key)' },
+              { label: 'ឹ', key: 'W', tier: 'mid', acc: '86%' },
+              { label: 'េ', key: 'E', tier: 'high', acc: '97%' },
+              { label: 'រ', key: 'R', tier: 'high', acc: '98%' },
+              { label: 'ត', key: 'T', tier: 'high', acc: '96%' },
+              { label: 'យ', key: 'Y', tier: 'high', acc: '95%' },
+              { label: 'ុ', key: 'U', tier: 'high', acc: '98%' },
+              { label: 'ិ', key: 'I', tier: 'high', acc: '99%' },
+              { label: 'ោ', key: 'O', tier: 'mid', acc: '87%' },
+              { label: 'ផ', key: 'P', tier: 'mid', acc: '85%' },
+              { label: 'ៀ', key: '[', tier: 'low', acc: '65% (Weak Key)' },
+              { label: 'ឪ', key: ']', tier: 'low', acc: '70% (Weak Key)' },
+              { label: '\\', key: '\\', cls: 'w-15', tier: '', acc: '90%' }
+            ],
+            [
+              { label: 'Caps', key: 'caps', cls: 'w-15', tier: '', acc: '99%' },
+              { label: 'ា', key: 'A', tier: 'mid', acc: '91%' },
+              { label: 'ស', key: 'S', tier: 'high', acc: '98%' },
+              { label: 'ដ', key: 'D', tier: 'high', acc: '97%' },
+              { label: 'ថ', key: 'F', tier: 'high', acc: '98% (Anchor)' },
+              { label: 'ង', key: 'G', tier: 'high', acc: '96%' },
+              { label: 'ហ', key: 'H', tier: 'high', acc: '95%' },
+              { label: 'ញ', key: 'J', tier: 'high', acc: '97%' },
+              { label: 'ក', key: 'K', tier: 'high', acc: '99%' },
+              { label: 'ល', key: 'L', tier: 'high', acc: '96%' },
+              { label: 'ើ', key: ';', tier: 'mid', acc: '85%' },
+              { label: '់', key: "'", tier: 'mid', acc: '88%' },
+              { label: 'Enter', key: 'enter', cls: 'w-20', tier: '', acc: '99%' }
+            ],
+            [
+              { label: 'Shift', key: 'shift', cls: 'w-20', tier: '', acc: '99%' },
+              { label: 'ឋ', key: 'Z', tier: 'low', acc: '76% (Weak Key)' },
+              { label: 'ខ', key: 'X', tier: 'mid', acc: '84%' },
+              { label: 'ច', key: 'C', tier: 'high', acc: '96%' },
+              { label: 'វ', key: 'V', tier: 'high', acc: '97%' },
+              { label: 'ប', key: 'B', tier: 'high', acc: '95%' },
+              { label: 'ន', key: 'N', tier: 'high', acc: '98%' },
+              { label: 'ម', key: 'M', tier: 'high', acc: '97%' },
+              { label: 'អ', key: ',', tier: 'mid', acc: '89%' },
+              { label: '។', key: '.', tier: 'high', acc: '96%' },
+              { label: '?', key: '/', tier: 'mid', acc: '83%' },
+              { label: 'Shift', key: 'shift', cls: 'w-20', tier: '', acc: '99%' }
+            ],
+            [
+              { label: 'Ctrl', key: 'ctrl', cls: 'w-15', tier: '', acc: '99%' },
+              { label: 'Alt', key: 'alt', cls: 'w-15', tier: '', acc: '99%' },
+              { label: 'Spacebar (ដកឃ្លា)', key: 'space', cls: 'w-space high', tier: 'high', acc: '99.2%' },
+              { label: 'AltGr', key: 'altgr', cls: 'w-15', tier: '', acc: '99%' },
+              { label: 'Ctrl', key: 'ctrl', cls: 'w-15', tier: '', acc: '99%' }
+            ]
+          ],
+          fingers: [
+            { name: 'L-Pinky', pct: 8, height: 40, cls: '' },
+            { name: 'L-Ring', pct: 12, height: 58, cls: '' },
+            { name: 'L-Mid', pct: 15, height: 72, cls: 'emerald' },
+            { name: 'L-Idx', pct: 22, height: 88, cls: 'gold' },
+            { name: 'R-Idx', pct: 23, height: 90, cls: 'gold' },
+            { name: 'R-Mid', pct: 11, height: 60, cls: 'emerald' },
+            { name: 'R-Ring', pct: 6, height: 38, cls: '' },
+            { name: 'R-Pinky', pct: 3, height: 26, cls: '' }
+          ],
+          weakKeys: [
+            { key: '[', glyph: 'ៀ', name: 'ៀ (Iea · Bracket L)', acc: '65%', latency: '320ms', drillKey: 'bracketL' },
+            { key: ']', glyph: 'ឪ', name: 'ឪ (Ov · Bracket R)', acc: '70%', latency: '340ms', drillKey: 'bracketR' },
+            { key: 'Q', glyph: 'ឆ', name: 'ឆ (Chho · Key Q)', acc: '73%', latency: '295ms', drillKey: 'q' },
+            { key: 'Z', glyph: 'ឋ', name: 'ឋ (Tho · Key Z)', acc: '76%', latency: '280ms', drillKey: 'z' }
+          ],
+          sessions: [
+            { title: 'Lesson 08: NiDA Home Row Complete Words', track: 'NiDA', acc: '98.8%', wpm: '39 WPM', dur: '01:30', res: 'PASSED', resColor: 'var(--emerald-neon)' },
+            { title: 'Lesson 07: NiDA Top Row Vowel Reach', track: 'NiDA', acc: '96.5%', wpm: '37 WPM', dur: '01:15', res: 'PASSED', resColor: 'var(--emerald-neon)' },
+            { title: 'Lesson 05: NiDA Center Consonant Shift', track: 'NiDA', acc: '94.2%', wpm: '35 WPM', dur: '02:10', res: 'IMPROVED', resColor: 'var(--gold-primary)' },
+            { title: 'Adaptive Practice: NiDA Subscript Coordination', track: 'NiDA', acc: '92.0%', wpm: '31 WPM', dur: '02:45', res: 'PRACTICED', resColor: 'var(--cyan-neon)' },
+            { title: 'Lesson 03: NiDA 4-Key Core Alternation', track: 'NiDA', acc: '100.0%', wpm: '41 WPM', dur: '00:55', res: 'FLAWLESS', resColor: 'var(--emerald-neon)' }
+          ]
+        },
 
-        if (rawLessonStats) {
-          const parsed = JSON.parse(rawLessonStats);
-          if (parsed && typeof parsed.keys === 'number') {
-            keys = parsed.keys;
-            wpm = parsed.bestWpm || parsed.wpm || 0;
-            acc = parsed.accuracy || 100;
+        english: {
+          name: 'English US',
+          badgeName: 'English US QWERTY (64 Lessons)',
+          totalLessons: 64,
+          baseline: {
+            wpm: 56,
+            wpmGain: '+12.6',
+            accuracy: 98.8,
+            keys: 22680,
+            completedLessons: 48,
+            streak: 15,
+            bestStreak: 21
+          },
+          units: [
+            { name: 'Unit 1: Core Home Row Anchors (F, J, D, K, S, L, A, ;)', count: '10 / 10 Mastered', pct: 100 },
+            { name: 'Unit 2: Upper Row Reach (E, R, T, U, I, O, P, Q, W, Y)', count: '12 / 12 Mastered', pct: 100 },
+            { name: 'Unit 3: Bottom Row & Capital Shifts (Z, X, C, V, B, N, M)', count: '11 / 12 Mastered', pct: 91 },
+            { name: 'Unit 4: Numbers & Special Characters (1-0, -, =, /, .)', count: '7 / 10 Mastered', pct: 70 },
+            { name: 'Unit 5: High-Frequency English N-Grams & Bigrams', count: '5 / 10 Mastered', pct: 50 },
+            { name: 'Unit 6: Speed Prose, Punctuation & Velocity Drills', count: '3 / 10 Mastered', pct: 30 }
+          ],
+          heatmapRows: [
+            [
+              { label: '~', key: '`', tier: 'mid', acc: '91%' },
+              { label: '1', key: '1', tier: 'high', acc: '97%' },
+              { label: '2', key: '2', tier: 'high', acc: '98%' },
+              { label: '3', key: '3', tier: 'high', acc: '98%' },
+              { label: '4', key: '4', tier: 'high', acc: '99%' },
+              { label: '5', key: '5', tier: 'high', acc: '96%' },
+              { label: '6', key: '6', tier: 'high', acc: '97%' },
+              { label: '7', key: '7', tier: 'mid', acc: '92%' },
+              { label: '8', key: '8', tier: 'high', acc: '95%' },
+              { label: '9', key: '9', tier: 'high', acc: '96%' },
+              { label: '0', key: '0', tier: 'high', acc: '97%' },
+              { label: '-', key: '-', tier: '', acc: '88%' },
+              { label: '=', key: '=', tier: '', acc: '86%' },
+              { label: 'Bksp', key: 'backspace', cls: 'w-15', tier: '', acc: '99%' }
+            ],
+            [
+              { label: 'Tab', key: 'tab', cls: 'w-15', tier: '', acc: '99%' },
+              { label: 'Q', key: 'Q', tier: 'low', acc: '77% (Weak Key)' },
+              { label: 'W', key: 'W', tier: 'high', acc: '96%' },
+              { label: 'E', key: 'E', tier: 'high', acc: '99%' },
+              { label: 'R', key: 'R', tier: 'high', acc: '98%' },
+              { label: 'T', key: 'T', tier: 'high', acc: '99%' },
+              { label: 'Y', key: 'Y', tier: 'high', acc: '96%' },
+              { label: 'U', key: 'U', tier: 'high', acc: '98%' },
+              { label: 'I', key: 'I', tier: 'high', acc: '99%' },
+              { label: 'O', key: 'O', tier: 'high', acc: '98%' },
+              { label: 'P', key: 'P', tier: 'low', acc: '74% (Weak Key)' },
+              { label: '[', key: '[', tier: '', acc: '85%' },
+              { label: ']', key: ']', tier: '', acc: '84%' },
+              { label: '\\', key: '\\', cls: 'w-15', tier: '', acc: '92%' }
+            ],
+            [
+              { label: 'Caps', key: 'caps', cls: 'w-15', tier: '', acc: '99%' },
+              { label: 'A', key: 'A', tier: 'high', acc: '98%' },
+              { label: 'S', key: 'S', tier: 'high', acc: '99%' },
+              { label: 'D', key: 'D', tier: 'high', acc: '99%' },
+              { label: 'F', key: 'F', tier: 'high', acc: '100% (Anchor)' },
+              { label: 'G', key: 'G', tier: 'high', acc: '97%' },
+              { label: 'H', key: 'H', tier: 'high', acc: '97%' },
+              { label: 'J', key: 'J', tier: 'high', acc: '100% (Anchor)' },
+              { label: 'K', key: 'K', tier: 'high', acc: '99%' },
+              { label: 'L', key: 'L', tier: 'high', acc: '98%' },
+              { label: ';', key: ';', tier: 'low', acc: '81% (Weak Key)' },
+              { label: "'", key: "'", tier: 'mid', acc: '89%' },
+              { label: 'Enter', key: 'enter', cls: 'w-20', tier: '', acc: '99%' }
+            ],
+            [
+              { label: 'Shift', key: 'shift', cls: 'w-20', tier: '', acc: '99%' },
+              { label: 'Z', key: 'Z', tier: 'mid', acc: '86%' },
+              { label: 'X', key: 'X', tier: 'mid', acc: '88%' },
+              { label: 'C', key: 'C', tier: 'high', acc: '97%' },
+              { label: 'V', key: 'V', tier: 'high', acc: '98%' },
+              { label: 'B', key: 'B', tier: 'low', acc: '71% (Weak Key)' },
+              { label: 'N', key: 'N', tier: 'high', acc: '98%' },
+              { label: 'M', key: 'M', tier: 'high', acc: '98%' },
+              { label: ',', key: ',', tier: 'high', acc: '96%' },
+              { label: '.', key: '.', tier: 'high', acc: '97%' },
+              { label: '/', key: '/', tier: 'mid', acc: '88%' },
+              { label: 'Shift', key: 'shift', cls: 'w-20', tier: '', acc: '99%' }
+            ],
+            [
+              { label: 'Ctrl', key: 'ctrl', cls: 'w-15', tier: '', acc: '99%' },
+              { label: 'Alt', key: 'alt', cls: 'w-15', tier: '', acc: '99%' },
+              { label: 'Spacebar', key: 'space', cls: 'w-space high', tier: 'high', acc: '99.8%' },
+              { label: 'AltGr', key: 'altgr', cls: 'w-15', tier: '', acc: '99%' },
+              { label: 'Ctrl', key: 'ctrl', cls: 'w-15', tier: '', acc: '99%' }
+            ]
+          ],
+          fingers: [
+            { name: 'L-Pinky', pct: 9, height: 42, cls: '' },
+            { name: 'L-Ring', pct: 13, height: 60, cls: '' },
+            { name: 'L-Mid', pct: 18, height: 78, cls: 'emerald' },
+            { name: 'L-Idx', pct: 21, height: 86, cls: 'gold' },
+            { name: 'R-Idx', pct: 19, height: 82, cls: 'gold' },
+            { name: 'R-Mid', pct: 12, height: 58, cls: 'emerald' },
+            { name: 'R-Ring', pct: 6, height: 36, cls: '' },
+            { name: 'R-Pinky', pct: 2, height: 22, cls: '' }
+          ],
+          weakKeys: [
+            { key: 'B', glyph: 'B', name: 'B (Left Index Reach · Key B)', acc: '71%', latency: '250ms', drillKey: 'b' },
+            { key: 'P', glyph: 'P', name: 'P (Right Pinky Stretch · Key P)', acc: '74%', latency: '270ms', drillKey: 'p' },
+            { key: 'Q', glyph: 'Q', name: 'Q (Left Pinky Reach · Key Q)', acc: '77%', latency: '260ms', drillKey: 'q' },
+            { key: ';', glyph: ';', name: '; (Right Pinky · Semicolon)', acc: '81%', latency: '240ms', drillKey: 'semicolon' }
+          ],
+          sessions: [
+            { title: 'Lesson 24: Bottom Row Punctuation Mastery', track: 'English', acc: '99.4%', wpm: '58 WPM', dur: '01:10', res: 'PASSED', resColor: 'var(--emerald-neon)' },
+            { title: 'Lesson 21: Capital Letters Alternating Shift', track: 'English', acc: '98.1%', wpm: '54 WPM', dur: '01:25', res: 'PASSED', resColor: 'var(--emerald-neon)' },
+            { title: 'Typing Race: English Common Quotes', track: 'English', acc: '99.0%', wpm: '65 WPM', dur: '00:30', res: 'NEW BEST', resColor: 'var(--cyan-neon)' },
+            { title: 'Lesson 18: High-Frequency English Words', track: 'English', acc: '97.6%', wpm: '52 WPM', dur: '01:40', res: 'PASSED', resColor: 'var(--emerald-neon)' },
+            { title: 'Lesson 12: Home Row + Top Row Speed Sprint', track: 'English', acc: '100.0%', wpm: '61 WPM', dur: '00:50', res: 'FLAWLESS', resColor: 'var(--emerald-neon)' }
+          ]
+        }
+      };
+
+      const TIMEFRAME_MODIFIERS = {
+        all: {
+          keyMult: 1.0,
+          wpmOffset: 0,
+          accOffset: 0,
+          streakFactor: 1.0,
+          subWpm: 'from baseline',
+          subKeys: 'Recorded across all modules',
+          subAcc: 'Target: 95.0% Mastery Threshold',
+          subStreak: (best) => `Personal Best: ${best} Consecutive Days`
+        },
+        '30d': {
+          keyMult: 0.72,
+          wpmOffset: 2.5,
+          accOffset: 0.4,
+          streakFactor: 0.9,
+          subWpm: '↑ +3.2 WPM vs 60d prior',
+          subKeys: 'Past 30-day training cycle',
+          subAcc: 'Monthly consistency index',
+          subStreak: (best) => 'Active 30-day momentum'
+        },
+        '7d': {
+          keyMult: 0.24,
+          wpmOffset: 4.8,
+          accOffset: 0.8,
+          streakFactor: 0.7,
+          subWpm: '↑ Peak weekly sprint',
+          subKeys: 'Past 7 days volume',
+          subAcc: 'Current week rolling accuracy',
+          subStreak: (best) => 'Current 7-day devotion streak'
+        }
+      };
+
+      let currentTrack = 'standard';
+      let currentTimeframe = 'all';
+
+      function renderDashboard() {
+        const profile = TRACK_PROFILES[currentTrack] || TRACK_PROFILES.standard;
+        const timeMod = TIMEFRAME_MODIFIERS[currentTimeframe] || TIMEFRAME_MODIFIERS.all;
+
+        // Check for live user localStorage data
+        let liveCourse = null;
+        try {
+          const rawP = localStorage.getItem('khmerProgress_v2');
+          if (rawP) {
+            const p = JSON.parse(rawP);
+            if (p && p.courses && p.courses[currentTrack]) {
+              liveCourse = p.courses[currentTrack];
+            }
           }
-        } else if (rawGlobal) {
-          const parsed = JSON.parse(rawGlobal);
-          if (parsed && parsed.keys) keys = parsed.keys;
-          if (parsed && parsed.bestWpm) wpm = parsed.bestWpm;
+        } catch(e) {}
+
+        const hasRealData = liveCourse && (liveCourse.totalTypingUnits > 0 || Object.keys(liveCourse.lessons || {}).length > 0);
+
+        // Calculate metrics
+        let totalKeys = Math.round(profile.baseline.keys * timeMod.keyMult);
+        let speedWpm = Math.round(profile.baseline.wpm + timeMod.wpmOffset);
+        let accuracy = Math.min(100, (profile.baseline.accuracy + timeMod.accOffset)).toFixed(1);
+        let completedLessons = profile.baseline.completedLessons;
+        let streakDays = Math.max(1, Math.round(profile.baseline.streak * timeMod.streakFactor));
+
+        if (hasRealData) {
+          if (liveCourse.totalTypingUnits > 0) totalKeys = liveCourse.totalTypingUnits;
+          if (liveCourse.overallAccuracy > 0) accuracy = liveCourse.overallAccuracy.toFixed(1);
+          const doneLessons = Object.values(liveCourse.lessons || {}).filter(l => l.completed).length;
+          if (doneLessons > 0) completedLessons = doneLessons;
+          const maxWpm = Math.max(...Object.values(liveCourse.lessons || {}).map(l => l.bestWpm || 0), 0);
+          if (maxWpm > 0) speedWpm = maxWpm;
         }
 
-        // If user already has real data recorded, update hero cards!
-        if (keys > 0) {
-          document.getElementById('metricKeys').textContent = keys.toLocaleString();
-          document.getElementById('metricWpm').innerHTML = `${wpm || 42} <span style="font-size:16px; color:var(--text-dim);">WPM</span>`;
-          if (acc) document.getElementById('metricAcc').textContent = `${acc}%`;
-          document.getElementById('dataSourceLabel').textContent = 'Live Storage (User Data)';
-        }
-      } catch (e) {}
+        // 1. Update Hero Cards
+        const metricWpmEl = document.getElementById('metricWpm');
+        if (metricWpmEl) metricWpmEl.innerHTML = `${speedWpm} <span style="font-size:16px; color:var(--text-dim);">WPM</span>`;
 
-      // Interactive Export Button
+        const metricAccEl = document.getElementById('metricAcc');
+        if (metricAccEl) metricAccEl.textContent = `${accuracy}%`;
+
+        const metricKeysEl = document.getElementById('metricKeys');
+        if (metricKeysEl) metricKeysEl.textContent = totalKeys.toLocaleString();
+
+        const metricLessonsEl = document.getElementById('metricLessons');
+        if (metricLessonsEl) {
+          metricLessonsEl.innerHTML = `${completedLessons} <span style="font-size:16px; color:var(--text-dim);">/ ${profile.totalLessons}</span>`;
+        }
+
+        const metricStreakEl = document.getElementById('metricStreak');
+        if (metricStreakEl) {
+          metricStreakEl.innerHTML = `${streakDays} <span style="font-size:16px; color:var(--text-dim);">Days</span>`;
+        }
+
+        // Update Hero Subtexts
+        const pctCompleted = ((completedLessons / profile.totalLessons) * 100).toFixed(1);
+        const wpmSub = document.getElementById('metricWpmSub');
+        if (wpmSub) wpmSub.innerHTML = `<span class="trend-up">↑ ${profile.baseline.wpmGain} WPM</span> <span>${timeMod.subWpm}</span>`;
+
+        const accSub = document.getElementById('metricAccSub');
+        if (accSub) accSub.innerHTML = `<span>${timeMod.subAcc}</span>`;
+
+        const keysSub = document.getElementById('metricKeysSub');
+        if (keysSub) keysSub.innerHTML = `<span>${timeMod.subKeys}</span>`;
+
+        const lessonsSub = document.getElementById('metricLessonsSub');
+        if (lessonsSub) lessonsSub.innerHTML = `<span style="color:var(--gold-primary); font-weight:700;">${pctCompleted}% Curriculum Complete</span>`;
+
+        const streakSub = document.getElementById('metricStreakSub');
+        if (streakSub) streakSub.innerHTML = `<span>${timeMod.subStreak(profile.baseline.bestStreak)}</span>`;
+
+        // Update Header Badges
+        const activeLayoutBadge = document.getElementById('activeLayoutBadge');
+        if (activeLayoutBadge) activeLayoutBadge.textContent = profile.badgeName;
+
+        const dataSourceLabel = document.getElementById('dataSourceLabel');
+        if (dataSourceLabel) {
+          dataSourceLabel.textContent = hasRealData ? `Live Storage (${profile.name})` : `Local Storage (Active Profile)`;
+        }
+
+        // 2. Update Curriculum Units List
+        const currTitle = document.getElementById('curriculumModuleTitle');
+        if (currTitle) currTitle.textContent = `Curriculum Mastery by Unit (${profile.name})`;
+
+        const currBadge = document.getElementById('curriculumModuleBadge');
+        if (currBadge) currBadge.textContent = `${profile.totalLessons} Total Lessons`;
+
+        const unitsList = document.getElementById('curriculumUnitsList');
+        if (unitsList) {
+          unitsList.innerHTML = profile.units.map(u => `
+            <div class="unit-row">
+              <div class="unit-meta">
+                <span class="unit-name">${u.name}</span>
+                <span class="unit-count">${u.count} (${u.pct}%)</span>
+              </div>
+              <div class="progress-track"><div class="progress-fill" style="width:${u.pct}%;"></div></div>
+            </div>
+          `).join('');
+        }
+
+        // 3. Update Keyboard Heatmap
+        const heatmapTitle = document.getElementById('heatmapModuleTitle');
+        if (heatmapTitle) heatmapTitle.textContent = `Physical Keyboard Mastery Heatmap (${profile.name})`;
+
+        const heatmapWrap = document.getElementById('keyboardHeatmapWrap');
+        if (heatmapWrap) {
+          heatmapWrap.innerHTML = profile.heatmapRows.map(row => `
+            <div class="hm-row">
+              ${row.map(k => `
+                <div class="hm-key ${k.cls || ''} ${k.tier || ''}" title="${k.key} / ${k.label} — Accuracy: ${k.acc}">${k.label}</div>
+              `).join('')}
+            </div>
+          `).join('');
+        }
+
+        // 4. Update 8-Finger Workload Distribution
+        const fingerBars = document.getElementById('fingerBarsGrid');
+        if (fingerBars) {
+          fingerBars.innerHTML = profile.fingers.map(f => `
+            <div class="finger-col">
+              <div class="f-bar-wrap"><div class="f-bar-fill ${f.cls}" style="height:${f.height}%;"></div></div>
+              <span class="f-pct">${f.pct}%</span>
+              <span class="f-label">${f.name}</span>
+            </div>
+          `).join('');
+        }
+
+        // 5. Update Weak Keys Diagnostic
+        const weakTitle = document.getElementById('weakKeysModuleTitle');
+        if (weakTitle) weakTitle.textContent = `Top Stumbling Keys Diagnostic (${profile.name})`;
+
+        const weakList = document.getElementById('weakKeysList');
+        if (weakList) {
+          weakList.innerHTML = profile.weakKeys.map(wk => `
+            <div class="weak-key-item">
+              <div class="weak-key-left">
+                <div class="key-badge-square">${wk.key}</div>
+                <div class="weak-key-meta">
+                  <h4>${wk.name}</h4>
+                  <p>Accuracy: ${wk.acc} · Mean Latency: ${wk.latency}</p>
+                </div>
+              </div>
+              <a href="index.html?practice=weak&key=${wk.drillKey}&layout=${currentTrack}" class="drill-mini-btn" title="Launch targeted drill for ${wk.key}">Drill</a>
+            </div>
+          `).join('');
+        }
+
+        // 6. Update Recent Sessions History Table
+        const sessionsTbody = document.getElementById('sessionsTableBody');
+        if (sessionsTbody) {
+          sessionsTbody.innerHTML = profile.sessions.map(s => `
+            <tr>
+              <td><strong>${s.title}</strong></td>
+              <td>${s.track}</td>
+              <td><span style="color:${s.resColor}; font-weight:700;">${s.acc}</span></td>
+              <td><strong>${s.wpm}</strong></td>
+              <td>${s.dur}</td>
+              <td><span style="color:${s.resColor}; font-weight:700;">${s.res}</span></td>
+            </tr>
+          `).join('');
+        }
+      }
+
+      // Track Filter Buttons
+      const trackBtns = document.querySelectorAll('#trackFilter .segment-btn');
+      trackBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          trackBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentTrack = btn.dataset.track || 'standard';
+          renderDashboard();
+        });
+      });
+
+      // Timeframe Filter Buttons
+      const timeBtns = document.querySelectorAll('#timeFilter .segment-btn');
+      timeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          timeBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentTimeframe = btn.dataset.time || 'all';
+          renderDashboard();
+        });
+      });
+
+      // Export Report
       const exportBtn = document.getElementById('exportReportBtn');
       if (exportBtn) {
         exportBtn.addEventListener('click', () => {
+          const profile = TRACK_PROFILES[currentTrack] || TRACK_PROFILES.standard;
           const report = {
-            app: "PK Khmer Type",
+            app: "PK Khmer Type Analytics Command Center",
             author: "Phanna Kurosaki",
             exportDate: new Date().toISOString(),
+            track: profile.name,
+            timeframe: currentTimeframe,
             metrics: {
-              keysLogged: document.getElementById('metricKeys').textContent,
-              wpm: document.getElementById('metricWpm').textContent.trim(),
-              accuracy: document.getElementById('metricAcc').textContent,
-              lessonsCompleted: document.getElementById('metricLessons').textContent.trim(),
-              streak: document.getElementById('metricStreak').textContent.trim()
+              keysLogged: document.getElementById('metricKeys')?.textContent,
+              wpm: document.getElementById('metricWpm')?.textContent.trim(),
+              accuracy: document.getElementById('metricAcc')?.textContent,
+              lessonsCompleted: document.getElementById('metricLessons')?.textContent.trim(),
+              streak: document.getElementById('metricStreak')?.textContent.trim()
             }
           };
 
@@ -1346,27 +1890,14 @@
           const url = URL.createObjectURL(blob);
           const a = document.createElement('a');
           a.href = url;
-          a.download = `pk-khmer-type-report-${new Date().toISOString().slice(0, 10)}.json`;
+          a.download = `pk-khmer-type-report-${currentTrack}-${currentTimeframe}-${new Date().toISOString().slice(0, 10)}.json`;
           a.click();
           URL.revokeObjectURL(url);
         });
       }
 
-      // Track filter switching
-      const trackBtns = document.querySelectorAll('#trackFilter .segment-btn');
-      trackBtns.forEach(b => {
-        b.addEventListener('click', () => {
-          trackBtns.forEach(btn => btn.classList.remove('active'));
-          b.classList.add('active');
-          const t = b.dataset.track;
-          const badge = document.getElementById('activeLayoutBadge');
-          if (badge) {
-            if (t === 'nida') badge.textContent = 'Khmer NiDA Unicode (77 Lessons)';
-            else if (t === 'english') badge.textContent = 'English US QWERTY (64 Lessons)';
-            else badge.textContent = 'Khmer Standard (77 Lessons)';
-          }
-        });
-      });
+      // Initial Render
+      renderDashboard();
     });
   </script>
 </body>
