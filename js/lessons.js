@@ -2032,6 +2032,9 @@ function renderLessonChars(){
     const s = document.createElement('span');
     const ch = lessonChars[i];
     s.className = 'lc-char' + (i < lessonIndex ? ' done' : (i === lessonIndex ? ' current' : '')) + (ch === ' ' ? ' lc-space' : '');
+    const keyId = lessonKeyIds && lessonKeyIds[i];
+    const fid = (keyId && typeof KEY_FINGER !== 'undefined' && KEY_FINGER[keyId]) ? KEY_FINGER[keyId] : '';
+    if(fid && ch !== ' ') s.dataset.finger = fid;
     s.textContent = ch === ' ' ? '␣' : ch;
     lessonCharRowEl.appendChild(s);
   }

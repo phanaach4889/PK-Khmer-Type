@@ -309,6 +309,19 @@ let capsOn = false;
 let keyEls = {};
 let glyphData = {};
 
+const KEY_FINGER = {
+  grave:'lp', k1:'lp', k2:'lr', k3:'lm', k4:'li', k5:'li',
+  k6:'ri', k7:'ri', k8:'rm', k9:'rr', k0:'rp', minus:'rp', equal:'rp', backspace:'rp',
+  tab:'lp', q:'lp', w:'lr', e:'lm', r:'li', t:'li', y:'ri', u:'ri', i:'rm', o:'rr',
+  p:'rp', bracketL:'rp', bracketR:'rp', enter:'rp',
+  caps:'lp', a:'lp', s:'lr', d:'lm', f:'li', g:'li', h:'ri', j:'ri', k:'rm', l:'rr',
+  semicolon:'rp', quote:'rp', backslash:'rp',
+  shiftL:'lp', z:'lp', x:'lr', c:'lm', v:'li', b:'li', n:'ri', m:'ri',
+  comma:'rm', period:'rr', slash:'rp', extra:'rp', shiftR:'rp',
+  ctrlL:'lt', alt:'lt', space:'rt', altgr:'rt', ctrlR:'rp',
+};
+window.KEY_FINGER = KEY_FINGER;
+
 function buildBoard(){
   board.innerHTML = '';
   keyEls = {};
@@ -323,6 +336,7 @@ ALL_ROWS.forEach(rowDef=>{
     el.className = 'key notranslate';
     el.setAttribute('translate', 'no');
     el.dataset.key = k.id;
+    if(KEY_FINGER[k.id]) el.dataset.finger = KEY_FINGER[k.id];
     if(k.wide) el.style.flexGrow = k.wide;
     if(k.cls) el.classList.add(k.cls);
     keyEls[k.id] = el;
@@ -610,17 +624,6 @@ if(layoutStrip){
 
 
 /* ---------- finger guide (illustrated translucent hands) ---------- */
-const KEY_FINGER = {
-  grave:'lp', k1:'lp', k2:'lr', k3:'lm', k4:'li', k5:'li',
-  k6:'ri', k7:'ri', k8:'rm', k9:'rr', k0:'rp', minus:'rp', equal:'rp', backspace:'rp',
-  tab:'lp', q:'lp', w:'lr', e:'lm', r:'li', t:'li', y:'ri', u:'ri', i:'rm', o:'rr',
-  p:'rp', bracketL:'rp', bracketR:'rp', enter:'rp',
-  caps:'lp', a:'lp', s:'lr', d:'lm', f:'li', g:'li', h:'ri', j:'ri', k:'rm', l:'rr',
-  semicolon:'rp', quote:'rp', backslash:'rp',
-  shiftL:'lp', z:'lp', x:'lr', c:'lm', v:'li', b:'li', n:'ri', m:'ri',
-  comma:'rm', period:'rr', slash:'rp', extra:'rp', shiftR:'rp',
-  ctrlL:'lt', alt:'lt', space:'rt', altgr:'rt', ctrlR:'rp',
-};
 window.KEY_FINGER = KEY_FINGER;
 window.keyEls = keyEls;
 window.currentLayer = currentLayer;

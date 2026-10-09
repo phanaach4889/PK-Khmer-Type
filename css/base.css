@@ -1068,13 +1068,41 @@
     background: #f1f5f9;
     border-color: #94a3b8;
   }
-  /* Keycaps: Double-shot ceramic chalk */
+  /* Keycaps: Double-shot ceramic chalk + Option 2B Soft Finger-Zone Tints */
   html.theme-light .key {
     background: linear-gradient(180deg, #ffffff 0%, #f8fafc 60%, #f1f5f9 100%) !important;
     color: #0f172a !important;
-    border: 1px solid #cbd5e1 !important;
-    border-bottom: 3px solid #94a3b8 !important;
+    border: 1.5px solid #cbd5e1 !important;
+    border-bottom: 3.5px solid #94a3b8 !important;
     box-shadow: 0 2px 4px rgba(15, 23, 42, 0.05) !important;
+  }
+  html.theme-light .key:not(.mod):not(.lesson-target):not(.correct):not(.wrong)[data-finger="lp"],
+  html.theme-light .key:not(.mod):not(.lesson-target):not(.correct):not(.wrong)[data-finger="rp"] {
+    background: linear-gradient(180deg, #fff1f2 0%, #ffe4e6 100%) !important;
+    border-color: #fda4af !important;
+    border-bottom: 3.5px solid #f43f5e !important;
+  }
+  html.theme-light .key:not(.mod):not(.lesson-target):not(.correct):not(.wrong)[data-finger="lr"],
+  html.theme-light .key:not(.mod):not(.lesson-target):not(.correct):not(.wrong)[data-finger="rr"] {
+    background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%) !important;
+    border-color: #fcd34d !important;
+    border-bottom: 3.5px solid #f59e0b !important;
+  }
+  html.theme-light .key:not(.mod):not(.lesson-target):not(.correct):not(.wrong)[data-finger="lm"],
+  html.theme-light .key:not(.mod):not(.lesson-target):not(.correct):not(.wrong)[data-finger="rm"] {
+    background: linear-gradient(180deg, #ecfdf5 0%, #d1fae5 100%) !important;
+    border-color: #6ee7b7 !important;
+    border-bottom: 3.5px solid #10b981 !important;
+  }
+  html.theme-light .key:not(.mod):not(.lesson-target):not(.correct):not(.wrong)[data-finger="li"] {
+    background: linear-gradient(180deg, #eff6ff 0%, #dbeafe 100%) !important;
+    border-color: #93c5fd !important;
+    border-bottom: 3.5px solid #2563eb !important;
+  }
+  html.theme-light .key:not(.mod):not(.lesson-target):not(.correct):not(.wrong)[data-finger="ri"] {
+    background: linear-gradient(180deg, #f5f3ff 0%, #ede9fe 100%) !important;
+    border-color: #c4b5fd !important;
+    border-bottom: 3.5px solid #7c3aed !important;
   }
   html.theme-light .key:hover {
     background: #ffffff !important;
@@ -1087,6 +1115,28 @@
     border-bottom-width: 1px !important;
     transform: translateY(2px) !important;
     box-shadow: none !important;
+  }
+  html.theme-light .key.lesson-target {
+    background: linear-gradient(180deg, #7c3aed 0%, #6d28d9 100%) !important;
+    color: #ffffff !important;
+    border: 2px solid #4c1d95 !important;
+    border-bottom: 4px solid #2e1065 !important;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25), 0 8px 18px rgba(109, 40, 217, 0.35) !important;
+  }
+  html.theme-light .key.lesson-target .main,
+  html.theme-light .key.lesson-target .sub,
+  html.theme-light .key.lesson-target .alt,
+  html.theme-light .key.lesson-target .code,
+  html.theme-light .key.lesson-target .space-glyph,
+  html.theme-light .key.lesson-target .space-label {
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35) !important;
+  }
+  html.theme-light .key.modifier-target {
+    background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%) !important;
+    color: #ffffff !important;
+    border: 2px solid #075985 !important;
+    border-bottom: 4px solid #0c4a6e !important;
   }
   html.theme-light .key.target,
   html.theme-light .key.hint-next {
@@ -1117,29 +1167,31 @@
   html.theme-light .manuscript,
   html.theme-light .lesson-char-row,
   html.theme-light .trial-card {
-    background: #ffffff !important;
-    border: 1px solid #cbd5e1 !important;
+    background: #f8fafc !important;
+    border: 1.5px solid #cbd5e1 !important;
     box-shadow: 0 8px 24px rgba(15, 23, 42, 0.07) !important;
     color: #0f172a !important;
   }
   html.theme-light .lc-char {
-    color: #1e293b !important;
+    color: #0f172a !important;
     text-shadow: none !important;
   }
   html.theme-light .lc-char.done,
   html.theme-light .lc-char.correct {
     color: #047857 !important;
-    background: #d1fae5 !important;
-    border-color: #34d399 !important;
+    background: #ecfdf5 !important;
+    border: 1.5px solid #6ee7b7 !important;
+    border-bottom: 4px solid #10b981 !important;
     text-shadow: none !important;
   }
   html.theme-light .lc-char.current,
   html.theme-light .lc-char.active {
-    color: #0f172a !important;
-    background: linear-gradient(180deg, #ffffff 0%, color-mix(in srgb, var(--gold-bright) 22%, #f0f9ff) 100%) !important;
-    border: 2px solid var(--gold-bright) !important;
-    box-shadow: 0 4px 14px color-mix(in srgb, var(--gold-bright) 30%, rgba(15, 23, 42, 0.1)), 0 0 0 3px color-mix(in srgb, var(--gold-bright) 18%, transparent) !important;
-    text-shadow: none !important;
+    color: #ffffff !important;
+    background: linear-gradient(180deg, #7c3aed 0%, #6d28d9 100%) !important;
+    border: 2px solid #4c1d95 !important;
+    border-bottom: 4px solid #2e1065 !important;
+    box-shadow: 0 8px 18px rgba(109, 40, 217, 0.35), 0 0 0 3px rgba(124, 58, 237, 0.22) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35) !important;
   }
   html.theme-light .lc-char.shake,
   html.theme-light .lc-char.wrong {
@@ -2040,13 +2092,41 @@
     background: #5c4129;
     border-color: #a0784a;
   }
-  /* Keycaps: Antique Boxwood / Ivory */
+  /* Keycaps: Antique Boxwood / Ivory + Option 2B Soft Finger-Zone Tints */
   html.theme-sepia .key {
     background: linear-gradient(180deg, #faf5ec 0%, #f0e6d2 65%, #e7dac1 100%) !important;
     color: #2c1b0c !important;
-    border: 1px solid #ccbc9e !important;
-    border-bottom: 3px solid #aa9674 !important;
+    border: 1.5px solid #ccbc9e !important;
+    border-bottom: 3.5px solid #aa9674 !important;
     box-shadow: 0 2px 4px rgba(44, 27, 12, 0.08) !important;
+  }
+  html.theme-sepia .key:not(.mod):not(.lesson-target):not(.correct):not(.wrong)[data-finger="lp"],
+  html.theme-sepia .key:not(.mod):not(.lesson-target):not(.correct):not(.wrong)[data-finger="rp"] {
+    background: linear-gradient(180deg, #fff1f2 0%, #ffe4e6 100%) !important;
+    border-color: #fda4af !important;
+    border-bottom: 3.5px solid #f43f5e !important;
+  }
+  html.theme-sepia .key:not(.mod):not(.lesson-target):not(.correct):not(.wrong)[data-finger="lr"],
+  html.theme-sepia .key:not(.mod):not(.lesson-target):not(.correct):not(.wrong)[data-finger="rr"] {
+    background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%) !important;
+    border-color: #fcd34d !important;
+    border-bottom: 3.5px solid #f59e0b !important;
+  }
+  html.theme-sepia .key:not(.mod):not(.lesson-target):not(.correct):not(.wrong)[data-finger="lm"],
+  html.theme-sepia .key:not(.mod):not(.lesson-target):not(.correct):not(.wrong)[data-finger="rm"] {
+    background: linear-gradient(180deg, #ecfdf5 0%, #d1fae5 100%) !important;
+    border-color: #6ee7b7 !important;
+    border-bottom: 3.5px solid #10b981 !important;
+  }
+  html.theme-sepia .key:not(.mod):not(.lesson-target):not(.correct):not(.wrong)[data-finger="li"] {
+    background: linear-gradient(180deg, #eff6ff 0%, #dbeafe 100%) !important;
+    border-color: #93c5fd !important;
+    border-bottom: 3.5px solid #2563eb !important;
+  }
+  html.theme-sepia .key:not(.mod):not(.lesson-target):not(.correct):not(.wrong)[data-finger="ri"] {
+    background: linear-gradient(180deg, #f5f3ff 0%, #ede9fe 100%) !important;
+    border-color: #c4b5fd !important;
+    border-bottom: 3.5px solid #7c3aed !important;
   }
   html.theme-sepia .key:hover {
     background: #fffcf6 !important;
@@ -2059,6 +2139,28 @@
     border-bottom-width: 1px !important;
     transform: translateY(2px) !important;
     box-shadow: none !important;
+  }
+  html.theme-sepia .key.lesson-target {
+    background: linear-gradient(180deg, #7c3aed 0%, #6d28d9 100%) !important;
+    color: #ffffff !important;
+    border: 2px solid #4c1d95 !important;
+    border-bottom: 4px solid #2e1065 !important;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25), 0 8px 18px rgba(109, 40, 217, 0.35) !important;
+  }
+  html.theme-sepia .key.lesson-target .main,
+  html.theme-sepia .key.lesson-target .sub,
+  html.theme-sepia .key.lesson-target .alt,
+  html.theme-sepia .key.lesson-target .code,
+  html.theme-sepia .key.lesson-target .space-glyph,
+  html.theme-sepia .key.lesson-target .space-label {
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35) !important;
+  }
+  html.theme-sepia .key.modifier-target {
+    background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%) !important;
+    color: #ffffff !important;
+    border: 2px solid #075985 !important;
+    border-bottom: 4px solid #0c4a6e !important;
   }
   html.theme-sepia .key.target,
   html.theme-sepia .key.hint-next {
@@ -2090,7 +2192,7 @@
   html.theme-sepia .lesson-char-row,
   html.theme-sepia .trial-card {
     background: linear-gradient(180deg, #fbf7ee 0%, #f4ebd9 100%) !important;
-    border: 1px solid #ccbc9e !important;
+    border: 1.5px solid #ccbc9e !important;
     box-shadow: 0 8px 24px rgba(44, 27, 12, 0.09) !important;
     color: #2c1b0c !important;
   }
@@ -2102,16 +2204,18 @@
   html.theme-sepia .lc-char.correct {
     color: #15803d !important;
     background: #dcfce7 !important;
-    border-color: #4ade80 !important;
+    border: 1.5px solid #4ade80 !important;
+    border-bottom: 4px solid #16a34a !important;
     text-shadow: none !important;
   }
   html.theme-sepia .lc-char.current,
   html.theme-sepia .lc-char.active {
-    color: #2c1b0c !important;
-    background: linear-gradient(180deg, #fffbeb 0%, color-mix(in srgb, var(--gold-bright, #b45309) 28%, #fef3c7) 100%) !important;
-    border: 2px solid var(--gold-bright, #b45309) !important;
-    box-shadow: 0 4px 14px var(--accent-glow, rgba(180, 83, 9, 0.25)), 0 0 0 3px var(--accent-soft, rgba(180, 83, 9, 0.16)) !important;
-    text-shadow: none !important;
+    color: #ffffff !important;
+    background: linear-gradient(180deg, #7c3aed 0%, #6d28d9 100%) !important;
+    border: 2px solid #4c1d95 !important;
+    border-bottom: 4px solid #2e1065 !important;
+    box-shadow: 0 8px 18px rgba(109, 40, 217, 0.35), 0 0 0 3px rgba(124, 58, 237, 0.22) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35) !important;
   }
   html.theme-sepia .lc-char.shake,
   html.theme-sepia .lc-char.wrong {

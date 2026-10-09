@@ -1471,6 +1471,9 @@
       const s = document.createElement('span');
       const ch = chars[i];
       s.className = 'lc-char' + (i < idx ? ' done' : (i === idx ? ' current' : '')) + (ch === ' ' ? ' lc-space' : '');
+      const keyId = activeSession.drill.keyIds && activeSession.drill.keyIds[i];
+      const fid = (keyId && typeof KEY_FINGER !== 'undefined' && KEY_FINGER[keyId]) ? KEY_FINGER[keyId] : '';
+      if (fid && ch !== ' ') s.dataset.finger = fid;
       s.textContent = ch === ' ' ? '␣' : ch;
       charRow.appendChild(s);
     }
