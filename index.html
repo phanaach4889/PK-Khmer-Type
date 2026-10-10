@@ -253,13 +253,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Noto+Serif+Khmer:wght@400;600;700&family=Noto+Sans+Khmer:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/base.css?v=65">
-  <link rel="stylesheet" href="css/keyboard.css?v=65">
-  <link rel="stylesheet" href="css/typing.css?v=65">
-  <link rel="stylesheet" href="css/lessons.css?v=65">
-  <link rel="stylesheet" href="css/responsive.css?v=65">
-  <link rel="stylesheet" href="css/settings.css?v=65">
-  <link rel="stylesheet" href="css/tutorial.css?v=65">
+  <link rel="stylesheet" href="css/base.css?v=66">
+  <link rel="stylesheet" href="css/keyboard.css?v=66">
+  <link rel="stylesheet" href="css/typing.css?v=66">
+  <link rel="stylesheet" href="css/lessons.css?v=66">
+  <link rel="stylesheet" href="css/responsive.css?v=66">
+  <link rel="stylesheet" href="css/settings.css?v=66">
+  <link rel="stylesheet" href="css/tutorial.css?v=66">
   <script>
     try {
       var p = localStorage.getItem('khmerSettingPerformanceMode');
@@ -2298,15 +2298,30 @@
 <footer class="site-footer" id="siteFooter">
   <div class="site-footer-inner">
     <div class="site-footer-credit-badge">
-      <span class="site-footer-live-dot" aria-hidden="true"></span>
-      <span class="site-footer-credit i18n-t" data-en="PK Khmer Type — built by Phanna Kurosaki" data-km="PK Khmer Type — សាងសង់ដោយ Phanna Kurosaki">PK Khmer Type — built by Phanna Kurosaki</span>
+      <div class="site-footer-brand-crest" aria-hidden="true">
+        <img src="assets/logo.svg" width="20" height="20" alt="">
+      </div>
+      <div class="site-footer-brand-copy">
+        <div class="site-footer-brand-title-row">
+          <span class="site-footer-brand-name">PK Khmer Type</span>
+          <button type="button" class="site-footer-live-pill site-footer-version-tag" id="footerVersionTag" title="View PK Khmer Type Release Showcase">
+            <span class="site-footer-live-dot" aria-hidden="true"></span>
+            <span class="site-footer-live-text">STUDIO v2.4</span>
+          </button>
+        </div>
+        <span class="site-footer-credit i18n-t" data-en="Built by Phanna Kurosaki" data-km="សាងសង់ដោយ Phanna Kurosaki">Built by Phanna Kurosaki</span>
+      </div>
     </div>
     <div class="site-footer-actions">
-      <a class="site-footer-link" href="launch/" aria-label="Discover PK Khmer Type and how it works">
+      <a class="site-footer-link" id="siteAboutFooterLink" href="launch/" aria-label="Discover PK Khmer Type and how it works">
+        <svg class="site-footer-link-icon pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+        </svg>
         <span class="i18n-t" data-en="About PK Khmer Type" data-km="អំពី PK Khmer Type">About PK Khmer Type</span>
       </a>
       <a class="site-footer-link" id="siteDashboardFooterLink" href="dashboard.html" aria-label="PK Khmer Type Analytics &amp; Mastery Dashboard">
-        <svg class="site-footer-link-icon pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <svg class="site-footer-link-icon pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <rect x="3" y="3" width="18" height="18" rx="2"/>
           <path d="M3 9h18"/>
           <path d="M9 21V9"/>
@@ -2314,7 +2329,7 @@
         <span class="i18n-t" data-en="Dashboard" data-km="ផ្ទាំងព័ត៌មាន">Dashboard</span>
       </a>
       <a class="site-footer-link" id="siteDocsFooterLink" href="Documents/index.html" aria-label="PK Khmer Type Official Documentation &amp; Keyboard Layout Guide">
-        <svg class="site-footer-link-icon pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <svg class="site-footer-link-icon pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
         <span class="i18n-t" data-en="Documentation" data-km="ឯកសារណែនាំ">Documentation</span>
       </a>
       <a class="site-footer-link" id="siteFacebookLink" href="https://web.facebook.com/Wphanakurasaki/" target="_blank" rel="noopener noreferrer" aria-label="Phanna Kurosaki on Facebook">
@@ -2322,9 +2337,10 @@
         <span class="i18n-t" data-en="Facebook" data-km="Facebook">Facebook</span>
       </a>
       <button type="button" class="site-footer-link" id="siteDevNoteBtn" aria-haspopup="dialog">
-        <svg class="site-footer-link-icon pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <svg class="site-footer-link-icon pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
         <span class="i18n-t" data-en="Developer Note" data-km="សំបុត្រពីអ្នកអភិវឌ្ឍន៍">Developer Note</span>
       </button>
+      <span class="site-footer-divider" aria-hidden="true"></span>
       <button type="button" class="site-lang-toggle" id="siteLangToggle" aria-pressed="false">
         <span class="site-lang-toggle-icon" aria-hidden="true">ភ</span>
         <span id="siteLangToggleLabel">Translate to Khmer</span>
@@ -2613,25 +2629,25 @@
 </noscript>
 
   <!-- Scripts -->
-  <script defer src="js/icons.js?v=65"></script>
-  <script defer src="js/storage.js?v=65"></script>
-  <script defer src="data/curriculum-data.js?v=65"></script>
-  <script defer src="data/adaptive-vocab.js?v=65"></script>
-  <script defer src="js/keyboard.js?v=65"></script>
-  <script defer src="js/tracker.js?v=65"></script>
-  <script defer src="js/progress.js?v=65"></script>
-  <script defer src="js/review.js?v=65"></script>
-  <script defer src="js/cursor-inspector.js?v=65"></script>
-  <script defer src="js/feedback.js?v=65"></script>
-  <script defer src="js/adaptive.js?v=65"></script>
-  <script defer src="js/lessons.js?v=65"></script>
-  <script defer src="js/race.js?v=65"></script>
-  <script defer src="js/typing.js?v=65"></script>
-  <script defer src="js/statistics.js?v=65"></script>
-  <script defer src="js/settings.js?v=65"></script>
-  <script defer src="js/shortcuts.js?v=65"></script>
-  <script defer src="js/quick_guide.js?v=65"></script>
-  <script defer src="js/tutorial.js?v=65"></script>
-  <script defer src="js/app.js?v=65"></script>
+  <script defer src="js/icons.js?v=66"></script>
+  <script defer src="js/storage.js?v=66"></script>
+  <script defer src="data/curriculum-data.js?v=66"></script>
+  <script defer src="data/adaptive-vocab.js?v=66"></script>
+  <script defer src="js/keyboard.js?v=66"></script>
+  <script defer src="js/tracker.js?v=66"></script>
+  <script defer src="js/progress.js?v=66"></script>
+  <script defer src="js/review.js?v=66"></script>
+  <script defer src="js/cursor-inspector.js?v=66"></script>
+  <script defer src="js/feedback.js?v=66"></script>
+  <script defer src="js/adaptive.js?v=66"></script>
+  <script defer src="js/lessons.js?v=66"></script>
+  <script defer src="js/race.js?v=66"></script>
+  <script defer src="js/typing.js?v=66"></script>
+  <script defer src="js/statistics.js?v=66"></script>
+  <script defer src="js/settings.js?v=66"></script>
+  <script defer src="js/shortcuts.js?v=66"></script>
+  <script defer src="js/quick_guide.js?v=66"></script>
+  <script defer src="js/tutorial.js?v=66"></script>
+  <script defer src="js/app.js?v=66"></script>
 </body>
 </html>
