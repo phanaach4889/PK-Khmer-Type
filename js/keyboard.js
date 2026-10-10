@@ -634,16 +634,16 @@ window.render = render;
 window.LAYOUTS = LAYOUTS;
 window.glyphData = glyphData;
 const FINGERS = [
-  {id:'lp', hand:'L', home:'a', kind:'pinky',  baseW:13.0, tipW:8.5,  kDist:64, restLen:52, restAng:-0.09},
-  {id:'lr', hand:'L', home:'s', kind:'ring',   baseW:14.8, tipW:9.6,  kDist:58, restLen:56, restAng:-0.03},
-  {id:'lm', hand:'L', home:'d', kind:'middle', baseW:15.8, tipW:10.2, kDist:53, restLen:60, restAng:0.0},
-  {id:'li', hand:'L', home:'f', kind:'index',  baseW:15.2, tipW:9.8,  kDist:56, restLen:56, restAng:0.05},
-  {id:'lt', hand:'L', home:'space', kind:'thumb', baseW:18.5, tipW:12.4, kDist:46, restLen:46, restAng:0.52},
-  {id:'rt', hand:'R', home:'space', kind:'thumb', baseW:18.5, tipW:12.4, kDist:46, restLen:46, restAng:-0.52},
-  {id:'ri', hand:'R', home:'j', kind:'index',  baseW:15.2, tipW:9.8,  kDist:56, restLen:56, restAng:-0.05},
-  {id:'rm', hand:'R', home:'k', kind:'middle', baseW:15.8, tipW:10.2, kDist:53, restLen:60, restAng:0.0},
-  {id:'rr', hand:'R', home:'l', kind:'ring',   baseW:14.8, tipW:9.6,  kDist:58, restLen:56, restAng:0.03},
-  {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:13.0, tipW:8.5, kDist:64, restLen:52, restAng:0.09},
+  {id:'lp', hand:'L', home:'a', kind:'pinky',  baseW:21.0, tipW:14.0, kDist:58, restLen:54, restAng:-0.08, archPull:0.24, archDy:11, tipDy:4},
+  {id:'lr', hand:'L', home:'s', kind:'ring',   baseW:23.2, tipW:15.5, kDist:58, restLen:58, restAng:-0.03, archPull:0.16, archDy:3,  tipDy:1},
+  {id:'lm', hand:'L', home:'d', kind:'middle', baseW:24.6, tipW:16.4, kDist:58, restLen:62, restAng:0.00,  archPull:0.14, archDy:0,  tipDy:-2},
+  {id:'li', hand:'L', home:'f', kind:'index',  baseW:23.8, tipW:15.8, kDist:58, restLen:58, restAng:0.04,  archPull:0.22, archDy:4,  tipDy:1},
+  {id:'lt', hand:'L', home:'space', kind:'thumb', baseW:25.0, tipW:17.2, kDist:46, restLen:46, restAng:0.52, archPull:0, archDy:0, tipDy:0},
+  {id:'rt', hand:'R', home:'space', kind:'thumb', baseW:25.0, tipW:17.2, kDist:46, restLen:46, restAng:-0.52, archPull:0, archDy:0, tipDy:0},
+  {id:'ri', hand:'R', home:'j', kind:'index',  baseW:23.8, tipW:15.8, kDist:58, restLen:58, restAng:-0.04, archPull:0.22, archDy:4,  tipDy:1},
+  {id:'rm', hand:'R', home:'k', kind:'middle', baseW:24.6, tipW:16.4, kDist:58, restLen:62, restAng:0.00,  archPull:0.14, archDy:0,  tipDy:-2},
+  {id:'rr', hand:'R', home:'l', kind:'ring',   baseW:23.2, tipW:15.5, kDist:58, restLen:58, restAng:0.03,  archPull:0.16, archDy:3,  tipDy:1},
+  {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:21.0, tipW:14.0, kDist:58, restLen:54, restAng:0.08, archPull:0.24, archDy:11, tipDy:4},
 ];
 window.FINGERS = FINGERS;
 
@@ -662,7 +662,6 @@ function scalePt(a,s){ return {x:a.x*s, y:a.y*s}; }
 function dist(a,b){ return Math.hypot(a.x-b.x, a.y-b.y); }
 function norm(v){ const l = Math.hypot(v.x,v.y) || 1; return {x:v.x/l, y:v.y/l}; }
 
-/* rounded-corner closed polygon, used for the back-of-hand silhouette */
 function roundedPolyPath(pts, r){
   const n = pts.length;
   let d = '';
@@ -686,7 +685,7 @@ function roundedPolyPath(pts, r){
 function qPoint(o,c,t,s){ const m=1-s; return { x:m*m*o.x+2*m*s*c.x+s*s*t.x, y:m*m*o.y+2*m*s*c.y+s*s*t.y }; }
 function qTangent(o,c,t,s){ const m=1-s; return { x:2*m*(c.x-o.x)+2*s*(t.x-c.x), y:2*m*(c.y-o.y)+2*s*(t.y-c.y) }; }
 
-/* build a smooth tapered, rounded-cap human finger silhouette between origin and tip */
+/* build a smooth tapered, sculpted human finger silhouette between origin and tip */
 function fingerFrame(origin, ctrl, tip, baseW, tipW){
   const N = 18, left = [], right = [];
   for(let i=0;i<=N;i++){
@@ -694,34 +693,48 @@ function fingerFrame(origin, ctrl, tip, baseW, tipW){
     const p = qPoint(origin, ctrl, tip, s);
     const tan = qTangent(origin, ctrl, tip, s);
     const l = Math.hypot(tan.x,tan.y) || 1;
-    // Left-hand normal in screen coordinates (+X right, +Y down) so left[] is true left of finger vector
+    // Left-hand normal in screen coordinates (+X right, +Y down) so left[] is true screen-left of upward finger
     const nx = tan.y/l, ny = -tan.x/l;
-    const phalanxContour = Math.sin(s * Math.PI) * 0.55;
-    const w = (baseW + (tipW - baseW) * Math.pow(s, 1.22) + phalanxContour) / 2;
+    const pipSwell = Math.exp(-Math.pow((s - 0.44) / 0.24, 2)) * 1.1;
+    const dipSwell = Math.exp(-Math.pow((s - 0.76) / 0.16, 2)) * 0.4;
+    const w = (baseW + (tipW - baseW) * Math.pow(s, 1.06) + pipSwell + dipSwell) / 2;
     left.push({x:p.x+nx*w, y:p.y+ny*w});
     right.push({x:p.x-nx*w, y:p.y-ny*w});
   }
   return {left, right};
 }
+
+/* G1-continuous cubic Bezier fingertip pad cap */
+function tipCapCmd(frame, tipW){
+  const N = frame.left.length - 1;
+  const pL = frame.left[N];
+  const pR = frame.right[N];
+  const dirL = norm(sub(frame.left[N], frame.left[N - 2]));
+  const dirR = norm(sub(frame.right[N], frame.right[N - 2]));
+  const capH = tipW * 0.64;
+  const c1 = add(pL, scalePt(dirL, capH));
+  const c2 = add(pR, scalePt(dirR, capH));
+  return `C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)}, ${c2.x.toFixed(1)} ${c2.y.toFixed(1)}, ${pR.x.toFixed(1)} ${pR.y.toFixed(1)} `;
+}
+
+/* Open-base finger path for active finger illumination (no circular seam across knuckle) */
 function frameToPath(frame, baseW, tipW){
   const {left, right} = frame;
-  let d = `M ${left[0].x.toFixed(1)} ${left[0].y.toFixed(1)} `;
-  for(let i=1;i<left.length;i++) d += `L ${left[i].x.toFixed(1)} ${left[i].y.toFixed(1)} `;
-  const tipR = (tipW/2).toFixed(1);
-  const lastR = right[right.length-1];
-  d += `A ${tipR} ${tipR} 0 0 1 ${lastR.x.toFixed(1)} ${lastR.y.toFixed(1)} `;
-  for(let i=right.length-2;i>=0;i--) d += `L ${right[i].x.toFixed(1)} ${right[i].y.toFixed(1)} `;
-  const baseR = (baseW/2).toFixed(1);
-  d += `A ${baseR} ${baseR} 0 0 1 ${left[0].x.toFixed(1)} ${left[0].y.toFixed(1)} Z`;
+  const startIdx = 3;
+  let d = `M ${left[startIdx].x.toFixed(1)} ${left[startIdx].y.toFixed(1)} `;
+  for(let i = startIdx + 1; i < left.length; i++) d += `L ${left[i].x.toFixed(1)} ${left[i].y.toFixed(1)} `;
+  d += tipCapCmd(frame, tipW);
+  for(let i = right.length - 2; i >= startIdx; i--) d += `L ${right[i].x.toFixed(1)} ${right[i].y.toFixed(1)} `;
   return d;
 }
+
 function creaseAt(frame, s){
   const i = Math.round(s * (frame.left.length-1));
   const l = frame.left[i], r = frame.right[i];
   const mx = (l.x+r.x)/2, my = (l.y+r.y)/2;
-  const lx = mx + (l.x-mx)*0.56, ly = my + (l.y-my)*0.56;
-  const rx = mx + (r.x-mx)*0.56, ry = my + (r.y-my)*0.56;
-  return `M ${lx.toFixed(1)} ${ly.toFixed(1)} Q ${mx.toFixed(1)} ${(my - 1.2).toFixed(1)} ${rx.toFixed(1)} ${ry.toFixed(1)}`;
+  const lx = mx + (l.x-mx)*0.54, ly = my + (l.y-my)*0.54;
+  const rx = mx + (r.x-mx)*0.54, ry = my + (r.y-my)*0.54;
+  return `M ${lx.toFixed(1)} ${ly.toFixed(1)} Q ${mx.toFixed(1)} ${(my - 1.5).toFixed(1)} ${rx.toFixed(1)} ${ry.toFixed(1)}`;
 }
 function pointAtFrame(frame, s){
   const i = Math.round(s * (frame.left.length-1));
@@ -766,9 +779,9 @@ function buildHandPalette(hex, fallbackHex) {
     bright: rgbToHex(r, g, b),
     light: rgbToHex(r + (255 - r) * 0.75, g + (255 - g) * 0.75, b + (255 - b) * 0.75),
     glowRgba: `rgba(${r}, ${g}, ${b}, 0.85)`,
-    strokeRgba: `rgba(${r}, ${g}, ${b}, 0.5)`,
+    strokeRgba: `rgba(${r}, ${g}, ${b}, 0.62)`,
     shadowRgba: `rgba(${r}, ${g}, ${b}, 0.32)`,
-    nailFillRgba: `rgba(${r}, ${g}, ${b}, 0.35)`,
+    nailFillRgba: `rgba(${r}, ${g}, ${b}, 0.28)`,
     tipFillRgba: `rgba(${r}, ${g}, ${b}, 0.65)`
   };
 }
@@ -799,67 +812,69 @@ function updateHandsGradients(leftHex, rightHex) {
   const palR = buildHandPalette(rightHex, '#f472b6');
 
   defs.innerHTML = `
-  <linearGradient id="fingerGrad" x1="0" y1="1" x2="0.3" y2="0">
-    <stop offset="0%" stop-color="${palL.dark}" stop-opacity="0.75"/>
-    <stop offset="35%" stop-color="${palL.deep}" stop-opacity="0.8"/>
-    <stop offset="68%" stop-color="${palL.mid}" stop-opacity="0.85"/>
-    <stop offset="88%" stop-color="${palL.bright}" stop-opacity="0.92"/>
-    <stop offset="100%" stop-color="${palL.light}" stop-opacity="0.98"/>
+  <linearGradient id="fingerGrad" x1="0" y1="1" x2="0.2" y2="0">
+    <stop offset="0%" stop-color="${palL.mid}" stop-opacity="0"/>
+    <stop offset="35%" stop-color="${palL.mid}" stop-opacity="0.22"/>
+    <stop offset="85%" stop-color="${palL.bright}" stop-opacity="0.45"/>
+    <stop offset="100%" stop-color="${palL.light}" stop-opacity="0.65"/>
   </linearGradient>
-  <linearGradient id="fingerGradR" x1="0" y1="1" x2="0.3" y2="0">
-    <stop offset="0%" stop-color="${palR.dark}" stop-opacity="0.75"/>
-    <stop offset="35%" stop-color="${palR.deep}" stop-opacity="0.8"/>
-    <stop offset="68%" stop-color="${palR.mid}" stop-opacity="0.85"/>
-    <stop offset="88%" stop-color="${palR.bright}" stop-opacity="0.92"/>
-    <stop offset="100%" stop-color="${palR.light}" stop-opacity="0.98"/>
+  <linearGradient id="fingerGradR" x1="0" y1="1" x2="0.2" y2="0">
+    <stop offset="0%" stop-color="${palR.mid}" stop-opacity="0"/>
+    <stop offset="35%" stop-color="${palR.mid}" stop-opacity="0.22"/>
+    <stop offset="85%" stop-color="${palR.bright}" stop-opacity="0.45"/>
+    <stop offset="100%" stop-color="${palR.light}" stop-opacity="0.65"/>
   </linearGradient>
-  <linearGradient id="fingerGradActive" x1="0" y1="1" x2="0.3" y2="0">
-    <stop offset="0%" stop-color="${palL.deep}" stop-opacity="0.9"/>
-    <stop offset="45%" stop-color="${palL.bright}" stop-opacity="0.95"/>
-    <stop offset="78%" stop-color="#ffd166" stop-opacity="0.98"/>
+  <linearGradient id="fingerGradActive" x1="0" y1="1" x2="0.15" y2="0">
+    <stop offset="0%" stop-color="${palL.deep}" stop-opacity="0"/>
+    <stop offset="20%" stop-color="${palL.bright}" stop-opacity="0.65"/>
+    <stop offset="62%" stop-color="${palL.bright}" stop-opacity="0.92"/>
+    <stop offset="86%" stop-color="#ffd166" stop-opacity="0.98"/>
     <stop offset="100%" stop-color="#ffffff" stop-opacity="1"/>
   </linearGradient>
-  <linearGradient id="fingerGradActiveR" x1="0" y1="1" x2="0.3" y2="0">
-    <stop offset="0%" stop-color="${palR.deep}" stop-opacity="0.9"/>
-    <stop offset="45%" stop-color="${palR.bright}" stop-opacity="0.95"/>
-    <stop offset="78%" stop-color="#ffd166" stop-opacity="0.98"/>
+  <linearGradient id="fingerGradActiveR" x1="0" y1="1" x2="0.15" y2="0">
+    <stop offset="0%" stop-color="${palR.deep}" stop-opacity="0"/>
+    <stop offset="20%" stop-color="${palR.bright}" stop-opacity="0.65"/>
+    <stop offset="62%" stop-color="${palR.bright}" stop-opacity="0.92"/>
+    <stop offset="86%" stop-color="#ffd166" stop-opacity="0.98"/>
     <stop offset="100%" stop-color="#ffffff" stop-opacity="1"/>
   </linearGradient>
-  <linearGradient id="palmGrad" x1="0" y1="1" x2="0.25" y2="0">
-    <stop offset="0%" stop-color="${palL.dark}" stop-opacity="0.7"/>
-    <stop offset="45%" stop-color="${palL.deep}" stop-opacity="0.75"/>
-    <stop offset="100%" stop-color="${palL.mid}" stop-opacity="0.8"/>
+  <linearGradient id="palmGrad" x1="0" y1="1" x2="0.18" y2="0">
+    <stop offset="0%" stop-color="${palL.dark}" stop-opacity="0.62"/>
+    <stop offset="36%" stop-color="${palL.deep}" stop-opacity="0.76"/>
+    <stop offset="68%" stop-color="${palL.mid}" stop-opacity="0.86"/>
+    <stop offset="90%" stop-color="${palL.bright}" stop-opacity="0.93"/>
+    <stop offset="100%" stop-color="${palL.light}" stop-opacity="0.97"/>
   </linearGradient>
-  <linearGradient id="palmGradR" x1="0" y1="1" x2="0.25" y2="0">
-    <stop offset="0%" stop-color="${palR.dark}" stop-opacity="0.7"/>
-    <stop offset="45%" stop-color="${palR.deep}" stop-opacity="0.75"/>
-    <stop offset="100%" stop-color="${palR.mid}" stop-opacity="0.8"/>
+  <linearGradient id="palmGradR" x1="0" y1="1" x2="0.18" y2="0">
+    <stop offset="0%" stop-color="${palR.dark}" stop-opacity="0.62"/>
+    <stop offset="36%" stop-color="${palR.deep}" stop-opacity="0.76"/>
+    <stop offset="68%" stop-color="${palR.mid}" stop-opacity="0.86"/>
+    <stop offset="90%" stop-color="${palR.bright}" stop-opacity="0.93"/>
+    <stop offset="100%" stop-color="${palR.light}" stop-opacity="0.97"/>
   </linearGradient>
-  <radialGradient id="palmHighlight" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="${palL.bright}" stop-opacity="0.6"/>
+  <radialGradient id="palmHighlight" cx="50%" cy="45%" r="52%">
+    <stop offset="0%" stop-color="${palL.bright}" stop-opacity="0.42"/>
     <stop offset="100%" stop-color="${palL.bright}" stop-opacity="0"/>
   </radialGradient>
-  <radialGradient id="palmHighlightR" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="${palR.bright}" stop-opacity="0.6"/>
+  <radialGradient id="palmHighlightR" cx="50%" cy="45%" r="52%">
+    <stop offset="0%" stop-color="${palR.bright}" stop-opacity="0.42"/>
     <stop offset="100%" stop-color="${palR.bright}" stop-opacity="0"/>
   </radialGradient>
   <radialGradient id="jointGlow" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
-    <stop offset="45%" stop-color="${palL.bright}" stop-opacity="0.8"/>
+    <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
     <stop offset="100%" stop-color="${palL.mid}" stop-opacity="0"/>
   </radialGradient>
   <radialGradient id="jointGlowR" cx="50%" cy="50%" r="50%">
-    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
-    <stop offset="45%" stop-color="${palR.bright}" stop-opacity="0.8"/>
+    <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
     <stop offset="100%" stop-color="${palR.mid}" stop-opacity="0"/>
   </radialGradient>
   <filter id="handShadow" x="-35%" y="-35%" width="170%" height="170%">
-    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="${palL.bright}" flood-opacity="0.32"/>
-    <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.45"/>
+    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="${palL.bright}" flood-opacity="0.28"/>
+    <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.42"/>
   </filter>
   <filter id="handShadowR" x="-35%" y="-35%" width="170%" height="170%">
-    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="${palR.bright}" flood-opacity="0.32"/>
-    <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.45"/>
+    <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="${palR.bright}" flood-opacity="0.28"/>
+    <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.42"/>
   </filter>
   `;
 
@@ -1047,15 +1062,14 @@ function keyCenter(id, wrapRect){
 }
 
 /* Kinematic Hand Builder:
-   Computes natural anatomical proportions and whole-hand reach motion so fingers
-   never stretch like elastic rubber noodles across the screen. */
+   Computes natural anatomical proportions, compact metacarpal arch, and whole-hand
+   reach motion so all 5 digits and the palm fuse into a single seamless silhouette. */
 function buildHand(hand, fingers, wrapRect, activeF, targetKey){
   const inward = hand === 'L' ? 1 : -1;
-  const outward = -inward;
 
   // Defensive fallback: ensure right pinky is always anchored even if external buffer dropped it
   if(hand === 'R' && !fingers.some(f=> f.kind === 'pinky')){
-    const rpDef = {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:12.5, tipW:7.5, kDist:68, restLen:52, restAng:0.10};
+    const rpDef = {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:21.0, tipW:14.0, archPull:0.24, archDy:11, tipDy:4, kDist:60, restLen:58, restAng:0.12};
     fingers.push(rpDef);
     if(!FINGERS.some(f=> f.id === 'rp')) FINGERS.push(rpDef);
   }
@@ -1093,80 +1107,164 @@ function buildHand(hand, fingers, wrapRect, activeF, targetKey){
     }
   }
 
-  // Resting knuckles position: natural anatomical arch below resting key centers
+  // Compact human metacarpal knuckle arch: converges inward relative to the 4-key span
+  const homeXs = order.map(f=> homes[f.id].x);
+  const homeYs = order.map(f=> homes[f.id].y);
+  const homeSpanCenterX = (homeXs[0] + homeXs[3]) * 0.5 + inward * 4;
+  const homeAvgY = homeYs.reduce((a, b)=> a + b, 0) / 4;
+  const palmArchBaseY = homeAvgY + 58;
+
   const baseKnuckles = {};
   order.forEach(f=>{
     const h = homes[f.id];
-    const ang = f.restAng;
-    const kx = h.x - Math.sin(ang) * f.kDist + shiftX;
-    const ky = h.y + Math.cos(ang) * f.kDist + shiftY;
+    const pull = typeof f.archPull === 'number' ? f.archPull : 0.18;
+    const dy = typeof f.archDy === 'number' ? f.archDy : 4;
+    const kx = h.x + (homeSpanCenterX - h.x) * pull + shiftX;
+    const ky = palmArchBaseY + dy + shiftY;
     baseKnuckles[f.id] = { x: kx, y: ky };
   });
 
-  const knucklePts = order.map(f=> baseKnuckles[f.id]);
-  const indexBase = knucklePts[3];
-  const pinkyBase = knucklePts[0];
+  const indexBase = baseKnuckles[order[3].id];
 
-  // Anatomical thumb base seated on the lower-inner palm (thenar eminence) below Spacebar level
+  // Anatomical thumb CMC/MCP base emerging naturally from the lower-inner thenar eminence
   const thumbF = fingers.find(f=>f.kind==='thumb');
   const spaceElForHand = keyEls['space'];
-  let spaceMidY = indexBase.y + 28;
+  let spaceMidY = indexBase.y + 36;
   if(spaceElForHand){
     const sr = spaceElForHand.getBoundingClientRect();
     if(sr.height > 0){
-      spaceMidY = (sr.top + sr.height * 0.46) - wrapRect.top;
+      spaceMidY = (sr.top + sr.height * 0.50) - wrapRect.top;
     }
   }
   const thumbBase = {
-    x: indexBase.x + inward * 12,
-    y: Math.min(wrapRect.height - 12, Math.max(indexBase.y + 42, spaceMidY + 20 + shiftY * 0.35))
+    x: indexBase.x + inward * 2,
+    y: Math.min(wrapRect.height - 18, Math.max(indexBase.y + 38, spaceMidY + 2 + shiftY * 0.32))
   };
   baseKnuckles[thumbF.id] = thumbBase;
 
-  // Ergonomic human palm contour encompassing all 4 MCP knuckles + inner thenar thumb pad
-  const palmHeight = 68;
-  const maxKnuckleY = Math.max(...knucklePts.map(p=>p.y));
-  const wristCenter = {
-    x: (knucklePts[1].x + knucklePts[2].x)/2 + outward * 2,
-    y: Math.min(wrapRect.height - 6, Math.max(maxKnuckleY + palmHeight, thumbBase.y + 14))
+  return {
+    bases: baseKnuckles,
+    homes,
+    order,
+    thumbF,
+    spaceMidY,
+    shiftX,
+    shiftY
   };
-  const wristWidth = 68;
-  const wristOuter = { x: wristCenter.x + outward * (wristWidth * 0.50), y: wristCenter.y };
-  const wristInner = { x: wristCenter.x + inward * (wristWidth * 0.46), y: wristCenter.y };
+}
 
-  const topOuter = { x: pinkyBase.x + outward * 9, y: pinkyBase.y + 1 };
-  const k0 = { x: pinkyBase.x, y: pinkyBase.y - 5 };
-  const k1 = { x: knucklePts[1].x, y: knucklePts[1].y - 6 };
-  const k2 = { x: knucklePts[2].x, y: knucklePts[2].y - 6 };
-  const k3 = { x: indexBase.x, y: indexBase.y - 5 };
-  const topInner = { x: indexBase.x + inward * 9, y: indexBase.y + 3 };
-  const thenarUpper = { x: thumbBase.x + inward * 9, y: thumbBase.y - 8 };
-  const thenarLower = { x: thumbBase.x + inward * 6, y: thumbBase.y + 9 };
-  const hypothenar = { x: topOuter.x + outward * 3, y: (topOuter.y + wristOuter.y) * 0.54 };
+/* Generates a single unified, G1-smooth SVG contour tracing the entire human hand
+   (wrist -> outer palm -> 5 fingers + anatomical web valleys -> inner thenar -> wrist cuff) */
+function buildUnifiedHandSVG(hand, order, thumbF, frames, bases){
+  const inward = hand === 'L' ? 1 : -1;
+  const outward = -inward;
+  const pinkyBase = bases[order[0].id];
+  const indexBase = bases[order[3].id];
+  const thumbBase = bases[thumbF.id];
 
-  const outline = [
-    topOuter,
-    k0, k1, k2, k3,
-    topInner,
-    thenarUpper,
-    thenarLower,
-    wristInner,
-    wristOuter,
-    hypothenar
-  ];
-  const palmPath = roundedPolyPath(outline, 16);
+  const wristY = thumbBase.y + 28;
+  const palmMidX = (pinkyBase.x + indexBase.x) * 0.5 + inward * 2;
+  const wristOuter = { x: palmMidX + outward * 44, y: wristY };
+  const wristInner = { x: palmMidX + inward * 38, y: wristY };
 
-  const cx = (topOuter.x + wristInner.x)/2, cy = (topOuter.y + wristOuter.y)/2;
-  const shadeOutline = outline.map(p=> add(p, scalePt(sub({x:cx,y:cy}, p), 0.18)));
-  const shadePath = roundedPolyPath(shadeOutline, 14);
+  const wristLeft = hand === 'L' ? wristOuter : wristInner;
+  const wristRight = hand === 'L' ? wristInner : wristOuter;
+
+  const screenDigits = hand === 'L'
+    ? [order[0], order[1], order[2], order[3], thumbF]
+    : [thumbF, order[3], order[2], order[1], order[0]];
+
+  const cmds = [];
+  cmds.push(`M ${wristLeft.x.toFixed(1)} ${wristLeft.y.toFixed(1)}`);
+
+  const firstF = screenDigits[0];
+  const firstFr = frames[firstF.id];
+  const firstStartI = firstF.kind === 'thumb' ? (hand === 'L' ? 5 : 4) : 3;
+  const firstStart = firstFr.left[firstStartI];
+  const firstInDir = norm(sub(firstFr.left[firstStartI + 2], firstFr.left[firstStartI]));
+
+  if(hand === 'L'){
+    const c1 = { x: firstStart.x - 4, y: wristLeft.y - 16 };
+    const c2 = sub(firstStart, scalePt(firstInDir, 22));
+    cmds.push(`C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${firstStart.x.toFixed(1)} ${firstStart.y.toFixed(1)}`);
+  } else {
+    const c1 = { x: wristLeft.x - 10, y: wristLeft.y - 6 };
+    const c2 = sub(firstStart, scalePt(firstInDir, 16));
+    cmds.push(`C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${firstStart.x.toFixed(1)} ${firstStart.y.toFixed(1)}`);
+  }
+
+  for(let dIdx = 0; dIdx < screenDigits.length; dIdx++){
+    const df = screenDigits[dIdx];
+    const fr = frames[df.id];
+    const isThumb = df.kind === 'thumb';
+    const startI = isThumb ? (hand === 'L' ? 5 : 4) : 3;
+    const endI = isThumb ? (hand === 'L' ? 4 : 5) : 3;
+
+    for(let i = startI + 1; i < fr.left.length; i++){
+      cmds.push(`L ${fr.left[i].x.toFixed(1)} ${fr.left[i].y.toFixed(1)}`);
+    }
+    cmds.push(tipCapCmd(fr, df.tipW));
+    for(let i = fr.right.length - 2; i >= endI; i--){
+      cmds.push(`L ${fr.right[i].x.toFixed(1)} ${fr.right[i].y.toFixed(1)}`);
+    }
+
+    if(dIdx < screenDigits.length - 1){
+      const nextDf = screenDigits[dIdx + 1];
+      const nextFr = frames[nextDf.id];
+      const nextIsThumb = nextDf.kind === 'thumb';
+      const nextStartI = nextIsThumb ? (hand === 'L' ? 5 : 4) : 3;
+      const pA = fr.right[endI];
+      const pB = nextFr.left[nextStartI];
+      const dirA = norm(sub(fr.right[endI], fr.right[endI + 2]));
+      const dirB = norm(sub(nextFr.left[nextStartI + 2], nextFr.left[nextStartI]));
+      const hLen = (isThumb || nextIsThumb) ? 11 : 9;
+      const c1 = add(pA, scalePt(dirA, hLen));
+      const c2 = sub(pB, scalePt(dirB, hLen));
+      cmds.push(`C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${pB.x.toFixed(1)} ${pB.y.toFixed(1)}`);
+    }
+  }
+
+  const lastF = screenDigits[screenDigits.length - 1];
+  const lastFr = frames[lastF.id];
+  const lastEndI = lastF.kind === 'thumb' ? (hand === 'L' ? 4 : 5) : 3;
+  const lastEnd = lastFr.right[lastEndI];
+  const lastOutDir = norm(sub(lastFr.right[lastEndI], lastFr.right[lastEndI + 2]));
+
+  if(hand === 'L'){
+    const c1 = add(lastEnd, scalePt(lastOutDir, 16));
+    const c2 = { x: wristRight.x + 10, y: wristRight.y - 6 };
+    cmds.push(`C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${wristRight.x.toFixed(1)} ${wristRight.y.toFixed(1)}`);
+  } else {
+    const c1 = add(lastEnd, scalePt(lastOutDir, 22));
+    const c2 = { x: lastEnd.x + 4, y: wristRight.y - 16 };
+    cmds.push(`C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${wristRight.x.toFixed(1)} ${wristRight.y.toFixed(1)}`);
+  }
+
+  const wristMid1 = { x: wristRight.x + (wristLeft.x - wristRight.x) * 0.33, y: wristY + 6 };
+  const wristMid2 = { x: wristRight.x + (wristLeft.x - wristRight.x) * 0.67, y: wristY + 6 };
+  cmds.push(`C ${wristMid1.x.toFixed(1)} ${wristMid1.y.toFixed(1)} ${wristMid2.x.toFixed(1)} ${wristMid2.y.toFixed(1)} ${wristLeft.x.toFixed(1)} ${wristLeft.y.toFixed(1)} Z`);
+
+  // Subtle dorsal metacarpal tendon lines on the back of the hand
+  const shadePath = [1, 2, 3].map(idx => {
+    const kb = bases[order[idx].id];
+    const sx = palmMidX + (kb.x - palmMidX) * 0.38;
+    const sy = wristY - 12;
+    return `M ${sx.toFixed(1)} ${sy.toFixed(1)} L ${kb.x.toFixed(1)} ${(kb.y + 8).toFixed(1)}`;
+  }).join(' ');
 
   const highlight = {
-    cx: (topOuter.x + knucklePts[1].x)/2 + outward*3,
-    cy: topOuter.y + 10,
-    rx: 26, ry: 14
+    cx: palmMidX,
+    cy: (pinkyBase.y + wristY) * 0.48,
+    rx: 34,
+    ry: 22
   };
 
-  return { bases: baseKnuckles, palmPath, shadePath, highlight, core:{x:cx, y:cy}, shiftX, shiftY };
+  return {
+    palmPath: cmds.join(' '),
+    shadePath,
+    highlight,
+    core: { x: palmMidX, y: (pinkyBase.y + wristY) * 0.52 }
+  };
 }
 
 function updateHandsOverlay(){
@@ -1186,11 +1284,11 @@ function updateHandsOverlay(){
 
   // Resilient safeguards: guarantee right pinky is always present in FINGERS and DOM
   if(!FINGERS.some(f => f.id === 'rp')){
-    const rpDef = {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:13.0, tipW:8.5, kDist:64, restLen:52, restAng:0.09};
+    const rpDef = {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:21.0, tipW:14.0, archPull:0.24, archDy:11, tipDy:4, kDist:60, restLen:58, restAng:0.12};
     FINGERS.push(rpDef);
   }
   if(!fingerEls['rp']){
-    const rpDef = FINGERS.find(f => f.id === 'rp') || {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:13.0, tipW:8.5, kDist:64, restLen:52, restAng:0.09};
+    const rpDef = FINGERS.find(f => f.id === 'rp') || {id:'rp', hand:'R', home:'semicolon', kind:'pinky', baseW:21.0, tipW:14.0, archPull:0.24, archDy:11, tipDy:4, kDist:60, restLen:58, restAng:0.12};
     createFingerElement(rpDef);
   }
 
@@ -1206,25 +1304,13 @@ function updateHandsOverlay(){
   const handL = buildHand('L', leftFingers, wrapRect, activeLeft, targetLeft);
   const handR = buildHand('R', rightFingers, wrapRect, activeRight, targetRight);
 
-  if(handL){
-    palmShapeL.setAttribute('d', handL.palmPath);
-    palmShadeL.setAttribute('d', handL.shadePath);
-    palmHiL.setAttribute('cx', handL.highlight.cx); palmHiL.setAttribute('cy', handL.highlight.cy);
-    palmHiL.setAttribute('rx', handL.highlight.rx); palmHiL.setAttribute('ry', handL.highlight.ry);
-    palmCoreL.setAttribute('cx', handL.core.x); palmCoreL.setAttribute('cy', handL.core.y);
-  }
-  if(handR){
-    palmShapeR.setAttribute('d', handR.palmPath);
-    palmShadeR.setAttribute('d', handR.shadePath);
-    palmHiR.setAttribute('cx', handR.highlight.cx); palmHiR.setAttribute('cy', handR.highlight.cy);
-    palmHiR.setAttribute('rx', handR.highlight.rx); palmHiR.setAttribute('ry', handR.highlight.ry);
-    palmCoreR.setAttribute('cx', handR.core.x); palmCoreR.setAttribute('cy', handR.core.y);
-  }
+  const framesL = {};
+  const framesR = {};
 
   FINGERS.forEach(f=>{
     const fe = fingerEls[f.id];
     const hb = f.hand === 'L' ? handL : handR;
-    if(!hb || !hb.bases[f.id]) return;
+    if(!fe || !hb || !hb.bases[f.id]) return;
     const origin = hb.bases[f.id];
     const isPrimary = activeFinger === f.id;
     const isShiftActive = activeShiftFinger === f.id;
@@ -1235,116 +1321,88 @@ function updateHandsOverlay(){
 
     let tip;
     if(f.kind === 'thumb'){
+      const indexBase = hb.bases[hb.order[3].id];
+      const defaultThumbTip = {
+        x: indexBase.x + inward * 48,
+        y: Math.min(origin.y - 26, hb.spaceMidY - 6)
+      };
       if(isActive && targetKey){
-        tip = keyCenter(targetKey, wrapRect);
-        if(targetKey === 'space'){
-          const spaceEl = keyEls['space'];
-          if(spaceEl){
-            const r = spaceEl.getBoundingClientRect();
-            const frac = f.hand === 'L' ? 0.36 : 0.64;
-            const rawX = r.left + r.width * frac - wrapRect.left;
-            const rawY = r.top + r.height * 0.44 - wrapRect.top;
-            tip = {
-              x: f.hand === 'L' ? Math.max(origin.x + 28, rawX) : Math.min(origin.x - 28, rawX),
-              y: Math.min(origin.y - 18, rawY)
-            };
-          }
+        const rawTip = keyCenter(targetKey, wrapRect);
+        if(rawTip && targetKey !== 'space'){
+          tip = rawTip;
+        } else {
+          tip = { x: defaultThumbTip.x + inward * 4, y: defaultThumbTip.y - 4 };
         }
       } else {
-        // Natural relaxed human thumb: angles upward and inward from the lower-inner palm onto the Spacebar
-        const isHandMoving = Math.abs(hb.shiftX) > 4 || Math.abs(hb.shiftY) > 4;
-        const spaceEl = keyEls['space'];
-        if(!isHandMoving && spaceEl){
-          const r = spaceEl.getBoundingClientRect();
-          const frac = f.hand === 'L' ? 0.36 : 0.64;
-          const rawX = r.left + r.width * frac - wrapRect.left;
-          const rawY = r.top + r.height * 0.46 - wrapRect.top;
-          tip = {
-            x: f.hand === 'L' ? Math.max(origin.x + 28, rawX) : Math.min(origin.x - 28, rawX),
-            y: Math.min(origin.y - 18, rawY)
-          };
-        } else {
-          tip = { x: origin.x + inward * 28, y: origin.y - 22 };
-        }
+        tip = defaultThumbTip;
       }
     } else {
+      const homeCenter = hb.homes[f.id] || keyCenter(f.home, wrapRect);
+      const restTip = homeCenter
+        ? { x: homeCenter.x + hb.shiftX, y: homeCenter.y + 4 + (f.tipDy || 0) + hb.shiftY }
+        : { x: origin.x, y: origin.y - 58 };
+
       if(isActive && targetKey){
-        // Active finger reaches directly to the key
-        tip = keyCenter(targetKey, wrapRect) || keyCenter(f.home, wrapRect);
+        const rawTarget = keyCenter(targetKey, wrapRect);
+        tip = rawTarget ? { x: rawTarget.x, y: rawTarget.y + 2 } : restTip;
       } else {
-        // Inactive fingers: if hand moved, float gracefully; if at rest, sit directly on home key
-        const homeCenter = keyCenter(f.home, wrapRect);
-        if(homeCenter){
-          if(Math.abs(hb.shiftX) > 3 || Math.abs(hb.shiftY) > 3){
-            // Hand is in motion: retain relaxed finger length relative to moving knuckle
-            const restVec = {
-              x: Math.sin(f.restAng) * f.restLen,
-              y: -Math.cos(f.restAng) * f.restLen
-            };
-            tip = { x: origin.x + restVec.x, y: origin.y + restVec.y };
-          } else {
-            // Hand at rest: fingertip rests gently on home key center
-            tip = homeCenter;
-          }
-        }
+        tip = restTip;
       }
     }
     if(!tip) return;
 
     // Strict physiological maximum reach: human fingers cannot stretch beyond their bone length
-    const maxLen = f.kind === 'thumb' ? 56 : (f.kind === 'pinky' ? 74 : (f.kind === 'middle' ? 95 : 88));
+    const maxLen = f.kind === 'thumb' ? 68 : (f.kind === 'pinky' ? 82 : (f.kind === 'middle' ? 102 : 95));
     const d = dist(origin, tip);
     if(d > maxLen){
       const scale = maxLen / d;
       tip = { x: origin.x + (tip.x - origin.x) * scale, y: origin.y + (tip.y - origin.y) * scale };
     }
+
     let mid;
     if(f.kind === 'thumb'){
       mid = {
-        x: (origin.x + tip.x) * 0.5 - inward * 3.5,
-        y: (origin.y + tip.y) * 0.5 - 4.5
+        x: origin.x + (tip.x - origin.x) * 0.46,
+        y: origin.y + (tip.y - origin.y) * 0.56 - 4
       };
     } else {
-      const bow = Math.min(14, d * 0.11);
-      mid = { x: (origin.x + tip.x) * 0.5, y: (origin.y + tip.y) * 0.5 - bow };
+      mid = {
+        x: origin.x + (tip.x - origin.x) * 0.56,
+        y: origin.y + (tip.y - origin.y) * 0.52 - 2
+      };
     }
 
     const frame = fingerFrame(origin, mid, tip, f.baseW, f.tipW);
+    if(f.hand === 'L') framesL[f.id] = frame;
+    else framesR[f.id] = frame;
+
     fe.shape.setAttribute('d', frameToPath(frame, f.baseW, f.tipW));
 
     if(f.kind === 'thumb'){
-      // Human thumb has 1 interphalangeal (IP) joint along the free shaft
-      fe.crease1.setAttribute('d', creaseAt(frame, 0.52));
+      fe.crease1.setAttribute('d', creaseAt(frame, 0.50));
       fe.crease2.setAttribute('d', '');
-      const j1 = pointAtFrame(frame, 0.52);
-      fe.joint1.setAttribute('cx', j1.x); fe.joint1.setAttribute('cy', j1.y);
-      fe.joint1.setAttribute('r', Math.max(1.5, f.baseW * 0.14));
-      fe.joint2.setAttribute('r', '0');
     } else {
-      fe.crease1.setAttribute('d', creaseAt(frame, 0.42));
+      fe.crease1.setAttribute('d', creaseAt(frame, 0.44));
       fe.crease2.setAttribute('d', creaseAt(frame, 0.72));
-      const j1 = pointAtFrame(frame, 0.42), j2 = pointAtFrame(frame, 0.72);
-      fe.joint1.setAttribute('cx', j1.x); fe.joint1.setAttribute('cy', j1.y);
-      fe.joint1.setAttribute('r', Math.max(1.5, f.baseW * 0.15));
-      fe.joint2.setAttribute('cx', j2.x); fe.joint2.setAttribute('cy', j2.y);
-      fe.joint2.setAttribute('r', Math.max(1.2, f.tipW * 0.15));
     }
+    fe.joint1.setAttribute('r', '0');
+    fe.joint2.setAttribute('r', '0');
 
-    // Soft anatomical edge highlight along the dorsal ridge (not cutting across the center)
-    const sStart = 3, sMid = 9, sEnd = 14;
+    // Soft anatomical edge highlight along the dorsal ridge
+    const sStart = 5, sMid = 10, sEnd = 15;
     const cStart = pointAtFrame(frame, sStart / 18), cMid = pointAtFrame(frame, sMid / 18), cEnd = pointAtFrame(frame, sEnd / 18);
-    const sh1 = { x: cStart.x + (frame.left[sStart].x - cStart.x) * 0.62, y: cStart.y + (frame.left[sStart].y - cStart.y) * 0.62 };
-    const sh2 = { x: cMid.x + (frame.left[sMid].x - cMid.x) * 0.62, y: cMid.y + (frame.left[sMid].y - cMid.y) * 0.62 };
-    const sh3 = { x: cEnd.x + (frame.left[sEnd].x - cEnd.x) * 0.62, y: cEnd.y + (frame.left[sEnd].y - cEnd.y) * 0.62 };
+    const sh1 = { x: cStart.x + (frame.left[sStart].x - cStart.x) * 0.52, y: cStart.y + (frame.left[sStart].y - cStart.y) * 0.52 };
+    const sh2 = { x: cMid.x + (frame.left[sMid].x - cMid.x) * 0.52, y: cMid.y + (frame.left[sMid].y - cMid.y) * 0.52 };
+    const sh3 = { x: cEnd.x + (frame.left[sEnd].x - cEnd.x) * 0.52, y: cEnd.y + (frame.left[sEnd].y - cEnd.y) * 0.52 };
     fe.shine.setAttribute('d', `M ${sh1.x.toFixed(1)} ${sh1.y.toFixed(1)} Q ${sh2.x.toFixed(1)} ${sh2.y.toFixed(1)} ${sh3.x.toFixed(1)} ${sh3.y.toFixed(1)}`);
     fe.shine2.setAttribute('d', '');
     fe.energy.setAttribute('d', `M ${origin.x.toFixed(1)} ${origin.y.toFixed(1)} Q ${mid.x.toFixed(1)} ${mid.y.toFixed(1)} ${tip.x.toFixed(1)} ${tip.y.toFixed(1)}`);
 
-    const nailPt = qPoint(origin, mid, tip, 0.88);
-    const tan = qTangent(origin, mid, tip, 0.88);
+    const nailPt = qPoint(origin, mid, tip, 0.87);
+    const tan = qTangent(origin, mid, tip, 0.87);
     const ang = Math.atan2(tan.y, tan.x) * 180/Math.PI + 90;
     fe.nail.setAttribute('cx', nailPt.x); fe.nail.setAttribute('cy', nailPt.y);
-    fe.nail.setAttribute('rx', Math.max(2.6, f.tipW * 0.32)); fe.nail.setAttribute('ry', Math.max(3.0, f.tipW * 0.36));
+    fe.nail.setAttribute('rx', Math.max(3.2, f.tipW * 0.28)); fe.nail.setAttribute('ry', Math.max(3.8, f.tipW * 0.35));
     fe.nail.setAttribute('transform', `rotate(${ang.toFixed(1)} ${nailPt.x.toFixed(1)} ${nailPt.y.toFixed(1)})`);
 
     fe.tip.setAttribute('cx', nailPt.x);
@@ -1357,6 +1415,23 @@ function updateHandsOverlay(){
     fe.reticle.setAttribute('transform', `translate(${nailPt.x.toFixed(1)} ${nailPt.y.toFixed(1)})`);
     fe.g.classList.toggle('active', isActive);
   });
+
+  if(handL && Object.keys(framesL).length === 5){
+    const svgL = buildUnifiedHandSVG('L', handL.order, handL.thumbF, framesL, handL.bases);
+    palmShapeL.setAttribute('d', svgL.palmPath);
+    palmShadeL.setAttribute('d', svgL.shadePath);
+    palmHiL.setAttribute('cx', svgL.highlight.cx); palmHiL.setAttribute('cy', svgL.highlight.cy);
+    palmHiL.setAttribute('rx', svgL.highlight.rx); palmHiL.setAttribute('ry', svgL.highlight.ry);
+    palmCoreL.setAttribute('cx', svgL.core.x); palmCoreL.setAttribute('cy', svgL.core.y);
+  }
+  if(handR && Object.keys(framesR).length === 5){
+    const svgR = buildUnifiedHandSVG('R', handR.order, handR.thumbF, framesR, handR.bases);
+    palmShapeR.setAttribute('d', svgR.palmPath);
+    palmShadeR.setAttribute('d', svgR.shadePath);
+    palmHiR.setAttribute('cx', svgR.highlight.cx); palmHiR.setAttribute('cy', svgR.highlight.cy);
+    palmHiR.setAttribute('rx', svgR.highlight.rx); palmHiR.setAttribute('ry', svgR.highlight.ry);
+    palmCoreR.setAttribute('cx', svgR.core.x); palmCoreR.setAttribute('cy', svgR.core.y);
+  }
 }
 
 function setActiveFinger(keyId, layer){

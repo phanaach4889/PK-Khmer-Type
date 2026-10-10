@@ -351,16 +351,16 @@
      ============================================================ */
   const SVGNS = 'http://www.w3.org/2000/svg';
   const FINGERS = [
-    { id: 'lp', hand: 'L', home: 'a', kind: 'pinky', baseW: 12.5, tipW: 7.5, kDist: 68, restLen: 52, restAng: -0.10 },
-    { id: 'lr', hand: 'L', home: 's', kind: 'ring', baseW: 14.5, tipW: 9.0, kDist: 60, restLen: 56, restAng: -0.04 },
-    { id: 'lm', hand: 'L', home: 'd', kind: 'middle', baseW: 15.5, tipW: 9.5, kDist: 54, restLen: 60, restAng: 0.0 },
-    { id: 'li', hand: 'L', home: 'f', kind: 'index', baseW: 15.0, tipW: 9.0, kDist: 58, restLen: 56, restAng: 0.06 },
-    { id: 'lt', hand: 'L', home: 'space', kind: 'thumb', baseW: 18.5, tipW: 11.5, kDist: 42, restLen: 42, restAng: 0.42 },
-    { id: 'rt', hand: 'R', home: 'space', kind: 'thumb', baseW: 18.5, tipW: 11.5, kDist: 42, restLen: 42, restAng: -0.42 },
-    { id: 'ri', hand: 'R', home: 'j', kind: 'index', baseW: 15.0, tipW: 9.0, kDist: 58, restLen: 56, restAng: -0.06 },
-    { id: 'rm', hand: 'R', home: 'k', kind: 'middle', baseW: 15.5, tipW: 9.5, kDist: 54, restLen: 60, restAng: 0.0 },
-    { id: 'rr', hand: 'R', home: 'l', kind: 'ring', baseW: 14.5, tipW: 9.0, kDist: 60, restLen: 56, restAng: 0.04 },
-    { id: 'rp', hand: 'R', home: 'semicolon', kind: 'pinky', baseW: 12.5, tipW: 7.5, kDist: 68, restLen: 52, restAng: 0.10 },
+    { id: 'lp', hand: 'L', home: 'a', kind: 'pinky', baseW: 21.0, tipW: 14.0, archPull: 0.24, archDy: 11, tipDy: 4, kDist: 60, restLen: 58, restAng: -0.12 },
+    { id: 'lr', hand: 'L', home: 's', kind: 'ring', baseW: 23.2, tipW: 15.5, archPull: 0.16, archDy: 3, tipDy: 1, kDist: 56, restLen: 60, restAng: -0.05 },
+    { id: 'lm', hand: 'L', home: 'd', kind: 'middle', baseW: 24.6, tipW: 16.4, archPull: 0.14, archDy: 0, tipDy: -2, kDist: 54, restLen: 62, restAng: 0.01 },
+    { id: 'li', hand: 'L', home: 'f', kind: 'index', baseW: 23.8, tipW: 15.8, archPull: 0.22, archDy: 4, tipDy: 1, kDist: 56, restLen: 59, restAng: 0.08 },
+    { id: 'lt', hand: 'L', home: 'space', kind: 'thumb', baseW: 25.0, tipW: 17.2, kDist: 44, restLen: 46, restAng: 0.48 },
+    { id: 'rt', hand: 'R', home: 'space', kind: 'thumb', baseW: 25.0, tipW: 17.2, kDist: 44, restLen: 46, restAng: -0.48 },
+    { id: 'ri', hand: 'R', home: 'j', kind: 'index', baseW: 23.8, tipW: 15.8, archPull: 0.22, archDy: 4, tipDy: 1, kDist: 56, restLen: 59, restAng: -0.08 },
+    { id: 'rm', hand: 'R', home: 'k', kind: 'middle', baseW: 24.6, tipW: 16.4, archPull: 0.14, archDy: 0, tipDy: -2, kDist: 54, restLen: 62, restAng: -0.01 },
+    { id: 'rr', hand: 'R', home: 'l', kind: 'ring', baseW: 23.2, tipW: 15.5, archPull: 0.16, archDy: 3, tipDy: 1, kDist: 56, restLen: 60, restAng: 0.05 },
+    { id: 'rp', hand: 'R', home: 'semicolon', kind: 'pinky', baseW: 21.0, tipW: 14.0, archPull: 0.24, archDy: 11, tipDy: 4, kDist: 60, restLen: 58, restAng: 0.12 },
   ];
 
   const HAND_COLOR_PRESETS = {
@@ -385,25 +385,6 @@
   function dist(a, b) { return Math.hypot(a.x - b.x, a.y - b.y); }
   function norm(v) { const l = Math.hypot(v.x, v.y) || 1; return { x: v.x / l, y: v.y / l }; }
 
-  function roundedPolyPath(pts, r) {
-    const n = pts.length;
-    let d = '';
-    for (let i = 0; i < n; i++) {
-      const prev = pts[(i - 1 + n) % n];
-      const cur = pts[i];
-      const next = pts[(i + 1) % n];
-      const v1 = norm(sub(cur, prev));
-      const v2 = norm(sub(next, cur));
-      const cut1 = Math.min(r, dist(cur, prev) / 2.2);
-      const cut2 = Math.min(r, dist(cur, next) / 2.2);
-      const p1 = sub(cur, scalePt(v1, cut1));
-      const p2 = add(cur, scalePt(v2, cut2));
-      d += (i === 0 ? `M ${p1.x.toFixed(1)} ${p1.y.toFixed(1)} ` : `L ${p1.x.toFixed(1)} ${p1.y.toFixed(1)} `);
-      d += `Q ${cur.x.toFixed(1)} ${cur.y.toFixed(1)} ${p2.x.toFixed(1)} ${p2.y.toFixed(1)} `;
-    }
-    return d + 'Z';
-  }
-
   function qPoint(o, c, t, s) { const m = 1 - s; return { x: m * m * o.x + 2 * m * s * c.x + s * s * t.x, y: m * m * o.y + 2 * m * s * c.y + s * s * t.y }; }
   function qTangent(o, c, t, s) { const m = 1 - s; return { x: 2 * m * (c.x - o.x) + 2 * s * (t.x - c.x), y: 2 * m * (c.y - o.y) + 2 * s * (t.y - c.y) }; }
 
@@ -414,24 +395,35 @@
       const p = qPoint(origin, ctrl, tip, s);
       const tan = qTangent(origin, ctrl, tip, s);
       const l = Math.hypot(tan.x, tan.y) || 1;
-      const nx = -tan.y / l, ny = tan.x / l;
-      const w = (baseW + (tipW - baseW) * Math.pow(s, 1.35)) / 2;
+      const nx = tan.y / l, ny = -tan.x / l;
+      const pipSwell = Math.exp(-Math.pow((s - 0.44) / 0.24, 2)) * 1.1;
+      const dipSwell = Math.exp(-Math.pow((s - 0.76) / 0.16, 2)) * 0.4;
+      const w = (baseW + (tipW - baseW) * Math.pow(s, 1.06) + pipSwell + dipSwell) / 2;
       left.push({ x: p.x + nx * w, y: p.y + ny * w });
       right.push({ x: p.x - nx * w, y: p.y - ny * w });
     }
     return { left, right };
   }
 
+  function tipCapCmd(frame, tipW) {
+    const N = frame.left.length - 1;
+    const pL = frame.left[N];
+    const pR = frame.right[N];
+    const dirL = norm(sub(frame.left[N], frame.left[N - 2]));
+    const dirR = norm(sub(frame.right[N], frame.right[N - 2]));
+    const capH = tipW * 0.64;
+    const c1 = add(pL, scalePt(dirL, capH));
+    const c2 = add(pR, scalePt(dirR, capH));
+    return `C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${pR.x.toFixed(1)} ${pR.y.toFixed(1)}`;
+  }
+
   function frameToPath(frame, baseW, tipW) {
     const { left, right } = frame;
-    let d = `M ${left[0].x.toFixed(1)} ${left[0].y.toFixed(1)} `;
-    for (let i = 1; i < left.length; i++) d += `L ${left[i].x.toFixed(1)} ${left[i].y.toFixed(1)} `;
-    const tipR = (tipW / 2).toFixed(1);
-    const lastR = right[right.length - 1];
-    d += `A ${tipR} ${tipR} 0 0 1 ${lastR.x.toFixed(1)} ${lastR.y.toFixed(1)} `;
-    for (let i = right.length - 2; i >= 0; i--) d += `L ${right[i].x.toFixed(1)} ${right[i].y.toFixed(1)} `;
-    const baseR = (baseW / 2).toFixed(1);
-    d += `A ${baseR} ${baseR} 0 0 1 ${left[0].x.toFixed(1)} ${left[0].y.toFixed(1)} Z`;
+    const startIdx = 3;
+    let d = `M ${left[startIdx].x.toFixed(1)} ${left[startIdx].y.toFixed(1)} `;
+    for (let i = startIdx + 1; i < left.length; i++) d += `L ${left[i].x.toFixed(1)} ${left[i].y.toFixed(1)} `;
+    d += tipCapCmd(frame, tipW) + ' ';
+    for (let i = right.length - 2; i >= startIdx; i--) d += `L ${right[i].x.toFixed(1)} ${right[i].y.toFixed(1)}`;
     return d;
   }
 
@@ -439,9 +431,9 @@
     const i = Math.round(s * (frame.left.length - 1));
     const l = frame.left[i], r = frame.right[i];
     const mx = (l.x + r.x) / 2, my = (l.y + r.y) / 2;
-    const lx = l.x + (l.x - mx) * 0.65, ly = l.y + (l.y - my) * 0.65;
-    const rx = r.x + (r.x - mx) * 0.65, ry = r.y + (r.y - my) * 0.65;
-    return `M ${lx.toFixed(1)} ${ly.toFixed(1)} Q ${mx.toFixed(1)} ${my.toFixed(1)} ${rx.toFixed(1)} ${ry.toFixed(1)}`;
+    const lx = mx + (l.x - mx) * 0.54, ly = my + (l.y - my) * 0.54;
+    const rx = mx + (r.x - mx) * 0.54, ry = my + (r.y - my) * 0.54;
+    return `M ${lx.toFixed(1)} ${ly.toFixed(1)} Q ${mx.toFixed(1)} ${(my - 1.4).toFixed(1)} ${rx.toFixed(1)} ${ry.toFixed(1)}`;
   }
 
   function pointAtFrame(frame, s) {
@@ -465,15 +457,15 @@
     const { r, g, b } = hexToRgb(hex);
     return {
       hex: rgbToHex(r, g, b),
-      dark: rgbToHex(r * 0.14, g * 0.14, b * 0.14),
-      deep: rgbToHex(r * 0.38, g * 0.38, b * 0.38),
-      mid: rgbToHex(r * 0.68, g * 0.68, b * 0.68),
+      dark: rgbToHex(r * 0.16, g * 0.16, b * 0.16),
+      deep: rgbToHex(r * 0.42, g * 0.42, b * 0.42),
+      mid: rgbToHex(r * 0.72, g * 0.72, b * 0.72),
       bright: rgbToHex(r, g, b),
       light: rgbToHex(r + (255 - r) * 0.75, g + (255 - g) * 0.75, b + (255 - b) * 0.75),
       glowRgba: `rgba(${r}, ${g}, ${b}, 0.85)`,
-      strokeRgba: `rgba(${r}, ${g}, ${b}, 0.5)`,
+      strokeRgba: `rgba(${r}, ${g}, ${b}, 0.72)`,
       shadowRgba: `rgba(${r}, ${g}, ${b}, 0.32)`,
-      nailFillRgba: `rgba(${r}, ${g}, ${b}, 0.35)`,
+      nailFillRgba: `rgba(${r}, ${g}, ${b}, 0.28)`,
       tipFillRgba: `rgba(${r}, ${g}, ${b}, 0.65)`,
     };
   }
@@ -495,48 +487,52 @@
     const palL = buildHandPalette(leftHex);
     const palR = buildHandPalette(rightHex);
     defs.innerHTML = `
-      <linearGradient id="fingerGrad" x1="0" y1="1" x2="0.3" y2="0">
-        <stop offset="0%" stop-color="${palL.dark}" stop-opacity="0.75"/>
-        <stop offset="35%" stop-color="${palL.deep}" stop-opacity="0.8"/>
-        <stop offset="68%" stop-color="${palL.mid}" stop-opacity="0.85"/>
-        <stop offset="88%" stop-color="${palL.bright}" stop-opacity="0.92"/>
+      <linearGradient id="fingerGrad" x1="0" y1="1" x2="0.15" y2="0">
+        <stop offset="0%" stop-color="${palL.deep}" stop-opacity="0.72"/>
+        <stop offset="50%" stop-color="${palL.mid}" stop-opacity="0.82"/>
+        <stop offset="85%" stop-color="${palL.bright}" stop-opacity="0.92"/>
         <stop offset="100%" stop-color="${palL.light}" stop-opacity="0.98"/>
       </linearGradient>
-      <linearGradient id="fingerGradR" x1="0" y1="1" x2="0.3" y2="0">
-        <stop offset="0%" stop-color="${palR.dark}" stop-opacity="0.75"/>
-        <stop offset="35%" stop-color="${palR.deep}" stop-opacity="0.8"/>
-        <stop offset="68%" stop-color="${palR.mid}" stop-opacity="0.85"/>
-        <stop offset="88%" stop-color="${palR.bright}" stop-opacity="0.92"/>
+      <linearGradient id="fingerGradR" x1="0" y1="1" x2="-0.15" y2="0">
+        <stop offset="0%" stop-color="${palR.deep}" stop-opacity="0.72"/>
+        <stop offset="50%" stop-color="${palR.mid}" stop-opacity="0.82"/>
+        <stop offset="85%" stop-color="${palR.bright}" stop-opacity="0.92"/>
         <stop offset="100%" stop-color="${palR.light}" stop-opacity="0.98"/>
       </linearGradient>
-      <linearGradient id="fingerGradActive" x1="0" y1="1" x2="0.3" y2="0">
-        <stop offset="0%" stop-color="${palL.deep}" stop-opacity="0.9"/>
-        <stop offset="45%" stop-color="${palL.bright}" stop-opacity="0.95"/>
-        <stop offset="78%" stop-color="#ffd166" stop-opacity="0.98"/>
+      <linearGradient id="fingerGradActive" x1="0" y1="1" x2="0.1" y2="0">
+        <stop offset="0%" stop-color="${palL.mid}" stop-opacity="0"/>
+        <stop offset="28%" stop-color="${palL.bright}" stop-opacity="0.82"/>
+        <stop offset="72%" stop-color="#ffd166" stop-opacity="0.96"/>
         <stop offset="100%" stop-color="#ffffff" stop-opacity="1"/>
       </linearGradient>
-      <linearGradient id="fingerGradActiveR" x1="0" y1="1" x2="0.3" y2="0">
-        <stop offset="0%" stop-color="${palR.deep}" stop-opacity="0.9"/>
-        <stop offset="45%" stop-color="${palR.bright}" stop-opacity="0.95"/>
-        <stop offset="78%" stop-color="#ffd166" stop-opacity="0.98"/>
+      <linearGradient id="fingerGradActiveR" x1="0" y1="1" x2="-0.1" y2="0">
+        <stop offset="0%" stop-color="${palR.mid}" stop-opacity="0"/>
+        <stop offset="28%" stop-color="${palR.bright}" stop-opacity="0.82"/>
+        <stop offset="72%" stop-color="#ffd166" stop-opacity="0.96"/>
         <stop offset="100%" stop-color="#ffffff" stop-opacity="1"/>
       </linearGradient>
-      <linearGradient id="palmGrad" x1="0" y1="1" x2="0.25" y2="0">
-        <stop offset="0%" stop-color="${palL.dark}" stop-opacity="0.7"/>
-        <stop offset="45%" stop-color="${palL.deep}" stop-opacity="0.75"/>
-        <stop offset="100%" stop-color="${palL.mid}" stop-opacity="0.8"/>
+      <linearGradient id="palmGrad" x1="0.5" y1="1" x2="0.45" y2="0">
+        <stop offset="0%" stop-color="${palL.dark}" stop-opacity="0.58"/>
+        <stop offset="32%" stop-color="${palL.deep}" stop-opacity="0.76"/>
+        <stop offset="68%" stop-color="${palL.mid}" stop-opacity="0.86"/>
+        <stop offset="92%" stop-color="${palL.bright}" stop-opacity="0.94"/>
+        <stop offset="100%" stop-color="${palL.light}" stop-opacity="0.98"/>
       </linearGradient>
-      <linearGradient id="palmGradR" x1="0" y1="1" x2="0.25" y2="0">
-        <stop offset="0%" stop-color="${palR.dark}" stop-opacity="0.7"/>
-        <stop offset="45%" stop-color="${palR.deep}" stop-opacity="0.75"/>
-        <stop offset="100%" stop-color="${palR.mid}" stop-opacity="0.8"/>
+      <linearGradient id="palmGradR" x1="0.5" y1="1" x2="0.55" y2="0">
+        <stop offset="0%" stop-color="${palR.dark}" stop-opacity="0.58"/>
+        <stop offset="32%" stop-color="${palR.deep}" stop-opacity="0.76"/>
+        <stop offset="68%" stop-color="${palR.mid}" stop-opacity="0.86"/>
+        <stop offset="92%" stop-color="${palR.bright}" stop-opacity="0.94"/>
+        <stop offset="100%" stop-color="${palR.light}" stop-opacity="0.98"/>
       </linearGradient>
-      <radialGradient id="palmHighlight" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="${palL.bright}" stop-opacity="0.6"/>
+      <radialGradient id="palmHighlight" cx="50%" cy="46%" r="52%">
+        <stop offset="0%" stop-color="${palL.light}" stop-opacity="0.42"/>
+        <stop offset="55%" stop-color="${palL.bright}" stop-opacity="0.16"/>
         <stop offset="100%" stop-color="${palL.bright}" stop-opacity="0"/>
       </radialGradient>
-      <radialGradient id="palmHighlightR" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="${palR.bright}" stop-opacity="0.6"/>
+      <radialGradient id="palmHighlightR" cx="50%" cy="46%" r="52%">
+        <stop offset="0%" stop-color="${palR.light}" stop-opacity="0.42"/>
+        <stop offset="55%" stop-color="${palR.bright}" stop-opacity="0.16"/>
         <stop offset="100%" stop-color="${palR.bright}" stop-opacity="0"/>
       </radialGradient>
       <radialGradient id="jointGlow" cx="50%" cy="50%" r="50%">
@@ -627,7 +623,6 @@
 
   function buildHand(hand, fingers, wrapRect, activeF, targetKey) {
     const inward = hand === 'L' ? 1 : -1;
-    const outward = -inward;
     const homes = {};
     fingers.forEach((f) => {
       if (f.kind === 'thumb') return;
@@ -652,50 +647,144 @@
       }
     }
 
+    const homeXs = order.map((f) => homes[f.id].x);
+    const homeYs = order.map((f) => homes[f.id].y);
+    const homeSpanCenterX = (homeXs[0] + homeXs[3]) * 0.5 + inward * 4;
+    const homeAvgY = homeYs.reduce((a, b) => a + b, 0) / 4;
+    const palmArchBaseY = homeAvgY + 58;
+
     const baseKnuckles = {};
     order.forEach((f) => {
       const h = homes[f.id];
-      const ang = f.restAng;
+      const pull = typeof f.archPull === 'number' ? f.archPull : 0.18;
+      const dy = typeof f.archDy === 'number' ? f.archDy : 4;
       baseKnuckles[f.id] = {
-        x: h.x - Math.sin(ang) * f.kDist + shiftX,
-        y: h.y + Math.cos(ang) * f.kDist + shiftY,
+        x: h.x + (homeSpanCenterX - h.x) * pull + shiftX,
+        y: palmArchBaseY + dy + shiftY,
       };
     });
 
-    const knucklePts = order.map((f) => baseKnuckles[f.id]);
-    const indexBase = knucklePts[3];
-    const pinkyBase = knucklePts[0];
+    const indexBase = baseKnuckles[order[3].id];
     const thumbF = fingers.find((f) => f.kind === 'thumb');
-    const thumbBase = { x: indexBase.x + inward * 22, y: indexBase.y + 12 };
+    const spaceElForHand = keyEls['space'];
+    let spaceMidY = indexBase.y + 36;
+    if (spaceElForHand) {
+      const sr = spaceElForHand.getBoundingClientRect();
+      if (sr.height > 0) spaceMidY = (sr.top + sr.height * 0.50) - wrapRect.top;
+    }
+    const thumbBase = {
+      x: indexBase.x + inward * 2,
+      y: Math.min(wrapRect.height - 18, Math.max(indexBase.y + 38, spaceMidY + 2 + shiftY * 0.32)),
+    };
     baseKnuckles[thumbF.id] = thumbBase;
 
-    const palmHeight = 68;
-    const maxKnuckleY = Math.max(...knucklePts.map((p) => p.y));
-    const wristCenter = {
-      x: (knucklePts[1].x + knucklePts[2].x) / 2 + outward * 4,
-      y: Math.min(wrapRect.height + 24, maxKnuckleY + palmHeight),
+    return { bases: baseKnuckles, homes, order, thumbF, spaceMidY, shiftX, shiftY };
+  }
+
+  function buildUnifiedHandSVG(hand, order, thumbF, frames, bases) {
+    const inward = hand === 'L' ? 1 : -1;
+    const outward = -inward;
+    const pinkyBase = bases[order[0].id];
+    const indexBase = bases[order[3].id];
+    const thumbBase = bases[thumbF.id];
+
+    const wristY = thumbBase.y + 28;
+    const palmMidX = (pinkyBase.x + indexBase.x) * 0.5 + inward * 2;
+    const wristOuter = { x: palmMidX + outward * 44, y: wristY };
+    const wristInner = { x: palmMidX + inward * 38, y: wristY };
+
+    const wristLeft = hand === 'L' ? wristOuter : wristInner;
+    const wristRight = hand === 'L' ? wristInner : wristOuter;
+
+    const screenDigits = hand === 'L'
+      ? [order[0], order[1], order[2], order[3], thumbF]
+      : [thumbF, order[3], order[2], order[1], order[0]];
+
+    const cmds = [];
+    cmds.push(`M ${wristLeft.x.toFixed(1)} ${wristLeft.y.toFixed(1)}`);
+
+    const firstF = screenDigits[0];
+    const firstFr = frames[firstF.id];
+    const firstStartI = firstF.kind === 'thumb' ? (hand === 'L' ? 5 : 4) : 3;
+    const firstStart = firstFr.left[firstStartI];
+    const firstInDir = norm(sub(firstFr.left[firstStartI + 2], firstFr.left[firstStartI]));
+
+    if (hand === 'L') {
+      const c1 = { x: firstStart.x - 4, y: wristLeft.y - 16 };
+      const c2 = sub(firstStart, scalePt(firstInDir, 22));
+      cmds.push(`C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${firstStart.x.toFixed(1)} ${firstStart.y.toFixed(1)}`);
+    } else {
+      const c1 = { x: wristLeft.x - 10, y: wristLeft.y - 6 };
+      const c2 = sub(firstStart, scalePt(firstInDir, 16));
+      cmds.push(`C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${firstStart.x.toFixed(1)} ${firstStart.y.toFixed(1)}`);
+    }
+
+    for (let dIdx = 0; dIdx < screenDigits.length; dIdx++) {
+      const df = screenDigits[dIdx];
+      const fr = frames[df.id];
+      const isThumb = df.kind === 'thumb';
+      const startI = isThumb ? (hand === 'L' ? 5 : 4) : 3;
+      const endI = isThumb ? (hand === 'L' ? 4 : 5) : 3;
+
+      for (let i = startI + 1; i < fr.left.length; i++) {
+        cmds.push(`L ${fr.left[i].x.toFixed(1)} ${fr.left[i].y.toFixed(1)}`);
+      }
+      cmds.push(tipCapCmd(fr, df.tipW));
+      for (let i = fr.right.length - 2; i >= endI; i--) {
+        cmds.push(`L ${fr.right[i].x.toFixed(1)} ${fr.right[i].y.toFixed(1)}`);
+      }
+
+      if (dIdx < screenDigits.length - 1) {
+        const nextDf = screenDigits[dIdx + 1];
+        const nextFr = frames[nextDf.id];
+        const nextIsThumb = nextDf.kind === 'thumb';
+        const nextStartI = nextIsThumb ? (hand === 'L' ? 5 : 4) : 3;
+        const pA = fr.right[endI];
+        const pB = nextFr.left[nextStartI];
+        const dirA = norm(sub(fr.right[endI], fr.right[endI + 2]));
+        const dirB = norm(sub(nextFr.left[nextStartI + 2], nextFr.left[nextStartI]));
+        const hLen = (isThumb || nextIsThumb) ? 11 : 9;
+        const c1 = add(pA, scalePt(dirA, hLen));
+        const c2 = sub(pB, scalePt(dirB, hLen));
+        cmds.push(`C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${pB.x.toFixed(1)} ${pB.y.toFixed(1)}`);
+      }
+    }
+
+    const lastF = screenDigits[screenDigits.length - 1];
+    const lastFr = frames[lastF.id];
+    const lastEndI = lastF.kind === 'thumb' ? (hand === 'L' ? 4 : 5) : 3;
+    const lastEnd = lastFr.right[lastEndI];
+    const lastOutDir = norm(sub(lastFr.right[lastEndI], lastFr.right[lastEndI + 2]));
+
+    if (hand === 'L') {
+      const c1 = add(lastEnd, scalePt(lastOutDir, 16));
+      const c2 = { x: wristRight.x + 10, y: wristRight.y - 6 };
+      cmds.push(`C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${wristRight.x.toFixed(1)} ${wristRight.y.toFixed(1)}`);
+    } else {
+      const c1 = add(lastEnd, scalePt(lastOutDir, 22));
+      const c2 = { x: lastEnd.x + 4, y: wristRight.y - 16 };
+      cmds.push(`C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${wristRight.x.toFixed(1)} ${wristRight.y.toFixed(1)}`);
+    }
+
+    const wristMid1 = { x: wristRight.x + (wristLeft.x - wristRight.x) * 0.33, y: wristY + 6 };
+    const wristMid2 = { x: wristRight.x + (wristLeft.x - wristRight.x) * 0.67, y: wristY + 6 };
+    cmds.push(`C ${wristMid1.x.toFixed(1)} ${wristMid1.y.toFixed(1)} ${wristMid2.x.toFixed(1)} ${wristMid2.y.toFixed(1)} ${wristLeft.x.toFixed(1)} ${wristLeft.y.toFixed(1)} Z`);
+
+    const shadePath = [1, 2, 3].map((idx) => {
+      const kb = bases[order[idx].id];
+      const sx = palmMidX + (kb.x - palmMidX) * 0.38;
+      const sy = wristY - 12;
+      return `M ${sx.toFixed(1)} ${sy.toFixed(1)} L ${kb.x.toFixed(1)} ${(kb.y + 8).toFixed(1)}`;
+    }).join(' ');
+
+    const highlight = {
+      cx: palmMidX,
+      cy: (pinkyBase.y + wristY) * 0.48,
+      rx: 34,
+      ry: 22,
     };
-    const wristWidth = 64;
-    const wristOuter = { x: wristCenter.x + outward * (wristWidth * 0.52), y: wristCenter.y };
-    const wristInner = { x: wristCenter.x + inward * (wristWidth * 0.48), y: wristCenter.y };
-    const topOuter = { x: pinkyBase.x + outward * 12, y: pinkyBase.y - 2 };
-    const innerCurve = { x: thumbBase.x + inward * 3, y: thumbBase.y + 22 };
 
-    const arch = (a, b) => ({ x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 - 4 });
-    const outline = [
-      topOuter,
-      arch(topOuter, knucklePts[1]), knucklePts[1],
-      arch(knucklePts[1], knucklePts[2]), knucklePts[2],
-      arch(knucklePts[2], indexBase), indexBase,
-      innerCurve, wristInner, wristOuter,
-    ];
-    const palmPath = roundedPolyPath(outline, 16);
-    const cx = (topOuter.x + wristInner.x) / 2, cy = (topOuter.y + wristOuter.y) / 2;
-    const shadeOutline = outline.map((p) => add(p, scalePt(sub({ x: cx, y: cy }, p), 0.18)));
-    const shadePath = roundedPolyPath(shadeOutline, 14);
-    const highlight = { cx: (topOuter.x + knucklePts[1].x) / 2 + outward * 3, cy: topOuter.y + 8, rx: 26, ry: 14 };
-
-    return { bases: baseKnuckles, palmPath, shadePath, highlight, shiftX, shiftY };
+    return { palmPath: cmds.join(' '), shadePath, highlight };
   }
 
   function updateHandsOverlay() {
@@ -723,18 +812,8 @@
     const handL = buildHand('L', leftFingers, wrapRect, activeLeft, targetLeft);
     const handR = buildHand('R', rightFingers, wrapRect, activeRight, targetRight);
 
-    if (handL) {
-      palmShapeL.setAttribute('d', handL.palmPath);
-      palmShadeL.setAttribute('d', handL.shadePath);
-      palmHiL.setAttribute('cx', handL.highlight.cx); palmHiL.setAttribute('cy', handL.highlight.cy);
-      palmHiL.setAttribute('rx', handL.highlight.rx); palmHiL.setAttribute('ry', handL.highlight.ry);
-    }
-    if (handR) {
-      palmShapeR.setAttribute('d', handR.palmPath);
-      palmShadeR.setAttribute('d', handR.shadePath);
-      palmHiR.setAttribute('cx', handR.highlight.cx); palmHiR.setAttribute('cy', handR.highlight.cy);
-      palmHiR.setAttribute('rx', handR.highlight.rx); palmHiR.setAttribute('ry', handR.highlight.ry);
-    }
+    const framesL = {};
+    const framesR = {};
 
     FINGERS.forEach((f) => {
       const fe = fingerEls[f.id];
@@ -750,60 +829,101 @@
 
       let tip;
       if (f.kind === 'thumb') {
-        const spaceEl = keyEls['space'];
-        if (isActive && targetKey && targetKey !== 'space') {
-          tip = keyCenter(targetKey, wrapRect);
-        } else if (spaceEl) {
-          const r = spaceEl.getBoundingClientRect();
-          const frac = f.hand === 'L' ? 0.38 : 0.62;
-          tip = { x: r.left + r.width * frac - wrapRect.left, y: r.top + r.height * 0.48 - wrapRect.top };
-        } else {
-          tip = { x: origin.x + inward * 16, y: origin.y + 24 };
-        }
-      } else if (isActive && targetKey) {
-        tip = keyCenter(targetKey, wrapRect) || keyCenter(f.home, wrapRect);
-      } else {
-        const homeCenter = keyCenter(f.home, wrapRect);
-        if (homeCenter) {
-          if (Math.abs(hb.shiftX) > 3 || Math.abs(hb.shiftY) > 3) {
-            tip = { x: origin.x + Math.sin(f.restAng) * f.restLen, y: origin.y - Math.cos(f.restAng) * f.restLen };
+        const indexBase = hb.bases[hb.order[3].id];
+        const defaultThumbTip = {
+          x: indexBase.x + inward * 48,
+          y: Math.min(origin.y - 26, hb.spaceMidY - 6),
+        };
+        if (isActive && targetKey) {
+          const rawTip = keyCenter(targetKey, wrapRect);
+          if (rawTip && targetKey !== 'space') {
+            tip = rawTip;
           } else {
-            tip = homeCenter;
+            tip = { x: defaultThumbTip.x + inward * 4, y: defaultThumbTip.y - 4 };
           }
+        } else {
+          tip = defaultThumbTip;
+        }
+      } else {
+        const homeCenter = hb.homes[f.id] || keyCenter(f.home, wrapRect);
+        const restTip = homeCenter
+          ? { x: homeCenter.x + hb.shiftX, y: homeCenter.y + 4 + (f.tipDy || 0) + hb.shiftY }
+          : { x: origin.x, y: origin.y - 58 };
+        if (isActive && targetKey) {
+          const rawTarget = keyCenter(targetKey, wrapRect);
+          tip = rawTarget ? { x: rawTarget.x, y: rawTarget.y + 2 } : restTip;
+        } else {
+          tip = restTip;
         }
       }
       if (!tip) return;
 
-      const maxLen = f.kind === 'thumb' ? 62 : (f.kind === 'pinky' ? 74 : (f.kind === 'middle' ? 95 : 88));
+      const maxLen = f.kind === 'thumb' ? 68 : (f.kind === 'pinky' ? 82 : (f.kind === 'middle' ? 102 : 95));
       const d = dist(origin, tip);
       if (d > maxLen) {
         const scale = maxLen / d;
         tip = { x: origin.x + (tip.x - origin.x) * scale, y: origin.y + (tip.y - origin.y) * scale };
       }
 
-      const bow = Math.min(18, d * 0.14);
-      const mid = { x: (origin.x + tip.x) / 2, y: (origin.y + tip.y) / 2 - bow };
+      let mid;
+      if (f.kind === 'thumb') {
+        mid = {
+          x: origin.x + (tip.x - origin.x) * 0.46,
+          y: origin.y + (tip.y - origin.y) * 0.56 - 4,
+        };
+      } else {
+        mid = {
+          x: origin.x + (tip.x - origin.x) * 0.56,
+          y: origin.y + (tip.y - origin.y) * 0.52 - 2,
+        };
+      }
       const frame = fingerFrame(origin, mid, tip, f.baseW, f.tipW);
+      if (f.hand === 'L') framesL[f.id] = frame;
+      else framesR[f.id] = frame;
 
       fe.shape.setAttribute('d', frameToPath(frame, f.baseW, f.tipW));
-      fe.crease1.setAttribute('d', creaseAt(frame, 0.42));
-      fe.crease2.setAttribute('d', creaseAt(frame, 0.72));
-      fe.shine.setAttribute('d', `M ${frame.left[1].x.toFixed(1)} ${frame.left[1].y.toFixed(1)} Q ${mid.x.toFixed(1)} ${mid.y.toFixed(1)} ${(tip.x + (frame.left[frame.left.length - 1].x - tip.x) * 0.3).toFixed(1)} ${(tip.y + (frame.left[frame.left.length - 1].y - tip.y) * 0.3).toFixed(1)}`);
+      if (f.kind === 'thumb') {
+        fe.crease1.setAttribute('d', creaseAt(frame, 0.50));
+        fe.crease2.setAttribute('d', '');
+      } else {
+        fe.crease1.setAttribute('d', creaseAt(frame, 0.44));
+        fe.crease2.setAttribute('d', creaseAt(frame, 0.72));
+      }
+      fe.joint1.setAttribute('r', '0');
+      fe.joint2.setAttribute('r', '0');
 
-      const j1 = pointAtFrame(frame, 0.42), j2 = pointAtFrame(frame, 0.72);
-      fe.joint1.setAttribute('cx', j1.x); fe.joint1.setAttribute('cy', j1.y); fe.joint1.setAttribute('r', Math.max(1.6, f.baseW * 0.16));
-      fe.joint2.setAttribute('cx', j2.x); fe.joint2.setAttribute('cy', j2.y); fe.joint2.setAttribute('r', Math.max(1.3, f.tipW * 0.16));
+      const sStart = 5, sMid = 10, sEnd = 15;
+      const cStart = pointAtFrame(frame, sStart / 18), cMid = pointAtFrame(frame, sMid / 18), cEnd = pointAtFrame(frame, sEnd / 18);
+      const sh1 = { x: cStart.x + (frame.left[sStart].x - cStart.x) * 0.52, y: cStart.y + (frame.left[sStart].y - cStart.y) * 0.52 };
+      const sh2 = { x: cMid.x + (frame.left[sMid].x - cMid.x) * 0.52, y: cMid.y + (frame.left[sMid].y - cMid.y) * 0.52 };
+      const sh3 = { x: cEnd.x + (frame.left[sEnd].x - cEnd.x) * 0.52, y: cEnd.y + (frame.left[sEnd].y - cEnd.y) * 0.52 };
+      fe.shine.setAttribute('d', `M ${sh1.x.toFixed(1)} ${sh1.y.toFixed(1)} Q ${sh2.x.toFixed(1)} ${sh2.y.toFixed(1)} ${sh3.x.toFixed(1)} ${sh3.y.toFixed(1)}`);
 
-      const nailPt = qPoint(origin, mid, tip, 0.9);
-      const tan = qTangent(origin, mid, tip, 0.9);
+      const nailPt = qPoint(origin, mid, tip, 0.87);
+      const tan = qTangent(origin, mid, tip, 0.87);
       const ang = Math.atan2(tan.y, tan.x) * 180 / Math.PI + 90;
       fe.nail.setAttribute('cx', nailPt.x); fe.nail.setAttribute('cy', nailPt.y);
-      fe.nail.setAttribute('rx', Math.max(2.2, f.tipW * 0.28)); fe.nail.setAttribute('ry', Math.max(2.8, f.tipW * 0.38));
+      fe.nail.setAttribute('rx', Math.max(3.2, f.tipW * 0.28)); fe.nail.setAttribute('ry', Math.max(3.8, f.tipW * 0.35));
       fe.nail.setAttribute('transform', `rotate(${ang.toFixed(1)} ${nailPt.x.toFixed(1)} ${nailPt.y.toFixed(1)})`);
 
-      fe.tip.setAttribute('cx', tip.x); fe.tip.setAttribute('cy', tip.y);
+      fe.tip.setAttribute('cx', nailPt.x); fe.tip.setAttribute('cy', nailPt.y);
       fe.g.classList.toggle('active', isActive);
     });
+
+    if (handL && Object.keys(framesL).length === 5) {
+      const svgL = buildUnifiedHandSVG('L', handL.order, handL.thumbF, framesL, handL.bases);
+      palmShapeL.setAttribute('d', svgL.palmPath);
+      palmShadeL.setAttribute('d', svgL.shadePath);
+      palmHiL.setAttribute('cx', svgL.highlight.cx); palmHiL.setAttribute('cy', svgL.highlight.cy);
+      palmHiL.setAttribute('rx', svgL.highlight.rx); palmHiL.setAttribute('ry', svgL.highlight.ry);
+    }
+    if (handR && Object.keys(framesR).length === 5) {
+      const svgR = buildUnifiedHandSVG('R', handR.order, handR.thumbF, framesR, handR.bases);
+      palmShapeR.setAttribute('d', svgR.palmPath);
+      palmShadeR.setAttribute('d', svgR.shadePath);
+      palmHiR.setAttribute('cx', svgR.highlight.cx); palmHiR.setAttribute('cy', svgR.highlight.cy);
+      palmHiR.setAttribute('rx', svgR.highlight.rx); palmHiR.setAttribute('ry', svgR.highlight.ry);
+    }
   }
 
   function setActiveFinger(keyId, layer) {
