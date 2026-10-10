@@ -253,13 +253,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Noto+Serif+Khmer:wght@400;600;700&family=Noto+Sans+Khmer:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/base.css?v=66">
-  <link rel="stylesheet" href="css/keyboard.css?v=66">
-  <link rel="stylesheet" href="css/typing.css?v=66">
-  <link rel="stylesheet" href="css/lessons.css?v=66">
-  <link rel="stylesheet" href="css/responsive.css?v=66">
-  <link rel="stylesheet" href="css/settings.css?v=66">
-  <link rel="stylesheet" href="css/tutorial.css?v=66">
+  <link rel="stylesheet" href="css/base.css?v=67">
+  <link rel="stylesheet" href="css/keyboard.css?v=67">
+  <link rel="stylesheet" href="css/typing.css?v=67">
+  <link rel="stylesheet" href="css/lessons.css?v=67">
+  <link rel="stylesheet" href="css/responsive.css?v=67">
+  <link rel="stylesheet" href="css/settings.css?v=67">
+  <link rel="stylesheet" href="css/tutorial.css?v=67">
   <script>
     try {
       var p = localStorage.getItem('khmerSettingPerformanceMode');
@@ -2297,19 +2297,29 @@
 <!-- Optional Firebase Leaderboard Setup (unconfigured by default) -->
 <footer class="site-footer" id="siteFooter">
   <div class="site-footer-inner">
-    <div class="site-footer-credit-badge">
-      <div class="site-footer-brand-crest" aria-hidden="true">
-        <img src="assets/logo.svg" width="20" height="20" alt="">
-      </div>
-      <div class="site-footer-brand-copy">
-        <div class="site-footer-brand-title-row">
-          <span class="site-footer-brand-name">PK Khmer Type</span>
-          <button type="button" class="site-footer-live-pill site-footer-version-tag" id="footerVersionTag" title="View PK Khmer Type Release Showcase">
-            <span class="site-footer-live-dot" aria-hidden="true"></span>
-            <span class="site-footer-live-text">STUDIO v2.4</span>
-          </button>
+    <div class="site-footer-top-row">
+      <div class="site-footer-credit-badge">
+        <div class="site-footer-brand-crest" aria-hidden="true">
+          <img src="assets/logo.svg" width="20" height="20" alt="">
         </div>
-        <span class="site-footer-credit i18n-t" data-en="Built by Phanna Kurosaki" data-km="សាងសង់ដោយ Phanna Kurosaki">Built by Phanna Kurosaki</span>
+        <div class="site-footer-brand-copy">
+          <div class="site-footer-brand-title-row">
+            <span class="site-footer-brand-name">PK Khmer Type</span>
+            <span class="site-footer-brand-sep" aria-hidden="true">&middot;</span>
+            <span class="site-footer-credit i18n-t" data-en="Built by Phanna Kurosaki" data-km="សាងសង់ដោយ Phanna Kurosaki">Built by Phanna Kurosaki</span>
+          </div>
+          <span class="site-footer-brand-sub i18n-t" data-en="Cambodian &amp; English Mechanical Typing Studio" data-km="ស្ទូឌីយោហ្វឹកហាត់វាយក្តារចុចខ្មែរ និងអង់គ្លេស">Cambodian &amp; English Mechanical Typing Studio</span>
+        </div>
+      </div>
+      <div class="site-footer-top-controls">
+        <button type="button" class="site-footer-live-pill site-footer-version-tag" id="footerVersionTag" title="View PK Khmer Type Release Showcase">
+          <span class="site-footer-live-dot" aria-hidden="true"></span>
+          <span class="site-footer-live-text">STUDIO v2.4</span>
+        </button>
+        <button type="button" class="site-lang-toggle" id="siteLangToggle" aria-pressed="false">
+          <span class="site-lang-toggle-icon" aria-hidden="true">ភ</span>
+          <span id="siteLangToggleLabel">Translate to Khmer</span>
+        </button>
       </div>
     </div>
     <div class="site-footer-actions">
@@ -2339,11 +2349,6 @@
       <button type="button" class="site-footer-link" id="siteDevNoteBtn" aria-haspopup="dialog">
         <svg class="site-footer-link-icon pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
         <span class="i18n-t" data-en="Developer Note" data-km="សំបុត្រពីអ្នកអភិវឌ្ឍន៍">Developer Note</span>
-      </button>
-      <span class="site-footer-divider" aria-hidden="true"></span>
-      <button type="button" class="site-lang-toggle" id="siteLangToggle" aria-pressed="false">
-        <span class="site-lang-toggle-icon" aria-hidden="true">ភ</span>
-        <span id="siteLangToggleLabel">Translate to Khmer</span>
       </button>
     </div>
   </div>

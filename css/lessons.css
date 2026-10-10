@@ -2314,8 +2314,12 @@
 
   .toolbar{
     display:flex;
-    gap:10px;
-    margin-top:22px;
+    gap:8px;
+    margin:22px auto 0;
+    max-width:800px;
+    width:100%;
+    box-sizing:border-box;
+    padding:0 12px;
     align-items:center;
     flex-wrap:wrap;
     justify-content:center;
