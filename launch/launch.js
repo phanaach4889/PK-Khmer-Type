@@ -351,16 +351,16 @@
      ============================================================ */
   const SVGNS = 'http://www.w3.org/2000/svg';
   const FINGERS = [
-    { id: 'lp', hand: 'L', home: 'a', kind: 'pinky', baseW: 21.0, tipW: 14.0, archPull: 0.24, archDy: 11, tipDy: 4, kDist: 60, restLen: 58, restAng: -0.12 },
-    { id: 'lr', hand: 'L', home: 's', kind: 'ring', baseW: 23.2, tipW: 15.5, archPull: 0.16, archDy: 3, tipDy: 1, kDist: 56, restLen: 60, restAng: -0.05 },
-    { id: 'lm', hand: 'L', home: 'd', kind: 'middle', baseW: 24.6, tipW: 16.4, archPull: 0.14, archDy: 0, tipDy: -2, kDist: 54, restLen: 62, restAng: 0.01 },
-    { id: 'li', hand: 'L', home: 'f', kind: 'index', baseW: 23.8, tipW: 15.8, archPull: 0.22, archDy: 4, tipDy: 1, kDist: 56, restLen: 59, restAng: 0.08 },
-    { id: 'lt', hand: 'L', home: 'space', kind: 'thumb', baseW: 25.0, tipW: 17.2, kDist: 44, restLen: 46, restAng: 0.48 },
-    { id: 'rt', hand: 'R', home: 'space', kind: 'thumb', baseW: 25.0, tipW: 17.2, kDist: 44, restLen: 46, restAng: -0.48 },
-    { id: 'ri', hand: 'R', home: 'j', kind: 'index', baseW: 23.8, tipW: 15.8, archPull: 0.22, archDy: 4, tipDy: 1, kDist: 56, restLen: 59, restAng: -0.08 },
-    { id: 'rm', hand: 'R', home: 'k', kind: 'middle', baseW: 24.6, tipW: 16.4, archPull: 0.14, archDy: 0, tipDy: -2, kDist: 54, restLen: 62, restAng: -0.01 },
-    { id: 'rr', hand: 'R', home: 'l', kind: 'ring', baseW: 23.2, tipW: 15.5, archPull: 0.16, archDy: 3, tipDy: 1, kDist: 56, restLen: 60, restAng: 0.05 },
-    { id: 'rp', hand: 'R', home: 'semicolon', kind: 'pinky', baseW: 21.0, tipW: 14.0, archPull: 0.24, archDy: 11, tipDy: 4, kDist: 60, restLen: 58, restAng: 0.12 },
+    { id: 'lp', hand: 'L', home: 'a', kind: 'pinky', baseW: 33.5, tipW: 19.5, archPull: 0.26, archDy: 7, tipDy: 8, kDist: 76, restLen: 72, restAng: -0.08 },
+    { id: 'lr', hand: 'L', home: 's', kind: 'ring', baseW: 36.0, tipW: 21.8, archPull: 0.24, archDy: -1, tipDy: 0, kDist: 74, restLen: 76, restAng: -0.03 },
+    { id: 'lm', hand: 'L', home: 'd', kind: 'middle', baseW: 37.8, tipW: 23.2, archPull: 0.24, archDy: -6, tipDy: -6, kDist: 72, restLen: 82, restAng: 0.00 },
+    { id: 'li', hand: 'L', home: 'f', kind: 'index', baseW: 36.8, tipW: 22.6, archPull: 0.25, archDy: -1, tipDy: 1, kDist: 74, restLen: 76, restAng: 0.04 },
+    { id: 'lt', hand: 'L', home: 'space', kind: 'thumb', baseW: 38.0, tipW: 23.5, kDist: 66, restLen: 68, restAng: 0.52 },
+    { id: 'rt', hand: 'R', home: 'space', kind: 'thumb', baseW: 38.0, tipW: 23.5, kDist: 66, restLen: 68, restAng: -0.52 },
+    { id: 'ri', hand: 'R', home: 'j', kind: 'index', baseW: 36.8, tipW: 22.6, archPull: 0.25, archDy: -1, tipDy: 1, kDist: 74, restLen: 76, restAng: -0.04 },
+    { id: 'rm', hand: 'R', home: 'k', kind: 'middle', baseW: 37.8, tipW: 23.2, archPull: 0.24, archDy: -6, tipDy: -6, kDist: 72, restLen: 82, restAng: -0.00 },
+    { id: 'rr', hand: 'R', home: 'l', kind: 'ring', baseW: 36.0, tipW: 21.8, archPull: 0.24, archDy: -1, tipDy: 0, kDist: 74, restLen: 76, restAng: 0.03 },
+    { id: 'rp', hand: 'R', home: 'semicolon', kind: 'pinky', baseW: 33.5, tipW: 19.5, archPull: 0.26, archDy: 7, tipDy: 8, kDist: 76, restLen: 72, restAng: 0.08 },
   ];
 
   const HAND_COLOR_PRESETS = {
@@ -388,7 +388,7 @@
   function qPoint(o, c, t, s) { const m = 1 - s; return { x: m * m * o.x + 2 * m * s * c.x + s * s * t.x, y: m * m * o.y + 2 * m * s * c.y + s * s * t.y }; }
   function qTangent(o, c, t, s) { const m = 1 - s; return { x: 2 * m * (c.x - o.x) + 2 * s * (t.x - c.x), y: 2 * m * (c.y - o.y) + 2 * s * (t.y - c.y) }; }
 
-  function fingerFrame(origin, ctrl, tip, baseW, tipW) {
+  function fingerFrame(origin, ctrl, tip, baseW, tipW, isThumb = false) {
     const N = 18, left = [], right = [];
     for (let i = 0; i <= N; i++) {
       const s = i / N;
@@ -396,44 +396,82 @@
       const tan = qTangent(origin, ctrl, tip, s);
       const l = Math.hypot(tan.x, tan.y) || 1;
       const nx = tan.y / l, ny = -tan.x / l;
-      const pipSwell = Math.exp(-Math.pow((s - 0.44) / 0.24, 2)) * 1.1;
-      const dipSwell = Math.exp(-Math.pow((s - 0.76) / 0.16, 2)) * 0.4;
-      const w = (baseW + (tipW - baseW) * Math.pow(s, 1.06) + pipSwell + dipSwell) / 2;
+      const wProfile = Math.pow(s, 0.76);
+      let w = (baseW * (1 - wProfile) + tipW * wProfile) * 0.5;
+      if (!isThumb) {
+        const pipSwell = 0.85 * Math.exp(-Math.pow((s - 0.48) / 0.13, 2));
+        const dipSwell = 0.45 * Math.exp(-Math.pow((s - 0.76) / 0.10, 2));
+        w += pipSwell + dipSwell;
+      } else {
+        const mcpSwell = 1.6 * Math.exp(-Math.pow((s - 0.32) / 0.20, 2));
+        const ipSwell = 0.8 * Math.exp(-Math.pow((s - 0.68) / 0.14, 2));
+        w += mcpSwell + ipSwell;
+      }
       left.push({ x: p.x + nx * w, y: p.y + ny * w });
       right.push({ x: p.x - nx * w, y: p.y - ny * w });
     }
-    return { left, right };
+    const rawTipTan = qTangent(origin, ctrl, tip, 1);
+    const tipTanLen = Math.hypot(rawTipTan.x, rawTipTan.y) || 1;
+    const tipTan = { x: rawTipTan.x / tipTanLen, y: rawTipTan.y / tipTanLen };
+    return { left, right, origin, ctrl, tip, tipTan, baseW, tipW, isThumb };
   }
 
-  function tipCapCmd(frame, tipW) {
-    const N = frame.left.length - 1;
-    const pL = frame.left[N];
-    const pR = frame.right[N];
-    const dirL = norm(sub(frame.left[N], frame.left[N - 2]));
-    const dirR = norm(sub(frame.right[N], frame.right[N - 2]));
-    const capH = tipW * 0.64;
-    const c1 = add(pL, scalePt(dirL, capH));
-    const c2 = add(pR, scalePt(dirR, capH));
-    return `C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${pR.x.toFixed(1)} ${pR.y.toFixed(1)}`;
+  function tipCapBetween(fromPt, toPt, tipTan, tipW, isThumb = false) {
+    const capReach = tipW * (isThumb ? 0.52 : 0.55);
+    const c1 = { x: fromPt.x + tipTan.x * capReach, y: fromPt.y + tipTan.y * capReach };
+    const c2 = { x: toPt.x + tipTan.x * capReach, y: toPt.y + tipTan.y * capReach };
+    return `C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${toPt.x.toFixed(1)} ${toPt.y.toFixed(1)}`;
   }
 
   function frameToPath(frame, baseW, tipW) {
-    const { left, right } = frame;
-    const startIdx = 3;
+    const { left, right, tipTan, isThumb } = frame;
+    const startIdx = isThumb ? 7 : 4;
+    const n = left.length - 1;
     let d = `M ${left[startIdx].x.toFixed(1)} ${left[startIdx].y.toFixed(1)} `;
-    for (let i = startIdx + 1; i < left.length; i++) d += `L ${left[i].x.toFixed(1)} ${left[i].y.toFixed(1)} `;
-    d += tipCapCmd(frame, tipW) + ' ';
-    for (let i = right.length - 2; i >= startIdx; i--) d += `L ${right[i].x.toFixed(1)} ${right[i].y.toFixed(1)}`;
+    for (let i = startIdx + 1; i <= n; i++) d += `L ${left[i].x.toFixed(1)} ${left[i].y.toFixed(1)} `;
+    d += tipCapBetween(left[n], right[n], tipTan, tipW, isThumb) + ' ';
+    for (let i = n - 1; i >= startIdx; i--) d += `L ${right[i].x.toFixed(1)} ${right[i].y.toFixed(1)}`;
     return d;
   }
 
+  function buildNailPath(frame) {
+    const { tip, tipTan, tipW, isThumb } = frame;
+    const nx = -tipTan.y;
+    const ny = tipTan.x;
+    const nw = tipW * (isThumb ? 0.33 : 0.31);
+    const nl = tipW * (isThumb ? 0.55 : 0.62);
+    const center = {
+      x: tip.x - tipTan.x * (nl * 0.22),
+      y: tip.y - tipTan.y * (nl * 0.22),
+    };
+    const top = { x: center.x + tipTan.x * (nl * 0.56), y: center.y + tipTan.y * (nl * 0.56) };
+    const bot = { x: center.x - tipTan.x * (nl * 0.44), y: center.y - tipTan.y * (nl * 0.44) };
+
+    const tl = { x: top.x - nx * (nw * 0.88), y: top.y - ny * (nw * 0.88) };
+    const tr = { x: top.x + nx * (nw * 0.88), y: top.y + ny * (nw * 0.88) };
+    const bl = { x: bot.x - nx * (nw * 0.94), y: bot.y - ny * (nw * 0.94) };
+    const br = { x: bot.x + nx * (nw * 0.94), y: bot.y + ny * (nw * 0.94) };
+
+    const topCtrlL = { x: top.x - nx * (nw * 0.44) + tipTan.x * 2.5, y: top.y - ny * (nw * 0.44) + tipTan.y * 2.5 };
+    const topCtrlR = { x: top.x + nx * (nw * 0.44) + tipTan.x * 2.5, y: top.y + ny * (nw * 0.44) + tipTan.y * 2.5 };
+    const botCtrlR = { x: bot.x + nx * (nw * 0.46) - tipTan.x * 1.8, y: bot.y + ny * (nw * 0.46) - tipTan.y * 1.8 };
+    const botCtrlL = { x: bot.x - nx * (nw * 0.46) - tipTan.x * 1.8, y: bot.y - ny * (nw * 0.46) - tipTan.y * 1.8 };
+
+    return `M ${bl.x.toFixed(1)} ${bl.y.toFixed(1)} L ${tl.x.toFixed(1)} ${tl.y.toFixed(1)} C ${topCtrlL.x.toFixed(1)} ${topCtrlL.y.toFixed(1)} ${topCtrlR.x.toFixed(1)} ${topCtrlR.y.toFixed(1)} ${tr.x.toFixed(1)} ${tr.y.toFixed(1)} L ${br.x.toFixed(1)} ${br.y.toFixed(1)} C ${botCtrlR.x.toFixed(1)} ${botCtrlR.y.toFixed(1)} ${botCtrlL.x.toFixed(1)} ${botCtrlL.y.toFixed(1)} ${bl.x.toFixed(1)} ${bl.y.toFixed(1)} Z`;
+  }
+
   function creaseAt(frame, s) {
-    const i = Math.round(s * (frame.left.length - 1));
-    const l = frame.left[i], r = frame.right[i];
-    const mx = (l.x + r.x) / 2, my = (l.y + r.y) / 2;
-    const lx = mx + (l.x - mx) * 0.54, ly = my + (l.y - my) * 0.54;
-    const rx = mx + (r.x - mx) * 0.54, ry = my + (r.y - my) * 0.54;
-    return `M ${lx.toFixed(1)} ${ly.toFixed(1)} Q ${mx.toFixed(1)} ${(my - 1.4).toFixed(1)} ${rx.toFixed(1)} ${ry.toFixed(1)}`;
+    const { origin, ctrl, tip, baseW, tipW } = frame;
+    const pt = qPoint(origin, ctrl, tip, s);
+    const rawTan = qTangent(origin, ctrl, tip, s);
+    const len = Math.hypot(rawTan.x, rawTan.y) || 1;
+    const tan = { x: rawTan.x / len, y: rawTan.y / len };
+    const nx = -tan.y, ny = tan.x;
+    const w = (baseW * (1 - s) + tipW * s) * 0.25;
+    const p1 = { x: pt.x - nx * w, y: pt.y - ny * w };
+    const p2 = { x: pt.x + nx * w, y: pt.y + ny * w };
+    const cp = { x: pt.x - tan.x * 1.3, y: pt.y - tan.y * 1.3 };
+    return `M ${p1.x.toFixed(1)} ${p1.y.toFixed(1)} Q ${cp.x.toFixed(1)} ${cp.y.toFixed(1)} ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}`;
   }
 
   function pointAtFrame(frame, s) {
@@ -603,7 +641,7 @@
       const crease2 = document.createElementNS(SVGNS, 'path'); crease2.setAttribute('class', 'finger-crease');
       const joint2 = document.createElementNS(SVGNS, 'circle'); joint2.setAttribute('class', 'finger-joint');
       const shine = document.createElementNS(SVGNS, 'path'); shine.setAttribute('class', 'finger-shine');
-      const nail = document.createElementNS(SVGNS, 'ellipse'); nail.setAttribute('class', 'finger-nail');
+      const nail = document.createElementNS(SVGNS, 'path'); nail.setAttribute('class', 'finger-nail');
       const tip = document.createElementNS(SVGNS, 'circle'); tip.setAttribute('class', 'finger-tip'); tip.setAttribute('r', '5');
       g.append(shape, crease1, joint1, crease2, joint2, shine, nail, tip);
       (f.hand === 'L' ? handGroupL : handGroupR).appendChild(g);
@@ -651,13 +689,13 @@
     const homeYs = order.map((f) => homes[f.id].y);
     const homeSpanCenterX = (homeXs[0] + homeXs[3]) * 0.5 + inward * 4;
     const homeAvgY = homeYs.reduce((a, b) => a + b, 0) / 4;
-    const palmArchBaseY = homeAvgY + 58;
+    const palmArchBaseY = homeAvgY + 74;
 
     const baseKnuckles = {};
     order.forEach((f) => {
       const h = homes[f.id];
-      const pull = typeof f.archPull === 'number' ? f.archPull : 0.18;
-      const dy = typeof f.archDy === 'number' ? f.archDy : 4;
+      const pull = typeof f.archPull === 'number' ? f.archPull : 0.24;
+      const dy = typeof f.archDy === 'number' ? f.archDy : 0;
       baseKnuckles[f.id] = {
         x: h.x + (homeSpanCenterX - h.x) * pull + shiftX,
         y: palmArchBaseY + dy + shiftY,
@@ -673,8 +711,8 @@
       if (sr.height > 0) spaceMidY = (sr.top + sr.height * 0.50) - wrapRect.top;
     }
     const thumbBase = {
-      x: indexBase.x + inward * 2,
-      y: Math.min(wrapRect.height - 18, Math.max(indexBase.y + 38, spaceMidY + 2 + shiftY * 0.32)),
+      x: indexBase.x - inward * 6,
+      y: indexBase.y + 66,
     };
     baseKnuckles[thumbF.id] = thumbBase;
 
@@ -682,106 +720,108 @@
   }
 
   function buildUnifiedHandSVG(hand, order, thumbF, frames, bases) {
-    const inward = hand === 'L' ? 1 : -1;
-    const outward = -inward;
+    const isLeft = hand === 'L';
+    const dir = isLeft ? 1 : -1;
+    const n = 18;
+
+    const fingerList = order.map((f) => {
+      const fr = frames[f.id];
+      return {
+        f,
+        fr,
+        outerPts: isLeft ? fr.left : fr.right,
+        innerPts: isLeft ? fr.right : fr.left,
+      };
+    });
+
+    const thumbFr = frames[thumbF.id];
+    const thumbInnerPts = isLeft ? thumbFr.left : thumbFr.right;
+    const thumbOuterPts = isLeft ? thumbFr.right : thumbFr.left;
+
     const pinkyBase = bases[order[0].id];
     const indexBase = bases[order[3].id];
-    const thumbBase = bases[thumbF.id];
-
-    const wristY = thumbBase.y + 28;
-    const palmMidX = (pinkyBase.x + indexBase.x) * 0.5 + inward * 2;
-    const wristOuter = { x: palmMidX + outward * 44, y: wristY };
-    const wristInner = { x: palmMidX + inward * 38, y: wristY };
-
-    const wristLeft = hand === 'L' ? wristOuter : wristInner;
-    const wristRight = hand === 'L' ? wristInner : wristOuter;
-
-    const screenDigits = hand === 'L'
-      ? [order[0], order[1], order[2], order[3], thumbF]
-      : [thumbF, order[3], order[2], order[1], order[0]];
 
     const cmds = [];
-    cmds.push(`M ${wristLeft.x.toFixed(1)} ${wristLeft.y.toFixed(1)}`);
+    const p0 = fingerList[0].outerPts[2];
+    cmds.push(`M ${p0.x.toFixed(1)} ${p0.y.toFixed(1)}`);
 
-    const firstF = screenDigits[0];
-    const firstFr = frames[firstF.id];
-    const firstStartI = firstF.kind === 'thumb' ? (hand === 'L' ? 5 : 4) : 3;
-    const firstStart = firstFr.left[firstStartI];
-    const firstInDir = norm(sub(firstFr.left[firstStartI + 2], firstFr.left[firstStartI]));
-
-    if (hand === 'L') {
-      const c1 = { x: firstStart.x - 4, y: wristLeft.y - 16 };
-      const c2 = sub(firstStart, scalePt(firstInDir, 22));
-      cmds.push(`C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${firstStart.x.toFixed(1)} ${firstStart.y.toFixed(1)}`);
-    } else {
-      const c1 = { x: wristLeft.x - 10, y: wristLeft.y - 6 };
-      const c2 = sub(firstStart, scalePt(firstInDir, 16));
-      cmds.push(`C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${firstStart.x.toFixed(1)} ${firstStart.y.toFixed(1)}`);
-    }
-
-    for (let dIdx = 0; dIdx < screenDigits.length; dIdx++) {
-      const df = screenDigits[dIdx];
-      const fr = frames[df.id];
-      const isThumb = df.kind === 'thumb';
-      const startI = isThumb ? (hand === 'L' ? 5 : 4) : 3;
-      const endI = isThumb ? (hand === 'L' ? 4 : 5) : 3;
-
-      for (let i = startI + 1; i < fr.left.length; i++) {
-        cmds.push(`L ${fr.left[i].x.toFixed(1)} ${fr.left[i].y.toFixed(1)}`);
+    for (let fIdx = 0; fIdx < 4; fIdx++) {
+      const curr = fingerList[fIdx];
+      const { outerPts, innerPts, fr, f } = curr;
+      const startI = fIdx === 0 ? 2 : 4;
+      for (let i = startI + 1; i <= n; i++) {
+        cmds.push(`L ${outerPts[i].x.toFixed(1)} ${outerPts[i].y.toFixed(1)}`);
       }
-      cmds.push(tipCapCmd(fr, df.tipW));
-      for (let i = fr.right.length - 2; i >= endI; i--) {
-        cmds.push(`L ${fr.right[i].x.toFixed(1)} ${fr.right[i].y.toFixed(1)}`);
+      cmds.push(tipCapBetween(outerPts[n], innerPts[n], fr.tipTan, f.tipW, false));
+
+      const endI = 4;
+      for (let i = n - 1; i >= endI; i--) {
+        cmds.push(`L ${innerPts[i].x.toFixed(1)} ${innerPts[i].y.toFixed(1)}`);
       }
 
-      if (dIdx < screenDigits.length - 1) {
-        const nextDf = screenDigits[dIdx + 1];
-        const nextFr = frames[nextDf.id];
-        const nextIsThumb = nextDf.kind === 'thumb';
-        const nextStartI = nextIsThumb ? (hand === 'L' ? 5 : 4) : 3;
-        const pA = fr.right[endI];
-        const pB = nextFr.left[nextStartI];
-        const dirA = norm(sub(fr.right[endI], fr.right[endI + 2]));
-        const dirB = norm(sub(nextFr.left[nextStartI + 2], nextFr.left[nextStartI]));
-        const hLen = (isThumb || nextIsThumb) ? 11 : 9;
-        const c1 = add(pA, scalePt(dirA, hLen));
-        const c2 = sub(pB, scalePt(dirB, hLen));
-        cmds.push(`C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${pB.x.toFixed(1)} ${pB.y.toFixed(1)}`);
+      if (fIdx < 3) {
+        const next = fingerList[fIdx + 1];
+        const nextStartI = 4;
+        const pA = innerPts[endI];
+        const pB = next.outerPts[nextStartI];
+        const crotchDepth = 8.5;
+        const midX = (pA.x + pB.x) * 0.5;
+        const midY = Math.max(pA.y, pB.y) + crotchDepth;
+        const wc1 = { x: pA.x + (midX - pA.x) * 0.35, y: midY };
+        const wc2 = { x: pB.x - (pB.x - midX) * 0.35, y: midY };
+        cmds.push(`C ${wc1.x.toFixed(1)} ${wc1.y.toFixed(1)} ${wc2.x.toFixed(1)} ${wc2.y.toFixed(1)} ${pB.x.toFixed(1)} ${pB.y.toFixed(1)}`);
       }
     }
 
-    const lastF = screenDigits[screenDigits.length - 1];
-    const lastFr = frames[lastF.id];
-    const lastEndI = lastF.kind === 'thumb' ? (hand === 'L' ? 4 : 5) : 3;
-    const lastEnd = lastFr.right[lastEndI];
-    const lastOutDir = norm(sub(lastFr.right[lastEndI], lastFr.right[lastEndI + 2]));
+    const idxInnerEnd = fingerList[3].innerPts[4];
+    const thumbInnerStartIdx = 8;
+    const thumbInnerStart = thumbInnerPts[thumbInnerStartIdx];
+    const webMidY = Math.max(idxInnerEnd.y, thumbInnerStart.y) + 7;
+    const webC1 = { x: idxInnerEnd.x + dir * 2, y: webMidY - 2 };
+    const webC2 = { x: thumbInnerStart.x - dir * 10, y: webMidY + 3 };
+    cmds.push(`C ${webC1.x.toFixed(1)} ${webC1.y.toFixed(1)} ${webC2.x.toFixed(1)} ${webC2.y.toFixed(1)} ${thumbInnerStart.x.toFixed(1)} ${thumbInnerStart.y.toFixed(1)}`);
 
-    if (hand === 'L') {
-      const c1 = add(lastEnd, scalePt(lastOutDir, 16));
-      const c2 = { x: wristRight.x + 10, y: wristRight.y - 6 };
-      cmds.push(`C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${wristRight.x.toFixed(1)} ${wristRight.y.toFixed(1)}`);
-    } else {
-      const c1 = add(lastEnd, scalePt(lastOutDir, 22));
-      const c2 = { x: lastEnd.x + 4, y: wristRight.y - 16 };
-      cmds.push(`C ${c1.x.toFixed(1)} ${c1.y.toFixed(1)} ${c2.x.toFixed(1)} ${c2.y.toFixed(1)} ${wristRight.x.toFixed(1)} ${wristRight.y.toFixed(1)}`);
+    for (let i = thumbInnerStartIdx + 1; i <= n; i++) {
+      cmds.push(`L ${thumbInnerPts[i].x.toFixed(1)} ${thumbInnerPts[i].y.toFixed(1)}`);
+    }
+    cmds.push(tipCapBetween(thumbInnerPts[n], thumbOuterPts[n], thumbFr.tipTan, thumbF.tipW, true));
+
+    const thumbOuterEndIdx = 2;
+    for (let i = n - 1; i >= thumbOuterEndIdx; i--) {
+      cmds.push(`L ${thumbOuterPts[i].x.toFixed(1)} ${thumbOuterPts[i].y.toFixed(1)}`);
     }
 
-    const wristMid1 = { x: wristRight.x + (wristLeft.x - wristRight.x) * 0.33, y: wristY + 6 };
-    const wristMid2 = { x: wristRight.x + (wristLeft.x - wristRight.x) * 0.67, y: wristY + 6 };
-    cmds.push(`C ${wristMid1.x.toFixed(1)} ${wristMid1.y.toFixed(1)} ${wristMid2.x.toFixed(1)} ${wristMid2.y.toFixed(1)} ${wristLeft.x.toFixed(1)} ${wristLeft.y.toFixed(1)} Z`);
+    const thumbOuterBase = thumbOuterPts[thumbOuterEndIdx];
+    const wristCenterX = (pinkyBase.x + indexBase.x) * 0.5 + dir * 4;
+    const wristY = indexBase.y + 92;
 
-    const shadePath = [1, 2, 3].map((idx) => {
+    const wristInner = { x: wristCenterX + dir * 46, y: wristY - 2 };
+    const wristOuter = { x: wristCenterX - dir * 56, y: wristY };
+
+    const radC1 = { x: thumbOuterBase.x - dir * 10, y: thumbOuterBase.y + 10 };
+    const radC2 = { x: wristInner.x + dir * 8, y: wristInner.y - 10 };
+    cmds.push(`C ${radC1.x.toFixed(1)} ${radC1.y.toFixed(1)} ${radC2.x.toFixed(1)} ${radC2.y.toFixed(1)} ${wristInner.x.toFixed(1)} ${wristInner.y.toFixed(1)}`);
+
+    const wristCtrl1 = { x: wristInner.x - dir * 28, y: wristY + 7 };
+    const wristCtrl2 = { x: wristOuter.x + dir * 28, y: wristY + 7 };
+    cmds.push(`C ${wristCtrl1.x.toFixed(1)} ${wristCtrl1.y.toFixed(1)} ${wristCtrl2.x.toFixed(1)} ${wristCtrl2.y.toFixed(1)} ${wristOuter.x.toFixed(1)} ${wristOuter.y.toFixed(1)}`);
+
+    const ulnC1 = { x: wristOuter.x - dir * 8, y: wristOuter.y - 28 };
+    const ulnC2 = { x: p0.x - dir * 4, y: p0.y + 30 };
+    cmds.push(`C ${ulnC1.x.toFixed(1)} ${ulnC1.y.toFixed(1)} ${ulnC2.x.toFixed(1)} ${ulnC2.y.toFixed(1)} ${p0.x.toFixed(1)} ${p0.y.toFixed(1)} Z`);
+
+    const shadePath = [0, 1, 2, 3].map((idx) => {
       const kb = bases[order[idx].id];
-      const sx = palmMidX + (kb.x - palmMidX) * 0.38;
-      const sy = wristY - 12;
-      return `M ${sx.toFixed(1)} ${sy.toFixed(1)} L ${kb.x.toFixed(1)} ${(kb.y + 8).toFixed(1)}`;
+      const ex = kb.x + (wristCenterX - kb.x) * 0.42;
+      const ey = kb.y + 38;
+      return `M ${kb.x.toFixed(1)} ${(kb.y + 4).toFixed(1)} L ${ex.toFixed(1)} ${ey.toFixed(1)}`;
     }).join(' ');
 
     const highlight = {
-      cx: palmMidX,
+      cx: wristCenterX,
       cy: (pinkyBase.y + wristY) * 0.48,
-      rx: 34,
-      ry: 22,
+      rx: 42,
+      ry: 28,
     };
 
     return { palmPath: cmds.join(' '), shadePath, highlight };
@@ -831,8 +871,8 @@
       if (f.kind === 'thumb') {
         const indexBase = hb.bases[hb.order[3].id];
         const defaultThumbTip = {
-          x: indexBase.x + inward * 48,
-          y: Math.min(origin.y - 26, hb.spaceMidY - 6),
+          x: indexBase.x + inward * 66,
+          y: indexBase.y + 19,
         };
         if (isActive && targetKey) {
           const rawTip = keyCenter(targetKey, wrapRect);
@@ -847,8 +887,8 @@
       } else {
         const homeCenter = hb.homes[f.id] || keyCenter(f.home, wrapRect);
         const restTip = homeCenter
-          ? { x: homeCenter.x + hb.shiftX, y: homeCenter.y + 4 + (f.tipDy || 0) + hb.shiftY }
-          : { x: origin.x, y: origin.y - 58 };
+          ? { x: homeCenter.x + hb.shiftX, y: homeCenter.y + (f.tipDy || 0) + hb.shiftY }
+          : { x: origin.x, y: origin.y - 74 };
         if (isActive && targetKey) {
           const rawTarget = keyCenter(targetKey, wrapRect);
           tip = rawTarget ? { x: rawTarget.x, y: rawTarget.y + 2 } : restTip;
@@ -858,7 +898,7 @@
       }
       if (!tip) return;
 
-      const maxLen = f.kind === 'thumb' ? 68 : (f.kind === 'pinky' ? 82 : (f.kind === 'middle' ? 102 : 95));
+      const maxLen = f.kind === 'thumb' ? 105 : (f.kind === 'pinky' ? 118 : (f.kind === 'middle' ? 138 : 130));
       const d = dist(origin, tip);
       if (d > maxLen) {
         const scale = maxLen / d;
@@ -868,31 +908,31 @@
       let mid;
       if (f.kind === 'thumb') {
         mid = {
-          x: origin.x + (tip.x - origin.x) * 0.46,
-          y: origin.y + (tip.y - origin.y) * 0.56 - 4,
+          x: (origin.x + tip.x) * 0.5 + inward * 10,
+          y: (origin.y + tip.y) * 0.5 - 6,
         };
       } else {
         mid = {
-          x: origin.x + (tip.x - origin.x) * 0.56,
-          y: origin.y + (tip.y - origin.y) * 0.52 - 2,
+          x: (origin.x + tip.x) * 0.5 + (tip.x - origin.x) * 0.12,
+          y: (origin.y + tip.y) * 0.5 - 3,
         };
       }
-      const frame = fingerFrame(origin, mid, tip, f.baseW, f.tipW);
+      const frame = fingerFrame(origin, mid, tip, f.baseW, f.tipW, f.kind === 'thumb');
       if (f.hand === 'L') framesL[f.id] = frame;
       else framesR[f.id] = frame;
 
       fe.shape.setAttribute('d', frameToPath(frame, f.baseW, f.tipW));
       if (f.kind === 'thumb') {
-        fe.crease1.setAttribute('d', creaseAt(frame, 0.50));
+        fe.crease1.setAttribute('d', creaseAt(frame, 0.64));
         fe.crease2.setAttribute('d', '');
       } else {
-        fe.crease1.setAttribute('d', creaseAt(frame, 0.44));
-        fe.crease2.setAttribute('d', creaseAt(frame, 0.72));
+        fe.crease1.setAttribute('d', creaseAt(frame, 0.46));
+        fe.crease2.setAttribute('d', creaseAt(frame, 0.75));
       }
       fe.joint1.setAttribute('r', '0');
       fe.joint2.setAttribute('r', '0');
 
-      const sStart = 5, sMid = 10, sEnd = 15;
+      const sStart = f.kind === 'thumb' ? 8 : 5, sMid = f.kind === 'thumb' ? 12 : 10, sEnd = 15;
       const cStart = pointAtFrame(frame, sStart / 18), cMid = pointAtFrame(frame, sMid / 18), cEnd = pointAtFrame(frame, sEnd / 18);
       const sh1 = { x: cStart.x + (frame.left[sStart].x - cStart.x) * 0.52, y: cStart.y + (frame.left[sStart].y - cStart.y) * 0.52 };
       const sh2 = { x: cMid.x + (frame.left[sMid].x - cMid.x) * 0.52, y: cMid.y + (frame.left[sMid].y - cMid.y) * 0.52 };
@@ -900,11 +940,7 @@
       fe.shine.setAttribute('d', `M ${sh1.x.toFixed(1)} ${sh1.y.toFixed(1)} Q ${sh2.x.toFixed(1)} ${sh2.y.toFixed(1)} ${sh3.x.toFixed(1)} ${sh3.y.toFixed(1)}`);
 
       const nailPt = qPoint(origin, mid, tip, 0.87);
-      const tan = qTangent(origin, mid, tip, 0.87);
-      const ang = Math.atan2(tan.y, tan.x) * 180 / Math.PI + 90;
-      fe.nail.setAttribute('cx', nailPt.x); fe.nail.setAttribute('cy', nailPt.y);
-      fe.nail.setAttribute('rx', Math.max(3.2, f.tipW * 0.28)); fe.nail.setAttribute('ry', Math.max(3.8, f.tipW * 0.35));
-      fe.nail.setAttribute('transform', `rotate(${ang.toFixed(1)} ${nailPt.x.toFixed(1)} ${nailPt.y.toFixed(1)})`);
+      fe.nail.setAttribute('d', buildNailPath(frame));
 
       fe.tip.setAttribute('cx', nailPt.x); fe.tip.setAttribute('cy', nailPt.y);
       fe.g.classList.toggle('active', isActive);

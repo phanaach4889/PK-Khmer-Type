@@ -392,9 +392,11 @@
   .hands-overlay .finger-nail{
     fill:var(--hand-l-nail-fill, rgba(56, 189, 248, 0.28));
     stroke:var(--hand-l-nail-stroke, rgba(186, 230, 253, 0.68));
-    stroke-width:0.85;
-    opacity:0.78;
-    transition:opacity .25s ease, transform .24s cubic-bezier(.22,1,.36,1);
+    stroke-width:0.95;
+    stroke-linejoin:round;
+    stroke-linecap:round;
+    opacity:0.82;
+    transition:opacity .25s ease, d .24s cubic-bezier(.22,1,.36,1), transform .24s cubic-bezier(.22,1,.36,1);
   }
   .hands-overlay .hand-group.side-r .finger-nail{
     fill:var(--hand-r-nail-fill, rgba(244, 114, 182, 0.28));
