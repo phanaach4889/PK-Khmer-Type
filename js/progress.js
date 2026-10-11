@@ -860,6 +860,12 @@
 
     flush(); // Immediate persistence on lesson attempt
 
+    if(typeof window !== 'undefined' && window.PKCloudSync && typeof window.PKCloudSync.queueLessonProgressSync === 'function'){
+      try {
+        window.PKCloudSync.queueLessonProgressSync(layout + ':' + lessonId, lesson);
+      } catch(_syncErr){}
+    }
+
     return {
       lesson,
       isNewBestAccuracy: accuracy > prevBestAcc,

@@ -56,6 +56,14 @@ function safeGet(k, fallback) {
 function safeSet(k, v) {
   try {
     localStorage.setItem(k, v);
+    if (typeof window !== "undefined" && window.PKCloudSync && !window.__isApplyingCloudSettings) {
+      if (typeof window.PKCloudSync.recordLocalSettingTimestamp === "function") {
+        window.PKCloudSync.recordLocalSettingTimestamp(k);
+      }
+      if (typeof window.PKCloudSync.queueSettingsSync === "function") {
+        window.PKCloudSync.queueSettingsSync();
+      }
+    }
   } catch (e) {}
 }
 
@@ -1097,8 +1105,22 @@ function initSettingsToggles() {
   }
 
   function removeWallpaper() {
+    const oldCloudFileId = safeGet("khmerCustomWallpaperFileId", "");
     try { localStorage.removeItem(WALLPAPER_KEY); } catch (e) {}
     try { localStorage.removeItem(WALLPAPER_DIM_KEY); } catch (e) {}
+    try { localStorage.removeItem("khmerCustomWallpaperUrl"); } catch (e) {}
+    try { localStorage.removeItem("khmerCustomWallpaperFileId"); } catch (e) {}
+    if (window.PKCloudSync) {
+      if (typeof window.PKCloudSync.deleteLocalFileCache === "function") {
+        window.PKCloudSync.deleteLocalFileCache("custom_wallpaper");
+      }
+      if (oldCloudFileId && typeof window.PKCloudSync.deleteUserFile === "function") {
+        window.PKCloudSync.deleteUserFile(oldCloudFileId).catch(() => {});
+      }
+      if (typeof window.PKCloudSync.queueSettingsSync === "function") {
+        window.PKCloudSync.queueSettingsSync();
+      }
+    }
     document.body.classList.remove("has-custom-wallpaper");
     if (customWallpaperLayer) customWallpaperLayer.style.backgroundImage = "";
     if (removeWallpaperBtn) removeWallpaperBtn.style.display = "none";
@@ -1129,6 +1151,25 @@ function initSettingsToggles() {
           const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
           safeSet(WALLPAPER_KEY, dataUrl);
           applyWallpaper(dataUrl);
+          if (window.PKCloudSync && typeof window.PKCloudSync.saveLocalFileCache === "function") {
+            window.PKCloudSync.saveLocalFileCache("custom_wallpaper", { dataUrl: dataUrl, mimeType: "image/jpeg" });
+          }
+          if (canvas.toBlob && window.PKCloudSync && typeof window.PKCloudSync.uploadUserFile === "function") {
+            canvas.toBlob(async (blob) => {
+              if (!blob) return;
+              try {
+                const uploaded = await window.PKCloudSync.uploadUserFile(blob, {
+                  fileName: (file.name || "wallpaper.jpg").replace(/\.[^.]+$/, "") + ".jpg",
+                  mimeType: "image/jpeg",
+                  sizeBytes: blob.size,
+                  category: "wallpaper"
+                });
+                if (uploaded && uploaded.id) {
+                  safeSet("khmerCustomWallpaperFileId", uploaded.id);
+                }
+              } catch (_upErr) {}
+            }, "image/jpeg", 0.85);
+          }
           if (typeof showToast === "function") showToast(pkIcon("check", 18), "Wallpaper applied", "Custom background updated.");
         };
         img.src = e.target.result;
@@ -1144,6 +1185,7 @@ function initSettingsToggles() {
       if (url && url.trim()) {
         const cleanUrl = url.trim();
         safeSet(WALLPAPER_KEY, cleanUrl);
+        safeSet("khmerCustomWallpaperUrl", cleanUrl);
         applyWallpaper(cleanUrl);
         if (typeof showToast === "function") showToast(pkIcon("check", 18), "Wallpaper applied", "Custom background updated.");
       }
@@ -1158,10 +1200,56 @@ function initSettingsToggles() {
       safeSet(WALLPAPER_DIM_KEY, String(val));
     });
   }
-  const savedWallpaper = safeGet(WALLPAPER_KEY, null);
+  const savedWallpaper = safeGet(WALLPAPER_KEY, null) || safeGet("khmerCustomWallpaperUrl", null);
   if (savedWallpaper) {
     applyWallpaper(savedWallpaper, parseInt(safeGet(WALLPAPER_DIM_KEY, "65"), 10));
+  } else if (window.PKCloudSync && typeof window.PKCloudSync.getLocalFileCache === "function") {
+    window.PKCloudSync.getLocalFileCache("custom_wallpaper").then((cached) => {
+      if (cached && cached.dataUrl) {
+        applyWallpaper(cached.dataUrl, parseInt(safeGet(WALLPAPER_DIM_KEY, "65"), 10));
+      }
+    }).catch(() => {});
   }
+
+  window.addEventListener("pkCloudSettingsApplied", async () => {
+    window.__isApplyingCloudSettings = true;
+    try {
+      applyTheme(safeGet(LS.theme, "dark"), false);
+      applyAccent(safeGet(LS.accent, "gold"));
+      applyKhmerFont(safeGet(LS.khmerFont, "kantumruy"));
+      applyWallpaperBlur(safeGet(LS.wallpaperBlur, "0"));
+      applyHandsOpacity(safeGet(LS.handsOpacity, "44"));
+      if (window.PKHandsColor) {
+        const res = window.PKHandsColor.applyHandColors();
+        syncHandColorUI(res.preset, res.l, res.r);
+      }
+      const wpUrl = safeGet("khmerCustomWallpaperUrl", "");
+      const wpFileId = safeGet("khmerCustomWallpaperFileId", "");
+      if (wpUrl) {
+        applyWallpaper(wpUrl, parseInt(safeGet(WALLPAPER_DIM_KEY, "65"), 10));
+      } else if (wpFileId && window.PKCloudSync && typeof window.PKCloudSync.downloadUserFile === "function") {
+        try {
+          const dl = await window.PKCloudSync.downloadUserFile(wpFileId);
+          if (dl && dl.blob) {
+            const reader = new FileReader();
+            reader.onload = () => {
+              const dUrl = reader.result;
+              if (typeof dUrl === "string") {
+                try { localStorage.setItem(WALLPAPER_KEY, dUrl); } catch (_e) {}
+                if (window.PKCloudSync && typeof window.PKCloudSync.saveLocalFileCache === "function") {
+                  window.PKCloudSync.saveLocalFileCache("custom_wallpaper", { dataUrl: dUrl, mimeType: dl.metadata.mime_type || "image/jpeg" });
+                }
+                applyWallpaper(dUrl, parseInt(safeGet(WALLPAPER_DIM_KEY, "65"), 10));
+              }
+            };
+            reader.readAsDataURL(dl.blob);
+          }
+        } catch (_dlErr) {}
+      }
+    } finally {
+      window.__isApplyingCloudSettings = false;
+    }
+  });
 
   /* ---------- 4. 3D Hands, Keyboard & Smart Mouse Cursor ---------- */
   const handsOpacitySlider = document.getElementById("handsOpacitySlider");
