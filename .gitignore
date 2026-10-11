@@ -1,6 +1,16 @@
-temp_user_data/
 node_modules/
 dist/
-scratch/
-kurosaki image/
+_site/
+.vite/
 *.log
+.DS_Store
+Thumbs.db
+scratch/
+temp_user_data/
+
+# Environment variables & local secrets (never commit credentials)
+.env
+.env.local
+.env.*.local
+js/supabase-env.js
+!.env.example

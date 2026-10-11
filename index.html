@@ -323,6 +323,10 @@
   <button id="authAccountChip" class="auth-account-chip" aria-haspopup="dialog" aria-label="Your account" hidden>
     <span class="auth-chip-avatar" id="authChipAvatar">?</span>
     <span id="authChipName">—</span>
+    <span class="cloud-sync-chip-badge status-synced" id="cloudSyncStatusBadge" title="Cloud Sync Status">
+      <span class="cloud-sync-chip-dot" aria-hidden="true"></span>
+      <span class="cloud-sync-chip-text" id="cloudSyncStatusText">Synced</span>
+    </span>
   </button>
 </div>
 
@@ -1545,6 +1549,8 @@
       <button class="modal-close" id="authCloseBtn" aria-label="Close authentication"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
 
+    <div class="supabase-config-banner" id="supabaseConfigBanner" role="status" hidden></div>
+
     <div class="auth-tabs" id="authTabs" role="tablist" aria-label="Sign in or create an account">
       <button type="button" class="auth-tab active i18n-t" data-en="Sign In" data-km="ចូលគណនី" id="authTabSignIn" role="tab" aria-selected="true">Sign In</button>
       <button type="button" class="auth-tab i18n-t" data-en="Sign Up" data-km="ចុះឈ្មោះ" id="authTabSignUp" role="tab" aria-selected="false">Sign Up</button>
@@ -1555,12 +1561,12 @@
 
       <!-- ---------- Sign In ---------- -->
       <form class="auth-panel auth-panel-signin" id="signInForm" novalidate autocomplete="on">
-        <p class="auth-subtitle i18n-t" data-en="Welcome back — your training awaits." data-km="សូមស្វាគមន៍ការត្រឡប់មកវិញ — ការហ្វឹកហាត់របស់អ្នកកំពុងរង់ចាំ។">Welcome back — your training awaits.</p>
+        <p class="auth-subtitle i18n-t" data-en="Sign in with your email or username to access your progress and settings." data-km="ចូលដោយប្រើអ៊ីមែល ឬឈ្មោះគណនី និងពាក្យសម្ងាត់របស់អ្នក។">Sign in with your email or username to access your progress and settings.</p>
 
         <div class="auth-field">
-          <label for="signInIdentifier" class="i18n-t" data-en="Email or username" data-km="អ៊ីមែល ឬឈ្មោះអ្នកប្រើ">Email or username</label>
+          <label for="signInIdentifier" class="i18n-t" data-en="Email or Username" data-km="អ៊ីមែល ឬឈ្មោះគណនី">Email or Username</label>
           <div class="auth-input-wrap">
-            <span class="auth-input-icon" aria-hidden="true"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+            <span class="auth-input-icon" aria-hidden="true"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
             <input type="text" id="signInIdentifier" name="identifier" autocomplete="username" aria-describedby="signInIdentifierError" required>
           </div>
           <p class="auth-field-error" id="signInIdentifierError" role="alert"></p>
@@ -1588,18 +1594,18 @@
         </button>
 
         <p class="auth-switch"><span class="i18n-t" data-en="Don't have an account?" data-km="មិនទាន់មានគណនីមែនទេ?">Don't have an account?</span> <button type="button" class="auth-link-btn i18n-t" id="gotoSignUpBtn" data-en="Sign Up" data-km="ចុះឈ្មោះ">Sign Up</button></p>
-        <p class="auth-session-note"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:4px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span class="i18n-t" data-en="You'll stay signed in on this device until you sign out." data-km="អ្នកនឹងបន្តចូលគណនីនៅលើឧបករណ៍នេះ រហូតដល់អ្នកចាកចេញ។">You'll stay signed in on this device until you sign out.</span></p>
+        <p class="auth-session-note"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:4px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span class="i18n-t" data-en="Your typing progress and settings are saved automatically to your account." data-km="ការរៀន និងការកំណត់របស់អ្នកត្រូវបានរក្សាទុកក្នុងគណនីដោយស្វ័យប្រវត្តិ។">Your typing progress and settings are saved automatically to your account.</span></p>
       </form>
 
       <!-- ---------- Sign Up ---------- -->
       <form class="auth-panel auth-panel-signup" id="signUpForm" novalidate autocomplete="on" hidden>
-        <p class="auth-subtitle i18n-t" data-en="Create your account and begin mastering Khmer." data-km="បង្កើតគណនីរបស់អ្នក ហើយចាប់ផ្តើមស្ទាត់ជំនាញវាយអក្សរខ្មែរ។">Create your account and begin mastering Khmer.</p>
+        <p class="auth-subtitle i18n-t" data-en="Create your account to sync lesson progress, settings, and files." data-km="បង្កើតគណនីរបស់អ្នកដើម្បីធ្វើសមកាលកម្មមេរៀន ការកំណត់ និងឯកសារ។">Create your account to sync lesson progress, settings, and files.</p>
 
         <div class="auth-field">
-          <label for="signUpUsername" class="i18n-t" data-en="Username" data-km="ឈ្មោះអ្នកប្រើ">Username</label>
+          <label for="signUpUsername" class="i18n-t" data-en="Display Name" data-km="ឈ្មោះបង្ហាញ">Display Name</label>
           <div class="auth-input-wrap">
             <span class="auth-input-icon" aria-hidden="true"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
-            <input type="text" id="signUpUsername" name="username" autocomplete="username" aria-describedby="signUpUsernameError" required minlength="3" maxlength="24">
+            <input type="text" id="signUpUsername" name="username" autocomplete="nickname" aria-describedby="signUpUsernameError" required minlength="2" maxlength="48">
           </div>
           <p class="auth-field-error" id="signUpUsernameError" role="alert"></p>
         </div>
@@ -1608,7 +1614,7 @@
           <label for="signUpEmail" class="i18n-t" data-en="Email" data-km="អ៊ីមែល">Email</label>
           <div class="auth-input-wrap">
             <span class="auth-input-icon" aria-hidden="true"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
-            <input type="email" id="signUpEmail" name="email" autocomplete="email" aria-describedby="signUpEmailError" required>
+            <input type="email" id="signUpEmail" name="email" autocomplete="email" inputmode="email" aria-describedby="signUpEmailError" required>
           </div>
           <p class="auth-field-error" id="signUpEmailError" role="alert"></p>
         </div>
@@ -1644,7 +1650,7 @@
 
         <label class="auth-checkbox auth-terms-row">
           <input type="checkbox" id="signUpTerms" required aria-describedby="signUpTermsError">
-          <span><span class="i18n-t" data-en="I agree to the" data-km="ខ្ញុំយល់ព្រមតាម">I agree to the</span> <button type="button" class="auth-link-btn auth-terms-link i18n-t" id="authTermsLink" data-en="Terms &amp; Conditions" data-km="ខចែងលក្ខខណ្ឌ">Terms &amp; Conditions</button></span>
+          <span><span class="i18n-t" data-en="I agree to the" data-km="ខ្ញុំយល់ព្រមតាម">I agree to the</span> <button type="button" class="auth-link-btn auth-terms-link i18n-t" id="authTermsLink" data-en="Terms &amp; Privacy Policy" data-km="ខចែងលក្ខខណ្ឌ និងឯកជនភាព">Terms &amp; Privacy Policy</button></span>
         </label>
         <p class="auth-field-error" id="signUpTermsError" role="alert"></p>
 
@@ -1658,15 +1664,38 @@
         <p class="auth-switch"><span class="i18n-t" data-en="Already have an account?" data-km="មានគណនីរួចហើយមែនទេ?">Already have an account?</span> <button type="button" class="auth-link-btn i18n-t" id="gotoSignInBtn" data-en="Sign In" data-km="ចូលគណនី">Sign In</button></p>
       </form>
 
+      <!-- ---------- Email Verification Pending ---------- -->
+      <div class="auth-panel auth-panel-verify" id="verifyEmailPanel" hidden>
+        <div class="verify-email-badge" aria-hidden="true">
+          <svg class="pk-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </div>
+        <h3 class="verify-email-title i18n-t" data-en="Confirm Your Email Address" data-km="សូមបញ្ជាក់អាសយដ្ឋានអ៊ីមែលរបស់អ្នក">Confirm Your Email Address</h3>
+        <p class="auth-subtitle">
+          <span class="i18n-t" data-en="We sent a confirmation link to" data-km="យើងបានផ្ញើតំណបញ្ជាក់ទៅកាន់">We sent a confirmation link to</span>
+          <strong id="verifyEmailTarget">—</strong>.
+          <span class="i18n-t" data-en="Click the link in your email to activate cloud sync, then sign in below." data-km="សូមចុចតំណក្នុងអ៊ីមែលរបស់អ្នកដើម្បីបើកដំណើរការគណនី បន្ទាប់មកចូលគណនីខាងក្រោម។">Click the link in your email to activate cloud sync, then sign in below.</span>
+        </p>
+        <p class="auth-form-error" id="verifyEmailError" role="alert" hidden></p>
+        <p class="auth-form-note" id="verifyEmailNote" hidden></p>
+        <div class="acc-action-row">
+          <button type="button" class="secondary-btn" id="resendVerifyEmailBtn">
+            <span class="i18n-t" data-en="Resend Confirmation Email" data-km="ផ្ញើអ៊ីមែលបញ្ជាក់ម្ដងទៀត">Resend Confirmation Email</span>
+          </button>
+          <button type="button" class="auth-submit-btn" id="verifyBackToSignInBtn">
+            <span class="auth-submit-label i18n-t" data-en="Go to Sign In" data-km="ទៅកាន់ការចូលគណនី">Go to Sign In</span>
+          </button>
+        </div>
+      </div>
+
       <!-- ---------- Forgot password ---------- -->
       <form class="auth-panel auth-panel-forgot" id="forgotForm" novalidate hidden>
-        <p class="auth-subtitle i18n-t" data-en="Enter your account email and we'll send a reset link." data-km="បញ្ចូលអ៊ីមែលគណនីរបស់អ្នក ដើម្បីកំណត់ពាក្យសម្ងាត់ឡើងវិញ។">Enter your account email and we'll send a reset link.</p>
+        <p class="auth-subtitle i18n-t" data-en="Enter your account email and we'll send a password recovery link." data-km="បញ្ចូលអ៊ីមែលគណនីរបស់អ្នក ដើម្បីទទួលបានតំណកំណត់ពាក្យសម្ងាត់ឡើងវិញ។">Enter your account email and we'll send a password recovery link.</p>
 
         <div class="auth-field">
           <label for="forgotEmail" class="i18n-t" data-en="Email" data-km="អ៊ីមែល">Email</label>
           <div class="auth-input-wrap">
             <span class="auth-input-icon" aria-hidden="true"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
-            <input type="email" id="forgotEmail" name="email" autocomplete="email" aria-describedby="forgotEmailError" required>
+            <input type="email" id="forgotEmail" name="email" autocomplete="email" inputmode="email" aria-describedby="forgotEmailError" required>
           </div>
           <p class="auth-field-error" id="forgotEmailError" role="alert"></p>
         </div>
@@ -1682,16 +1711,60 @@
         <p class="auth-switch"><button type="button" class="auth-link-btn i18n-t" id="backToSignInBtn" data-en="← Back to Sign In" data-km="← ត្រឡប់ទៅការចូលគណនី">← Back to Sign In</button></p>
       </form>
 
+      <!-- ---------- Password Recovery / Update Password ---------- -->
+      <form class="auth-panel auth-panel-recovery" id="recoveryForm" novalidate hidden>
+        <p class="auth-subtitle i18n-t" id="recoverySubtitle" data-en="Enter and confirm your new password below." data-km="បញ្ចូល និងបញ្ជាក់ពាក្យសម្ងាត់ថ្មីរបស់អ្នកខាងក្រោម។">Enter and confirm your new password below.</p>
+
+        <div class="auth-field">
+          <label for="recoveryNewPassword" class="i18n-t" data-en="New password" data-km="ពាក្យសម្ងាត់ថ្មី">New password</label>
+          <div class="auth-password-wrap">
+            <span class="auth-input-icon" aria-hidden="true"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+            <input type="password" id="recoveryNewPassword" name="new-password" autocomplete="new-password" aria-describedby="recoveryNewPasswordError" required minlength="8">
+            <button type="button" class="auth-toggle-pw" data-target="recoveryNewPassword" aria-label="Show password" aria-pressed="false"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 6.5 12 6.5s9.5 5.5 9.5 5.5-3.5 5.5-9.5 5.5S2.5 12 2.5 12"/><circle cx="12" cy="12" r="2"/></svg></button>
+          </div>
+          <p class="auth-field-error" id="recoveryNewPasswordError" role="alert"></p>
+        </div>
+
+        <div class="auth-field">
+          <label for="recoveryConfirmPassword" class="i18n-t" data-en="Confirm new password" data-km="បញ្ជាក់ពាក្យសម្ងាត់ថ្មី">Confirm new password</label>
+          <div class="auth-password-wrap">
+            <span class="auth-input-icon" aria-hidden="true"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+            <input type="password" id="recoveryConfirmPassword" name="confirm-new-password" autocomplete="new-password" aria-describedby="recoveryConfirmPasswordError" required minlength="8">
+            <button type="button" class="auth-toggle-pw" data-target="recoveryConfirmPassword" aria-label="Show password" aria-pressed="false"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 6.5 12 6.5s9.5 5.5 9.5 5.5-3.5 5.5-9.5 5.5S2.5 12 2.5 12"/><circle cx="12" cy="12" r="2"/></svg></button>
+          </div>
+          <p class="auth-field-error" id="recoveryConfirmPasswordError" role="alert"></p>
+        </div>
+
+        <p class="auth-form-error" id="recoveryFormError" role="alert" hidden></p>
+        <p class="auth-form-note" id="recoveryFormNote" hidden></p>
+
+        <button type="submit" class="auth-submit-btn" id="recoverySubmitBtn">
+          <span class="auth-submit-label i18n-t" data-en="Update Password" data-km="ធ្វើបច្ចុប្បន្នភាពពាក្យសម្ងាត់">Update Password</span>
+          <span class="auth-submit-spinner" aria-hidden="true"></span>
+        </button>
+
+        <p class="auth-switch"><button type="button" class="auth-link-btn i18n-t" id="recoveryCancelBtn" data-en="← Cancel" data-km="← បោះបង់">← Cancel</button></p>
+      </form>
+
       <!-- ---------- Signed-in account panel ---------- -->
       <div class="auth-panel auth-panel-account" id="accountPanel" hidden>
 
-        <div class="acc-session-pill" id="accSessionPill"><span class="acc-session-dot" aria-hidden="true"></span><span class="i18n-t" data-en="Signed in on this device" data-km="បានចូលគណនីលើឧបករណ៍នេះ">Signed in on this device</span></div>
+        <div class="acc-session-row">
+          <div class="acc-session-pill" id="accSessionPill">
+            <span class="acc-session-dot" id="accSessionDot" aria-hidden="true"></span>
+            <span id="accSessionStatusText" class="i18n-t" data-en="Cloud Synced" data-km="បានធ្វើសមកាលកម្មលើពពក">Cloud Synced</span>
+          </div>
+          <button type="button" class="acc-sync-now-btn" id="accSyncNowBtn" title="Synchronize progress &amp; settings now">
+            <svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+            <span id="accSyncNowBtnLabel" class="i18n-t" data-en="Sync Now" data-km="ធ្វើសមកាលកម្មឥឡូវ">Sync Now</span>
+          </button>
+        </div>
 
         <div class="acc-hero">
           <div class="acc-avatar-wrap">
             <div class="auth-account-avatar" id="authAccountAvatar" aria-hidden="true"><svg class="pk-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
             <button type="button" class="acc-avatar-edit" id="accAvatarEditBtn" title="Change profile picture" aria-label="Change profile picture"><svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg></button>
-            <input type="file" id="accAvatarInput" accept="image/*" hidden>
+            <input type="file" id="accAvatarInput" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
           </div>
           <div class="acc-hero-text">
             <p class="auth-account-name" id="authAccountName">—</p>
@@ -1702,6 +1775,7 @@
 
         <div class="acc-meta-row">
           <span class="acc-meta-item"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><rect width="18" height="18" x="3" y="4" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span class="i18n-t" data-en="Member since" data-km="សមាជិកតាំងពី">Member since</span> <b id="authAccountJoined">—</b></span>
+          <span class="acc-meta-item" id="accLastSyncedWrap"><svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><polyline points="20 6 9 17 4 12"/></svg><span id="accLastSyncedAt">Synced</span></span>
         </div>
 
         <div class="acc-xp-track" id="accXpTrack" aria-hidden="true"><div class="acc-xp-fill" id="accXpFill"></div></div>
@@ -1709,14 +1783,45 @@
 
         <div class="acc-stats-grid" id="accountStatsGrid" aria-label="Your progress stats"></div>
 
+        <!-- Personal Cloud Files Manager (user-files private bucket) -->
+        <div class="acc-cloud-files-box" id="accountCloudFilesSection">
+          <div class="acc-cloud-files-head">
+            <div class="acc-cloud-files-title">
+              <svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span class="i18n-t" data-en="Personal Cloud Files &amp; Backups" data-km="ឯកសារពពកផ្ទាល់ខ្លួន និងការបម្រុងទុក">Personal Cloud Files &amp; Backups</span>
+            </div>
+            <div class="acc-cloud-files-actions">
+              <button type="button" class="acc-mini-btn" id="accCreateCloudBackupBtn" title="Save current progress &amp; settings snapshot to private cloud storage">
+                <svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
+                <span class="i18n-t" data-en="Save Snapshot" data-km="រក្សាទុកការបម្រុងទុក">Save Snapshot</span>
+              </button>
+              <button type="button" class="acc-mini-btn" id="accUploadCloudFileBtn" title="Upload a personal backup JSON, note, or wallpaper image (max 5 MB)">
+                <svg class="pk-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <span class="i18n-t" data-en="Upload File" data-km="បង្ហោះឯកសារ">Upload File</span>
+              </button>
+              <input type="file" id="accCloudFileInput" accept=".json,.txt,image/png,image/jpeg,image/webp,image/gif" hidden>
+            </div>
+          </div>
+          <div class="acc-cloud-files-list" id="accCloudFilesList">
+            <div class="acc-cloud-files-empty" id="accCloudFilesEmpty">No personal cloud files yet.</div>
+          </div>
+        </div>
+
         <div class="acc-action-row">
           <button type="button" class="secondary-btn" id="accountViewStatsBtn"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span class="i18n-t" data-en="Full Statistics" data-km="ស្ថិតិពេញលេញ">Full Statistics</span></button>
           <button type="button" class="secondary-btn" id="accountSettingsBtn"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33 1.65 1.65 0 0 0 1.51-1V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span class="i18n-t" data-en="Settings" data-km="ការកំណត់">Settings</span></button>
+          <button type="button" class="secondary-btn" id="accChangePasswordBtn"><svg class="pk-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:4px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span class="i18n-t" data-en="Update Password" data-km="ប្ដូរពាក្យសម្ងាត់">Update Password</span></button>
         </div>
 
-        <button type="button" class="auth-submit-btn auth-signout-btn" id="signOutBtn">
-          <span class="auth-submit-label i18n-t" data-en="Sign Out" data-km="ចាកចេញ">Sign Out</span>
-        </button>
+        <div class="acc-bottom-actions">
+          <button type="button" class="auth-submit-btn auth-signout-btn" id="signOutBtn">
+            <span class="auth-submit-label i18n-t" data-en="Sign Out" data-km="ចាកចេញ">Sign Out</span>
+          </button>
+          <button type="button" class="acc-delete-account-btn" id="deleteAccountBtn">
+            <svg class="pk-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+            <span class="i18n-t" data-en="Delete Account &amp; Cloud Data" data-km="លុបគណនី និងទិន្នន័យពពក">Delete Account &amp; Cloud Data</span>
+          </button>
+        </div>
       </div>
 
     </div>
@@ -1731,8 +1836,8 @@
     <div class="terms-top">
       <div class="terms-badge" aria-hidden="true"><svg class="pk-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="10" y1="6" x2="16" y2="6"/><line x1="10" y1="10" x2="14" y2="10"/></svg></div>
       <div>
-        <h2 id="termsModalTitle" class="i18n-t" data-en="Terms &amp;amp; Conditions" data-km="ខចែងលក្ខខណ្ឌ">Terms &amp; Conditions</h2>
-        <p class="terms-subtitle i18n-t" data-en="PK Khmer Type — demo account system" data-km="PK Khmer Type — ប្រព័ន្ធគណនីសាកល្បង">PK Khmer Type — demo account system</p>
+        <h2 id="termsModalTitle" class="i18n-t" data-en="Terms &amp; Privacy Policy" data-km="ខចែងលក្ខខណ្ឌ និងគោលការណ៍ឯកជនភាព">Terms &amp; Privacy Policy</h2>
+        <p class="terms-subtitle i18n-t" data-en="PK Khmer Type — Local-First &amp; Supabase Cloud Sync" data-km="PK Khmer Type — ប្រព័ន្ធរក្សាទុកក្នុងឧបករណ៍ និងសមកាលកម្មពពក">PK Khmer Type — Local-First &amp; Supabase Cloud Sync</p>
       </div>
       <button class="modal-close" id="termsCloseBtn" aria-label="Close Terms &amp; Conditions"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
@@ -1740,27 +1845,27 @@
     <div class="terms-body">
       <div class="terms-notice">
         <span class="terms-notice-icon" aria-hidden="true"><svg class="pk-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 21 7.2 21 16.8 12 22 3 16.8 3 7.2"/><path d="M12 8v5"/><circle cx="12" cy="16.5" r="1" fill="currentColor"/></svg></span>
-        <span class="i18n-t" data-en="This is a &lt;b&gt;demo account system&lt;/b&gt;. No real personal data should be entered — accounts exist only in this browser." data-km="នេះគឺជា &lt;b&gt;ប្រព័ន្ធគណនីសាកល្បង&lt;/b&gt;។ សូមកុំបញ្ចូលទិន្នន័យផ្ទាល់ខ្លួនពិតប្រាកដ — គណនីមានតែនៅក្នុងកម្មវិធីរុករកនេះប៉ុណ្ណោះ។">This is a <b>demo account system</b>. No real personal data should be entered — accounts exist only in this browser.</span>
+        <span class="i18n-t" data-en="PK Khmer Type uses a &lt;b&gt;local-first architecture&lt;/b&gt; with optional &lt;b&gt;Supabase Cloud Sync&lt;/b&gt; protected by PostgreSQL Row Level Security (RLS)." data-km="PK Khmer Type ប្រើប្រាស់ប្រព័ន្ធរក្សាទុកក្នុងឧបករណ៍ជាមុន រួមជាមួយ Supabase Cloud Sync ដែលការពារដោយ Row Level Security (RLS)។">PK Khmer Type uses a <b>local-first architecture</b> with optional <b>Supabase Cloud Sync</b> protected by PostgreSQL Row Level Security (RLS).</span>
       </div>
 
       <div class="terms-section">
         <h3><span class="terms-section-num">01</span><span class="i18n-t" data-en="Where your data lives" data-km="កន្លែងរក្សាទុកទិន្នន័យរបស់អ្នក">Where your data lives</span></h3>
-        <p class="i18n-t" data-en="Everything you enter — username, email, and a hashed password — is saved to this browser's local storage. Nothing is sent to a server, and nothing leaves this device." data-km="រាល់អ្វីដែលអ្នកបញ្ចូល — ឈ្មោះអ្នកប្រើ អ៊ីមែល និងពាក្យសម្ងាត់ដែលបានបំប្លែងកូដ — ត្រូវបានរក្សាទុកក្នុងឧបករណ៍នេះ។ គ្មានអ្វីត្រូវបានផ្ញើទៅម៉ាស៊ីនមេ ឬចេញពីឧបករណ៍នេះឡើយ។">Everything you enter — username, email, and a hashed password — is saved to this browser's local storage. Nothing is sent to a server, and nothing leaves this device.</p>
+        <p class="i18n-t" data-en="Your typing progress and settings are saved immediately in your browser's local storage and IndexedDB so the app works offline. When you sign in, your profile, settings, lesson progress, and personal files are synchronized with your private Supabase account." data-km="វឌ្ឍនភាព និងការកំណត់របស់អ្នកត្រូវបានរក្សាទុកភ្លាមៗក្នុងកម្មវិធីរុករករបស់អ្នក ហើយធ្វើសមកាលកម្មទៅកាន់គណនីពពកឯកជនរបស់អ្នកនៅពេលអ្នកចូលគណនី។">Your typing progress and settings are saved immediately in your browser's local storage and IndexedDB so the app works offline. When you sign in, your profile, settings, lesson progress, and personal files are synchronized with your private Supabase account.</p>
       </div>
 
       <div class="terms-section">
-        <h3><span class="terms-section-num">02</span><span class="i18n-t" data-en="Password handling" data-km="ការគ្រប់គ្រងពាក្យសម្ងាត់">Password handling</span></h3>
-        <p class="i18n-t" data-en="Passwords are never stored as plain text. Each one is combined with a random salt and hashed with SHA-256 before it touches storage. This is still not real-world security — it simply avoids the most obvious mistake." data-km="ពាក្យសម្ងាត់មិនត្រូវបានរក្សាទុកជាអត្ថបទធម្មតាឡើយ។ ពាក្យសម្ងាត់នីមួយៗត្រូវបានបំប្លែងដោយកូដ SHA-256 មុនពេលរក្សាទុក។">Passwords are never stored as plain text. Each one is combined with a random salt and hashed with SHA-256 before it touches storage. This is still not real-world security — it simply avoids the most obvious mistake.</p>
+        <h3><span class="terms-section-num">02</span><span class="i18n-t" data-en="Password &amp; authentication security" data-km="សុវត្ថិភាពពាក្យសម្ងាត់ និងការផ្ទៀងផ្ទាត់">Password &amp; authentication security</span></h3>
+        <p class="i18n-t" data-en="Authentication and password hashing are handled directly by Supabase Auth over HTTPS. Raw passwords are never stored in localStorage, IndexedDB, or application state." data-km="ការផ្ទៀងផ្ទាត់ និងការការពារពាក្យសម្ងាត់ត្រូវបានគ្រប់គ្រងដោយផ្ទាល់ដោយ Supabase Auth តាមរយៈ HTTPS។">Authentication and password hashing are handled directly by Supabase Auth over HTTPS. Raw passwords are never stored in localStorage, IndexedDB, or application state.</p>
       </div>
 
       <div class="terms-section">
-        <h3><span class="terms-section-num">03</span><span class="i18n-t" data-en="Staying signed in" data-km="ការបន្តចូលគណនី">Staying signed in</span></h3>
-        <p class="i18n-t" data-en="Once you sign in, your session is kept on this device until you explicitly sign out — including after refreshing the page or navigating back and forward." data-km="នៅពេលអ្នកចូលគណនី វគ្គរបស់អ្នកនឹងត្រូវបានរក្សាទុកលើឧបករណ៍នេះ រហូតដល់អ្នកចុចចាកចេញ។">Once you sign in, your session is kept on this device until you explicitly sign out — including after refreshing the page or navigating back and forward.</p>
+        <h3><span class="terms-section-num">03</span><span class="i18n-t" data-en="Row Level Security &amp; private files" data-km="សុវត្ថិភាពទិន្នន័យ និងឯកសារឯកជន">Row Level Security &amp; private files</span></h3>
+        <p class="i18n-t" data-en="Every database table and the private user-files storage bucket enforce strict Row Level Security policies tied to your authenticated UUID. Only you can read, update, or delete your progress, settings, and files." data-km="គ្រប់តារាងទិន្នន័យ និងឯកសារពពកទាំងអស់ត្រូវបានការពារដោយ Row Level Security ដែលមានតែអ្នកប៉ុណ្ណោះអាចចូលប្រើប្រាស់បាន។">Every database table and the private user-files storage bucket enforce strict Row Level Security policies tied to your authenticated UUID. Only you can read, update, or delete your progress, settings, and files.</p>
       </div>
 
       <div class="terms-section">
-        <h3><span class="terms-section-num">04</span><span class="i18n-t" data-en="Clearing your data" data-km="ការសម្អាតទិន្នន័យរបស់អ្នក">Clearing your data</span></h3>
-        <p class="i18n-t" data-en="Clearing your browser's site data, using a different browser, or switching devices will remove your demo account. There is no recovery — this is a local-only trainer, not a hosted service." data-km="ការសម្អាតទិន្នន័យកម្មវិធីរុករក ឬការប្តូរឧបករណ៍ នឹងលុបគណនីសាកល្បងរបស់អ្នក។">Clearing your browser's site data, using a different browser, or switching devices will remove your demo account. There is no recovery — this is a local-only trainer, not a hosted service.</p>
+        <h3><span class="terms-section-num">04</span><span class="i18n-t" data-en="Account &amp; cloud data deletion" data-km="ការលុបគណនី និងទិន្នន័យពពក">Account &amp; cloud data deletion</span></h3>
+        <p class="i18n-t" data-en="You can permanently delete your account and all associated cloud records and private storage files at any time from your Account Panel." data-km="អ្នកអាចលុបគណនី និងទិន្នន័យពពកទាំងអស់របស់អ្នកជាអចិន្ត្រៃយ៍នៅពេលណាក៏បានពីផ្ទាំងគណនីរបស់អ្នក។">You can permanently delete your account and all associated cloud records and private storage files at any time from your Account Panel.</p>
       </div>
     </div>
 
@@ -2634,25 +2739,29 @@
 </noscript>
 
   <!-- Scripts -->
-  <script defer src="js/icons.js?v=66"></script>
-  <script defer src="js/storage.js?v=66"></script>
-  <script defer src="data/curriculum-data.js?v=66"></script>
-  <script defer src="data/adaptive-vocab.js?v=66"></script>
-  <script defer src="js/keyboard.js?v=66"></script>
-  <script defer src="js/tracker.js?v=66"></script>
-  <script defer src="js/progress.js?v=66"></script>
-  <script defer src="js/review.js?v=66"></script>
-  <script defer src="js/cursor-inspector.js?v=66"></script>
-  <script defer src="js/feedback.js?v=66"></script>
-  <script defer src="js/adaptive.js?v=66"></script>
-  <script defer src="js/lessons.js?v=66"></script>
-  <script defer src="js/race.js?v=66"></script>
-  <script defer src="js/typing.js?v=66"></script>
-  <script defer src="js/statistics.js?v=66"></script>
-  <script defer src="js/settings.js?v=66"></script>
-  <script defer src="js/shortcuts.js?v=66"></script>
-  <script defer src="js/quick_guide.js?v=66"></script>
-  <script defer src="js/tutorial.js?v=66"></script>
-  <script defer src="js/app.js?v=66"></script>
+  <script defer src="js/icons.js?v=67"></script>
+  <script defer src="js/vendor/supabase.js?v=67"></script>
+  <script defer src="js/supabase-env.js?v=67" onerror="window.__PK_NO_ENV_FILE=true"></script>
+  <script defer src="js/supabase-config.js?v=67"></script>
+  <script defer src="js/cloud-sync.js?v=67"></script>
+  <script defer src="js/storage.js?v=67"></script>
+  <script defer src="data/curriculum-data.js?v=67"></script>
+  <script defer src="data/adaptive-vocab.js?v=67"></script>
+  <script defer src="js/keyboard.js?v=67"></script>
+  <script defer src="js/tracker.js?v=67"></script>
+  <script defer src="js/progress.js?v=67"></script>
+  <script defer src="js/review.js?v=67"></script>
+  <script defer src="js/cursor-inspector.js?v=67"></script>
+  <script defer src="js/feedback.js?v=67"></script>
+  <script defer src="js/adaptive.js?v=67"></script>
+  <script defer src="js/lessons.js?v=67"></script>
+  <script defer src="js/race.js?v=67"></script>
+  <script defer src="js/typing.js?v=67"></script>
+  <script defer src="js/statistics.js?v=67"></script>
+  <script defer src="js/settings.js?v=67"></script>
+  <script defer src="js/shortcuts.js?v=67"></script>
+  <script defer src="js/quick_guide.js?v=67"></script>
+  <script defer src="js/tutorial.js?v=67"></script>
+  <script defer src="js/app.js?v=67"></script>
 </body>
 </html>

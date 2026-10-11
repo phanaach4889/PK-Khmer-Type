@@ -33,14 +33,18 @@ jobs:
       - name: Validate JavaScript Syntax
         run: |
           echo "Checking JavaScript files for syntax errors..."
-          for file in js/*.js launch/*.js; do
+          for file in js/*.js js/vendor/*.js launch/*.js scripts/generate_supabase_config.js scripts/validate_curriculum.js tests/cloud_sync.test.js; do
             [ -f "$file" ] && node --check "$file"
           done
-          echo "All core and launch JS files passed syntax validation."
+          echo "All core, vendor, config, test, and launch JS files passed syntax validation."
 
       - name: Validate Curriculum Integrity
         run: |
           node scripts/validate_curriculum.js
+
+      - name: Run Auth, RLS, Cloud Sync & File Sync Test Suite
+        run: |
+          node --test tests/cloud_sync.test.js
 
   deploy:
     name: Deploy to GitHub Pages
@@ -52,6 +56,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate Public Supabase Runtime Configuration
+        env:
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL || secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY || secrets.VITE_SUPABASE_ANON_KEY }}
+        run: |
+          node scripts/generate_supabase_config.js
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -65,11 +81,11 @@ jobs:
           cp google*.html _site/ 2>/dev/null || true
           cp icon-*.png _site/
           cp -r css js data Documents docs assets launch _site/
-          
+
           # Copy optional documentation if present
           [ -f README.md ] && cp README.md _site/
           [ -f khmer_writing_system_reference.md ] && cp khmer_writing_system_reference.md _site/
-          
+
           echo "Staged site contents:"
           ls -la _site/
 
